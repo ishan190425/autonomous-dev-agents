@@ -3,7 +3,6 @@
  */
 
 import { Command } from 'commander';
-import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { readRoster } from '@ada/core';
 

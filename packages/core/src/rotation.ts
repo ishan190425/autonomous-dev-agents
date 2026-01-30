@@ -33,7 +33,7 @@ export async function readRotationState(statePath: string): Promise<RotationStat
 export async function writeRotationState(statePath: string, state: RotationState): Promise<void> {
   const dir = path.dirname(statePath);
   await fs.mkdir(dir, { recursive: true });
-  await fs.writeFile(statePath, JSON.stringify(state, null, 2) + '\n', 'utf-8');
+  await fs.writeFile(statePath, `${JSON.stringify(state, null, 2)  }\n`, 'utf-8');
 }
 
 /**
@@ -149,13 +149,13 @@ export function getRotationSummary(state: RotationState, roster: Roster): string
   const role = getCurrentRole(state, roster);
   const lines: string[] = [];
 
-  lines.push(`📊 Rotation Status`);
-  lines.push(`─────────────────────`);
+  lines.push('📊 Rotation Status');
+  lines.push('─────────────────────');
 
   if (role) {
     lines.push(`Current role: ${role.emoji} ${role.name} (${role.title})`);
   } else {
-    lines.push(`Current role: (none — empty rotation)`);
+    lines.push('Current role: (none — empty rotation)');
   }
 
   lines.push(`Cycle count:  ${state.cycle_count}`);

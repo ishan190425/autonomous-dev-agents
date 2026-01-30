@@ -87,7 +87,7 @@ async function initializeAgentTeam(options: InitOptions): Promise<void> {
   // Get team configuration
   const teamConfig = await getTeamConfiguration(options, projectInfo);
   
-  console.log(chalk.blue(`🎯 Configuration:`));
+  console.log(chalk.blue('🎯 Configuration:'));
   console.log(chalk.gray(`   Template: ${teamConfig.template}`));
   console.log(chalk.gray(`   Team size: ${teamConfig.teamSize} (${TEAM_SIZES[teamConfig.teamSize]?.description || 'Unknown'})`));
   console.log(chalk.gray(`   Focus: ${teamConfig.focus}`));
@@ -100,7 +100,7 @@ async function initializeAgentTeam(options: InitOptions): Promise<void> {
   await customizeRoster(agentsDir, teamConfig);
   
   // Initialize rotation state
-  await initializeRotationState(agentsDir, teamConfig);
+  await initializeRotationState(agentsDir);
   
   // Create initial memory bank
   await createInitialMemoryBank(agentsDir, teamConfig, projectInfo);
@@ -111,10 +111,10 @@ async function initializeAgentTeam(options: InitOptions): Promise<void> {
   console.log(chalk.green('✅ Agent team initialized successfully!\n'));
   
   console.log(chalk.bold('Next steps:'));
-  console.log(chalk.gray('  1.') + ' Review configuration: ' + chalk.cyan(`${options.dir}/roster.json`));
-  console.log(chalk.gray('  2.') + ' Customize playbooks: ' + chalk.cyan(`${options.dir}/playbooks/*.md`));
-  console.log(chalk.gray('  3.') + ' Run first cycle: ' + chalk.cyan('ada run'));
-  console.log(chalk.gray('  4.') + ' Check status: ' + chalk.cyan('ada status') + '\n');
+  console.log(`${chalk.gray('  1.')  } Review configuration: ${  chalk.cyan(`${options.dir}/roster.json`)}`);
+  console.log(`${chalk.gray('  2.')  } Customize playbooks: ${  chalk.cyan(`${options.dir}/playbooks/*.md`)}`);
+  console.log(`${chalk.gray('  3.')  } Run first cycle: ${  chalk.cyan('ada run')}`);
+  console.log(`${chalk.gray('  4.')  } Check status: ${  chalk.cyan('ada status')  }\n`);
 }
 
 async function directoryExists(dirPath: string): Promise<boolean> {
@@ -227,7 +227,7 @@ async function getTeamConfiguration(options: InitOptions, projectInfo: ProjectIn
   };
 }
 
-async function copyTemplateFiles(templateName: string, targetDir: string): Promise<void> {
+async function copyTemplateFiles(_templateName: string, targetDir: string): Promise<void> {
   // Find the CLI package root and locate templates
   const cliRoot = path.dirname(path.dirname(__dirname)); // ../../ from dist/commands/
   const templatesDir = path.join(cliRoot, '..', '..', 'templates');
@@ -285,12 +285,12 @@ async function customizeRoster(agentsDir: string, config: TeamConfig): Promise<v
   };
   
   // Write the customized roster
-  await fs.writeFile(rosterPath, JSON.stringify(customizedRoster, null, 2) + '\n');
+  await fs.writeFile(rosterPath, `${JSON.stringify(customizedRoster, null, 2)  }\n`);
   
   console.log(chalk.green(`✅ Roster configured (${filteredRoles.length} roles)\n`));
 }
 
-async function initializeRotationState(agentsDir: string, config: TeamConfig): Promise<void> {
+async function initializeRotationState(agentsDir: string): Promise<void> {
   const statePath = path.join(agentsDir, 'state', 'rotation.json');
   
   console.log(chalk.blue('🔄 Initializing rotation state...'));
@@ -304,7 +304,7 @@ async function initializeRotationState(agentsDir: string, config: TeamConfig): P
   };
   
   await fs.mkdir(path.dirname(statePath), { recursive: true });
-  await fs.writeFile(statePath, JSON.stringify(initialState, null, 2) + '\n');
+  await fs.writeFile(statePath, `${JSON.stringify(initialState, null, 2)  }\n`);
   
   console.log(chalk.green('✅ Rotation state initialized\n'));
 }
@@ -446,7 +446,7 @@ async function createAdaConfig(agentsDir: string): Promise<void> {
     agentsDir: path.relative(process.cwd(), agentsDir),
   };
   
-  await fs.writeFile(configPath, JSON.stringify(config, null, 2) + '\n');
+  await fs.writeFile(configPath, `${JSON.stringify(config, null, 2)  }\n`);
   
   console.log(chalk.green('✅ Configuration file created\n'));
 }

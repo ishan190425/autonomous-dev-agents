@@ -1,26 +1,71 @@
 {
   "compilerOptions": {
+    // ECMAScript target and module system
     "target": "ES2022",
-    "module": "Node16",
-    "moduleResolution": "Node16",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "lib": ["ES2022"],
+    
+    // Strict type-checking options (enforced for all packages)
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    
+    // Module resolution and interop
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "exactOptionalPropertyTypes": false,
+    "allowImportingTsExtensions": false,
+    
+    // Emit
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "removeComments": true,
+    
+    // Skip type checking of declaration files
+    "skipLibCheck": true,
+    
+    // Workspace-specific
+    "composite": true,
+    "incremental": true,
+    
+    // Path mapping for cross-package imports
+    "baseUrl": ".",
+    "paths": {
+      "@ada/core": ["./packages/core/src"],
+      "@ada/core/*": ["./packages/core/src/*"],
+      "@ada/cli": ["./packages/cli/src"],
+      "@ada/cli/*": ["./packages/cli/src/*"]
+    }
   },
-  "references": [
-    { "path": "./packages/core" },
-    { "path": "./packages/cli" }
+  
+  "include": [
+    "packages/*/src/**/*",
+    "apps/*/src/**/*"
   ],
-  "exclude": ["node_modules", "dist", "**/dist"]
+  
+  "exclude": [
+    "**/node_modules",
+    "**/dist",
+    "**/build",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ],
+  
+  "references": [
+    {
+      "path": "./packages/core"
+    },
+    {
+      "path": "./packages/cli"
+    }
+  ]
 }

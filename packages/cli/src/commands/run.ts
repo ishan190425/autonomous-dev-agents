@@ -6,7 +6,6 @@
  */
 
 import { Command } from 'commander';
-import * as path from 'node:path';
 import { loadContext, completeDispatch, checkCompression } from '@ada/core';
 
 export const runCommand = new Command('run')
@@ -35,7 +34,7 @@ export const runCommand = new Command('run')
 
       if (options.dryRun) {
         console.log('🏃 DRY RUN — no changes will be made\n');
-        console.log(`Available actions:`);
+        console.log('Available actions:');
         for (const action of role.actions) {
           console.log(`  • ${action}`);
         }
