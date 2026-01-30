@@ -8,4 +8,21 @@ Thumbs.db
 *.swp
 *.swo
 
-# Don't ignore any template files — everything should be tracked
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Test
+coverage/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
