@@ -73,10 +73,11 @@ Each role has its own playbook, personality, and focus areas. A shared memory ba
 
 ### Roles
 
-The default template ships with 6 roles (customizable):
+The default template ships with 7 roles (customizable):
 
 | Role | Focus | Typical Actions |
 |------|-------|-----------------|
+| 👔 **CEO** | Strategy, market research, business plans | SWOT analysis, competitive intel, go-to-market, partnerships |
 | 🔬 **Research** | Technology scouting, feasibility | Create research issues, write surveys, comment on feasibility |
 | 📦 **Product** | Features, roadmap, user stories | Create feature issues, write specs, prioritize backlog |
 | 📋 **Scrum** | Sprint planning, tracking, retros | Plan sprints, progress updates, retrospectives |
@@ -248,13 +249,14 @@ Rotation is simple and deterministic:
 ### Example Flow
 
 ```
-Cycle 0: Research  → creates issue about tech approach
-Cycle 1: Product   → writes feature spec
-Cycle 2: Scrum     → plans sprint, assigns issues
-Cycle 3: Engineering → implements feature, creates PR
-Cycle 4: Ops       → reviews PR, merges if CI passes
-Cycle 5: Design    → reviews API design in merged code
-Cycle 6: Research  → (rotation repeats)
+Cycle 0: CEO        → sets strategic direction, SWOT analysis
+Cycle 1: Research   → creates issue about tech approach
+Cycle 2: Product    → writes feature spec aligned with CEO strategy
+Cycle 3: Scrum      → plans sprint, assigns issues
+Cycle 4: Engineering → implements feature, creates PR
+Cycle 5: Ops        → reviews PR, merges if CI passes
+Cycle 6: Design     → reviews API design in merged code
+Cycle 7: CEO        → (rotation repeats)
 ```
 
 ### Customizing Rotation
@@ -416,6 +418,7 @@ agents/
 ├── rules/
 │   └── RULES.md             ← Mandatory rules for all roles
 └── playbooks/
+    ├── ceo.md                ← CEO role playbook
     ├── research.md           ← Research role playbook
     ├── product.md            ← Product role playbook
     ├── scrum.md              ← Scrum role playbook

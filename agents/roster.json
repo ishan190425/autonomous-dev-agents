@@ -4,6 +4,15 @@
   "tagline": "[YOUR_TAGLINE]",
   "roles": [
     {
+      "id": "ceo",
+      "name": "[CEO_AGENT_NAME]",
+      "title": "CEO",
+      "emoji": "👔",
+      "focus": ["business_strategy", "market_research", "swot_analysis", "competitive_intelligence", "monetization", "partnerships"],
+      "actions": ["write_business_plans", "swot_analysis", "market_research", "strategic_review", "partnership_strategy"],
+      "memory_bank": "agents/memory/banks/ceo.md"
+    },
+    {
       "id": "research",
       "name": "[RESEARCH_AGENT_NAME]",
       "title": "Head of Research",
@@ -58,5 +67,5 @@
       "memory_bank": "agents/memory/banks/design.md"
     }
   ],
-  "rotation_order": ["research", "product", "scrum", "engineering", "ops", "design"]
+  "rotation_order": ["ceo", "research", "product", "scrum", "engineering", "ops", "design"]
 }

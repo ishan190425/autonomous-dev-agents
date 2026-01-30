@@ -43,6 +43,11 @@
 
 ## Role State
 
+### 👔 CEO
+- **Last action:** —
+- **Working on:** —
+- **Strategy:** (not yet defined)
+
 ### 🔬 Research
 - **Last action:** —
 - **Working on:** —
