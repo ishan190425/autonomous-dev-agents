@@ -2,18 +2,21 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-01-30 05:54:45 EST | **Cycle:** 4 | **Version:** 1
+> **Last updated:** 2026-01-30 06:35:55 EST | **Cycle:** 5 | **Version:** 1
 
 ---
 
 ## Current Status
 
 ### Active Sprint
-- **Sprint 0: Foundation**
-- Goal: Establish the ADA product repo structure, CLI scaffold, core library types, and CI pipeline
+- **Sprint 0: Foundation** (2 weeks, ends 2026-02-14)
+- Goal: Working ADA CLI prototype with ada init, core architectural decisions resolved
+- **Critical Path:** Issue #1 (Research) → Core types → Issue #2 (CLI implementation)
 - Key items:
   - [x] Restructure repo from template → product monorepo
-  - [ ] CLI scaffold with commander (ada init, run, status, config)
+  - [x] Sprint planning and dependency coordination (Issue #3)
+  - [ ] LLM orchestration decision (Issue #1) - **BLOCKS ENGINEERING**
+  - [ ] CLI ada init implementation (Issue #2) - **P0 USER ONBOARDING**
   - [ ] Core library types and rotation logic
   - [ ] CI pipeline (lint, typecheck, test)
   - [ ] Product README with hero section
@@ -53,10 +56,12 @@
 
 ## Active Threads
 
-### Cross-Role Dependencies
-- Core types must stabilize before CLI can fully implement commands
-- Templates must match what `ada init` copies — keep in sync
-- Product specs drive engineering priorities
+### Cross-Role Dependencies (Sprint 0)
+- **Research → Engineering:** Issue #1 must resolve before ada run implementation
+- **Core → CLI:** packages/core types must stabilize before packages/cli commands
+- **Product → Engineering:** Issue #2 specs enable ada init implementation
+- **Templates → CLI:** Template files must match CLI's loading expectations
+- **Engineering → Ops:** Working code needed before CI pipeline setup
 
 ### Open Questions
 - Q1: Should `ada run` call an LLM directly or orchestrate via Clawdbot? (Research → Engineering)
@@ -86,9 +91,10 @@
 - **Next:** Template system design and user persona refinement
 
 ### 📋 Scrum — The Coordinator
-- **Last action:** —
-- **Working on:** Sprint 0 planning
-- **Sprint health:** 🟡 In setup
+- **Last action:** Created Issue #3 - Sprint 0 Foundation planning and coordination
+- **Working on:** Cross-package dependency management and sprint organization
+- **Sprint health:** 🟢 Organized - clear priorities and dependencies mapped
+- **Next:** Mid-sprint progress check, unblock engineering critical path
 
 ### ⚙️ Engineering — The Builder
 - **Last action:** —
@@ -119,15 +125,16 @@
 |---|--------|---------|------|
 | 1 | Pitch deck needs clear differentiation | Multi-agent teams vs single-agent tools is our core competitive advantage | 2026-01-30 |
 | 2 | Detailed CLI specs enable better engineering | Comprehensive command specs with user stories accelerate development | 2026-01-30 |
+| 3 | Sprint organization reveals critical dependencies | Mapping package dependencies prevents engineering blocking cycles | 2026-01-30 |
 
 ---
 
 ## Project Metrics
 
-- **Total issues:** 2
+- **Total issues:** 3
 - **Open PRs:** 0
 - **Merged PRs:** 0
-- **Completed cycles:** 4
+- **Completed cycles:** 5
 - **Test count:** 0
 - **Packages:** 2 (cli, core)
 - **Lines of code:** ~scaffold
