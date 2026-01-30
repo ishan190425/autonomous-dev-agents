@@ -19,6 +19,7 @@
 | R-007 | [TypeScript Standards](#r-007-typescript-standards) | Ops | Init |
 | R-008 | [Monorepo Conventions](#r-008-monorepo-conventions) | Ops | Init |
 | R-009 | [npm Workspace Rules](#r-009-npm-workspace-rules) | Ops | Init |
+| R-010 | [PR Management & CI](#r-010-pr-management--ci) | Ops | 2026-01-30 |
 
 ---
 
@@ -142,6 +143,32 @@ This is an npm workspaces monorepo:
 - Root scripts aggregate: `npm run build --workspaces`, `npm test --workspaces`
 - Version management: all packages share the same version (synchronized)
 - Publishing: `npm publish --workspace=packages/cli` etc.
+
+---
+
+## R-010: PR Management & CI
+
+### CI Pipeline Requirements
+All PRs MUST pass the CI pipeline before merge:
+- **Lint:** ESLint across all packages
+- **Type-check:** TypeScript strict mode compilation
+- **Test:** Vitest test suites (when implemented)
+- **Build:** All packages compile successfully
+- **Security:** npm audit with moderate+ level
+
+### PR Review Standards
+- **No PRs rot:** Open >1 cycle = Ops priority to review/merge
+- **Quality gates:** All CI checks must pass locally before merge
+- **Conventional commits:** PR title must follow conventional commit format
+- **Squash merge:** Always use squash merge to maintain clean history
+
+### Emergency Bypass
+If CI is broken but code is verified locally, Ops can merge with justification:
+- Document local verification in merge message
+- Fix CI issues in immediate follow-up commit
+- Add incident post-mortem if CI failures blocked development
+
+**Why this rule matters:** Prevents broken code from reaching main, maintains code quality, ensures development velocity doesn't stall on minor CI issues.
 
 ---
 
