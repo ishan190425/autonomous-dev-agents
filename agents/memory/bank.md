@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-01-30 03:58:00 EST | **Cycle:** 1 | **Version:** 1
+> **Last updated:** 2026-01-30 04:11:30 EST | **Cycle:** 2 | **Version:** 1
 
 ---
 
@@ -22,6 +22,7 @@
 - Monorepo setup (npm workspaces, TypeScript project references)
 - CLI scaffold in packages/cli/
 - Core library scaffold in packages/core/
+- Fundraising preparation (pitch deck v1.0 complete, targeting $1.5M pre-seed)
 
 ### Blockers
 - (none yet)
@@ -32,6 +33,7 @@
 - ADR-003: Vitest for testing (fast, TypeScript-native, ESM support)
 - ADR-004: Trunk-based development on `main` (no develop branch — small team)
 - BIZ-001: Freemium model — Open-source CLI → Pro SaaS → Enterprise (30-01-26)
+- FND-001: $1.5M pre-seed fundraising strategy — target AI/dev tools VCs (30-01-26)
 
 ---
 
@@ -44,6 +46,7 @@
 | ADR-003 | Vitest for testing | Fast, native TS, ESM, Jest-compatible API | Init | The Builder |
 | ADR-004 | Trunk-based dev on main | Small team, fast iteration, no merge conflicts | Init | The Guardian |
 | BIZ-001 | Freemium business model | CLI open-source → SaaS upsell, community-driven adoption | 2026-01-30 | The Founder |
+| FND-001 | $1.5M pre-seed strategy | Target AI/dev tools VCs, $8M pre-money valuation | 2026-01-30 | The Dealmaker |
 
 ---
 
@@ -94,6 +97,12 @@
 - **Working on:** CI pipeline setup, TypeScript strict config
 - **Rules added:** R-007 (TypeScript), R-008 (Monorepo), R-009 (npm Workspaces)
 
+### 🚀 Growth — The Dealmaker
+- **Last action:** Created pitch deck v1.0 and growth playbook (docs/fundraising/pitch-deck.md)
+- **Working on:** Fundraising preparation, investor research
+- **Pipeline:** $1.5M pre-seed ask at $8M pre-money valuation
+- **Next:** Research target investors (First Round, Bessemer, AI-focused angels)
+
 ### 🎨 Design — The Architect
 - **Last action:** —
 - **Working on:** Core library API design, CLI UX spec
@@ -105,6 +114,7 @@
 
 | # | Lesson | Context | Date |
 |---|--------|---------|------|
+| 1 | Pitch deck needs clear differentiation | Multi-agent teams vs single-agent tools is our core competitive advantage | 2026-01-30 |
 
 ---
 
@@ -113,7 +123,7 @@
 - **Total issues:** 0
 - **Open PRs:** 0
 - **Merged PRs:** 0
-- **Completed cycles:** 0
+- **Completed cycles:** 2
 - **Test count:** 0
 - **Packages:** 2 (cli, core)
 - **Lines of code:** ~scaffold
