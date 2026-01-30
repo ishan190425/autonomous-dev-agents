@@ -1,0 +1,248 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  quality-gates:
+    name: Quality Gates
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🔧 Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: 📦 Install dependencies
+      run: npm ci
+
+    - name: 🔍 Lint all packages
+      run: npm run lint --workspaces
+
+    - name: 🔎 Type-check all packages
+      run: npm run typecheck --workspaces
+
+    - name: 🧪 Test all packages
+      run: npm run test --workspaces
+
+    - name: 🏗️ Build all packages
+      run: npm run build --workspaces
+
+    - name: 🔐 Security audit
+      run: npm audit --audit-level=moderate
+
+  package-validation:
+    name: Package Validation
+    runs-on: ubuntu-latest
+    needs: quality-gates
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🔧 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+
+    - name: 📦 Install dependencies
+      run: npm ci
+
+    - name: 🏗️ Build packages
+      run: npm run build --workspaces
+
+    - name: ✅ Validate package.json files
+      run: |
+        echo "🔍 Validating package.json structure..."
+        
+        # Check that all packages have required fields
+        for pkg in packages/*/package.json; do
+          echo "Checking $pkg..."
+          
+          # Extract package name for logging
+          pkg_name=$(jq -r '.name' "$pkg")
+          echo "  Package: $pkg_name"
+          
+          # Required fields check
+          if ! jq -e '.name and .version and .description and .main and .types' "$pkg" > /dev/null; then
+            echo "❌ Missing required fields in $pkg"
+            exit 1
+          fi
+          
+          # TypeScript strict mode check
+          tsconfig_path=$(dirname "$pkg")/tsconfig.json
+          if [[ -f "$tsconfig_path" ]]; then
+            if ! jq -e '.compilerOptions.strict == true' "$tsconfig_path" > /dev/null; then
+              echo "❌ TypeScript strict mode not enabled in $tsconfig_path"
+              exit 1
+            fi
+          fi
+          
+          echo "  ✅ $pkg_name validation passed"
+        done
+        
+        echo "🎉 All packages validated successfully"
+
+    - name: 📊 Package dependency check
+      run: |
+        echo "🔍 Checking workspace dependencies..."
+        
+        # Check for proper workspace protocol usage
+        for pkg in packages/*/package.json; do
+          pkg_name=$(jq -r '.name' "$pkg")
+          
+          # Check if any workspace packages use workspace protocol
+          workspace_deps=$(jq -r '.dependencies // {} | to_entries[] | select(.key | startswith("@ada/")) | .value' "$pkg" 2>/dev/null || true)
+          
+          if [[ -n "$workspace_deps" ]]; then
+            echo "  $pkg_name uses workspace dependencies:"
+            echo "$workspace_deps" | while read -r dep; do
+              if [[ "$dep" != "workspace:*" ]]; then
+                echo "    ⚠️  Should use 'workspace:*' protocol: $dep"
+              else
+                echo "    ✅ $dep"
+              fi
+            done
+          fi
+        done
+
+  code-quality:
+    name: Code Quality Analysis
+    runs-on: ubuntu-latest
+    needs: quality-gates
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🔧 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+
+    - name: 📦 Install dependencies
+      run: npm ci
+
+    - name: 📏 Code metrics
+      run: |
+        echo "📊 Code Quality Metrics"
+        echo "======================"
+        
+        # Count lines of TypeScript code
+        echo "📝 TypeScript files:"
+        find packages -name "*.ts" -not -path "*/node_modules/*" -not -path "*/dist/*" | wc -l
+        
+        echo "📄 Total TypeScript lines:"
+        find packages -name "*.ts" -not -path "*/node_modules/*" -not -path "*/dist/*" -exec wc -l {} + | tail -1
+        
+        # Check for any usage that should be flagged
+        echo "🚨 Code quality checks:"
+        
+        # Check for console.log in library code (should only be in CLI)
+        console_count=$(find packages -name "*.ts" -not -path "*/cli/*" -not -path "*/node_modules/*" -not -path "*/dist/*" -exec grep -l "console\.log" {} + | wc -l || true)
+        
+        if [[ "$console_count" -gt 0 ]]; then
+          echo "  ⚠️  Found console.log in library code (should only be in CLI)"
+          find packages -name "*.ts" -not -path "*/cli/*" -not -path "*/node_modules/*" -not -path "*/dist/*" -exec grep -l "console\.log" {} +
+        else
+          echo "  ✅ No console.log in library code"
+        fi
+        
+        # Check for any types usage
+        any_count=$(find packages -name "*.ts" -not -path "*/node_modules/*" -not -path "*/dist/*" -exec grep -c ": any" {} + | paste -sd+ | bc || true)
+        echo "  📊 'any' type usage count: $any_count"
+
+  rules-compliance:
+    name: Rules Compliance Check
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 📋 Validate commit message (if PR)
+      if: github.event_name == 'pull_request'
+      run: |
+        echo "🔍 Checking commit message compliance..."
+        
+        # Get the PR title as it will be the squash commit message
+        PR_TITLE="${{ github.event.pull_request.title }}"
+        echo "PR Title: $PR_TITLE"
+        
+        # Check conventional commit format: type(scope): description
+        if ! echo "$PR_TITLE" | grep -qE '^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?: .+'; then
+          echo "❌ PR title must follow conventional commit format"
+          echo "   Format: type(scope): description"
+          echo "   Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+          echo "   Example: feat(cli): add ada init command"
+          exit 1
+        else
+          echo "✅ PR title follows conventional commit format"
+        fi
+
+    - name: 🔍 Check TypeScript strict compliance
+      run: |
+        echo "🔎 Validating TypeScript strict mode compliance..."
+        
+        # Check all tsconfig.json files have strict mode enabled
+        find . -name "tsconfig.json" -not -path "*/node_modules/*" | while read -r tsconfig; do
+          echo "Checking $tsconfig..."
+          
+          if ! grep -q '"strict": true' "$tsconfig"; then
+            echo "❌ TypeScript strict mode not enabled in $tsconfig"
+            exit 1
+          fi
+        done
+        
+        echo "✅ All tsconfig.json files have strict mode enabled"
+
+  publish-preview:
+    name: Publish Preview (Dry Run)
+    runs-on: ubuntu-latest
+    needs: [quality-gates, package-validation]
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🔧 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: 📦 Install dependencies
+      run: npm ci
+
+    - name: 🏗️ Build packages
+      run: npm run build --workspaces
+
+    - name: 📋 Dry-run publish
+      run: |
+        echo "🧪 Testing package publishing (dry-run)..."
+        
+        # Test npm pack for each package
+        for pkg_dir in packages/*/; do
+          if [[ -f "$pkg_dir/package.json" ]]; then
+            echo "Testing package in $pkg_dir..."
+            cd "$pkg_dir"
+            npm pack --dry-run
+            cd - > /dev/null
+            echo "✅ Package validation passed"
+          fi
+        done

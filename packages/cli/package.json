@@ -2,6 +2,7 @@
   "name": "@ada/cli",
   "version": "0.1.0",
   "description": "CLI tool for Autonomous Dev Agents — set up and run AI agent teams on any repo",
+  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
@@ -30,7 +31,7 @@
   "author": "Rathi Industries",
   "license": "MIT",
   "dependencies": {
-    "@ada/core": "workspace:*",
+    "@ada/core": "*",
     "commander": "^13.1.0",
     "chalk": "^5.4.1"
   },

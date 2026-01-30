@@ -1,0 +1,13 @@
+{
+  "name": "@ada/web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ADA Web Dashboard — marketing site and monitoring dashboard",
+  "scripts": {
+    "build": "echo 'Web app not yet implemented'",
+    "typecheck": "echo 'Web app not yet implemented'",
+    "test": "echo 'Web app not yet implemented'",
+    "lint": "echo 'Web app not yet implemented'"
+  },
+  "license": "MIT"
+}

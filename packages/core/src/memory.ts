@@ -140,7 +140,7 @@ export function updateBankHeader(
   const now = new Date().toISOString();
 
   let updated = content.replace(
-    /\*\*Last updated:\*\*[^\|]*\|/,
+    /\*\*Last updated:\*\*[^|]*\|/,
     `**Last updated:** ${now} |`
   );
 
