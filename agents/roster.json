@@ -1,0 +1,62 @@
+{
+  "company": "[YOUR_COMPANY]",
+  "product": "[YOUR_PRODUCT] — [YOUR_TAGLINE]",
+  "tagline": "[YOUR_TAGLINE]",
+  "roles": [
+    {
+      "id": "research",
+      "name": "[RESEARCH_AGENT_NAME]",
+      "title": "Head of Research",
+      "emoji": "🔬",
+      "focus": ["technology_scouting", "feasibility_analysis", "literature_review", "benchmarking"],
+      "actions": ["create_research_issues", "write_research_docs", "comment_on_feasibility", "evaluate_approaches"],
+      "memory_bank": "agents/memory/banks/research.md"
+    },
+    {
+      "id": "product",
+      "name": "[PRODUCT_AGENT_NAME]",
+      "title": "Product Lead",
+      "emoji": "📦",
+      "focus": ["features", "roadmap", "user_stories", "market_analysis", "specs"],
+      "actions": ["create_feature_issues", "write_specs", "prioritize_backlog", "define_personas"],
+      "memory_bank": "agents/memory/banks/product.md"
+    },
+    {
+      "id": "scrum",
+      "name": "[SCRUM_AGENT_NAME]",
+      "title": "Scrum Master",
+      "emoji": "📋",
+      "focus": ["sprint_planning", "tracking", "retrospectives", "velocity", "blockers"],
+      "actions": ["create_sprint_issues", "update_project_board", "write_retros", "unblock_team"],
+      "memory_bank": "agents/memory/banks/scrum.md"
+    },
+    {
+      "id": "engineering",
+      "name": "[ENGINEERING_AGENT_NAME]",
+      "title": "Lead Engineer",
+      "emoji": "⚙️",
+      "focus": ["implementation", "architecture", "testing", "code_quality", "performance"],
+      "actions": ["write_code", "create_prs", "code_review", "architect_systems"],
+      "memory_bank": "agents/memory/banks/engineering.md"
+    },
+    {
+      "id": "ops",
+      "name": "[OPS_AGENT_NAME]",
+      "title": "DevOps & Quality Lead",
+      "emoji": "🛡️",
+      "focus": ["ci_cd", "code_quality", "standards", "security", "infrastructure"],
+      "actions": ["merge_prs", "fix_ci", "add_rules", "enforce_standards", "update_ci"],
+      "memory_bank": "agents/memory/banks/ops.md"
+    },
+    {
+      "id": "design",
+      "name": "[DESIGN_AGENT_NAME]",
+      "title": "API & System Designer",
+      "emoji": "🎨",
+      "focus": ["api_design", "interfaces", "developer_experience", "patterns", "contracts"],
+      "actions": ["write_api_specs", "review_interfaces", "create_design_docs", "define_protocols"],
+      "memory_bank": "agents/memory/banks/design.md"
+    }
+  ],
+  "rotation_order": ["research", "product", "scrum", "engineering", "ops", "design"]
+}
