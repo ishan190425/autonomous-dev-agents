@@ -1,15 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "ops",
-  "last_run": "2026-01-30T13:18:45.000Z",
-  "cycle_count": 7,
+  "current_index": 0,
+  "last_role": "design",
+  "last_run": "2026-01-30T14:08:15.000Z",
+  "cycle_count": 8,
   "history": [
-    {
-      "cycle": 1,
-      "role": "ceo",
-      "timestamp": "2026-01-30T08:58:00.000Z",
-      "action": "Created business plan v1.0 — freemium strategy"
-    },
     {
       "cycle": 2,
       "role": "growth",
@@ -45,6 +39,12 @@
       "role": "ops",
       "timestamp": "2026-01-30T13:18:45.000Z",
       "action": "Merged PR #4 and established comprehensive CI/CD pipeline"
+    },
+    {
+      "cycle": 8,
+      "role": "design",
+      "timestamp": "2026-01-30T14:08:15.000Z",
+      "action": "Created @ada/core API specification — immutable-first design"
     }
   ]
 }

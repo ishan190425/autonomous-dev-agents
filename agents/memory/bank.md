@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-01-30 08:18:45 EST | **Cycle:** 7 | **Version:** 1
+> **Last updated:** 2026-01-30 09:08:15 EST | **Cycle:** 8 | **Version:** 1
 
 ---
 
@@ -23,10 +23,11 @@
 
 ### In Progress
 - **CI Pipeline operational** - all quality gates enforced on future PRs
+- **@ada/core API specification** - comprehensive design document completed
 - LLM orchestration architecture decision (Issue #1) - **RESEARCH DEPENDENCY** 
 - Product specifications for remaining CLI commands (run, status, config)
+- Dashboard auth patterns and plugin architecture planning
 - Fundraising preparation (pitch deck v1.0 complete, targeting $1.5M pre-seed)
-- Template marketplace and dashboard planning
 
 ### Blockers
 - (none yet)
@@ -40,6 +41,7 @@
 - FND-001: $1.5M pre-seed fundraising strategy — target AI/dev tools VCs (30-01-26)
 - ENG-001: Template-based initialization — copy & customize over code generation (30-01-26)
 - OPS-001: Comprehensive CI/CD pipeline with quality gates — GitHub Actions (30-01-26)
+- API-001: Immutable-first API design — readonly types, pure functions, async-first (30-01-26)
 
 ---
 
@@ -55,6 +57,7 @@
 | FND-001 | $1.5M pre-seed strategy | Target AI/dev tools VCs, $8M pre-money valuation | 2026-01-30 | The Dealmaker |
 | ENG-001 | Template-based ada init | Copy + customize approach over code generation for maintainability | 2026-01-30 | The Builder |
 | OPS-001 | Comprehensive CI/CD pipeline | Multi-stage quality gates with lint/typecheck/test/build for all packages | 2026-01-30 | The Guardian |
+| API-001 | Immutable-first core API design | Readonly types, pure functions, async-first for developer experience | 2026-01-30 | The Architect |
 
 ---
 
@@ -121,9 +124,11 @@
 - **Next:** Research target investors (First Round, Bessemer, AI-focused angels)
 
 ### 🎨 Design — The Architect
-- **Last action:** —
-- **Working on:** Core library API design, CLI UX spec
-- **Design debt:** (none yet)
+- **Last action:** Created comprehensive @ada/core API specification (docs/architecture/core-api-spec.md)
+- **Working on:** CLI UX design patterns, plugin architecture planning
+- **Delivered:** 15KB API spec with types, error handling, plugin hooks, and migration strategy
+- **Design debt:** Dashboard wireframes, template system UX, CLI output formatting
+- **Next:** Address Q2 (default template design) and Q3 (dashboard auth patterns)
 
 ---
 
@@ -136,6 +141,7 @@
 | 3 | Sprint organization reveals critical dependencies | Mapping package dependencies prevents engineering blocking cycles | 2026-01-30 |
 | 4 | Template-based approach reduces complexity | File copying + customization simpler than code generation for CLI init | 2026-01-30 |
 | 5 | Comprehensive CI unblocks rapid development | Quality gates prevent regressions while enabling confident merging | 2026-01-30 |
+| 6 | API specifications guide implementation | Clear type contracts and error handling prevent architectural drift | 2026-01-30 |
 
 ---
 
@@ -144,7 +150,7 @@
 - **Total issues:** 3
 - **Open PRs:** 0
 - **Merged PRs:** 1
-- **Completed cycles:** 7
+- **Completed cycles:** 8
 - **Test count:** 0
 - **Packages:** 2 (cli, core)
 - **Lines of code:** ~2500+ (CLI + Core implementation)
