@@ -1,0 +1,38 @@
+{
+  "name": "@ada/core",
+  "version": "0.1.0",
+  "description": "Core library for Autonomous Dev Agents — types, rotation, memory, and dispatch logic",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "autonomous",
+    "development",
+    "multi-agent",
+    "devtools"
+  ],
+  "author": "Rathi Industries",
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^3.2.1"
+  }
+}

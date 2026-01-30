@@ -1,25 +1,26 @@
 # 🧬 Role Evolution Log
 
-> Track all changes to the agent team composition and capabilities.
+> Track all changes to the ADA agent team composition and capabilities.
 
 ---
 
 ## Changelog
 
-### [DATE] — Team Founded
+### Init — Team Founded
 
-**Initial roster created with 6 roles:**
+**Initial roster created with 7 roles for ADA product development:**
 
 | Role | Name | Justification |
 |------|------|---------------|
-| 🔬 Research | [Name] | Technology scouting and feasibility analysis |
-| 📦 Product | [Name] | Feature definition and prioritization |
-| 📋 Scrum | [Name] | Team coordination and delivery tracking |
-| ⚙️ Engineering | [Name] | Core implementation — writing the code |
-| 🛡️ Ops | [Name] | Quality enforcement and CI/CD |
-| 🎨 Design | [Name] | API and interface design |
+| 👔 CEO | The Founder | Business strategy, competitive analysis, go-to-market |
+| 🔬 Research | The Scout | LLM frameworks, multi-agent systems, competitor analysis |
+| 📦 Product | The PM | CLI features, dashboard, templates, pricing |
+| 📋 Scrum | The Coordinator | Sprint planning, cross-package coordination |
+| ⚙️ Engineering | The Builder | TypeScript/Node.js implementation across monorepo |
+| 🛡️ Ops | The Guardian | CI/CD, npm publishing, quality enforcement |
+| 🎨 Design | The Architect | CLI UX, API design, plugin architecture |
 
-**Rationale:** These six roles cover the full product development lifecycle: research → design → product → engineering → ops → scrum. Each has distinct, non-overlapping responsibilities.
+**Rationale:** These seven roles cover the full product development lifecycle for a developer tools SaaS: strategy → research → product → coordination → implementation → quality → design. ADA is dogfooding its own agent framework to build itself.
 
 ---
 
@@ -31,8 +32,8 @@
 
 ## Evolution Signals to Watch
 
-- [ ] When a new domain/module grows large → Consider a **specialist** role
-- [ ] When external integrations multiply → Consider a **DevRel / Integration** role
+- [ ] When web dashboard work begins → Consider a **Frontend Engineer** role
+- [ ] When template marketplace grows → Consider a **Community/DevRel** role
 - [ ] When testing becomes complex → Consider a **QA Engineer** role
-- [ ] When ML models need training → Consider a **ML Engineer** role
 - [ ] When docs outgrow the team → Consider a **Technical Writer** role
+- [ ] When billing/auth needed → Consider a **Platform Engineer** role

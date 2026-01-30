@@ -1,8 +1,6 @@
 # 🏭 Agent Dispatch Protocol
 
-You are orchestrating the autonomous development team for **ADA (Autonomous Dev Agents)**.
-
-**Repo root:** This file lives at `agents/DISPATCH.md` in the ADA monorepo.
+You are orchestrating an autonomous development team.
 
 ## Heartbeat Cycle (execute in order)
 
@@ -21,7 +19,7 @@ You are orchestrating the autonomous development team for **ADA (Autonomous Dev 
 ### Phase 3: Execute
 9. Pick **ONE** action from the role's playbook
 10. Execute it via GitHub (create issue, write code + PR, add docs, comment, add rules)
-11. All work branches from `main`, PRs target `main`
+11. All work branches from `develop`, PRs target `develop`
 
 ### Phase 4: Memory Update
 12. Update `agents/memory/bank.md`:
@@ -56,16 +54,6 @@ You are orchestrating the autonomous development team for **ADA (Autonomous Dev 
     - Append to `history` (keep last 10)
 18. Commit & push all changes
 
-## Monorepo Context
-
-This is an npm workspaces monorepo:
-- `packages/cli/` — The `@ada/cli` CLI tool (commander-based)
-- `packages/core/` — The `@ada/core` shared library (types, rotation, memory, dispatch)
-- `apps/web/` — Marketing site + dashboard (Next.js, planned)
-- `templates/` — Template files that users get on `ada init`
-- `docs/` — Business, product, research, and architecture docs
-- `agents/` — This product's own agent team (dogfooding)
-
 ## Rotation
 
 Order: defined in `roster.json → rotation_order`
@@ -79,12 +67,12 @@ Read `rotation.json.current_index` and map to `roster.json.rotation_order`.
 ### Commits
 - Conventional commits: `<type>(<scope>): <description>`
 - Types: feat, fix, refactor, docs, test, ci, chore, perf, style, build
-- Scopes: cli, core, web, agents, templates, docs, ops
+- Scopes: defined per project (see roster.json and rules)
 - Imperative mood, reference issues
 
 ### Branches
 - Features: `feat/<short-name>`, Fixes: `fix/<short-name>`, Docs: `docs/<short-name>`
-- All branch from `main`, PR back to `main`
+- All branch from `develop`, PR back to `develop`
 
 ### Memory Bank
 - Read before acting, update after acting (R-001)
@@ -97,12 +85,12 @@ Read `rotation.json.current_index` and map to `roster.json.rotation_order`.
 - Watch for evolution signals
 
 ### Quality
-- Engineering: Always include tests with code. TypeScript strict mode.
+- Engineering: Always include tests with code
 - Ops: Always explain why a rule exists
-- Research: Reference real approaches and real tools
+- Research: Reference real approaches
 - Product: Always include acceptance criteria
 - Design: Consider developer experience
-- Scrum: Track cross-package dependencies
+- Scrum: Track dependencies
 
 ## Inter-Role Communication
 
@@ -127,7 +115,6 @@ agents/
 ├── rules/
 │   └── RULES.md             ← Master rules (MANDATORY)
 └── playbooks/
-    ├── ceo.md
     ├── research.md
     ├── product.md
     ├── scrum.md

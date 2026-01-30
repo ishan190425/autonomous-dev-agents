@@ -1,7 +1,7 @@
 # 🧠 Memory Bank
 
-> The shared brain of the autonomous development team.  
-> Every role reads this. Critical roles update it.  
+> The shared brain of the ADA autonomous development team.
+> Every role reads this. Critical roles update it.
 > **Last updated:** — | **Cycle:** 0 | **Version:** 1
 
 ---
@@ -9,18 +9,28 @@
 ## Current Status
 
 ### Active Sprint
-- **Sprint 0: Initialization**
-- Goal: [Define your first sprint goal]
-- Key items: [List key issues/tasks]
+- **Sprint 0: Foundation**
+- Goal: Establish the ADA product repo structure, CLI scaffold, core library types, and CI pipeline
+- Key items:
+  - [x] Restructure repo from template → product monorepo
+  - [ ] CLI scaffold with commander (ada init, run, status, config)
+  - [ ] Core library types and rotation logic
+  - [ ] CI pipeline (lint, typecheck, test)
+  - [ ] Product README with hero section
 
 ### In Progress
-- (none yet)
+- Monorepo setup (npm workspaces, TypeScript project references)
+- CLI scaffold in packages/cli/
+- Core library scaffold in packages/core/
 
 ### Blockers
 - (none yet)
 
 ### Recent Decisions
-- (none yet)
+- ADR-001: Monorepo with npm workspaces (not Turborepo/Nx — keep it simple)
+- ADR-002: Commander.js for CLI (mature, well-typed, widely adopted)
+- ADR-003: Vitest for testing (fast, TypeScript-native, ESM support)
+- ADR-004: Trunk-based development on `main` (no develop branch — small team)
 
 ---
 
@@ -28,54 +38,62 @@
 
 | ID | Decision | Rationale | Date | Author |
 |----|----------|-----------|------|--------|
+| ADR-001 | npm workspaces monorepo | Simple, no extra tooling, npm-native | Init | The Builder |
+| ADR-002 | Commander.js for CLI | Mature, typed, 30k+ GitHub stars | Init | The Builder |
+| ADR-003 | Vitest for testing | Fast, native TS, ESM, Jest-compatible API | Init | The Builder |
+| ADR-004 | Trunk-based dev on main | Small team, fast iteration, no merge conflicts | Init | The Guardian |
 
 ---
 
 ## Active Threads
 
 ### Cross-Role Dependencies
-- (none yet)
+- Core types must stabilize before CLI can fully implement commands
+- Templates must match what `ada init` copies — keep in sync
+- Product specs drive engineering priorities
 
 ### Open Questions
-- (none yet)
+- Q1: Should `ada run` call an LLM directly or orchestrate via Clawdbot? (Research → Engineering)
+- Q2: What's the right default template? Minimal vs full? (Product → Design)
+- Q3: How do we handle auth for the web dashboard? (Design → Engineering)
 
 ---
 
 ## Role State
 
-### 👔 CEO
+### 👔 CEO — The Founder
 - **Last action:** —
-- **Working on:** —
-- **Strategy:** (not yet defined)
+- **Working on:** Initial business strategy and positioning
+- **Strategy:** CLI-first, open-source core, SaaS dashboard upsell
 
-### 🔬 Research
+### 🔬 Research — The Scout
 - **Last action:** —
-- **Working on:** —
+- **Working on:** Survey of competing agent frameworks
 - **Findings:** (none yet)
 
-### 📦 Product
+### 📦 Product — The PM
 - **Last action:** —
-- **Working on:** —
+- **Working on:** CLI command specs and onboarding flow
 - **Pipeline:** (none yet)
 
-### 📋 Scrum
+### 📋 Scrum — The Coordinator
 - **Last action:** —
-- **Working on:** —
-- **Sprint health:** ⚪ Not started
+- **Working on:** Sprint 0 planning
+- **Sprint health:** 🟡 In setup
 
-### ⚙️ Engineering
+### ⚙️ Engineering — The Builder
 - **Last action:** —
-- **Working on:** —
-- **Tech debt:** None identified yet
+- **Working on:** Monorepo scaffold, CLI + core package setup
+- **Tech debt:** None yet (greenfield)
 
-### 🛡️ Ops
+### 🛡️ Ops — The Guardian
 - **Last action:** —
-- **Working on:** —
-- **Rules added:** (none yet)
+- **Working on:** CI pipeline setup, TypeScript strict config
+- **Rules added:** R-007 (TypeScript), R-008 (Monorepo), R-009 (npm Workspaces)
 
-### 🎨 Design
+### 🎨 Design — The Architect
 - **Last action:** —
-- **Working on:** —
+- **Working on:** Core library API design, CLI UX spec
 - **Design debt:** (none yet)
 
 ---
@@ -94,7 +112,18 @@
 - **Merged PRs:** 0
 - **Completed cycles:** 0
 - **Test count:** 0
-- **Lines of code:** 0
+- **Packages:** 2 (cli, core)
+- **Lines of code:** ~scaffold
+
+---
+
+## POC Customer: Social Trade
+
+The Social Trade app (`~/RIA/projects/social-trade/`) is our proof-of-concept customer:
+- First repo to run ADA agents
+- Validates the template → init → run flow
+- Provides real-world feedback on playbook quality
+- Demonstrates ADA's value to other potential users
 
 ---
 
