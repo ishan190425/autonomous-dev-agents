@@ -29,7 +29,7 @@
     "devtools"
   ],
   "author": "Rathi Industries",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "dependencies": {
     "@ada/core": "*",
     "commander": "^13.1.0",

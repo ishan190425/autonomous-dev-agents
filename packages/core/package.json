@@ -31,7 +31,7 @@
     "devtools"
   ],
   "author": "Rathi Industries",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "devDependencies": {
     "vitest": "^3.2.1"
   }

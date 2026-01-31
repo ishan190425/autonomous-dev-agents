@@ -158,7 +158,33 @@ npm run dev -- status
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+### Open Source (AGPLv3)
+
+ADA's core framework is licensed under **GNU Affero General Public License v3.0 (AGPLv3)**.
+
+This means you're free to:
+- ✅ Use ADA for any purpose, including commercial projects
+- ✅ Modify the source code
+- ✅ Self-host ADA on your own infrastructure
+- ✅ Distribute your modifications
+
+**Important:** If you modify ADA and offer it as a hosted service (SaaS), you must publish your modifications under AGPLv3. This protects the open source community while allowing commercial use.
+
+### Commercial Licensing
+
+The following components are available under a separate commercial license:
+- **Web Dashboard** (`apps/web`) — Real-time monitoring, analytics, and team management UI
+- **Hosted Execution** — Cloud-based agent execution services
+- **Enterprise Features** — SSO, advanced team management, custom roles, priority support
+
+This dual-licensing model ensures:
+- 🛡️ **Protection** — Prevents cloud providers from strip-mining ADA without contributing back
+- 🌱 **Open Source Credibility** — Core framework remains truly open source
+- 💼 **Sustainable Business** — Enables a viable SaaS + enterprise business model
+
+For commercial licensing inquiries, contact: **licensing@rathiindustries.com**
+
+See [LICENSE](LICENSE) for full terms.
 
 ---
 

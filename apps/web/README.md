@@ -28,3 +28,9 @@
 🚧 **Not yet implemented.** This is a placeholder for future development.
 
 The CLI (`@ada/cli`) and core library (`@ada/core`) are the current focus.
+
+## License
+
+**Commercial License** — This component (ADA Web Dashboard) is not part of the open source AGPLv3 release. It is available under a separate commercial license as part of ADA Pro and Enterprise plans.
+
+For licensing inquiries, contact: **licensing@rathiindustries.com**
