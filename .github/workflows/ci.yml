@@ -30,14 +30,14 @@ jobs:
     - name: 🔍 Lint all packages
       run: npm run lint --workspaces
 
+    - name: 🏗️ Build all packages (required before typecheck for project references)
+      run: npm run build --workspaces
+
     - name: 🔎 Type-check all packages
       run: npm run typecheck --workspaces
 
     - name: 🧪 Test all packages
       run: npm run test --workspaces
-
-    - name: 🏗️ Build all packages
-      run: npm run build --workspaces
 
     - name: 🔐 Security audit
       run: npm audit --audit-level=moderate
