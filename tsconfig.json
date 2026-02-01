@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    // ECMAScript target and module system
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "lib": ["ES2022"],
-    
-    // Strict type-checking options (enforced for all packages)
+    "lib": [
+      "ES2022"
+    ],
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -14,44 +13,43 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    
-    // Module resolution and interop
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowImportingTsExtensions": false,
-    
-    // Emit
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "dist",
     "rootDir": "src",
     "removeComments": true,
-    
-    // Skip type checking of declaration files
     "skipLibCheck": true,
-    
-    // Workspace-specific
     "composite": true,
     "incremental": true,
-    
-    // Path mapping for cross-package imports
     "baseUrl": ".",
     "paths": {
-      "@ada/core": ["./packages/core/src"],
-      "@ada/core/*": ["./packages/core/src/*"],
-      "@ada/cli": ["./packages/cli/src"],
-      "@ada/cli/*": ["./packages/cli/src/*"]
-    }
+      "@ada/core": [
+        "./packages/core/src"
+      ],
+      "@ada/core/*": [
+        "./packages/core/src/*"
+      ],
+      "@ada/cli": [
+        "./packages/cli/src"
+      ],
+      "@ada/cli/*": [
+        "./packages/cli/src/*"
+      ]
+    },
+    "types": [
+      "node"
+    ]
   },
-  
   "include": [
     "packages/*/src/**/*",
     "apps/*/src/**/*"
   ],
-  
   "exclude": [
     "**/node_modules",
     "**/dist",
@@ -59,7 +57,6 @@
     "**/*.test.ts",
     "**/*.spec.ts"
   ],
-  
   "references": [
     {
       "path": "./packages/core"

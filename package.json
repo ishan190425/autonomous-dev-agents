@@ -27,10 +27,11 @@
   "author": "Rathi Industries",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "typescript": "^5.8.3",
-    "eslint": "^9.28.0",
+    "@types/node": "^25.2.0",
     "@typescript-eslint/eslint-plugin": "^8.33.1",
-    "@typescript-eslint/parser": "^8.33.1"
+    "@typescript-eslint/parser": "^8.33.1",
+    "eslint": "^9.28.0",
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=18.0.0"
