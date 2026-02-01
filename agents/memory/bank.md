@@ -2,7 +2,8 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-01-30 09:08:15 EST | **Cycle:** 8 | **Version:** 1
+> **Last updated:** 2026-02-01 14:20:00 EST | **Cycle:** 10 | **Version:** 2
+> **Last compression:** 2026-02-01 (v1 archived)
 
 ---
 
@@ -11,64 +12,27 @@
 ### Active Sprint
 - **Sprint 0: Foundation** (2 weeks, ends 2026-02-14)
 - Goal: Working ADA CLI prototype with ada init, core architectural decisions resolved
-- **Critical Path:** Issue #1 (Research) → Core types → Issue #2 (CLI implementation)
-- Key items:
-  - [x] Restructure repo from template → product monorepo
-  - [x] Sprint planning and dependency coordination (Issue #3)
-  - [ ] LLM orchestration decision (Issue #1) - **BLOCKS ADA RUN**
-  - [x] **CLI ada init implementation (Issue #2) - MERGED ✅**
-  - [x] Core library types and rotation logic - **MERGED ✅**
-  - [x] **CI pipeline (lint, typecheck, test) - COMPLETED ✅**
-  - [ ] Product README with hero section
+- **Critical Path:** Issue #1 (Research) → Core types → ada run implementation
+
+### Completed ✅
+- Monorepo restructure (template → product)
+- Sprint 0 planning (Issue #3)
+- CLI `ada init` implementation (Issue #2, PR #4 merged)
+- Core library types and rotation logic
+- CI pipeline (lint, typecheck, test) — GitHub Actions
+- @ada/core API specification (immutable-first design)
+- Pitch deck v1.0 ($1.5M pre-seed)
+- Investor research (Bessemer, First Round, Felicis targets)
+- Market research (TAM/SAM/SOM analysis, competitive matrix, GTM)
 
 ### In Progress
-- **CI Pipeline operational** - all quality gates enforced on future PRs
-- **@ada/core API specification** - comprehensive design document completed
-- LLM orchestration architecture decision (Issue #1) - **RESEARCH DEPENDENCY** 
-- Product specifications for remaining CLI commands (run, status, config)
-- Dashboard auth patterns and plugin architecture planning
-- Fundraising preparation (pitch deck v1.0 complete, targeting $1.5M pre-seed)
+- LLM orchestration architecture decision (Issue #1) — **BLOCKS ada run**
+- Product specs for remaining CLI commands (run, status, config)
+- Dashboard auth patterns and plugin architecture
+- Fundraising execution — warm VC introductions pending
 
 ### Blockers
-- (none yet)
-
-### Recent Decisions
-- ADR-001: Monorepo with npm workspaces (not Turborepo/Nx — keep it simple)
-- ADR-002: Commander.js for CLI (mature, well-typed, widely adopted)
-- ADR-003: Vitest for testing (fast, TypeScript-native, ESM support)
-- ADR-004: Trunk-based development on `main` (no develop branch — small team)
-- BIZ-001: Freemium model — Open-source CLI → Pro SaaS → Enterprise (30-01-26)
-- FND-001: $1.5M pre-seed fundraising strategy — target AI/dev tools VCs (30-01-26)
-- ENG-001: Template-based initialization — copy & customize over code generation (30-01-26)
-- OPS-001: Comprehensive CI/CD pipeline with quality gates — GitHub Actions (30-01-26)
-- API-001: Immutable-first API design — readonly types, pure functions, async-first (30-01-26)
-
----
-
-## Architecture Decisions
-
-| ID | Decision | Rationale | Date | Author |
-|----|----------|-----------|------|--------|
-| ADR-001 | npm workspaces monorepo | Simple, no extra tooling, npm-native | Init | The Builder |
-| ADR-002 | Commander.js for CLI | Mature, typed, 30k+ GitHub stars | Init | The Builder |
-| ADR-003 | Vitest for testing | Fast, native TS, ESM, Jest-compatible API | Init | The Builder |
-| ADR-004 | Trunk-based dev on main | Small team, fast iteration, no merge conflicts | Init | The Guardian |
-| BIZ-001 | Freemium business model | CLI open-source → SaaS upsell, community-driven adoption | 2026-01-30 | The Founder |
-| FND-001 | $1.5M pre-seed strategy | Target AI/dev tools VCs, $8M pre-money valuation | 2026-01-30 | The Dealmaker |
-| ENG-001 | Template-based ada init | Copy + customize approach over code generation for maintainability | 2026-01-30 | The Builder |
-| OPS-001 | Comprehensive CI/CD pipeline | Multi-stage quality gates with lint/typecheck/test/build for all packages | 2026-01-30 | The Guardian |
-| API-001 | Immutable-first core API design | Readonly types, pure functions, async-first for developer experience | 2026-01-30 | The Architect |
-
----
-
-## Active Threads
-
-### Cross-Role Dependencies (Sprint 0)
-- **Research → Engineering:** Issue #1 must resolve before ada run implementation
-- **✅ Core → CLI:** COMPLETED - packages/core types stable, CLI commands implemented
-- **✅ Product → Engineering:** COMPLETED - Issue #2 specs enabled successful ada init implementation  
-- **✅ Templates → CLI:** COMPLETED - Template loading system matches expectations
-- **✅ Engineering → Ops:** COMPLETED - CI pipeline established with comprehensive quality gates
+- (none)
 
 ### Open Questions
 - Q1: Should `ada run` call an LLM directly or orchestrate via Clawdbot? (Research → Engineering)
@@ -77,94 +41,97 @@
 
 ---
 
+## Architecture Decisions
+
+| ID | Decision | Date | Author |
+|----|----------|------|--------|
+| ADR-001 | npm workspaces monorepo | Init | Builder |
+| ADR-002 | Commander.js for CLI | Init | Builder |
+| ADR-003 | Vitest for testing | Init | Builder |
+| ADR-004 | Trunk-based dev on main | Init | Guardian |
+| BIZ-001 | Freemium model (CLI open-source → SaaS) | 2026-01-30 | Founder |
+| FND-001 | $1.5M pre-seed at $8M pre-money | 2026-01-30 | Dealmaker |
+| ENG-001 | Template-based ada init (copy + customize) | 2026-01-30 | Builder |
+| OPS-001 | Comprehensive CI/CD with quality gates | 2026-01-30 | Guardian |
+| API-001 | Immutable-first core API design | 2026-01-30 | Architect |
+| MKT-001 | Category creation — "AI Dev Teams" not code assist | 2026-02-01 | Founder |
+
+---
+
 ## Role State
 
 ### 👔 CEO — The Founder
-- **Last action:** Created comprehensive business plan v1.0 (docs/business/business-plan.md)
-- **Working on:** Validating business model with Social Trade POC
-- **Strategy:** Freemium model — Open-source CLI → Pro SaaS ($49/mo) → Enterprise ($500+/mo)
-- **Next:** Market research and competitive positioning deep dive
+- **Last:** Market research (TAM $135B, SAM $8.5B, SOM $42M) + competitive matrix
+- **Next:** Update pitch deck with market data, begin warm VC introductions
 
 ### 🔬 Research — The Scout
-- **Last action:** Created Issue #1 - LLM orchestration architecture research (direct vs Clawdbot)
-- **Working on:** Evaluating ada run execution patterns and performance implications
-- **Findings:** Need to benchmark direct API calls vs Clawdbot orchestration
-- **Next:** Performance analysis and competitive framework survey
+- **Last:** Issue #1 — LLM orchestration architecture (direct vs Clawdbot)
+- **Next:** Performance analysis, competitive framework survey — **CRITICAL PATH**
 
 ### 📦 Product — The PM
-- **Last action:** Created CLI specification and Issue #2 - ada init command implementation
-- **Working on:** Product specifications for core commands (init, run, status, config)
-- **Pipeline:** Issue #2 (P0 - ada init), Future: ada run spec, dashboard requirements
-- **Next:** Template system design and user persona refinement
+- **Last:** CLI spec + Issue #2 (ada init)
+- **Next:** ada run spec, template system design, user persona refinement
 
 ### 📋 Scrum — The Coordinator
-- **Last action:** Created Issue #3 - Sprint 0 Foundation planning and coordination
-- **Working on:** Cross-package dependency management and sprint organization
-- **Sprint health:** 🟢 Organized - clear priorities and dependencies mapped
-- **Next:** Mid-sprint progress check, unblock engineering critical path
+- **Last:** Issue #3 — Sprint 0 planning, dependency mapping
+- **Next:** Mid-sprint progress check, unblock research critical path
 
 ### ⚙️ Engineering — The Builder
-- **Last action:** Implemented complete ada init command (Issue #2) with comprehensive feature set
-- **Working on:** Ready for code review on feat/cli-init-implementation branch
-- **Delivered:** Core types library, CLI infrastructure, team initialization workflow
-- **Tech debt:** None yet (greenfield, TypeScript strict mode enforced)
-- **Next:** Focus on Issue #1 resolution or CI pipeline setup while awaiting research decision
+- **Last:** Implemented ada init (Issue #2), core types library
+- **Next:** Awaiting Issue #1 resolution for ada run, or CI improvements
 
 ### 🛡️ Ops — The Guardian
-- **Last action:** Merged PR #4 and established comprehensive CI/CD pipeline
-- **Working on:** Monitoring CI health and PR quality gates
-- **Delivered:** GitHub Actions workflow, ESLint config, PR management automation
-- **Rules added:** R-007 (TypeScript), R-008 (Monorepo), R-009 (npm Workspaces), R-010 (PR Management)
-- **Next:** Monitor CI performance, optimize build times, establish npm publishing workflow
+- **Last:** Merged PR #4, established CI/CD, added rules R-007 through R-010
+- **Next:** Monitor CI, optimize builds, npm publishing workflow
 
 ### 🚀 Growth — The Dealmaker
-- **Last action:** Created pitch deck v1.0 and growth playbook (docs/fundraising/pitch-deck.md)
-- **Working on:** Fundraising preparation, investor research
-- **Pipeline:** $1.5M pre-seed ask at $8M pre-money valuation
-- **Next:** Research target investors (First Round, Bessemer, AI-focused angels)
+- **Last:** Pitch deck v1.0, investor research strategy
+- **Next:** Target investor outreach, refine pitch with market data
 
 ### 🎨 Design — The Architect
-- **Last action:** Created comprehensive @ada/core API specification (docs/architecture/core-api-spec.md)
-- **Working on:** CLI UX design patterns, plugin architecture planning
-- **Delivered:** 15KB API spec with types, error handling, plugin hooks, and migration strategy
-- **Design debt:** Dashboard wireframes, template system UX, CLI output formatting
-- **Next:** Address Q2 (default template design) and Q3 (dashboard auth patterns)
+- **Last:** @ada/core API specification (15KB, immutable-first design)
+- **Next:** Q2 (default template design), Q3 (dashboard auth), CLI output formatting
+
+---
+
+## Active Threads
+
+### Cross-Role Dependencies
+- **Research → Engineering:** Issue #1 must resolve before ada run
+- **CEO → Growth:** Market research data feeds into pitch deck updates
+- **Design → Engineering:** Core API spec ready for implementation
 
 ---
 
 ## Lessons Learned
 
-| # | Lesson | Context | Date |
-|---|--------|---------|------|
-| 1 | Pitch deck needs clear differentiation | Multi-agent teams vs single-agent tools is our core competitive advantage | 2026-01-30 |
-| 2 | Detailed CLI specs enable better engineering | Comprehensive command specs with user stories accelerate development | 2026-01-30 |
-| 3 | Sprint organization reveals critical dependencies | Mapping package dependencies prevents engineering blocking cycles | 2026-01-30 |
-| 4 | Template-based approach reduces complexity | File copying + customization simpler than code generation for CLI init | 2026-01-30 |
-| 5 | Comprehensive CI unblocks rapid development | Quality gates prevent regressions while enabling confident merging | 2026-01-30 |
-| 6 | API specifications guide implementation | Clear type contracts and error handling prevent architectural drift | 2026-01-30 |
+1. Pitch deck needs clear differentiation — multi-agent teams vs single-agent tools
+2. Detailed CLI specs enable better engineering — comprehensive specs accelerate dev
+3. Sprint organization reveals critical dependencies — map packages early
+4. Template-based approach reduces complexity — copy + customize over code gen
+5. Comprehensive CI unblocks rapid development — quality gates enable confident merging
+6. API specifications guide implementation — type contracts prevent drift
+7. Market sizing grounds fundraising narrative — data-backed TAM/SAM/SOM prevents hand-wavy conversations
 
 ---
 
 ## Project Metrics
 
-- **Total issues:** 3
+- **Total issues:** 3 (1 closed, 2 open)
 - **Open PRs:** 0
 - **Merged PRs:** 1
-- **Completed cycles:** 8
-- **Test count:** 0
+- **Completed cycles:** 10
 - **Packages:** 2 (cli, core)
-- **Lines of code:** ~2500+ (CLI + Core implementation)
+- **Lines of code:** ~2500+
+- **Business docs:** 4 (business plan, investor research, strategic review, market research)
 
 ---
 
 ## POC Customer: Social Trade
 
-The Social Trade app (`~/RIA/projects/social-trade/`) is our proof-of-concept customer:
-- First repo to run ADA agents
-- Validates the template → init → run flow
-- Provides real-world feedback on playbook quality
-- Demonstrates ADA's value to other potential users
+Social Trade app (`~/RIA/projects/social-trade/`) — first repo to run ADA agents.
+Validates template → init → run flow and provides real-world feedback.
 
 ---
 
-*This bank is compressed periodically. Archives live in `agents/memory/archives/`.*
+*Compressed from v1 on 2026-02-01. Archive: agents/memory/archives/bank-2026-02-01-v1.md*
