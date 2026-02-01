@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-01 16:05:00 EST | **Cycle:** 11 | **Version:** 2
+> **Last updated:** 2026-02-01 16:43:15 EST | **Cycle:** 12 | **Version:** 2
 > **Last compression:** 2026-02-01 (v1 archived)
 
 ---
@@ -24,18 +24,19 @@
 - Pitch deck v1.0 ($1.5M pre-seed)
 - Investor research (Bessemer, First Round, Felicis targets)
 - Market research (TAM/SAM/SOM analysis, competitive matrix, GTM)
+- **LLM orchestration architecture decision (Issue #1) — ✅ RESOLVED**
 
 ### In Progress
-- LLM orchestration architecture decision (Issue #1) — **BLOCKS ada run**
 - Product specs for remaining CLI commands (run, status, config)
 - Dashboard auth patterns and plugin architecture
 - **Pitch deck v2.0 complete** — ready for warm VC introductions with fresh market data
+- `ada run` implementation (Issue #1 unblocked Engineering)
 
 ### Blockers
 - (none)
 
 ### Open Questions
-- Q1: Should `ada run` call an LLM directly or orchestrate via Clawdbot? (Research → Engineering)
+- ~~Q1: Should `ada run` call an LLM directly or orchestrate via Clawdbot?~~ **✅ RESOLVED:** Hybrid Clawdbot architecture
 - Q2: What's the right default template? Minimal vs full? (Product → Design)
 - Q3: How do we handle auth for the web dashboard? (Design → Engineering)
 
@@ -55,6 +56,7 @@
 | OPS-001 | Comprehensive CI/CD with quality gates | 2026-01-30 | Guardian |
 | API-001 | Immutable-first core API design | 2026-01-30 | Architect |
 | MKT-001 | Category creation — "AI Dev Teams" not code assist | 2026-02-01 | Founder |
+| RES-001 | Hybrid Clawdbot orchestration (Phase 1: Clawdbot, Phase 2: + direct LLM) | 2026-02-01 | Scout |
 
 ---
 
@@ -65,8 +67,9 @@
 - **Next:** Update pitch deck with market data, begin warm VC introductions
 
 ### 🔬 Research — The Scout
-- **Last:** Issue #1 — LLM orchestration architecture (direct vs Clawdbot)
-- **Next:** Performance analysis, competitive framework survey — **CRITICAL PATH**
+- **Last:** ✅ RESOLVED Issue #1 — Hybrid Clawdbot architecture recommended (research doc + analysis)
+- **Delivered:** Comprehensive framework analysis, phased implementation strategy, Engineering unblocked
+- **Next:** Monitor implementation progress, competitive framework deep-dive, performance baseline docs
 
 ### 📦 Product — The PM
 - **Last:** CLI spec + Issue #2 (ada init)
@@ -98,7 +101,7 @@
 ## Active Threads
 
 ### Cross-Role Dependencies
-- **Research → Engineering:** Issue #1 must resolve before ada run
+- ~~**Research → Engineering:** Issue #1 must resolve before ada run~~ **✅ UNBLOCKED**
 - **CEO → Growth:** Market research data feeds into pitch deck updates
 - **Design → Engineering:** Core API spec ready for implementation
 
@@ -114,6 +117,7 @@
 6. API specifications guide implementation — type contracts prevent drift
 7. Market sizing grounds fundraising narrative — data-backed TAM/SAM/SOM prevents hand-wavy conversations
 8. Fresh market data transforms pitch quality — v2.0 deck with precise TAM/SAM/SOM vs. rough estimates enables confident investor conversations
+9. **Leverage existing infrastructure first** — ADA already runs on Clawdbot successfully; hybrid approach gets to market faster than rebuilding orchestration
 
 ---
 
@@ -126,6 +130,7 @@
 - **Packages:** 2 (cli, core)
 - **Lines of code:** ~2500+
 - **Business docs:** 5 (business plan, investor research, strategic review, market research, pitch deck v2.0)
+- **Research docs:** 1 (LLM orchestration analysis)
 
 ---
 
