@@ -30,8 +30,11 @@ jobs:
     - name: 🔍 Lint all packages
       run: npm run lint --workspaces
 
-    - name: 🏗️ Build all packages (required before typecheck for project references)
-      run: npm run build --workspaces
+    - name: 🏗️ Build packages (ordered — core before cli for project references)
+      run: |
+        npm run build --workspace=packages/core
+        npm run build --workspace=packages/cli
+        npm run build --workspace=apps/web
 
     - name: 🔎 Type-check all packages
       run: npm run typecheck --workspaces
@@ -61,7 +64,10 @@ jobs:
       run: npm ci
 
     - name: 🏗️ Build packages
-      run: npm run build --workspaces
+      run: |
+        npm run build --workspace=packages/core
+        npm run build --workspace=packages/cli
+        npm run build --workspace=apps/web
 
     - name: ✅ Validate package.json files
       run: |
@@ -230,7 +236,10 @@ jobs:
       run: npm ci
 
     - name: 🏗️ Build packages
-      run: npm run build --workspaces
+      run: |
+        npm run build --workspace=packages/core
+        npm run build --workspace=packages/cli
+        npm run build --workspace=apps/web
 
     - name: 📋 Dry-run publish
       run: |
