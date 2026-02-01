@@ -12,18 +12,18 @@
  *   ada config     View/edit agent configuration
  */
 
-import { Command } from 'commander';
-import { initCommand } from './commands/init.js';
-import { runCommand } from './commands/run.js';
-import { statusCommand } from './commands/status.js';
-import { configCommand } from './commands/config.js';
+import { Command } from "commander";
+import { initCommand } from "./commands/init.js";
+import { runCommand } from "./commands/run.js";
+import { statusCommand } from "./commands/status.js";
+import { configCommand } from "./commands/config.js";
 
 const program = new Command();
 
 program
-  .name('ada')
-  .description('🤖 Autonomous Dev Agents — AI agent teams for any repo')
-  .version('0.1.0');
+  .name("ada")
+  .description("🤖 Autonomous Dev Agents — AI agent teams for any repo")
+  .version("0.1.0");
 
 program.addCommand(initCommand);
 program.addCommand(runCommand);

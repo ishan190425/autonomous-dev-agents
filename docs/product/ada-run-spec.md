@@ -43,12 +43,14 @@ ada run --verbose
 ### Single Cycle Mode (Default)
 
 1. **Validation**
+
    - Verify `ada init` has been run (check for `.ada/` directory)
    - Validate agent configuration files exist
    - Check GitHub CLI authentication
    - Ensure working directory is clean (or warn about uncommitted changes)
 
 2. **Dispatch Protocol Execution**
+
    - Load current rotation state from `.ada/state/rotation.json`
    - Execute the 7-phase protocol as defined in `DISPATCH.md`
    - Handle errors gracefully with rollback capabilities
@@ -85,12 +87,14 @@ ada run --focus=engineering
 ### Implementation Strategy (per RES-001)
 
 **Phase 1: Clawdbot Integration**
+
 - Use Clawdbot session spawning for agent execution
 - Leverage heartbeat protocol for dispatch cycles
 - Shared memory coordination via `bank.md`
 - Full GitHub tool access
 
 **Phase 2: Direct LLM Optimization** (Future)
+
 - Add direct API calls for performance-critical operations
 - Maintain Clawdbot for complex multi-tool workflows
 - Hybrid approach for optimal speed + capability
@@ -103,11 +107,11 @@ export async function runCommand(options: RunOptions): Promise<void> {
   // Validate environment
   await validateAdaProject();
   await validateGitHubAuth();
-  
+
   // Load configuration
   const config = await loadAgentConfig();
   const rotation = await loadRotationState();
-  
+
   if (options.continuous) {
     await runContinuous(config, rotation, options);
   } else {
@@ -118,22 +122,22 @@ export async function runCommand(options: RunOptions): Promise<void> {
 async function runSingleCycle(config, rotation, options): Promise<CycleResult> {
   // Determine current agent role
   const currentRole = getCurrentRole(rotation, config.roster);
-  
+
   // Spawn Clawdbot session for agent execution
   const session = await spawnAgentSession({
     role: currentRole,
     workingDirectory: process.cwd(),
     dispatchProtocol: config.dispatchProtocol,
-    dryRun: options.dryRun
+    dryRun: options.dryRun,
   });
-  
+
   // Execute cycle and return result
   const result = await session.executeDispatchCycle();
-  
+
   if (!options.dryRun) {
     await updateRotationState(result);
   }
-  
+
   return result;
 }
 ```
@@ -246,8 +250,9 @@ $ ada run --continuous
 ---
 
 **Next Steps:**
+
 1. Engineering → Implement core `ada run` command based on this spec
 2. Ops → Add CI tests for command validation
 3. Design → Review CLI output formatting and error messages
 
-*This spec unblocks Engineering for core ADA functionality implementation.*
+_This spec unblocks Engineering for core ADA functionality implementation._

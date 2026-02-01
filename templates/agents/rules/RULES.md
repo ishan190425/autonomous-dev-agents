@@ -8,14 +8,14 @@
 
 ## Rule Index
 
-| ID | Rule | Owner | Added |
-|----|------|-------|-------|
-| R-001 | [Memory Bank Protocol](#r-001-memory-bank-protocol) | System | Init |
-| R-002 | [Compression Protocol](#r-002-compression-protocol) | System | Init |
-| R-003 | [Role Evolution Protocol](#r-003-role-evolution-protocol) | System | Init |
-| R-004 | [Commit Standards](#r-004-commit-standards) | Ops | Init |
-| R-005 | [Branch Strategy](#r-005-branch-strategy) | Ops | Init |
-| R-006 | [Issue Quality](#r-006-issue-quality) | Product | Init |
+| ID    | Rule                                                      | Owner   | Added |
+| ----- | --------------------------------------------------------- | ------- | ----- |
+| R-001 | [Memory Bank Protocol](#r-001-memory-bank-protocol)       | System  | Init  |
+| R-002 | [Compression Protocol](#r-002-compression-protocol)       | System  | Init  |
+| R-003 | [Role Evolution Protocol](#r-003-role-evolution-protocol) | System  | Init  |
+| R-004 | [Commit Standards](#r-004-commit-standards)               | Ops     | Init  |
+| R-005 | [Branch Strategy](#r-005-branch-strategy)                 | Ops     | Init  |
+| R-006 | [Issue Quality](#r-006-issue-quality)                     | Product | Init  |
 
 ---
 
@@ -35,6 +35,7 @@
 4. **Timestamp** the `Last updated` field at the top
 
 ### What goes in the bank
+
 - Current project state (sprint, blockers, in-progress)
 - Key decisions and their rationale
 - Cross-role dependencies and open questions
@@ -42,6 +43,7 @@
 - Lessons learned
 
 ### What does NOT go in the bank
+
 - Full code (reference files/PRs instead)
 - Conversation history (that's what GitHub comments are for)
 - Secrets or credentials
@@ -53,7 +55,9 @@
 The memory bank grows over time. Compression keeps it manageable.
 
 ### Trigger
+
 Compress when ANY of these are true:
+
 - Bank exceeds **200 lines**
 - It's been **10+ cycles** since last compression
 - A sprint ends
@@ -72,6 +76,7 @@ Compress when ANY of these are true:
 4. **Commit:** `chore(agents): compress memory bank v{N} → v{N+1}`
 
 ### What survives compression
+
 - Active sprint info
 - Unresolved blockers
 - Recent decisions (last 5 detailed, older ones summarized)
@@ -80,6 +85,7 @@ Compress when ANY of these are true:
 - Last 10 lessons learned
 
 ### What gets archived
+
 - Completed sprint details
 - Resolved blockers and questions
 - Older decision details (summary stays)
@@ -94,16 +100,19 @@ The team evolves as the project grows. Roles can be created, modified, or retire
 ### Creating a New Role
 
 Any role can **propose** a new role when:
+
 - A clear capability gap exists that no current role covers
 - Work is being repeated that should be owned by a specialist
 - Project complexity demands dedicated focus
 
 **To propose:**
+
 1. Create an issue: `chore(agents): propose new role — <name>`
 2. Include: name, emoji, title, focus areas, 3+ specific actions, justification
 3. At least 2 other roles must 👍 the issue (via comments or reactions)
 
 **To activate:**
+
 1. Add the role to `agents/roster.json`
 2. Create a playbook in `agents/playbooks/<id>.md`
 3. Add the role to `rotation_order` in roster.json
@@ -114,6 +123,7 @@ Any role can **propose** a new role when:
 ### Modifying an Existing Role
 
 When a role's focus needs to shift:
+
 1. Update the playbook with new/changed actions
 2. Update roster.json if focus areas change
 3. Log the change in evolution-log.md
@@ -122,6 +132,7 @@ When a role's focus needs to shift:
 ### Retiring a Role
 
 When a role is no longer needed:
+
 1. Create an issue with justification
 2. Redistribute responsibilities to other roles
 3. Move playbook to `agents/playbooks/archived/`
@@ -132,6 +143,7 @@ When a role is no longer needed:
 ### Evolution Triggers
 
 Watch for these signals that the team should evolve:
+
 - **New module added** → May need a specialist role
 - **Repeated blockers** → May need a dedicated role to address
 - **5+ issues in a new domain** → Enough work for a dedicated role
@@ -173,6 +185,7 @@ All commits follow [Conventional Commits](https://www.conventionalcommits.org/):
 ## R-006: Issue Quality
 
 Every issue MUST have:
+
 - Conventional title: `<type>(<scope>): <description>`
 - Clear body with context
 - At least one label
@@ -182,4 +195,4 @@ Every issue MUST have:
 
 ---
 
-*New rules are added by committing changes to this file. Include the rule ID, owner, and date.*
+_New rules are added by committing changes to this file. Include the rule ID, owner, and date._

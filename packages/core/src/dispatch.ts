@@ -5,11 +5,31 @@
  * load context → determine role → execute → update memory → advance rotation.
  */
 
-import * as path from 'node:path';
-import type { AdaConfig, DispatchResult, Role, Roster, RotationState } from './types.js';
-import { DEFAULT_CONFIG } from './types.js';
-import { readRotationState, readRoster, getCurrentRole, advanceRotation, writeRotationState } from './rotation.js';
-import { readMemoryBank, writeMemoryBank, updateBankHeader, needsCompression, archiveBank, extractVersion, extractCycle } from './memory.js';
+import * as path from "node:path";
+import type {
+  AdaConfig,
+  DispatchResult,
+  Role,
+  Roster,
+  RotationState,
+} from "./types.js";
+import { DEFAULT_CONFIG } from "./types.js";
+import {
+  readRotationState,
+  readRoster,
+  getCurrentRole,
+  advanceRotation,
+  writeRotationState,
+} from "./rotation.js";
+import {
+  readMemoryBank,
+  writeMemoryBank,
+  updateBankHeader,
+  needsCompression,
+  archiveBank,
+  extractVersion,
+  extractCycle,
+} from "./memory.js";
 
 /** Context loaded in Phase 1 of the dispatch protocol */
 export interface DispatchContext {
@@ -44,17 +64,17 @@ export function resolvePaths(
   rootDir: string,
   roleId: string,
   config: Partial<AdaConfig> = {}
-): DispatchContext['paths'] {
+): DispatchContext["paths"] {
   const agentsDir = config.agentsDir ?? DEFAULT_CONFIG.agentsDir;
   const agents = path.join(rootDir, agentsDir);
 
   return {
     root: rootDir,
-    roster: path.join(agents, 'roster.json'),
-    state: path.join(agents, 'state', 'rotation.json'),
-    memoryBank: path.join(agents, 'memory', 'bank.md'),
-    archives: path.join(agents, 'memory', 'archives'),
-    playbook: path.join(agents, 'playbooks', `${roleId}.md`),
+    roster: path.join(agents, "roster.json"),
+    state: path.join(agents, "state", "rotation.json"),
+    memoryBank: path.join(agents, "memory", "bank.md"),
+    archives: path.join(agents, "memory", "archives"),
+    playbook: path.join(agents, "playbooks", `${roleId}.md`),
   };
 }
 
@@ -75,8 +95,8 @@ export async function loadContext(
   const agentsDir = config.agentsDir ?? DEFAULT_CONFIG.agentsDir;
   const agents = path.join(rootDir, agentsDir);
 
-  const statePath = path.join(agents, 'state', 'rotation.json');
-  const rosterPath = path.join(agents, 'roster.json');
+  const statePath = path.join(agents, "state", "rotation.json");
+  const rosterPath = path.join(agents, "roster.json");
 
   const state = await readRotationState(statePath);
   const roster = await readRoster(rosterPath);
@@ -109,12 +129,15 @@ export async function checkCompression(
   context: DispatchContext,
   config: Partial<AdaConfig> = {}
 ): Promise<boolean> {
-  const threshold = config.compressionThreshold ?? DEFAULT_CONFIG.compressionThreshold;
+  const threshold =
+    config.compressionThreshold ?? DEFAULT_CONFIG.compressionThreshold;
   const currentCycle = context.state.cycle_count;
   const bankCycle = extractCycle(context.memoryBank);
   const cyclesSinceCompression = currentCycle - bankCycle;
 
-  if (!needsCompression(context.memoryBank, cyclesSinceCompression, threshold)) {
+  if (
+    !needsCompression(context.memoryBank, cyclesSinceCompression, threshold)
+  ) {
     return false;
   }
 
@@ -125,7 +148,11 @@ export async function checkCompression(
   // Note: actual compression logic (rewriting the bank) would be done
   // by the LLM agent, as it requires understanding the content.
   // We just update the header here.
-  const compressed = updateBankHeader(context.memoryBank, currentCycle, version + 1);
+  const compressed = updateBankHeader(
+    context.memoryBank,
+    currentCycle,
+    version + 1
+  );
   await writeMemoryBank(context.paths.memoryBank, compressed);
 
   return true;
@@ -142,7 +169,11 @@ export async function completeDispatch(
   context: DispatchContext,
   actionDescription: string
 ): Promise<DispatchResult> {
-  const newState = advanceRotation(context.state, context.roster, actionDescription);
+  const newState = advanceRotation(
+    context.state,
+    context.roster,
+    actionDescription
+  );
   await writeRotationState(context.paths.state, newState);
 
   return {

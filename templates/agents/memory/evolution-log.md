@@ -10,14 +10,14 @@
 
 **Initial roster created with 6 roles:**
 
-| Role | Name | Justification |
-|------|------|---------------|
-| 🔬 Research | [Name] | Technology scouting and feasibility analysis |
-| 📦 Product | [Name] | Feature definition and prioritization |
-| 📋 Scrum | [Name] | Team coordination and delivery tracking |
-| ⚙️ Engineering | [Name] | Core implementation — writing the code |
-| 🛡️ Ops | [Name] | Quality enforcement and CI/CD |
-| 🎨 Design | [Name] | API and interface design |
+| Role           | Name   | Justification                                |
+| -------------- | ------ | -------------------------------------------- |
+| 🔬 Research    | [Name] | Technology scouting and feasibility analysis |
+| 📦 Product     | [Name] | Feature definition and prioritization        |
+| 📋 Scrum       | [Name] | Team coordination and delivery tracking      |
+| ⚙️ Engineering | [Name] | Core implementation — writing the code       |
+| 🛡️ Ops         | [Name] | Quality enforcement and CI/CD                |
+| 🎨 Design      | [Name] | API and interface design                     |
 
 **Rationale:** These six roles cover the full product development lifecycle: research → design → product → engineering → ops → scrum. Each has distinct, non-overlapping responsibilities.
 
@@ -25,7 +25,7 @@
 
 ## Pending Proposals
 
-*None yet. Roles can propose new team members via issues tagged `chore(agents)`.*
+_None yet. Roles can propose new team members via issues tagged `chore(agents)`._
 
 ---
 

@@ -3,9 +3,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "lib": [
-      "ES2022"
-    ],
+    "lib": ["ES2022"],
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -29,27 +27,14 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@ada/core": [
-        "./packages/core/src"
-      ],
-      "@ada/core/*": [
-        "./packages/core/src/*"
-      ],
-      "@ada/cli": [
-        "./packages/cli/src"
-      ],
-      "@ada/cli/*": [
-        "./packages/cli/src/*"
-      ]
+      "@ada/core": ["./packages/core/src"],
+      "@ada/core/*": ["./packages/core/src/*"],
+      "@ada/cli": ["./packages/cli/src"],
+      "@ada/cli/*": ["./packages/cli/src/*"]
     },
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
-  "include": [
-    "packages/*/src/**/*",
-    "apps/*/src/**/*"
-  ],
+  "include": ["packages/*/src/**/*", "apps/*/src/**/*"],
   "exclude": [
     "**/node_modules",
     "**/dist",

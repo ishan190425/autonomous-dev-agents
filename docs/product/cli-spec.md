@@ -17,6 +17,7 @@ ada <command> [options] [args]
 ```
 
 ### Global Options
+
 - `--config <path>` — Custom config file path (default: `./agents/config.json`)
 - `--verbose, -v` — Verbose logging
 - `--help, -h` — Show help
@@ -31,17 +32,20 @@ ada <command> [options] [args]
 **Purpose:** Bootstrap autonomous agent team in any repository.
 
 **Usage:**
+
 ```bash
 ada init [options] [template]
 ```
 
 **Options:**
+
 - `--template, -t <name>` — Use specific template (default: interactive)
 - `--team-size <size>` — Team size: small|medium|large (affects default roles)
 - `--focus <area>` — Primary focus: product|engineering|research|ops
 - `--overwrite, -f` — Overwrite existing agent configuration
 
 **Interactive Prompts:**
+
 1. **Project type?** `web-app | cli-tool | api-service | mobile-app | library | other`
 2. **Team size?** `solo (3 roles) | small (5 roles) | medium (7 roles) | large (full 8 roles)`
 3. **Primary focus?** `product | engineering | ops | balanced`
@@ -49,6 +53,7 @@ ada init [options] [template]
 5. **Execution mode?** `local | clawdbot | hybrid`
 
 **Generated Files:**
+
 ```
 agents/
 ├── config.json              ← Team configuration
@@ -67,6 +72,7 @@ agents/
 ```
 
 **User Stories:**
+
 - **As a solo developer,** I want to run `ada init` in my repo and get a minimal agent team that helps with product and ops tasks I can't handle alone.
 - **As a small team lead,** I want to customize which roles my agent team includes based on what human roles I already have covered.
 - **As an enterprise developer,** I want to initialize ADA with our internal LLM and custom role templates.
@@ -78,11 +84,13 @@ agents/
 **Purpose:** Run autonomous agent dispatch cycles.
 
 **Usage:**
+
 ```bash
 ada run [options]
 ```
 
 **Options:**
+
 - `--continuous, -c` — Run continuously (default: single cycle)
 - `--interval <minutes>` — Interval for continuous mode (default: 30)
 - `--role <role-id>` — Run specific role only
@@ -90,6 +98,7 @@ ada run [options]
 - `--dry-run` — Preview actions without executing
 
 **Behavior:**
+
 1. Read current rotation state
 2. Load role playbook and memory bank
 3. Execute role's cycle (GitHub API, file operations)
@@ -97,6 +106,7 @@ ada run [options]
 5. Commit changes (if any)
 
 **Output Example:**
+
 ```
 🏭 ADA Cycle 47 - Engineering (⚙️ The Builder)
 ├── 📖 Reading memory bank...
@@ -116,16 +126,19 @@ Next: 🛡️ Ops (in 30 minutes)
 **Purpose:** Display current agent team state and recent activity.
 
 **Usage:**
+
 ```bash
 ada status [options]
 ```
 
 **Options:**
+
 - `--detailed, -d` — Show detailed memory bank info
 - `--cycles <count>` — Show recent cycles (default: 5)
 - `--json` — Output as JSON
 
 **Output Example:**
+
 ```
 🏭 ADA Team Status
 
@@ -135,7 +148,7 @@ Cycle Count: 47
 
 📊 Recent Activity:
 Cycle 47 | ⚙️ Engineering | feat(cli): add ada status command
-Cycle 46 | 📦 Product     | Created Issue #14: Add dashboard wireframes  
+Cycle 46 | 📦 Product     | Created Issue #14: Add dashboard wireframes
 Cycle 45 | 🔬 Research    | docs(research): LangChain vs CrewAI analysis
 Cycle 44 | 👔 CEO         | Updated business plan with Q1 OKRs
 Cycle 43 | 🚀 Growth      | docs(fundraising): investor research
@@ -153,17 +166,20 @@ Next Cycle: ⚙️ Engineering in 7 minutes
 **Purpose:** View and edit agent team configuration.
 
 **Usage:**
+
 ```bash
 ada config [subcommand] [options]
 ```
 
 **Subcommands:**
+
 - `ada config show` — Show current configuration
 - `ada config edit` — Open config in editor
 - `ada config set <key> <value>` — Set configuration value
 - `ada config get <key>` — Get configuration value
 
 **Key Configuration:**
+
 ```json
 {
   "llm_provider": "anthropic",
@@ -183,11 +199,13 @@ ada config [subcommand] [options]
 **Purpose:** Add a new role to the agent team.
 
 **Usage:**
+
 ```bash
 ada add-role <role-id> [options]
 ```
 
 **Options:**
+
 - `--name <name>` — Role display name
 - `--emoji <emoji>` — Role emoji
 - `--focus <areas>` — Comma-separated focus areas
@@ -195,6 +213,7 @@ ada add-role <role-id> [options]
 - `--after <role-id>` — Insert after specific role in rotation
 
 **Interactive Prompts:**
+
 1. **Role name?** (e.g., "Security Engineer")
 2. **Role emoji?** (e.g., "🔒")
 3. **Focus areas?** (e.g., "security, compliance, penetration_testing")
@@ -207,11 +226,13 @@ ada add-role <role-id> [options]
 **Purpose:** Manually trigger memory bank compression.
 
 **Usage:**
+
 ```bash
 ada compress [options]
 ```
 
 **Options:**
+
 - `--force, -f` — Force compression even if not needed
 - `--archive-only` — Archive without compressing
 
@@ -222,17 +243,20 @@ ada compress [options]
 **Purpose:** Export cycle history, metrics, and team state.
 
 **Usage:**
+
 ```bash
 ada export [type] [options]
 ```
 
 **Types:**
+
 - `history` — Export cycle history as JSON
 - `metrics` — Export team metrics
 - `memory` — Export memory bank with archives
 - `config` — Export complete team configuration
 
 **Options:**
+
 - `--output, -o <file>` — Output file path
 - `--format <format>` — Output format: json|csv|markdown
 
@@ -242,24 +266,25 @@ ada export [type] [options]
 
 ### Built-in Templates
 
-| Template | Description | Roles Included |
-|----------|-------------|----------------|
-| `minimal` | Solo developer (3 roles) | CEO, Engineering, Ops |
-| `web-app` | React/Next.js projects | CEO, Product, Engineering, Ops, Design |
-| `api-service` | Backend API development | CEO, Product, Engineering, Ops, Research |
-| `cli-tool` | Command-line tool development | CEO, Product, Engineering, Ops |
-| `mobile-app` | React Native/mobile | CEO, Product, Engineering, Ops, Design |
-| `library` | Open-source library | CEO, Engineering, Ops, Research |
-| `enterprise` | Large team (all 8 roles) | All roles included |
+| Template      | Description                   | Roles Included                           |
+| ------------- | ----------------------------- | ---------------------------------------- |
+| `minimal`     | Solo developer (3 roles)      | CEO, Engineering, Ops                    |
+| `web-app`     | React/Next.js projects        | CEO, Product, Engineering, Ops, Design   |
+| `api-service` | Backend API development       | CEO, Product, Engineering, Ops, Research |
+| `cli-tool`    | Command-line tool development | CEO, Product, Engineering, Ops           |
+| `mobile-app`  | React Native/mobile           | CEO, Product, Engineering, Ops, Design   |
+| `library`     | Open-source library           | CEO, Engineering, Ops, Research          |
+| `enterprise`  | Large team (all 8 roles)      | All roles included                       |
 
 ### Custom Templates
 
 Templates are directories with:
+
 ```
 templates/my-template/
 ├── template.json            ← Template metadata
 ├── roster.json             ← Default roles
-├── config.json             ← Default configuration  
+├── config.json             ← Default configuration
 ├── playbooks/              ← Role playbooks
 │   ├── custom-role.md
 │   └── ...
@@ -272,11 +297,13 @@ templates/my-template/
 ## Installation & Setup
 
 ### Global Installation
+
 ```bash
 npm install -g @ada/cli
 ```
 
 ### Project Setup
+
 ```bash
 cd my-project
 ada init
@@ -284,6 +311,7 @@ ada run
 ```
 
 ### Configuration
+
 - Config file: `agents/config.json`
 - Global config: `~/.ada/config.json`
 - Environment variables: `ADA_LLM_PROVIDER`, `ADA_EXECUTION_MODE`, etc.
@@ -293,18 +321,21 @@ ada run
 ## Integration Points
 
 ### GitHub
+
 - Issue creation and management
 - PR creation and reviews
 - Repository state analysis
 - Commit automation
 
 ### LLM Providers
+
 - **Anthropic Claude** (recommended)
-- **OpenAI GPT-4** 
+- **OpenAI GPT-4**
 - **Together AI**
 - **Local models** (via Ollama)
 
 ### Clawdbot
+
 - Session management
 - Tool orchestration
 - Memory persistence

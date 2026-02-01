@@ -28,6 +28,7 @@ ada config show
 ## Commands
 
 ### `ada init`
+
 Initialize an autonomous agent team in the current repository.
 
 ```bash
@@ -38,6 +39,7 @@ ada init --dir ./my-agents  # Custom agents directory
 ```
 
 ### `ada run`
+
 Execute one dispatch cycle as the current role.
 
 ```bash
@@ -48,6 +50,7 @@ ada run --interval 45       # Set watch interval (minutes)
 ```
 
 ### `ada status`
+
 Show the current rotation state, team info, and memory bank summary.
 
 ```bash
@@ -56,6 +59,7 @@ ada status --json           # Machine-readable JSON
 ```
 
 ### `ada config`
+
 View and edit agent team configuration.
 
 ```bash

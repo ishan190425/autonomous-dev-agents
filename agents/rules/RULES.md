@@ -8,18 +8,18 @@
 
 ## Rule Index
 
-| ID | Rule | Owner | Added |
-|----|------|-------|-------|
-| R-001 | [Memory Bank Protocol](#r-001-memory-bank-protocol) | System | Init |
-| R-002 | [Compression Protocol](#r-002-compression-protocol) | System | Init |
-| R-003 | [Role Evolution Protocol](#r-003-role-evolution-protocol) | System | Init |
-| R-004 | [Commit Standards](#r-004-commit-standards) | Ops | Init |
-| R-005 | [Branch Strategy](#r-005-branch-strategy) | Ops | Init |
-| R-006 | [Issue Quality](#r-006-issue-quality) | Product | Init |
-| R-007 | [TypeScript Standards](#r-007-typescript-standards) | Ops | Init |
-| R-008 | [Monorepo Conventions](#r-008-monorepo-conventions) | Ops | Init |
-| R-009 | [npm Workspace Rules](#r-009-npm-workspace-rules) | Ops | Init |
-| R-010 | [PR Management & CI](#r-010-pr-management--ci) | Ops | 2026-01-30 |
+| ID    | Rule                                                      | Owner   | Added      |
+| ----- | --------------------------------------------------------- | ------- | ---------- |
+| R-001 | [Memory Bank Protocol](#r-001-memory-bank-protocol)       | System  | Init       |
+| R-002 | [Compression Protocol](#r-002-compression-protocol)       | System  | Init       |
+| R-003 | [Role Evolution Protocol](#r-003-role-evolution-protocol) | System  | Init       |
+| R-004 | [Commit Standards](#r-004-commit-standards)               | Ops     | Init       |
+| R-005 | [Branch Strategy](#r-005-branch-strategy)                 | Ops     | Init       |
+| R-006 | [Issue Quality](#r-006-issue-quality)                     | Product | Init       |
+| R-007 | [TypeScript Standards](#r-007-typescript-standards)       | Ops     | Init       |
+| R-008 | [Monorepo Conventions](#r-008-monorepo-conventions)       | Ops     | Init       |
+| R-009 | [npm Workspace Rules](#r-009-npm-workspace-rules)         | Ops     | Init       |
+| R-010 | [PR Management & CI](#r-010-pr-management--ci)            | Ops     | 2026-01-30 |
 
 ---
 
@@ -43,12 +43,15 @@
 ## R-002: Compression Protocol
 
 ### Trigger
+
 Compress when ANY of these are true:
+
 - Bank exceeds **200 lines**
 - It's been **10+ cycles** since last compression
 - A sprint ends
 
 ### Compression Steps
+
 1. **Archive first:** Copy current `bank.md` → `agents/memory/archives/bank-YYYY-MM-DD-vN.md`
 2. **Compress:** Rewrite `bank.md` preserving active items, recent decisions, unresolved blockers
 3. **Increment** the version number at the top
@@ -59,6 +62,7 @@ Compress when ANY of these are true:
 ## R-003: Role Evolution Protocol
 
 Any role can **propose** a new role when:
+
 - A clear capability gap exists that no current role covers
 - 5+ issues pile up in a domain with no dedicated role
 - A role's playbook is getting too broad
@@ -100,6 +104,7 @@ All commits follow [Conventional Commits](https://www.conventionalcommits.org/):
 ## R-006: Issue Quality
 
 Every issue MUST have:
+
 - Conventional title: `<type>(<scope>): <description>`
 - Clear body with context
 - At least one label
@@ -112,6 +117,7 @@ Every issue MUST have:
 ## R-007: TypeScript Standards
 
 All packages use TypeScript in **strict mode**:
+
 - `"strict": true` in all tsconfig.json files
 - No `any` types unless explicitly justified with a comment
 - All exported functions must have explicit return types
@@ -125,6 +131,7 @@ All packages use TypeScript in **strict mode**:
 ## R-008: Monorepo Conventions
 
 This is an npm workspaces monorepo:
+
 - **Root package.json** defines workspaces: `packages/*`, `apps/*`
 - **Shared dependencies** (TypeScript, ESLint) live at root
 - **Package-specific dependencies** live in each package
@@ -149,7 +156,9 @@ This is an npm workspaces monorepo:
 ## R-010: PR Management & CI
 
 ### CI Pipeline Requirements
+
 All PRs MUST pass the CI pipeline before merge:
+
 - **Lint:** ESLint across all packages
 - **Type-check:** TypeScript strict mode compilation
 - **Test:** Vitest test suites (when implemented)
@@ -157,13 +166,16 @@ All PRs MUST pass the CI pipeline before merge:
 - **Security:** npm audit with moderate+ level
 
 ### PR Review Standards
+
 - **No PRs rot:** Open >1 cycle = Ops priority to review/merge
 - **Quality gates:** All CI checks must pass locally before merge
 - **Conventional commits:** PR title must follow conventional commit format
 - **Squash merge:** Always use squash merge to maintain clean history
 
 ### Emergency Bypass
+
 If CI is broken but code is verified locally, Ops can merge with justification:
+
 - Document local verification in merge message
 - Fix CI issues in immediate follow-up commit
 - Add incident post-mortem if CI failures blocked development
@@ -172,4 +184,4 @@ If CI is broken but code is verified locally, Ops can merge with justification:
 
 ---
 
-*New rules are added by committing changes to this file. Include the rule ID, owner, and date.*
+_New rules are added by committing changes to this file. Include the rule ID, owner, and date._

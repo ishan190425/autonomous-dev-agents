@@ -8,8 +8,21 @@
       "name": "The Founder",
       "title": "CEO",
       "emoji": "👔",
-      "focus": ["business_strategy", "competitive_analysis", "pricing_model", "go_to_market", "partnerships", "fundraising"],
-      "actions": ["write_business_plans", "swot_analysis", "market_research", "strategic_review", "partnership_strategy"],
+      "focus": [
+        "business_strategy",
+        "competitive_analysis",
+        "pricing_model",
+        "go_to_market",
+        "partnerships",
+        "fundraising"
+      ],
+      "actions": [
+        "write_business_plans",
+        "swot_analysis",
+        "market_research",
+        "strategic_review",
+        "partnership_strategy"
+      ],
       "memory_bank": "agents/memory/banks/ceo.md"
     },
     {
@@ -17,8 +30,19 @@
       "name": "The Scout",
       "title": "Head of Research",
       "emoji": "🔬",
-      "focus": ["llm_agent_frameworks", "code_generation", "multi_agent_systems", "clawdbot_integration", "benchmarking"],
-      "actions": ["create_research_issues", "write_research_docs", "comment_on_feasibility", "evaluate_approaches"],
+      "focus": [
+        "llm_agent_frameworks",
+        "code_generation",
+        "multi_agent_systems",
+        "clawdbot_integration",
+        "benchmarking"
+      ],
+      "actions": [
+        "create_research_issues",
+        "write_research_docs",
+        "comment_on_feasibility",
+        "evaluate_approaches"
+      ],
       "memory_bank": "agents/memory/banks/research.md"
     },
     {
@@ -26,8 +50,19 @@
       "name": "The PM",
       "title": "Product Lead",
       "emoji": "📦",
-      "focus": ["cli_features", "web_dashboard", "template_marketplace", "onboarding_flow", "pricing_tiers"],
-      "actions": ["create_feature_issues", "write_specs", "prioritize_backlog", "define_personas"],
+      "focus": [
+        "cli_features",
+        "web_dashboard",
+        "template_marketplace",
+        "onboarding_flow",
+        "pricing_tiers"
+      ],
+      "actions": [
+        "create_feature_issues",
+        "write_specs",
+        "prioritize_backlog",
+        "define_personas"
+      ],
       "memory_bank": "agents/memory/banks/product.md"
     },
     {
@@ -35,8 +70,19 @@
       "name": "The Coordinator",
       "title": "Scrum Master",
       "emoji": "📋",
-      "focus": ["sprint_planning", "tracking", "retrospectives", "velocity", "cross_package_coordination"],
-      "actions": ["create_sprint_issues", "update_project_board", "write_retros", "unblock_team"],
+      "focus": [
+        "sprint_planning",
+        "tracking",
+        "retrospectives",
+        "velocity",
+        "cross_package_coordination"
+      ],
+      "actions": [
+        "create_sprint_issues",
+        "update_project_board",
+        "write_retros",
+        "unblock_team"
+      ],
       "memory_bank": "agents/memory/banks/scrum.md"
     },
     {
@@ -44,8 +90,19 @@
       "name": "The Builder",
       "title": "Lead Engineer",
       "emoji": "⚙️",
-      "focus": ["typescript_cli", "core_library", "github_api", "nextjs_web_app", "monorepo_architecture"],
-      "actions": ["write_code", "create_prs", "code_review", "architect_systems"],
+      "focus": [
+        "typescript_cli",
+        "core_library",
+        "github_api",
+        "nextjs_web_app",
+        "monorepo_architecture"
+      ],
+      "actions": [
+        "write_code",
+        "create_prs",
+        "code_review",
+        "architect_systems"
+      ],
       "memory_bank": "agents/memory/banks/engineering.md"
     },
     {
@@ -53,8 +110,20 @@
       "name": "The Guardian",
       "title": "DevOps & Quality Lead",
       "emoji": "🛡️",
-      "focus": ["monorepo_ci_cd", "npm_publishing", "typescript_strict", "eslint", "pr_management"],
-      "actions": ["merge_prs", "fix_ci", "add_rules", "enforce_standards", "update_ci"],
+      "focus": [
+        "monorepo_ci_cd",
+        "npm_publishing",
+        "typescript_strict",
+        "eslint",
+        "pr_management"
+      ],
+      "actions": [
+        "merge_prs",
+        "fix_ci",
+        "add_rules",
+        "enforce_standards",
+        "update_ci"
+      ],
       "memory_bank": "agents/memory/banks/ops.md"
     },
     {
@@ -62,8 +131,23 @@
       "name": "The Dealmaker",
       "title": "Head of Growth & Fundraising",
       "emoji": "🚀",
-      "focus": ["pitch_deck", "investor_relations", "branding", "accelerators", "fundraising", "go_to_market", "partnerships"],
-      "actions": ["write_pitch_deck", "research_investors", "craft_branding", "refine_pitch", "draft_applications", "gtm_strategy"],
+      "focus": [
+        "pitch_deck",
+        "investor_relations",
+        "branding",
+        "accelerators",
+        "fundraising",
+        "go_to_market",
+        "partnerships"
+      ],
+      "actions": [
+        "write_pitch_deck",
+        "research_investors",
+        "craft_branding",
+        "refine_pitch",
+        "draft_applications",
+        "gtm_strategy"
+      ],
       "memory_bank": "agents/memory/banks/growth.md"
     },
     {
@@ -71,10 +155,30 @@
       "name": "The Architect",
       "title": "API & System Designer",
       "emoji": "🎨",
-      "focus": ["cli_ux", "core_api_design", "plugin_architecture", "dashboard_wireframes", "developer_experience"],
-      "actions": ["write_api_specs", "review_interfaces", "create_design_docs", "define_protocols"],
+      "focus": [
+        "cli_ux",
+        "core_api_design",
+        "plugin_architecture",
+        "dashboard_wireframes",
+        "developer_experience"
+      ],
+      "actions": [
+        "write_api_specs",
+        "review_interfaces",
+        "create_design_docs",
+        "define_protocols"
+      ],
       "memory_bank": "agents/memory/banks/design.md"
     }
   ],
-  "rotation_order": ["ceo", "growth", "research", "product", "scrum", "engineering", "ops", "design"]
+  "rotation_order": [
+    "ceo",
+    "growth",
+    "research",
+    "product",
+    "scrum",
+    "engineering",
+    "ops",
+    "design"
+  ]
 }

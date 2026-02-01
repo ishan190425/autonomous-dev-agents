@@ -52,36 +52,40 @@ ada status
 
 Each cycle, the agent becomes one role. After acting, it rotates to the next. Over a full rotation, every aspect of your project gets attention:
 
-| Cycle | Role | What It Does |
-|-------|------|-------------|
-| 0 | 👔 CEO | Sets strategy, analyzes market, defines direction |
-| 1 | 🔬 Research | Scouts technologies, evaluates feasibility |
-| 2 | 📦 Product | Writes specs, creates feature issues, prioritizes |
-| 3 | 📋 Scrum | Plans sprints, tracks progress, unblocks |
-| 4 | ⚙️ Engineering | Writes code, creates PRs, reviews |
-| 5 | 🛡️ Ops | Merges PRs, fixes CI, enforces standards |
-| 6 | 🎨 Design | Reviews APIs, proposes architecture |
+| Cycle | Role           | What It Does                                      |
+| ----- | -------------- | ------------------------------------------------- |
+| 0     | 👔 CEO         | Sets strategy, analyzes market, defines direction |
+| 1     | 🔬 Research    | Scouts technologies, evaluates feasibility        |
+| 2     | 📦 Product     | Writes specs, creates feature issues, prioritizes |
+| 3     | 📋 Scrum       | Plans sprints, tracks progress, unblocks          |
+| 4     | ⚙️ Engineering | Writes code, creates PRs, reviews                 |
+| 5     | 🛡️ Ops         | Merges PRs, fixes CI, enforces standards          |
+| 6     | 🎨 Design      | Reviews APIs, proposes architecture               |
 
 ## Features
 
 ### CLI (`@ada/cli`)
+
 - `ada init` — Bootstrap agent team with interactive setup
 - `ada run` — Execute one dispatch cycle (or `--watch` for continuous)
 - `ada status` — See rotation state, team info, memory summary
 - `ada config` — View and edit team configuration
 
 ### Core Library (`@ada/core`)
+
 - TypeScript types for roles, rosters, rotation, and memory
 - Rotation state machine with history tracking
 - Memory bank read/write/compress/archive
 - Dispatch protocol orchestration
 
 ### Templates
+
 - Pre-configured agent teams for different project types
 - Customizable playbooks, roster, and rules
 - Extensible — add your own roles and actions
 
 ### Web Dashboard (coming soon)
+
 - Real-time cycle monitoring
 - Memory bank viewer with search
 - Role configuration UI
@@ -111,17 +115,17 @@ autonomous-dev-agents/
 
 ## Pricing
 
-| | Free | Pro | Enterprise |
-|---|------|-----|-----------|
-| CLI tool | ✅ | ✅ | ✅ |
-| All templates | ✅ | ✅ | ✅ |
-| Local execution | ✅ | ✅ | ✅ |
-| Web dashboard | — | ✅ | ✅ |
-| Cycle analytics | — | ✅ | ✅ |
-| Custom roles | — | — | ✅ |
-| SSO & team mgmt | — | — | ✅ |
-| Priority support | — | — | ✅ |
-| **Price** | **Free** | **$19/mo** | **$99/mo** |
+|                  | Free     | Pro        | Enterprise |
+| ---------------- | -------- | ---------- | ---------- |
+| CLI tool         | ✅       | ✅         | ✅         |
+| All templates    | ✅       | ✅         | ✅         |
+| Local execution  | ✅       | ✅         | ✅         |
+| Web dashboard    | —        | ✅         | ✅         |
+| Cycle analytics  | —        | ✅         | ✅         |
+| Custom roles     | —        | —          | ✅         |
+| SSO & team mgmt  | —        | —          | ✅         |
+| Priority support | —        | —          | ✅         |
+| **Price**        | **Free** | **$19/mo** | **$99/mo** |
 
 ## Contributing
 
@@ -163,6 +167,7 @@ npm run dev -- status
 ADA's core framework is licensed under **GNU Affero General Public License v3.0 (AGPLv3)**.
 
 This means you're free to:
+
 - ✅ Use ADA for any purpose, including commercial projects
 - ✅ Modify the source code
 - ✅ Self-host ADA on your own infrastructure
@@ -173,11 +178,13 @@ This means you're free to:
 ### Commercial Licensing
 
 The following components are available under a separate commercial license:
+
 - **Web Dashboard** (`apps/web`) — Real-time monitoring, analytics, and team management UI
 - **Hosted Execution** — Cloud-based agent execution services
 - **Enterprise Features** — SSO, advanced team management, custom roles, priority support
 
 This dual-licensing model ensures:
+
 - 🛡️ **Protection** — Prevents cloud providers from strip-mining ADA without contributing back
 - 🌱 **Open Source Credibility** — Core framework remains truly open source
 - 💼 **Sustainable Business** — Enables a viable SaaS + enterprise business model
@@ -188,4 +195,4 @@ See [LICENSE](LICENSE) for full terms.
 
 ---
 
-*Built by [Rathi Industries](https://github.com/ishan190425) — engineering the future with autonomous AI teams.*
+_Built by [Rathi Industries](https://github.com/ishan190425) — engineering the future with autonomous AI teams._
