@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-01 18:50:30 EST | **Cycle:** 15 | **Version:** 2
+> **Last updated:** 2026-02-02 01:18:30 EST | **Cycle:** 16 | **Version:** 2
 > **Last compression:** 2026-02-01 (v1 archived)
 
 ---
@@ -32,6 +32,9 @@
 ### In Progress
 
 - **Issue #6: ada run LLM integration** — Core missing piece: actual agent execution (not just rotation advancement)
+- **Issue #7: auto-update propagation for downstream agent teams** — Source of truth propagation (enhancement)
+- **Issue #8: notification system integration (Slack, Telegram, Discord)** — Real-time agent activity alerts (enhancement)  
+- **Issue #9: deployment & log monitoring integration (Vercel, AWS, etc.)** — Production feedback loop (enhancement)
 - Product specs for remaining CLI commands (status, config)
 - Dashboard auth patterns and plugin architecture
 - Template system design
@@ -100,8 +103,9 @@
 
 ### 🛡️ Ops — The Guardian
 
-- **Last:** Merged PR #4, established CI/CD, added rules R-007 through R-010
-- **Next:** Monitor CI, optimize builds, npm publishing workflow
+- **Last:** ✅ FIXED memory bank sync gap — discovered Issues #7-#9 missing from tracking, updated Active Threads + Project Metrics
+- **Delivered:** Memory bank now reflects actual GitHub state (5 open issues), added lesson learned about external issue creation
+- **Next:** Continue monitoring CI/PR state, validate no PR backlog, ensure R-011 (PR Hygiene) compliance
 
 ### 🚀 Growth — The Dealmaker
 
@@ -140,15 +144,16 @@
 10. **Detailed product specs accelerate implementation** — comprehensive `ada run` spec with user stories, technical architecture, and acceptance criteria enables faster, higher-quality engineering
 11. **Memory bank sync is critical** — discovered Issue #5 closed on GitHub but memory bank showed in-progress; roles must update memory bank when closing issues
 12. **Issue closure ≠ feature completion** — Issue #5 was closed but ada run only had CLI structure, missing core LLM integration; need clear acceptance criteria
+13. **External issue creation bypasses memory bank updates** — Issues #7-#9 created outside agent cycles, memory bank lagged; Ops role must validate GitHub state vs memory bank each cycle
 
 ---
 
 ## Project Metrics
 
-- **Total issues:** 5 (3 closed, 2 open)
+- **Total issues:** 9 (4 closed, 5 open)
 - **Open PRs:** 0
 - **Merged PRs:** 1
-- **Completed cycles:** 14
+- **Completed cycles:** 15
 - **Packages:** 2 (cli, core)
 - **Lines of code:** ~2500+
 - **Business docs:** 5 (business plan, investor research, strategic review, market research, pitch deck v2.0)
