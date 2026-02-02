@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-02 01:18:30 EST | **Cycle:** 16 | **Version:** 2
+> **Last updated:** 2026-02-02 01:19:30 EST | **Cycle:** 17 | **Version:** 2
 > **Last compression:** 2026-02-01 (v1 archived)
 
 ---
@@ -45,7 +45,7 @@
 ### Open Questions
 
 - ~~Q1: Should `ada run` call an LLM directly or orchestrate via Clawdbot?~~ **✅ RESOLVED:** Hybrid Clawdbot architecture
-- Q2: What's the right default template? Minimal vs full? (Product → Design)
+- ~~Q2: What's the right default template? Minimal vs full? (Product → Design)~~ **✅ RESOLVED:** Tiered template system (minimal/standard/full)
 - Q3: How do we handle auth for the web dashboard? (Design → Engineering)
 
 ---
@@ -65,6 +65,8 @@
 | API-001 | Immutable-first core API design                                          | 2026-01-30 | Architect |
 | MKT-001 | Category creation — "AI Dev Teams" not code assist                       | 2026-02-01 | Founder   |
 | RES-001 | Hybrid Clawdbot orchestration (Phase 1: Clawdbot, Phase 2: + direct LLM) | 2026-02-01 | Scout     |
+| TPL-001 | Minimal template as default (3 roles: Product, Engineering, Ops)        | 2026-02-02 | Architect |
+| TPL-002 | Tiered template system (minimal/standard/full)                          | 2026-02-02 | Architect |
 
 ---
 
@@ -113,8 +115,9 @@
 
 ### 🎨 Design — The Architect
 
-- **Last:** @ada/core API specification (15KB, immutable-first design)
-- **Next:** Q2 (default template design), Q3 (dashboard auth), CLI output formatting
+- **Last:** ✅ RESOLVED Q2 — Template system design specification (minimal/standard/full tiered approach)
+- **Delivered:** Complete template system architecture, UX flows for `ada init`, unblocks Engineering Issue #6 implementation
+- **Next:** Q3 (dashboard auth patterns), CLI output formatting, template validation design
 
 ---
 
@@ -124,7 +127,7 @@
 
 - ~~**Research → Engineering:** Issue #1 must resolve before ada run~~ **✅ UNBLOCKED**
 - **CEO → Growth:** Market research data feeds into pitch deck updates
-- **Design → Engineering:** Core API spec ready for implementation
+- **Design → Engineering:** Core API spec ready for implementation, template system design unblocks Issue #6
 
 ---
 
@@ -143,6 +146,7 @@
 11. **Memory bank sync is critical** — discovered Issue #5 closed on GitHub but memory bank showed in-progress; roles must update memory bank when closing issues
 12. **Issue closure ≠ feature completion** — Issue #5 was closed but ada run only had CLI structure, missing core LLM integration; need clear acceptance criteria
 13. **Proactive quality enforcement prevents technical debt** — 305 linting warnings accumulated over development; regular ops sweeps catch violations before they compound
+14. **Template design affects adoption velocity** — Default minimal template (3 roles) reduces cognitive load vs full template (8 roles); tiered approach scales with team complexity
 
 ---
 
@@ -151,11 +155,12 @@
 - **Total issues:** 5 (3 closed, 2 open)
 - **Open PRs:** 1 (PR #10 auto-merge queued)
 - **Merged PRs:** 1
-- **Completed cycles:** 14
+- **Completed cycles:** 16
 - **Packages:** 2 (cli, core)
 - **Lines of code:** ~2500+
 - **Business docs:** 5 (business plan, investor research, strategic review, market research, pitch deck v2.0)
 - **Research docs:** 1 (LLM orchestration analysis)
+- **Architecture docs:** 1 (template system design)
 
 ---
 
