@@ -1,5 +1,7 @@
 # 🤖 ADA — Autonomous Dev Agents
 
+![Views](https://komarev.com/ghpvc/?username=ishan190425-autonomous-dev-agents&label=Views&color=brightgreen&style=flat)
+
 > **Ship software with autonomous AI dev teams.**
 
 ADA lets you set up a team of AI agents that autonomously manage your software project — from strategy and research to product specs, engineering, ops, and design. Each agent has a specialized role, a playbook, and a shared memory bank for continuity.
