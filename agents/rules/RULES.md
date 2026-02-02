@@ -8,19 +8,19 @@
 
 ## Rule Index
 
-| ID    | Rule                                                      | Owner   | Added      |
-| ----- | --------------------------------------------------------- | ------- | ---------- |
-| R-001 | [Memory Bank Protocol](#r-001-memory-bank-protocol)       | System  | Init       |
-| R-002 | [Compression Protocol](#r-002-compression-protocol)       | System  | Init       |
-| R-003 | [Role Evolution Protocol](#r-003-role-evolution-protocol) | System  | Init       |
-| R-004 | [Commit Standards](#r-004-commit-standards)               | Ops     | Init       |
-| R-005 | [Branch Strategy](#r-005-branch-strategy)                 | Ops     | Init       |
-| R-006 | [Issue Quality](#r-006-issue-quality)                     | Product | Init       |
-| R-007 | [TypeScript Standards](#r-007-typescript-standards)       | Ops     | Init       |
-| R-008 | [Monorepo Conventions](#r-008-monorepo-conventions)       | Ops     | Init       |
-| R-009 | [npm Workspace Rules](#r-009-npm-workspace-rules)         | Ops     | Init       |
-| R-010 | [PR Management & CI](#r-010-pr-management--ci)            | Ops     | 2026-01-30 |
-| R-011 | [PR Hygiene & Transparency](#r-011-pr-hygiene--transparency) | Ops  | 2026-02-02 |
+| ID    | Rule                                                         | Owner   | Added      |
+| ----- | ------------------------------------------------------------ | ------- | ---------- |
+| R-001 | [Memory Bank Protocol](#r-001-memory-bank-protocol)          | System  | Init       |
+| R-002 | [Compression Protocol](#r-002-compression-protocol)          | System  | Init       |
+| R-003 | [Role Evolution Protocol](#r-003-role-evolution-protocol)    | System  | Init       |
+| R-004 | [Commit Standards](#r-004-commit-standards)                  | Ops     | Init       |
+| R-005 | [Branch Strategy](#r-005-branch-strategy)                    | Ops     | Init       |
+| R-006 | [Issue Quality](#r-006-issue-quality)                        | Product | Init       |
+| R-007 | [TypeScript Standards](#r-007-typescript-standards)          | Ops     | Init       |
+| R-008 | [Monorepo Conventions](#r-008-monorepo-conventions)          | Ops     | Init       |
+| R-009 | [npm Workspace Rules](#r-009-npm-workspace-rules)            | Ops     | Init       |
+| R-010 | [PR Management & CI](#r-010-pr-management--ci)               | Ops     | 2026-01-30 |
+| R-011 | [PR Hygiene & Transparency](#r-011-pr-hygiene--transparency) | Ops     | 2026-02-02 |
 
 ---
 
