@@ -5,8 +5,8 @@
  * that provides continuity between agent cycles.
  */
 
-import * as fs from "node:fs/promises";
-import * as path from "node:path";
+import * as fs from 'node:fs/promises';
+import * as path from 'node:path';
 
 /**
  * Read the memory bank file as a string.
@@ -16,10 +16,10 @@ import * as path from "node:path";
  */
 export async function readMemoryBank(bankPath: string): Promise<string> {
   try {
-    return await fs.readFile(bankPath, "utf-8");
+    return await fs.readFile(bankPath, 'utf-8');
   } catch (err) {
-    if ((err as NodeJS.ErrnoException).code === "ENOENT") {
-      return "";
+    if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
+      return '';
     }
     throw err;
   }
@@ -37,7 +37,7 @@ export async function writeMemoryBank(
 ): Promise<void> {
   const dir = path.dirname(bankPath);
   await fs.mkdir(dir, { recursive: true });
-  await fs.writeFile(bankPath, content, "utf-8");
+  await fs.writeFile(bankPath, content, 'utf-8');
 }
 
 /**
@@ -48,7 +48,7 @@ export async function writeMemoryBank(
  */
 export function countLines(content: string): number {
   if (content.length === 0) return 0;
-  return content.split("\n").length;
+  return content.split('\n').length;
 }
 
 /**
@@ -91,12 +91,12 @@ export async function archiveBank(
 ): Promise<string> {
   await fs.mkdir(archivesDir, { recursive: true });
 
-  const date = new Date().toISOString().split("T")[0];
+  const date = new Date().toISOString().split('T')[0];
   const archiveName = `bank-${date}-v${version}.md`;
   const archivePath = path.join(archivesDir, archiveName);
 
-  const content = await fs.readFile(bankPath, "utf-8");
-  await fs.writeFile(archivePath, content, "utf-8");
+  const content = await fs.readFile(bankPath, 'utf-8');
+  await fs.writeFile(archivePath, content, 'utf-8');
 
   return archivePath;
 }
