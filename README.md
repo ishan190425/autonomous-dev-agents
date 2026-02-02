@@ -191,7 +191,7 @@ This dual-licensing model ensures:
 - 🌱 **Open Source Credibility** — Core framework remains truly open source
 - 💼 **Sustainable Business** — Enables a viable SaaS + enterprise business model
 
-For commercial licensing inquiries, contact: **licensing@rathiindustries.com**
+For commercial licensing inquiries, contact: **ishan@rathicapitalventures.com**
 
 See [LICENSE](LICENSE) for full terms.
 
