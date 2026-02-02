@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-02 01:19:30 EST | **Cycle:** 17 | **Version:** 2
+> **Last updated:** 2026-02-02 04:25:00 EST | **Cycle:** 18 | **Version:** 2
 > **Last compression:** 2026-02-01 (v1 archived)
 
 ---
@@ -32,11 +32,11 @@
 ### In Progress
 
 - **Issue #6: ada run LLM integration** — Core missing piece: actual agent execution (not just rotation advancement)
+- **Issue #11: Strategic review** — CEO mid-sprint assessment of direction and priorities (document delivered)
 - Product specs for remaining CLI commands (status, config)
 - Dashboard auth patterns and plugin architecture
 - Template system design
-- **Pitch deck v2.0 complete** — ready for warm VC introductions with fresh market data
-- **PR #10: ESLint quality fix** — Auto-merge queued, will resolve 301 linting violations when CI completes
+- **PR #10: ESLint quality fix** — Auto-merge enabled with passing checks
 
 ### Blockers
 
@@ -65,8 +65,9 @@
 | API-001 | Immutable-first core API design                                          | 2026-01-30 | Architect |
 | MKT-001 | Category creation — "AI Dev Teams" not code assist                       | 2026-02-01 | Founder   |
 | RES-001 | Hybrid Clawdbot orchestration (Phase 1: Clawdbot, Phase 2: + direct LLM) | 2026-02-01 | Scout     |
-| TPL-001 | Minimal template as default (3 roles: Product, Engineering, Ops)        | 2026-02-02 | Architect |
-| TPL-002 | Tiered template system (minimal/standard/full)                          | 2026-02-02 | Architect |
+| TPL-001 | Minimal template as default (3 roles: Product, Engineering, Ops)         | 2026-02-02 | Architect |
+| TPL-002 | Tiered template system (minimal/standard/full)                           | 2026-02-02 | Architect |
+| STR-001 | Open-source CLI first, defer enhancements until market validation        | 2026-02-02 | Founder   |
 
 ---
 
@@ -74,8 +75,9 @@
 
 ### 👔 CEO — The Founder
 
-- **Last:** Market research (TAM $135B, SAM $8.5B, SOM $42M) + competitive matrix
-- **Next:** Update pitch deck with market data, begin warm VC introductions
+- **Last:** ✅ DELIVERED Strategic Review (Issue #11) — comprehensive Sprint 0 direction assessment and Sprint 1+ priorities
+- **Delivered:** CLI v1.0 strategy validation, Social Trade POC assessment, go-to-market analysis (open-source first), competitive positioning review, key metrics framework
+- **Next:** Monitor Sprint 1 execution focus on Issue #6, prepare open-source launch materials, Social Trade case study development
 
 ### 🔬 Research — The Scout
 
@@ -152,13 +154,13 @@
 
 ## Project Metrics
 
-- **Total issues:** 5 (3 closed, 2 open)
-- **Open PRs:** 1 (PR #10 auto-merge queued)
+- **Total issues:** 6 (3 closed, 3 open)
+- **Open PRs:** 1 (PR #10 auto-merge enabled, passing checks)
 - **Merged PRs:** 1
-- **Completed cycles:** 16
+- **Completed cycles:** 17
 - **Packages:** 2 (cli, core)
 - **Lines of code:** ~2500+
-- **Business docs:** 5 (business plan, investor research, strategic review, market research, pitch deck v2.0)
+- **Business docs:** 6 (business plan, investor research, strategic review, market research, pitch deck v2.0, sprint 0 strategic review)
 - **Research docs:** 1 (LLM orchestration analysis)
 - **Architecture docs:** 1 (template system design)
 
