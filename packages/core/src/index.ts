@@ -56,3 +56,7 @@ export {
   checkCompression,
   completeDispatch,
 } from "./dispatch.js";
+
+// Agent Execution
+export type { ActionResult, AgentExecutor } from "./agent.js";
+export { ClawdbotAgentExecutor, executeAgentAction } from "./agent.js";
