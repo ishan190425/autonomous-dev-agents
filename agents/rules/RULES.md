@@ -20,6 +20,7 @@
 | R-008 | [Monorepo Conventions](#r-008-monorepo-conventions)       | Ops     | Init       |
 | R-009 | [npm Workspace Rules](#r-009-npm-workspace-rules)         | Ops     | Init       |
 | R-010 | [PR Management & CI](#r-010-pr-management--ci)            | Ops     | 2026-01-30 |
+| R-011 | [PR Hygiene & Transparency](#r-011-pr-hygiene--transparency) | Ops  | 2026-02-02 |
 
 ---
 
@@ -181,6 +182,33 @@ If CI is broken but code is verified locally, Ops can merge with justification:
 - Add incident post-mortem if CI failures blocked development
 
 **Why this rule matters:** Prevents broken code from reaching main, maintains code quality, ensures development velocity doesn't stall on minor CI issues.
+
+---
+
+## R-011: PR Hygiene & Transparency
+
+### Principle
+
+A human outside the loop should be able to look at open PRs and issues at any time and immediately understand the project state. No orphaned, unexplained, or stale PRs.
+
+### Every Cycle
+
+Before starting new work, agents MUST review all open PRs:
+
+1. **Stale/abandoned PRs** (no activity for 2+ cycles, superseded, or no longer relevant) → **Close** with a clear comment explaining why
+2. **Actionable PRs** (valid work in progress or ready for review) → **Track** in the memory bank under Active Threads and ensure they have descriptive titles, bodies, and labels
+3. **Blocked PRs** → Add a comment explaining what's blocking and tag the relevant role
+
+### PR Transparency Standards
+
+- Every open PR must have a **clear description** of what it does and why
+- If a PR is intentionally left open (e.g., waiting on a dependency), it must have a **status comment** updated each cycle
+- Closing a PR is always better than letting it rot — work can be re-opened or re-created
+- Issues referenced by PRs should be kept in sync (close issue when PR merges, reopen if PR is abandoned)
+
+### Why This Rule Matters
+
+Autonomous agent teams generate PRs at high velocity. Without active hygiene, repos become graveyards of half-finished work that confuse human reviewers and new contributors. Clean PR state = trustworthy project.
 
 ---
 
