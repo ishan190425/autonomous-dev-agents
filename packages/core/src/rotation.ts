@@ -6,15 +6,15 @@
  * advancing to the next role, and persisting state.
  */
 
-import * as fs from "node:fs/promises";
-import * as path from "node:path";
+import * as fs from 'node:fs/promises';
+import * as path from 'node:path';
 import type {
   Role,
   RoleId,
   Roster,
   RotationState,
   RotationHistoryEntry,
-} from "./types.js";
+} from './types.js';
 
 /** Maximum number of history entries to retain */
 const MAX_HISTORY = 10;
@@ -28,7 +28,7 @@ const MAX_HISTORY = 10;
 export async function readRotationState(
   statePath: string
 ): Promise<RotationState> {
-  const raw = await fs.readFile(statePath, "utf-8");
+  const raw = await fs.readFile(statePath, 'utf-8');
   return JSON.parse(raw) as RotationState;
 }
 
@@ -44,7 +44,7 @@ export async function writeRotationState(
 ): Promise<void> {
   const dir = path.dirname(statePath);
   await fs.mkdir(dir, { recursive: true });
-  await fs.writeFile(statePath, `${JSON.stringify(state, null, 2)}\n`, "utf-8");
+  await fs.writeFile(statePath, `${JSON.stringify(state, null, 2)}\n`, 'utf-8');
 }
 
 /**
@@ -54,7 +54,7 @@ export async function writeRotationState(
  * @returns The parsed roster
  */
 export async function readRoster(rosterPath: string): Promise<Roster> {
-  const raw = await fs.readFile(rosterPath, "utf-8");
+  const raw = await fs.readFile(rosterPath, 'utf-8');
   return JSON.parse(raw) as Roster;
 }
 
@@ -131,7 +131,10 @@ export function advanceRotation(
   }
 
   const currentIndex = state.current_index % rotation_order.length;
-  const currentRole = rotation_order[currentIndex]!;
+  const currentRole = rotation_order[currentIndex];
+  if (!currentRole) {
+    throw new Error(`Invalid rotation state: no role at index ${currentIndex}`);
+  }
   const nextIndex = (currentIndex + 1) % rotation_order.length;
   const now = new Date().toISOString();
   const newCycleCount = state.cycle_count + 1;
@@ -169,29 +172,29 @@ export function getRotationSummary(
   const role = getCurrentRole(state, roster);
   const lines: string[] = [];
 
-  lines.push("📊 Rotation Status");
-  lines.push("─────────────────────");
+  lines.push('📊 Rotation Status');
+  lines.push('─────────────────────');
 
   if (role) {
     lines.push(`Current role: ${role.emoji} ${role.name} (${role.title})`);
   } else {
-    lines.push("Current role: (none — empty rotation)");
+    lines.push('Current role: (none — empty rotation)');
   }
 
   lines.push(`Cycle count:  ${state.cycle_count}`);
-  lines.push(`Last role:    ${state.last_role ?? "(none)"}`);
-  lines.push(`Last run:     ${state.last_run ?? "(never)"}`);
+  lines.push(`Last role:    ${state.last_role ?? '(none)'}`);
+  lines.push(`Last run:     ${state.last_run ?? '(never)'}`);
 
   if (state.history.length > 0) {
-    lines.push("");
+    lines.push('');
     lines.push(`Recent history (last ${state.history.length}):`);
     for (const entry of state.history.slice(-5)) {
       const roleInfo = roster.roles.find((r) => r.id === entry.role);
-      const emoji = roleInfo?.emoji ?? "❓";
-      const action = entry.action ? ` — ${entry.action}` : "";
+      const emoji = roleInfo?.emoji ?? '❓';
+      const action = entry.action ? ` — ${entry.action}` : '';
       lines.push(`  #${entry.cycle} ${emoji} ${entry.role}${action}`);
     }
   }
 
-  return lines.join("\n");
+  return lines.join('\n');
 }

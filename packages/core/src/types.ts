@@ -9,47 +9,47 @@
 
 /** Standard role identifiers */
 export type RoleId =
-  | "ceo"
-  | "research"
-  | "product"
-  | "scrum"
-  | "engineering"
-  | "ops"
-  | "design"
+  | 'ceo'
+  | 'research'
+  | 'product'
+  | 'scrum'
+  | 'engineering'
+  | 'ops'
+  | 'design'
   | (string & {}); // Allow custom role IDs while keeping autocomplete
 
 /** Actions a role can perform */
 export type RoleAction =
-  | "write_business_plans"
-  | "swot_analysis"
-  | "market_research"
-  | "strategic_review"
-  | "partnership_strategy"
-  | "create_research_issues"
-  | "write_research_docs"
-  | "comment_on_feasibility"
-  | "evaluate_approaches"
-  | "create_feature_issues"
-  | "write_specs"
-  | "prioritize_backlog"
-  | "define_personas"
-  | "create_sprint_issues"
-  | "update_project_board"
-  | "write_retros"
-  | "unblock_team"
-  | "write_code"
-  | "create_prs"
-  | "code_review"
-  | "architect_systems"
-  | "merge_prs"
-  | "fix_ci"
-  | "add_rules"
-  | "enforce_standards"
-  | "update_ci"
-  | "write_api_specs"
-  | "review_interfaces"
-  | "create_design_docs"
-  | "define_protocols"
+  | 'write_business_plans'
+  | 'swot_analysis'
+  | 'market_research'
+  | 'strategic_review'
+  | 'partnership_strategy'
+  | 'create_research_issues'
+  | 'write_research_docs'
+  | 'comment_on_feasibility'
+  | 'evaluate_approaches'
+  | 'create_feature_issues'
+  | 'write_specs'
+  | 'prioritize_backlog'
+  | 'define_personas'
+  | 'create_sprint_issues'
+  | 'update_project_board'
+  | 'write_retros'
+  | 'unblock_team'
+  | 'write_code'
+  | 'create_prs'
+  | 'code_review'
+  | 'architect_systems'
+  | 'merge_prs'
+  | 'fix_ci'
+  | 'add_rules'
+  | 'enforce_standards'
+  | 'update_ci'
+  | 'write_api_specs'
+  | 'review_interfaces'
+  | 'create_design_docs'
+  | 'define_protocols'
   | (string & {}); // Allow custom actions
 
 /** Definition of a single role in the agent team */
@@ -228,9 +228,9 @@ export interface AdaConfig {
 
 /** Default configuration values */
 export const DEFAULT_CONFIG: AdaConfig = {
-  agentsDir: "agents/",
-  templatesDir: "templates/",
-  defaultBranch: "main",
+  agentsDir: 'agents/',
+  templatesDir: 'templates/',
+  defaultBranch: 'main',
   maxHistory: 10,
   compressionThreshold: 200,
 } as const;

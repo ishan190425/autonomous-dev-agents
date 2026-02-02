@@ -5,22 +5,22 @@
  * load context → determine role → execute → update memory → advance rotation.
  */
 
-import * as path from "node:path";
+import * as path from 'node:path';
 import type {
   AdaConfig,
   DispatchResult,
   Role,
   Roster,
   RotationState,
-} from "./types.js";
-import { DEFAULT_CONFIG } from "./types.js";
+} from './types.js';
+import { DEFAULT_CONFIG } from './types.js';
 import {
   readRotationState,
   readRoster,
   getCurrentRole,
   advanceRotation,
   writeRotationState,
-} from "./rotation.js";
+} from './rotation.js';
 import {
   readMemoryBank,
   writeMemoryBank,
@@ -29,7 +29,7 @@ import {
   archiveBank,
   extractVersion,
   extractCycle,
-} from "./memory.js";
+} from './memory.js';
 
 /** Context loaded in Phase 1 of the dispatch protocol */
 export interface DispatchContext {
@@ -64,17 +64,17 @@ export function resolvePaths(
   rootDir: string,
   roleId: string,
   config: Partial<AdaConfig> = {}
-): DispatchContext["paths"] {
+): DispatchContext['paths'] {
   const agentsDir = config.agentsDir ?? DEFAULT_CONFIG.agentsDir;
   const agents = path.join(rootDir, agentsDir);
 
   return {
     root: rootDir,
-    roster: path.join(agents, "roster.json"),
-    state: path.join(agents, "state", "rotation.json"),
-    memoryBank: path.join(agents, "memory", "bank.md"),
-    archives: path.join(agents, "memory", "archives"),
-    playbook: path.join(agents, "playbooks", `${roleId}.md`),
+    roster: path.join(agents, 'roster.json'),
+    state: path.join(agents, 'state', 'rotation.json'),
+    memoryBank: path.join(agents, 'memory', 'bank.md'),
+    archives: path.join(agents, 'memory', 'archives'),
+    playbook: path.join(agents, 'playbooks', `${roleId}.md`),
   };
 }
 
@@ -95,8 +95,8 @@ export async function loadContext(
   const agentsDir = config.agentsDir ?? DEFAULT_CONFIG.agentsDir;
   const agents = path.join(rootDir, agentsDir);
 
-  const statePath = path.join(agents, "state", "rotation.json");
-  const rosterPath = path.join(agents, "roster.json");
+  const statePath = path.join(agents, 'state', 'rotation.json');
+  const rosterPath = path.join(agents, 'roster.json');
 
   const state = await readRotationState(statePath);
   const roster = await readRoster(rosterPath);
@@ -182,7 +182,7 @@ export async function completeDispatch(
     roleName: context.role.name,
     cycle: newState.cycle_count,
     action: actionDescription,
-    timestamp: newState.last_run!,
+    timestamp: newState.last_run || new Date().toISOString(),
     modifiedFiles: [context.paths.state, context.paths.memoryBank],
   };
 }

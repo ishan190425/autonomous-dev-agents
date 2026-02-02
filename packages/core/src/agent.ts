@@ -5,7 +5,8 @@
  * following RES-001 (Hybrid Clawdbot orchestration).
  */
 
-import type { DispatchContext } from "./dispatch.js";
+import type { DispatchContext } from './dispatch.js';
+import { setTimeout } from 'timers';
 
 /** Result of agent action execution */
 export interface ActionResult {
@@ -55,7 +56,7 @@ export class ClawdbotAgentExecutor implements AgentExecutor {
     } catch (error) {
       return {
         success: false,
-        action: "Agent execution failed",
+        action: 'Agent execution failed',
         details: `Error during agent execution: ${error}`,
         error: error instanceof Error ? error.message : String(error),
       };
@@ -86,8 +87,8 @@ CRITICAL: You are executing Phase 3 of the dispatch protocol. Follow agents/DISP
 CURRENT STATE:
 - Cycle: ${state.cycle_count + 1}
 - Role: ${role.id}
-- Focus: ${role.focus.join(", ")}
-- Available actions: ${role.actions.join(", ")}
+- Focus: ${role.focus.join(', ')}
+- Available actions: ${role.actions.join(', ')}
 
 WORKING DIRECTORY: ${paths.root}
 
@@ -162,9 +163,9 @@ Execute ONE meaningful action from your playbook now. Focus on high-impact work 
     // In production, these logs would be handled by the CLI layer
     
     // Simulate agent work delay
-    const delay = (ms: number) => new Promise(resolve => {
-      // Use global setTimeout which is available in Node.js
-      (global as any).setTimeout(resolve, ms);
+    const delay = (ms: number): Promise<void> => new Promise(resolve => {
+      // Use Node.js setTimeout
+      setTimeout(resolve, ms);
     });
     await delay(2000);
     
@@ -185,7 +186,7 @@ Execute ONE meaningful action from your playbook now. Focus on high-impact work 
  * @param context - Dispatch context
  * @returns Action result
  */
-export async function executeAgentAction(
+export function executeAgentAction(
   context: DispatchContext
 ): Promise<ActionResult> {
   const executor = new ClawdbotAgentExecutor();

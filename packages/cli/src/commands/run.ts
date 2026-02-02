@@ -5,22 +5,22 @@
  * updates the memory bank, and advances the rotation.
  */
 
-import { Command } from "commander";
+import { Command } from 'commander';
 import { 
   loadContext, 
   completeDispatch, 
   checkCompression,
   executeAgentAction,
   readRotationState
-} from "@ada/core";
-import * as path from "node:path";
+} from '@ada/core';
+import * as path from 'node:path';
 
 /**
  * Get the current cycle number for display
  */
 async function getCycleNumber(cwd: string, agentsDir: string): Promise<number> {
   try {
-    const statePath = path.join(cwd, agentsDir, "state", "rotation.json");
+    const statePath = path.join(cwd, agentsDir, 'state', 'rotation.json');
     const state = await readRotationState(statePath);
     return state.cycle_count + 1;
   } catch {
@@ -28,15 +28,15 @@ async function getCycleNumber(cwd: string, agentsDir: string): Promise<number> {
   }
 }
 
-export const runCommand = new Command("run")
-  .description("Execute one dispatch cycle as the current role")
-  .option("-d, --dir <path>", 'Agents directory (default: "agents/")', "agents")
-  .option("--dry-run", "Show what would happen without executing")
-  .option("-w, --watch", "Run continuously (execute a cycle, then wait)")
+export const runCommand = new Command('run')
+  .description('Execute one dispatch cycle as the current role')
+  .option('-d, --dir <path>', 'Agents directory (default: "agents/")', 'agents')
+  .option('--dry-run', 'Show what would happen without executing')
+  .option('-w, --watch', 'Run continuously (execute a cycle, then wait)')
   .option(
-    "-i, --interval <minutes>",
-    "Interval between cycles in watch mode",
-    "30"
+    '-i, --interval <minutes>',
+    'Interval between cycles in watch mode',
+    '30'
   )
   .action(
     async (options: {
@@ -52,40 +52,40 @@ export const runCommand = new Command("run")
 
       try {
         // Phase 1: Context Load
-        console.log("📋 Phase 1: Loading context...");
+        console.log('📋 Phase 1: Loading context...');
         const context = await loadContext(cwd, { agentsDir: options.dir });
 
         if (!context) {
           console.error(
-            "❌ No roles configured. Run `ada init` first or check roster.json."
+            '❌ No roles configured. Run `ada init` first or check roster.json.'
           );
           process.exit(1);
         }
 
         const { role, state } = context;
-        console.log(`✅ Context loaded`);
+        console.log('✅ Context loaded');
         console.log(`🎭 Role:  ${role.emoji} ${role.name} (${role.title})`);
         console.log(`🔄 Cycle: ${state.cycle_count + 1}`);
-        console.log(`📋 Focus: ${role.focus.join(", ")}\n`);
+        console.log(`📋 Focus: ${role.focus.join(', ')}\n`);
         
         // Phase 2: Situational Awareness
-        console.log("🔍 Phase 2: Situational awareness...");
-        console.log("✅ Memory bank and role playbook ready\n");
+        console.log('🔍 Phase 2: Situational awareness...');
+        console.log('✅ Memory bank and role playbook ready\n');
 
         if (options.dryRun) {
-          console.log("🏃 DRY RUN — no changes will be made\n");
-          console.log("Available actions:");
+          console.log('🏃 DRY RUN — no changes will be made\n');
+          console.log('Available actions:');
           for (const action of role.actions) {
             console.log(`  • ${action}`);
           }
           console.log(
-            "\nMemory bank loaded. Playbook ready. Would execute one action.\n"
+            '\nMemory bank loaded. Playbook ready. Would execute one action.\n'
           );
           return;
         }
 
         // Phase 3: Execute agent action
-        console.log("⚙️ Phase 3: Executing agent action...\n");
+        console.log('⚙️ Phase 3: Executing agent action...\n');
         
         const actionResult = await executeAgentAction(context);
         
@@ -113,28 +113,28 @@ export const runCommand = new Command("run")
         }
 
         // Phase 5: Check compression
-        console.log("📦 Phase 5: Checking compression...");
+        console.log('📦 Phase 5: Checking compression...');
         const compressed = await checkCompression(context);
         if (compressed) {
-          console.log("✅ Memory bank compressed\n");
+          console.log('✅ Memory bank compressed\n');
         } else {
-          console.log("ℹ️  No compression needed\n");
+          console.log('ℹ️  No compression needed\n');
         }
 
         // Phase 7: Complete the dispatch
-        console.log("🔄 Phase 7: Advancing rotation...");
+        console.log('🔄 Phase 7: Advancing rotation...');
         const result = await completeDispatch(
           context,
-          actionResult.success ? actionResult.action : "Action execution failed"
+          actionResult.success ? actionResult.action : 'Action execution failed'
         );
         console.log(`✅ Cycle ${result.cycle} complete`);
-        console.log(`📊 Summary:`);
+        console.log('📊 Summary:');
         console.log(`   Role: ${result.roleName}`);
         console.log(`   Action: ${result.action}`);
-        console.log(`   Next: Advancing to next role in rotation`);
+        console.log('   Next: Advancing to next role in rotation');
         console.log(`   Time: ${new Date(result.timestamp).toLocaleString()}\n`);
       } catch (err) {
-        console.error("❌ Dispatch failed:", (err as Error).message);
+        console.error('❌ Dispatch failed:', (err as Error).message);
         process.exit(1);
       }
     }
