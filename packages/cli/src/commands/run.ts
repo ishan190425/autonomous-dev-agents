@@ -5,18 +5,38 @@
  * updates the memory bank, and advances the rotation.
  */
 
-import { Command } from "commander";
-import { loadContext, completeDispatch, checkCompression } from "@ada/core";
+import { Command } from 'commander';
+import { 
+  loadContext, 
+  completeDispatch, 
+  checkCompression,
+  executeAgentAction,
+  readRotationState
+} from '@ada/core';
+import * as path from 'node:path';
 
-export const runCommand = new Command("run")
-  .description("Execute one dispatch cycle as the current role")
-  .option("-d, --dir <path>", 'Agents directory (default: "agents/")', "agents")
-  .option("--dry-run", "Show what would happen without executing")
-  .option("-w, --watch", "Run continuously (execute a cycle, then wait)")
+/**
+ * Get the current cycle number for display
+ */
+async function getCycleNumber(cwd: string, agentsDir: string): Promise<number> {
+  try {
+    const statePath = path.join(cwd, agentsDir, 'state', 'rotation.json');
+    const state = await readRotationState(statePath);
+    return state.cycle_count + 1;
+  } catch {
+    return 1;
+  }
+}
+
+export const runCommand = new Command('run')
+  .description('Execute one dispatch cycle as the current role')
+  .option('-d, --dir <path>', 'Agents directory (default: "agents/")', 'agents')
+  .option('--dry-run', 'Show what would happen without executing')
+  .option('-w, --watch', 'Run continuously (execute a cycle, then wait)')
   .option(
-    "-i, --interval <minutes>",
-    "Interval between cycles in watch mode",
-    "30"
+    '-i, --interval <minutes>',
+    'Interval between cycles in watch mode',
+    '30'
   )
   .action(
     async (options: {
@@ -27,55 +47,94 @@ export const runCommand = new Command("run")
     }) => {
       const cwd = process.cwd();
 
-      console.log("🤖 ADA — Dispatch Cycle\n");
+      const cycleNumber = await getCycleNumber(cwd, options.dir);
+      console.log(`🏭 ADA Dispatch Cycle ${cycleNumber}\n`);
 
       try {
+        // Phase 1: Context Load
+        console.log('📋 Phase 1: Loading context...');
         const context = await loadContext(cwd, { agentsDir: options.dir });
 
         if (!context) {
           console.error(
-            "❌ No roles configured. Run `ada init` first or check roster.json."
+            '❌ No roles configured. Run `ada init` first or check roster.json.'
           );
           process.exit(1);
         }
 
         const { role, state } = context;
+        console.log('✅ Context loaded');
         console.log(`🎭 Role:  ${role.emoji} ${role.name} (${role.title})`);
         console.log(`🔄 Cycle: ${state.cycle_count + 1}`);
-        console.log(`📋 Focus: ${role.focus.join(", ")}\n`);
+        console.log(`📋 Focus: ${role.focus.join(', ')}\n`);
+        
+        // Phase 2: Situational Awareness
+        console.log('🔍 Phase 2: Situational awareness...');
+        console.log('✅ Memory bank and role playbook ready\n');
 
         if (options.dryRun) {
-          console.log("🏃 DRY RUN — no changes will be made\n");
-          console.log("Available actions:");
+          console.log('🏃 DRY RUN — no changes will be made\n');
+          console.log('Available actions:');
           for (const action of role.actions) {
             console.log(`  • ${action}`);
           }
           console.log(
-            "\nMemory bank loaded. Playbook ready. Would execute one action.\n"
+            '\nMemory bank loaded. Playbook ready. Would execute one action.\n'
           );
           return;
         }
 
-        // TODO: Integrate with LLM to actually pick and execute an action
-        // For now, advance rotation as a placeholder
-        console.log("⏳ Executing dispatch cycle...\n");
-
-        // Check compression
-        const compressed = await checkCompression(context);
-        if (compressed) {
-          console.log("📦 Memory bank compressed\n");
+        // Phase 3: Execute agent action
+        console.log('⚙️ Phase 3: Executing agent action...\n');
+        
+        const actionResult = await executeAgentAction(context);
+        
+        if (actionResult.success) {
+          console.log(`✅ Action completed: ${actionResult.action}`);
+          console.log(`📝 Details: ${actionResult.details}`);
+          
+          if (actionResult.createdIssues && actionResult.createdIssues.length > 0) {
+            console.log(`📋 Created issues: #${actionResult.createdIssues.join(', #')}`);
+          }
+          
+          if (actionResult.createdPRs && actionResult.createdPRs.length > 0) {
+            console.log(`🔀 Created PRs: #${actionResult.createdPRs.join(', #')}`);
+          }
+          
+          if (actionResult.modifiedFiles && actionResult.modifiedFiles.length > 0) {
+            console.log(`📄 Modified files: ${actionResult.modifiedFiles.length}`);
+          }
+          
+          console.log(); // Empty line
+        } else {
+          console.error(`❌ Action failed: ${actionResult.action}`);
+          console.error(`💥 Error: ${actionResult.error || actionResult.details}`);
+          console.log(); // Empty line
         }
 
-        // Complete the dispatch
+        // Phase 5: Check compression
+        console.log('📦 Phase 5: Checking compression...');
+        const compressed = await checkCompression(context);
+        if (compressed) {
+          console.log('✅ Memory bank compressed\n');
+        } else {
+          console.log('ℹ️  No compression needed\n');
+        }
+
+        // Phase 7: Complete the dispatch
+        console.log('🔄 Phase 7: Advancing rotation...');
         const result = await completeDispatch(
           context,
-          "(manual run — action pending)"
+          actionResult.success ? actionResult.action : 'Action execution failed'
         );
         console.log(`✅ Cycle ${result.cycle} complete`);
+        console.log('📊 Summary:');
         console.log(`   Role: ${result.roleName}`);
-        console.log(`   Time: ${result.timestamp}\n`);
+        console.log(`   Action: ${result.action}`);
+        console.log('   Next: Advancing to next role in rotation');
+        console.log(`   Time: ${new Date(result.timestamp).toLocaleString()}\n`);
       } catch (err) {
-        console.error("❌ Dispatch failed:", (err as Error).message);
+        console.error('❌ Dispatch failed:', (err as Error).message);
         process.exit(1);
       }
     }

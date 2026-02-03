@@ -5,22 +5,22 @@
  * customizes the roster, and sets up the initial state.
  */
 
-import { Command } from "commander";
-import * as fs from "node:fs/promises";
-import * as path from "node:path";
-import chalk from "chalk";
-import { DEFAULT_CONFIG } from "@ada/core";
-import type { Roster, RotationState, AdaConfig } from "@ada/core";
+import { Command } from 'commander';
+import * as fs from 'node:fs/promises';
+import * as path from 'node:path';
+import chalk from 'chalk';
+import { DEFAULT_CONFIG } from '@ada/core';
+import type { Roster, RotationState, AdaConfig } from '@ada/core';
 
 interface InitOptions {
   template: string;
-  teamSize: "small" | "medium" | "large" | undefined;
+  teamSize: 'small' | 'medium' | 'large' | undefined;
   focus:
-    | "product"
-    | "engineering"
-    | "research"
-    | "ops"
-    | "balanced"
+    | 'product'
+    | 'engineering'
+    | 'research'
+    | 'ops'
+    | 'balanced'
     | undefined;
   overwrite: boolean;
   dir: string;
@@ -35,53 +35,53 @@ interface TeamSizeConfig {
 const TEAM_SIZES: Record<string, TeamSizeConfig> = {
   small: {
     roleCount: 3,
-    description: "Solo developer (CEO, Engineering, Ops)",
-    roles: ["ceo", "engineering", "ops"],
+    description: 'Solo developer (CEO, Engineering, Ops)',
+    roles: ['ceo', 'engineering', 'ops'],
   },
   medium: {
     roleCount: 5,
-    description: "Small team (CEO, Product, Engineering, Ops, Research)",
-    roles: ["ceo", "product", "engineering", "ops", "research"],
+    description: 'Small team (CEO, Product, Engineering, Ops, Research)',
+    roles: ['ceo', 'product', 'engineering', 'ops', 'research'],
   },
   large: {
     roleCount: 8,
-    description: "Full team (all roles)",
+    description: 'Full team (all roles)',
     roles: [
-      "ceo",
-      "growth",
-      "research",
-      "product",
-      "scrum",
-      "engineering",
-      "ops",
-      "design",
+      'ceo',
+      'growth',
+      'research',
+      'product',
+      'scrum',
+      'engineering',
+      'ops',
+      'design',
     ],
   },
 } as const;
 
-export const initCommand = new Command("init")
-  .description("Initialize an autonomous agent team in the current repo")
+export const initCommand = new Command('init')
+  .description('Initialize an autonomous agent team in the current repo')
   .option(
-    "-t, --template <name>",
+    '-t, --template <name>',
     'Template to use (default: "default")',
-    "default"
+    'default'
   )
-  .option("--team-size <size>", "Team size: small|medium|large")
+  .option('--team-size <size>', 'Team size: small|medium|large')
   .option(
-    "--focus <area>",
-    "Primary focus: product|engineering|research|ops|balanced"
+    '--focus <area>',
+    'Primary focus: product|engineering|research|ops|balanced'
   )
-  .option("-f, --overwrite", "Overwrite existing agent configuration", false)
+  .option('-f, --overwrite', 'Overwrite existing agent configuration', false)
   .option(
-    "-d, --dir <path>",
+    '-d, --dir <path>',
     'Target directory for agents (default: "agents/")',
-    "agents"
+    'agents'
   )
   .action(async (options: InitOptions) => {
     try {
       await initializeAgentTeam(options);
     } catch (error) {
-      console.error(chalk.red("❌ Failed to initialize agent team:"));
+      console.error(chalk.red('❌ Failed to initialize agent team:'));
       console.error(
         chalk.red(error instanceof Error ? error.message : String(error))
       );
@@ -94,7 +94,7 @@ async function initializeAgentTeam(options: InitOptions): Promise<void> {
   const agentsDir = path.resolve(cwd, options.dir);
 
   console.log(
-    chalk.bold.blue("🤖 Autonomous Dev Agents — Team Initialization\n")
+    chalk.bold.blue('🤖 Autonomous Dev Agents — Team Initialization\n')
   );
 
   // Check if agents directory exists
@@ -103,7 +103,7 @@ async function initializeAgentTeam(options: InitOptions): Promise<void> {
     console.log(chalk.yellow(`⚠️  Directory "${options.dir}" already exists.`));
     console.log(
       chalk.gray(
-        "   Use --overwrite to replace it, or --dir to specify a different directory.\n"
+        '   Use --overwrite to replace it, or --dir to specify a different directory.\n'
       )
     );
     process.exit(1);
@@ -123,12 +123,12 @@ async function initializeAgentTeam(options: InitOptions): Promise<void> {
   // Get team configuration
   const teamConfig = await getTeamConfiguration(options, projectInfo);
 
-  console.log(chalk.blue("🎯 Configuration:"));
+  console.log(chalk.blue('🎯 Configuration:'));
   console.log(chalk.gray(`   Template: ${teamConfig.template}`));
   console.log(
     chalk.gray(
       `   Team size: ${teamConfig.teamSize} (${
-        TEAM_SIZES[teamConfig.teamSize]?.description || "Unknown"
+        TEAM_SIZES[teamConfig.teamSize]?.description || 'Unknown'
       })`
     )
   );
@@ -150,24 +150,24 @@ async function initializeAgentTeam(options: InitOptions): Promise<void> {
   // Create ada config
   await createAdaConfig(agentsDir);
 
-  console.log(chalk.green("✅ Agent team initialized successfully!\n"));
+  console.log(chalk.green('✅ Agent team initialized successfully!\n'));
 
-  console.log(chalk.bold("Next steps:"));
+  console.log(chalk.bold('Next steps:'));
   console.log(
-    `${chalk.gray("  1.")} Review configuration: ${chalk.cyan(
+    `${chalk.gray('  1.')} Review configuration: ${chalk.cyan(
       `${options.dir}/roster.json`
     )}`
   );
   console.log(
-    `${chalk.gray("  2.")} Customize playbooks: ${chalk.cyan(
+    `${chalk.gray('  2.')} Customize playbooks: ${chalk.cyan(
       `${options.dir}/playbooks/*.md`
     )}`
   );
   console.log(
-    `${chalk.gray("  3.")} Run first cycle: ${chalk.cyan("ada run")}`
+    `${chalk.gray('  3.')} Run first cycle: ${chalk.cyan('ada run')}`
   );
   console.log(
-    `${chalk.gray("  4.")} Check status: ${chalk.cyan("ada status")}\n`
+    `${chalk.gray('  4.')} Check status: ${chalk.cyan('ada status')}\n`
   );
 }
 
@@ -188,43 +188,43 @@ interface ProjectInfo {
 }
 
 async function detectProjectContext(cwd: string): Promise<ProjectInfo> {
-  const packageJsonExists = await fileExists(path.join(cwd, "package.json"));
-  const gitExists = await directoryExists(path.join(cwd, ".git"));
+  const packageJsonExists = await fileExists(path.join(cwd, 'package.json'));
+  const gitExists = await directoryExists(path.join(cwd, '.git'));
 
-  let projectType = "general";
-  let suggestedTemplate = "default";
+  let projectType = 'general';
+  let suggestedTemplate = 'default';
 
   if (packageJsonExists) {
     try {
       const packageJsonContent = await fs.readFile(
-        path.join(cwd, "package.json"),
-        "utf-8"
+        path.join(cwd, 'package.json'),
+        'utf-8'
       );
       const packageJson = JSON.parse(packageJsonContent);
 
       if (
-        packageJson.dependencies?.["next"] ||
-        packageJson.devDependencies?.["next"]
+        packageJson.dependencies?.['next'] ||
+        packageJson.devDependencies?.['next']
       ) {
-        projectType = "Next.js web app";
-        suggestedTemplate = "web-app";
+        projectType = 'Next.js web app';
+        suggestedTemplate = 'web-app';
       } else if (
-        packageJson.dependencies?.["react"] ||
-        packageJson.devDependencies?.["react"]
+        packageJson.dependencies?.['react'] ||
+        packageJson.devDependencies?.['react']
       ) {
-        projectType = "React app";
-        suggestedTemplate = "web-app";
+        projectType = 'React app';
+        suggestedTemplate = 'web-app';
       } else if (packageJson.bin) {
-        projectType = "CLI tool";
-        suggestedTemplate = "cli-tool";
+        projectType = 'CLI tool';
+        suggestedTemplate = 'cli-tool';
       } else if (
-        packageJson.dependencies?.["express"] ||
-        packageJson.dependencies?.["fastify"]
+        packageJson.dependencies?.['express'] ||
+        packageJson.dependencies?.['fastify']
       ) {
-        projectType = "API service";
-        suggestedTemplate = "api-service";
+        projectType = 'API service';
+        suggestedTemplate = 'api-service';
       } else {
-        projectType = "Node.js project";
+        projectType = 'Node.js project';
       }
     } catch {
       // Failed to parse package.json, use defaults
@@ -250,8 +250,8 @@ async function fileExists(filePath: string): Promise<boolean> {
 
 interface TeamConfig {
   template: string;
-  teamSize: "small" | "medium" | "large";
-  focus: "product" | "engineering" | "research" | "ops" | "balanced";
+  teamSize: 'small' | 'medium' | 'large';
+  focus: 'product' | 'engineering' | 'research' | 'ops' | 'balanced';
   companyName: string;
   productName: string;
 }
@@ -262,25 +262,25 @@ async function getTeamConfiguration(
 ): Promise<TeamConfig> {
   // For now, use defaults and options. Later we can add interactive prompts.
   const teamSize =
-    options.teamSize ?? (projectInfo.type === "general" ? "small" : "medium");
-  const focus = options.focus ?? "balanced";
+    options.teamSize ?? (projectInfo.type === 'general' ? 'small' : 'medium');
+  const focus = options.focus ?? 'balanced';
 
   // Attempt to get project name from package.json or directory
-  let productName = "My Project";
-  let companyName = "My Company";
+  let productName = 'My Project';
+  let companyName = 'My Company';
 
   if (projectInfo.hasPackageJson) {
     try {
-      const packageJsonContent = await fs.readFile("package.json", "utf-8");
+      const packageJsonContent = await fs.readFile('package.json', 'utf-8');
       const packageJson = JSON.parse(packageJsonContent);
       productName = packageJson.name || path.basename(process.cwd());
 
       // Handle author field which could be string or object
-      if (typeof packageJson.author === "string") {
+      if (typeof packageJson.author === 'string') {
         companyName = packageJson.author;
       } else if (
         packageJson.author &&
-        typeof packageJson.author === "object" &&
+        typeof packageJson.author === 'object' &&
         packageJson.author.name
       ) {
         companyName = packageJson.author.name;
@@ -307,14 +307,14 @@ async function copyTemplateFiles(
 ): Promise<void> {
   // Find the CLI package root and locate templates
   const cliRoot = path.dirname(path.dirname(__dirname)); // ../../ from dist/commands/
-  const templatesDir = path.join(cliRoot, "..", "..", "templates");
-  const templateSource = path.join(templatesDir, "agents");
+  const templatesDir = path.join(cliRoot, '..', '..', 'templates');
+  const templateSource = path.join(templatesDir, 'agents');
 
-  console.log(chalk.blue("📁 Copying template files..."));
+  console.log(chalk.blue('📁 Copying template files...'));
 
   await copyRecursively(templateSource, targetDir);
 
-  console.log(chalk.green("✅ Template files copied\n"));
+  console.log(chalk.green('✅ Template files copied\n'));
 }
 
 async function copyRecursively(source: string, target: string): Promise<void> {
@@ -338,12 +338,12 @@ async function customizeRoster(
   agentsDir: string,
   config: TeamConfig
 ): Promise<void> {
-  const rosterPath = path.join(agentsDir, "roster.json");
+  const rosterPath = path.join(agentsDir, 'roster.json');
 
-  console.log(chalk.blue("⚙️  Customizing team roster..."));
+  console.log(chalk.blue('⚙️  Customizing team roster...'));
 
   // Read the template roster
-  const rosterContent = await fs.readFile(rosterPath, "utf-8");
+  const rosterContent = await fs.readFile(rosterPath, 'utf-8');
   const roster: Roster = JSON.parse(rosterContent);
 
   // Get team size configuration
@@ -378,9 +378,9 @@ async function customizeRoster(
 }
 
 async function initializeRotationState(agentsDir: string): Promise<void> {
-  const statePath = path.join(agentsDir, "state", "rotation.json");
+  const statePath = path.join(agentsDir, 'state', 'rotation.json');
 
-  console.log(chalk.blue("🔄 Initializing rotation state..."));
+  console.log(chalk.blue('🔄 Initializing rotation state...'));
 
   const initialState: RotationState = {
     current_index: 0,
@@ -393,7 +393,7 @@ async function initializeRotationState(agentsDir: string): Promise<void> {
   await fs.mkdir(path.dirname(statePath), { recursive: true });
   await fs.writeFile(statePath, `${JSON.stringify(initialState, null, 2)}\n`);
 
-  console.log(chalk.green("✅ Rotation state initialized\n"));
+  console.log(chalk.green('✅ Rotation state initialized\n'));
 }
 
 async function createInitialMemoryBank(
@@ -401,11 +401,11 @@ async function createInitialMemoryBank(
   config: TeamConfig,
   projectInfo: ProjectInfo
 ): Promise<void> {
-  const memoryPath = path.join(agentsDir, "memory", "bank.md");
+  const memoryPath = path.join(agentsDir, 'memory', 'bank.md');
 
-  console.log(chalk.blue("🧠 Creating initial memory bank..."));
+  console.log(chalk.blue('🧠 Creating initial memory bank...'));
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date().toISOString().split('T')[0];
   const teamSizeConfig = TEAM_SIZES[config.teamSize];
 
   if (!teamSizeConfig) {
@@ -417,14 +417,14 @@ async function createInitialMemoryBank(
     .map((roleId) => {
       // Simple role name mapping - in a real implementation this would come from the roster
       const roleNames: Record<string, string> = {
-        ceo: "👔 CEO — The Founder",
-        product: "📦 Product — The PM",
-        engineering: "⚙️ Engineering — The Builder",
-        ops: "🛡️ Ops — The Guardian",
-        research: "🔬 Research — The Scout",
-        growth: "🚀 Growth — The Dealmaker",
-        scrum: "📋 Scrum — The Coordinator",
-        design: "🎨 Design — The Architect",
+        ceo: '👔 CEO — The Founder',
+        product: '📦 Product — The PM',
+        engineering: '⚙️ Engineering — The Builder',
+        ops: '🛡️ Ops — The Guardian',
+        research: '🔬 Research — The Scout',
+        growth: '🚀 Growth — The Dealmaker',
+        scrum: '📋 Scrum — The Coordinator',
+        design: '🎨 Design — The Architect',
       };
 
       return `### ${roleNames[roleId] || `${roleId} — Role`}
@@ -432,7 +432,7 @@ async function createInitialMemoryBank(
 - **Working on:** Initial setup and project analysis
 - **Next:** Analyze project and establish priorities`;
     })
-    .join("\n\n");
+    .join('\n\n');
 
   const initialMemory = `# 🧠 Memory Bank
 
@@ -518,8 +518,8 @@ ${roleStates}
 ## Project Context
 
 - **Type:** ${projectInfo.type}
-- **Git repository:** ${projectInfo.isGitRepo ? "Yes" : "No"}
-- **Package.json:** ${projectInfo.hasPackageJson ? "Yes" : "No"}
+- **Git repository:** ${projectInfo.isGitRepo ? 'Yes' : 'No'}
+- **Package.json:** ${projectInfo.hasPackageJson ? 'Yes' : 'No'}
 - **Template used:** ${config.template}
 
 ---
@@ -530,13 +530,13 @@ ${roleStates}
   await fs.mkdir(path.dirname(memoryPath), { recursive: true });
   await fs.writeFile(memoryPath, initialMemory);
 
-  console.log(chalk.green("✅ Initial memory bank created\n"));
+  console.log(chalk.green('✅ Initial memory bank created\n'));
 }
 
 async function createAdaConfig(agentsDir: string): Promise<void> {
-  const configPath = path.join(agentsDir, "config.json");
+  const configPath = path.join(agentsDir, 'config.json');
 
-  console.log(chalk.blue("📝 Creating ADA configuration..."));
+  console.log(chalk.blue('📝 Creating ADA configuration...'));
 
   const config: AdaConfig = {
     ...DEFAULT_CONFIG,
@@ -545,5 +545,5 @@ async function createAdaConfig(agentsDir: string): Promise<void> {
 
   await fs.writeFile(configPath, `${JSON.stringify(config, null, 2)}\n`);
 
-  console.log(chalk.green("✅ Configuration file created\n"));
+  console.log(chalk.green('✅ Configuration file created\n'));
 }
