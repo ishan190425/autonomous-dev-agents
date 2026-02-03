@@ -86,6 +86,29 @@
       "memory_bank": "agents/memory/banks/scrum.md"
     },
     {
+      "id": "qa",
+      "name": "The Inspector",
+      "title": "QA & Test Lead",
+      "emoji": "🔍",
+      "focus": [
+        "integration_testing",
+        "e2e_testing",
+        "cli_testing",
+        "regression_testing",
+        "test_coverage",
+        "quality_gates"
+      ],
+      "actions": [
+        "write_tests",
+        "run_test_suites",
+        "file_bugs",
+        "review_test_coverage",
+        "validate_releases",
+        "audit_quality"
+      ],
+      "memory_bank": "agents/memory/banks/qa.md"
+    },
+    {
       "id": "engineering",
       "name": "The Builder",
       "title": "Lead Engineer",
@@ -177,6 +200,7 @@
     "research",
     "product",
     "scrum",
+    "qa",
     "engineering",
     "ops",
     "design"
