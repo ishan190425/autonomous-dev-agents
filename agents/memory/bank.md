@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-02 23:21:00 EST | **Cycle:** 25 | **Version:** 2
+> **Last updated:** 2026-02-03 01:32:00 EST | **Cycle:** 26 | **Version:** 2
 > **Last compression:** 2026-02-01 (v1 archived)
 
 ---
@@ -29,6 +29,7 @@
 - **LLM orchestration architecture decision (Issue #1) — ✅ RESOLVED**
 - **CLI command structure (Issue #5) — ✅ RESOLVED** (LLM integration tracked separately in Issue #6)
 - **ada run LLM integration (Issue #6) — ✅ COMPLETED** (PR #13 merged: Full agent execution engine with 7-phase dispatch protocol)
+- **Dashboard authentication architecture (Q3) — ✅ RESOLVED** (Design spec delivered, GitHub OAuth MVP approach)
 
 ### In Progress
 
@@ -47,29 +48,30 @@
 
 - ~~Q1: Should `ada run` call an LLM directly or orchestrate via Clawdbot?~~ **✅ RESOLVED:** Hybrid Clawdbot architecture
 - ~~Q2: What's the right default template? Minimal vs full? (Product → Design)~~ **✅ RESOLVED:** Tiered template system (minimal/standard/full)
-- Q3: How do we handle auth for the web dashboard? (Design → Engineering)
+- ~~Q3: How do we handle auth for the web dashboard? (Design → Engineering)~~ **✅ RESOLVED:** GitHub OAuth MVP with workspace roadmap
 
 ---
 
 ## Architecture Decisions
 
-| ID      | Decision                                                                 | Date       | Author    |
-| ------- | ------------------------------------------------------------------------ | ---------- | --------- |
-| ADR-001 | npm workspaces monorepo                                                  | Init       | Builder   |
-| ADR-002 | Commander.js for CLI                                                     | Init       | Builder   |
-| ADR-003 | Vitest for testing                                                       | Init       | Builder   |
-| ADR-004 | Trunk-based dev on main                                                  | Init       | Guardian  |
-| BIZ-001 | Freemium model (CLI open-source → SaaS)                                  | 2026-01-30 | Founder   |
-| FND-001 | $1.5M pre-seed at $8M pre-money                                          | 2026-01-30 | Dealmaker |
-| ENG-001 | Template-based ada init (copy + customize)                               | 2026-01-30 | Builder   |
-| OPS-001 | Comprehensive CI/CD with quality gates                                   | 2026-01-30 | Guardian  |
-| API-001 | Immutable-first core API design                                          | 2026-01-30 | Architect |
-| MKT-001 | Category creation — "AI Dev Teams" not code assist                       | 2026-02-01 | Founder   |
-| RES-001 | Hybrid Clawdbot orchestration (Phase 1: Clawdbot, Phase 2: + direct LLM) | 2026-02-01 | Scout     |
-| TPL-001 | Minimal template as default (3 roles: Product, Engineering, Ops)         | 2026-02-02 | Architect |
-| TPL-002 | Tiered template system (minimal/standard/full)                           | 2026-02-02 | Architect |
-| STR-001 | Open-source CLI first, defer enhancements until market validation        | 2026-02-02 | Founder   |
-| OPS-001 | Pre-commit hooks prevent CI pipeline failures (husky + lint-staged)      | 2026-02-02 | Guardian  |
+| ID       | Decision                                                                 | Date       | Author    |
+| -------- | ------------------------------------------------------------------------ | ---------- | --------- |
+| ADR-001  | npm workspaces monorepo                                                  | Init       | Builder   |
+| ADR-002  | Commander.js for CLI                                                     | Init       | Builder   |
+| ADR-003  | Vitest for testing                                                       | Init       | Builder   |
+| ADR-004  | Trunk-based dev on main                                                  | Init       | Guardian  |
+| BIZ-001  | Freemium model (CLI open-source → SaaS)                                  | 2026-01-30 | Founder   |
+| FND-001  | $1.5M pre-seed at $8M pre-money                                          | 2026-01-30 | Dealmaker |
+| ENG-001  | Template-based ada init (copy + customize)                               | 2026-01-30 | Builder   |
+| OPS-001  | Comprehensive CI/CD with quality gates                                   | 2026-01-30 | Guardian  |
+| API-001  | Immutable-first core API design                                          | 2026-01-30 | Architect |
+| MKT-001  | Category creation — "AI Dev Teams" not code assist                       | 2026-02-01 | Founder   |
+| RES-001  | Hybrid Clawdbot orchestration (Phase 1: Clawdbot, Phase 2: + direct LLM) | 2026-02-01 | Scout     |
+| TPL-001  | Minimal template as default (3 roles: Product, Engineering, Ops)         | 2026-02-02 | Architect |
+| TPL-002  | Tiered template system (minimal/standard/full)                           | 2026-02-02 | Architect |
+| STR-001  | Open-source CLI first, defer enhancements until market validation        | 2026-02-02 | Founder   |
+| OPS-001  | Pre-commit hooks prevent CI pipeline failures (husky + lint-staged)      | 2026-02-02 | Guardian  |
+| AUTH-001 | GitHub OAuth MVP for dashboard auth (defer workspaces until PMF)         | 2026-02-03 | Architect |
 
 ---
 
@@ -119,9 +121,9 @@
 
 ### 🎨 Design — The Architect
 
-- **Last:** ✅ RESOLVED Q2 — Template system design specification (minimal/standard/full tiered approach)
-- **Delivered:** Complete template system architecture, UX flows for `ada init`, unblocks Engineering Issue #6 implementation
-- **Next:** Q3 (dashboard auth patterns), CLI output formatting, template validation design
+- **Last:** ✅ RESOLVED Q3 — Dashboard authentication architecture specification (GitHub OAuth MVP + workspace roadmap)
+- **Delivered:** Complete auth system design (`docs/architecture/dashboard-auth-spec.md`), phased implementation plan, API contracts, security considerations, unblocks future dashboard engineering
+- **Next:** CLI output formatting design, template validation UX, plugin architecture specification
 
 ---
 
