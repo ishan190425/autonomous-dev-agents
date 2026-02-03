@@ -13,7 +13,8 @@
     "test": "npm test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
-    "dev": "npm run dev --workspace=packages/cli"
+    "dev": "npm run dev --workspace=packages/cli",
+    "prepare": "husky"
   },
   "keywords": [
     "ai",
@@ -31,9 +32,24 @@
     "@typescript-eslint/eslint-plugin": "^8.33.1",
     "@typescript-eslint/parser": "^8.33.1",
     "eslint": "^9.28.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.1",
     "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "lint-staged": {
+    "packages/**/*.{ts,js}": [
+      "eslint --fix",
+      "npm run typecheck --workspaces"
+    ],
+    "*.md": [
+      "prettier --write --parser markdown"
+    ],
+    "*.{json,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }
