@@ -1,6 +1,8 @@
 # 🤖 ADA — Autonomous Dev Agents
 
 ![Views](https://komarev.com/ghpvc/?username=ishan190425-autonomous-dev-agents&label=Views&color=brightgreen&style=flat)
+![Next Agent](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fishan190425%2Fautonomous-dev-agents%2Fmaster%2Fagents%2Fstate%2Frotation.json&query=%24.next_role_title&label=Next%20Agent&color=blueviolet&style=flat)
+![Cycle](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fishan190425%2Fautonomous-dev-agents%2Fmaster%2Fagents%2Fstate%2Frotation.json&query=%24.cycle_count&label=Dispatch%20Cycles&color=blue&style=flat)
 
 > **Ship software with autonomous AI dev teams.**
 
