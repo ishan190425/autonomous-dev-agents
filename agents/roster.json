@@ -1,13 +1,13 @@
 {
   "company": "ADA (Autonomous Dev Agents)",
-  "product": "ADA — Autonomous Dev Agent Teams for Any Repo",
+  "product": "ADA \u2014 Autonomous Dev Agent Teams for Any Repo",
   "tagline": "Ship software with autonomous AI dev teams",
   "roles": [
     {
       "id": "ceo",
       "name": "The Founder",
       "title": "CEO",
-      "emoji": "👔",
+      "emoji": "\ud83d\udc54",
       "focus": [
         "business_strategy",
         "competitive_analysis",
@@ -29,7 +29,7 @@
       "id": "research",
       "name": "The Scout",
       "title": "Head of Research",
-      "emoji": "🔬",
+      "emoji": "\ud83d\udd2c",
       "focus": [
         "llm_agent_frameworks",
         "code_generation",
@@ -49,7 +49,7 @@
       "id": "product",
       "name": "The PM",
       "title": "Product Lead",
-      "emoji": "📦",
+      "emoji": "\ud83d\udce6",
       "focus": [
         "cli_features",
         "web_dashboard",
@@ -69,7 +69,7 @@
       "id": "scrum",
       "name": "The Coordinator",
       "title": "Scrum Master",
-      "emoji": "📋",
+      "emoji": "\ud83d\udccb",
       "focus": [
         "sprint_planning",
         "tracking",
@@ -89,7 +89,7 @@
       "id": "qa",
       "name": "The Inspector",
       "title": "QA & Test Lead",
-      "emoji": "🔍",
+      "emoji": "\ud83d\udd0d",
       "focus": [
         "integration_testing",
         "e2e_testing",
@@ -112,7 +112,7 @@
       "id": "engineering",
       "name": "The Builder",
       "title": "Lead Engineer",
-      "emoji": "⚙️",
+      "emoji": "\u2699\ufe0f",
       "focus": [
         "typescript_cli",
         "core_library",
@@ -132,7 +132,7 @@
       "id": "ops",
       "name": "The Guardian",
       "title": "DevOps & Quality Lead",
-      "emoji": "🛡️",
+      "emoji": "\ud83d\udee1\ufe0f",
       "focus": [
         "monorepo_ci_cd",
         "npm_publishing",
@@ -153,7 +153,7 @@
       "id": "growth",
       "name": "The Dealmaker",
       "title": "Head of Growth & Fundraising",
-      "emoji": "🚀",
+      "emoji": "\ud83d\ude80",
       "focus": [
         "pitch_deck",
         "investor_relations",
@@ -177,7 +177,7 @@
       "id": "design",
       "name": "The Architect",
       "title": "API & System Designer",
-      "emoji": "🎨",
+      "emoji": "\ud83c\udfa8",
       "focus": [
         "cli_ux",
         "core_api_design",
@@ -192,12 +192,41 @@
         "define_protocols"
       ],
       "memory_bank": "agents/memory/banks/design.md"
+    },
+    {
+      "id": "frontier",
+      "name": "The Frontier",
+      "title": "Head of Platform & Innovation",
+      "emoji": "\ud83c\udf0c",
+      "focus": [
+        "embedding_memory_systems",
+        "vector_storage_retrieval",
+        "ai_agentic_platform_architecture",
+        "llm_orchestration_patterns",
+        "agent_communication_protocols",
+        "persistent_memory_strategies",
+        "self_improving_agents",
+        "tool_use_optimization",
+        "context_window_management",
+        "agent_observability"
+      ],
+      "actions": [
+        "prototype_new_capabilities",
+        "implement_embedding_pipelines",
+        "build_platform_infrastructure",
+        "evaluate_frontier_tech",
+        "design_agent_memory_systems",
+        "create_prs",
+        "write_research_and_specs"
+      ],
+      "memory_bank": "agents/memory/banks/frontier.md"
     }
   ],
   "rotation_order": [
     "ceo",
     "growth",
     "research",
+    "frontier",
     "product",
     "scrum",
     "qa",
