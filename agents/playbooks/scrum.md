@@ -55,22 +55,41 @@ Check in-progress work across packages:
 This is your most important action. Every 3-5 cycles, run a retrospective:
 
 **Step 1: Audit recent cycles**
+
 - Read `agents/memory/bank.md` — what happened in the last few cycles?
 - Check git log for recent commits — what was built?
 - Check GitHub issues/PRs — what got opened, merged, blocked, or closed?
 - Check for any failed cycles, reverted work, or repeated mistakes
 
 **Step 2: Identify patterns**
+
 - What's working well? (Processes, tools, patterns that should continue)
 - What's failing? (Repeated blockers, quality issues, coordination gaps)
 - What's missing? (Gaps in process, tools, or coverage)
 - What surprised us? (Unexpected issues, emergent behaviors)
 
-**Step 3: Update learnings**
+**Step 3: Role Evolution Assessment**
+Evaluate whether the current team structure is optimal:
+
+- **Coverage gaps:** Are there areas of work that no role covers well? (e.g., security, accessibility, i18n, developer advocacy)
+- **Overloaded roles:** Is any role consistently trying to do too much? Should it be split?
+- **Underperforming roles:** Is any role consistently producing low-impact work? Should it be merged or refocused?
+- **New domains:** Has the codebase grown into areas that deserve a dedicated role?
+- **Team scaling signals:** Are issues piling up in a specific domain? Are PRs getting blocked waiting for a specific role?
+
+If evolution is needed:
+
+- Create an issue: `feat(agents): propose new role — [Role Name]`
+- Include: rationale, focus areas, how it interacts with existing roles
+- Update `agents/memory/evolution-log.md` with the proposal
+- Reference R-003 (Evolution Protocol) in RULES.md
+
+**Step 4: Update learnings**
 Update `docs/retros/learnings.md` with actionable insights:
 
 ```markdown
 ## Learning: [Short Title]
+
 - **Date:** YYYY-MM-DD
 - **Context:** What happened
 - **Insight:** What we learned
@@ -78,14 +97,16 @@ Update `docs/retros/learnings.md` with actionable insights:
 - **Status:** applied | pending | monitoring
 ```
 
-**Step 4: Apply learnings**
+**Step 5: Apply learnings**
+
 - If a learning suggests a new rule → propose it for `RULES.md`
 - If a learning suggests a playbook change → update the playbook
 - If a learning suggests a process change → create an issue
 - If a learning applies to OTHER projects → note it in `docs/retros/cross-project-learnings.md`
 
-**Step 5: Write retro summary**
+**Step 6: Write retro summary**
 Write to `docs/retros/retro-cycle-N.md`:
+
 - What shipped since last retro
 - What's blocked and why
 - Learnings identified (reference learnings.md)
@@ -120,6 +141,7 @@ Periodically review the health of the learnings system:
 - Are we repeating mistakes that should have been caught?
 
 If lessons are shallow (e.g., "follow the docs"), push for deeper insights:
+
 - **Bad:** "Follow exact paths in acceptance criteria"
 - **Good:** "Schema-first development unblocks multiple frontend features simultaneously. When backend creates tables before frontend writes hooks, we avoid the schema mismatch bug that blocked PR #5 for 3 cycles. New rule: Backend cycle should always precede Frontend cycle when new tables are involved."
 
