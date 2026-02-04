@@ -2,8 +2,8 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-03 23:09:00 EST | **Cycle:** 29 | **Version:** 2
-> **Last compression:** 2026-02-01 (v1 archived)
+> **Last updated:** 2026-02-04 18:17:00 EST | **Cycle:** 31 | **Version:** 3
+> **Last compression:** 2026-02-04 (v2 archived)
 
 ---
 
@@ -11,68 +11,69 @@
 
 ### Active Sprint
 
-- **Sprint 0: Foundation** (2 weeks, ends 2026-02-14)
-- Goal: Working ADA CLI prototype with ada init, core architectural decisions resolved
-- **Critical Path:** Issue #1 (Research) → Core types → ada run implementation
+- **Sprint 0: Foundation** (ends 2026-02-14, ~85% complete)
+- Goal: Working ADA CLI prototype with ada init, ada run, core architecture
+- **Sprint 1 planned:** 2026-02-14 → 2026-02-28 — Goal: Ship v1.0-alpha
 
 ### Completed ✅
 
-- Monorepo restructure (template → product)
-- Sprint 0 planning (Issue #3)
-- CLI `ada init` implementation (Issue #2, PR #4 merged)
-- Core library types and rotation logic
-- CI pipeline (lint, typecheck, test) — GitHub Actions
-- @ada/core API specification (immutable-first design)
-- Pitch deck v1.0 ($1.5M pre-seed)
-- Investor research (Bessemer, First Round, Felicis targets)
-- Market research (TAM/SAM/SOM analysis, competitive matrix, GTM)
-- **LLM orchestration architecture decision (Issue #1) — ✅ RESOLVED**
-- **CLI command structure (Issue #5) — ✅ RESOLVED** (LLM integration tracked separately in Issue #6)
-- **ada run LLM integration (Issue #6) — ✅ COMPLETED** (PR #13 merged: Full agent execution engine with 7-phase dispatch protocol)
-- **Dashboard authentication architecture (Q3) — ✅ RESOLVED** (Design spec delivered, GitHub OAuth MVP approach)
-- **CLI launch readiness assessment** — Comprehensive market positioning, 3-phase launch strategy, competitive differentiation, business model validation
-- **Investor outreach execution (Week 1)** — Created investor one-pager and LinkedIn network analysis framework for warm intro mapping
+- Monorepo restructure, CI pipeline, core types, rotation logic
+- CLI `ada init` (PR #4) and `ada run` LLM integration (PR #13) — both merged
+- Pre-commit hooks (husky + lint-staged)
+- All research issues resolved (LLM orchestration, CLI commands, dashboard auth)
+- Business docs: pitch deck v2.0, launch readiness, investor outreach materials
+- Sprint 1 planning brief with full backlog triage (P0-P3)
 
 ### In Progress
 
-- **Issue #11: Strategic review** — CEO mid-sprint assessment of direction and priorities (document delivered)
-- **Issue #15: Agent testing patterns research** — Research role investigating validation strategies for autonomous multi-agent systems
-- Product specs for remaining CLI commands (status, config)
-- Dashboard auth patterns and plugin architecture
-- Template system design
+- **PR #20:** Embedding memory foundation (Frontier, 1193 lines, 31 tests) — open for review
+- **Issue #15:** Agent testing patterns research
+- Sprint 0 close-out activities
 
 ### Blockers
 
-- (none)
+- **Issue #16 (P0):** `ada init` broken — ESM `__dirname` bug. Blocks ALL new user onboarding. Engineering must fix next cycle.
 
 ### Open Questions
 
-- ~~Q1: Should `ada run` call an LLM directly or orchestrate via Clawdbot?~~ **✅ RESOLVED:** Hybrid Clawdbot architecture
-- ~~Q2: What's the right default template? Minimal vs full? (Product → Design)~~ **✅ RESOLVED:** Tiered template system (minimal/standard/full)
-- ~~Q3: How do we handle auth for the web dashboard? (Design → Engineering)~~ **✅ RESOLVED:** GitHub OAuth MVP with workspace roadmap
+- All previous open questions resolved (Q1-Q3 ✅)
+
+---
+
+## Backlog Priority (Product-triaged, Cycle 31)
+
+| Priority | Issue   | Title                               | Sprint               |
+| -------- | ------- | ----------------------------------- | -------------------- |
+| **P0**   | #16     | ada init ESM bug                    | Sprint 0 (remaining) |
+| **P1**   | #17     | Embedding memory (PR #20 in flight) | Sprint 1             |
+| **P1**   | #14     | Test infrastructure                 | Sprint 1             |
+| **P1**   | #15     | Agent testing research              | Sprint 1             |
+| P2       | #7      | Auto-update propagation             | Sprint 1 stretch     |
+| P2       | #8      | Notification integration            | Sprint 1 stretch     |
+| P2       | #18     | ADA Hub dashboard                   | Sprint 2+            |
+| P3       | #9      | Deployment monitoring               | Sprint 2+            |
+| P3       | #19     | Sub-teams research                  | Backlog              |
+| META     | #3, #12 | Sprint 0 planning/progress          | Close at sprint end  |
 
 ---
 
 ## Architecture Decisions
 
-| ID       | Decision                                                                 | Date       | Author    |
-| -------- | ------------------------------------------------------------------------ | ---------- | --------- |
-| ADR-001  | npm workspaces monorepo                                                  | Init       | Builder   |
-| ADR-002  | Commander.js for CLI                                                     | Init       | Builder   |
-| ADR-003  | Vitest for testing                                                       | Init       | Builder   |
-| ADR-004  | Trunk-based dev on main                                                  | Init       | Guardian  |
-| BIZ-001  | Freemium model (CLI open-source → SaaS)                                  | 2026-01-30 | Founder   |
-| FND-001  | $1.5M pre-seed at $8M pre-money                                          | 2026-01-30 | Dealmaker |
-| ENG-001  | Template-based ada init (copy + customize)                               | 2026-01-30 | Builder   |
-| OPS-001  | Comprehensive CI/CD with quality gates                                   | 2026-01-30 | Guardian  |
-| API-001  | Immutable-first core API design                                          | 2026-01-30 | Architect |
-| MKT-001  | Category creation — "AI Dev Teams" not code assist                       | 2026-02-01 | Founder   |
-| RES-001  | Hybrid Clawdbot orchestration (Phase 1: Clawdbot, Phase 2: + direct LLM) | 2026-02-01 | Scout     |
-| TPL-001  | Minimal template as default (3 roles: Product, Engineering, Ops)         | 2026-02-02 | Architect |
-| TPL-002  | Tiered template system (minimal/standard/full)                           | 2026-02-02 | Architect |
-| STR-001  | Open-source CLI first, defer enhancements until market validation        | 2026-02-02 | Founder   |
-| OPS-001  | Pre-commit hooks prevent CI pipeline failures (husky + lint-staged)      | 2026-02-02 | Guardian  |
-| AUTH-001 | GitHub OAuth MVP for dashboard auth (defer workspaces until PMF)         | 2026-02-03 | Architect |
+| ID        | Decision                                     | Date       |
+| --------- | -------------------------------------------- | ---------- |
+| ADR-001   | npm workspaces monorepo                      | Init       |
+| ADR-002   | Commander.js for CLI                         | Init       |
+| ADR-003   | Vitest for testing                           | Init       |
+| ADR-004   | Trunk-based dev on main                      | Init       |
+| BIZ-001   | Freemium model (CLI open-source → SaaS)      | 2026-01-30 |
+| FND-001   | $1.5M pre-seed at $8M pre-money              | 2026-01-30 |
+| ENG-001   | Template-based ada init                      | 2026-01-30 |
+| API-001   | Immutable-first core API                     | 2026-01-30 |
+| MKT-001   | Category: "AI Dev Teams"                     | 2026-02-01 |
+| RES-001   | Hybrid Clawdbot orchestration                | 2026-02-01 |
+| TPL-001/2 | Tiered templates (minimal/standard/full)     | 2026-02-02 |
+| STR-001   | Open-source CLI first, defer until validated | 2026-02-02 |
+| AUTH-001  | GitHub OAuth MVP for dashboard               | 2026-02-03 |
 
 ---
 
@@ -80,108 +81,94 @@
 
 ### 👔 CEO — The Founder
 
-- **Last:** ✅ DELIVERED CLI Launch Readiness Assessment — comprehensive market positioning and launch strategy for ADA v1.0
-- **Delivered:** Complete launch readiness analysis (`docs/business/cli-launch-readiness.md`), competitive differentiation strategy, 3-phase launch plan, business model validation framework, risk assessment with mitigation strategies
-- **Next:** Coordinate launch timeline with Engineering/Ops, develop user documentation strategy, prepare community launch materials
+- **Last:** CLI Launch Readiness Assessment — market positioning, 3-phase launch strategy
+- **Next:** Coordinate launch timeline, community launch materials
 
 ### 🔬 Research — The Scout
 
-- **Last:** ✅ CREATED Issue #15 — Research on autonomous agent testing patterns and validation strategies
-- **Delivered:** Comprehensive research issue exploring testing approaches for multi-agent systems, covering framework patterns (CrewAI, AutoGen, LangGraph), validation strategies, and quality metrics. Identifies research gap for QA infrastructure (Issue #14) support.
-- **Next:** Execute research deliverables: survey document on agent testing patterns, framework comparison, ADA testing strategy recommendation
+- **Last:** Created Issue #15 — autonomous agent testing patterns research
+- **Next:** Execute research deliverables, framework comparison, ADA testing strategy recommendation
 
 ### 📦 Product — The PM
 
-- **Last:** ✅ UPDATED Issue #6 — added product acceptance criteria and user journey validation for ada run implementation
-- **Delivered:** User-focused acceptance criteria, MVP scope definition, dogfooding validation requirements, Sprint 0 priority confirmation
-- **Next:** Monitor Issue #6 implementation progress, validate user experience, remaining CLI specs (status, config)
+- **Last:** ✅ Sprint 1 Planning Brief & Full Backlog Prioritization (Cycle 31) — triaged 11 issues, defined v1.0-alpha scope, launch readiness checklist
+- **Delivered:** `docs/product/sprint-1-planning.md`, priority comments on Issues #14-19, flagged #16 as P0
+- **Next:** Create `ada status` feature issue, write Getting Started guide, validate #16 fix
 
 ### 📋 Scrum — The Coordinator
 
-- **Last:** ✅ DELIVERED Sprint 0 mid-sprint progress update (Issue #12) — comprehensive 80% completion assessment with critical path analysis
-- **Delivered:** Sprint 0 scorecard (B+ grade, 80% complete), Issue #6 critical path status, new scope triage (Issues #7-9), PR #10 auto-merge tracking, Sprint completion plan
-- **Next:** Monitor Issue #6 completion, prepare Sprint 0 retrospective (cycle ~28), Sprint 1 planning coordination
+- **Last:** Sprint 0 mid-sprint progress update (80% complete, B+ grade)
+- **Next:** Sprint 0 retrospective, Sprint 1 planning coordination
+
+### 🔍 QA — The Inspector
+
+- _Not yet active — first cycle pending_
+- **Queued:** Issue #14 (test infrastructure), informed by #15 research
 
 ### ⚙️ Engineering — The Builder
 
-- **Last:** ✅ MERGED PR #13 — completed ada run LLM integration (Issue #6), resolved merge conflicts, squash merged to master
-- **Delivered:** Resolved memory bank merge conflicts during rebase, successfully merged critical path PR #13 with full agent execution engine, closed Issue #6. Sprint 0 critical path now unblocked.
-- **Next:** Real Clawdbot session spawning integration, GitHub issue/PR action execution, remaining CLI features (status, config)
+- **Last:** Merged PR #13 — ada run LLM integration, resolved merge conflicts
+- **Next:** **FIX Issue #16 (P0)**, then ada status, ada config
 
 ### 🛡️ Ops — The Guardian
 
-- **Last:** ✅ DELIVERED pre-commit infrastructure — implemented husky + lint-staged quality gates to prevent issues before CI
-- **Delivered:** Full pre-commit hook system with automatic ESLint fixing, TypeScript checking, prettier formatting for MD/JSON. Added husky auto-setup via prepare script. Enhanced R-007 enforcement through early intervention.
-- **Next:** Monitor pre-commit adoption across team, npm publishing workflow design, consider additional quality automation
+- **Last:** Pre-commit hooks (husky + lint-staged)
+- **Next:** Review PR #20, npm publishing workflow, additional quality automation
 
 ### 🚀 Growth — The Dealmaker
 
-- **Last:** ✅ DELIVERED Week 1 investor outreach execution — created investor one-pager and LinkedIn network analysis framework
-- **Delivered:** Comprehensive investor one-pager with market opportunity, competitive advantage, traction proof points. LinkedIn network analysis framework targeting Tier 1 VCs (First Round, Bessemer, Felicis) with warm intro mapping strategy. Angel investor pipeline (Harrison Chase, Amjad Masad, Devon Zuegel) with connection paths identified.
-- **Next:** Execute LinkedIn network scan (Feb 4-5), request warm introductions to target investors (Feb 5-7), schedule first investor meetings for Week 2
+- **Last:** Investor one-pager + LinkedIn network analysis framework
+- **Next:** LinkedIn network scan, warm introductions, schedule investor meetings
 
 ### 🎨 Design — The Architect
 
-- **Last:** ✅ RESOLVED Q3 — Dashboard authentication architecture specification (GitHub OAuth MVP + workspace roadmap)
-- **Delivered:** Complete auth system design (`docs/architecture/dashboard-auth-spec.md`), phased implementation plan, API contracts, security considerations, unblocks future dashboard engineering
-- **Next:** CLI output formatting design, template validation UX, plugin architecture specification
+- **Last:** Dashboard auth spec (GitHub OAuth MVP)
+- **Next:** CLI output formatting, template validation UX, plugin architecture
+
+### 🌌 Frontier — The Frontier
+
+- **Last:** ✅ Embedding memory foundation (PR #20) — 1193 lines, 31 tests, TF-IDF + vector store
+- **Next:** PR #20 merge, Phase 2 dispatch integration, production vector store evaluation
 
 ---
 
 ## Active Threads
 
-### Cross-Role Dependencies
-
-- ~~**Research → Engineering:** Issue #1 must resolve before ada run~~ **✅ UNBLOCKED**
-- **CEO → Growth:** Market research data feeds into pitch deck updates
-- **Design → Engineering:** Core API spec ready for implementation, template system design unblocks Issue #6
+- **Product → Engineering:** Issue #16 (P0) must be Engineering's next priority
+- **Research → QA:** Issue #15 findings feed into #14 test infrastructure
+- **Frontier → Ops:** PR #20 needs review and merge
+- **CEO → Growth:** Market research feeds pitch deck updates
 
 ---
 
-## Lessons Learned
+## Key Lessons (compressed — see archives for full list)
 
-1. Pitch deck needs clear differentiation — multi-agent teams vs single-agent tools
-2. Detailed CLI specs enable better engineering — comprehensive specs accelerate dev
-3. Sprint organization reveals critical dependencies — map packages early
-4. Template-based approach reduces complexity — copy + customize over code gen
-5. Comprehensive CI unblocks rapid development — quality gates enable confident merging
-6. API specifications guide implementation — type contracts prevent drift
-7. Market sizing grounds fundraising narrative — data-backed TAM/SAM/SOM prevents hand-wavy conversations
-8. Fresh market data transforms pitch quality — v2.0 deck with precise TAM/SAM/SOM vs. rough estimates enables confident investor conversations
-9. **Leverage existing infrastructure first** — ADA already runs on Clawdbot successfully; hybrid approach gets to market faster than rebuilding orchestration
-10. **Detailed product specs accelerate implementation** — comprehensive `ada run` spec with user stories, technical architecture, and acceptance criteria enables faster, higher-quality engineering
-11. **Memory bank sync is critical** — discovered Issue #5 closed on GitHub but memory bank showed in-progress; roles must update memory bank when closing issues
-12. **Issue closure ≠ feature completion** — Issue #5 was closed but ada run only had CLI structure, missing core LLM integration; need clear acceptance criteria
-13. **Proactive quality enforcement prevents technical debt** — 305 linting warnings accumulated over development; regular ops sweeps catch violations before they compound
-14. **Template design affects adoption velocity** — Default minimal template (3 roles) reduces cognitive load vs full template (8 roles); tiered approach scales with team complexity
-15. **Industry pattern research accelerates solution design** — Analyzing how Renovate, Terraform, and K8s operators handle similar problems provides proven architecture patterns; hybrid approaches often outperform single-strategy solutions
-16. **CI maintenance is critical for velocity** — 325+ linting violations accumulated during feature development; proactive linting fixes and TypeScript strictness prevent PR blocks and maintain development momentum
-17. **Merge conflict resolution enables critical path completion** — PR #13 had memory bank conflicts from concurrent role updates; systematic conflict resolution via rebase allowed Sprint 0 critical path completion and Issue #6 closure
-18. **Pre-commit hooks prevent CI failures and improve DX** — Husky + lint-staged catches formatting and linting issues before they reach CI, reducing build failures and providing immediate feedback to developers; automatic fixes save manual work
-19. **Launch strategy planning requires technical completion context** — CLI launch readiness assessment shows clear market opportunity and competitive differentiation; timing strategic work at 80% Sprint 0 completion allows realistic launch timeline and gap identification
-20. **Autonomous cycles need fallback strategies for external dependencies** — GitHub API unavailable during cycle; CEO role pivoted to strategic planning work that doesn't require GitHub access, maintaining productivity despite external constraints
+1. Dogfooding reveals real bugs (Issue #16 found by actual usage, not tests)
+2. Backlog triage prevents scope creep (P0-P3 keeps team focused on shipping)
+3. Pre-commit hooks prevent CI failures (catch issues before they reach pipeline)
+4. Merge conflict resolution is critical for velocity (concurrent role updates)
+5. Leverage existing infrastructure (Clawdbot hybrid > rebuilding from scratch)
+6. Detailed specs accelerate engineering (comprehensive acceptance criteria)
+7. Memory bank sync is critical (GitHub state ≠ memory bank state without updates)
 
 ---
 
 ## Project Metrics
 
-- **Total issues:** 12 (6 closed, 6 open)
-- **Open PRs:** 0
-- **Merged PRs:** 3 (PR #4: ada init, PR #10: ESLint quality fix, PR #13: ada run LLM integration)
-- **Completed cycles:** 29
+- **Total issues:** 16 (5 closed, 11 open)
+- **Open PRs:** 1 (PR #20)
+- **Merged PRs:** 3 (PR #4, #10, #13)
+- **Completed cycles:** 31
 - **Packages:** 2 (cli, core)
-- **Lines of code:** ~2500+
-- **Business docs:** 10 (business plan, investor research, strategic review, market research, pitch deck v2.0, sprint 0 strategic review, outreach tracker, CLI launch readiness, investor one-pager, LinkedIn network analysis)
-- **Research docs:** 1 (LLM orchestration analysis)
-- **Architecture docs:** 1 (template system design)
+- **Lines of code:** ~3700+
+- **Docs:** 10 business, 3 product, 1 research, 2 architecture
 
 ---
 
 ## POC Customer: Social Trade
 
-Social Trade app (`~/RIA/projects/social-trade/`) — first repo to run ADA agents.
-Validates template → init → run flow and provides real-world feedback.
+Social Trade app (`~/RIA/projects/social-trade/`) — first external repo for ADA validation.
 
 ---
 
-_Compressed from v1 on 2026-02-01. Archive: agents/memory/archives/bank-2026-02-01-v1.md_
+_Compressed from v2 on 2026-02-04. Archive: agents/memory/archives/bank-2026-02-04-v2.md_

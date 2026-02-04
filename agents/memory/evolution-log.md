@@ -6,15 +6,39 @@
 
 ## Changelog
 
+### 2026-02-04 — Frontier Role Added
+
+**Added 🌌 Frontier (The Frontier) — Head of Platform & Innovation**
+
+| Role        | Name         | Justification                                                                                  |
+| ----------- | ------------ | ---------------------------------------------------------------------------------------------- |
+| 🌌 Frontier | The Frontier | Embedding memory, vector storage, AI platform architecture, agent communication, observability |
+
+**Rationale:** As ADA's platform needs grow beyond incremental features, a dedicated role for forward-looking infrastructure is needed. Frontier owns:
+
+- Embedding-based memory retrieval systems
+- Vector storage and semantic search
+- LLM orchestration patterns and optimization
+- Agent communication protocols
+- Self-improving agent capabilities
+- Context window management strategies
+
+**Rotation order updated:** ceo → growth → research → **frontier** → product → scrum → qa → engineering → ops → design
+
+**Evolution signal:** Organic emergence — memory system complexity and platform infrastructure needs exceeded what any existing role covered.
+
+---
+
 ### 2026-02-03 — QA Role Added
 
 **Added 🔍 QA (The Inspector) — QA & Test Lead**
 
-| Role   | Name          | Justification                                                                 |
-| ------ | ------------- | ----------------------------------------------------------------------------- |
-| 🔍 QA  | The Inspector | Integration tests, E2E tests, CLI testing, test coverage, quality gates      |
+| Role  | Name          | Justification                                                           |
+| ----- | ------------- | ----------------------------------------------------------------------- |
+| 🔍 QA | The Inspector | Integration tests, E2E tests, CLI testing, test coverage, quality gates |
 
 **Rationale:** As ADA matures, we need dedicated focus on test infrastructure. The Ops role was handling quality enforcement but not writing tests. QA owns:
+
 - Integration test suite for CLI commands (`ada init`, `ada run`, `ada status`)
 - E2E tests for full agent cycle workflows
 - Test coverage monitoring and enforcement
