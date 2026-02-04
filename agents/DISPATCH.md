@@ -60,6 +60,8 @@ You are orchestrating the autonomous development team for **ADA (Autonomous Dev 
     - Set `last_role` to current role
     - Set `last_run` to ISO timestamp
     - Increment `cycle_count`
+    - Set `next_role` to the NEXT role in rotation (look up rotation_order)
+    - Set `next_role_title` to the next role's emoji + title from roster.json
     - Append to `history` (keep last 10)
 18. Commit & push all changes
 
