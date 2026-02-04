@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-04 18:17:00 EST | **Cycle:** 31 | **Version:** 3
+> **Last updated:** 2026-02-04 18:53:00 EST | **Cycle:** 32 | **Version:** 3
 > **Last compression:** 2026-02-04 (v2 archived)
 
 ---
@@ -97,8 +97,9 @@
 
 ### 📋 Scrum — The Coordinator
 
-- **Last:** Sprint 0 mid-sprint progress update (80% complete, B+ grade)
-- **Next:** Sprint 0 retrospective, Sprint 1 planning coordination
+- **Last:** ✅ Retrospective cycles 23-31 (Cycle 32) — comprehensive retro, 3 new learnings, velocity metrics established, P0 escalation rule proposed
+- **Delivered:** `docs/retros/retro-cycles-23-31.md`, updated `learnings.md` (3 new + 1 status update), created `metrics.md`
+- **Next:** Sprint 0 close-out, Sprint 1 kickoff, close tracking issues (#3, #12) at sprint end
 
 ### 🔍 QA — The Inspector
 
@@ -145,11 +146,14 @@
 
 1. Dogfooding reveals real bugs (Issue #16 found by actual usage, not tests)
 2. Backlog triage prevents scope creep (P0-P3 keeps team focused on shipping)
-3. Pre-commit hooks prevent CI failures (catch issues before they reach pipeline)
+3. Pre-commit hooks prevent CI failures (catch issues before they reach pipeline) ✅ Applied
 4. Merge conflict resolution is critical for velocity (concurrent role updates)
 5. Leverage existing infrastructure (Clawdbot hybrid > rebuilding from scratch)
-6. Detailed specs accelerate engineering (comprehensive acceptance criteria)
+6. Detailed specs accelerate engineering (comprehensive acceptance criteria) ✅ Applied
 7. Memory bank sync is critical (GitHub state ≠ memory bank state without updates)
+8. **Long rotation delays P0 fixes** — 10-role rotation = 9-cycle wait for Engineering. Need escalation rule.
+9. **New roles need concrete first-cycle deliverables** — Frontier succeeded (Issue #17); QA still waiting.
+10. **Strategy-execution gap** — Business docs ≠ working product. Zero P0s should gate sprint closure.
 
 ---
 
@@ -157,8 +161,8 @@
 
 - **Total issues:** 16 (5 closed, 11 open)
 - **Open PRs:** 1 (PR #20)
-- **Merged PRs:** 3 (PR #4, #10, #13)
-- **Completed cycles:** 31
+- **Merged PRs:** 3 (PR #4, #13; PR #10 closed/superseded)
+- **Completed cycles:** 32
 - **Packages:** 2 (cli, core)
 - **Lines of code:** ~3700+
 - **Docs:** 10 business, 3 product, 1 research, 2 architecture
