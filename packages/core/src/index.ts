@@ -60,3 +60,22 @@ export {
 // Agent Execution
 export type { ActionResult, AgentExecutor } from './agent.js';
 export { ClawdbotAgentExecutor, executeAgentAction } from './agent.js';
+
+// Embedding Memory
+export type {
+  MemoryEntryKind,
+  MemoryEntry,
+  Embedding,
+  EmbeddedEntry,
+  SearchResult,
+  EmbeddingProvider,
+  VectorStore,
+} from './embedding.js';
+export {
+  cosineSimilarity,
+  normalizeVector,
+  extractMemoryEntries,
+  TfIdfEmbeddingProvider,
+  InMemoryVectorStore,
+  SemanticMemoryManager,
+} from './embedding.js';
