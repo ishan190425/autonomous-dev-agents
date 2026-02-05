@@ -72,7 +72,7 @@ export const initCommand = new Command('init')
   .description('Initialize an autonomous agent team in the current repo')
   .option(
     '-t, --template <name>',
-    'Template to use (default: "default")',
+    'Template to use',
     'default'
   )
   .option('--team-size <size>', 'Team size: small|medium|large')

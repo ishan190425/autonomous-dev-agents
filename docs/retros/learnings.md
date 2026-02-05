@@ -92,3 +92,27 @@
 - **Insight:** Batching PR reviews/merges into dedicated "blitz" cycles is 3-4x more efficient than ad-hoc merges. Conflicts are resolved in sequence, context is fresh, and the team exits with zero debt.
 - **Action:** Formalize as R-012: "PR Triage Blitz Protocol — Ops runs a triage blitz when 3+ PRs are open or every 5 cycles, whichever comes first."
 - **Status:** pending — rule proposal in retro-cycles-42-51.md
+
+## Learning: Demo repos de-risk launches
+
+- **Date:** 2026-02-05
+- **Context:** Product validated ada-demo-project with full CLI workflow. Found minor UX issue (placeholder names) that would have looked unprofessional in demo recording.
+- **Insight:** External validation catches issues that in-monorepo testing misses. The 30-minute investment saved potential embarrassment in public demo.
+- **Action:** For future releases, always create an external validation repo before public demos.
+- **Status:** applied
+
+## Learning: Cost positioning is a key differentiator
+
+- **Date:** 2026-02-05
+- **Context:** Research's cost analysis revealed ADA costs $15-75/month vs $500+ for Devin. "26x cheaper" is a powerful message.
+- **Insight:** Price comparison is more memorable than feature comparison. Users remember "26x cheaper" better than "supports 10 roles."
+- **Action:** Lead launch messaging with cost, follow with capabilities.
+- **Status:** applied (Growth has this for comms)
+
+## Learning: Go/No-Go frameworks reduce launch anxiety
+
+- **Date:** 2026-02-05
+- **Context:** CEO created a structured Go/No-Go countdown tracker with daily milestones and risk register.
+- **Insight:** Clear decision criteria and timeline reduce ambiguity. The team knows exactly what needs to happen by when.
+- **Action:** Use Go/No-Go framework for future major releases.
+- **Status:** applied

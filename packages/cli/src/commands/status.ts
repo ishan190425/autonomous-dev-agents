@@ -258,10 +258,18 @@ function formatHistoryEntry(entry: RotationHistoryEntry, roster: Roster): string
   const emoji = roleInfo?.emoji ?? '❓';
   const name = roleInfo?.name ?? entry.role;
 
-  // Truncate action if too long
+  // Get action text and strip leading emoji if present (avoids duplication with role emoji)
+  // Emoji pattern: starts with emoji (surrogate pairs or emoji sequences)
   let action = entry.action ?? '';
+  action = action.replace(
+    /^[\p{Emoji}\p{Emoji_Modifier}\p{Emoji_Component}\p{Emoji_Modifier_Base}\p{Emoji_Presentation}\uFE0F]+\s*/u,
+    ''
+  );
+
+  // Truncate at word boundary if too long
   if (action.length > 50) {
-    action = `${action.substring(0, 47)}...`;
+    const truncateAt = action.lastIndexOf(' ', 47);
+    action = `${action.substring(0, truncateAt > 30 ? truncateAt : 47)}...`;
   }
 
   const actionSuffix = action ? `  ${action}` : '';
@@ -295,8 +303,13 @@ function printDefaultStatus(data: StatusData, historyCount: number): void {
   const lastRoleInfo = lastEntry
     ? roster.roles.find((r) => r.id === lastEntry.role)
     : null;
+  // Strip leading emoji from action text (avoids duplication with role emoji)
+  const lastActionText = lastEntry?.action?.replace(
+    /^[\p{Emoji}\p{Emoji_Modifier}\p{Emoji_Component}\p{Emoji_Modifier_Base}\p{Emoji_Presentation}\uFE0F]+\s*/u,
+    ''
+  ) ?? '';
   const lastActionStr = lastEntry
-    ? `${lastRoleInfo?.emoji ?? '❓'} ${lastRoleInfo?.name ?? lastEntry.role} ${lastEntry.action ? `— ${lastEntry.action}` : ''} (${formatTimeAgo(lastEntry.timestamp)})`
+    ? `${lastRoleInfo?.emoji ?? '❓'} ${lastRoleInfo?.name ?? lastEntry.role} ${lastActionText ? `— ${lastActionText}` : ''} (${formatTimeAgo(lastEntry.timestamp)})`
     : '(none)';
 
   console.log(`${chalk.gray('Current Role:')}    ${currentRoleStr}`);
@@ -455,7 +468,12 @@ export const statusCommand = new Command('status')
   .action(async (options: StatusOptions) => {
     const cwd = process.cwd();
     const agentsDir = path.resolve(cwd, options.dir);
-    const historyCount = parseInt(options.history ?? '5', 10);
+
+    // Verbose mode defaults to 10 history entries if --history wasn't explicitly set
+    const explicitHistory = process.argv.includes('--history') || process.argv.some(arg => arg.startsWith('--history='));
+    const historyCount = explicitHistory
+      ? parseInt(options.history ?? '5', 10)
+      : (options.verbose ? 10 : 5);
 
     try {
       const data = await loadStatusData(agentsDir);
