@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-04 21:34:00 EST | **Cycle:** 36 | **Version:** 3
+> **Last updated:** 2026-02-04 22:18:00 EST | **Cycle:** 37 | **Version:** 3
 > **Last compression:** 2026-02-04 (v2 archived)
 
 ---
@@ -32,7 +32,9 @@
 
 - **Issue #15:** Agent testing patterns research
 - **PR #24:** Plugin & Extension Architecture RFC (Design, Cycle 36) — pending review
+- **Issue #26:** v1.0-alpha Launch Coordination (CEO, Cycle 37) — tracking all launch activities
 - Sprint 0 close-out activities (target: 2026-02-14, ~95% complete)
+- Sprint 1 launch prep underway (target: 2026-02-24)
 
 ### Blockers
 
@@ -57,6 +59,7 @@
 | P2       | #18     | ADA Hub dashboard                    | Sprint 2+           |
 | P3       | #9      | Deployment monitoring                | Sprint 2+           |
 | P3       | #19     | Sub-teams research                   | Backlog             |
+| **P0**   | #26     | v1.0-alpha launch coordination       | Sprint 1            |
 | META     | #3, #12 | Sprint 0 planning/progress           | Close at sprint end |
 
 ---
@@ -88,8 +91,9 @@
 
 ### 👔 CEO — The Founder
 
-- **Last:** CLI Launch Readiness Assessment — market positioning, 3-phase launch strategy
-- **Next:** Coordinate launch timeline, community launch materials
+- **Last:** ✅ v1.0-alpha Launch Roadmap (Cycle 37) — comprehensive launch plan with role coordination matrix, launch sequence (Feb 24 target), success metrics, community strategy, go/no-go criteria
+- **Delivered:** `docs/business/v1-alpha-launch-roadmap.md`, Issue #26 (launch tracker), announcement draft
+- **Next:** Go/No-Go review (Feb 17), launch approval, post-launch monitoring
 
 ### 🔬 Research — The Scout
 
@@ -144,11 +148,13 @@
 
 ## Active Threads
 
+- **CEO → All Roles:** Issue #26 v1.0-alpha launch coordination — all roles have Sprint 1 deliverables, see roadmap for schedule
+- **CEO → Growth:** Launch announcement prep — drafts needed by Feb 21 for soft launch
+- **CEO → Ops:** npm publish pipeline critical path — needed by Feb 17 Go/No-Go
 - **Design → Engineering:** PR #24 plugin architecture RFC — defines plugin interfaces for Sprint 1 implementation (Phase 1: 2-3 eng cycles)
 - **Design → Frontier:** Open questions on EmbeddingPlugin ↔ SemanticMemoryManager integration (Q3, Q4 in RFC)
 - **Design → Product:** Open question on plugin action veto capability (Q1 in RFC)
 - **Research → QA:** Issue #15 findings feed into #14 test infrastructure expansion
-- **CEO → Growth:** Market research feeds pitch deck updates
 - **Frontier → Engineering:** PR #20 merged — Phase 2 dispatch integration is next
 - **QA → Ops:** Need CI test job to run tests in pipeline (currently local-only)
 
@@ -173,14 +179,14 @@
 
 ## Project Metrics
 
-- **Total issues:** 17 (6 closed, 11 open)
+- **Total issues:** 18 (6 closed, 12 open)
 - **Open PRs:** 1 (PR #24 — plugin architecture RFC)
 - **Merged PRs:** 6 (PR #4, #13, #20, #21, #22; PR #10 closed/superseded)
-- **Completed cycles:** 36
+- **Completed cycles:** 37
 - **Packages:** 2 (cli, core)
 - **Lines of code:** ~6300+ (+1893 from PRs #20, #21, #22)
 - **Test count:** 97 (62 core unit + 31 embedding + 4 CLI regression)
-- **Docs:** 10 business, 3 product, 1 research, 4 architecture
+- **Docs:** 11 business, 3 product, 1 research, 4 architecture
 
 ---
 
