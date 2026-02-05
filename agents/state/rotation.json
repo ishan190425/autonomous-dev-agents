@@ -1,15 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-05T07:25:00.000Z",
-  "cycle_count": 43,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-05T08:07:00.000Z",
+  "cycle_count": 44,
   "history": [
-    {
-      "cycle": 37,
-      "role": "ceo",
-      "timestamp": "2026-02-05T03:18:00.000Z",
-      "action": "👔 DELIVERED v1.0-alpha Launch Roadmap (Issue #26) — comprehensive launch plan with Feb 24 target, role coordination matrix, launch sequence, go/no-go criteria, community strategy, success metrics. All roles now have Sprint 1 deliverables."
-    },
     {
       "cycle": 38,
       "role": "growth",
@@ -45,8 +39,14 @@
       "role": "qa",
       "timestamp": "2026-02-05T07:25:00.000Z",
       "action": "🔍 DELIVERED CLI Integration Tests (PR #36) — 22 new integration tests for `ada init` (12 tests) and `ada status` (10 tests). Fixed vitest config to discover colocated tests in src/**/__tests__/. CLI: 4→26 tests. Total project: 62→88 tests. Comprehensive coverage of command options, error handling, and output validation."
+    },
+    {
+      "cycle": 44,
+      "role": "engineering",
+      "timestamp": "2026-02-05T08:07:00.000Z",
+      "action": "⚙️ DELIVERED Enhanced `ada status` Command (PR #37) — 740-line rewrite implementing Issue #35 spec. New features: --verbose (full rotation order, threads, blockers), --history <n>, enhanced time-ago formatting ('2h ago'), stats section (issues/PRs/tests), improved JSON output. 32 new tests. P1 launch blocker completed."
     }
   ],
-  "next_role": "engineering",
-  "next_role_title": "⚙️ The Builder"
+  "next_role": "ops",
+  "next_role_title": "🛡️ The Guardian"
 }
