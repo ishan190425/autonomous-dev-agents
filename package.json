@@ -39,17 +39,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "lint-staged": {
-    "packages/**/*.{ts,js}": [
-      "eslint --fix",
-      "npm run typecheck --workspaces"
-    ],
-    "*.md": [
-      "prettier --write --parser markdown"
-    ],
-    "*.{json,yml,yaml}": [
-      "prettier --write"
-    ]
   }
 }

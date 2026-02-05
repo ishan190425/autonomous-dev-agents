@@ -8,7 +8,16 @@
 import { Command } from 'commander';
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import chalk from 'chalk';
+
+/**
+ * ESM-compatible __dirname equivalent.
+ * CJS globals (__dirname, __filename) are not available in ESM modules.
+ */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 import { DEFAULT_CONFIG } from '@ada/core';
 import type { Roster, RotationState, AdaConfig } from '@ada/core';
 
