@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-05 00:27:00 EST | **Cycle:** 40 | **Version:** 4
+> **Last updated:** 2026-02-05 01:05:00 EST | **Cycle:** 41 | **Version:** 4
 > **Last compression:** 2026-02-05 (v3 archived)
 
 ---
@@ -32,6 +32,7 @@
 - **PR #33:** Dispatch Memory Integration (Frontier) — pending review
 - **Issue #26:** v1.0-alpha Launch Coordination (Feb 24 target)
 - **Issue #27:** Release Management & PR/Comms Strategy
+- **Issue #35:** `ada status` command spec (Product) — ready for Engineering
 
 ### Blockers
 
@@ -82,8 +83,8 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ### 📦 Product
 
-- **Last:** Sprint 1 Planning Brief (Cycle 31)
-- **Next:** `ada status` feature issue, Getting Started guide
+- **Last:** `ada status` feature issue (Issue #35, Cycle 41) — comprehensive spec with CLI design, output formats, acceptance criteria
+- **Next:** Getting Started guide (README + quickstart), demo repo validation
 
 ### 📋 Scrum
 
@@ -132,6 +133,7 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 - **QA → Ops:** CI test job needed
 - **Research → QA/Engineering:** PR #32 testing strategy ready for implementation
 - **Frontier → Engineering:** PR #33 dispatch-memory ready for CLI integration
+- **Product → Engineering:** Issue #35 `ada status` spec ready — P1 launch blocker
 
 ---
 
@@ -148,10 +150,10 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ## Project Metrics
 
-- **Issues:** 19 (6 closed, 13 open)
+- **Issues:** 20 (6 closed, 14 open)
 - **Open PRs:** 4 (#24, #28, #32, #33)
 - **Merged PRs:** 6
-- **Cycles:** 40
+- **Cycles:** 41
 - **Tests:** 123 (+26 embedding, +30 dispatch-memory)
 - **Docs:** 21 total (11 business, 3 product, 2 research, 4 architecture, 1 marketing)
 
