@@ -79,3 +79,21 @@ export {
   InMemoryVectorStore,
   SemanticMemoryManager,
 } from './embedding.js';
+
+// Dispatch Memory Integration (Phase 2)
+export type {
+  DispatchMemoryConfig,
+  RoleQueryContext,
+  RoleSearchResult,
+  EnhancedDispatchContext,
+} from './dispatch-memory.js';
+export {
+  DEFAULT_DISPATCH_MEMORY_CONFIG,
+  DispatchMemoryManager,
+  createDispatchMemoryManager,
+  loadContextWithMemory,
+  buildRoleQueryContext,
+  formatRelevantContext,
+  queryForIssue,
+  queryForPRReview,
+} from './dispatch-memory.js';
