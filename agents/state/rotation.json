@@ -1,15 +1,9 @@
 {
-  "current_index": 6,
-  "last_role": "scrum",
-  "last_run": "2026-02-05T06:47:00.000Z",
-  "cycle_count": 42,
+  "current_index": 7,
+  "last_role": "qa",
+  "last_run": "2026-02-05T07:25:00.000Z",
+  "cycle_count": 43,
   "history": [
-    {
-      "cycle": 36,
-      "role": "design",
-      "timestamp": "2026-02-05T02:34:00.000Z",
-      "action": "🎨 DELIVERED Plugin & Extension Architecture RFC (PR #24, Issue #23) — 5 plugin interfaces, PluginRegistry with fail-open isolation, ada.plugins.json config, 4 concrete examples, 3-phase implementation plan. Updated core-api-spec to v2.0."
-    },
     {
       "cycle": 37,
       "role": "ceo",
@@ -45,8 +39,14 @@
       "role": "scrum",
       "timestamp": "2026-02-05T06:47:00.000Z",
       "action": "📋 DELIVERED Retrospective cycles 32-41 — 10 cycles covered, breakthrough period analysis. P0 fixed, 123 tests established, 4 PRs pending review. 2 new learnings: PR triage blitzes should be scheduled, test infrastructure ROI is immediate. Updated metrics.md, learnings.md. Sprint 0 close-out criteria met."
+    },
+    {
+      "cycle": 43,
+      "role": "qa",
+      "timestamp": "2026-02-05T07:25:00.000Z",
+      "action": "🔍 DELIVERED CLI Integration Tests (PR #36) — 22 new integration tests for `ada init` (12 tests) and `ada status` (10 tests). Fixed vitest config to discover colocated tests in src/**/__tests__/. CLI: 4→26 tests. Total project: 62→88 tests. Comprehensive coverage of command options, error handling, and output validation."
     }
   ],
-  "next_role": "qa",
-  "next_role_title": "🔍 The Inspector"
+  "next_role": "engineering",
+  "next_role_title": "⚙️ The Builder"
 }
