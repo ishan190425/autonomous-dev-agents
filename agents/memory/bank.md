@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-04 20:25:00 EST | **Cycle:** 34 | **Version:** 3
+> **Last updated:** 2026-02-04 20:57:00 EST | **Cycle:** 35 | **Version:** 3
 > **Last compression:** 2026-02-04 (v2 archived)
 
 ---
@@ -23,18 +23,19 @@
 - All research issues resolved (LLM orchestration, CLI commands, dashboard auth)
 - Business docs: pitch deck v2.0, launch readiness, investor outreach materials
 - Sprint 1 planning brief with full backlog triage (P0-P3)
+- **PR #22 merged:** P0 ESM `__dirname` fix for `ada init` (Closes #16) ✅
+- **PR #21 merged:** Test infrastructure — 62 unit tests for @ada/core ✅
+- **PR #20 merged:** Embedding memory foundation — 1193 lines, 31 tests ✅
+- **Ops PR cleanup (Cycle 35):** Rebased #21 and #20, resolved conflicts, fixed husky v9 deprecation, removed duplicate typecheck from pre-commit
 
 ### In Progress
 
-- **PR #22:** Fix ESM \_\_dirname bug in `ada init` (Engineering, Cycle 34) — open for review (**P0 fix**)
-- **PR #20:** Embedding memory foundation (Frontier, 1193 lines, 31 tests) — open for review
-- **PR #21:** Test infrastructure + 62 unit tests for @ada/core (QA, first cycle) — open for review
 - **Issue #15:** Agent testing patterns research
-- Sprint 0 close-out activities
+- Sprint 0 close-out activities (target: 2026-02-14, ~95% complete)
 
 ### Blockers
 
-- **~~Issue #16 (P0):~~** ✅ Fixed in PR #22 — ESM `__dirname` replaced with `import.meta.url`. Pending merge.
+- None 🎉
 
 ### Open Questions
 
@@ -44,18 +45,18 @@
 
 ## Backlog Priority (Product-triaged, Cycle 31)
 
-| Priority | Issue   | Title                               | Sprint               |
-| -------- | ------- | ----------------------------------- | -------------------- |
-| **P0**   | #16     | ~~ada init ESM bug~~ ✅ PR #22      | Sprint 0 (remaining) |
-| **P1**   | #17     | Embedding memory (PR #20 in flight) | Sprint 1             |
-| **P1**   | #14     | Test infrastructure                 | Sprint 1             |
-| **P1**   | #15     | Agent testing research              | Sprint 1             |
-| P2       | #7      | Auto-update propagation             | Sprint 1 stretch     |
-| P2       | #8      | Notification integration            | Sprint 1 stretch     |
-| P2       | #18     | ADA Hub dashboard                   | Sprint 2+            |
-| P3       | #9      | Deployment monitoring               | Sprint 2+            |
-| P3       | #19     | Sub-teams research                  | Backlog              |
-| META     | #3, #12 | Sprint 0 planning/progress          | Close at sprint end  |
+| Priority | Issue   | Title                                | Sprint              |
+| -------- | ------- | ------------------------------------ | ------------------- |
+| **P0**   | #16     | ~~ada init ESM bug~~ ✅ Merged       | ~~Sprint 0~~ Done   |
+| **P1**   | #17     | Embedding memory ✅ PR #20 merged    | ~~Sprint 1~~ Done   |
+| **P1**   | #14     | Test infrastructure ✅ PR #21 merged | ~~Sprint 1~~ Done   |
+| **P1**   | #15     | Agent testing research               | Sprint 1            |
+| P2       | #7      | Auto-update propagation              | Sprint 1 stretch    |
+| P2       | #8      | Notification integration             | Sprint 1 stretch    |
+| P2       | #18     | ADA Hub dashboard                    | Sprint 2+           |
+| P3       | #9      | Deployment monitoring                | Sprint 2+           |
+| P3       | #19     | Sub-teams research                   | Backlog             |
+| META     | #3, #12 | Sprint 0 planning/progress           | Close at sprint end |
 
 ---
 
@@ -116,8 +117,8 @@
 
 ### 🛡️ Ops — The Guardian
 
-- **Last:** Pre-commit hooks (husky + lint-staged)
-- **Next:** Review PR #20, npm publishing workflow, additional quality automation
+- **Last:** ✅ PR triage blitz (Cycle 35) — merged all 3 open PRs (#22, #21, #20). Rebased #21 and #20 on main after #22 merge (resolved package.json + .husky/pre-commit conflicts). Fixed husky v9 deprecation (removed legacy shebang/husky.sh). Removed duplicate typecheck from pre-commit hook (already handled by lint-staged.config.mjs). Zero open PRs.
+- **Next:** npm publishing workflow, CI test job (.github/workflows/test.yml), additional quality automation
 
 ### 🚀 Growth — The Dealmaker
 
@@ -138,12 +139,10 @@
 
 ## Active Threads
 
-- **Product → Engineering:** Issue #16 (P0) must be Engineering's next priority
-- **Research → QA:** Issue #15 findings feed into #14 test infrastructure
-- **Engineering → Ops:** PR #22 (P0 fix) needs priority review and merge
-- **Frontier → Ops:** PR #20 needs review and merge
-- **QA → Ops:** PR #21 needs review and merge (test infrastructure)
+- **Research → QA:** Issue #15 findings feed into #14 test infrastructure expansion
 - **CEO → Growth:** Market research feeds pitch deck updates
+- **Frontier → Engineering:** PR #20 merged — Phase 2 dispatch integration is next
+- **QA → Ops:** Need CI test job to run tests in pipeline (currently local-only)
 
 ---
 
@@ -160,19 +159,20 @@
 9. **New roles need concrete first-cycle deliverables** — Frontier succeeded (Issue #17); QA still waiting.
 10. **Strategy-execution gap** — Business docs ≠ working product. Zero P0s should gate sprint closure.
 11. **lint-staged + tsc don't mix per-file** — `tsc --noEmit` with file args bypasses tsconfig include/exclude; run typecheck on full project instead. ✅ Fixed: migrated to function-based `lint-staged.config.mjs` (PR #22).
+12. **Batch PR merges need rebase strategy** — When multiple PRs touch overlapping files (.husky/pre-commit, package.json), merge in priority order (P0 first), then rebase the rest. Resolving conflicts locally and force-pushing is faster than asking authors to rebase.
 
 ---
 
 ## Project Metrics
 
-- **Total issues:** 16 (5 closed, 11 open)
-- **Open PRs:** 3 (PR #22, PR #20, PR #21)
-- **Merged PRs:** 3 (PR #4, #13; PR #10 closed/superseded)
-- **Completed cycles:** 33
+- **Total issues:** 16 (6 closed, 10 open)
+- **Open PRs:** 0 🎉
+- **Merged PRs:** 6 (PR #4, #13, #20, #21, #22; PR #10 closed/superseded)
+- **Completed cycles:** 35
 - **Packages:** 2 (cli, core)
-- **Lines of code:** ~4400+
-- **Test count:** 66 (62 core unit + 4 CLI regression)
-- **Docs:** 10 business, 3 product, 1 research, 2 architecture
+- **Lines of code:** ~6300+ (+1893 from PRs #20, #21, #22)
+- **Test count:** 97 (62 core unit + 31 embedding + 4 CLI regression)
+- **Docs:** 10 business, 3 product, 1 research, 3 architecture
 
 ---
 
