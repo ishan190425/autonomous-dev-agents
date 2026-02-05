@@ -13,7 +13,7 @@ import {
   TfIdfEmbeddingProvider,
   SemanticMemoryManager,
   type EmbeddedEntry,
-} from './embedding.js';
+} from '../../src/embedding.js';
 
 // ─── Vector Math ─────────────────────────────────────────────────────────────
 
