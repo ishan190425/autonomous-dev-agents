@@ -1,9 +1,9 @@
-# @ada/core API Specification v1.0
+# @ada/core API Specification v2.0
 
 > **Author:** 🎨 The Architect  
-> **Date:** 2026-01-30  
+> **Date:** 2026-02-04 (v2.0), 2026-01-30 (v1.0)  
 > **Status:** Draft  
-> **Version:** 1.0
+> **Version:** 2.0
 
 ## Overview
 
@@ -124,18 +124,18 @@ import {
   readRoster,
   getCurrentRole,
   advanceRotation,
-} from "@ada/core";
+} from '@ada/core';
 
-const state = await readRotationState("./agents/state/rotation.json");
-const roster = await readRoster("./agents/roster.json");
+const state = await readRotationState('./agents/state/rotation.json');
+const roster = await readRoster('./agents/roster.json');
 const currentRole = getCurrentRole(state, roster);
 
 if (currentRole) {
   console.log(`Current role: ${currentRole.emoji} ${currentRole.name}`);
 
   // After executing an action:
-  const newState = advanceRotation(state, roster, "Implemented feature X");
-  await writeRotationState("./agents/state/rotation.json", newState);
+  const newState = advanceRotation(state, roster, 'Implemented feature X');
+  await writeRotationState('./agents/state/rotation.json', newState);
 }
 ```
 
@@ -184,16 +184,16 @@ function updateBankHeader(
 **Usage Example:**
 
 ```typescript
-import { readMemoryBank, needsCompression, archiveBank } from "@ada/core";
+import { readMemoryBank, needsCompression, archiveBank } from '@ada/core';
 
-const content = await readMemoryBank("./agents/memory/bank.md");
+const content = await readMemoryBank('./agents/memory/bank.md');
 const shouldCompress = needsCompression(content, 5);
 
 if (shouldCompress) {
   const version = extractVersion(content);
   await archiveBank(
-    "./agents/memory/bank.md",
-    "./agents/memory/archives",
+    './agents/memory/bank.md',
+    './agents/memory/archives',
     version
   );
 
@@ -205,7 +205,7 @@ if (shouldCompress) {
     version + 1
   );
 
-  await writeMemoryBank("./agents/memory/bank.md", updatedContent);
+  await writeMemoryBank('./agents/memory/bank.md', updatedContent);
 }
 ```
 
@@ -257,17 +257,17 @@ function checkCompression(context: DispatchContext): Promise<boolean>;
 **Usage Example:**
 
 ```typescript
-import { loadContext, completeDispatch, checkCompression } from "@ada/core";
+import { loadContext, completeDispatch, checkCompression } from '@ada/core';
 
 const context = await loadContext(process.cwd());
 if (!context) {
-  throw new Error("No ADA configuration found. Run `ada init` first.");
+  throw new Error('No ADA configuration found. Run `ada init` first.');
 }
 
 console.log(`Acting as: ${context.role.name}`);
 
 // Execute some action here...
-const actionTaken = "Created API specification document";
+const actionTaken = 'Created API specification document';
 
 // Handle compression if needed
 await checkCompression(context);
@@ -300,9 +300,9 @@ interface AdaConfig {
 }
 
 const DEFAULT_CONFIG: AdaConfig = {
-  agentsDir: "agents/",
-  templatesDir: "templates/",
-  defaultBranch: "main",
+  agentsDir: 'agents/',
+  templatesDir: 'templates/',
+  defaultBranch: 'main',
   maxHistory: 10,
   compressionThreshold: 200,
 };
@@ -334,14 +334,20 @@ class AdaFileError extends Error {
 
 // Configuration errors
 class AdaConfigError extends Error {
-  constructor(message: string, public readonly configPath?: string) {
+  constructor(
+    message: string,
+    public readonly configPath?: string
+  ) {
     super(message);
   }
 }
 
 // State corruption errors
 class AdaStateError extends Error {
-  constructor(message: string, public readonly statePath?: string) {
+  constructor(
+    message: string,
+    public readonly statePath?: string
+  ) {
     super(message);
   }
 }
@@ -369,55 +375,198 @@ function writeMemoryBank(path: string, content: string): Promise<void>;
 
 ---
 
-## Plugin Architecture (Future)
+## Embedding Memory API (v2.0)
 
-### Plugin Interface
+> Added in v2.0 — implements Issue #17 (embedding-based memory retrieval)
+
+### Memory Entry Types
+
+```typescript
+type MemoryEntryKind =
+  | 'decision'
+  | 'lesson'
+  | 'status'
+  | 'role_state'
+  | 'blocker'
+  | 'question'
+  | 'metric'
+  | 'thread';
+
+interface MemoryEntry {
+  readonly id: string;
+  readonly kind: MemoryEntryKind;
+  readonly content: string;
+  readonly role?: string;
+  readonly date?: string;
+  readonly tags: readonly string[];
+}
+
+type Embedding = readonly number[];
+
+interface EmbeddedEntry {
+  readonly entry: MemoryEntry;
+  readonly embedding: Embedding;
+}
+
+interface SearchResult {
+  readonly entry: MemoryEntry;
+  readonly score: number; // 0-1 cosine similarity
+}
+```
+
+### Embedding Provider Interface
+
+```typescript
+interface EmbeddingProvider {
+  readonly name: string;
+  readonly dimensions: number;
+  embed(text: string): Promise<Embedding>;
+  embedBatch(texts: string[]): Promise<Embedding[]>;
+}
+```
+
+### Vector Store Interface
+
+```typescript
+interface VectorStore {
+  add(entries: EmbeddedEntry[]): Promise<void>;
+  search(
+    query: Embedding,
+    topK?: number,
+    threshold?: number
+  ): Promise<SearchResult[]>;
+  size(): number;
+  clear(): void;
+}
+```
+
+### Semantic Memory Manager
+
+```typescript
+class SemanticMemoryManager {
+  constructor(provider: EmbeddingProvider, store?: VectorStore);
+  indexEntries(entries: MemoryEntry[]): Promise<number>;
+  search(
+    query: string,
+    topK?: number,
+    threshold?: number
+  ): Promise<SearchResult[]>;
+  size(): number;
+}
+```
+
+### Built-in Implementations
+
+- **TfIdfEmbeddingProvider** — Zero-dependency TF-IDF embeddings (default)
+- **InMemoryVectorStore** — In-memory cosine similarity search (default)
+
+### Utility Functions
+
+```typescript
+// Parse bank.md → structured entries
+function extractMemoryEntries(bankContent: string): MemoryEntry[];
+// Cosine similarity between two embeddings
+function cosineSimilarity(a: Embedding, b: Embedding): number;
+// L2-normalize an embedding
+function normalizeVector(v: Embedding): number[];
+```
+
+---
+
+## Agent Execution API (v2.0)
+
+> Added in v2.0 — implements RES-001 (Hybrid Clawdbot orchestration)
+
+### Agent Executor Interface
+
+```typescript
+interface ActionResult {
+  success: boolean;
+  action: string;
+  details: string;
+  modifiedFiles?: string[];
+  createdIssues?: number[];
+  createdPRs?: number[];
+  error?: string;
+}
+
+interface AgentExecutor {
+  executeAction(context: DispatchContext): Promise<ActionResult>;
+}
+```
+
+### ClawdbotAgentExecutor
+
+```typescript
+class ClawdbotAgentExecutor implements AgentExecutor {
+  async executeAction(context: DispatchContext): Promise<ActionResult>;
+}
+
+// Convenience function using default executor
+function executeAgentAction(context: DispatchContext): Promise<ActionResult>;
+```
+
+**Design Notes:**
+
+- Builds role-specific prompt from DispatchContext
+- Extracts memory bank summary for context window
+- Spawns Clawdbot session for execution (RES-001)
+- Returns structured ActionResult for dispatch tracking
+
+---
+
+## Plugin Architecture
+
+> Full RFC: [Plugin Architecture RFC](./plugin-architecture-rfc.md)
+
+### Plugin Interface (Summary)
 
 ```typescript
 interface AdaPlugin {
   readonly name: string;
   readonly version: string;
   readonly description: string;
+  readonly minCoreVersion?: string;
+  setup?(config: PluginConfig): Promise<void>;
+  teardown?(): Promise<void>;
+}
 
-  // Lifecycle hooks
-  onBeforeCycle?(context: DispatchContext): Promise<void>;
+interface LifecyclePlugin extends AdaPlugin {
+  onBeforeLoad?(config: AdaConfig): Promise<AdaConfig>;
+  onBeforeCycle?(context: Readonly<DispatchContext>): Promise<void>;
   onAfterAction?(
-    context: DispatchContext,
-    result: DispatchResult
+    context: Readonly<DispatchContext>,
+    result: Readonly<ActionResult>
   ): Promise<void>;
-  onRoleChange?(oldRole: RoleId, newRole: RoleId): Promise<void>;
-  onCompress?(content: string): Promise<string>;
-}
-
-// Plugin registry
-interface PluginRegistry {
-  register(plugin: AdaPlugin): void;
-  unregister(pluginName: string): void;
-  list(): readonly AdaPlugin[];
-  getHooks<T extends keyof AdaPlugin>(hookName: T): AdaPlugin[T][];
-}
-```
-
-**Design Notes:**
-
-- Optional lifecycle hooks (plugins implement what they need)
-- Simple registry pattern
-- Type-safe hook access
-- Future expansion without breaking changes
-
-### Custom Roles via Plugins
-
-```typescript
-interface CustomRoleDefinition {
-  readonly role: Role;
-  readonly playbook: string; // Markdown content
-  readonly dependencies?: string[]; // Required packages/tools
+  onAfterCycle?(result: Readonly<DispatchResult>): Promise<void>;
+  onCompress?(content: string, version: number): Promise<string | undefined>;
+  onError?(error: Error, phase: DispatchPhase): Promise<void>;
 }
 
 interface RolePlugin extends AdaPlugin {
   getRoles(): CustomRoleDefinition[];
 }
+
+interface MemoryPlugin extends AdaPlugin {
+  readBank(): Promise<string>;
+  writeBank(content: string): Promise<void>;
+  archiveBank(version: number): Promise<string>;
+  listArchives(): Promise<MemoryArchiveInfo[]>;
+  restoreArchive(archiveId: string): Promise<string>;
+}
+
+interface EmbeddingPlugin extends AdaPlugin {
+  getProvider(): EmbeddingProvider;
+  getVectorStore?(): VectorStore;
+}
 ```
+
+**Design Notes:**
+
+- Explicit registration via `ada.plugins.json`
+- Fail-open error isolation (broken plugin ≠ broken dispatch)
+- Type-safe lifecycle hooks with ordered execution
+- Backwards compatible — all plugin params are optional
 
 ---
 
@@ -433,10 +582,10 @@ interface SchemaVersion {
 
 // Migration registry
 const MIGRATIONS: Record<string, SchemaVersion> = {
-  "1.0.0": { version: "1.0.0" },
-  "1.1.0": {
-    version: "1.1.0",
-    migration: (old) => ({ ...old, newField: "defaultValue" }),
+  '1.0.0': { version: '1.0.0' },
+  '1.1.0': {
+    version: '1.1.0',
+    migration: old => ({ ...old, newField: 'defaultValue' }),
   },
 };
 ```
@@ -484,26 +633,26 @@ const MIGRATIONS: Record<string, SchemaVersion> = {
 
 ```typescript
 // Pure function testing
-describe("advanceRotation", () => {
-  it("should increment cycle count", () => {
+describe('advanceRotation', () => {
+  it('should increment cycle count', () => {
     const state: RotationState = {
       /* ... */
     };
     const roster: Roster = {
       /* ... */
     };
-    const result = advanceRotation(state, roster, "test action");
+    const result = advanceRotation(state, roster, 'test action');
     expect(result.cycle_count).toBe(state.cycle_count + 1);
   });
 });
 
 // Async I/O testing with mocks
-describe("readRotationState", () => {
-  it("should parse valid JSON", async () => {
+describe('readRotationState', () => {
+  it('should parse valid JSON', async () => {
     const mockFs = jest.mocked(fs);
     mockFs.readFile.mockResolvedValue('{"cycle_count": 5}');
 
-    const result = await readRotationState("./test.json");
+    const result = await readRotationState('./test.json');
     expect(result.cycle_count).toBe(5);
   });
 });
@@ -591,6 +740,7 @@ The @ada/core API prioritizes developer experience through clean types, predicta
 
 **Version History:**
 
+- v2.0 (2026-02-04): Added embedding memory API, agent execution API, updated plugin architecture with full RFC
 - v1.0 (2026-01-30): Initial API specification
 
-**Next Review:** When implementing plugin system or web dashboard integration
+**Next Review:** After Sprint 1 plugin implementation
