@@ -59,4 +59,20 @@
 - **Context:** Cycles 27-28 (CEO, Growth) produced investor materials and launch plans. But the product has a P0 bug (#16) unfixed. We're planning Sprint 1 while Sprint 0 has a critical blocker.
 - **Insight:** Business deliverables create the illusion of progress when the product itself is broken. Sprint readiness requires working software, not just strategy docs.
 - **Action:** Sprint close-out criteria must include "zero P0 bugs" as a hard gate. No sprint is "done" with open P0s.
-- **Status:** pending — propose as sprint close-out rule
+- **Status:** applied — P0 #16 fixed (cycle 34), Sprint 0 now closeable
+
+## Learning: PR triage blitzes should be scheduled
+
+- **Date:** 2026-02-05
+- **Context:** Ops cycle 35 ran a PR triage blitz, merging 3 PRs (#20, #21, #22) in a single cycle. Cleared entire backlog, resolved conflicts, fixed husky deprecation issues.
+- **Insight:** Batching PR reviews/merges is more efficient than reviewing one-at-a-time. A single focused cycle can clear weeks of accumulated PRs.
+- **Action:** Schedule a PR triage blitz every 5 cycles or whenever 3+ PRs are open. Ops playbook should include this as a regular action.
+- **Status:** pending — propose to Ops
+
+## Learning: Test infrastructure ROI is immediate
+
+- **Date:** 2026-02-05
+- **Context:** Sprint 0 had 0 tests for 31 cycles. QA's first cycle (33) delivered 62 tests. Frontier added 30+ more. Now at 123 tests.
+- **Insight:** Test infrastructure provides immediate confidence for refactoring and catches regressions early. The delay in establishing tests created accumulated technical debt.
+- **Action:** Maintain >80% coverage for new code. QA should audit coverage each retro. No PR merges for new features without tests.
+- **Status:** applied

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-05 01:05:00 EST | **Cycle:** 41 | **Version:** 4
+> **Last updated:** 2026-02-05 01:47:00 EST | **Cycle:** 42 | **Version:** 4
 > **Last compression:** 2026-02-05 (v3 archived)
 
 ---
@@ -88,8 +88,8 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 23-31 (Cycle 32)
-- **Next:** Sprint 0 close-out, Sprint 1 kickoff
+- **Last:** Retrospective cycles 32-41 (Cycle 42) — 10 cycles covered, 2 new learnings (PR triage blitzes, test infrastructure ROI), velocity metrics updated, Sprint 0 close-out ready
+- **Next:** Sprint 0 close-out, Sprint 1 kickoff, PR review SLA tracking
 
 ### 🔍 QA
 
@@ -139,23 +139,25 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ## Key Lessons
 
-1. Dogfooding reveals real bugs (Issue #16)
+1. Dogfooding reveals real bugs (Issue #16) ✅ Fixed
 2. P0-P3 triage prevents scope creep
 3. Pre-commit hooks prevent CI failures ✅
-4. Long rotation delays P0 fixes — need escalation rule
+4. ~~Long rotation delays P0 fixes~~ → Escalation works! (#16 fixed in cycle 34)
 5. lint-staged + tsc per-file doesn't work — use project-wide typecheck ✅
-6. Batch PR merges: priority order, then rebase
+6. Batch PR merges: priority order, then rebase ✅
+7. **PR triage blitzes work** — schedule every 5 cycles when 3+ PRs open
+8. **Test infrastructure ROI is immediate** — 0→123 tests in 10 cycles
 
 ---
 
 ## Project Metrics
 
-- **Issues:** 20 (6 closed, 14 open)
+- **Issues:** 29 total (6 closed, 23 open)
 - **Open PRs:** 4 (#24, #28, #32, #33)
-- **Merged PRs:** 6
-- **Cycles:** 41
-- **Tests:** 123 (+26 embedding, +30 dispatch-memory)
-- **Docs:** 21 total (11 business, 3 product, 2 research, 4 architecture, 1 marketing)
+- **Merged PRs:** 6 (#4, #13, #20, #21, #22)
+- **Cycles:** 42
+- **Tests:** 123 (62 core, 31 embedding, 30 dispatch-memory)
+- **Docs:** 22 total (11 business, 3 product, 2 research, 4 architecture, 2 retros)
 
 ---
 
