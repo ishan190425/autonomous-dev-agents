@@ -17,6 +17,7 @@ import { initCommand } from './commands/init.js';
 import { runCommand } from './commands/run.js';
 import { statusCommand } from './commands/status.js';
 import { configCommand } from './commands/config.js';
+import { memoryCommand } from './commands/memory.js';
 
 const program = new Command();
 
@@ -29,5 +30,6 @@ program.addCommand(initCommand);
 program.addCommand(runCommand);
 program.addCommand(statusCommand);
 program.addCommand(configCommand);
+program.addCommand(memoryCommand);
 
 program.parse();
