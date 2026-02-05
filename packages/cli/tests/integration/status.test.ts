@@ -8,6 +8,8 @@
  * - JSON output mode
  * - Error handling
  *
+ * Updated for enhanced status command (PR #37).
+ *
  * @packageDocumentation
  */
 
@@ -60,35 +62,34 @@ describe('ada status — integration tests', () => {
   it('displays team status without errors', () => {
     const output = runAda(['status']);
 
-    // Should display the header
-    expect(output).toContain('ADA — Agent Team Status');
+    // Should display the header (new format: 🤖 ADA Status — <project>)
+    expect(output).toContain('🤖 ADA Status');
   });
 
-  it('shows company and product info from roster', () => {
+  it('shows current and next role info', () => {
     const output = runAda(['status']);
 
-    // The status should include company/product (from roster.json)
-    // Default values from init
-    expect(output).toContain('Company:');
-    expect(output).toContain('Product:');
+    // The status should show current and next role
+    expect(output).toContain('Current Role:');
+    expect(output).toContain('Next Role:');
+    expect(output).toContain('Cycle:');
   });
 
-  it('shows current role in rotation', () => {
+  it('shows last action in rotation', () => {
     const output = runAda(['status']);
 
-    // Should show the team with current marker
-    expect(output).toContain('Team');
-    expect(output).toContain('CURRENT');
+    // Should show last action (might be "(none)" for fresh init)
+    expect(output).toContain('Last Action:');
   });
 
   it('shows memory bank summary', () => {
     const output = runAda(['status']);
 
-    // Memory bank section
-    expect(output).toContain('Memory Bank');
-    expect(output).toContain('Lines:');
-    expect(output).toContain('Version:');
-    expect(output).toContain('Cycle:');
+    // Memory bank line with path, version, and lines
+    expect(output).toContain('Memory Bank:');
+    expect(output).toContain('agents/memory/bank.md');
+    expect(output).toMatch(/v\d+/); // version number
+    expect(output).toMatch(/\d+ lines/); // line count
   });
 
   it('supports --json flag for machine-readable output', () => {
@@ -97,15 +98,15 @@ describe('ada status — integration tests', () => {
     // Parse JSON output
     const status = JSON.parse(output);
 
-    // Verify structure
+    // Verify structure (camelCase keys per PR #37)
     expect(status).toHaveProperty('rotation');
     expect(status).toHaveProperty('roster');
     expect(status).toHaveProperty('memoryBank');
 
-    // Rotation state
-    expect(status.rotation).toHaveProperty('current_index');
-    expect(status.rotation).toHaveProperty('cycle_count');
-    expect(status.rotation.cycle_count).toBe(0);
+    // Rotation state (camelCase)
+    expect(status.rotation).toHaveProperty('currentIndex');
+    expect(status.rotation).toHaveProperty('cycleCount');
+    expect(status.rotation.cycleCount).toBe(0);
 
     // Roster summary
     expect(status.roster).toHaveProperty('company');
@@ -116,7 +117,6 @@ describe('ada status — integration tests', () => {
     // Memory bank stats
     expect(status.memoryBank).toHaveProperty('lines');
     expect(status.memoryBank).toHaveProperty('version');
-    expect(status.memoryBank).toHaveProperty('cycle');
   });
 
   it('respects --dir option for custom agents directory', async () => {
@@ -126,7 +126,7 @@ describe('ada status — integration tests', () => {
 
     const output = runAda(['status', '--dir', 'my-agents']);
 
-    expect(output).toContain('ADA — Agent Team Status');
+    expect(output).toContain('🤖 ADA Status');
   });
 
   it('fails gracefully when agents directory does not exist', async () => {
@@ -149,9 +149,8 @@ describe('ada status — integration tests', () => {
     const status = JSON.parse(output);
 
     // Fresh init should be at cycle 0
-    expect(status.rotation.cycle_count).toBe(0);
-    expect(status.rotation.current_index).toBe(0);
-    expect(status.memoryBank.cycle).toBe(0);
+    expect(status.rotation.cycleCount).toBe(0);
+    expect(status.rotation.currentIndex).toBe(0);
   });
 
   it('shows correct role count based on team size', () => {
@@ -163,12 +162,11 @@ describe('ada status — integration tests', () => {
     expect(status.roster.rotationOrder.length).toBe(3);
   });
 
-  it('shows all team roles in human output', () => {
+  it('shows role emoji and names in human output', () => {
     const output = runAda(['status']);
 
-    // Small team roles
-    expect(output).toContain('CEO');
-    expect(output).toContain('Engineer');
-    expect(output).toContain('Ops');
+    // Should show role info with emoji (checking for emoji presence)
+    expect(output).toMatch(/[\u{1F300}-\u{1F9FF}]/u); // Unicode emoji range
+    expect(output).toContain('CEO'); // Default small team has CEO
   });
 });
