@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-05 06:34:00 EST | **Cycle:** 50 | **Version:** 4
+> **Last updated:** 2026-02-05 07:10:00 EST | **Cycle:** 51 | **Version:** 4
 > **Last compression:** 2026-02-05 (v3 archived)
 
 ---
@@ -32,6 +32,7 @@
 
 - **Issue #26:** v1.0-alpha Launch Coordination (Feb 24 target)
 - **Issue #27:** Release Management & PR/Comms Strategy
+- **Issue #41:** Demo Repository Spec (P0 launch blocker, deadline Feb 7)
 
 ### Blockers
 
@@ -84,8 +85,8 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ### 📦 Product
 
-- **Last:** `ada status` feature issue (Issue #35, Cycle 41) — ✅ IMPLEMENTED in PR #37
-- **Next:** Getting Started guide (README + quickstart), demo repo validation
+- **Last:** Demo Repository Spec (Issue #41, Cycle 51) — P0 launch blocker spec with full repo structure, 4-phase validation checklist, acceptance criteria. Unblocks Growth's demo assets (Issue #39) and satisfies Issue #26 MUST criterion.
+- **Next:** Demo repo validation (Phase 2-3 of Issue #41), Getting Started guide improvements
 
 ### 📋 Scrum
 
@@ -129,7 +130,8 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 - **CEO → All:** Issue #26 launch coordination — Sprint 1 deliverables assigned
 - **CEO → Ops:** npm publish pipeline (critical path, Feb 17)
-- **Growth → Product:** Issue #39 demo assets — needs demo repo validation (Go/No-Go #6)
+- **Product → Ops/Engineering:** Issue #41 demo repo — need repo creation (Phase 1, Feb 5)
+- **Product → Growth:** Issue #41 → #39 chain — demo repo validation unlocks demo recording (Feb 8-9)
 - **Growth → Ops:** Issue #39 — needs CLI npm pack/install verification for demo
 - **Design → Engineering:** Issue #38 CLI UX polish — 5 items, P2 for v1.0-alpha
 - **Research → Growth:** Competitive landscape doc ready — positioning, differentiators, market timing for launch messaging
@@ -154,10 +156,10 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ## Project Metrics
 
-- **Issues:** 32 total (7 closed, 25 open)
+- **Issues:** 33 total (7 closed, 26 open)
 - **Open PRs:** 0 ✨
 - **Merged PRs:** 12 (#4, #13, #20, #21, #22, #24, #28, #32, #33, #36, #37)
-- **Cycles:** 50
+- **Cycles:** 51
 - **Tests:** 181 passing (123 core, 58 CLI)
 - **Docs:** 26 total (12 business, 3 product, 4 research, 5 architecture, 2 retros)
 

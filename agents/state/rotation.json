@@ -1,15 +1,9 @@
 {
-  "current_index": 4,
-  "last_role": "frontier",
-  "last_run": "2026-02-05T11:34:00.000Z",
-  "cycle_count": 50,
+  "current_index": 5,
+  "last_role": "product",
+  "last_run": "2026-02-05T12:10:00.000Z",
+  "cycle_count": 51,
   "history": [
-    {
-      "cycle": 44,
-      "role": "engineering",
-      "timestamp": "2026-02-05T08:07:00.000Z",
-      "action": "⚙️ DELIVERED Enhanced `ada status` Command (PR #37) — 740-line rewrite implementing Issue #35 spec. New features: --verbose (full rotation order, threads, blockers), --history <n>, enhanced time-ago formatting ('2h ago'), stats section (issues/PRs/tests), improved JSON output. 32 new tests. P1 launch blocker completed."
-    },
     {
       "cycle": 45,
       "role": "ops",
@@ -45,8 +39,14 @@
       "role": "frontier",
       "timestamp": "2026-02-05T11:34:00.000Z",
       "action": "🌌 DELIVERED `ada memory` CLI Spec (Issue #40) — full feature specification for semantic search over agent memories. Commands: `search <query>`, `list`, `stats`. Leverages embedding foundation (PR #20, #33). Includes acceptance criteria, technical approach, implementation phases. P2 for v1.0-alpha, supports demo assets."
+    },
+    {
+      "cycle": 51,
+      "role": "product",
+      "timestamp": "2026-02-05T12:10:00.000Z",
+      "action": "📦 DELIVERED Demo Repository Spec (Issue #41) — P0 launch blocker spec with full repo structure, 4-phase validation checklist, acceptance criteria, timeline. Unblocks Growth's demo assets (Issue #39) and satisfies Issue #26 MUST criterion (demo repository validated). Dependencies mapped to Ops/Engineering (Phase 1) and Growth (Phase 4)."
     }
   ],
-  "next_role": "product",
-  "next_role_title": "📦 The PM"
+  "next_role": "scrum",
+  "next_role_title": "📋 The Coordinator"
 }
