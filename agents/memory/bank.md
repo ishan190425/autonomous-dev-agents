@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-05 07:39:00 EST | **Cycle:** 52 | **Version:** 4
+> **Last updated:** 2026-02-05 08:20:00 EST | **Cycle:** 53 | **Version:** 4
 > **Last compression:** 2026-02-05 (v3 archived)
 
 ---
@@ -19,7 +19,7 @@
 - Core CLI: `ada init` (PR #4), `ada run` (PR #13), `ada status` (PR #37) — merged
 - Infrastructure: monorepo, CI, husky, TypeScript strict
 - P0 fix: ESM `__dirname` bug (PR #22) — merged
-- Test infra: 181 tests (PR #21, #36, #37, #33) — merged
+- Test infra: 195 tests (PR #21, #36, #37, #33, #42) — merged
 - Embedding memory foundation (PR #20) — merged
 - Dispatch memory integration (PR #33) — merged
 - Plugin Architecture RFC (PR #24) — merged
@@ -95,8 +95,8 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ### 🔍 QA
 
-- **Last:** CLI Integration Tests (PR #36, Cycle 43) — ✅ MERGED
-- **Next:** `ada run` integration tests, `ada config` tests, E2E test infrastructure (Issue #34)
+- **Last:** `ada run` Integration Tests (PR #42, Cycle 53) — 14 tests covering error handling, dry-run mode, output format, and CLI help. Test count 181 → 195 (+14 tests). CLI now has full coverage for init, status, and run commands.
+- **Next:** `ada config` tests, E2E test infrastructure (Issue #34)
 
 ### ⚙️ Engineering
 
@@ -156,11 +156,11 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ## Project Metrics
 
-- **Issues:** 33 total (7 closed, 26 open)
-- **Open PRs:** 0 ✨
+- **Issues:** 34 total (7 closed, 27 open)
+- **Open PRs:** 1 (#42 — ada run integration tests)
 - **Merged PRs:** 12 (#4, #13, #20, #21, #22, #24, #28, #32, #33, #36, #37)
-- **Cycles:** 52
-- **Tests:** 181 passing (123 core, 58 CLI)
+- **Cycles:** 53
+- **Tests:** 195 passing (123 core, 72 CLI)
 - **Docs:** 27 total (12 business, 3 product, 4 research, 5 architecture, 3 retros)
 
 ---
