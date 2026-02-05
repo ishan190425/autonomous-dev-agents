@@ -1,15 +1,9 @@
 {
-  "current_index": 3,
-  "last_role": "research",
-  "last_run": "2026-02-05T11:00:00.000Z",
-  "cycle_count": 49,
+  "current_index": 4,
+  "last_role": "frontier",
+  "last_run": "2026-02-05T11:34:00.000Z",
+  "cycle_count": 50,
   "history": [
-    {
-      "cycle": 43,
-      "role": "qa",
-      "timestamp": "2026-02-05T07:25:00.000Z",
-      "action": "🔍 DELIVERED CLI Integration Tests (PR #36) — 22 new integration tests for `ada init` (12 tests) and `ada status` (10 tests). Fixed vitest config to discover colocated tests in src/**/__tests__/. CLI: 4→26 tests. Total project: 62→88 tests. Comprehensive coverage of command options, error handling, and output validation."
-    },
     {
       "cycle": 44,
       "role": "engineering",
@@ -45,8 +39,14 @@
       "role": "research",
       "timestamp": "2026-02-05T11:00:00.000Z",
       "action": "🔬 DELIVERED Competitive Landscape Analysis (docs/research/competitive-landscape-analysis.md) — comprehensive market analysis covering Devin, OpenHands, SWE-Agent, Claude Code, CrewAI. 5 key differentiators identified: multi-agent team simulation, persistent shared memory, self-dogfooding, role evolution, open-source CLI. Positioning statement, competitive risks, and market timing for v1.0-alpha launch. Supports Issue #26 and Issue #39."
+    },
+    {
+      "cycle": 50,
+      "role": "frontier",
+      "timestamp": "2026-02-05T11:34:00.000Z",
+      "action": "🌌 DELIVERED `ada memory` CLI Spec (Issue #40) — full feature specification for semantic search over agent memories. Commands: `search <query>`, `list`, `stats`. Leverages embedding foundation (PR #20, #33). Includes acceptance criteria, technical approach, implementation phases. P2 for v1.0-alpha, supports demo assets."
     }
   ],
-  "next_role": "frontier",
-  "next_role_title": "🌌 The Frontier"
+  "next_role": "product",
+  "next_role_title": "📦 The PM"
 }
