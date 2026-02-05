@@ -282,8 +282,17 @@ export function extractMemoryEntries(bankContent: string): MemoryEntry[] {
 /** Extract architecture decisions from the ADR table */
 function extractDecisions(content: string): MemoryEntry[] {
   const entries: MemoryEntry[] = [];
-  // Process line by line to avoid cross-row matching issues with separators
-  const lines = content.split('\n');
+
+  // P1 FIX: Only parse tables within the Architecture Decisions section
+  // This prevents mismatching other 4-column tables (e.g., Backlog Priority)
+  const adrSection = content.match(
+    /## Architecture Decisions\n([\s\S]*?)(?=\n## |$)/
+  );
+
+  if (!adrSection?.[1]) return entries;
+
+  // Process line by line within the ADR section only
+  const lines = adrSection[1].split('\n');
   const rowRegex =
     /^\|\s*([\w-]+)\s*\|\s*(.+?)\s*\|\s*([\w-]+)\s*\|\s*([\w]+)\s*\|$/;
 
@@ -351,9 +360,12 @@ function extractRoleStates(content: string): MemoryEntry[] {
 
   if (!roleSection?.[1]) return entries;
 
-  // Match each role heading and its content
+  // P1 FIX: Match both formats:
+  // 1. Old format: "### ... — The CEO"
+  // 2. New format: "### 👔 CEO" (emoji headings)
+  // The regex now captures the last word (role name) from either format
   const roleRegex =
-    /### .+? — The (\w+)\n([\s\S]*?)(?=\n### |$)/g;
+    /### (?:[^\n]+? — The |.{0,3})(\w+)\n([\s\S]*?)(?=\n### |$)/g;
   let match: RegExpExecArray | null;
 
   while ((match = roleRegex.exec(roleSection[1])) !== null) {
@@ -383,9 +395,23 @@ function extractBlockers(content: string): MemoryEntry[] {
 
   if (!blockerSection?.[1]) return entries;
 
+  // P0 FIX: Filter out common "no blockers" patterns:
+  // - "(none)", "None", "None 🎉", "N/A", "-" only, etc.
   const items = blockerSection[1]
     .split('\n')
-    .filter((l) => l.trim().startsWith('-') && !l.includes('(none)'));
+    .filter((l) => {
+      const trimmed = l.trim();
+      if (!trimmed.startsWith('-')) return false;
+
+      const text = trimmed.replace(/^-\s*/, '').toLowerCase();
+      // Skip empty, "none", "n/a", celebration emoji, or just dashes
+      if (text === '' || text === '--') return false;
+      if (text.includes('none') || text.includes('(none)')) return false;
+      if (text.includes('n/a') || text === '🎉') return false;
+      if (/^[-–—]+$/.test(text)) return false;
+
+      return true;
+    });
 
   items.forEach((item, i) => {
     entries.push({
