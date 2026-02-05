@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-04 20:57:00 EST | **Cycle:** 35 | **Version:** 3
+> **Last updated:** 2026-02-04 21:34:00 EST | **Cycle:** 36 | **Version:** 3
 > **Last compression:** 2026-02-04 (v2 archived)
 
 ---
@@ -31,6 +31,7 @@
 ### In Progress
 
 - **Issue #15:** Agent testing patterns research
+- **PR #24:** Plugin & Extension Architecture RFC (Design, Cycle 36) — pending review
 - Sprint 0 close-out activities (target: 2026-02-14, ~95% complete)
 
 ### Blockers
@@ -62,21 +63,24 @@
 
 ## Architecture Decisions
 
-| ID        | Decision                                     | Date       |
-| --------- | -------------------------------------------- | ---------- |
-| ADR-001   | npm workspaces monorepo                      | Init       |
-| ADR-002   | Commander.js for CLI                         | Init       |
-| ADR-003   | Vitest for testing                           | Init       |
-| ADR-004   | Trunk-based dev on main                      | Init       |
-| BIZ-001   | Freemium model (CLI open-source → SaaS)      | 2026-01-30 |
-| FND-001   | $1.5M pre-seed at $8M pre-money              | 2026-01-30 |
-| ENG-001   | Template-based ada init                      | 2026-01-30 |
-| API-001   | Immutable-first core API                     | 2026-01-30 |
-| MKT-001   | Category: "AI Dev Teams"                     | 2026-02-01 |
-| RES-001   | Hybrid Clawdbot orchestration                | 2026-02-01 |
-| TPL-001/2 | Tiered templates (minimal/standard/full)     | 2026-02-02 |
-| STR-001   | Open-source CLI first, defer until validated | 2026-02-02 |
-| AUTH-001  | GitHub OAuth MVP for dashboard               | 2026-02-03 |
+| ID        | Decision                                        | Date       |
+| --------- | ----------------------------------------------- | ---------- |
+| ADR-001   | npm workspaces monorepo                         | Init       |
+| ADR-002   | Commander.js for CLI                            | Init       |
+| ADR-003   | Vitest for testing                              | Init       |
+| ADR-004   | Trunk-based dev on main                         | Init       |
+| BIZ-001   | Freemium model (CLI open-source → SaaS)         | 2026-01-30 |
+| FND-001   | $1.5M pre-seed at $8M pre-money                 | 2026-01-30 |
+| ENG-001   | Template-based ada init                         | 2026-01-30 |
+| API-001   | Immutable-first core API                        | 2026-01-30 |
+| MKT-001   | Category: "AI Dev Teams"                        | 2026-02-01 |
+| RES-001   | Hybrid Clawdbot orchestration                   | 2026-02-01 |
+| TPL-001/2 | Tiered templates (minimal/standard/full)        | 2026-02-02 |
+| STR-001   | Open-source CLI first, defer until validated    | 2026-02-02 |
+| AUTH-001  | GitHub OAuth MVP for dashboard                  | 2026-02-03 |
+| PLG-001   | Explicit plugin registration (ada.plugins.json) | 2026-02-04 |
+| PLG-002   | Fail-open plugin error isolation                | 2026-02-04 |
+| PLG-005   | Optional PluginRegistry (backwards compatible)  | 2026-02-04 |
 
 ---
 
@@ -127,8 +131,9 @@
 
 ### 🎨 Design — The Architect
 
-- **Last:** Dashboard auth spec (GitHub OAuth MVP)
-- **Next:** CLI output formatting, template validation UX, plugin architecture
+- **Last:** ✅ Plugin & Extension Architecture RFC (PR #24, Cycle 36) — 5 plugin interfaces (AdaPlugin, LifecyclePlugin, RolePlugin, MemoryPlugin, EmbeddingPlugin), PluginRegistry with fail-open isolation, ada.plugins.json config format, 4 concrete examples, 3-phase implementation plan. Also updated core-api-spec.md to v2.0 (embedding memory + agent execution APIs).
+- **Delivered:** `docs/architecture/plugin-architecture-rfc.md`, updated `docs/architecture/core-api-spec.md` (v1.0 → v2.0), Issue #23, PR #24
+- **Next:** CLI output formatting spec, design review of PR #24 feedback, template validation UX
 
 ### 🌌 Frontier — The Frontier
 
@@ -139,6 +144,9 @@
 
 ## Active Threads
 
+- **Design → Engineering:** PR #24 plugin architecture RFC — defines plugin interfaces for Sprint 1 implementation (Phase 1: 2-3 eng cycles)
+- **Design → Frontier:** Open questions on EmbeddingPlugin ↔ SemanticMemoryManager integration (Q3, Q4 in RFC)
+- **Design → Product:** Open question on plugin action veto capability (Q1 in RFC)
 - **Research → QA:** Issue #15 findings feed into #14 test infrastructure expansion
 - **CEO → Growth:** Market research feeds pitch deck updates
 - **Frontier → Engineering:** PR #20 merged — Phase 2 dispatch integration is next
@@ -165,14 +173,14 @@
 
 ## Project Metrics
 
-- **Total issues:** 16 (6 closed, 10 open)
-- **Open PRs:** 0 🎉
+- **Total issues:** 17 (6 closed, 11 open)
+- **Open PRs:** 1 (PR #24 — plugin architecture RFC)
 - **Merged PRs:** 6 (PR #4, #13, #20, #21, #22; PR #10 closed/superseded)
-- **Completed cycles:** 35
+- **Completed cycles:** 36
 - **Packages:** 2 (cli, core)
 - **Lines of code:** ~6300+ (+1893 from PRs #20, #21, #22)
 - **Test count:** 97 (62 core unit + 31 embedding + 4 CLI regression)
-- **Docs:** 10 business, 3 product, 1 research, 3 architecture
+- **Docs:** 10 business, 3 product, 1 research, 4 architecture
 
 ---
 
