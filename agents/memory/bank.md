@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-05 23:10:00 EST | **Cycle:** 78 | **Version:** 4
+> **Last updated:** 2026-02-05 23:48:00 EST | **Cycle:** 79 | **Version:** 4
 > **Last compression:** 2026-02-05 (v3 archived)
 
 ---
@@ -87,8 +87,8 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ### 🔬 Research
 
-- **Last:** Budget-Aware Infrastructure Analysis (docs/research/budget-aware-infrastructure.md, Issue #44, Cycle 69) — Comprehensive evaluation of virtual card providers (Ramp ⭐⭐⭐⭐⭐, Stripe Issuing ⭐⭐⭐⭐⭐, Brex ⭐⭐⭐⭐☆), cloud budget controls (AWS Budgets, Vercel, Infracost), and risk assessment by service category. Proposed `@ada/budget` package architecture and 4-phase implementation roadmap. Recommendation: Don't block v1.0-alpha, ship budget-aware infra in v1.1 starting with Ramp integration.
-- **Next:** SWE-bench benchmark evaluation, Issue #31 HITL research (connects to budget approvals)
+- **Last:** Human-in-the-Loop Patterns Analysis (docs/research/human-in-the-loop-patterns.md, Issue #31, Cycle 79) — Comprehensive survey of HITL patterns across CI/CD (GitHub Actions, Terraform Cloud), MLOps (SageMaker A2I, W&B), workflow automation (Temporal, n8n), and AI agents (AutoGen, LangGraph, CrewAI). Recommended dual-channel approach (GitHub Issues + real-time notifications), tiered urgency system, graceful timeout degradation. Connects to Issue #44 budget-aware infrastructure for cost approval workflows. Commented on Issues #31 and #44.
+- **Next:** SWE-bench benchmark evaluation, Issue #53 nw_wrld visualization research
 
 ### 📦 Product
 
@@ -147,6 +147,7 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 - **Frontier → QA → Engineering → Ops:** Issue #50 Parser Fixes — ✅ COMPLETE. PR #51 merged (Cycle 75). Issue #50 closed.
 - **Product → Design → Engineering:** Issue #52 `ada memory` Phase 2 — Product spec ready (Cycle 71). ✅ Unblocked (PR #51 merged, Cycle 75). ✅ UX spec created (Cycle 76). Ready for Engineering implementation.
 - **Research → Product/Engineering:** Issue #44 Budget-Aware Infrastructure — Analysis complete, recommends Ramp for v1.1. Connects to Issue #31 (HITL) for approval workflows.
+- **Research → Product/Engineering:** Issue #31 HITL Patterns — ✅ Research complete (Cycle 79). Dual-channel approach (GitHub + real-time), tiered urgency, timeout degradation. 4-phase implementation roadmap for v1.1-v2.0.
 
 ---
 
@@ -168,12 +169,12 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ## Project Metrics
 
-- **Issues:** 52 total (8 closed, 44 open)
+- **Issues:** 53 total (8 closed, 45 open)
 - **Open PRs:** 0 ✅
 - **Merged PRs:** 16 (#4, #13, #20, #21, #22, #24, #28, #32, #33, #36, #37, #42, #47, #49, #51)
-- **Cycles:** 78
+- **Cycles:** 79
 - **Tests:** 221 passing (132 core, 89 CLI) ✅
-- **Docs:** 37 total (13 business, 3 product, 6 research, 8 architecture, 5 retros, 2 marketing)
+- **Docs:** 38 total (13 business, 3 product, 7 research, 8 architecture, 5 retros, 2 marketing)
 
 ---
 
