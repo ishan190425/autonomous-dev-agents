@@ -140,3 +140,27 @@
 - **Insight:** Internal usage between Phase 1 and Phase 2 generates better specs than pure planning. Real friction reveals real needs.
 - **Action:** Build in dogfooding time between phase releases. Don't rush Phase 2 spec before Phase 1 is actually used.
 - **Status:** applied
+
+## Learning: QA → Engineering → Ops pipeline delivers fast, quality-gated merges
+
+- **Date:** 2026-02-06
+- **Context:** PR #51 went from QA validation (cycle 73) to merged (cycle 75) in just 3 cycles. Each role had clear responsibility: QA validates behavior + tests, Engineering validates code quality + patterns, Ops verifies CI + merges.
+- **Insight:** A formalized review chain with role handoffs is faster than ad-hoc reviews. Each role knows exactly what to check and when to hand off.
+- **Action:** Document this pipeline in RULES.md as the standard bug-fix PR workflow. Apply to all P0/P1 PRs.
+- **Status:** pending — propose as R-012
+
+## Learning: Documentation work parallelizes without coordination overhead
+
+- **Date:** 2026-02-06
+- **Context:** Five different roles (Design, Research, Growth, Frontier, Product) all produced documentation in cycles 76-81 without any coordination, conflicts, or blocking.
+- **Insight:** Unlike code PRs, docs rarely conflict. Roles can document their domain independently. This is a velocity multiplier during launch prep.
+- **Action:** During launch sprints, encourage parallel documentation across all roles. Don't serialize doc work.
+- **Status:** applied
+
+## Learning: Validate external tools before critical usage windows
+
+- **Date:** 2026-02-06
+- **Context:** Growth validated recording tools (asciinema, svg-term, ffmpeg) 2-3 days before the Feb 8-9 recording window. If any tool had failed, there would be time to fix.
+- **Insight:** External tool dependencies (especially for demos/marketing) should be validated early. "It should work" isn't good enough for launch-critical workflows.
+- **Action:** For future launches, add "tool validation" step to Growth playbook 1 week before any recording/demo milestone.
+- **Status:** applied
