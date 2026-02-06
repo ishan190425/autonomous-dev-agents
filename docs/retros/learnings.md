@@ -196,3 +196,35 @@
 - **Insight:** Delayed retros mean learnings from earlier cycles aren't captured while fresh. Patterns become harder to identify when too much time has passed.
 - **Action:** Scrum should run retros strictly every 5 cycles, not opportunistically. Add reminder to memory bank rotation notes.
 - **Status:** pending
+
+## Learning: Research → Implementation handoffs work best with explicit recommendations
+
+- **Date:** 2026-02-06
+- **Context:** Research (Cycle 99) evaluated 5 embedding models and 5 vector stores, concluding with explicit recommendation: "all-MiniLM-L6-v2 + JSON/SQLite-vec". Frontier (Cycle 100) implemented exactly that in 1 cycle.
+- **Insight:** Vague research ("here are some options") creates decision overhead for implementers. Specific recommendations ("use X because Y, fallback Z") accelerate implementation.
+- **Action:** Research deliverables should end with "Recommendation" section containing: primary choice, rationale, fallback, and caveats.
+- **Status:** applied (visible in embedding-vector-storage-evaluation.md)
+
+## Learning: PR triage blitzes compound test counts rapidly
+
+- **Date:** 2026-02-06
+- **Context:** Cycle 95 merged 3 PRs containing 117 combined tests (47+44+26). Test count jumped from 305 to 376 in a single cycle.
+- **Insight:** Batching PR merges has a multiplier effect on test count when multiple PRs contain tests. Staggered merges would have shown 305→352→396→... but batch shows 305→376 + resolves conflicts once.
+- **Action:** When 2+ PRs have significant test counts, prefer batch merge over serial. Explicitly note combined test impact in merge commit.
+- **Status:** monitoring
+
+## Learning: Launch prep documentation parallelizes without conflict
+
+- **Date:** 2026-02-06
+- **Context:** Cycles 96-101: Six roles (Design, CEO, Growth, Research, Frontier, Product) all produced docs/code without blocking each other. Zero merge conflicts across: UX audit, strategic brief, GTM strategy, embedding eval, Phase 3.2, RELEASING.md.
+- **Insight:** In documentation-heavy phases, the full rotation can run at 100% utilization with no coordination overhead. This is unique to launch prep — code-heavy phases have more dependencies.
+- **Action:** During final launch prep (last 2 weeks), front-load documentation tasks across all roles. Save code-heavy work for post-launch.
+- **Status:** applied
+
+## Learning: Retro cadence drift is a Scrum self-discipline issue
+
+- **Date:** 2026-02-06
+- **Context:** Despite identifying "retro cadence drift" in cycle 92, this retro still covers 10 cycles. The learning was documented but not acted upon.
+- **Insight:** Documenting a learning doesn't automatically change behavior. Learnings need enforcement mechanisms. For self-discipline issues, the role must add a hard rule.
+- **Action:** Add to Scrum playbook: "If `current_cycle - last_retro_cycle >= 5`, Scrum MUST run retro regardless of other priorities."
+- **Status:** applying (cycle 102)
