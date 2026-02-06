@@ -357,7 +357,117 @@ describe('ada memory — integration tests', () => {
       expect(output).toContain('--limit');
       expect(output).toContain('--role');
       expect(output).toContain('--kind');
+      expect(output).toContain('--since');
+      expect(output).toContain('--until');
       expect(output).toContain('--json');
+    });
+
+    it('shows help for export subcommand', () => {
+      const output = runAda(['memory', 'export', '--help']);
+
+      expect(output).toContain('export');
+      expect(output).toContain('--output');
+      expect(output).toContain('--include-archives');
+    });
+  });
+
+  describe('ada memory list — date filters (Phase 2)', () => {
+    it('supports --since flag', () => {
+      const output = runAda(['memory', 'list', '--since', '2026-02-01', '--json']);
+
+      const result = JSON.parse(output);
+      expect(result).toHaveProperty('entries');
+      // Entries should either match the filter or have no date
+    });
+
+    it('supports --until flag', () => {
+      const output = runAda(['memory', 'list', '--until', '2026-02-28', '--json']);
+
+      const result = JSON.parse(output);
+      expect(result).toHaveProperty('entries');
+    });
+
+    it('supports combining --since and --until', () => {
+      const output = runAda([
+        'memory',
+        'list',
+        '--since',
+        '2026-02-01',
+        '--until',
+        '2026-02-28',
+        '--json',
+      ]);
+
+      const result = JSON.parse(output);
+      expect(result).toHaveProperty('entries');
+      expect(result).toHaveProperty('total');
+    });
+
+    it('supports relative dates (today, yesterday)', () => {
+      // These should not throw errors
+      const todayOutput = runAda(['memory', 'list', '--since', 'today', '--json']);
+      expect(JSON.parse(todayOutput)).toHaveProperty('entries');
+
+      const yesterdayOutput = runAda(['memory', 'list', '--since', 'yesterday', '--json']);
+      expect(JSON.parse(yesterdayOutput)).toHaveProperty('entries');
+    });
+  });
+
+  describe('ada memory export (Phase 2)', () => {
+    it('exports memory bank to stdout in JSON format', () => {
+      const output = runAda(['memory', 'export']);
+
+      const exported = JSON.parse(output);
+      expect(exported).toHaveProperty('schemaVersion', '1.0');
+      expect(exported).toHaveProperty('exportedAt');
+      expect(exported).toHaveProperty('bank');
+      expect(exported.bank).toHaveProperty('content');
+      expect(exported.bank).toHaveProperty('entries');
+      expect(Array.isArray(exported.bank.entries)).toBe(true);
+    });
+
+    it('exports to file with --output flag', async () => {
+      const outputPath = path.join(testDir, 'export.json');
+      const output = runAda(['memory', 'export', '--output', outputPath]);
+
+      // Should confirm export
+      expect(output).toContain('Exported memory');
+      expect(output).toContain('export.json');
+
+      // File should exist and be valid JSON
+      const fileContent = await fs.readFile(outputPath, 'utf-8');
+      const exported = JSON.parse(fileContent);
+      expect(exported).toHaveProperty('schemaVersion', '1.0');
+    });
+
+    it('includes archives with --include-archives flag', async () => {
+      // First create an archive
+      const archivesDir = path.join(testDir, 'agents', 'memory', 'archives');
+      await fs.mkdir(archivesDir, { recursive: true });
+      await fs.writeFile(
+        path.join(archivesDir, 'bank-2026-02-01-v1.md'),
+        '# Archived Bank\n\n## Test Section\n'
+      );
+
+      const output = runAda(['memory', 'export', '--include-archives']);
+
+      const exported = JSON.parse(output);
+      expect(exported).toHaveProperty('archives');
+      expect(Array.isArray(exported.archives)).toBe(true);
+      expect(exported.archives.length).toBeGreaterThanOrEqual(1);
+      expect(exported.archives[0]).toHaveProperty('filename');
+      expect(exported.archives[0]).toHaveProperty('content');
+      expect(exported.archives[0]).toHaveProperty('entries');
+    });
+
+    it('export schema includes ISO timestamp', () => {
+      const output = runAda(['memory', 'export']);
+
+      const exported = JSON.parse(output);
+      const exportedAt = new Date(exported.exportedAt);
+
+      // Should be a valid date within last minute
+      expect(exportedAt.getTime()).toBeGreaterThan(Date.now() - 60_000);
     });
   });
 });
