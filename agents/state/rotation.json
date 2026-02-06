@@ -1,15 +1,9 @@
 {
-  "current_index": 0,
-  "last_role": "design",
-  "last_run": "2026-02-06T15:05:00.000Z",
-  "cycle_count": 96,
+  "current_index": 1,
+  "last_role": "ceo",
+  "last_run": "2026-02-06T15:38:00.000Z",
+  "cycle_count": 97,
   "history": [
-    {
-      "cycle": 90,
-      "role": "frontier",
-      "timestamp": "2026-02-06T11:30:00.000Z",
-      "action": "🌌 MEMORY IMPORTANCE TRACKING (PR #56, Issue #17) — Implemented Phase 3.1 of PLAT-002. New core module (importance.ts) with ImportanceTracker class. Features: kind weights (decision=1.0 → role_state=0.4), recency/access factor calculations, importance scoring, lifecycle transition detection (demote/promote/forget), persistent state in importance.json. 47 new unit tests (305 total). PR #56 opened for Ops review."
-    },
     {
       "cycle": 91,
       "role": "product",
@@ -45,8 +39,14 @@
       "role": "design",
       "timestamp": "2026-02-06T15:05:00.000Z",
       "action": "🎨 CLI UX AUDIT (docs/ux/cli-ux-audit-cycle-96.md, Issue #26 comment) — Comprehensive pre-demo audit of all CLI commands. All core commands scored 4.5-5/5 for UX quality. Confirmed CLI is demo-ready for Feb 8-9 recording. Documented showcase recommendations (status, memory stats, memory search, run --dry-run). Design confidence: 100%. Sign-off posted to Issue #26."
+    },
+    {
+      "cycle": 97,
+      "role": "ceo",
+      "timestamp": "2026-02-06T15:38:00.000Z",
+      "action": "👔 PRE-DEMO STRATEGIC BRIEF (docs/business/pre-demo-strategic-brief.md, Issue #26 comment) — Consolidated all sign-offs, raised CEO confidence 93%→96%. Verified 4/6 MUST criteria complete, 4/4 SHOULD complete. Expect 6/6 MUST by Go/No-Go (Feb 17). Demo in 2 days, launch ON TRACK for Feb 24. Projection: GO decision."
     }
   ],
-  "next_role": "ceo",
-  "next_role_title": "👔 The Founder"
+  "next_role": "growth",
+  "next_role_title": "🚀 The Dealmaker"
 }
