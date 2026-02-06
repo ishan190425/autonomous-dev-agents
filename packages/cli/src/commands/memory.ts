@@ -24,6 +24,9 @@ import {
   listArchives,
   formatActivityBar,
   getRelativeTime,
+  createJsonVectorStore,
+  createImportanceTracker,
+  createLifecycleManager,
 } from '@ada/core';
 import type { MemoryEntry, HealthStatus } from '@ada/core';
 
@@ -85,6 +88,38 @@ interface MemoryExport {
     content: string;
     entries: MemoryEntry[];
   }>;
+}
+
+interface MemoryEmbedOptions {
+  dir: string;
+  force?: boolean;
+  json?: boolean;
+  verbose?: boolean;
+}
+
+interface MemoryLifecycleOptions {
+  dir: string;
+  json?: boolean;
+  verbose?: boolean;
+  noColor?: boolean;
+}
+
+interface LifecycleStats {
+  tiers: {
+    hot: number;
+    warm: number;
+    cold: number;
+  };
+  total: number;
+  dimensions: number;
+  provider: string;
+  lastModified: string;
+  importance: {
+    tracked: number;
+    avgScore: number;
+    aboveForgetThreshold: number;
+    belowForgetThreshold: number;
+  };
 }
 
 // ─── Utilities ───────────────────────────────────────────────────────────────
@@ -711,6 +746,261 @@ async function executeExport(options: MemoryExportOptions): Promise<void> {
   }
 }
 
+// ─── Embed Command ───────────────────────────────────────────────────────────
+
+/** TF-IDF embedding dimensions (must match core library) */
+const EMBEDDING_DIMENSIONS = 256;
+const EMBEDDING_PROVIDER = 'tfidf';
+
+/**
+ * Initialize or reindex the persistent vector store.
+ *
+ * Creates the three-tier memory system:
+ * - Hot tier: bank.md (markdown, read every cycle)
+ * - Warm tier: Vector store (semantic search on demand)
+ * - Cold tier: Archives (explicit search only)
+ */
+async function executeEmbed(options: MemoryEmbedOptions): Promise<void> {
+  const agentsDir = path.resolve(options.dir, 'agents');
+
+  // Load memory bank
+  const bankContent = await loadMemoryBank(agentsDir);
+  const entries = extractMemoryEntries(bankContent);
+
+  if (entries.length === 0) {
+    console.log(chalk.yellow('⚠️  No memory entries found to embed.'));
+    console.log(chalk.gray('   The memory bank might be empty or in an unexpected format.'));
+    return;
+  }
+
+  // Check if vector store already exists
+  const vectorStorePath = path.join(agentsDir, 'state', 'vectors.json');
+  let existingEntries = 0;
+  try {
+    const existing = await fs.readFile(vectorStorePath, 'utf-8');
+    const parsed = JSON.parse(existing) as { entryCount?: number };
+    existingEntries = parsed.entryCount ?? 0;
+  } catch {
+    // Doesn't exist yet — that's fine
+  }
+
+  if (existingEntries > 0 && !options.force) {
+    if (!options.json) {
+      console.log(chalk.yellow(`⚠️  Vector store already exists with ${existingEntries} entries.`));
+      console.log(chalk.gray('   Use --force to reindex all entries.'));
+    }
+    return;
+  }
+
+  if (!options.json) {
+    console.log(chalk.bold('\n🧬 Initializing persistent memory system...\n'));
+    console.log(chalk.gray(`   Found ${entries.length} memory entries to embed`));
+  }
+
+  // Create embedding provider
+  const provider = new TfIdfEmbeddingProvider(EMBEDDING_DIMENSIONS);
+  provider.buildVocabulary(entries.map((e) => e.content));
+
+  if (options.verbose && !options.json) {
+    console.log(chalk.gray(`   Provider: ${EMBEDDING_PROVIDER} (${EMBEDDING_DIMENSIONS}D)`));
+  }
+
+  // Create and load vector store
+  const vectorStore = await createJsonVectorStore(
+    agentsDir,
+    EMBEDDING_PROVIDER,
+    EMBEDDING_DIMENSIONS
+  );
+
+  // Create importance tracker
+  const importanceTracker = await createImportanceTracker(agentsDir);
+
+  // Create lifecycle manager
+  const lifecycleManager = await createLifecycleManager(
+    provider,
+    vectorStore,
+    importanceTracker,
+    { agentsDir }
+  );
+
+  // Reindex all entries
+  const indexed = await lifecycleManager.reindex(1);
+
+  // Get final stats
+  const stats = lifecycleManager.getStats();
+
+  // Output
+  if (options.json) {
+    const output = {
+      indexed,
+      stats: {
+        hot: stats.hot,
+        warm: stats.warm,
+        cold: stats.cold,
+        total: stats.total,
+        avgImportance: Math.round(stats.avgImportance * 1000) / 1000,
+      },
+      provider: EMBEDDING_PROVIDER,
+      dimensions: EMBEDDING_DIMENSIONS,
+    };
+    console.log(JSON.stringify(output, null, 2));
+    return;
+  }
+
+  // Human-readable output
+  console.log(chalk.green(`\n✅ Indexed ${indexed} memory entries\n`));
+  console.log(chalk.bold('Memory Tiers:'));
+  console.log(`  🔥 Hot:   ${chalk.cyan(stats.hot.toString())} entries (active, in bank.md)`);
+  console.log(`  💧 Warm:  ${chalk.cyan(stats.warm.toString())} entries (vector store)`);
+  console.log(`  ❄️  Cold:  ${chalk.cyan(stats.cold.toString())} entries (archived)`);
+  console.log();
+  console.log(chalk.gray(`   Provider: ${EMBEDDING_PROVIDER} (${EMBEDDING_DIMENSIONS}D)`));
+  console.log(chalk.gray(`   Store: ${vectorStorePath}`));
+  console.log();
+}
+
+// ─── Lifecycle Command ───────────────────────────────────────────────────────
+
+/**
+ * Show memory lifecycle statistics.
+ */
+async function executeLifecycle(options: MemoryLifecycleOptions): Promise<void> {
+  const agentsDir = path.resolve(options.dir, 'agents');
+  const useColor = !options.noColor && process.stdout.isTTY;
+
+  // Check if vector store file exists
+  const vectorStorePath = path.join(agentsDir, 'state', 'vectors.json');
+  let vectorStoreExists = false;
+  try {
+    await fs.access(vectorStorePath);
+    vectorStoreExists = true;
+  } catch {
+    // File doesn't exist
+  }
+
+  // Try to load vector store
+  let vectorStats: LifecycleStats['tiers'] & { total: number; dimensions: number; provider: string; lastModified: string } | null = null;
+
+  if (vectorStoreExists) {
+    try {
+      const store = await createJsonVectorStore(
+        agentsDir,
+        EMBEDDING_PROVIDER,
+        EMBEDDING_DIMENSIONS
+      );
+      const stats = store.getStats();
+      vectorStats = {
+        hot: stats.byTier.hot,
+        warm: stats.byTier.warm,
+        cold: stats.byTier.cold,
+        total: stats.total,
+        dimensions: stats.dimensions,
+        provider: stats.provider,
+        lastModified: stats.lastModified,
+      };
+    } catch {
+      // Vector store exists but couldn't be loaded
+    }
+  }
+
+  // Try to load importance tracker (only if vector store exists)
+  let importanceStats: LifecycleStats['importance'] | null = null;
+
+  if (vectorStoreExists) {
+    try {
+      const tracker = await createImportanceTracker(agentsDir);
+      const stats = tracker.getStats();
+      importanceStats = {
+        tracked: stats.total,
+        avgScore: stats.avgScore,
+        aboveForgetThreshold: stats.total - stats.belowForgetThreshold,
+        belowForgetThreshold: stats.belowForgetThreshold,
+      };
+    } catch {
+      // Importance tracker doesn't exist yet
+    }
+  }
+
+  // JSON output
+  if (options.json) {
+    const output: Partial<LifecycleStats> = {};
+    if (vectorStats) {
+      output.tiers = {
+        hot: vectorStats.hot,
+        warm: vectorStats.warm,
+        cold: vectorStats.cold,
+      };
+      output.total = vectorStats.total;
+      output.dimensions = vectorStats.dimensions;
+      output.provider = vectorStats.provider;
+      output.lastModified = vectorStats.lastModified;
+    }
+    if (importanceStats) {
+      output.importance = importanceStats;
+    }
+    console.log(JSON.stringify(output, null, 2));
+    return;
+  }
+
+  // Human-readable output
+  console.log(chalk.bold('\n📊 Memory Lifecycle Status\n'));
+
+  if (!vectorStats) {
+    console.log(chalk.yellow('⚠️  Vector store not initialized.'));
+    console.log(chalk.gray("   Run 'ada memory embed' to create the three-tier memory system."));
+    console.log();
+    return;
+  }
+
+  // Tier distribution
+  console.log(chalk.bold('Tier Distribution'));
+  const tierTotal = vectorStats.hot + vectorStats.warm + vectorStats.cold;
+  const hotPct = tierTotal > 0 ? Math.round((vectorStats.hot / tierTotal) * 100) : 0;
+  const warmPct = tierTotal > 0 ? Math.round((vectorStats.warm / tierTotal) * 100) : 0;
+  const coldPct = tierTotal > 0 ? Math.round((vectorStats.cold / tierTotal) * 100) : 0;
+
+  const hotBar = '█'.repeat(Math.max(1, Math.round(hotPct / 5)));
+  const warmBar = '█'.repeat(Math.max(0, Math.round(warmPct / 5)));
+  const coldBar = '█'.repeat(Math.max(0, Math.round(coldPct / 5)));
+
+  console.log(`  🔥 Hot   ${useColor ? chalk.red(hotBar) : hotBar} ${vectorStats.hot} (${hotPct}%)`);
+  console.log(`  💧 Warm  ${useColor ? chalk.yellow(warmBar) : warmBar} ${vectorStats.warm} (${warmPct}%)`);
+  console.log(`  ❄️  Cold  ${useColor ? chalk.blue(coldBar) : coldBar} ${vectorStats.cold} (${coldPct}%)`);
+  console.log();
+
+  // Importance tracking
+  if (importanceStats) {
+    console.log(chalk.bold('Importance Tracking'));
+    console.log(`  Entries tracked:   ${useColor ? chalk.cyan(importanceStats.tracked.toString()) : importanceStats.tracked}`);
+    console.log(`  Average score:     ${useColor ? chalk.cyan(`${(importanceStats.avgScore * 100).toFixed(1)  }%`) : `${(importanceStats.avgScore * 100).toFixed(1)  }%`}`);
+    console.log(`  Above threshold:   ${useColor ? chalk.green(importanceStats.aboveForgetThreshold.toString()) : importanceStats.aboveForgetThreshold}`);
+    console.log(`  Below threshold:   ${useColor ? chalk.red(importanceStats.belowForgetThreshold.toString()) : importanceStats.belowForgetThreshold}`);
+    console.log();
+  }
+
+  // Store info (verbose)
+  if (options.verbose) {
+    console.log(chalk.bold('Store Info'));
+    console.log(`  Provider:     ${vectorStats.provider}`);
+    console.log(`  Dimensions:   ${vectorStats.dimensions}`);
+    console.log(`  Last updated: ${getRelativeTime(vectorStats.lastModified)}`);
+    console.log(`  Store path:   ${vectorStorePath}`);
+    console.log();
+  }
+
+  // Health assessment
+  const healthyConditions = vectorStats.hot > 0 && vectorStats.total > 0;
+  if (healthyConditions) {
+    console.log(useColor ? chalk.green('✅ Memory lifecycle system healthy') : '✅ Memory lifecycle system healthy');
+  } else {
+    console.log(useColor ? chalk.yellow('⚠️  Memory lifecycle system needs attention') : '⚠️  Memory lifecycle system needs attention');
+    if (vectorStats.hot === 0) {
+      console.log(chalk.gray("   - No hot entries. Run 'ada memory embed' to index."));
+    }
+  }
+  console.log();
+}
+
 // ─── Command Definition ──────────────────────────────────────────────────────
 
 export const memoryCommand = new Command('memory')
@@ -781,6 +1071,40 @@ export const memoryCommand = new Command('memory')
       .action(async (options: MemoryExportOptions) => {
         try {
           await executeExport(options);
+        } catch (err) {
+          const error = err as Error;
+          console.error(chalk.red(`\n❌ Error: ${error.message}`));
+          process.exit(1);
+        }
+      })
+  )
+  .addCommand(
+    new Command('embed')
+      .description('Initialize persistent vector store for three-tier memory (Phase 3.3)')
+      .option('-d, --dir <path>', 'Project root directory', '.')
+      .option('-f, --force', 'Force reindex even if store exists')
+      .option('--json', 'Output as JSON')
+      .option('-v, --verbose', 'Show detailed output')
+      .action(async (options: MemoryEmbedOptions) => {
+        try {
+          await executeEmbed(options);
+        } catch (err) {
+          const error = err as Error;
+          console.error(chalk.red(`\n❌ Error: ${error.message}`));
+          process.exit(1);
+        }
+      })
+  )
+  .addCommand(
+    new Command('lifecycle')
+      .description('Show memory lifecycle and tier statistics')
+      .option('-d, --dir <path>', 'Project root directory', '.')
+      .option('--json', 'Output as JSON')
+      .option('--no-color', 'Disable colored output')
+      .option('-v, --verbose', 'Show store details')
+      .action(async (options: MemoryLifecycleOptions) => {
+        try {
+          await executeLifecycle(options);
         } catch (err) {
           const error = err as Error;
           console.error(chalk.red(`\n❌ Error: ${error.message}`));
