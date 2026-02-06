@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-06 15:40:00 EST | **Cycle:** 105 | **Version:** 5
+> **Last updated:** 2026-02-06 16:16:00 EST | **Cycle:** 106 | **Version:** 5
 > **Last compression:** 2026-02-06 (v4 archived)
 
 ---
@@ -117,7 +117,7 @@ _Full ADR list in archives/bank-2026-02-06-v4.md_
 
 ### 🎨 Design
 
-- **Last:** CLI UX Audit (Cycle 96) — Comprehensive pre-demo audit of all CLI commands. All core commands scored 4.5-5/5. CLI confirmed demo-ready. Documented in `docs/ux/cli-ux-audit-cycle-96.md`. Commented on Issue #26 with Design sign-off. **Design confidence: 100%.**
+- **Last:** API Spec v3.0 (Cycle 106) — Updated `docs/architecture/core-api-spec.md` with complete Phase 3 memory lifecycle documentation. Added Memory Importance API (Phase 3.1), Persistent Vector Store API (Phase 3.2), Memory Lifecycle Manager API (Phase 3.2). 334 lines added. Pre-launch documentation for v1.0-alpha. Commented on Issue #17.
 - **Next:** Post-launch polish (P3): quiet mode, colors, threshold hiding
 
 ### 🌌 Frontier
