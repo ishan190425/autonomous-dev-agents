@@ -43,6 +43,8 @@ interface MemoryListOptions {
   limit?: string;
   role?: string;
   kind?: string;
+  since?: string;
+  until?: string;
   json?: boolean;
 }
 
@@ -61,6 +63,28 @@ interface MemoryStatsOptions {
   json?: boolean;
   verbose?: boolean;
   noColor?: boolean;
+}
+
+interface MemoryExportOptions {
+  dir: string;
+  output?: string;
+  includeArchives?: boolean;
+  json?: boolean;
+}
+
+/** Export data format with schema versioning */
+interface MemoryExport {
+  schemaVersion: '1.0';
+  exportedAt: string;
+  bank: {
+    content: string;
+    entries: MemoryEntry[];
+  };
+  archives?: Array<{
+    filename: string;
+    content: string;
+    entries: MemoryEntry[];
+  }>;
 }
 
 // ─── Utilities ───────────────────────────────────────────────────────────────
@@ -170,6 +194,70 @@ function truncateContent(content: string, maxLength: number = 100): string {
   const singleLine = content.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
   if (singleLine.length <= maxLength) return singleLine;
   return `${singleLine.slice(0, maxLength - 3)  }...`;
+}
+
+/**
+ * Parse a date string into a Date object.
+ * Supports ISO dates (YYYY-MM-DD) and relative dates (today, yesterday).
+ */
+function parseDate(dateStr: string): Date | null {
+  const trimmed = dateStr.trim().toLowerCase();
+
+  // Relative dates
+  if (trimmed === 'today') {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+  if (trimmed === 'yesterday') {
+    const d = new Date();
+    d.setDate(d.getDate() - 1);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+
+  // ISO date format YYYY-MM-DD
+  const isoMatch = /^(\d{4})-(\d{2})-(\d{2})$/.exec(trimmed);
+  if (isoMatch && isoMatch[1] && isoMatch[2] && isoMatch[3]) {
+    const year = parseInt(isoMatch[1], 10);
+    const month = parseInt(isoMatch[2], 10) - 1; // 0-indexed
+    const day = parseInt(isoMatch[3], 10);
+    return new Date(year, month, day);
+  }
+
+  // Try Date.parse as fallback
+  const parsed = Date.parse(dateStr);
+  if (!isNaN(parsed)) {
+    return new Date(parsed);
+  }
+
+  return null;
+}
+
+/**
+ * Check if an entry's date is within the specified range.
+ */
+function isInDateRange(
+  entry: MemoryEntry,
+  since: Date | null,
+  until: Date | null
+): boolean {
+  // If entry has no date, it cannot be filtered by date
+  if (!entry.date) return true;
+
+  const entryDate = parseDate(entry.date);
+  if (!entryDate) return true; // Can't parse, include by default
+
+  if (since && entryDate < since) return false;
+
+  if (until) {
+    // Until is inclusive — set to end of day
+    const untilEnd = new Date(until);
+    untilEnd.setHours(23, 59, 59, 999);
+    if (entryDate > untilEnd) return false;
+  }
+
+  return true;
 }
 
 // ─── Search Command ──────────────────────────────────────────────────────────
@@ -299,6 +387,25 @@ async function executeList(options: MemoryListOptions): Promise<void> {
     entries = entries.filter((e) => e.kind === options.kind);
   }
 
+  // Date range filters
+  const sinceDate = options.since ? parseDate(options.since) : null;
+  const untilDate = options.until ? parseDate(options.until) : null;
+
+  if (sinceDate || untilDate) {
+    if (options.since && !sinceDate) {
+      console.error(chalk.red(`❌ Invalid --since date: ${options.since}`));
+      console.error(chalk.gray('   Use format: YYYY-MM-DD, today, or yesterday'));
+      process.exit(1);
+    }
+    if (options.until && !untilDate) {
+      console.error(chalk.red(`❌ Invalid --until date: ${options.until}`));
+      console.error(chalk.gray('   Use format: YYYY-MM-DD, today, or yesterday'));
+      process.exit(1);
+    }
+
+    entries = entries.filter((e) => isInDateRange(e, sinceDate, untilDate));
+  }
+
   // Limit
   const limited = entries.slice(0, limit);
 
@@ -319,10 +426,12 @@ async function executeList(options: MemoryListOptions): Promise<void> {
   const byKind = new Map<string, MemoryEntry[]>();
   for (const entry of limited) {
     const kind = entry.kind;
-    if (!byKind.has(kind)) {
-      byKind.set(kind, []);
+    const kindEntries = byKind.get(kind);
+    if (kindEntries) {
+      kindEntries.push(entry);
+    } else {
+      byKind.set(kind, [entry]);
     }
-    byKind.get(kind)!.push(entry);
   }
 
   for (const [kind, kindEntries] of byKind) {
@@ -366,7 +475,7 @@ function formatHealthStatus(health: HealthStatus, useColor: boolean): string {
     healthy: chalk.green,
     warning: chalk.yellow,
     unhealthy: chalk.red,
-  }[health.status] : (s: string) => s;
+  }[health.status] : (s: string): string => s;
 
   const icons: Record<string, string> = {
     healthy: '✅',
@@ -514,6 +623,94 @@ async function executeStats(options: MemoryStatsOptions): Promise<void> {
   console.log();
 }
 
+// ─── Export Command ──────────────────────────────────────────────────────────
+
+/**
+ * Export memory bank and archives to JSON.
+ */
+async function executeExport(options: MemoryExportOptions): Promise<void> {
+  const agentsDir = path.resolve(options.dir, 'agents');
+
+  // Load memory bank
+  const bankPath = path.join(agentsDir, 'memory', 'bank.md');
+  let bankContent: string;
+
+  try {
+    bankContent = await fs.readFile(bankPath, 'utf-8');
+  } catch (err) {
+    const error = err as NodeJS.ErrnoException;
+    if (error.code === 'ENOENT') {
+      console.error(chalk.red('❌ Memory bank not found'));
+      console.error(chalk.gray(`\nExpected: ${bankPath}`));
+      console.error(chalk.gray("Run 'ada init' to create project structure."));
+      process.exit(1);
+    }
+    throw error;
+  }
+
+  // Extract entries from bank
+  const bankEntries = extractMemoryEntries(bankContent);
+
+  // Build export object
+  const exportData: MemoryExport = {
+    schemaVersion: '1.0',
+    exportedAt: new Date().toISOString(),
+    bank: {
+      content: bankContent,
+      entries: [...bankEntries],
+    },
+  };
+
+  // Include archives if requested
+  if (options.includeArchives) {
+    const archivesDir = path.join(agentsDir, 'memory', 'archives');
+    exportData.archives = [];
+
+    try {
+      const files = await fs.readdir(archivesDir);
+      const mdFiles = files.filter((f) => f.endsWith('.md')).sort();
+
+      for (const filename of mdFiles) {
+        try {
+          const content = await fs.readFile(path.join(archivesDir, filename), 'utf-8');
+          const entries = extractMemoryEntries(content);
+          exportData.archives.push({
+            filename,
+            content,
+            entries: [...entries],
+          });
+        } catch {
+          // Skip files we can't read
+        }
+      }
+    } catch {
+      // Archives directory doesn't exist — that's fine
+      exportData.archives = [];
+    }
+  }
+
+  // Output
+  const jsonOutput = JSON.stringify(exportData, null, 2);
+
+  if (options.output) {
+    // Write to file
+    const outputPath = path.resolve(options.output);
+    await fs.writeFile(outputPath, jsonOutput, 'utf-8');
+    console.log(chalk.green(`✅ Exported memory to ${outputPath}`));
+
+    // Summary
+    console.log(chalk.gray(`\n   Bank entries: ${bankEntries.length}`));
+    if (exportData.archives) {
+      const archiveEntryCount = exportData.archives.reduce((sum, a) => sum + a.entries.length, 0);
+      console.log(chalk.gray(`   Archives: ${exportData.archives.length} files, ${archiveEntryCount} entries`));
+    }
+    console.log(chalk.gray(`   Schema version: ${exportData.schemaVersion}`));
+  } else {
+    // Output to stdout
+    console.log(jsonOutput);
+  }
+}
+
 // ─── Command Definition ──────────────────────────────────────────────────────
 
 export const memoryCommand = new Command('memory')
@@ -545,6 +742,8 @@ export const memoryCommand = new Command('memory')
       .option('-l, --limit <n>', 'Maximum entries to show', '20')
       .option('-r, --role <role>', 'Filter by role')
       .option('-k, --kind <kind>', 'Filter by kind (decision, lesson, status, etc.)')
+      .option('--since <date>', 'Filter entries from this date (YYYY-MM-DD, today, yesterday)')
+      .option('--until <date>', 'Filter entries up to this date (YYYY-MM-DD, today, yesterday)')
       .option('--json', 'Output as JSON')
       .action(async (options: MemoryListOptions) => {
         try {
@@ -566,6 +765,22 @@ export const memoryCommand = new Command('memory')
       .action(async (options: MemoryStatsOptions) => {
         try {
           await executeStats(options);
+        } catch (err) {
+          const error = err as Error;
+          console.error(chalk.red(`\n❌ Error: ${error.message}`));
+          process.exit(1);
+        }
+      })
+  )
+  .addCommand(
+    new Command('export')
+      .description('Export memory bank and archives to JSON')
+      .option('-d, --dir <path>', 'Project root directory', '.')
+      .option('-o, --output <file>', 'Output file path (default: stdout)')
+      .option('--include-archives', 'Include archived memory banks')
+      .action(async (options: MemoryExportOptions) => {
+        try {
+          await executeExport(options);
         } catch (err) {
           const error = err as Error;
           console.error(chalk.red(`\n❌ Error: ${error.message}`));
