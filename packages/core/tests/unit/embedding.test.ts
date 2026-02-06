@@ -198,6 +198,178 @@ describe('extractMemoryEntries', () => {
     const entries = extractMemoryEntries('# Just a title\nSome random text.');
     expect(entries).toEqual([]);
   });
+
+  // ─── P0/P1 Parser Fixes (Issue #50) ─────────────────────────────────────────
+
+  describe('P0: Blocker parsing — filters "None" patterns', () => {
+    it('returns no blockers when section says "None 🎉"', () => {
+      const bank = `# Memory Bank
+
+### Blockers
+
+- None 🎉
+
+---
+`;
+      const entries = extractMemoryEntries(bank);
+      const blockers = entries.filter((e) => e.kind === 'blocker');
+      expect(blockers.length).toBe(0);
+    });
+
+    it('returns no blockers when section says "(none)"', () => {
+      const bank = `# Memory Bank
+
+### Blockers
+
+- (none)
+
+---
+`;
+      const entries = extractMemoryEntries(bank);
+      const blockers = entries.filter((e) => e.kind === 'blocker');
+      expect(blockers.length).toBe(0);
+    });
+
+    it('returns no blockers when section says "N/A"', () => {
+      const bank = `# Memory Bank
+
+### Blockers
+
+- N/A
+
+---
+`;
+      const entries = extractMemoryEntries(bank);
+      const blockers = entries.filter((e) => e.kind === 'blocker');
+      expect(blockers.length).toBe(0);
+    });
+
+    it('returns no blockers for dashes only', () => {
+      const bank = `# Memory Bank
+
+### Blockers
+
+- --
+
+---
+`;
+      const entries = extractMemoryEntries(bank);
+      const blockers = entries.filter((e) => e.kind === 'blocker');
+      expect(blockers.length).toBe(0);
+    });
+
+    it('extracts real blockers correctly', () => {
+      const bank = `# Memory Bank
+
+### Blockers
+
+- CI pipeline failing on lint step
+- Waiting for API key from vendor
+
+---
+`;
+      const entries = extractMemoryEntries(bank);
+      const blockers = entries.filter((e) => e.kind === 'blocker');
+      expect(blockers.length).toBe(2);
+      expect(blockers[0]?.content).toContain('CI pipeline');
+      expect(blockers[1]?.content).toContain('API key');
+    });
+  });
+
+  describe('P1: Decision extraction — section-aware parsing', () => {
+    it('only extracts decisions from Architecture Decisions section', () => {
+      const bank = `# Memory Bank
+
+## Backlog Priority
+
+| Priority | Issue | Title | Status |
+| -------- | ----- | ----- | ------ |
+| P0 | #1 | Critical bug | Open |
+| P1 | #2 | Feature request | In Progress |
+
+## Architecture Decisions
+
+| ID | Decision | Date | Author |
+| -- | -------- | ---- | ------ |
+| ADR-001 | Use TypeScript | 2026-01-01 | Builder |
+
+---
+`;
+      const entries = extractMemoryEntries(bank);
+      const decisions = entries.filter((e) => e.kind === 'decision');
+
+      // Should only have ADR-001, not the backlog rows
+      expect(decisions.length).toBe(1);
+      expect(decisions[0]?.id).toBe('decision-ADR-001');
+      expect(decisions[0]?.content).toContain('TypeScript');
+    });
+
+    it('does not parse priority tables as decisions', () => {
+      const bank = `# Memory Bank
+
+## Backlog Priority
+
+| Priority | Issue | Title | Status |
+| -------- | ----- | ----- | ------ |
+| P0 | #10 | Fix login | Done |
+| P1 | #15 | Add search | Open |
+| P2 | #20 | Polish UI | Backlog |
+
+---
+`;
+      const entries = extractMemoryEntries(bank);
+      const decisions = entries.filter((e) => e.kind === 'decision');
+
+      // No Architecture Decisions section = no decisions
+      expect(decisions.length).toBe(0);
+    });
+  });
+
+  describe('P1: Role state extraction — emoji headings', () => {
+    it('extracts roles from emoji headings like "### 👔 CEO"', () => {
+      const bank = `# Memory Bank
+
+## Role State
+
+### 👔 CEO
+
+- **Last:** Reviewed launch plan
+- **Next:** Investor meeting
+
+### 🔬 Research
+
+- **Last:** Completed benchmark
+- **Next:** Write report
+
+---
+`;
+      const entries = extractMemoryEntries(bank);
+      const roleStates = entries.filter((e) => e.kind === 'role_state');
+
+      expect(roleStates.length).toBe(2);
+      expect(roleStates.find((e) => e.role === 'ceo')).toBeDefined();
+      expect(roleStates.find((e) => e.role === 'research')).toBeDefined();
+    });
+
+    it('extracts roles from traditional "— The X" format', () => {
+      const bank = `# Memory Bank
+
+## Role State
+
+### 👔 CEO — The Founder
+
+- **Last:** Strategic review
+- **Next:** Board meeting
+
+---
+`;
+      const entries = extractMemoryEntries(bank);
+      const roleStates = entries.filter((e) => e.kind === 'role_state');
+
+      expect(roleStates.length).toBe(1);
+      expect(roleStates[0]?.role).toBe('founder');
+    });
+  });
 });
 
 // ─── TF-IDF Embedding Provider ──────────────────────────────────────────────
