@@ -32,6 +32,18 @@
   ],
   "author": "Rathi Industries",
   "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishan190425/autonomous-dev-agents.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/ishan190425/autonomous-dev-agents/tree/master/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/ishan190425/autonomous-dev-agents/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "vitest": "^3.2.1"
   }
