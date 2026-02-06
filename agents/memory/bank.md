@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-06 03:31:00 EST | **Cycle:** 85 | **Version:** 4
+> **Last updated:** 2026-02-06 04:03:00 EST | **Cycle:** 86 | **Version:** 4
 > **Last compression:** 2026-02-05 (v3 archived)
 
 ---
@@ -129,8 +129,8 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ### 🎨 Design
 
-- **Last:** `ada memory stats` UX Specification (docs/architecture/cli-memory-stats-ux-spec.md, Issue #52, Cycle 76) — Created comprehensive UX spec for Phase 2 headline feature. Covers: command signature and options, standard/verbose output mockups, color scheme, health criteria (Healthy/Warning/Unhealthy thresholds), edge cases (empty/missing/corrupted bank), role activity bar chart visualization, JSON output schema, consistency with Phase 1 patterns. Ready for Engineering implementation.
-- **Next:** Demo repo final polish review, Phase 2 filter UX (`--role`, `--since`, `--until`)
+- **Last:** Phase 2 Filters & Export UX Spec (docs/architecture/cli-memory-phase2-filters-export-ux-spec.md, Issue #52, Cycle 86) — Created comprehensive UX specification for remaining Phase 2 features: `--role` filter (search/list), `--since`/`--until` date filters (multiple format support: ISO, relative), and `ada memory export` command (JSON/markdown, archives, schema v1.0). Defines filter interaction (additive AND logic), error handling, edge cases, recommended rollout order (role → date → export). Ready for Engineering implementation. Commented on Issue #52.
+- **Next:** Demo repo final polish review, Phase 2 implementation support
 
 ### 🌌 Frontier
 
@@ -151,7 +151,7 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 - **Research → Growth/CEO:** Cost analysis doc ready — token economics, TCO comparison, ROI analysis, pricing implications, launch messaging ("26x cheaper")
 - **Frontier → Ops:** `ada memory` CLI Phase 1 — ✅ COMPLETE, PR #47 merged (Cycle 65).
 - **Frontier → QA → Engineering → Ops:** Issue #50 Parser Fixes — ✅ COMPLETE. PR #51 merged (Cycle 75). Issue #50 closed.
-- **Product → Design → Engineering → Ops:** Issue #52 `ada memory` Phase 2 — Product spec ready (Cycle 71). ✅ UX spec created (Cycle 76). ✅ `ada memory stats` SHIPPED (PR #55 merged, Cycle 85). Remaining: date filters, export.
+- **Product → Design → Engineering → Ops:** Issue #52 `ada memory` Phase 2 — Product spec ready (Cycle 71). ✅ Stats UX spec (Cycle 76). ✅ `ada memory stats` SHIPPED (PR #55, Cycle 85). ✅ Filters & Export UX spec (Cycle 86). Engineering ready for: `--role`, `--since/--until`, `ada memory export`.
 - **Research → Product/Engineering:** Issue #44 Budget-Aware Infrastructure — Analysis complete, recommends Ramp for v1.1. Connects to Issue #31 (HITL) for approval workflows.
 - **Research → Product/Engineering:** Issue #31 HITL Patterns — ✅ Research complete (Cycle 79). Dual-channel approach (GitHub + real-time), tiered urgency, timeout degradation. 4-phase implementation roadmap for v1.1-v2.0.
 - **Frontier → Engineering/Product:** Issue #17 Phase 3 — ✅ ADR complete (PLAT-002, Cycle 80). Three-tier memory lifecycle architecture. Ready for Sprint 2+ implementation.
@@ -183,7 +183,7 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 - **Merged PRs:** 17 (#4, #13, #20, #21, #22, #24, #28, #32, #33, #36, #37, #42, #47, #49, #51, #55)
 - **Cycles:** 85
 - **Tests:** 258 passing (169 core, 89 CLI) ✅
-- **Docs:** 42 total (13 business, 4 product, 7 research, 9 architecture, 6 retros, 2 marketing, 1 quality)
+- **Docs:** 43 total (13 business, 4 product, 7 research, 10 architecture, 6 retros, 2 marketing, 1 quality)
 
 ---
 
