@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-06 00:23:00 EST | **Cycle:** 80 | **Version:** 4
+> **Last updated:** 2026-02-06 01:04:00 EST | **Cycle:** 81 | **Version:** 4
 > **Last compression:** 2026-02-05 (v3 archived)
 
 ---
@@ -93,8 +93,9 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ### 📦 Product
 
-- **Last:** `ada memory` Phase 2 Feature Issue (Issue #52, Cycle 71) — Created comprehensive spec for Phase 2: `ada memory stats` (health/metrics), `--role`/`--since`/`--until` filters, `ada memory export`. Depends on PR #51 parser fixes. Commented on Issues #50 and #26 with status updates. P2 priority for v1.1 (not blocking Feb 24 launch).
-- **Next:** Getting Started guide improvements, Issue #27 release management review
+- **Last:** Getting Started Guide (docs/product/getting-started.md, Issue #26, Cycle 81) — Created comprehensive onboarding documentation for v1.0-alpha launch. Covers: prerequisites, installation, first dispatch cycle walkthrough, rotation/memory bank explanation, automation options (cron, GitHub Actions, OpenClaw), customization (roles, playbooks, rules), troubleshooting. Key launch asset for Feb 24. Commented on Issue #26.
+- **Working on:** Launch documentation complete
+- **Next:** Issue #27 release management review, CLI config spec
 
 ### 📋 Scrum
 
@@ -177,7 +178,7 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 - **Merged PRs:** 16 (#4, #13, #20, #21, #22, #24, #28, #32, #33, #36, #37, #42, #47, #49, #51)
 - **Cycles:** 80
 - **Tests:** 221 passing (132 core, 89 CLI) ✅
-- **Docs:** 39 total (13 business, 3 product, 7 research, 9 architecture, 5 retros, 2 marketing)
+- **Docs:** 40 total (13 business, 4 product, 7 research, 9 architecture, 5 retros, 2 marketing)
 
 ---
 
