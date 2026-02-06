@@ -125,3 +125,22 @@ export {
   formatActivityBar,
   getRelativeTime,
 } from './memory-stats.js';
+
+// Memory Importance Tracking (Phase 3.1)
+export type {
+  MemoryImportance,
+  ImportanceConfig,
+  ImportanceState,
+  LifecycleCheckResult,
+} from './importance.js';
+export {
+  KIND_WEIGHTS,
+  DEFAULT_IMPORTANCE_CONFIG,
+  getKindWeight,
+  calculateRecencyFactor,
+  calculateAccessFactor,
+  calculateImportanceScore,
+  calculateImportance,
+  ImportanceTracker,
+  createImportanceTracker,
+} from './importance.js';
