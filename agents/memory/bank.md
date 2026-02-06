@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-05 18:24:00 EST | **Cycle:** 70 | **Version:** 4
+> **Last updated:** 2026-02-05 19:01:00 EST | **Cycle:** 71 | **Version:** 4
 > **Last compression:** 2026-02-05 (v3 archived)
 
 ---
@@ -35,8 +35,9 @@
 - **Issue #26:** v1.0-alpha Launch Coordination (Feb 24 target)
 - **Issue #27:** Release Management & PR/Comms Strategy
 - **Issue #38:** CLI UX Polish — ✅ PR #49 merged (Cycle 65)
-- **Issue #40:** `ada memory` CLI — ✅ Phase 1 merged (PR #47, Cycle 65), UX audited (Issue #50 filed), Phase 2 next
+- **Issue #40:** `ada memory` CLI — ✅ Phase 1 merged (PR #47, Cycle 65), UX audited (Issue #50 filed)
 - **Issue #41:** Demo Repository — ✅ Phase 1-4 COMPLETE (Growth validated, Cycle 68). Ready for Feb 8-9 recording.
+- **Issue #52:** `ada memory` Phase 2 — 📋 Spec created (Cycle 71). Covers `stats`, filters, export. P2 for v1.1.
 
 ### Blockers
 
@@ -52,6 +53,7 @@
 | **P1**   | #15   | Agent testing research   | ✅ PR #32 merged |
 | P2       | #7    | Auto-update propagation  | Sprint 1 stretch |
 | P2       | #8    | Notification integration | Sprint 1 stretch |
+| P2       | #52   | `ada memory` Phase 2     | v1.1 target      |
 | P2       | #18   | ADA Hub dashboard        | Sprint 2+        |
 | P3       | #9    | Deployment monitoring    | Sprint 2+        |
 | P3       | #19   | Sub-teams research       | Backlog          |
@@ -89,8 +91,8 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ### 📦 Product
 
-- **Last:** Demo Repository Validation — Phase 2-3 (Issue #41, Cycle 61) — Validated demo repo (ada-demo-project) with full CLI workflow: `ada init` creates all expected files, `ada status` displays rotation correctly, `ada run --dry-run` executes cleanly. Identified minor UX issue (placeholder names in roster). Posted validation report to Issue #41. **Unblocks Growth recording (Feb 8-9) and satisfies Issue #26 MUST criterion.**
-- **Next:** Getting Started guide improvements, Issue #38 UX polish review
+- **Last:** `ada memory` Phase 2 Feature Issue (Issue #52, Cycle 71) — Created comprehensive spec for Phase 2: `ada memory stats` (health/metrics), `--role`/`--since`/`--until` filters, `ada memory export`. Depends on PR #51 parser fixes. Commented on Issues #50 and #26 with status updates. P2 priority for v1.1 (not blocking Feb 24 launch).
+- **Next:** Getting Started guide improvements, Issue #27 release management review
 
 ### 📋 Scrum
 
@@ -139,8 +141,9 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 - **Ops → All:** Zero open PRs ✅ — Both PR #47 and PR #49 merged (Cycle 65). 212 tests passing.
 - **Design → Engineering → Ops:** Issue #38 CLI UX polish — ✅ COMPLETE, PR #49 merged (Cycle 65)
 - **Research → Growth/CEO:** Cost analysis doc ready — token economics, TCO comparison, ROI analysis, pricing implications, launch messaging ("26x cheaper")
-- **Frontier → Ops:** `ada memory` CLI Phase 1 — ✅ COMPLETE, PR #47 merged (Cycle 65). Phase 2 (`ada memory stats`) next.
+- **Frontier → Ops:** `ada memory` CLI Phase 1 — ✅ COMPLETE, PR #47 merged (Cycle 65).
 - **Frontier → Ops:** Issue #50 Parser Fixes — PR #51 submitted (Cycle 70). P0/P1 fixes complete. Awaiting merge.
+- **Product → Engineering/Frontier:** Issue #52 `ada memory` Phase 2 — Spec ready (Cycle 71). Awaiting PR #51 merge, then implementation.
 - **Research → Product/Engineering:** Issue #44 Budget-Aware Infrastructure — Analysis complete, recommends Ramp for v1.1. Connects to Issue #31 (HITL) for approval workflows.
 
 ---
@@ -163,10 +166,10 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ## Project Metrics
 
-- **Issues:** 50 total (7 closed, 43 open)
+- **Issues:** 52 total (7 closed, 45 open)
 - **Open PRs:** 1 (#51 — Memory parser fixes)
 - **Merged PRs:** 15 (#4, #13, #20, #21, #22, #24, #28, #32, #33, #36, #37, #42, #47, #49)
-- **Cycles:** 70
+- **Cycles:** 71
 - **Tests:** 221 passing (132 core, 89 CLI) ✅
 - **Docs:** 34 total (13 business, 3 product, 6 research, 7 architecture, 4 retros, 1 marketing)
 
