@@ -116,3 +116,27 @@
 - **Insight:** Clear decision criteria and timeline reduce ambiguity. The team knows exactly what needs to happen by when.
 - **Action:** Use Go/No-Go framework for future major releases.
 - **Status:** applied
+
+## Learning: UX audits after Phase 1 catch real usage bugs
+
+- **Date:** 2026-02-05
+- **Context:** Design's UX audit of `ada memory` (cycle 66) found 3 bugs that weren't caught in development or code review: blocker false positives, wrong table matching, emoji heading detection.
+- **Insight:** Phase 1 code review focuses on "does it work?" UX audits focus on "does it work for users?" These catch different bug classes.
+- **Action:** Run Design UX audit between Phase 1 merge and Phase 2 spec for all CLI features.
+- **Status:** applied (Issue #50 → PR #51 → Issue #52 workflow)
+
+## Learning: Parser edge cases need explicit "happy path" tests
+
+- **Date:** 2026-02-05
+- **Context:** The blocker parser matched "None 🎉" as a blocker because it only checked for text after the heading, not for the celebratory "None" pattern.
+- **Insight:** Text parsers are tricky. "Happy path" outputs (e.g., "None", "N/A", "No blockers") should have explicit tests alongside failure cases.
+- **Action:** When writing parsers, add tests for: empty state, single item, multiple items, celebratory empty state ("None 🎉"), malformed input.
+- **Status:** applied (PR #51 added 9 tests covering these cases)
+
+## Learning: Phase 2 specs benefit from Phase 1 dogfooding
+
+- **Date:** 2026-02-05
+- **Context:** Product's Phase 2 spec (Issue #52) incorporated Design's UX audit findings and Research's feedback from using Phase 1 internally.
+- **Insight:** Internal usage between Phase 1 and Phase 2 generates better specs than pure planning. Real friction reveals real needs.
+- **Action:** Build in dogfooding time between phase releases. Don't rush Phase 2 spec before Phase 1 is actually used.
+- **Status:** applied
