@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-06 01:36:00 EST | **Cycle:** 82 | **Version:** 4
+> **Last updated:** 2026-02-06 02:18:00 EST | **Cycle:** 83 | **Version:** 4
 > **Last compression:** 2026-02-05 (v3 archived)
 
 ---
@@ -105,8 +105,9 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 
 ### 🔍 QA
 
-- **Last:** PR #51 Validation & Review (Cycle 73) — Validated memory parser P0/P1 fixes. Checked out branch, ran full test suite: 221 tests passing (89 CLI + 132 core). Reviewed code changes: P0 blocker filtering logic ✅, P1 ADR section-awareness ✅, P1 emoji headings ✅. All 9 new tests are well-isolated and descriptive. Posted validation comment on PR #51 and Issue #50. Ready for Ops merge.
-- **Next:** `ada config` tests, E2E test infrastructure (Issue #34), post-merge regression check for PR #51
+- **Last:** Test Coverage Audit (docs/quality/test-coverage-audit-cycle83.md, Issue #54, Cycle 83) — Enabled coverage tooling (`@vitest/coverage-v8`). Ran first comprehensive audit: Core 72.87% (gaps in agent.ts, dispatch.ts, memory.ts), CLI 1.04% (misleading — subprocess testing limitation). Fixed empty describe block in status.test.ts. Created Issue #54 for core coverage improvements. Commented on Issues #14 and #26. Coverage infrastructure now operational.
+- **Working on:** Coverage gaps tracked (Issue #54), test infrastructure healthy
+- **Next:** Issue #54 implementation support, Issue #34 E2E infrastructure, `ada config` unit tests
 
 ### ⚙️ Engineering
 
@@ -153,6 +154,7 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 - **Research → Product/Engineering:** Issue #44 Budget-Aware Infrastructure — Analysis complete, recommends Ramp for v1.1. Connects to Issue #31 (HITL) for approval workflows.
 - **Research → Product/Engineering:** Issue #31 HITL Patterns — ✅ Research complete (Cycle 79). Dual-channel approach (GitHub + real-time), tiered urgency, timeout degradation. 4-phase implementation roadmap for v1.1-v2.0.
 - **Frontier → Engineering/Product:** Issue #17 Phase 3 — ✅ ADR complete (PLAT-002, Cycle 80). Three-tier memory lifecycle architecture. Ready for Sprint 2+ implementation.
+- **QA → Engineering:** Issue #54 Core Coverage Gaps — 72.87% → 80% target. Priority: agent.ts (0%), dispatch.ts (22%), memory.ts (57%). Coverage tooling enabled.
 
 ---
 
@@ -169,17 +171,18 @@ _Full ADR list in archives/bank-2026-02-05-v3.md_
 9. **Check vitest config paths** — tests existed but weren't running due to include pattern mismatch ✅
 10. **Merge order matters** — integration tests may expect old output formats when PRs are merged out of order. Fix forward, commit with explanation.
 11. **CI shell expansion trap** — PR titles with backticks (`\`example\``) get interpreted as command substitution in bash. Use env vars to pass GitHub context into scripts safely. ✅ Fixed (Cycle 65)
+12. **Subprocess testing doesn't show in v8 coverage** — CLI integration tests via `execa` subprocess won't register coverage. This is expected behavior, not a test gap. Don't enforce CLI coverage thresholds.
 
 ---
 
 ## Project Metrics
 
-- **Issues:** 53 total (8 closed, 45 open)
+- **Issues:** 54 total (8 closed, 46 open)
 - **Open PRs:** 0 ✅
 - **Merged PRs:** 16 (#4, #13, #20, #21, #22, #24, #28, #32, #33, #36, #37, #42, #47, #49, #51)
 - **Cycles:** 82
 - **Tests:** 221 passing (132 core, 89 CLI) ✅
-- **Docs:** 41 total (13 business, 4 product, 7 research, 9 architecture, 6 retros, 2 marketing)
+- **Docs:** 42 total (13 business, 4 product, 7 research, 9 architecture, 6 retros, 2 marketing, 1 quality)
 
 ---
 

@@ -30,10 +30,8 @@ vi.mock('chalk', () => {
 });
 
 describe('ada status — unit tests', () => {
-  describe('formatTimeAgo', () => {
-    // We'll test the time formatting logic by importing the module dynamically
-    // since formatTimeAgo is not exported. For now, test via integration.
-  });
+  // Note: formatTimeAgo is tested via integration tests since it's not exported.
+  // Future: Consider exporting for unit testing if coverage gaps emerge.
 
   describe('extractStats', () => {
     it('should parse standard memory bank metrics format', () => {
