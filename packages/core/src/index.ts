@@ -97,3 +97,31 @@ export {
   queryForIssue,
   queryForPRReview,
 } from './dispatch-memory.js';
+
+// Memory Stats (Phase 2)
+export type {
+  BankInfo,
+  CycleInfo,
+  SectionCounts,
+  HealthStatusLevel,
+  HealthStatus,
+  MemoryStats,
+  ArchiveInfo,
+} from './memory-stats.js';
+export {
+  extractLastUpdated,
+  extractLastCompression,
+  extractBankInfo,
+  extractRoleActivity,
+  countBlockers,
+  countActiveThreads,
+  countDecisions,
+  countLessons,
+  hasMetricsSection,
+  extractSectionCounts,
+  calculateHealth,
+  extractMemoryStats,
+  listArchives,
+  formatActivityBar,
+  getRelativeTime,
+} from './memory-stats.js';

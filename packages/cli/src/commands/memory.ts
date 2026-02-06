@@ -20,8 +20,12 @@ import {
   TfIdfEmbeddingProvider,
   InMemoryVectorStore,
   SemanticMemoryManager,
+  extractMemoryStats,
+  listArchives,
+  formatActivityBar,
+  getRelativeTime,
 } from '@ada/core';
-import type { MemoryEntry } from '@ada/core';
+import type { MemoryEntry, HealthStatus } from '@ada/core';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -50,6 +54,13 @@ interface MemorySearchResult {
 interface MemoryListResult {
   entries: MemoryEntry[];
   total: number;
+}
+
+interface MemoryStatsOptions {
+  dir: string;
+  json?: boolean;
+  verbose?: boolean;
+  noColor?: boolean;
 }
 
 // ─── Utilities ───────────────────────────────────────────────────────────────
@@ -329,6 +340,180 @@ async function executeList(options: MemoryListOptions): Promise<void> {
   }
 }
 
+// ─── Stats Command ───────────────────────────────────────────────────────────
+
+/**
+ * Role emoji mapping for stats display.
+ */
+const ROLE_EMOJIS: Record<string, string> = {
+  ceo: '👔',
+  research: '🔬',
+  product: '📦',
+  scrum: '📋',
+  qa: '🔍',
+  engineering: '⚙️',
+  ops: '🛡️',
+  growth: '🚀',
+  design: '🎨',
+  frontier: '🌌',
+};
+
+/**
+ * Format health status with color.
+ */
+function formatHealthStatus(health: HealthStatus, useColor: boolean): string {
+  const colorFn = useColor ? {
+    healthy: chalk.green,
+    warning: chalk.yellow,
+    unhealthy: chalk.red,
+  }[health.status] : (s: string) => s;
+
+  const icons: Record<string, string> = {
+    healthy: '✅',
+    warning: '⚠️',
+    unhealthy: '❌',
+  };
+
+  return colorFn(`${icons[health.status]} ${health.status.charAt(0).toUpperCase()}${health.status.slice(1)}`);
+}
+
+/**
+ * Execute memory stats command.
+ */
+async function executeStats(options: MemoryStatsOptions): Promise<void> {
+  const agentsDir = path.resolve(options.dir, 'agents');
+  const useColor = !options.noColor && process.stdout.isTTY;
+
+  // Load memory bank
+  const bankPath = path.join(agentsDir, 'memory', 'bank.md');
+  let bankContent: string;
+
+  try {
+    bankContent = await fs.readFile(bankPath, 'utf-8');
+  } catch (err) {
+    const error = err as NodeJS.ErrnoException;
+    if (error.code === 'ENOENT') {
+      console.error(chalk.red('❌ Memory bank not found'));
+      console.error(chalk.gray(`\nExpected: ${bankPath}`));
+      console.error(chalk.gray("Run 'ada init' to create project structure."));
+      process.exit(1);
+    }
+    throw error;
+  }
+
+  // Load rotation state for history
+  const rotationPath = path.join(agentsDir, 'state', 'rotation.json');
+  let rotationHistory: Array<{ role: string; cycle: number; timestamp: string }> = [];
+
+  try {
+    const rotationContent = await fs.readFile(rotationPath, 'utf-8');
+    const rotation = JSON.parse(rotationContent) as { history?: Array<{ role: string; cycle: number; timestamp: string }> };
+    rotationHistory = rotation.history ?? [];
+  } catch {
+    // Rotation file may not exist — that's okay
+  }
+
+  // Extract stats
+  const stats = extractMemoryStats(bankContent, rotationHistory);
+
+  // JSON output
+  if (options.json) {
+    console.log(JSON.stringify(stats, null, 2));
+    return;
+  }
+
+  // Human-readable output
+  console.log(chalk.bold('\n📊 Memory System Stats\n'));
+
+  // Bank section
+  console.log(chalk.bold('Bank'));
+  console.log(`  Version:          ${useColor ? chalk.cyan(`v${stats.bank.version}`) : `v${stats.bank.version}`}`);
+
+  if (stats.bank.lastUpdated) {
+    const relative = getRelativeTime(stats.bank.lastUpdated);
+    console.log(`  Last updated:     ${useColor ? chalk.cyan(relative) : relative} (${stats.bank.lastUpdated.split('T')[0] ?? stats.bank.lastUpdated})`);
+  } else {
+    console.log(`  Last updated:     ${chalk.gray('unknown')}`);
+  }
+
+  if (stats.bank.lastCompression) {
+    const compressionDate = new Date(stats.bank.lastCompression);
+    const daysAgo = Math.floor((Date.now() - compressionDate.getTime()) / (1000 * 60 * 60 * 24));
+    console.log(`  Last compression: ${useColor ? chalk.cyan(`${daysAgo} day${daysAgo !== 1 ? 's' : ''} ago`) : `${daysAgo} days ago`} (${stats.bank.lastCompression})`);
+  } else {
+    console.log(`  Last compression: ${chalk.gray('never')}`);
+  }
+
+  console.log(`  Size:             ${useColor ? chalk.cyan(`${stats.bank.lines} lines`) : `${stats.bank.lines} lines`}`);
+  console.log();
+
+  // Cycles section
+  console.log(chalk.bold('Cycles'));
+  console.log(`  Total:            ${useColor ? chalk.cyan(stats.cycles.total.toString()) : stats.cycles.total}`);
+  console.log(`  Since compression: ${useColor ? chalk.cyan(stats.cycles.sinceCompression.toString()) : stats.cycles.sinceCompression}`);
+  if (stats.cycles.perDay !== null) {
+    console.log(`  Avg per day:      ${useColor ? chalk.cyan(stats.cycles.perDay.toFixed(1)) : stats.cycles.perDay.toFixed(1)}`);
+  }
+  console.log();
+
+  // Role Activity section
+  const roleEntries = Object.entries(stats.roleActivity);
+  if (roleEntries.length > 0) {
+    console.log(chalk.bold(`Role Activity (last ${rotationHistory.length} cycles)`));
+
+    // Sort by count descending
+    roleEntries.sort((a, b) => b[1] - a[1]);
+    const maxCount = Math.max(...roleEntries.map(([, count]) => count));
+
+    for (const [role, count] of roleEntries) {
+      const emoji = ROLE_EMOJIS[role] ?? '📝';
+      const bar = formatActivityBar(count, maxCount);
+      const barColored = useColor ? chalk.green(bar) : bar;
+      console.log(`  ${emoji}  ${role.padEnd(12)} ${barColored} ${count}`);
+    }
+    console.log();
+  } else {
+    console.log(chalk.bold('Role Activity (last 10 cycles)'));
+    console.log(chalk.gray('  (no activity recorded yet)'));
+    console.log();
+  }
+
+  // Sections
+  console.log(chalk.bold('Sections'));
+  const blockerStatus = stats.sections.blockers === 0 ? chalk.green('(healthy)') : chalk.yellow('');
+  console.log(`  ${stats.sections.blockers === 0 ? '✅' : '🚧'} Blockers:       ${stats.sections.blockers} active ${blockerStatus}`);
+  console.log(`  📌 Active Threads: ${stats.sections.activeThreads} tracked`);
+  console.log(`  📋 Decisions:      ${stats.sections.decisions} ADRs`);
+  console.log(`  💡 Lessons:        ${stats.sections.lessons} learned`);
+  console.log(`  📈 Metrics:        ${stats.sections.hasMetrics ? 'current' : 'missing'}`);
+  console.log();
+
+  // Verbose: show archives
+  if (options.verbose) {
+    const archivesDir = path.join(agentsDir, 'memory', 'archives');
+    const archives = await listArchives(archivesDir);
+
+    if (archives.length > 0) {
+      console.log(chalk.bold(`Archives (${archives.length} total)`));
+      for (const archive of archives) {
+        console.log(`  v${archive.version}  ${archive.date}  ${archive.filename}`);
+      }
+      console.log();
+    }
+  }
+
+  // Health
+  console.log(`Health: ${formatHealthStatus(stats.health, useColor)}`);
+
+  if (stats.health.warnings.length > 0) {
+    for (const warning of stats.health.warnings) {
+      console.log(`  - ${useColor ? chalk.yellow(warning) : warning}`);
+    }
+  }
+
+  console.log();
+}
+
 // ─── Command Definition ──────────────────────────────────────────────────────
 
 export const memoryCommand = new Command('memory')
@@ -364,6 +549,23 @@ export const memoryCommand = new Command('memory')
       .action(async (options: MemoryListOptions) => {
         try {
           await executeList(options);
+        } catch (err) {
+          const error = err as Error;
+          console.error(chalk.red(`\n❌ Error: ${error.message}`));
+          process.exit(1);
+        }
+      })
+  )
+  .addCommand(
+    new Command('stats')
+      .description('Show memory system health and metrics')
+      .option('-d, --dir <path>', 'Project root directory', '.')
+      .option('--json', 'Output as JSON')
+      .option('--no-color', 'Disable colored output')
+      .option('-v, --verbose', 'Include archive history')
+      .action(async (options: MemoryStatsOptions) => {
+        try {
+          await executeStats(options);
         } catch (err) {
           const error = err as Error;
           console.error(chalk.red(`\n❌ Error: ${error.message}`));
