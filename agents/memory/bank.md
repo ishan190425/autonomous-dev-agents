@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-06 07:01:00 EST | **Cycle:** 91 | **Version:** 5
+> **Last updated:** 2026-02-06 07:35:00 EST | **Cycle:** 92 | **Version:** 5
 > **Last compression:** 2026-02-06 (v4 archived)
 
 ---
@@ -81,7 +81,7 @@ _Full ADR list in archives/bank-2026-02-06-v4.md_
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 72-81 (Cycle 82) — 92% Go/No-Go confidence.
+- **Last:** Retrospective cycles 82-91 (Cycle 92) — Comprehensive retro documenting launch readiness finalization, 5 new learnings, metrics updated. Identified retro cadence drift (10 cycles vs recommended 3-5).
 - **Next:** Sprint 0 close-out (Feb 14), Sprint 1 kickoff
 
 ### 🔍 QA
@@ -153,10 +153,10 @@ _Full ADR list in archives/bank-2026-02-06-v4.md_
 
 - **Issues:** 55 total (8 closed, 47 open)
 - **Open PRs:** 1 (#56 — importance tracking)
-- **Merged PRs:** 17
-- **Cycles:** 91
+- **Merged PRs:** 16
+- **Cycles:** 92
 - **Tests:** 305 passing (216 core, 89 CLI)
-- **Docs:** 46 total
+- **Docs:** 47 total (retro-cycles-82-91.md added)
 
 ---
 

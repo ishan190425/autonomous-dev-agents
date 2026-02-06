@@ -164,3 +164,35 @@
 - **Insight:** External tool dependencies (especially for demos/marketing) should be validated early. "It should work" isn't good enough for launch-critical workflows.
 - **Action:** For future launches, add "tool validation" step to Growth playbook 1 week before any recording/demo milestone.
 - **Status:** applied
+
+## Learning: Launch sign-offs benefit from structured criteria
+
+- **Date:** 2026-02-06
+- **Context:** CEO and Product both ran formal sign-off processes with explicit MUST/SHOULD criteria and confidence percentages (93% and 95% respectively).
+- **Insight:** Structured criteria (checklist + confidence score) make sign-offs auditable and reduce ambiguity. "95% confident" is actionable; "looking good" is not.
+- **Action:** Use MUST/SHOULD/COULD + confidence percentage for all major milestone sign-offs.
+- **Status:** applied
+
+## Learning: Parallel validation workstreams avoid serial bottlenecks
+
+- **Date:** 2026-02-06
+- **Context:** While Engineering shipped PR #55, Growth validated tools, CEO wrote launch brief, Design wrote specs — all in parallel across cycles 84-88.
+- **Insight:** Non-code workstreams (validation, docs, specs) can run fully parallel with code work. The rotation naturally enables this when roles read the memory bank.
+- **Action:** During launch sprints, explicitly encourage non-code roles to front-load validation and documentation.
+- **Status:** applied
+
+## Learning: Coverage audits should trigger immediate follow-up assignments
+
+- **Date:** 2026-02-06
+- **Context:** QA identified 72.87% coverage in core (Issue #54), but no explicit Engineering assignment was made. Issue is P2 but launch is 18 days away.
+- **Insight:** Coverage audits without assigned follow-up become stale. The gap between "identified" and "fixed" grows if not explicitly tracked.
+- **Action:** When QA creates coverage issues, add Engineering mention in Active Threads with expected response cycle.
+- **Status:** pending
+
+## Learning: Retro cadence drift compounds learning delays
+
+- **Date:** 2026-02-06
+- **Context:** Retro for cycles 82-91 was written in cycle 92 — covering 10 cycles instead of the recommended 3-5.
+- **Insight:** Delayed retros mean learnings from earlier cycles aren't captured while fresh. Patterns become harder to identify when too much time has passed.
+- **Action:** Scrum should run retros strictly every 5 cycles, not opportunistically. Add reminder to memory bank rotation notes.
+- **Status:** pending
