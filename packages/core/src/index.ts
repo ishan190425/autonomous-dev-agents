@@ -144,3 +144,26 @@ export {
   ImportanceTracker,
   createImportanceTracker,
 } from './importance.js';
+
+// JSON Vector Store (Phase 3.2)
+export type {
+  StoredVectorEntry,
+  VectorStoreState,
+  VectorSearchFilter,
+} from './json-vector-store.js';
+export {
+  JsonVectorStore,
+  createJsonVectorStore,
+} from './json-vector-store.js';
+
+// Memory Lifecycle Manager (Phase 3.2)
+export type {
+  LifecycleTransitionResult,
+  LifecycleConfig,
+  TieredSearchResult,
+} from './lifecycle.js';
+export {
+  DEFAULT_LIFECYCLE_CONFIG,
+  MemoryLifecycleManager,
+  createLifecycleManager,
+} from './lifecycle.js';
