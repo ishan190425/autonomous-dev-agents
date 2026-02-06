@@ -1,9 +1,9 @@
-# @ada/core API Specification v2.0
+# @ada/core API Specification v3.0
 
 > **Author:** 🎨 The Architect  
-> **Date:** 2026-02-04 (v2.0), 2026-01-30 (v1.0)  
+> **Date:** 2026-02-06 (v3.0), 2026-02-04 (v2.0), 2026-01-30 (v1.0)  
 > **Status:** Draft  
-> **Version:** 2.0
+> **Version:** 3.0
 
 ## Overview
 
@@ -515,6 +515,335 @@ function executeAgentAction(context: DispatchContext): Promise<ActionResult>;
 
 ---
 
+## Memory Importance API (v3.0)
+
+> Added in v3.0 — implements Phase 3.1 of PLAT-002 (Memory Lifecycle System)
+
+Tracks importance scores for memory entries to drive automatic tier transitions.
+
+### Importance Types
+
+```typescript
+interface MemoryImportance {
+  readonly id: string;
+  readonly kind: MemoryEntryKind;
+  score: number; // 0-1 composite importance
+  accessCount: number;
+  lastAccessCycle: number;
+  createdCycle: number;
+}
+
+interface ImportanceConfig {
+  readonly hotThreshold: number; // Default: 0.6
+  readonly warmThreshold: number; // Default: 0.3
+  readonly forgetThreshold: number; // Default: 0.1
+  readonly decayFactor: number; // Default: 0.95
+  readonly accessBoost: number; // Default: 0.1
+  readonly maxAccessBoost: number; // Default: 0.4
+}
+
+interface LifecycleCheckResult {
+  readonly demoteToWarm: readonly string[]; // hot → warm
+  readonly demoteToCold: readonly string[]; // warm → cold
+  readonly promoteToHot: readonly string[]; // warm → hot
+  readonly canForget: readonly string[]; // cold → remove
+}
+```
+
+### ImportanceTracker Class
+
+```typescript
+class ImportanceTracker {
+  constructor(agentsDir: string, config?: Partial<ImportanceConfig>);
+
+  // Load/save state
+  async load(): Promise<void>;
+  async save(): Promise<void>;
+
+  // Entry management
+  getOrCreate(
+    id: string,
+    kind: MemoryEntryKind,
+    currentCycle: number
+  ): MemoryImportance;
+  trackAccess(id: string, kind: MemoryEntryKind, currentCycle: number): void;
+  removeEntries(ids: readonly string[]): void;
+
+  // Scoring
+  updateAllScores(currentCycle: number): void;
+  getScore(id: string): number | undefined;
+
+  // Lifecycle decisions
+  checkLifecycle(
+    currentCycle: number,
+    hotIds: readonly string[],
+    warmIds: readonly string[],
+    coldIds: readonly string[]
+  ): LifecycleCheckResult;
+
+  // Stats
+  getStats(): {
+    total: number;
+    avgScore: number;
+    byKind: Record<string, number>;
+  };
+  get lastUpdateCycle(): number;
+}
+
+// Factory function
+async function createImportanceTracker(
+  agentsDir: string,
+  config?: Partial<ImportanceConfig>
+): Promise<ImportanceTracker>;
+```
+
+### Importance Scoring Algorithm
+
+Score = `(kindWeight × 0.4) + (recencyFactor × 0.3) + (accessFactor × 0.3)`
+
+- **kindWeight:** `decision` > `blocker` > `lesson` > `thread` > `role_state` > `status` > `question` > `metric`
+- **recencyFactor:** Exponential decay based on cycles since creation
+- **accessFactor:** Log-scaled access count with configurable boost
+
+---
+
+## Persistent Vector Store API (v3.0)
+
+> Added in v3.0 — implements Phase 3.2 of PLAT-002 (Memory Lifecycle System)
+
+Zero-dependency JSON-based vector store for warm tier storage. Persists to `agents/state/vectors.json`.
+
+### Vector Store Types
+
+```typescript
+interface StoredVectorEntry {
+  readonly id: string;
+  readonly kind: MemoryEntryKind;
+  readonly content: string;
+  readonly role?: string;
+  readonly date?: string;
+  readonly tags: readonly string[];
+  readonly vector: readonly number[];
+  tier: 'hot' | 'warm' | 'cold';
+  readonly addedAt: string; // ISO timestamp
+  lastAccessedAt?: string;
+}
+
+interface VectorStoreState {
+  readonly version: 1;
+  readonly embeddingProvider: string;
+  readonly dimensions: number;
+  lastModified: string;
+  entryCount: number;
+  entries: Record<string, StoredVectorEntry>;
+}
+
+interface VectorSearchFilter {
+  readonly kinds?: readonly MemoryEntryKind[];
+  readonly tiers?: readonly ('hot' | 'warm' | 'cold')[];
+  readonly tags?: readonly string[];
+  readonly role?: string;
+}
+```
+
+### JsonVectorStore Class
+
+```typescript
+class JsonVectorStore implements VectorStore {
+  constructor(agentsDir: string, providerName: string, dimensions: number);
+
+  // Persistence
+  async load(): Promise<void>;
+  async save(): Promise<void>;
+
+  // VectorStore interface
+  upsert(entries: readonly EmbeddedEntry[]): Promise<void>;
+  search(query: Embedding, topK: number): Promise<readonly SearchResult[]>;
+
+  // Extended search with filters
+  searchWithFilter(
+    query: Embedding,
+    topK: number,
+    filter?: VectorSearchFilter,
+    trackAccess?: boolean
+  ): Promise<readonly SearchResult[]>;
+
+  // Entry management
+  remove(ids: readonly string[]): Promise<void>;
+  listIds(): Promise<readonly string[]>;
+  count(): Promise<number>;
+  getEntry(id: string): StoredVectorEntry | undefined;
+
+  // Tier management
+  getEntriesByTier(tier: 'hot' | 'warm' | 'cold'): readonly string[];
+  setTier(
+    entryIds: readonly string[],
+    targetTier: 'hot' | 'warm' | 'cold'
+  ): void;
+
+  // Statistics
+  getStats(): {
+    total: number;
+    byTier: Record<'hot' | 'warm' | 'cold', number>;
+    byKind: Record<string, number>;
+    dimensions: number;
+    provider: string;
+    lastModified: string;
+  };
+}
+
+// Factory function
+async function createJsonVectorStore(
+  agentsDir: string,
+  providerName: string,
+  dimensions: number
+): Promise<JsonVectorStore>;
+```
+
+**Design Notes:**
+
+- Atomic writes via temp file + rename (crash-safe)
+- Provider/dimension validation on load (re-index if mismatch)
+- Access tracking for importance scoring
+- Suitable for <10K entries; migrate to SQLite-vec for larger corpora
+
+---
+
+## Memory Lifecycle Manager API (v3.0)
+
+> Added in v3.0 — implements Phase 3.2 of PLAT-002 (Memory Lifecycle System)
+
+Orchestrates the three-tier memory system:
+
+- **Hot tier:** `bank.md` (markdown, read every cycle)
+- **Warm tier:** Vector store (semantic search on demand)
+- **Cold tier:** Archives (explicit search only)
+
+### Lifecycle Types
+
+```typescript
+interface LifecycleTransitionResult {
+  readonly timestamp: string;
+  readonly cycle: number;
+  readonly demotedToWarm: readonly string[];
+  readonly demotedToCold: readonly string[];
+  readonly promotedToHot: readonly string[];
+  readonly forgotten: readonly string[];
+  readonly newlyIndexed: readonly string[];
+  readonly errors: readonly string[];
+}
+
+interface LifecycleConfig {
+  readonly agentsDir: string;
+  readonly bankPath: string; // Default: "memory/bank.md"
+  readonly autoSave: boolean; // Default: true
+  readonly minSearchScore: number; // Default: 0.1
+}
+
+interface TieredSearchResult extends SearchResult {
+  readonly tier: 'hot' | 'warm' | 'cold';
+}
+```
+
+### MemoryLifecycleManager Class
+
+```typescript
+class MemoryLifecycleManager {
+  constructor(
+    embeddingProvider: EmbeddingProvider,
+    vectorStore: JsonVectorStore,
+    importanceTracker: ImportanceTracker,
+    config?: Partial<LifecycleConfig>
+  );
+
+  // Initialization
+  async initialize(): Promise<void>;
+
+  // Core lifecycle operation (call at end of each dispatch cycle)
+  async runLifecycleCycle(
+    currentCycle: number
+  ): Promise<LifecycleTransitionResult>;
+
+  // Semantic search across tiers
+  async search(
+    queryText: string,
+    topK?: number,
+    tiers?: readonly ('hot' | 'warm' | 'cold')[]
+  ): Promise<readonly TieredSearchResult[]>;
+
+  // State access
+  getHotEntries(): readonly MemoryEntry[];
+  getStats(): {
+    hot: number;
+    warm: number;
+    cold: number;
+    total: number;
+    importanceTracked: number;
+    avgImportance: number;
+  };
+
+  // Persistence
+  async save(): Promise<void>;
+  async reindex(currentCycle: number): Promise<number>;
+}
+
+// Factory function
+async function createLifecycleManager(
+  embeddingProvider: EmbeddingProvider,
+  vectorStore: JsonVectorStore,
+  importanceTracker: ImportanceTracker,
+  config?: Partial<LifecycleConfig>
+): Promise<MemoryLifecycleManager>;
+```
+
+**Usage Example:**
+
+```typescript
+import {
+  TfIdfEmbeddingProvider,
+  createJsonVectorStore,
+  createImportanceTracker,
+  createLifecycleManager,
+} from '@ada/core';
+
+// Initialize components
+const provider = new TfIdfEmbeddingProvider();
+const vectorStore = await createJsonVectorStore('./agents', 'tfidf', 256);
+const tracker = await createImportanceTracker('./agents');
+
+// Create lifecycle manager
+const lifecycle = await createLifecycleManager(provider, vectorStore, tracker, {
+  agentsDir: './agents',
+});
+
+// Each dispatch cycle:
+const transitions = await lifecycle.runLifecycleCycle(42);
+console.log(`Cycle ${transitions.cycle}:`, {
+  newlyIndexed: transitions.newlyIndexed.length,
+  demotedToWarm: transitions.demotedToWarm.length,
+});
+
+// Semantic search across memory tiers
+const results = await lifecycle.search(
+  'What embedding model did we choose?',
+  5
+);
+for (const r of results) {
+  console.log(
+    `[${r.tier}] ${r.score.toFixed(2)}: ${r.entry.content.slice(0, 60)}...`
+  );
+}
+```
+
+**Design Notes:**
+
+- Automatic tier transitions based on importance scores
+- Unified search across hot + warm tiers by default
+- Access patterns feed back into importance scoring
+- Cold tier entries eventually "forgotten" when below threshold
+
+---
+
 ## Plugin Architecture
 
 > Full RFC: [Plugin Architecture RFC](./plugin-architecture-rfc.md)
@@ -740,7 +1069,8 @@ The @ada/core API prioritizes developer experience through clean types, predicta
 
 **Version History:**
 
+- v3.0 (2026-02-06): Added Memory Importance API (Phase 3.1), Persistent Vector Store API (Phase 3.2), Memory Lifecycle Manager API (Phase 3.2) — complete three-tier memory system documented
 - v2.0 (2026-02-04): Added embedding memory API, agent execution API, updated plugin architecture with full RFC
 - v1.0 (2026-01-30): Initial API specification
 
-**Next Review:** After Sprint 1 plugin implementation
+**Next Review:** After v1.0-alpha launch (Feb 24)
