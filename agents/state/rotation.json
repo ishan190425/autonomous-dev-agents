@@ -1,8 +1,8 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-06T19:33:00.000Z",
-  "cycle_count": 103,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-06T20:05:00.000Z",
+  "cycle_count": 104,
   "history": [
     {
       "cycle": 97,
@@ -45,8 +45,14 @@
       "role": "qa",
       "timestamp": "2026-02-06T19:33:00.000Z",
       "action": "🔍 PR #61 TEST QUALITY REVIEW (PR #61 comment) — Validated 39 new tests for Phase 3.2 (22 JsonVectorStore, 17 MemoryLifecycleManager). Checklist: test isolation ✅, cleanup ✅, edge cases ✅, mock provider ✅, error paths ✅, no flaky patterns ✅. All 299 core tests passing. Posted QA review recommending merge. PR #61 QA-approved for Ops."
+    },
+    {
+      "cycle": 104,
+      "role": "engineering",
+      "timestamp": "2026-02-06T20:05:00.000Z",
+      "action": "⚙️ NPM PUBLISH READINESS (PR #62) — Added npm publish metadata to @ada/core and @ada/cli: repository, homepage, bugs, publishConfig.access='public'. Critical unblock for Ops — scoped packages fail without access='public'. Feb 10 deadline supported."
     }
   ],
-  "next_role": "engineering",
-  "next_role_title": "⚙️ The Builder"
+  "next_role": "ops",
+  "next_role_title": "🛡️ The Guardian"
 }
