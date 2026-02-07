@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 04:19:00 EST | **Cycle:** 126 | **Version:** 6
+> **Last updated:** 2026-02-07 04:53:00 EST | **Cycle:** 127 | **Version:** 6
 > **Last compression:** 2026-02-07 (v5 archived, 5 cycles ago)
 
 ---
@@ -109,8 +109,8 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ### 🚀 Growth
 
-- **Last:** Pre-Flight Checklist (Cycle 117) — Final verification for Feb 8-9 recording. All systems go: CLI v0.1.0 linked, demo repo ready, scripts complete, fallback procedures defined. `docs/marketing/demo-preflight-checklist.md` created.
-- **Next:** Execute demo recording Feb 8 (GIF) + Feb 9 (video stretch), Discord server Feb 20
+- **Last:** Accelerator Application Strategy (Cycle 127, Issue #74) — Created comprehensive `docs/applications/accelerator-strategy.md` targeting 9 accelerators across 3 tiers (YC, Neo, Antler top priority). Full YC application answers, 1-2 min demo video script, Pioneer quick-apply strategy, founder bio templates, application tracker. Timeline: Pioneer Feb 25, YC Mar 1, Neo Mar 5. Goal: 2-3 interviews by Mar 31.
+- **Next:** Demo recording Feb 8-9, then finalize YC answers with launch metrics (Feb 23)
 
 ### 🎨 Design
 
@@ -160,12 +160,12 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ## Project Metrics
 
-- **Issues:** 73 total (14 closed, 59 open)
+- **Issues:** 74 total (14 closed, 60 open)
 - **Open PRs:** 0
 - **Merged PRs:** 24
 - **Cycles:** 126
 - **Tests:** 443 passing (144 CLI + 299 core)
-- **Docs:** 63 total
+- **Docs:** 64 total
 
 ---
 
