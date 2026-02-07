@@ -126,12 +126,14 @@ export {
   getRelativeTime,
 } from './memory-stats.js';
 
-// Observability (Phase 1 — Token Counter)
+// Observability (Phase 1 — Token Counter, Phase 2 — Latency Timer)
 export type {
   TokenUsage,
   TokenCost,
   ModelPricing,
   DispatchPhase,
+  PhaseLatency,
+  PhaseLatencyStats,
   CycleMetrics,
   AggregatedMetrics,
   MetricsState,
@@ -153,6 +155,8 @@ export {
   createMetricsManager,
   formatCost,
   formatTokens,
+  formatDuration,
+  calculateEfficiency,
 } from './observability.js';
 
 // Memory Importance Tracking (Phase 3.1)

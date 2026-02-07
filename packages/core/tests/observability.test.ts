@@ -1,7 +1,8 @@
 /**
- * Tests for the observability module (Phase 1 — Token Counter).
+ * Tests for the observability module.
  *
- * Covers: utility functions, CycleTracker, MetricsManager, aggregation.
+ * Phase 1 (Token Counter): utility functions, CycleTracker tokens, MetricsManager.
+ * Phase 2 (Latency Timer): phase timing, latency aggregation, formatDuration.
  */
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
@@ -29,12 +30,17 @@ import {
   divideCost,
   formatCost,
   formatTokens,
+  formatDuration,
+  calculateEfficiency,
   // Classes
   CycleTracker,
   MetricsManager,
   createCycleTracker,
   createMetricsManager,
 } from '../src/observability.js';
+
+// Helper for delays in tests
+const delay = (ms: number): Promise<void> => new Promise(resolve => globalThis.setTimeout(resolve, ms));
 
 // ─── Utility Function Tests ──────────────────────────────────────────────────
 
@@ -186,6 +192,36 @@ describe('observability utilities', () => {
       expect(formatTokens(999)).toBe('999');
     });
   });
+
+  describe('formatDuration (Phase 2)', () => {
+    it('should format milliseconds for small durations', () => {
+      expect(formatDuration(234)).toBe('234ms');
+      expect(formatDuration(999)).toBe('999ms');
+    });
+
+    it('should format seconds for medium durations', () => {
+      expect(formatDuration(1000)).toBe('1.0s');
+      expect(formatDuration(12400)).toBe('12.4s');
+      expect(formatDuration(59999)).toBe('60.0s');
+    });
+
+    it('should format minutes and seconds for long durations', () => {
+      expect(formatDuration(60000)).toBe('1m 0s');
+      expect(formatDuration(154000)).toBe('2m 34s');
+      expect(formatDuration(3600000)).toBe('60m 0s');
+    });
+  });
+
+  describe('calculateEfficiency (Phase 2)', () => {
+    it('should calculate tokens per second', () => {
+      expect(calculateEfficiency(1000, 1000)).toBe(1000); // 1000 tokens/sec
+      expect(calculateEfficiency(5000, 2000)).toBe(2500); // 2500 tokens/sec
+    });
+
+    it('should return 0 for zero duration', () => {
+      expect(calculateEfficiency(1000, 0)).toBe(0);
+    });
+  });
 });
 
 // ─── CycleTracker Tests ──────────────────────────────────────────────────────
@@ -286,6 +322,141 @@ describe('CycleTracker', () => {
       const tracker = new CycleTracker(42, 'engineering');
       tracker.finalize(true);
       expect(() => tracker.finalize(true)).toThrow('Already finalized');
+    });
+  });
+
+  describe('Phase 2 — Latency Timer', () => {
+    describe('startPhase/endPhase', () => {
+      it('should record phase latency', async () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        tracker.startPhase('context_load');
+        await delay(10);
+        const latency = tracker.endPhase();
+
+        expect(latency.startedAt).toBeDefined();
+        expect(latency.endedAt).toBeDefined();
+        expect(latency.durationMs).toBeGreaterThanOrEqual(10);
+      });
+
+      it('should throw if starting phase while another is active', () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        tracker.startPhase('context_load');
+        expect(() => tracker.startPhase('action_execution'))
+          .toThrow("Phase 'context_load' is already active");
+      });
+
+      it('should throw if ending phase when none is active', () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        expect(() => tracker.endPhase())
+          .toThrow('No phase is currently active');
+      });
+
+      it('should throw if starting phase after finalization', () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        tracker.finalize(true);
+        expect(() => tracker.startPhase('context_load'))
+          .toThrow('Cannot start phase after finalization');
+      });
+
+      it('should throw if ending phase after finalization', () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        tracker.startPhase('context_load');
+        tracker.finalize(true); // Auto-ends the phase
+        expect(() => tracker.endPhase())
+          .toThrow('Cannot end phase after finalization');
+      });
+    });
+
+    describe('isPhaseActive/getActivePhase', () => {
+      it('should track active phase state', () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        expect(tracker.isPhaseActive()).toBe(false);
+        expect(tracker.getActivePhase()).toBeNull();
+
+        tracker.startPhase('context_load');
+        expect(tracker.isPhaseActive()).toBe(true);
+        expect(tracker.getActivePhase()).toBe('context_load');
+
+        tracker.endPhase();
+        expect(tracker.isPhaseActive()).toBe(false);
+        expect(tracker.getActivePhase()).toBeNull();
+      });
+    });
+
+    describe('timePhase (async)', () => {
+      it('should time async function execution', async () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        const result = await tracker.timePhase('action_execution', async () => {
+          await delay(10);
+          return 'done';
+        });
+
+        expect(result).toBe('done');
+        expect(tracker.isPhaseActive()).toBe(false);
+
+        const metrics = tracker.finalize(true);
+        expect(metrics.latency?.action_execution?.durationMs).toBeGreaterThanOrEqual(10);
+      });
+
+      it('should end phase even if function throws', async () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        await expect(tracker.timePhase('action_execution', () => {
+          throw new Error('Test error');
+        })).rejects.toThrow('Test error');
+
+        expect(tracker.isPhaseActive()).toBe(false);
+        const metrics = tracker.finalize(false, 'Test error');
+        expect(metrics.latency?.action_execution).toBeDefined();
+      });
+    });
+
+    describe('timePhaseSync', () => {
+      it('should time sync function execution', () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        const result = tracker.timePhaseSync('memory_update', () => {
+          let sum = 0;
+          for (let i = 0; i < 1000; i++) sum += i;
+          return sum;
+        });
+
+        expect(result).toBe(499500);
+        expect(tracker.isPhaseActive()).toBe(false);
+
+        const metrics = tracker.finalize(true);
+        expect(metrics.latency?.memory_update?.durationMs).toBeGreaterThanOrEqual(0);
+      });
+    });
+
+    describe('finalize with latency', () => {
+      it('should include latency in metrics when tracked', () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        tracker.startPhase('context_load');
+        tracker.endPhase();
+        tracker.startPhase('action_execution');
+        tracker.endPhase();
+
+        const metrics = tracker.finalize(true);
+        expect(metrics.latency).toBeDefined();
+        expect(metrics.latency?.context_load).toBeDefined();
+        expect(metrics.latency?.action_execution).toBeDefined();
+      });
+
+      it('should not include latency when not tracked', () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        tracker.recordPhase('context_load', 100, 50);
+
+        const metrics = tracker.finalize(true);
+        expect(metrics.latency).toBeUndefined();
+      });
+
+      it('should auto-end active phase on finalize', () => {
+        const tracker = new CycleTracker(42, 'engineering');
+        tracker.startPhase('context_load');
+        // Don't call endPhase
+
+        const metrics = tracker.finalize(true);
+        expect(metrics.latency?.context_load).toBeDefined();
+      });
     });
   });
 });
@@ -465,6 +636,70 @@ describe('MetricsManager', () => {
       expect(agg!.timeRange.end).toBeDefined();
       expect(agg!.firstCycle).toBe(1);
       expect(agg!.lastCycle).toBe(2);
+    });
+
+    it('should calculate average duration', async () => {
+      const metrics1 = createMockMetrics(1);
+      const metrics2 = createMockMetrics(2);
+      // Mock durations: 1000ms and 2000ms
+      (metrics1 as { durationMs: number }).durationMs = 1000;
+      (metrics2 as { durationMs: number }).durationMs = 2000;
+
+      await manager.record(metrics1);
+      await manager.record(metrics2);
+
+      const agg = await manager.aggregate();
+      expect(agg!.avgDurationMs).toBe(1500);
+    });
+
+    it('should aggregate phase latency stats (Phase 2)', async () => {
+      const metricsWithLatency = (cycle: number): CycleMetrics => ({
+        ...createMockMetrics(cycle),
+        latency: {
+          context_load: { startedAt: '', endedAt: '', durationMs: 100 },
+          action_execution: { startedAt: '', endedAt: '', durationMs: 500 },
+        },
+      });
+
+      await manager.record(metricsWithLatency(1));
+      await manager.record(metricsWithLatency(2));
+
+      const agg = await manager.aggregate();
+      expect(agg!.phaseLatency).toBeDefined();
+      expect(agg!.phaseLatency?.context_load?.count).toBe(2);
+      expect(agg!.phaseLatency?.context_load?.avgMs).toBe(100);
+      expect(agg!.phaseLatency?.action_execution?.count).toBe(2);
+      expect(agg!.phaseLatency?.action_execution?.avgMs).toBe(500);
+    });
+
+    it('should calculate min/max latency correctly (Phase 2)', async () => {
+      const metrics1: CycleMetrics = {
+        ...createMockMetrics(1),
+        latency: {
+          context_load: { startedAt: '', endedAt: '', durationMs: 50 },
+        },
+      };
+      const metrics2: CycleMetrics = {
+        ...createMockMetrics(2),
+        latency: {
+          context_load: { startedAt: '', endedAt: '', durationMs: 150 },
+        },
+      };
+
+      await manager.record(metrics1);
+      await manager.record(metrics2);
+
+      const agg = await manager.aggregate();
+      expect(agg!.phaseLatency?.context_load?.minMs).toBe(50);
+      expect(agg!.phaseLatency?.context_load?.maxMs).toBe(150);
+      expect(agg!.phaseLatency?.context_load?.totalMs).toBe(200);
+    });
+
+    it('should not include phaseLatency when no latency data (Phase 2)', async () => {
+      await manager.record(createMockMetrics(1)); // No latency
+
+      const agg = await manager.aggregate();
+      expect(agg!.phaseLatency).toBeUndefined();
     });
   });
 
