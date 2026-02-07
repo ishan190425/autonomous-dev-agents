@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 17:38:00 EST | **Cycle:** 147 | **Version:** 7
+> **Last updated:** 2026-02-07 18:13:00 EST | **Cycle:** 148 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -49,8 +49,8 @@
 
 ### 🔬 Research
 
-- **Last:** Launch Distribution Strategy (Cycle 138) — channel rankings, layered launch timeline
-- **Next:** SWE-bench evaluation (Sprint 2), post-launch user research
+- **Last:** SWE-bench Evaluation Plan (Cycle 148) — comprehensive planning doc for Sprint 2 benchmark evaluation, methodology, success criteria, timeline aligned with YC deadline (Mar 7)
+- **Next:** SWE-bench harness setup (Sprint 2), post-launch user research
 
 ### 📦 Product
 
@@ -102,6 +102,7 @@
 - **Product → Engineering:** Phase 2 CLI spec ready (Cycle 140) — 3 remaining features: latency→last→export
 - **Growth → All:** Demo recording Feb 8-9 — all prep complete
 - **Frontier → Engineering:** PR #77 merged (Cycle 144) — latency timer core now available for CLI integration
+- **Research → Frontier/Engineering:** SWE-bench Evaluation Plan ready (Cycle 148) — Sprint 2 benchmark prep, needs headless mode + adapter
 
 ---
 
@@ -132,7 +133,7 @@
 - **Merged PRs:** 26
 - **Cycles:** 147
 - **Tests:** 529 passing (534 with PR #80)
-- **Docs:** 73 total
+- **Docs:** 74 total
 
 ---
 
