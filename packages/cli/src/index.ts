@@ -18,6 +18,9 @@ import { runCommand } from './commands/run.js';
 import { statusCommand } from './commands/status.js';
 import { configCommand } from './commands/config.js';
 import { memoryCommand } from './commands/memory.js';
+import { stopCommand } from './commands/stop.js';
+import { pauseCommand } from './commands/pause.js';
+import { resumeCommand } from './commands/resume.js';
 
 const program = new Command();
 
@@ -31,5 +34,8 @@ program.addCommand(runCommand);
 program.addCommand(statusCommand);
 program.addCommand(configCommand);
 program.addCommand(memoryCommand);
+program.addCommand(stopCommand);
+program.addCommand(pauseCommand);
+program.addCommand(resumeCommand);
 
 program.parse();

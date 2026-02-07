@@ -288,6 +288,17 @@ function printDefaultStatus(data: StatusData, historyCount: number): void {
   // Header
   console.log(chalk.bold.blue(`🤖 ADA Status — ${roster.product}\n`));
 
+  // Paused state warning
+  if (rotation.paused) {
+    console.log(chalk.bgYellow.black(' ⏸️  PAUSED '));
+    console.log(`${chalk.gray('   Paused at:')}  ${rotation.paused_at || '(unknown)'}`);
+    if (rotation.pause_reason) {
+      console.log(`${chalk.gray('   Reason:')}     ${rotation.pause_reason}`);
+    }
+    console.log(chalk.yellow('   Use `ada resume` to continue dispatch cycles.'));
+    console.log();
+  }
+
   // Rotation summary
   const currentRoleStr = currentRole
     ? `${currentRole.emoji} ${currentRole.name} (${currentRole.title})`

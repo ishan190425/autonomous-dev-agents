@@ -112,6 +112,12 @@ export interface RotationState {
   cycle_count: number;
   /** Recent history (last N entries) */
   history: RotationHistoryEntry[];
+  /** Whether dispatch is paused */
+  paused?: boolean;
+  /** ISO timestamp when pause was set */
+  paused_at?: string;
+  /** Reason for pausing (optional) */
+  pause_reason?: string;
 }
 
 // ─── Memory Bank Types ───────────────────────────────────────────────────────
