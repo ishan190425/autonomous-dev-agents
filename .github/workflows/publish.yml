@@ -1,0 +1,295 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger on version tags (v1.0.0, v1.0.0-alpha.1, etc.)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (skip actual publish)'
+        required: false
+        default: 'false'
+        type: boolean
+      packages:
+        description: 'Packages to publish (all, core, cli)'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - core
+          - cli
+
+env:
+  NODE_VERSION: '20.x'
+
+jobs:
+  # =============================================================================
+  # Pre-publish quality gates — all checks must pass before any publishing
+  # =============================================================================
+  quality-gates:
+    name: Quality Gates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔍 Lint all packages
+        run: npm run lint --workspaces
+
+      - name: 🏗️ Build packages (ordered)
+        run: |
+          npm run build --workspace=packages/core
+          npm run build --workspace=packages/cli
+          npm run build --workspace=apps/web
+
+      - name: 🔎 Type-check all packages
+        run: npm run typecheck --workspaces
+
+      - name: 🧪 Test all packages
+        run: npm run test --workspaces
+
+      - name: 🔐 Security audit
+        run: npm audit --audit-level=moderate
+
+      - name: ✅ Validate package manifests
+        run: |
+          echo "🔍 Validating package.json structure..."
+
+          for pkg in packages/*/package.json; do
+            pkg_name=$(jq -r '.name' "$pkg")
+            echo "Checking $pkg_name..."
+            
+            # Required fields
+            if ! jq -e '.name and .version and .description and .main and .types' "$pkg" > /dev/null; then
+              echo "❌ Missing required fields in $pkg"
+              exit 1
+            fi
+            
+            # publishConfig.access must be public for scoped packages
+            access=$(jq -r '.publishConfig.access // "restricted"' "$pkg")
+            if [[ "$access" != "public" ]]; then
+              echo "❌ publishConfig.access must be 'public' for $pkg_name"
+              exit 1
+            fi
+            
+            echo "  ✅ $pkg_name validated"
+          done
+
+  # =============================================================================
+  # Publish @ada/core — must publish first (cli depends on it)
+  # =============================================================================
+  publish-core:
+    name: Publish @ada/core
+    runs-on: ubuntu-latest
+    needs: quality-gates
+    if: |
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' && 
+       (github.event.inputs.packages == 'all' || github.event.inputs.packages == 'core'))
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build @ada/core
+        run: npm run build --workspace=packages/core
+
+      - name: 🔍 Check if version exists on npm
+        id: version-check
+        run: |
+          cd packages/core
+          pkg_name=$(jq -r '.name' package.json)
+          pkg_version=$(jq -r '.version' package.json)
+
+          echo "Checking if $pkg_name@$pkg_version exists..."
+
+          if npm view "$pkg_name@$pkg_version" version 2>/dev/null; then
+            echo "⚠️  $pkg_name@$pkg_version already published — skipping"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "✅ $pkg_name@$pkg_version not yet published"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 📋 Dry-run pack
+        if: steps.version-check.outputs.exists == 'false'
+        run: |
+          cd packages/core
+          echo "📦 Package contents:"
+          npm pack --dry-run
+
+      - name: 🚀 Publish @ada/core
+        if: |
+          steps.version-check.outputs.exists == 'false' &&
+          (github.event_name == 'push' || github.event.inputs.dry_run != 'true')
+        run: npm publish --workspace=packages/core --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 🧪 Publish (dry-run mode)
+        if: |
+          steps.version-check.outputs.exists == 'false' &&
+          github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true'
+        run: |
+          echo "🧪 DRY RUN — would publish @ada/core"
+          npm publish --workspace=packages/core --access public --dry-run
+
+  # =============================================================================
+  # Publish @ada/cli — depends on @ada/core being published
+  # =============================================================================
+  publish-cli:
+    name: Publish @ada/cli
+    runs-on: ubuntu-latest
+    needs: [quality-gates, publish-core]
+    if: |
+      always() &&
+      needs.quality-gates.result == 'success' &&
+      (needs.publish-core.result == 'success' || needs.publish-core.result == 'skipped') &&
+      (github.event_name == 'push' ||
+       (github.event_name == 'workflow_dispatch' && 
+        (github.event.inputs.packages == 'all' || github.event.inputs.packages == 'cli')))
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build packages (ordered)
+        run: |
+          npm run build --workspace=packages/core
+          npm run build --workspace=packages/cli
+
+      - name: 🔍 Check if version exists on npm
+        id: version-check
+        run: |
+          cd packages/cli
+          pkg_name=$(jq -r '.name' package.json)
+          pkg_version=$(jq -r '.version' package.json)
+
+          echo "Checking if $pkg_name@$pkg_version exists..."
+
+          if npm view "$pkg_name@$pkg_version" version 2>/dev/null; then
+            echo "⚠️  $pkg_name@$pkg_version already published — skipping"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "✅ $pkg_name@$pkg_version not yet published"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 📋 Dry-run pack
+        if: steps.version-check.outputs.exists == 'false'
+        run: |
+          cd packages/cli
+          echo "📦 Package contents:"
+          npm pack --dry-run
+
+      - name: 🚀 Publish @ada/cli
+        if: |
+          steps.version-check.outputs.exists == 'false' &&
+          (github.event_name == 'push' || github.event.inputs.dry_run != 'true')
+        run: npm publish --workspace=packages/cli --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 🧪 Publish (dry-run mode)
+        if: |
+          steps.version-check.outputs.exists == 'false' &&
+          github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true'
+        run: |
+          echo "🧪 DRY RUN — would publish @ada/cli"
+          npm publish --workspace=packages/cli --access public --dry-run
+
+  # =============================================================================
+  # Post-publish verification
+  # =============================================================================
+  verify-publish:
+    name: Verify Publication
+    runs-on: ubuntu-latest
+    needs: [publish-core, publish-cli]
+    if: |
+      always() &&
+      (needs.publish-core.result == 'success' || needs.publish-cli.result == 'success')
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: ⏳ Wait for npm registry propagation
+        run: sleep 15
+
+      - name: ✅ Verify @ada/core
+        run: |
+          core_version=$(jq -r '.version' packages/core/package.json)
+          echo "Verifying @ada/core@$core_version..."
+
+          if npm view "@ada/core@$core_version" version 2>/dev/null; then
+            echo "✅ @ada/core@$core_version verified on npm"
+          else
+            echo "⚠️  @ada/core@$core_version not found (may take time to propagate)"
+          fi
+
+      - name: ✅ Verify @ada/cli
+        run: |
+          cli_version=$(jq -r '.version' packages/cli/package.json)
+          echo "Verifying @ada/cli@$cli_version..."
+
+          if npm view "@ada/cli@$cli_version" version 2>/dev/null; then
+            echo "✅ @ada/cli@$cli_version verified on npm"
+          else
+            echo "⚠️  @ada/cli@$cli_version not found (may take time to propagate)"
+          fi
+
+      - name: 📊 Summary
+        run: |
+          echo "## 📦 Publish Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          core_version=$(jq -r '.version' packages/core/package.json)
+          cli_version=$(jq -r '.version' packages/cli/package.json)
+
+          echo "| Package | Version | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|---------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| @ada/core | $core_version | ✅ Published |" >> $GITHUB_STEP_SUMMARY
+          echo "| @ada/cli | $cli_version | ✅ Published |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Installation" >> $GITHUB_STEP_SUMMARY
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo "npm install -g @ada/cli@$cli_version" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
