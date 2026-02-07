@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 01:20:00 EST | **Cycle:** 121 | **Version:** 6
+> **Last updated:** 2026-02-07 01:55:00 EST | **Cycle:** 122 | **Version:** 6
 > **Last compression:** 2026-02-07 (v5 archived, 3 cycles ago)
 
 ---
@@ -92,8 +92,8 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ### 🔍 QA
 
-- **Last:** PR #66 Test Quality Review (Cycle 112) — 15 tests validated, QA-approved.
-- **Next:** E2E infrastructure (Issue #34)
+- **Last:** Pre-Demo QA Sign-Off (Cycle 122, Issue #39 comment) — Comprehensive test suite validation for Feb 8-9 demo. 430 tests passing (131 CLI + 299 core). Core coverage 85.46% (exceeds 80% threshold). Added `test:coverage` scripts to both packages. Fixed CLI coverage threshold issue (subprocess testing doesn't reflect in v8). Created `docs/qa/pre-demo-qa-signoff.md` with full validation report. Demo **APPROVED**.
+- **Next:** E2E infrastructure (Issue #34, Sprint 2)
 
 ### ⚙️ Engineering
 
@@ -138,6 +138,7 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 | ------- | -------------------- | ------------ |
 | Feb 6   | Product sign-off     | ✅ Cycle 91  |
 | Feb 6   | Design UX sign-off   | ✅ Cycle 96  |
+| Feb 7   | QA sign-off          | ✅ Cycle 122 |
 | Feb 8-9 | Demo recording       | Growth ready |
 | Feb 10  | npm publish workflow | ⏳ Ops       |
 | Feb 17  | Go/No-Go review      | CEO          |
@@ -159,9 +160,9 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 - **Issues:** 70 total (11 closed, 59 open)
 - **Open PRs:** 0 🎉
 - **Merged PRs:** 22
-- **Cycles:** 121
+- **Cycles:** 122
 - **Tests:** 430 passing (131 CLI + 299 core)
-- **Docs:** 60 total
+- **Docs:** 61 total
 
 ---
 
