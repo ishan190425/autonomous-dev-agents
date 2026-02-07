@@ -470,4 +470,150 @@ describe('ada memory — integration tests', () => {
       expect(exportedAt.getTime()).toBeGreaterThan(Date.now() - 60_000);
     });
   });
+
+  describe('ada memory embed (Phase 3.3)', () => {
+    it('initializes persistent vector store', () => {
+      const output = runAda(['memory', 'embed']);
+
+      // Should confirm indexing
+      expect(output).toContain('Indexed');
+      expect(output).toContain('entries');
+    });
+
+    it('shows tier distribution after indexing', () => {
+      const output = runAda(['memory', 'embed']);
+
+      // Should show tier info
+      expect(output).toMatch(/Hot|Warm|Cold/i);
+    });
+
+    it('supports --json flag for machine-readable output', () => {
+      const output = runAda(['memory', 'embed', '--json']);
+
+      const result = JSON.parse(output);
+      expect(result).toHaveProperty('indexed');
+      expect(result).toHaveProperty('stats');
+      expect(result.stats).toHaveProperty('hot');
+      expect(result.stats).toHaveProperty('warm');
+      expect(result.stats).toHaveProperty('cold');
+      expect(result).toHaveProperty('provider');
+      expect(result).toHaveProperty('dimensions');
+    });
+
+    it('warns if vector store exists without --force', () => {
+      // First embed
+      runAda(['memory', 'embed']);
+
+      // Second embed should warn
+      const output = runAda(['memory', 'embed']);
+
+      expect(output).toContain('already exists');
+      expect(output).toContain('--force');
+    });
+
+    it('reindexes with --force flag', () => {
+      // First embed
+      runAda(['memory', 'embed']);
+
+      // Force reindex
+      const output = runAda(['memory', 'embed', '--force']);
+
+      expect(output).toContain('Indexed');
+    });
+
+    it('shows verbose output with --verbose flag', () => {
+      const output = runAda(['memory', 'embed', '--verbose']);
+
+      expect(output).toContain('Provider:');
+      expect(output).toContain('tfidf');
+    });
+  });
+
+  describe('ada memory lifecycle (Phase 3.3)', () => {
+    it('shows warning when vector store not initialized', () => {
+      const output = runAda(['memory', 'lifecycle']);
+
+      expect(output).toContain('not initialized');
+      expect(output).toContain('ada memory embed');
+    });
+
+    it('shows tier statistics after embed', () => {
+      // Initialize the vector store first
+      runAda(['memory', 'embed']);
+
+      const output = runAda(['memory', 'lifecycle']);
+
+      // Should show tier distribution
+      expect(output).toContain('Tier Distribution');
+      expect(output).toMatch(/Hot|Warm|Cold/i);
+    });
+
+    it('shows importance tracking stats', () => {
+      runAda(['memory', 'embed']);
+
+      const output = runAda(['memory', 'lifecycle']);
+
+      expect(output).toContain('Importance Tracking');
+      expect(output).toContain('tracked');
+      expect(output).toContain('score');
+    });
+
+    it('supports --json flag for machine-readable output', () => {
+      runAda(['memory', 'embed']);
+
+      const output = runAda(['memory', 'lifecycle', '--json']);
+
+      const result = JSON.parse(output);
+      expect(result).toHaveProperty('tiers');
+      expect(result.tiers).toHaveProperty('hot');
+      expect(result.tiers).toHaveProperty('warm');
+      expect(result.tiers).toHaveProperty('cold');
+      expect(result).toHaveProperty('importance');
+    });
+
+    it('shows verbose output with --verbose flag', () => {
+      runAda(['memory', 'embed']);
+
+      const output = runAda(['memory', 'lifecycle', '--verbose']);
+
+      expect(output).toContain('Store Info');
+      expect(output).toContain('Provider');
+      expect(output).toContain('Dimensions');
+    });
+
+    it('shows health status', () => {
+      runAda(['memory', 'embed']);
+
+      const output = runAda(['memory', 'lifecycle']);
+
+      expect(output).toMatch(/healthy|attention/i);
+    });
+  });
+
+  describe('ada memory — help for new commands (Phase 3.3)', () => {
+    it('shows help for embed subcommand', () => {
+      const output = runAda(['memory', 'embed', '--help']);
+
+      expect(output).toContain('embed');
+      expect(output).toContain('--force');
+      expect(output).toContain('--json');
+      expect(output).toContain('--verbose');
+    });
+
+    it('shows help for lifecycle subcommand', () => {
+      const output = runAda(['memory', 'lifecycle', '--help']);
+
+      expect(output).toContain('lifecycle');
+      expect(output).toContain('--json');
+      expect(output).toContain('--verbose');
+    });
+
+    it('main memory help includes new subcommands', () => {
+      const output = runAda(['memory', '--help']);
+
+      expect(output).toContain('embed');
+      expect(output).toContain('lifecycle');
+      expect(output).toContain('three-tier');
+    });
+  });
 });
