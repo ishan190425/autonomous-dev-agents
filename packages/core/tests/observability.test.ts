@@ -505,7 +505,16 @@ describe('constants', () => {
     it('should have pricing for common models', () => {
       expect(MODEL_PRICING['gpt-4o']).toBeDefined();
       expect(MODEL_PRICING['claude-3-5-sonnet-20241022']).toBeDefined();
-      expect(MODEL_PRICING['default']).toBeDefined();
+      // Note: default pricing uses separate DEFAULT_PRICING constant, not a key in MODEL_PRICING
+      // getPricing() handles fallback to DEFAULT_PRICING for unknown models
+    });
+
+    it('should have valid pricing structure for all models', () => {
+      for (const pricing of Object.values(MODEL_PRICING)) {
+        expect(pricing.model).toBeDefined();
+        expect(pricing.inputPer1M).toBeGreaterThan(0);
+        expect(pricing.outputPer1M).toBeGreaterThan(0);
+      }
     });
   });
 
