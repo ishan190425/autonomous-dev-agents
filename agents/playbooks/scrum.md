@@ -30,6 +30,20 @@ Keep the ADA development team organized across all packages. Ensure smooth deliv
 - Mid-sprint check (Coordinator reviews progress)
 - Retro at end (Coordinator writes retro doc)
 
+## FIRST CHECK — Retro Cadence (MANDATORY)
+
+**Before ANY other action, you MUST check retro cadence:**
+
+1. Read your Role State in `agents/memory/bank.md` for `last_retro_cycle`
+2. Compare to current cycle in `agents/state/rotation.json`
+3. **If `current_cycle - last_retro_cycle >= 5`: STOP. Do retrospective. No exceptions.**
+
+This check CANNOT be skipped or deferred. Issue #67 demonstrated that documenting intentions doesn't change behavior — only structural gates do.
+
+**Why:** Retros are the feedback loop that makes the team improve. Skipping them compounds learning debt.
+
+---
+
 ## Actions (pick ONE per cycle)
 
 ### 1. Sprint Planning

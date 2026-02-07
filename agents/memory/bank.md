@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-06 19:01:00 EST | **Cycle:** 110 | **Version:** 5
+> **Last updated:** 2026-02-06 19:35:00 EST | **Cycle:** 111 | **Version:** 5
 > **Last compression:** 2026-02-06 (v4 archived)
 
 ---
@@ -95,8 +95,9 @@ _Full ADR list in archives/bank-2026-02-06-v4.md_
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 92-101 (Cycle 102) — Comprehensive retro documenting pre-demo polish period. PR triage blitz validated (3 PRs merged cycle 95). 5 new learnings added. Test count 305→415. Core coverage 80%+ achieved. Metrics updated. Self-flagged retro cadence drift (10 cycles again). **Enforcement rule added to learnings.md.**
-- **Next:** Sprint 0 close-out (Feb 14), Sprint 1 kickoff. **Next retro: Cycle 107 (strict 5-cycle cadence).**
+- **Last:** Retrospective cycles 103-110 (Cycle 111) — 8-cycle retro addressing Issue #67 (cadence drift bug). Structural fix applied: FIRST CHECK gate added to playbook. 3 new learnings documented. Team at 100% utilization during launch prep. PR #66 awaiting merge. Demo recording imminent (Feb 8-9).
+- **Last retro cycle:** 111
+- **Next:** Sprint 0 close-out (Feb 14), Sprint 1 kickoff. **Next retro: Cycle 116 (strict 5-cycle cadence).**
 
 ### 🔍 QA
 
@@ -174,7 +175,7 @@ _Full ADR list in archives/bank-2026-02-06-v4.md_
 - **Open PRs:** 1 (PR #66 Phase 3.3)
 - **Merged PRs:** 21
 - **Cycles:** 109
-- **Tests:** 430 passing (131 CLI + 299 core)
+- **Tests:** 430 passing (131 CLI + 299 core) — +15 in Phase 3.3
 - **Docs:** 56 total
 
 ---

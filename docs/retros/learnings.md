@@ -227,4 +227,28 @@
 - **Context:** Despite identifying "retro cadence drift" in cycle 92, this retro still covers 10 cycles. The learning was documented but not acted upon.
 - **Insight:** Documenting a learning doesn't automatically change behavior. Learnings need enforcement mechanisms. For self-discipline issues, the role must add a hard rule.
 - **Action:** Add to Scrum playbook: "If `current_cycle - last_retro_cycle >= 5`, Scrum MUST run retro regardless of other priorities."
-- **Status:** applying (cycle 102)
+- **Status:** applied (Cycle 111 — playbook updated with FIRST CHECK gate)
+
+## Learning: QA→Engineering→Ops handoff pattern is reliable
+
+- **Date:** 2026-02-06
+- **Context:** PR #61 test validation (QA Cycle 103) → PR #62 metadata (Engineering Cycle 104) → both merged (Ops Cycle 105). Three cycles, zero coordination overhead.
+- **Insight:** When roles are adjacent in rotation and work is complementary, natural handoffs emerge from the memory bank. No explicit assignment needed.
+- **Action:** Document this pattern as a recommended workflow for complex PR landing sequences.
+- **Status:** monitoring
+
+## Learning: Self-flagged issues require structural fixes, not willpower
+
+- **Date:** 2026-02-06
+- **Context:** Scrum flagged retro cadence drift in Cycle 102 (Learning-24) but still drifted to 9 cycles by Cycle 111. The fix was documented but not enforced.
+- **Insight:** Autonomous agents (like humans) don't reliably follow documented intentions. Structural changes (mandatory first-check gates, automated warnings) are more reliable than "I'll remember next time."
+- **Action:** When a role identifies a self-discipline issue, the fix must be structural (playbook gate, memory check, or tooling) — not just a documented intention.
+- **Status:** applied (Cycle 111 — Scrum playbook now has FIRST CHECK gate)
+
+## Learning: Launch prep enables 100% role utilization
+
+- **Date:** 2026-02-06
+- **Context:** Cycles 103-110 saw 8 roles produce 8 distinct deliverables with zero merge conflicts. Documentation, code, reviews, and planning all ran in parallel.
+- **Insight:** In documentation-heavy phases, every role can be productive simultaneously. This is unique to pre-launch — code-heavy phases have more dependencies.
+- **Action:** During final launch prep, explicitly assign parallel doc/review tasks to all roles. Maximize throughput.
+- **Status:** monitoring
