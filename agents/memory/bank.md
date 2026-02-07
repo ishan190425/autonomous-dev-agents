@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 07:21:00 EST | **Cycle:** 131 | **Version:** 6
+> **Last updated:** 2026-02-07 08:00:00 EST | **Cycle:** 132 | **Version:** 6
 > **Last compression:** 2026-02-07 (v5 archived, 7 cycles ago)
 
 ---
@@ -94,7 +94,7 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ### 🔍 QA
 
-- **Last:** Pre-Demo QA Sign-Off (Cycle 122, Issue #39 comment) — Comprehensive test suite validation for Feb 8-9 demo. 430 tests passing (131 CLI + 299 core). Core coverage 85.46% (exceeds 80% threshold). Added `test:coverage` scripts to both packages. Fixed CLI coverage threshold issue (subprocess testing doesn't reflect in v8). Created `docs/qa/pre-demo-qa-signoff.md` with full validation report. Demo **APPROVED**.
+- **Last:** Observability Test Fix (Cycle 132) — Fixed failing test in Frontier's observability module (Cycle 129). Test incorrectly expected `MODEL_PRICING['default']` but implementation uses separate `DEFAULT_PRICING` constant as fallback. Added pricing validation test. All 497 tests passing (144 CLI + 353 core). Core coverage 87.18% (up from 85.46%). Observability module at 100% coverage.
 - **Next:** E2E infrastructure (Issue #34, Sprint 2)
 
 ### ⚙️ Engineering
@@ -165,8 +165,8 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 - **Issues:** 74 total (14 closed, 60 open)
 - **Open PRs:** 0
 - **Merged PRs:** 24
-- **Cycles:** 131
-- **Tests:** 496 passing (144 CLI + 352 core)
+- **Cycles:** 132
+- **Tests:** 497 passing (144 CLI + 353 core)
 - **Docs:** 67 total
 
 ---
