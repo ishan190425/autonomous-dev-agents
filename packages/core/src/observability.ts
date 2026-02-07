@@ -1,8 +1,8 @@
 /**
  * @ada/core — Agent Observability System
  *
- * Phase 1: Token Counter
- * Tracks token usage and cost per dispatch cycle.
+ * Phase 1: Token Counter — Tracks token usage and cost per dispatch cycle.
+ * Phase 2: Latency Timer — Tracks per-phase timing for performance analysis.
  *
  * Part of PLAT-003 (Agent Observability ADR).
  *
@@ -55,6 +55,30 @@ export type DispatchPhase =
   | 'evolution_check'
   | 'state_update';
 
+/** Latency metrics for a single phase (Phase 2) */
+export interface PhaseLatency {
+  /** ISO timestamp when phase started */
+  readonly startedAt: string;
+  /** ISO timestamp when phase ended */
+  readonly endedAt: string;
+  /** Duration in milliseconds */
+  readonly durationMs: number;
+}
+
+/** Aggregated latency statistics for a phase across cycles */
+export interface PhaseLatencyStats {
+  /** Number of cycles with data for this phase */
+  readonly count: number;
+  /** Total duration across all cycles (ms) */
+  readonly totalMs: number;
+  /** Average duration (ms) */
+  readonly avgMs: number;
+  /** Minimum duration (ms) */
+  readonly minMs: number;
+  /** Maximum duration (ms) */
+  readonly maxMs: number;
+}
+
 /** Token metrics for a single dispatch cycle */
 export interface CycleMetrics {
   /** Cycle number */
@@ -71,6 +95,8 @@ export interface CycleMetrics {
   readonly durationMs: number;
   /** Token usage per phase */
   readonly phases: Partial<Record<DispatchPhase, TokenUsage>>;
+  /** Latency per phase (Phase 2) */
+  readonly latency?: Partial<Record<DispatchPhase, PhaseLatency>>;
   /** Aggregated token usage */
   readonly totals: TokenUsage;
   /** Estimated cost */
@@ -108,6 +134,10 @@ export interface AggregatedMetrics {
     readonly start: string;
     readonly end: string;
   };
+  /** Average cycle duration in milliseconds */
+  readonly avgDurationMs: number;
+  /** Per-phase latency statistics (Phase 2) */
+  readonly phaseLatency?: Partial<Record<DispatchPhase, PhaseLatencyStats>>;
 }
 
 /** Stored metrics state */
@@ -242,11 +272,20 @@ export function divideCost(cost: TokenCost, count: number): TokenCost {
 
 // ─── Cycle Tracker ───────────────────────────────────────────────────────────
 
+/** Active phase timer state */
+interface PhaseTimer {
+  readonly phase: DispatchPhase;
+  readonly startedAt: Date;
+}
+
 /**
- * Tracks token usage during a single dispatch cycle.
+ * Tracks token usage and latency during a single dispatch cycle.
  *
  * Create at the start of a cycle, record usage per phase,
- * then finalize to get the complete metrics.
+ * optionally use startPhase/endPhase for timing, then finalize.
+ *
+ * Phase 1: Token tracking via recordPhase()
+ * Phase 2: Latency tracking via startPhase()/endPhase()
  */
 export class CycleTracker {
   private readonly cycle: number;
@@ -254,6 +293,8 @@ export class CycleTracker {
   private readonly model: string;
   private readonly startedAt: Date;
   private readonly phases: Partial<Record<DispatchPhase, TokenUsage>> = {};
+  private readonly latency: Partial<Record<DispatchPhase, PhaseLatency>> = {};
+  private activeTimer: PhaseTimer | null = null;
   private finalized = false;
 
   constructor(cycle: number, role: string, model: string = 'default') {
@@ -281,12 +322,97 @@ export class CycleTracker {
   }
 
   /**
+   * Start timing a phase (Phase 2 — Latency Timer).
+   * Call endPhase() when the phase completes.
+   * Only one phase can be active at a time.
+   */
+  startPhase(phase: DispatchPhase): void {
+    if (this.finalized) {
+      throw new Error('Cannot start phase after finalization');
+    }
+    if (this.activeTimer !== null) {
+      throw new Error(`Phase '${this.activeTimer.phase}' is already active. Call endPhase() first.`);
+    }
+    this.activeTimer = { phase, startedAt: new Date() };
+  }
+
+  /**
+   * End timing the current phase (Phase 2 — Latency Timer).
+   * Returns the phase latency for convenience.
+   */
+  endPhase(): PhaseLatency {
+    if (this.finalized) {
+      throw new Error('Cannot end phase after finalization');
+    }
+    if (this.activeTimer === null) {
+      throw new Error('No phase is currently active. Call startPhase() first.');
+    }
+
+    const endedAt = new Date();
+    const phaseLatency: PhaseLatency = {
+      startedAt: this.activeTimer.startedAt.toISOString(),
+      endedAt: endedAt.toISOString(),
+      durationMs: endedAt.getTime() - this.activeTimer.startedAt.getTime(),
+    };
+
+    this.latency[this.activeTimer.phase] = phaseLatency;
+    this.activeTimer = null;
+    return phaseLatency;
+  }
+
+  /**
+   * Check if a phase timer is currently active.
+   */
+  isPhaseActive(): boolean {
+    return this.activeTimer !== null;
+  }
+
+  /**
+   * Get the currently active phase, if any.
+   */
+  getActivePhase(): DispatchPhase | null {
+    return this.activeTimer?.phase ?? null;
+  }
+
+  /**
+   * Convenience method: time a phase using a callback.
+   * Automatically calls startPhase before and endPhase after.
+   */
+  async timePhase<T>(phase: DispatchPhase, fn: () => Promise<T>): Promise<T> {
+    this.startPhase(phase);
+    try {
+      return await fn();
+    } finally {
+      this.endPhase();
+    }
+  }
+
+  /**
+   * Synchronous version of timePhase for non-async code.
+   */
+  timePhaseSync<T>(phase: DispatchPhase, fn: () => T): T {
+    this.startPhase(phase);
+    try {
+      return fn();
+    } finally {
+      this.endPhase();
+    }
+  }
+
+  /**
    * Finalize the cycle and get complete metrics.
+   * Any active phase timer is automatically ended.
    */
   finalize(success: boolean, error?: string): CycleMetrics {
     if (this.finalized) {
       throw new Error('Already finalized');
     }
+
+    // Auto-end any active phase timer
+    if (this.activeTimer !== null) {
+      this.endPhase();
+    }
+
     this.finalized = true;
 
     const completedAt = new Date();
@@ -302,6 +428,9 @@ export class CycleTracker {
     const pricing = getPricing(this.model);
     const cost = calculateCost(totals, pricing);
 
+    // Build result with optional latency
+    const hasLatency = Object.keys(this.latency).length > 0;
+
     const result: CycleMetrics = {
       cycle: this.cycle,
       role: this.role,
@@ -310,6 +439,7 @@ export class CycleTracker {
       completedAt: completedAt.toISOString(),
       durationMs,
       phases: this.phases,
+      ...(hasLatency && { latency: this.latency }),
       totals,
       cost,
       success,
@@ -423,13 +553,18 @@ export class MetricsManager {
 
     let totalTokens = emptyUsage();
     let totalCost = emptyCost();
+    let totalDurationMs = 0;
     let successfulCycles = 0;
     let failedCycles = 0;
     const byRole: Record<string, { cycles: number; tokens: TokenUsage; cost: TokenCost }> = {};
 
+    // Phase latency aggregation (Phase 2)
+    const phaseLatencyData: Partial<Record<DispatchPhase, { durations: number[] }>> = {};
+
     for (const cycle of cycles) {
       totalTokens = addUsage(totalTokens, cycle.totals);
       totalCost = addCost(totalCost, cycle.cost);
+      totalDurationMs += cycle.durationMs;
 
       if (cycle.success) {
         successfulCycles++;
@@ -446,11 +581,44 @@ export class MetricsManager {
       roleStats.cycles++;
       roleStats.tokens = addUsage(roleStats.tokens, cycle.totals);
       roleStats.cost = addCost(roleStats.cost, cycle.cost);
+
+      // Aggregate phase latency (Phase 2)
+      if (cycle.latency) {
+        for (const [phase, latency] of Object.entries(cycle.latency)) {
+          const phaseKey = phase as DispatchPhase;
+          let data = phaseLatencyData[phaseKey];
+          if (!data) {
+            data = { durations: [] };
+            phaseLatencyData[phaseKey] = data;
+          }
+          data.durations.push(latency.durationMs);
+        }
+      }
     }
 
     const totalCycleCount = cycles.length;
     const firstCycle = cycles[0]!; // Safe: we checked cycles.length > 0 above
     const lastCycle = cycles[cycles.length - 1]!;
+
+    // Calculate phase latency stats (Phase 2)
+    const hasLatencyData = Object.keys(phaseLatencyData).length > 0;
+    let phaseLatency: Partial<Record<DispatchPhase, PhaseLatencyStats>> | undefined;
+
+    if (hasLatencyData) {
+      phaseLatency = {};
+      for (const [phase, data] of Object.entries(phaseLatencyData)) {
+        const durations = data.durations;
+        const count = durations.length;
+        const totalMs = durations.reduce((sum, d) => sum + d, 0);
+        phaseLatency[phase as DispatchPhase] = {
+          count,
+          totalMs,
+          avgMs: Math.round(totalMs / count),
+          minMs: Math.min(...durations),
+          maxMs: Math.max(...durations),
+        };
+      }
+    }
 
     return {
       totalCycles: totalCycleCount,
@@ -467,6 +635,8 @@ export class MetricsManager {
         start: firstCycle.startedAt,
         end: lastCycle.completedAt,
       },
+      avgDurationMs: Math.round(totalDurationMs / totalCycleCount),
+      ...(phaseLatency && { phaseLatency }),
     };
   }
 
@@ -528,4 +698,32 @@ export function formatTokens(tokens: number): string {
     return `${(tokens / 1_000).toFixed(1)}K`;
   }
   return `${tokens}`;
+}
+
+/**
+ * Format duration for display (Phase 2 — Latency Timer).
+ * Intelligently formats based on magnitude:
+ * - < 1s: "234ms"
+ * - < 60s: "12.4s"
+ * - >= 60s: "2m 34s"
+ */
+export function formatDuration(ms: number): string {
+  if (ms < 1000) {
+    return `${Math.round(ms)}ms`;
+  }
+  if (ms < 60_000) {
+    return `${(ms / 1000).toFixed(1)}s`;
+  }
+  const minutes = Math.floor(ms / 60_000);
+  const seconds = Math.round((ms % 60_000) / 1000);
+  return `${minutes}m ${seconds}s`;
+}
+
+/**
+ * Calculate efficiency: tokens per second (Phase 2 — Latency Timer).
+ * Useful for comparing roles or models.
+ */
+export function calculateEfficiency(tokens: number, durationMs: number): number {
+  if (durationMs === 0) return 0;
+  return Math.round((tokens / durationMs) * 1000);
 }
