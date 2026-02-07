@@ -21,6 +21,8 @@ import { memoryCommand } from './commands/memory.js';
 import { stopCommand } from './commands/stop.js';
 import { pauseCommand } from './commands/pause.js';
 import { resumeCommand } from './commands/resume.js';
+import { observeCommand } from './commands/observe.js';
+import { costsCommand } from './commands/costs.js';
 
 const program = new Command();
 
@@ -37,5 +39,7 @@ program.addCommand(memoryCommand);
 program.addCommand(stopCommand);
 program.addCommand(pauseCommand);
 program.addCommand(resumeCommand);
+program.addCommand(observeCommand);
+program.addCommand(costsCommand);
 
 program.parse();
