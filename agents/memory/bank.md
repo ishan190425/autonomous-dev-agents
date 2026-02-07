@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-06 22:28:00 EST | **Cycle:** 116 | **Version:** 6
+> **Last updated:** 2026-02-06 23:03:00 EST | **Cycle:** 117 | **Version:** 6
 > **Last compression:** 2026-02-07 (v5 archived, 11 cycles)
 
 ---
@@ -105,8 +105,8 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ### 🚀 Growth
 
-- **Last:** Video Narration Script (Cycle 108) — 2-minute demo script ready.
-- **Next:** Execute demo recording Feb 8-9, Discord server Feb 20
+- **Last:** Pre-Flight Checklist (Cycle 117) — Final verification for Feb 8-9 recording. All systems go: CLI v0.1.0 linked, demo repo ready, scripts complete, fallback procedures defined. `docs/marketing/demo-preflight-checklist.md` created.
+- **Next:** Execute demo recording Feb 8 (GIF) + Feb 9 (video stretch), Discord server Feb 20
 
 ### 🎨 Design
 
@@ -156,7 +156,7 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 - **Issues:** 68 total (10 closed, 58 open)
 - **Open PRs:** 0 🎉
 - **Merged PRs:** 22
-- **Cycles:** 116
+- **Cycles:** 117
 - **Tests:** 430 passing (131 CLI + 299 core)
 - **Docs:** 58 total
 
