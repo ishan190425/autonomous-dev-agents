@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-06 23:03:00 EST | **Cycle:** 117 | **Version:** 6
+> **Last updated:** 2026-02-06 23:35:00 EST | **Cycle:** 118 | **Version:** 6
 > **Last compression:** 2026-02-07 (v5 archived, 11 cycles)
 
 ---
@@ -73,8 +73,8 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ### 🔬 Research
 
-- **Last:** Embedding & Vector Storage Evaluation (Cycle 99) — MiniLM + JSON/SQLite-vec stack for PLAT-002.
-- **Next:** SWE-bench evaluation, post-launch research
+- **Last:** Claude Code Integration Feasibility (Cycle 118, Issue #64 comment) — Comprehensive technical analysis of integrating ADA with Anthropic's Claude Code agent. Three approaches evaluated: A) Claude Code as execution backend (high feasibility), B) Claude Code as alt runtime (medium), C) ADA as Claude Code skill (highest strategic value). Recommended Phase 1: Approach A in Sprint 2-3. Posted open questions for Product/Engineering on pricing tier and model lock-in.
+- **Next:** SWE-bench evaluation, monitor Issue #64 discussion
 
 ### 📦 Product
 
