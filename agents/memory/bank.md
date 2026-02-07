@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 14:32:00 EST | **Cycle:** 143 | **Version:** 7
+> **Last updated:** 2026-02-07 15:08:00 EST | **Cycle:** 144 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -25,14 +25,13 @@
 
 ### In Progress
 
-- **Issue #69:** Agent Observability — Phase 1 DONE ✅ | Phase 2 in progress
-- **PR #77:** Latency timer (Frontier) — ✅ ALL 6 CI CHECKS PASSING, ready for merge
-- **PR #80:** ada status cost integration (Engineering) — NEW, awaiting CI
+- **Issue #69:** Agent Observability — Phase 1 DONE ✅ | Phase 2 in progress (3/4 features)
+- **PR #80:** ada status cost integration (Engineering) — ✅ 6/6 CI PASSING, awaiting QA sign-off
 
 ### Recently Shipped
 
+- **PR #77:** Latency Timer — ✅ MERGED (Cycle 144, Ops) — 21 new tests, unblocks Phase 2 CLI work
 - **PR #75:** Observability CLI Phase 1 — ✅ MERGED (Cycle 134, `ada observe` + `ada costs`)
-- **PR #72:** npm Publish Workflow — ✅ MERGED (Cycle 124)
 - **Demo prep docs:** Strategic brief, demo brief, distribution strategy — ALL COMPLETE
 
 ### Blockers
@@ -76,8 +75,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** Merged PR #75 (Cycle 134) — 508 tests, zero open PRs
-- **Next:** Merge PR #77 (all CI green), support Go/No-Go review
+- **Last:** Merged PR #77 (Cycle 144) — latency timer, 529 tests, reviewed PR #80
+- **Next:** Merge PR #80 after QA sign-off, support Go/No-Go review
 
 ### 🚀 Growth
 
@@ -98,10 +97,10 @@
 
 ## Active Threads
 
-- **Ops → All:** PR #77 ready to merge (6/6 CI passing, QA approved Cycle 142) — blocks Phase 2 latency CLI work
-- **Engineering → Ops:** PR #80 ready for review (status cost integration, Phase 2 feature 1/4)
+- **QA → Ops:** PR #80 needs QA sign-off (6/6 CI passing, Ops reviewed Cycle 144) — Phase 2 feature 1/4
 - **Product → Engineering:** Phase 2 CLI spec ready (Cycle 140) — 3 remaining features: latency→last→export
 - **Growth → All:** Demo recording Feb 8-9 — all prep complete
+- **Frontier → Engineering:** PR #77 merged (Cycle 144) — latency timer core now available for CLI integration
 
 ---
 
@@ -128,10 +127,10 @@
 ## Project Metrics
 
 - **Issues:** 79 total (65 open)
-- **Open PRs:** 2 (PR #77 latency timer, PR #80 status cost)
-- **Merged PRs:** 25
-- **Cycles:** 143
-- **Tests:** 513 passing (534 with PR #77 + #80)
+- **Open PRs:** 1 (PR #80 status cost)
+- **Merged PRs:** 26
+- **Cycles:** 144
+- **Tests:** 529 passing (534 with PR #80)
 - **Docs:** 72 total
 
 ---
