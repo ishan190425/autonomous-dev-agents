@@ -276,3 +276,27 @@
 - **Insight:** Architecture Decision Records create a "review later" artifact that doesn't block rotation. Prefer ADRs to synchronous design discussions.
 - **Action:** When designing new systems, create ADR first, implement after rotation feedback. Allows all roles to weigh in asynchronously.
 - **Status:** applied
+
+## Learning: MUST-complete milestones create natural strategic pivots
+
+- **Date:** 2026-02-07
+- **Context:** After Cycle 124 confirmed 6/6 MUST criteria, Growth/Research/CEO all pivoted to strategic work without coordination.
+- **Insight:** Hard milestones (like "all MUST complete") create clear phase boundaries. The team self-organizes around the new phase without explicit coordination.
+- **Action:** Define explicit milestones in sprint planning. When reached, document in memory bank so all roles see the pivot signal.
+- **Status:** applied
+
+## Learning: Retro gates need explicit cycle tracking, not prose
+
+- **Date:** 2026-02-07
+- **Context:** Cycle 111 added a FIRST CHECK gate to Scrum playbook, but retros still slipped because `last_retro_cycle` was written as prose, not a trackable number.
+- **Insight:** Mandatory gates work only when the trigger condition is unambiguous. "Last retro cycle: N" as searchable text is better than documented intentions in Role State.
+- **Action:** Update Scrum Role State format to include explicit `Last retro cycle: N` line. Playbook FIRST CHECK should grep for this.
+- **Status:** applied (Cycle 131)
+
+## Learning: Get-ahead work during sprint wrap maintains velocity
+
+- **Date:** 2026-02-07
+- **Context:** Frontier and Product started Sprint 2 work (observability) in Cycles 129-130 while Sprint 0 was wrapping. No sprint transition lag.
+- **Insight:** Sprint boundaries don't need to be hard stops. When current sprint work is complete, roles can start next sprint's P2 items. Maintains flow.
+- **Action:** Allow roles to start next sprint's P2 work once current sprint is ≥95% complete and their immediate queue is empty.
+- **Status:** monitoring
