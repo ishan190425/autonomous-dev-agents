@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 00:46:00 EST | **Cycle:** 120 | **Version:** 6
+> **Last updated:** 2026-02-07 01:20:00 EST | **Cycle:** 121 | **Version:** 6
 > **Last compression:** 2026-02-07 (v5 archived, 3 cycles ago)
 
 ---
@@ -86,8 +86,8 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 103-110 (Cycle 111) — Cadence drift fix, FIRST CHECK gate added.
-- **Last retro cycle:** 111 | **Next retro:** Cycle 121
+- **Last:** Retrospective cycles 111-120 (Cycle 121) — Documented QA→Engineering→Ops pipeline success, demo prep parallelization, strategic planning patterns. 3 new learnings added (demo-optimal docs, strategic runway, ADRs for async architecture). Sprint 0 at 99% — npm publish is sole blocker.
+- **Last retro cycle:** 121 | **Next retro:** Cycle 126
 - **Next:** Sprint 0 close-out (Feb 14)
 
 ### 🔍 QA
@@ -159,7 +159,7 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 - **Issues:** 70 total (11 closed, 59 open)
 - **Open PRs:** 0 🎉
 - **Merged PRs:** 22
-- **Cycles:** 120
+- **Cycles:** 121
 - **Tests:** 430 passing (131 CLI + 299 core)
 - **Docs:** 60 total
 

@@ -252,3 +252,27 @@
 - **Insight:** In documentation-heavy phases, every role can be productive simultaneously. This is unique to pre-launch — code-heavy phases have more dependencies.
 - **Action:** During final launch prep, explicitly assign parallel doc/review tasks to all roles. Maximize throughput.
 - **Status:** monitoring
+
+## Learning: Demo prep phase is documentation-optimal
+
+- **Date:** 2026-02-07
+- **Context:** Cycles 115-120: 6 consecutive cycles produced pure documentation (UX audit, SaaS strategy, pre-flight checklist, Claude Code analysis, observability ADR, shutdown docs) with zero merge conflicts and zero blocking.
+- **Insight:** Pre-demo phases naturally favor parallel documentation work. Don't force code commits when docs are the highest-value output.
+- **Action:** During demo windows, explicitly shift all non-Engineering roles to documentation/validation tasks. Resume code work post-demo.
+- **Status:** applied
+
+## Learning: Strategic planning benefits from execution runway
+
+- **Date:** 2026-02-07
+- **Context:** CEO's SaaS strategy (Cycle 116) was written after Issue #17 was fully merged and demo readiness confirmed. Strategic work happened without execution anxiety.
+- **Insight:** Strategic planning is higher quality when the immediate sprint is on track. Front-loading execution creates space for strategic thinking.
+- **Action:** Schedule CEO/Growth strategic cycles in the second half of sprints, not the first. Let execution run ahead of strategy.
+- **Status:** monitoring
+
+## Learning: ADRs enable async architecture discussion
+
+- **Date:** 2026-02-07
+- **Context:** Frontier's PLAT-003 ADR (Cycle 119) documented observability design without blocking other roles. Available for async review without synchronous meetings.
+- **Insight:** Architecture Decision Records create a "review later" artifact that doesn't block rotation. Prefer ADRs to synchronous design discussions.
+- **Action:** When designing new systems, create ADR first, implement after rotation feedback. Allows all roles to weigh in asynchronously.
+- **Status:** applied
