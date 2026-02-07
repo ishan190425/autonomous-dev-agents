@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-06 18:05:00 EST | **Cycle:** 109 | **Version:** 5
+> **Last updated:** 2026-02-06 19:01:00 EST | **Cycle:** 110 | **Version:** 5
 > **Last compression:** 2026-02-06 (v4 archived)
 
 ---
@@ -90,8 +90,8 @@ _Full ADR list in archives/bank-2026-02-06-v4.md_
 
 ### 📦 Product
 
-- **Last:** Release Process Spec (Cycle 101) — Created `docs/RELEASING.md` based on Issue #27 spec. Comprehensive release guide: 4-phase process (scope lock → validation → publish → announce), role responsibilities matrix, release checklist template, announcement templates (Discord/Twitter), versioning strategy, emergency hotfix process. Commented on Issue #27.
-- **Next:** Sprint 1 feature prioritization, CLI config spec
+- **Last:** Sprint 1 Feature Roadmap v2 (Cycle 110) — Comprehensive feature roadmap for launch sprint: `docs/product/sprint-1-feature-roadmap.md`. Two-phase structure (pre-launch polish, post-launch response). Feature work pauses during launch week. Established Sprint 2+ tiers: Core Enhancement (#25 TUI, #46 Consultant Mode), Intelligence (#64 Claude Code, #30 LLM onboarding), Platform (#18 ADA Hub). Success targets: 50 downloads, 10 stars, 5 user feedback. Commented on Issue #26.
+- **Next:** README final polish, graceful shutdown docs (#63), user persona refinement
 
 ### 📋 Scrum
 
