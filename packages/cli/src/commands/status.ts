@@ -19,8 +19,10 @@ import {
   extractVersion,
   extractCycle,
   getCurrentRole,
+  createMetricsManager,
+  formatCost,
 } from '@ada/core';
-import type { RotationState, Roster, RotationHistoryEntry, Role } from '@ada/core';
+import type { RotationState, Roster, RotationHistoryEntry, Role, CycleMetrics } from '@ada/core';
 
 /** Options for the status command */
 interface StatusOptions {
@@ -28,6 +30,14 @@ interface StatusOptions {
   json?: boolean;
   verbose?: boolean;
   history?: string;
+}
+
+/** Cost summary for a time period */
+interface CostSummary {
+  /** Total cost in USD */
+  cost: number;
+  /** Number of cycles */
+  cycles: number;
 }
 
 /** Parsed status data for output */
@@ -49,6 +59,7 @@ interface StatusData {
   };
   activeThreads: string[];
   blockers: string[];
+  costToday: CostSummary;
 }
 
 /**
@@ -180,6 +191,42 @@ function extractActiveThreads(bankContent: string): string[] {
 }
 
 /**
+ * Check if a timestamp is from today (local time).
+ *
+ * @param isoTimestamp - ISO 8601 timestamp string
+ * @returns True if the timestamp is from today
+ */
+function isToday(isoTimestamp: string): boolean {
+  const date = new Date(isoTimestamp);
+  const today = new Date();
+  return (
+    date.getFullYear() === today.getFullYear() &&
+    date.getMonth() === today.getMonth() &&
+    date.getDate() === today.getDate()
+  );
+}
+
+/**
+ * Calculate cost summary for cycles from today.
+ *
+ * @param cycles - Array of cycle metrics
+ * @returns Cost summary with total cost and cycle count
+ */
+function calculateTodayCost(cycles: readonly CycleMetrics[]): CostSummary {
+  let cost = 0;
+  let count = 0;
+
+  for (const cycle of cycles) {
+    if (isToday(cycle.startedAt)) {
+      cost += cycle.cost.totalCost;
+      count++;
+    }
+  }
+
+  return { cost, cycles: count };
+}
+
+/**
  * Extract blockers from the memory bank.
  * Looks for content in the "Blockers" section.
  *
@@ -229,6 +276,17 @@ async function loadStatusData(agentsDir: string): Promise<StatusData> {
   const currentRole = getCurrentRole(rotation, roster);
   const nextRole = getRoleAtOffset(roster, rotation.current_index, 1);
 
+  // Load observability metrics for today's cost
+  const rootDir = path.dirname(agentsDir);
+  const metricsManager = createMetricsManager(rootDir, path.basename(agentsDir));
+  let costToday: CostSummary = { cost: 0, cycles: 0 };
+  try {
+    const allCycles = await metricsManager.getRecent(100); // Get recent cycles
+    costToday = calculateTodayCost(allCycles);
+  } catch {
+    // Metrics file may not exist yet — that's fine
+  }
+
   return {
     rotation,
     roster,
@@ -243,6 +301,7 @@ async function loadStatusData(agentsDir: string): Promise<StatusData> {
     stats: extractStats(bankContent),
     activeThreads: extractActiveThreads(bankContent),
     blockers: extractBlockers(bankContent),
+    costToday,
   };
 }
 
@@ -283,7 +342,7 @@ function formatHistoryEntry(entry: RotationHistoryEntry, roster: Roster): string
  * @param historyCount - Number of history entries to show
  */
 function printDefaultStatus(data: StatusData, historyCount: number): void {
-  const { rotation, roster, currentRole, nextRole, memoryBank, stats } = data;
+  const { rotation, roster, currentRole, nextRole, memoryBank, stats, costToday } = data;
 
   // Header
   console.log(chalk.bold.blue(`🤖 ADA Status — ${roster.product}\n`));
@@ -327,6 +386,7 @@ function printDefaultStatus(data: StatusData, historyCount: number): void {
   console.log(`${chalk.gray('Last Action:')}     ${lastActionStr}`);
   console.log(`${chalk.gray('Next Role:')}       ${nextRoleStr}`);
   console.log(`${chalk.gray('Cycle:')}           ${rotation.cycle_count}`);
+  console.log(`${chalk.gray('Cost Today:')}      ${formatCost(costToday.cost)} (${costToday.cycles} cycle${costToday.cycles !== 1 ? 's' : ''})`);
   console.log();
 
   // Memory bank
@@ -424,7 +484,7 @@ function printVerboseStatus(data: StatusData, historyCount: number): void {
  * @param historyCount - Number of history entries to include
  */
 function printJsonStatus(data: StatusData, historyCount: number): void {
-  const { rotation, roster, currentRole, nextRole, memoryBank, stats, activeThreads, blockers } = data;
+  const { rotation, roster, currentRole, nextRole, memoryBank, stats, activeThreads, blockers, costToday } = data;
 
   const output = {
     rotation: {
@@ -465,6 +525,8 @@ function printJsonStatus(data: StatusData, historyCount: number): void {
     stats,
     blockers,
     activeThreads,
+    costToday: costToday.cost,
+    cyclesToday: costToday.cycles,
   };
 
   console.log(JSON.stringify(output, null, 2));

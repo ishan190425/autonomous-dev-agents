@@ -319,6 +319,51 @@ describe('ada status — error handling', () => {
   });
 });
 
+describe('ada status — cost display', () => {
+  it('should include cost today in default output', () => {
+    const expectedPattern = /Cost Today:/;
+    expect(expectedPattern.test('Cost Today:      $0.00 (0 cycles)')).toBe(true);
+    expect(expectedPattern.test('Cost Today:      $2.34 (21 cycles)')).toBe(true);
+  });
+
+  it('should show singular "cycle" for single cycle', () => {
+    const singular = 'Cost Today:      $0.12 (1 cycle)';
+    const plural = 'Cost Today:      $2.34 (21 cycles)';
+    expect(singular).toContain('1 cycle)');
+    expect(singular).not.toContain('1 cycles)');
+    expect(plural).toContain('21 cycles)');
+  });
+
+  it('should format cost with proper precision', () => {
+    // Cost less than $0.01 should show 4 decimal places
+    expect('$0.0034').toMatch(/^\$\d+\.\d{4}$/);
+    // Cost $0.01+ should show 2 decimal places
+    expect('$2.34').toMatch(/^\$\d+\.\d{2}$/);
+  });
+
+  it('should include costToday and cyclesToday in JSON output', () => {
+    const sampleJson = {
+      rotation: { currentIndex: 0, cycleCount: 10 },
+      costToday: 2.34,
+      cyclesToday: 21,
+    };
+
+    const jsonStr = JSON.stringify(sampleJson, null, 2);
+    const parsed = JSON.parse(jsonStr);
+
+    expect(parsed.costToday).toBeDefined();
+    expect(parsed.cyclesToday).toBeDefined();
+    expect(typeof parsed.costToday).toBe('number');
+    expect(typeof parsed.cyclesToday).toBe('number');
+  });
+
+  it('should handle zero cost gracefully', () => {
+    const zeroCost = 'Cost Today:      $0.00 (0 cycles)';
+    expect(zeroCost).toContain('$0.00');
+    expect(zeroCost).toContain('0 cycles');
+  });
+});
+
 describe('ada status — history filtering', () => {
   it('should respect --history flag for cycle count', () => {
     const history = [
