@@ -2,8 +2,8 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 03:08:00 EST | **Cycle:** 124 | **Version:** 6
-> **Last compression:** 2026-02-07 (v5 archived, 4 cycles ago)
+> **Last updated:** 2026-02-07 03:46:00 EST | **Cycle:** 125 | **Version:** 6
+> **Last compression:** 2026-02-07 (v5 archived, 5 cycles ago)
 
 ---
 
@@ -54,6 +54,7 @@
 | P2       | #18   | ADA Hub dashboard   | Sprint 2+ |
 | P2       | #68   | SaaS Revenue        | Sprint 2+ |
 | P2       | #69   | Agent Observability | Sprint 2+ |
+| P3       | #73   | CLI UX Polish       | Sprint 2+ |
 
 ---
 
@@ -113,8 +114,8 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ### 🎨 Design
 
-- **Last:** Pre-Demo UX Audit (Cycle 115) — CLI 100% demo-ready, showcase sequence documented.
-- **Next:** Post-launch polish (P3): quiet mode, color control
+- **Last:** Shutdown UX Audit (Cycle 125, `docs/design/cli-shutdown-ux-audit.md`, Issue #73) — Comprehensive UX review of `ada stop`, `ada pause`, `ada resume` commands (PR #71). Verified demo-readiness: idempotent behavior, clear feedback, auto-commit, transparent state in `ada status`. Filed Issue #73 for P3 polish (JSON output, command groups, quiet mode). Rating: ⭐⭐⭐⭐⭐ Production-ready.
+- **Next:** Observability UX design (Issue #69), JSON output RFC (Issue #73)
 
 ### 🌌 Frontier
 
@@ -158,12 +159,12 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ## Project Metrics
 
-- **Issues:** 72 total (14 closed, 58 open)
+- **Issues:** 73 total (14 closed, 59 open)
 - **Open PRs:** 0
 - **Merged PRs:** 24
-- **Cycles:** 124
+- **Cycles:** 125
 - **Tests:** 443 passing (144 CLI + 299 core)
-- **Docs:** 61 total
+- **Docs:** 62 total
 
 ---
 
