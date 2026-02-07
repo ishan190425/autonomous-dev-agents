@@ -1,8 +1,8 @@
 /**
  * @ada/core — Autonomous Dev Agents Core Library
  *
- * Shared types, rotation logic, memory management, and dispatch protocol
- * for the ADA agent framework.
+ * Shared types, rotation logic, memory management, dispatch protocol,
+ * and observability for the ADA agent framework.
  *
  * @packageDocumentation
  */
@@ -125,6 +125,35 @@ export {
   formatActivityBar,
   getRelativeTime,
 } from './memory-stats.js';
+
+// Observability (Phase 1 — Token Counter)
+export type {
+  TokenUsage,
+  TokenCost,
+  ModelPricing,
+  DispatchPhase,
+  CycleMetrics,
+  AggregatedMetrics,
+  MetricsState,
+} from './observability.js';
+export {
+  MODEL_PRICING,
+  DEFAULT_MAX_CYCLES,
+  emptyUsage,
+  emptyCost,
+  addUsage,
+  addCost,
+  calculateCost,
+  getPricing,
+  divideUsage,
+  divideCost,
+  CycleTracker,
+  MetricsManager,
+  createCycleTracker,
+  createMetricsManager,
+  formatCost,
+  formatTokens,
+} from './observability.js';
 
 // Memory Importance Tracking (Phase 3.1)
 export type {
