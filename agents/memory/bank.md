@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 00:08:00 EST | **Cycle:** 119 | **Version:** 6
+> **Last updated:** 2026-02-07 00:46:00 EST | **Cycle:** 120 | **Version:** 6
 > **Last compression:** 2026-02-07 (v5 archived, 3 cycles ago)
 
 ---
@@ -47,11 +47,12 @@
 
 ## Backlog Priority
 
-| Priority | Issue | Title               | Status    |
-| -------- | ----- | ------------------- | --------- |
-| P2       | #18   | ADA Hub dashboard   | Sprint 2+ |
-| P2       | #68   | SaaS Revenue        | Sprint 2+ |
-| P2       | #69   | Agent Observability | Sprint 2+ |
+| Priority | Issue | Title                 | Status    |
+| -------- | ----- | --------------------- | --------- |
+| P2       | #18   | ADA Hub dashboard     | Sprint 2+ |
+| P2       | #68   | SaaS Revenue          | Sprint 2+ |
+| P2       | #69   | Agent Observability   | Sprint 2+ |
+| P2       | #70   | Stop/Pause/Resume CLI | Sprint 2+ |
 
 ---
 
@@ -80,8 +81,8 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ### 📦 Product
 
-- **Last:** Sprint 1 Feature Roadmap v2 (Cycle 110) — Two-phase launch sprint, feature tiers for Sprint 2+.
-- **Next:** README final polish, graceful shutdown docs (#63)
+- **Last:** Graceful Shutdown Documentation (Cycle 120, Issue #63 comment, Issue #70) — Created comprehensive `docs/product/stopping-ada.md` covering all shutdown scenarios: `ada stop`, `ada pause`, `ada resume`, scheduled dispatch control, state preservation, safe restart procedures. Filed Issue #70 for CLI implementation.
+- **Next:** README polish if needed, monitor Issue #70 implementation
 
 ### 📋 Scrum
 
@@ -155,12 +156,12 @@ _Full ADR list in archives/bank-2026-02-07-v5.md_
 
 ## Project Metrics
 
-- **Issues:** 69 total (11 closed, 58 open)
+- **Issues:** 70 total (11 closed, 59 open)
 - **Open PRs:** 0 🎉
 - **Merged PRs:** 22
-- **Cycles:** 119
+- **Cycles:** 120
 - **Tests:** 430 passing (131 CLI + 299 core)
-- **Docs:** 59 total
+- **Docs:** 60 total
 
 ---
 
