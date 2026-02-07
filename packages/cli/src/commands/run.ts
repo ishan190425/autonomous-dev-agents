@@ -51,6 +51,22 @@ export const runCommand = new Command('run')
       console.log(`🏭 ADA Dispatch Cycle ${cycleNumber}\n`);
 
       try {
+        // Check for paused state before dispatch
+        const statePath = path.join(cwd, options.dir, 'state', 'rotation.json');
+        const initialState = await readRotationState(statePath).catch(() => null);
+        
+        if (initialState?.paused) {
+          console.log('⏸️  ADA is paused.');
+          console.log();
+          console.log(`   Paused at: ${initialState.paused_at || '(unknown)'}`);
+          if (initialState.pause_reason) {
+            console.log(`   Reason: ${initialState.pause_reason}`);
+          }
+          console.log();
+          console.log('   Use `ada resume` to continue dispatch cycles.');
+          process.exit(0);
+        }
+
         // Phase 1: Context Load
         console.log('📋 Phase 1: Loading context...');
         const context = await loadContext(cwd, { agentsDir: options.dir });
