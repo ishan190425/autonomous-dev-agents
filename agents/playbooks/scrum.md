@@ -46,7 +46,36 @@ This check CANNOT be skipped or deferred. Issue #67 demonstrated that documentin
 
 ## Actions (pick ONE per cycle)
 
-### 1. Sprint Planning
+### 1. Issue Triage & Planning (HIGH PRIORITY)
+
+Review and organize open issues to keep the backlog healthy:
+
+**Triage new issues:**
+
+- Add priority labels: `P0-critical`, `P1-high`, `P2-medium`, `P3-low`
+- Add role labels: `role:engineering`, `role:qa`, `role:ops`, `role:design`, etc.
+- Add package labels: `pkg:core`, `pkg:cli`, `pkg:web`
+- Estimate effort: `size:S`, `size:M`, `size:L`
+- Flag blockers or dependencies
+- Link related issues
+
+**Triage checklist (for each unprocessed issue):**
+
+- [ ] Has priority label?
+- [ ] Has role assignment?
+- [ ] Has package label?
+- [ ] Has size estimate?
+- [ ] Blocked by anything?
+- [ ] Duplicate of existing?
+- [ ] Acceptance criteria clear?
+
+**Issue hygiene:**
+
+- Close stale issues (no activity > 30 days, not blocked)
+- Dedupe — merge or link duplicate issues
+- Archive completed work that's still open
+
+### 2. Sprint Planning
 
 Create a sprint milestone and organize work:
 
@@ -55,7 +84,7 @@ Create a sprint milestone and organize work:
 - Set sprint goals (what ships this sprint?)
 - Create sprint tracking issue: `chore(scrum): sprint-N planning`
 
-### 2. Progress Update
+### 3. Progress Update
 
 Check in-progress work across packages:
 
@@ -64,7 +93,7 @@ Check in-progress work across packages:
 - Is core stable enough for CLI to build on?
 - Cross-reference memory bank with GitHub state
 
-### 3. Retrospective & Learnings (HIGH PRIORITY)
+### 4. Retrospective & Learnings (HIGH PRIORITY)
 
 This is your most important action. Every 3-5 cycles, run a retrospective:
 
@@ -126,7 +155,7 @@ Write to `docs/retros/retro-cycle-N.md`:
 - Learnings identified (reference learnings.md)
 - Recommendations for next cycles
 
-### 4. Cross-Package Coordination
+### 5. Cross-Package Coordination
 
 Open issues for integration needs:
 
@@ -135,7 +164,7 @@ Open issues for integration needs:
 - Dependency version bumps across packages
 - Format: `chore(scrum): coordinate <packages> for <goal>`
 
-### 5. Velocity Tracking
+### 6. Velocity Tracking
 
 Update project metrics in the memory bank:
 
@@ -145,7 +174,7 @@ Update project metrics in the memory bank:
 - Identify trends (speeding up? slowing down?)
 - Compare against previous sprint metrics
 
-### 6. Learnings Audit
+### 7. Learnings Audit
 
 Periodically review the health of the learnings system:
 
