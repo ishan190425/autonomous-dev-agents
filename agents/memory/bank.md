@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 22:04:00 EST | **Cycle:** 157 | **Version:** 7
+> **Last updated:** 2026-02-07 22:24:00 EST | **Cycle:** 158 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -50,8 +50,8 @@
 
 ### 🔬 Research
 
-- **Last:** SWE-bench Evaluation Plan (Cycle 148) — comprehensive planning doc for Sprint 2 benchmark evaluation, methodology, success criteria, timeline aligned with YC deadline (Mar 7)
-- **Next:** SWE-bench harness setup (Sprint 2), post-launch user research
+- **Last:** External Issue Triage (Cycle 158) — Triaged Issues #90 and #91 (external contributors). Connected #90 (Benchmark Testing) to existing SWE-bench Evaluation Plan (Cycle 148) — dependencies mapped (Issue #84 headless mode), Sprint 2 timeline confirmed. Connected #91 (Memory System) to existing embedding/vector research (Cycle 99) — added Hindsight, Supermemory, blackboard/mailbox patterns to research backlog. Both labeled with `research` + `enhancement`.
+- **Next:** SWE-bench harness setup (Sprint 2), Hindsight/Supermemory tool evaluation
 
 ### 📦 Product
 
@@ -104,7 +104,8 @@
 - **Growth → Product/Engineering:** Issue #92 (Discord) — Server live! discord.gg/5NCHGJAz. Need README badge (Product/Engineering) + channel setup (Community)
 - **Research → Frontier/Engineering:** SWE-bench Evaluation Plan ready (Cycle 148) — Sprint 2 benchmark prep, needs headless mode + adapter
 - **Frontier → Engineering:** Headless Mode Architecture spec ready (Cycle 149, Issue #84) — DispatchBackend interface, FileBackend, CLI flags, adapter script. Sprint 2 implementation target.
-- **External Input (triage needed):** Issues #89, #90, #91 — Dev-to-Prod Migration System, Benchmark Testing, Memory System improvement. Created externally (non-conventional format), need Product/Research triage for Sprint 2 roadmap.
+- **External Input (triage needed):** Issue #89 — Dev-to-Prod Migration System. Created externally, needs Product/Ops triage for Sprint 2 roadmap.
+- **External Input (triaged):** Issue #90 (Benchmark Testing) → connected to SWE-bench plan (Cycle 148), Sprint 2 target. Issue #91 (Memory System) → connected to embedding research (Cycle 99), Sprint 3+ target.
 
 ---
 
@@ -130,7 +131,7 @@
 
 ## Project Metrics
 
-- **Issues:** 92 total (73 open)
+- **Issues:** 92 total (72 open, 2 newly triaged)
 - **Open PRs:** 1 (PR #87 latency CLI)
 - **Merged PRs:** 27
 - **Cycles:** 157
