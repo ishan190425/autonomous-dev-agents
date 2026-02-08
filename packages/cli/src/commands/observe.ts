@@ -5,9 +5,12 @@
  * Shows cost breakdown, token usage, success rates, per-role analysis,
  * and Phase 2 latency timing with visual progress bars.
  *
+ * Phase 2 Feature 3/4: `--last N` flag for filtering to recent cycles.
+ *
  * @see Issue #69 for full specification
+ * @see Issue #85 for `--last N` specification
  * @see docs/product/observability-cli-spec.md for user stories
- * @see docs/design/latency-timer-cli-ux-spec.md for Phase 2 UX design
+ * @see docs/design/last-n-cli-ux-spec.md for `--last N` UX design
  */
 
 import { Command } from 'commander';
@@ -18,12 +21,21 @@ import {
   formatCost,
   formatTokens,
   readRoster,
+  emptyUsage,
+  emptyCost,
+  addUsage,
+  addCost,
+  divideUsage,
+  divideCost,
 } from '@ada/core';
 import type {
   AggregatedMetrics,
   CycleMetrics,
   Roster,
   DispatchPhase,
+  TokenUsage,
+  TokenCost,
+  PhaseLatencyStats,
 } from '@ada/core';
 
 /** Options for the observe command */
@@ -33,6 +45,16 @@ interface ObserveOptions {
   cycle?: string;
   last?: string;
   json?: boolean;
+}
+
+/** Filter state for --last N */
+interface FilterState {
+  /** Number of cycles requested */
+  readonly last: number;
+  /** Actual cycle range shown [start, end] */
+  readonly cycleRange: readonly [number, number];
+  /** Total cycles before filtering */
+  readonly unfilteredTotal: number;
 }
 
 /** Phase display name abbreviations per design spec */
@@ -157,6 +179,104 @@ function hasLatencyData(cycle: CycleMetrics): boolean {
 }
 
 /**
+ * Aggregate metrics from a filtered set of cycles.
+ * Used when --last N is applied to re-compute aggregates.
+ */
+function aggregateFilteredCycles(cycles: readonly CycleMetrics[]): AggregatedMetrics | null {
+  if (cycles.length === 0) {
+    return null;
+  }
+
+  let totalTokens: TokenUsage = emptyUsage();
+  let totalCost: TokenCost = emptyCost();
+  let totalDurationMs = 0;
+  let successfulCycles = 0;
+  let failedCycles = 0;
+  const byRole: Record<string, { cycles: number; tokens: TokenUsage; cost: TokenCost }> = {};
+
+  // Phase latency aggregation (Phase 2)
+  const phaseLatencyData: Partial<Record<DispatchPhase, { durations: number[] }>> = {};
+
+  for (const cycle of cycles) {
+    totalTokens = addUsage(totalTokens, cycle.totals);
+    totalCost = addCost(totalCost, cycle.cost);
+    totalDurationMs += cycle.durationMs;
+
+    if (cycle.success) {
+      successfulCycles++;
+    } else {
+      failedCycles++;
+    }
+
+    // Aggregate by role
+    let roleStats = byRole[cycle.role];
+    if (!roleStats) {
+      roleStats = { cycles: 0, tokens: emptyUsage(), cost: emptyCost() };
+      byRole[cycle.role] = roleStats;
+    }
+    roleStats.cycles++;
+    roleStats.tokens = addUsage(roleStats.tokens, cycle.totals);
+    roleStats.cost = addCost(roleStats.cost, cycle.cost);
+
+    // Aggregate phase latency (Phase 2)
+    if (cycle.latency) {
+      for (const [phase, latency] of Object.entries(cycle.latency)) {
+        const phaseKey = phase as DispatchPhase;
+        let data = phaseLatencyData[phaseKey];
+        if (!data) {
+          data = { durations: [] };
+          phaseLatencyData[phaseKey] = data;
+        }
+        data.durations.push(latency.durationMs);
+      }
+    }
+  }
+
+  const totalCycleCount = cycles.length;
+  const firstCycle = cycles[0]!;
+  const lastCycle = cycles[cycles.length - 1]!;
+
+  // Calculate phase latency stats (Phase 2)
+  const hasPhaseLatencyData = Object.keys(phaseLatencyData).length > 0;
+  let phaseLatency: Partial<Record<DispatchPhase, PhaseLatencyStats>> | undefined;
+
+  if (hasPhaseLatencyData) {
+    phaseLatency = {};
+    for (const [phase, data] of Object.entries(phaseLatencyData)) {
+      const durations = data.durations;
+      const count = durations.length;
+      const totalMs = durations.reduce((sum, d) => sum + d, 0);
+      phaseLatency[phase as DispatchPhase] = {
+        count,
+        totalMs,
+        avgMs: Math.round(totalMs / count),
+        minMs: Math.min(...durations),
+        maxMs: Math.max(...durations),
+      };
+    }
+  }
+
+  return {
+    totalCycles: totalCycleCount,
+    successfulCycles,
+    failedCycles,
+    totalTokens,
+    totalCost,
+    avgTokensPerCycle: divideUsage(totalTokens, totalCycleCount),
+    avgCostPerCycle: divideCost(totalCost, totalCycleCount),
+    byRole,
+    firstCycle: firstCycle.cycle,
+    lastCycle: lastCycle.cycle,
+    timeRange: {
+      start: firstCycle.startedAt,
+      end: lastCycle.completedAt,
+    },
+    avgDurationMs: Math.round(totalDurationMs / totalCycleCount),
+    ...(phaseLatency && { phaseLatency }),
+  };
+}
+
+/**
  * Print phase timing section for a cycle (Phase 2 feature).
  */
 function printPhaseTimingSection(cycle: CycleMetrics): void {
@@ -216,7 +336,8 @@ function printEfficiencySection(cycle: CycleMetrics): void {
 function printDashboard(
   metrics: AggregatedMetrics,
   cycles: readonly CycleMetrics[],
-  projectName: string
+  projectName: string,
+  filter: FilterState | null
 ): void {
   const today = calculateTodayCost(cycles);
   const lastCycle = cycles[cycles.length - 1];
@@ -233,10 +354,18 @@ function printDashboard(
     ? recentCycles.reduce((sum, c) => sum + c.durationMs, 0) / recentCycles.length
     : 0;
 
-  console.log(chalk.bold.blue(`📊 Agent Observability — ${projectName}`));
+  // Header with filter indicator
+  const filterSuffix = filter ? ` (last ${filter.last} cycles)` : '';
+  console.log(chalk.bold.blue(`📊 Agent Observability — ${projectName}${filterSuffix}`));
   console.log(chalk.gray('═'.repeat(50)));
   console.log();
-  console.log(`${chalk.gray('Cycles:')}    ${metrics.totalCycles} tracked (last 100 retained)`);
+
+  // Cycles line with filter info
+  if (filter) {
+    console.log(`${chalk.gray('Cycles:')}    ${metrics.totalCycles} of ${filter.unfilteredTotal} tracked`);
+  } else {
+    console.log(`${chalk.gray('Cycles:')}    ${metrics.totalCycles} tracked (last 100 retained)`);
+  }
   console.log(`${chalk.gray('Period:')}    ${formatDate(metrics.timeRange.start)} → ${formatDate(metrics.timeRange.end)} (${daysDiff} day${daysDiff !== 1 ? 's' : ''})`);
   console.log();
 
@@ -335,9 +464,12 @@ function printDashboard(
 function printByRole(
   metrics: AggregatedMetrics,
   cycles: readonly CycleMetrics[],
-  roster: Roster | null
+  roster: Roster | null,
+  filter: FilterState | null
 ): void {
-  console.log(chalk.bold.blue(`📊 Cost by Role — last ${metrics.totalCycles} cycles`));
+  // Header with filter indicator
+  const filterSuffix = filter ? ` (last ${filter.last} cycles)` : '';
+  console.log(chalk.bold.blue(`📊 Cost by Role — ${metrics.totalCycles} cycles${filterSuffix}`));
   console.log(chalk.gray('═'.repeat(72)));
   console.log();
 
@@ -448,6 +580,12 @@ function printByRole(
     console.log(chalk.gray('   Execution phase dominates — review action complexity.'));
   }
 
+  // Footer with filter info
+  if (filter && filter.unfilteredTotal > metrics.totalCycles) {
+    console.log();
+    console.log(chalk.gray(`Showing: last ${metrics.totalCycles} cycles (of ${filter.unfilteredTotal} total)`));
+  }
+
   // Footer note for partial latency data
   if (hasAnyLatency && cyclesWithLatency.length < cycles.length) {
     console.log();
@@ -458,7 +596,12 @@ function printByRole(
 /**
  * Print specific cycle details with Phase 2 latency sections.
  */
-function printCycleDetails(cycle: CycleMetrics, roster: Roster | null, firstTrackedCycle: number): void {
+function printCycleDetails(
+  cycle: CycleMetrics, 
+  roster: Roster | null, 
+  firstTrackedCycle: number,
+  filter: FilterState | null
+): void {
   const emoji = getRoleEmoji(cycle.role, roster);
   const statusEmoji = cycle.success ? '✅' : '❌';
   const statusText = cycle.success ? 'Success' : 'Failed';
@@ -466,6 +609,17 @@ function printCycleDetails(cycle: CycleMetrics, roster: Roster | null, firstTrac
 
   console.log(chalk.bold.blue(`📊 Cycle ${cycle.cycle} — ${emoji} ${cycle.role}`));
   console.log(chalk.gray('═'.repeat(50)));
+
+  // Warning if cycle is outside filter window
+  if (filter) {
+    const [rangeStart, rangeEnd] = filter.cycleRange;
+    if (cycle.cycle < rangeStart || cycle.cycle > rangeEnd) {
+      console.log();
+      console.log(chalk.yellow(`⚠️  Note: Cycle ${cycle.cycle} is outside the --last ${filter.last} window (cycles ${rangeStart}-${rangeEnd})`));
+      console.log(chalk.yellow('   Showing cycle anyway.'));
+    }
+  }
+
   console.log();
   console.log(`${chalk.gray('Started:')}    ${formatDate(cycle.startedAt)}`);
   console.log(`${chalk.gray('Completed:')}  ${formatDate(cycle.completedAt)}`);
@@ -525,14 +679,23 @@ function printCycleDetails(cycle: CycleMetrics, roster: Roster | null, firstTrac
 }
 
 /**
- * Print JSON output with Phase 2 latency fields.
+ * Print JSON output with Phase 2 latency fields and --last filter info.
  */
 function printJson(
   metrics: AggregatedMetrics | null,
   cycles: readonly CycleMetrics[],
-  cycleDetail: CycleMetrics | null
+  cycleDetail: CycleMetrics | null,
+  filter: FilterState | null
 ): void {
   const output: Record<string, unknown> = {};
+
+  // Add filter info if present
+  if (filter) {
+    output.filter = {
+      last: filter.last,
+      cycleRange: filter.cycleRange,
+    };
+  }
 
   if (cycleDetail) {
     // Enhanced cycle detail with efficiency metrics
@@ -572,6 +735,15 @@ function printJson(
       }
     }
 
+    // Build summary with filter info
+    const summary: Record<string, unknown> = {
+      totalCycles: metrics.totalCycles,
+    };
+    if (filter) {
+      summary.unfilteredTotal = filter.unfilteredTotal;
+    }
+
+    output.summary = summary;
     output.aggregated = {
       ...metrics,
       ...(efficiency && { efficiency }),
@@ -588,7 +760,7 @@ export const observeCommand = new Command('observe')
   .option('-d, --dir <path>', 'Agents directory (default: "agents/")', 'agents')
   .option('--by-role', 'Show per-role cost and token breakdown')
   .option('--cycle <n>', 'Show detailed metrics for a specific cycle')
-  .option('--last <n>', 'Show last n cycles', '10')
+  .option('-l, --last <n>', 'Filter to last N cycles only')
   .option('--json', 'Output as JSON for scripting')
   .action(async (options: ObserveOptions) => {
     const cwd = process.cwd();
@@ -596,6 +768,20 @@ export const observeCommand = new Command('observe')
     const rosterPath = path.join(agentsDir, 'roster.json');
 
     try {
+      // Validate --last option
+      let lastN: number | undefined;
+      if (options.last !== undefined) {
+        lastN = parseInt(options.last, 10);
+        if (isNaN(lastN) || lastN < 1) {
+          if (options.json) {
+            console.log(JSON.stringify({ error: 'Invalid value for --last: must be at least 1' }));
+          } else {
+            console.error(chalk.red('❌ Invalid value for --last: must be at least 1'));
+          }
+          process.exit(1);
+        }
+      }
+
       // Load roster for role emoji lookup
       let roster: Roster | null = null;
       try {
@@ -606,11 +792,11 @@ export const observeCommand = new Command('observe')
 
       // Create metrics manager and load data
       const metricsManager = createMetricsManager(cwd, options.dir);
-      const cycles = await metricsManager.getRecent(100);
-      const aggregated = await metricsManager.aggregate();
+      const allCycles = await metricsManager.getRecent(100);
+      const unfilteredTotal = allCycles.length;
 
       // Handle empty state
-      if (cycles.length === 0 || !aggregated) {
+      if (allCycles.length === 0) {
         if (options.json) {
           console.log(JSON.stringify({ error: 'No observability data collected yet.' }));
         } else {
@@ -618,6 +804,40 @@ export const observeCommand = new Command('observe')
           console.log();
           console.log(chalk.gray('Run `ada run` to execute dispatch cycles and collect metrics.'));
           console.log(chalk.gray('Metrics are stored in agents/state/metrics.json'));
+        }
+        return;
+      }
+
+      // Apply --last N filter
+      let cycles: readonly CycleMetrics[];
+      let filter: FilterState | null = null;
+      
+      if (lastN !== undefined) {
+        // Filter to last N cycles
+        cycles = allCycles.slice(-lastN);
+        
+        // Build filter state
+        if (cycles.length > 0) {
+          filter = {
+            last: lastN,
+            cycleRange: [cycles[0]!.cycle, cycles[cycles.length - 1]!.cycle],
+            unfilteredTotal,
+          };
+        }
+      } else {
+        cycles = allCycles;
+      }
+
+      // Aggregate metrics (re-compute for filtered cycles)
+      const aggregated = filter 
+        ? aggregateFilteredCycles(cycles)
+        : await metricsManager.aggregate();
+
+      if (!aggregated) {
+        if (options.json) {
+          console.log(JSON.stringify({ error: 'No observability data collected yet.' }));
+        } else {
+          console.log(chalk.yellow('📊 No observability data collected yet.'));
         }
         return;
       }
@@ -638,28 +858,28 @@ export const observeCommand = new Command('observe')
         }
 
         if (options.json) {
-          printJson(null, cycles, cycle);
+          printJson(null, cycles, cycle, filter);
         } else {
-          printCycleDetails(cycle, roster, aggregated.firstCycle);
+          printCycleDetails(cycle, roster, aggregated.firstCycle, filter);
         }
         return;
       }
 
       // JSON output
       if (options.json) {
-        printJson(aggregated, cycles, null);
+        printJson(aggregated, cycles, null, filter);
         return;
       }
 
       // By-role view
       if (options.byRole) {
-        printByRole(aggregated, cycles, roster);
+        printByRole(aggregated, cycles, roster, filter);
         return;
       }
 
       // Default dashboard view
       const projectName = roster?.product ?? 'ADA Project';
-      printDashboard(aggregated, cycles, projectName);
+      printDashboard(aggregated, cycles, projectName, filter);
     } catch (err) {
       if (options.json) {
         console.error(JSON.stringify({ error: (err as Error).message }));
