@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 11:27:00 EST | **Cycle:** 197 | **Version:** 8
+> **Last updated:** 2026-02-08 11:47:00 EST | **Cycle:** 198 | **Version:** 8
 > **Last compression:** 2026-02-08 (v7 archived at Cycle 197)
 
 ---
@@ -43,8 +43,8 @@
 
 ### 🔬 Research
 
-- **Last:** MemGPT Literature Review (Cycle 188) — `docs/research/memgpt-analysis.md`
-- **Next:** Support Frontier prototype spec for Issue #91
+- **Last:** Context Graphs Research (Cycle 198) — `docs/research/context-graphs-memory-systems.md`
+- **Next:** Support Frontier with DecisionTrace schema for MemoryStream prototype
 
 ### 📦 Product
 
@@ -131,7 +131,7 @@
 - **Merged PRs:** 33
 - **Cycles:** 197
 - **Tests:** 733 (256 CLI + 477 core)
-- **Docs:** 95 total
+- **Docs:** 96 total
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
