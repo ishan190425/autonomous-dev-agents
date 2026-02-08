@@ -16,9 +16,12 @@ You are orchestrating the autonomous development team for **ADA (Autonomous Dev 
 
 ### Phase 2: Situational Awareness
 
-6. Check GitHub: `gh issue list` and `gh pr list` in the repo
-7. Cross-reference with memory bank — what's changed since last cycle?
-8. Identify the highest-impact action for this role given current state
+6. Check GitHub: `gh issue list --state open` and `gh pr list` in the repo
+7. **Review ALL open issues** — ensure each is tracked in memory bank's Active Threads
+8. Cross-reference with memory bank — what's changed since last cycle?
+9. Identify the highest-impact action for this role given current state
+
+**⚠️ Issue Tracking Rule:** If an open issue is NOT in the memory bank, add it to Active Threads before proceeding. We do not lose track of bugs or feature requests.
 
 ### Phase 3: Execute
 

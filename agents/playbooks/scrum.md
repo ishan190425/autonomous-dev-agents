@@ -104,6 +104,26 @@ This is your most important action. Every 3-5 cycles, run a retrospective:
 - Check GitHub issues/PRs — what got opened, merged, blocked, or closed?
 - Check for any failed cycles, reverted work, or repeated mistakes
 
+**Step 1.5: Issue Scoping (MANDATORY)**
+
+Run `gh issue list --state open` and ensure EVERY open issue is:
+
+- [ ] Tracked in memory bank's Active Threads section
+- [ ] Has a priority label (P0-P3)
+- [ ] Has a role assignment (who should work on it)
+- [ ] Has a size estimate (S/M/L cycles)
+
+**⚠️ We do NOT lose track of issues.** If an issue exists on GitHub but isn't in the memory bank, add it NOW. Bugs, feature requests, and tech debt must all be visible in the memory bank for the team to act on them.
+
+Update `Active Threads` with any missing issues:
+
+```markdown
+## Active Threads
+
+- **#123** (P1, Engineering, M) — Fix auth token refresh bug
+- **#124** (P2, Design, S) — Update CLI help text formatting
+```
+
 **Step 2: Identify patterns**
 
 - What's working well? (Processes, tools, patterns that should continue)
