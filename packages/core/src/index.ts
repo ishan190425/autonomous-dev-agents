@@ -200,3 +200,36 @@ export {
   MemoryLifecycleManager,
   createLifecycleManager,
 } from './lifecycle.js';
+
+// Backend Abstraction (Issue #84 — Headless Mode)
+export type {
+  Issue,
+  IssueComment,
+  IssueState,
+  IssuePriority,
+  ListIssuesOptions,
+  CreateIssueInput,
+  IssueResult,
+  PullRequest,
+  PRFile,
+  PRState,
+  ListPRsOptions,
+  CreatePRInput,
+  PRResult,
+  CommentTarget,
+  RepoState,
+  CodeChange,
+  ApplyResult,
+  BackendType,
+  DispatchBackend,
+  FileBackendConfig,
+  GitHubBackendConfig,
+  BackendOptions,
+} from './backend.js';
+export {
+  DEFAULT_FILE_BACKEND_CONFIG,
+  DEFAULT_GITHUB_BACKEND_CONFIG,
+  createBackend,
+  extractPriority,
+  slugify,
+} from './backend.js';
