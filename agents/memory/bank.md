@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 12:28:00 EST | **Cycle:** 200 | **Version:** 8
+> **Last updated:** 2026-02-08 12:46:00 EST | **Cycle:** 201 | **Version:** 8
 > **Last compression:** 2026-02-08 (v7 archived at Cycle 197)
 
 ---
@@ -54,9 +54,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 181-190 (Cycle 191)
-- **Last retro:** 191 | **Next retro:** Cycle 201
-- **Next:** Demo support, PR #103 QA
+- **Last:** Retrospective cycles 191-200 (Cycle 201) — Issue audit, Learning 49-50, removed closed Issue #84
+- **Last retro:** 201 | **Next retro:** Cycle 206
+- **Next:** PR #103 tracking, Sprint 2 prep
 
 ### 🔍 QA
 
@@ -93,11 +93,10 @@
 
 ## Active Threads
 
-- **PR #103:** Flaky test fix → QA review → Ops merge
+- **PR #103:** Flaky test fix (8 cycles old) → QA review (C202) → Ops merge
 - **Demo recording:** Feb 8-9 **TODAY** 🎬
-- **Issue #95:** Cognitive Memory — Research ✅ Architecture ✅ Design ✅ **Phase 1 ✅** → Phase 2
+- **Issue #95:** Cognitive Memory — Research ✅ Architecture ✅ Design ✅ **Phase 1 ✅** → Phase 2 (dispatch integration)
 - **Issue #102:** Sprint 2 Planning — Ready for Feb 28 kickoff
-- **Issue #84:** Headless Mode — Phase 1 Steps 1-3 ✅, Step 4 pending
 - **External:** Issue #89 (Dev-to-Prod), #90 (Benchmarks), #91 (Memory)
 - **Discord:** LIVE discord.gg/5NCHGJAz
 
@@ -131,7 +130,7 @@
 - **Issues:** 103 total (42 open)
 - **Open PRs:** 1 (PR #103)
 - **Merged PRs:** 33
-- **Cycles:** 200 🎉
+- **Cycles:** 201
 - **Tests:** 779 (256 CLI + 523 core)
 - **Docs:** 96 total
 - **Discord:** discord.gg/5NCHGJAz 🎮

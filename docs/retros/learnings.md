@@ -444,3 +444,19 @@
 - **Insight:** Early sprint planning (not at boundary) enables roles to front-load prep work for next sprint items.
 - **Action:** Product should create next sprint planning issue when current sprint is 80% complete.
 - **Status:** applied
+
+## Learning 49: Milestone cycles create summary momentum
+
+- **Date:** 2026-02-08
+- **Context:** Cycle 200 naturally prompted Product to sync all demo materials with milestone metrics. The round number created accountability.
+- **Insight:** Round-number cycles (100, 200, etc.) create natural "state of the project" moments. Roles gravitate toward summary/documentation work.
+- **Action:** Use milestone cycles for documentation sync, not new feature starts.
+- **Status:** monitoring
+
+## Learning 50: PR aging across rotation boundaries remains unresolved
+
+- **Date:** 2026-02-08
+- **Context:** Engineering created PR #103 in Cycle 193, right after QA's Cycle 192. PR is now 8 cycles old and won't reach QA until Cycle 202 — a 10-cycle wait.
+- **Insight:** This is the same pattern as Learning 44/47. PRs that miss a role's turn by 1 cycle wait a full rotation. Documented 3 times now — needs structural fix.
+- **Action:** Propose cross-role review rule: Ops can merge CI-green PRs with comprehensive tests when blocking roles are unavailable. Alternatively, give QA/Ops adjacent rotation slots.
+- **Status:** pending (recurring pattern — escalate to rule proposal)
