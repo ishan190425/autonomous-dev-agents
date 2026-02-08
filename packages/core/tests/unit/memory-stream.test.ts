@@ -18,6 +18,9 @@ import {
   normalizeImportance,
   calculateRelevanceScore,
   calculateRetrievalScore,
+  extractIssueRefs,
+  extractPRRefs,
+  calculateDefaultImportance,
   type StreamEntry,
   type StreamEntryInput,
 } from '../../src/memory-stream.js';
@@ -565,5 +568,129 @@ describe('MemoryStream', () => {
       stream1.reload();
       expect(stream1.count()).toBe(2);
     });
+  });
+});
+
+// ─── Phase 2: Reference Extraction Tests ─────────────────────────────────────
+
+describe('extractIssueRefs (Phase 2)', () => {
+  it('extracts #N patterns', () => {
+    expect(extractIssueRefs('Fixed #123')).toEqual([123]);
+    expect(extractIssueRefs('See #42 and #43')).toEqual([42, 43]);
+  });
+
+  it('extracts Issue #N patterns', () => {
+    expect(extractIssueRefs('Issue #95')).toEqual([95]);
+    expect(extractIssueRefs('issue #100')).toEqual([100]);
+  });
+
+  it('extracts fix/close/resolve patterns', () => {
+    expect(extractIssueRefs('Fixes #101')).toEqual([101]);
+    expect(extractIssueRefs('closes #50')).toEqual([50]);
+    expect(extractIssueRefs('resolves #25')).toEqual([25]);
+    // Order may vary; check both are present
+    const refs = extractIssueRefs('Fixed #10, resolved #20');
+    expect(refs).toContain(10);
+    expect(refs).toContain(20);
+    expect(refs).toHaveLength(2);
+  });
+
+  it('returns unique values', () => {
+    expect(extractIssueRefs('#5 and #5 and #5')).toEqual([5]);
+    expect(extractIssueRefs('Issue #10, Fixes #10')).toEqual([10]);
+  });
+
+  it('returns empty array for no matches', () => {
+    expect(extractIssueRefs('No issues here')).toEqual([]);
+    expect(extractIssueRefs('')).toEqual([]);
+  });
+
+  it('ignores PR patterns', () => {
+    expect(extractIssueRefs('PR #50 merged')).toEqual([]);
+  });
+});
+
+describe('extractPRRefs (Phase 2)', () => {
+  it('extracts PR #N patterns', () => {
+    expect(extractPRRefs('Merged PR #103')).toEqual([103]);
+    expect(extractPRRefs('See PR #50 and PR #51')).toEqual([50, 51]);
+  });
+
+  it('extracts pull #N patterns', () => {
+    expect(extractPRRefs('pull #42')).toEqual([42]);
+    expect(extractPRRefs('Pull request #99')).toEqual([99]);
+  });
+
+  it('is case insensitive', () => {
+    expect(extractPRRefs('pr #10')).toEqual([10]);
+    expect(extractPRRefs('PULL #20')).toEqual([20]);
+  });
+
+  it('returns unique values', () => {
+    expect(extractPRRefs('PR #5 and PR #5')).toEqual([5]);
+  });
+
+  it('returns empty array for no matches', () => {
+    expect(extractPRRefs('No PRs here')).toEqual([]);
+    expect(extractPRRefs('Issue #50')).toEqual([]);
+  });
+});
+
+describe('calculateDefaultImportance (Phase 2)', () => {
+  it('returns base importance of 5 for neutral text', () => {
+    const score = calculateDefaultImportance('Did something', 'Content', 'action');
+    expect(score).toBe(5);
+  });
+
+  it('adds +3 for critical/blocker keywords', () => {
+    expect(calculateDefaultImportance('CRITICAL bug', '', 'action')).toBe(8);
+    expect(calculateDefaultImportance('Blocker issue', '', 'action')).toBe(8);
+    expect(calculateDefaultImportance('Breaking change', '', 'action')).toBe(8);
+  });
+
+  it('adds +2 for fix/resolve/close keywords', () => {
+    expect(calculateDefaultImportance('Fixed the bug', '', 'action')).toBe(7);
+    expect(calculateDefaultImportance('Resolved issue', '', 'action')).toBe(7);
+    expect(calculateDefaultImportance('Closes #50', '', 'action')).toBe(7);
+  });
+
+  it('adds +2 for merge/ship/launch keywords', () => {
+    expect(calculateDefaultImportance('Merged PR #100', '', 'action')).toBe(7);
+    expect(calculateDefaultImportance('Shipped v1.0', '', 'action')).toBe(7);
+    expect(calculateDefaultImportance('Launched feature', '', 'action')).toBe(7);
+    expect(calculateDefaultImportance('Released alpha', '', 'action')).toBe(7);
+  });
+
+  it('adds +1 for review/approve keywords', () => {
+    expect(calculateDefaultImportance('Reviewed code', '', 'action')).toBe(6);
+    expect(calculateDefaultImportance('Approved PR', '', 'action')).toBe(6);
+    expect(calculateDefaultImportance('LGTM', '', 'action')).toBe(6);
+  });
+
+  it('adds +2 for decision type', () => {
+    expect(calculateDefaultImportance('Chose JSONL', '', 'decision')).toBe(7);
+  });
+
+  it('adds +1 for reflection type', () => {
+    expect(calculateDefaultImportance('Reflection on progress', '', 'reflection')).toBe(6);
+  });
+
+  it('stacks multiple bonuses', () => {
+    // Critical (+3) + merged (+2) = 10
+    expect(calculateDefaultImportance('CRITICAL: Merged hotfix', '', 'action')).toBe(10);
+  });
+
+  it('clamps to 1-10 range', () => {
+    // Many bonuses stacked
+    const score = calculateDefaultImportance(
+      'CRITICAL merged shipped launched fixed resolved',
+      '',
+      'decision'
+    );
+    expect(score).toBe(10);
+  });
+
+  it('considers content in addition to action', () => {
+    expect(calculateDefaultImportance('Did thing', 'Contains CRITICAL info', 'action')).toBe(8);
   });
 });

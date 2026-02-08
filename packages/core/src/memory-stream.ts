@@ -676,6 +676,109 @@ export function createMemoryStream(filePath: string): MemoryStream {
   return new MemoryStream(filePath);
 }
 
+// ─── Reference Extraction (Phase 2) ──────────────────────────────────────────
+
+/**
+ * Extract issue numbers from text.
+ *
+ * Matches patterns like:
+ * - #123, Issue #123, issue-123
+ * - fixes #123, closes #123, resolves #123
+ *
+ * Does NOT match PR references (PR #123, pull #123).
+ *
+ * @param text - Text to extract issue references from
+ * @returns Array of unique issue numbers
+ */
+export function extractIssueRefs(text: string): number[] {
+  const refs: number[] = [];
+
+  // Pattern 1: Issue #N (explicit issue reference)
+  const issuePattern = /\bissue[s]?\s*#(\d+)/gi;
+  for (const match of text.matchAll(issuePattern)) {
+    refs.push(parseInt(match[1] || '0', 10));
+  }
+
+  // Pattern 2: fix/close/resolve #N
+  const actionPattern = /(?:fix(?:es)?|close[sd]?|resolve[sd]?)\s*#(\d+)/gi;
+  for (const match of text.matchAll(actionPattern)) {
+    refs.push(parseInt(match[1] || '0', 10));
+  }
+
+  // Pattern 3: Standalone #N (but not PR #N or pull #N)
+  // Use negative lookbehind to exclude PR patterns
+  const standalonePattern = /(?<!(?:PR|pull(?:\s*request)?)\s*)#(\d+)/gi;
+  for (const match of text.matchAll(standalonePattern)) {
+    refs.push(parseInt(match[1] || '0', 10));
+  }
+
+  return [...new Set(refs.filter((n) => n > 0))]; // Unique, positive only
+}
+
+/**
+ * Extract PR numbers from text.
+ *
+ * Matches patterns like:
+ * - PR #123, pull #123, pull request #123
+ * - Merged PR #123
+ *
+ * @param text - Text to extract PR references from
+ * @returns Array of unique PR numbers
+ */
+export function extractPRRefs(text: string): number[] {
+  // Match PR #N, pull #N, pull request #N
+  const pattern = /(?:PR|pull(?:\s*request)?)\s*#(\d+)/gi;
+  const matches = [...text.matchAll(pattern)];
+  const refs = matches
+    .map((m) => parseInt(m[1] || '0', 10))
+    .filter((n) => n > 0);
+  return [...new Set(refs)]; // Unique
+}
+
+/**
+ * Calculate default importance score from action/content text and entry type.
+ *
+ * Scoring logic (from Phase 2 API spec):
+ * - Base: 5
+ * - Contains "CRITICAL", "BLOCKER", "BREAKING": +3
+ * - Contains "fix", "resolve", "close": +2
+ * - Contains "merge", "ship", "launch", "release": +2
+ * - Contains "review", "approve", "LGTM": +1
+ * - Entry type = 'decision': +2
+ * - Entry type = 'reflection': +1
+ *
+ * @param action - Action description
+ * @param content - Additional content
+ * @param type - Entry type
+ * @returns Importance score (1-10)
+ */
+export function calculateDefaultImportance(
+  action: string,
+  content: string,
+  type: StreamEntryType
+): number {
+  let importance = 5;
+  const text = `${action} ${content}`.toLowerCase();
+
+  // Critical/blocker signals
+  if (/critical|blocker|breaking/i.test(text)) importance += 3;
+
+  // Resolution signals
+  if (/\bfix(?:es|ed)?\b|\bresolve[sd]?\b|\bclose[sd]?\b/i.test(text)) importance += 2;
+
+  // Shipping signals
+  if (/\bmerge[sd]?\b|\bship(?:ped)?\b|\blaunch(?:ed)?\b|\brelease[sd]?\b/i.test(text)) importance += 2;
+
+  // Review signals
+  if (/\breview(?:ed)?\b|\bapprove[sd]?\b|\blgtm\b/i.test(text)) importance += 1;
+
+  // Type-based adjustments
+  if (type === 'decision') importance += 2;
+  if (type === 'reflection') importance += 1;
+
+  return Math.max(1, Math.min(10, importance));
+}
+
 // ─── Convenience Export ──────────────────────────────────────────────────────
 
 /**
