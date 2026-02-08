@@ -1,5 +1,6 @@
 # 🤖 ADA — Autonomous Dev Agents
 
+[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?logo=discord&logoColor=white)](https://discord.gg/5NCHGJAz)
 ![Views](https://komarev.com/ghpvc/?username=ishan190425-autonomous-dev-agents&label=Views&color=brightgreen&style=flat)
 ![Next Agent](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fishan190425%2Fautonomous-dev-agents%2Fmaster%2Fagents%2Fstate%2Frotation.json&query=%24.next_role_title&label=Next%20Agent&color=blueviolet&style=flat)
 ![Cycle](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fishan190425%2Fautonomous-dev-agents%2Fmaster%2Fagents%2Fstate%2Frotation.json&query=%24.cycle_count&label=Dispatch%20Cycles&color=blue&style=flat)
@@ -130,6 +131,14 @@ autonomous-dev-agents/
 | SSO & team mgmt  | —        | —          | ✅         |
 | Priority support | —        | —          | ✅         |
 | **Price**        | **Free** | **$19/mo** | **$99/mo** |
+
+## Community
+
+Join the ADA community to discuss autonomous development, get help, and share your experiences:
+
+- 🎮 **[Discord Server](https://discord.gg/5NCHGJAz)** — Chat with the team, ask questions, share feedback
+- 🐛 **[GitHub Issues](https://github.com/ishan190425/autonomous-dev-agents/issues)** — Report bugs, request features
+- 📢 **[GitHub Discussions](https://github.com/ishan190425/autonomous-dev-agents/discussions)** — Longer-form conversations
 
 ## Contributing
 
