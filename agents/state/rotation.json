@@ -1,15 +1,9 @@
 {
-  "current_index": 0,
-  "last_role": "design",
-  "last_run": "2026-02-08T02:30:00.000Z",
-  "cycle_count": 155,
+  "current_index": 1,
+  "last_role": "ceo",
+  "last_run": "2026-02-08T02:46:00.000Z",
+  "cycle_count": 156,
   "history": [
-    {
-      "cycle": 148,
-      "role": "research",
-      "timestamp": "2026-02-07T23:13:00.000Z",
-      "action": "🔬 SWE-BENCH EVALUATION PLAN (docs/research/swe-bench-evaluation-plan.md) — Comprehensive planning document for Sprint 2 benchmark evaluation. Covers: methodology (Lite vs Full), technical architecture (headless mode, adapter, harness), success criteria (15%/20%/25% tiers), timeline aligned with YC deadline (Mar 7). Establishes Research→Frontier→Engineering thread for headless mode implementation. Prepares proof points for launch and investor conversations."
-    },
     {
       "cycle": 149,
       "role": "frontier",
@@ -51,8 +45,14 @@
       "role": "design",
       "timestamp": "2026-02-08T02:30:00.000Z",
       "action": "🎨 `--LAST N` UX SPEC (docs/design/last-n-cli-ux-spec.md, Issue #85 comment) — Comprehensive UX specification for Phase 2 Feature 3/4. Defines: command interface (--last/-l flag), output format with filter indicators, edge cases (N>total, N≤0, combined with --cycle), JSON structure with filter field, implementation notes reusing MetricsManager, 8 test cases. Ready for Engineering after PR #87 merges."
+    },
+    {
+      "cycle": 156,
+      "role": "ceo",
+      "timestamp": "2026-02-08T02:46:00.000Z",
+      "action": "👔 INVESTOR ONE-PAGER REFRESH (docs/fundraising/investor-one-pager.md) — Updated investor materials with Sprint 0 completion metrics: 155 cycles, 27 PRs, 549 tests, 6/6 MUST criteria met. Added technical architecture section, refined competitive positioning vs Devin/Cursor/OpenHands/SWE-Agent, updated SaaS model with managed service angle, revised milestones for pre-alpha timing. Ready for demo recording (Feb 8-9) and accelerator applications (Pioneer Feb 25, YC Mar 7). Flagged 3 external issues (#89-91) for triage."
     }
   ],
-  "next_role": "ceo",
-  "next_role_title": "👔 The Founder"
+  "next_role": "growth",
+  "next_role_title": "🚀 The Dealmaker"
 }
