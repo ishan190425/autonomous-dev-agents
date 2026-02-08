@@ -440,6 +440,9 @@ export interface BackendOptions {
 // GitHubBackend is lazily imported to be set by the module loader
 let _GitHubBackendClass: typeof import('./github-backend.js').GitHubBackend | null = null;
 
+// FileBackend is lazily imported to be set by the module loader
+let _FileBackendClass: typeof import('./file-backend.js').FileBackend | null = null;
+
 /**
  * Register the GitHubBackend class for the factory.
  * Called automatically when github-backend.ts is imported.
@@ -451,10 +454,54 @@ export function _registerGitHubBackend(
   _GitHubBackendClass = backendClass;
 }
 
+/**
+ * Register the FileBackend class for the factory.
+ * Called automatically when file-backend.ts is imported.
+ * @internal
+ */
+export function _registerFileBackend(
+  backendClass: typeof import('./file-backend.js').FileBackend
+): void {
+  _FileBackendClass = backendClass;
+}
+
+/**
+ * Create a dispatch backend based on configuration.
+ *
+ * This factory function creates the appropriate backend based on the
+ * specified type. Use this to get a backend instance for dispatch operations.
+ *
+ * @example
+ * ```typescript
+ * // Normal mode with GitHub
+ * const backend = createBackend({ type: 'github', rootDir: process.cwd() });
+ *
+ * // Headless mode for SWE-bench
+ * const backend = createBackend({
+ *   type: 'file',
+ *   rootDir: '/tmp/repo',
+ *   fileConfig: { inputDir: 'input', outputDir: 'output' }
+ * });
+ * ```
+ *
+ * @param options - Backend creation options
+ * @returns Backend instance
+ */
 export function createBackend(options: BackendOptions): DispatchBackend {
   if (options.type === 'file') {
-    // TODO: Implement FileBackend (Phase 1, Step 3)
-    throw new Error('FileBackend not yet implemented — see Issue #84');
+    if (!_FileBackendClass) {
+      throw new Error(
+        'FileBackend not registered. Import file-backend.js first, or use FileBackend directly.'
+      );
+    }
+
+    const constructorArgs: { rootDir: string; config?: Partial<FileBackendConfig> } = {
+      rootDir: options.rootDir,
+    };
+    if (options.fileConfig !== undefined) {
+      constructorArgs.config = options.fileConfig;
+    }
+    return new _FileBackendClass(constructorArgs);
   }
 
   if (!_GitHubBackendClass) {

@@ -109,10 +109,25 @@ describe('default configs', () => {
 });
 
 describe('createBackend', () => {
-  it('should throw for file backend (not yet implemented)', () => {
-    expect(() =>
-      createBackend({ type: 'file', rootDir: '/tmp' })
-    ).toThrow('FileBackend not yet implemented');
+  it('should create FileBackend for file type', async () => {
+    // Import FileBackend to ensure registration
+    await import('../../src/file-backend.js');
+    
+    const backend = createBackend({ type: 'file', rootDir: '/tmp' });
+    expect(backend).toBeDefined();
+    expect(backend.name).toBe('file');
+  });
+
+  it('should pass config to FileBackend', async () => {
+    await import('../../src/file-backend.js');
+    
+    const backend = createBackend({
+      type: 'file',
+      rootDir: '/tmp',
+      fileConfig: { inputDir: 'custom/input', outputDir: 'custom/output' },
+    });
+    expect(backend).toBeDefined();
+    expect(backend.name).toBe('file');
   });
 
   it('should create GitHubBackend for github type', () => {
