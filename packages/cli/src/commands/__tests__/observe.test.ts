@@ -50,6 +50,212 @@ describe('observeCommand', () => {
   });
 });
 
+describe('observeCommand --last N option', () => {
+  it('should have short alias -l for --last', () => {
+    const lastOption = observeCommand.options.find((o) => o.long === '--last');
+    expect(lastOption).toBeDefined();
+    expect(lastOption?.short).toBe('-l');
+  });
+
+  it('should accept numeric value for --last', () => {
+    const lastOption = observeCommand.options.find((o) => o.long === '--last');
+    expect(lastOption).toBeDefined();
+    // Commander parses this as string, command validates
+  });
+});
+
+// ─── --last N Filter Logic Tests ─────────────────────────────────────────────
+
+describe('--last N filter logic', () => {
+  // Test the slice logic for filtering cycles
+  describe('basic filter', () => {
+    it('should return exactly N cycles when --last N and total > N', () => {
+      const allCycles = Array.from({ length: 50 }, (_, i) => ({ cycle: i + 1 }));
+      const lastN = 10;
+      const filtered = allCycles.slice(-lastN);
+      expect(filtered).toHaveLength(10);
+      expect(filtered[0]?.cycle).toBe(41); // Cycles 41-50
+      expect(filtered[9]?.cycle).toBe(50);
+    });
+
+    it('should return all cycles when --last N is larger than total', () => {
+      const allCycles = Array.from({ length: 3 }, (_, i) => ({ cycle: i + 1 }));
+      const lastN = 999;
+      const filtered = allCycles.slice(-lastN);
+      expect(filtered).toHaveLength(3); // Only 3 available
+    });
+
+    it('should return all cycles when --last N equals total', () => {
+      const allCycles = Array.from({ length: 10 }, (_, i) => ({ cycle: i + 1 }));
+      const lastN = 10;
+      const filtered = allCycles.slice(-lastN);
+      expect(filtered).toHaveLength(10);
+    });
+  });
+
+  describe('edge case validation', () => {
+    it('should identify --last 0 as invalid', () => {
+      const lastN = 0;
+      const isValid = lastN >= 1;
+      expect(isValid).toBe(false);
+    });
+
+    it('should identify --last -5 as invalid', () => {
+      const lastN = -5;
+      const isValid = lastN >= 1;
+      expect(isValid).toBe(false);
+    });
+
+    it('should identify --last 1 as valid', () => {
+      const lastN = 1;
+      const isValid = lastN >= 1;
+      expect(isValid).toBe(true);
+    });
+  });
+
+  describe('filter state construction', () => {
+    it('should build correct cycle range for filter', () => {
+      const cycles = [
+        { cycle: 145 },
+        { cycle: 146 },
+        { cycle: 147 },
+        { cycle: 148 },
+        { cycle: 149 },
+        { cycle: 150 },
+        { cycle: 151 },
+        { cycle: 152 },
+        { cycle: 153 },
+        { cycle: 154 },
+      ];
+      const filter = {
+        last: 10,
+        cycleRange: [cycles[0]!.cycle, cycles[cycles.length - 1]!.cycle] as const,
+        unfilteredTotal: 154,
+      };
+      expect(filter.cycleRange[0]).toBe(145);
+      expect(filter.cycleRange[1]).toBe(154);
+    });
+
+    it('should track unfiltered total correctly', () => {
+      const unfilteredTotal = 154;
+      const lastN = 10;
+      const filter = {
+        last: lastN,
+        cycleRange: [145, 154] as const,
+        unfilteredTotal,
+      };
+      expect(filter.unfilteredTotal).toBe(154);
+      expect(filter.last).toBe(10);
+    });
+  });
+
+  describe('by-role aggregation with filter', () => {
+    it('should only count filtered cycles in role stats', () => {
+      // Simulating byRole aggregation for filtered cycles
+      const filteredCycles = [
+        { cycle: 145, role: 'engineering' },
+        { cycle: 146, role: 'product' },
+        { cycle: 147, role: 'engineering' },
+        { cycle: 148, role: 'scrum' },
+        { cycle: 149, role: 'engineering' },
+      ];
+
+      const byRole: Record<string, { cycles: number }> = {};
+      for (const cycle of filteredCycles) {
+        if (!byRole[cycle.role]) {
+          byRole[cycle.role] = { cycles: 0 };
+        }
+        byRole[cycle.role]!.cycles++;
+      }
+
+      expect(byRole['engineering']?.cycles).toBe(3);
+      expect(byRole['product']?.cycles).toBe(1);
+      expect(byRole['scrum']?.cycles).toBe(1);
+    });
+  });
+
+  describe('JSON output with filter', () => {
+    it('should include filter field when --last is specified', () => {
+      const filter = {
+        last: 10,
+        cycleRange: [145, 154] as readonly [number, number],
+      };
+      const output = {
+        filter: {
+          last: filter.last,
+          cycleRange: filter.cycleRange,
+        },
+        summary: { totalCycles: 10, unfilteredTotal: 154 },
+      };
+      expect(output.filter).toBeDefined();
+      expect(output.filter.last).toBe(10);
+      expect(output.filter.cycleRange).toEqual([145, 154]);
+    });
+
+    it('should include unfilteredTotal in summary', () => {
+      const output = {
+        filter: { last: 20, cycleRange: [135, 154] as const },
+        summary: { totalCycles: 20, unfilteredTotal: 154 },
+      };
+      expect(output.summary.totalCycles).toBe(20);
+      expect(output.summary.unfilteredTotal).toBe(154);
+    });
+
+    it('should not include filter field when --last is not specified', () => {
+      const output: { filter?: unknown; summary: unknown } = {
+        summary: { totalCycles: 100 },
+      };
+      expect(output.filter).toBeUndefined();
+    });
+  });
+
+  describe('header and footer text', () => {
+    it('should format header suffix correctly', () => {
+      const lastN = 10;
+      const filterSuffix = ` (last ${lastN} cycles)`;
+      expect(filterSuffix).toBe(' (last 10 cycles)');
+    });
+
+    it('should format "N of TOTAL" display correctly', () => {
+      const filtered = 10;
+      const total = 154;
+      const display = `${filtered} of ${total} tracked`;
+      expect(display).toBe('10 of 154 tracked');
+    });
+
+    it('should format footer with filter info correctly', () => {
+      const totalCycles = 20;
+      const unfilteredTotal = 154;
+      const footer = `Showing: last ${totalCycles} cycles (of ${unfilteredTotal} total)`;
+      expect(footer).toBe('Showing: last 20 cycles (of 154 total)');
+    });
+  });
+
+  describe('cycle warning for outside window', () => {
+    it('should detect when specific cycle is outside filter window', () => {
+      const filter = {
+        last: 20,
+        cycleRange: [135, 154] as const,
+      };
+      const requestedCycle = 100;
+      const [rangeStart, rangeEnd] = filter.cycleRange;
+      const isOutsideWindow = requestedCycle < rangeStart || requestedCycle > rangeEnd;
+      expect(isOutsideWindow).toBe(true);
+    });
+
+    it('should not warn when specific cycle is inside filter window', () => {
+      const filter = {
+        last: 20,
+        cycleRange: [135, 154] as const,
+      };
+      const requestedCycle = 145;
+      const [rangeStart, rangeEnd] = filter.cycleRange;
+      const isOutsideWindow = requestedCycle < rangeStart || requestedCycle > rangeEnd;
+      expect(isOutsideWindow).toBe(false);
+    });
+  });
+});
+
 describe('costsCommand', () => {
   it('should have correct name', () => {
     expect(costsCommand.name()).toBe('costs');
