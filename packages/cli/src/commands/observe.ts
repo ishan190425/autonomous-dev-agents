@@ -37,6 +37,20 @@ import type {
   TokenCost,
   PhaseLatencyStats,
 } from '@ada/core';
+import {
+  detectFormat,
+  getSupportedExtensions,
+  confirmOverwrite,
+  fileExists,
+  writeFile,
+  toCSV,
+  toTSV,
+  type ExportFormat,
+  type CycleExportRow,
+  type RoleExportRow,
+  CYCLE_HEADERS,
+  ROLE_HEADERS,
+} from '../lib/export.js';
 
 /** Options for the observe command */
 interface ObserveOptions {
@@ -45,6 +59,8 @@ interface ObserveOptions {
   cycle?: string;
   last?: string;
   json?: boolean;
+  export?: string;
+  force?: boolean;
 }
 
 /** Filter state for --last N */
@@ -755,6 +771,137 @@ function printJson(
   console.log(JSON.stringify(output, null, 2));
 }
 
+/**
+ * Convert cycles array to export rows.
+ */
+function cyclesToExportRows(cycles: readonly CycleMetrics[]): CycleExportRow[] {
+  return cycles.map((cycle) => ({
+    cycle: cycle.cycle,
+    role: cycle.role,
+    timestamp: cycle.startedAt,
+    tokens_input: cycle.totals.inputTokens,
+    tokens_output: cycle.totals.outputTokens,
+    tokens_total: cycle.totals.totalTokens,
+    cost: cycle.cost.totalCost,
+    duration_ms: cycle.durationMs,
+    status: cycle.success ? 'success' : 'failure',
+    model: cycle.model,
+    error: cycle.error,
+  }));
+}
+
+/**
+ * Convert by-role metrics to export rows.
+ */
+function byRoleToExportRows(
+  metrics: AggregatedMetrics,
+  cycles: readonly CycleMetrics[]
+): RoleExportRow[] {
+  // Calculate per-role latency averages
+  const roleLatencies: Record<string, { totalMs: number; count: number }> = {};
+  for (const cycle of cycles.filter(hasLatencyData)) {
+    const existing = roleLatencies[cycle.role] ?? { totalMs: 0, count: 0 };
+    existing.totalMs += cycle.durationMs;
+    existing.count++;
+    roleLatencies[cycle.role] = existing;
+  }
+
+  return Object.entries(metrics.byRole)
+    .sort(([, a], [, b]) => b.cost.totalCost - a.cost.totalCost)
+    .map(([roleId, stats]) => {
+      const roleLatency = roleLatencies[roleId];
+      return {
+        role: roleId,
+        cycles: stats.cycles,
+        tokens_input: stats.tokens.inputTokens,
+        tokens_output: stats.tokens.outputTokens,
+        tokens_total: stats.tokens.totalTokens,
+        cost: stats.cost.totalCost,
+        avg_cost: stats.cycles > 0 ? stats.cost.totalCost / stats.cycles : 0,
+        avg_duration_ms: roleLatency && roleLatency.count > 0
+          ? Math.round(roleLatency.totalMs / roleLatency.count)
+          : undefined,
+      };
+    });
+}
+
+/**
+ * Export data to file based on format.
+ *
+ * @param filePath - Destination file path
+ * @param format - Export format (csv, json, tsv)
+ * @param data - Data to export (varies by mode)
+ * @param mode - Export mode (dashboard, byRole, cycle)
+ */
+function exportToFile(
+  filePath: string,
+  format: ExportFormat,
+  data: {
+    cycles?: readonly CycleMetrics[];
+    metrics?: AggregatedMetrics | null;
+    cycleDetail?: CycleMetrics | null;
+    byRole?: boolean | undefined;
+  }
+): void {
+  let content: string;
+
+  if (format === 'json') {
+    // JSON export uses same structure as --json output
+    const output: Record<string, unknown> = {};
+
+    if (data.cycleDetail) {
+      const efficiency = data.cycleDetail.durationMs > 0 ? {
+        tokensPerSecond: calculateEfficiency(data.cycleDetail.totals.totalTokens, data.cycleDetail.durationMs),
+        spendRatePerHour: calculateSpendRate(data.cycleDetail.cost.totalCost, data.cycleDetail.durationMs),
+      } : null;
+
+      output.cycle = {
+        ...data.cycleDetail,
+        ...(efficiency && { efficiency }),
+      };
+    } else if (data.metrics && data.cycles) {
+      const cyclesWithLatency = data.cycles.filter(hasLatencyData);
+      const totalTokens = cyclesWithLatency.reduce((sum, c) => sum + c.totals.totalTokens, 0);
+      const totalDuration = cyclesWithLatency.reduce((sum, c) => sum + c.durationMs, 0);
+      const totalCost = cyclesWithLatency.reduce((sum, c) => sum + c.cost.totalCost, 0);
+
+      const efficiency = cyclesWithLatency.length > 0 ? {
+        avgTokensPerSecond: calculateEfficiency(totalTokens, totalDuration),
+        avgSpendRatePerHour: calculateSpendRate(totalCost, totalDuration),
+      } : null;
+
+      output.aggregated = {
+        ...data.metrics,
+        ...(efficiency && { efficiency }),
+      };
+      output.cycles = data.cycles;
+    }
+
+    content = `${JSON.stringify(output, null, 2)  }\n`;
+  } else {
+    // CSV/TSV export
+    const converter = format === 'tsv' ? toTSV : toCSV;
+
+    if (data.cycleDetail) {
+      // Single cycle export
+      const rows = cyclesToExportRows([data.cycleDetail]);
+      content = converter(rows, CYCLE_HEADERS);
+    } else if (data.byRole && data.metrics && data.cycles) {
+      // By-role export
+      const rows = byRoleToExportRows(data.metrics, data.cycles);
+      content = converter(rows, ROLE_HEADERS);
+    } else if (data.cycles) {
+      // Dashboard export (all cycles)
+      const rows = cyclesToExportRows(data.cycles);
+      content = converter(rows, CYCLE_HEADERS);
+    } else {
+      content = '';
+    }
+  }
+
+  writeFile(filePath, content);
+}
+
 export const observeCommand = new Command('observe')
   .description('Show agent observability metrics (cost, tokens, health, latency)')
   .option('-d, --dir <path>', 'Agents directory (default: "agents/")', 'agents')
@@ -762,10 +909,31 @@ export const observeCommand = new Command('observe')
   .option('--cycle <n>', 'Show detailed metrics for a specific cycle')
   .option('-l, --last <n>', 'Filter to last N cycles only')
   .option('--json', 'Output as JSON for scripting')
+  .option('-e, --export <file>', 'Export metrics to file (auto-detects format from extension: .csv, .json, .tsv)')
+  .option('-f, --force', 'Overwrite existing file without confirmation')
   .action(async (options: ObserveOptions) => {
     const cwd = process.cwd();
     const agentsDir = path.resolve(cwd, options.dir);
     const rosterPath = path.join(agentsDir, 'roster.json');
+
+    // Validate export format if --export is used
+    let exportFormat: ExportFormat | null = null;
+    if (options.export) {
+      exportFormat = detectFormat(options.export);
+      if (!exportFormat) {
+        console.error(chalk.red(`❌ Unsupported file extension. Supported formats: ${getSupportedExtensions().join(', ')}`));
+        process.exit(1);
+      }
+
+      // Check for file overwrite
+      if (fileExists(options.export) && !options.force) {
+        const confirmed = await confirmOverwrite(options.export);
+        if (!confirmed) {
+          console.log(chalk.gray('Export cancelled.'));
+          return;
+        }
+      }
+    }
 
     try {
       // Validate --last option
@@ -797,8 +965,14 @@ export const observeCommand = new Command('observe')
 
       // Handle empty state
       if (allCycles.length === 0) {
-        if (options.json) {
-          console.log(JSON.stringify({ error: 'No observability data collected yet.' }));
+        if (options.export || options.json) {
+          if (options.export && exportFormat) {
+            // Export empty file with headers
+            exportToFile(options.export, exportFormat, { cycles: [], metrics: null, byRole: options.byRole });
+            console.log(chalk.green(`✅ Exported empty dataset to ${options.export}`));
+          } else {
+            console.log(JSON.stringify({ error: 'No observability data collected yet.' }));
+          }
         } else {
           console.log(chalk.yellow('📊 No observability data collected yet.'));
           console.log();
@@ -834,8 +1008,13 @@ export const observeCommand = new Command('observe')
         : await metricsManager.aggregate();
 
       if (!aggregated) {
-        if (options.json) {
-          console.log(JSON.stringify({ error: 'No observability data collected yet.' }));
+        if (options.export || options.json) {
+          if (options.export && exportFormat) {
+            exportToFile(options.export, exportFormat, { cycles: [], metrics: null, byRole: options.byRole });
+            console.log(chalk.green(`✅ Exported empty dataset to ${options.export}`));
+          } else {
+            console.log(JSON.stringify({ error: 'No observability data collected yet.' }));
+          }
         } else {
           console.log(chalk.yellow('📊 No observability data collected yet.'));
         }
@@ -848,8 +1027,8 @@ export const observeCommand = new Command('observe')
         const cycle = await metricsManager.getCycle(cycleNumber);
 
         if (!cycle) {
-          if (options.json) {
-            console.log(JSON.stringify({ error: `Cycle ${cycleNumber} not found in tracked metrics.` }));
+          if (options.export || options.json) {
+            console.error(JSON.stringify({ error: `Cycle ${cycleNumber} not found in tracked metrics.` }));
           } else {
             console.error(chalk.red(`❌ Cycle ${cycleNumber} not found in tracked metrics.`));
             console.log(chalk.gray(`   Tracked range: cycles ${aggregated.firstCycle} to ${aggregated.lastCycle}`));
@@ -857,11 +1036,29 @@ export const observeCommand = new Command('observe')
           process.exit(1);
         }
 
+        if (options.export && exportFormat) {
+          exportToFile(options.export, exportFormat, { cycleDetail: cycle });
+          console.log(chalk.green(`✅ Exported cycle ${cycleNumber} to ${options.export}`));
+          return;
+        }
+
         if (options.json) {
           printJson(null, cycles, cycle, filter);
         } else {
           printCycleDetails(cycle, roster, aggregated.firstCycle, filter);
         }
+        return;
+      }
+
+      // Export mode
+      if (options.export && exportFormat) {
+        exportToFile(options.export, exportFormat, {
+          cycles,
+          metrics: aggregated,
+          byRole: options.byRole,
+        });
+        const recordCount = options.byRole ? Object.keys(aggregated.byRole).length : cycles.length;
+        console.log(chalk.green(`✅ Exported ${recordCount} records to ${options.export}`));
         return;
       }
 
@@ -881,7 +1078,7 @@ export const observeCommand = new Command('observe')
       const projectName = roster?.product ?? 'ADA Project';
       printDashboard(aggregated, cycles, projectName, filter);
     } catch (err) {
-      if (options.json) {
+      if (options.export || options.json) {
         console.error(JSON.stringify({ error: (err as Error).message }));
       } else {
         console.error(chalk.red('❌ Could not load observability data:'), (err as Error).message);
