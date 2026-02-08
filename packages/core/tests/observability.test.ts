@@ -5,7 +5,7 @@
  * Phase 2 (Latency Timer): phase timing, latency aggregation, formatDuration.
  */
 
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import * as os from 'node:os';
@@ -38,9 +38,6 @@ import {
   createCycleTracker,
   createMetricsManager,
 } from '../src/observability.js';
-
-// Helper for delays in tests
-const delay = (ms: number): Promise<void> => new Promise(resolve => globalThis.setTimeout(resolve, ms));
 
 // ─── Utility Function Tests ──────────────────────────────────────────────────
 
@@ -327,15 +324,23 @@ describe('CycleTracker', () => {
 
   describe('Phase 2 — Latency Timer', () => {
     describe('startPhase/endPhase', () => {
+      beforeEach(() => {
+        vi.useFakeTimers();
+      });
+
+      afterEach(() => {
+        vi.useRealTimers();
+      });
+
       it('should record phase latency', async () => {
         const tracker = new CycleTracker(42, 'engineering');
         tracker.startPhase('context_load');
-        await delay(10);
+        await vi.advanceTimersByTimeAsync(50); // Use fake timers for deterministic timing
         const latency = tracker.endPhase();
 
         expect(latency.startedAt).toBeDefined();
         expect(latency.endedAt).toBeDefined();
-        expect(latency.durationMs).toBeGreaterThanOrEqual(10);
+        expect(latency.durationMs).toBeGreaterThanOrEqual(50);
       });
 
       it('should throw if starting phase while another is active', () => {
@@ -384,18 +389,29 @@ describe('CycleTracker', () => {
     });
 
     describe('timePhase (async)', () => {
+      beforeEach(() => {
+        vi.useFakeTimers();
+      });
+
+      afterEach(() => {
+        vi.useRealTimers();
+      });
+
       it('should time async function execution', async () => {
         const tracker = new CycleTracker(42, 'engineering');
-        const result = await tracker.timePhase('action_execution', async () => {
-          await delay(10);
+        const resultPromise = tracker.timePhase('action_execution', async () => {
+          await new Promise(resolve => globalThis.setTimeout(resolve, 50));
           return 'done';
         });
+
+        await vi.advanceTimersByTimeAsync(50); // Advance fake timers
+        const result = await resultPromise;
 
         expect(result).toBe('done');
         expect(tracker.isPhaseActive()).toBe(false);
 
         const metrics = tracker.finalize(true);
-        expect(metrics.latency?.action_execution?.durationMs).toBeGreaterThanOrEqual(10);
+        expect(metrics.latency?.action_execution?.durationMs).toBeGreaterThanOrEqual(50);
       });
 
       it('should end phase even if function throws', async () => {
