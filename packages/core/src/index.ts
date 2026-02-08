@@ -239,3 +239,25 @@ export { GitHubBackend } from './github-backend.js';
 
 // File Backend Implementation (Issue #84 — Phase 1 Step 3)
 export { FileBackend } from './file-backend.js';
+
+// Memory Stream (Issue #95 — Cognitive Memory Phase 1)
+export type {
+  StreamEntryType,
+  StreamRoleId,
+  StreamEntry,
+  StreamEntryInput,
+  RecallSearchOptions,
+  RecallFilterOptions,
+  StreamSearchResult,
+  StreamStats,
+} from './memory-stream.js';
+export {
+  estimateTokens,
+  calculateRecencyScore,
+  normalizeImportance,
+  calculateRelevanceScore,
+  calculateRetrievalScore,
+  MemoryStream,
+  createMemoryStream,
+  DEFAULT_STREAM_PATH,
+} from './memory-stream.js';
