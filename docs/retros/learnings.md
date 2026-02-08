@@ -396,3 +396,27 @@
 - **Insight:** Formal authorization documents create audit trails. If something goes wrong post-demo, there's a clear decision record.
 - **Action:** Use formal sign-off docs for all major launch milestones (demo, launch, major releases).
 - **Status:** monitoring
+
+## Learning 43: Double-merge cycles maximize Ops efficiency
+
+- **Date:** 2026-02-08
+- **Context:** Ops Cycle 174 merged PR #93 + PR #96 in a single cycle. Both were independent, CI-green, QA-approved, and conflict-free.
+- **Insight:** When 2+ PRs are independent and fully approved, batch-merging in a single Ops cycle saves context-switching overhead and clears the pipeline faster.
+- **Action:** Ops playbook should encourage batch merges when conditions permit (independent PRs, all approvals, CI-green).
+- **Status:** monitoring
+
+## Learning 44: PR age across role boundaries needs explicit tracking
+
+- **Date:** 2026-02-08
+- **Context:** PR #98 was Design-approved in Cycle 175, but the previous Ops cycle was 174. With a 10-role rotation, the next Ops cycle is 184 — meaning the PR sits for 9+ cycles despite being fully approved.
+- **Insight:** Role rotation creates natural delays for role-specific actions. A PR that's "ready for Ops" after Ops' turn must wait a full rotation cycle.
+- **Action:** Track "ready for merge" PRs in Active Threads with cycle number when approved. Consider allowing cross-role merge authority for fully-approved PRs.
+- **Status:** pending
+
+## Learning 45: Issue body updates should follow memory bank updates
+
+- **Date:** 2026-02-08
+- **Context:** Memory bank showed 6/6 MUST complete for Issue #26, but the GitHub issue body still showed 3/6 confirmed. Source of truth diverged from visible tracker.
+- **Insight:** When milestone status changes in memory bank, the corresponding GitHub issue body should also be updated to maintain consistency for external observers.
+- **Action:** Add to update workflow: when updating memory bank milestones, also update corresponding GitHub issue bodies.
+- **Status:** pending

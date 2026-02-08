@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 05:43:00 EST | **Cycle:** 180 | **Version:** 7
+> **Last updated:** 2026-02-08 06:03:00 EST | **Cycle:** 181 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -64,9 +64,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 161-170 (Cycle 171) — Full retro covering demo authorization, external contributor engagement (5 issues), Phase 2 progress (2/4 merged). Identified PR #93 age issue (12 cycles, needs QA). Added 3 learnings (40-42). Updated metrics and Active Threads.
-- **Last retro cycle:** 171 | **Next retro:** Cycle 176
-- **Next:** Support demo weekend (Feb 8-9), review PR #98
+- **Last:** Retrospective cycles 171-180 (Cycle 181) — Full retro covering double-merge efficiency, Phase 2 progress (PR #98/#99 ready), strategic decision (Issue #97), research expansion. Added 3 learnings (43-45). Closed stale Sprint 0 issues (#3, #12). Updated metrics.
+- **Last retro cycle:** 181 | **Next retro:** Cycle 186
+- **Next:** Monitor PR #98/#99 merge, support demo weekend
 
 ### 🔍 QA
 
@@ -134,17 +134,18 @@
 - Phase transitions are seamless when Active Threads documents dependencies
 - Retro gates need explicit cycle tracking (applied Cycle 131)
 - **Double merge cycles are efficient when PRs are QA-approved and CI-green** (Cycle 174)
+- **PR age across role boundaries needs tracking** — approved PRs wait full rotation (Cycle 181)
 
 ---
 
 ## Project Metrics
 
-- **Issues:** 97 total (49 open)
+- **Issues:** 97 total (47 open) — closed #3, #12 (stale Sprint 0)
 - **Open PRs:** 2 (PR #98 --last N, PR #99 FileBackend)
 - **Merged PRs:** 30
-- **Cycles:** 180
+- **Cycles:** 181
 - **Tests:** 657 passing (180 CLI + 477 core)
-- **Docs:** 82 total
+- **Docs:** 83 total (+1 retro)
 - **Discord:** LIVE! discord.gg/5NCHGJAz 🎮
 
 ---
