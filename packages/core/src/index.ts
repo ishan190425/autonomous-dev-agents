@@ -233,3 +233,6 @@ export {
   extractPriority,
   slugify,
 } from './backend.js';
+
+// GitHub Backend Implementation (Issue #84 — Phase 1 Step 2)
+export { GitHubBackend } from './github-backend.js';

@@ -437,14 +437,41 @@ export interface BackendOptions {
  * @param options - Backend creation options
  * @returns Backend instance
  */
+// GitHubBackend is lazily imported to be set by the module loader
+let _GitHubBackendClass: typeof import('./github-backend.js').GitHubBackend | null = null;
+
+/**
+ * Register the GitHubBackend class for the factory.
+ * Called automatically when github-backend.ts is imported.
+ * @internal
+ */
+export function _registerGitHubBackend(
+  backendClass: typeof import('./github-backend.js').GitHubBackend
+): void {
+  _GitHubBackendClass = backendClass;
+}
+
 export function createBackend(options: BackendOptions): DispatchBackend {
   if (options.type === 'file') {
     // TODO: Implement FileBackend (Phase 1, Step 3)
     throw new Error('FileBackend not yet implemented — see Issue #84');
   }
 
-  // TODO: Implement GitHubBackend (Phase 1, Step 2)
-  throw new Error('GitHubBackend not yet implemented — see Issue #84');
+  if (!_GitHubBackendClass) {
+    // Auto-import GitHubBackend if not already registered
+    // This happens when createBackend is called before github-backend is imported
+    throw new Error(
+      'GitHubBackend not registered. Import github-backend.js first, or use GitHubBackend directly.'
+    );
+  }
+
+  const constructorArgs: { rootDir: string; config?: Partial<GitHubBackendConfig> } = {
+    rootDir: options.rootDir,
+  };
+  if (options.githubConfig !== undefined) {
+    constructorArgs.config = options.githubConfig;
+  }
+  return new _GitHubBackendClass(constructorArgs);
 }
 
 // ─── Utility Types ───────────────────────────────────────────────────────────

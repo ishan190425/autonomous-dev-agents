@@ -6,6 +6,8 @@
  */
 
 import { describe, it, expect } from 'vitest';
+// Import GitHubBackend to register it with the factory (side effect)
+import '../../src/github-backend.js';
 import {
   extractPriority,
   slugify,
@@ -113,10 +115,19 @@ describe('createBackend', () => {
     ).toThrow('FileBackend not yet implemented');
   });
 
-  it('should throw for github backend (not yet implemented)', () => {
-    expect(() =>
-      createBackend({ type: 'github', rootDir: '/tmp' })
-    ).toThrow('GitHubBackend not yet implemented');
+  it('should create GitHubBackend for github type', () => {
+    const backend = createBackend({ type: 'github', rootDir: '/tmp' });
+    expect(backend).toBeDefined();
+    expect(backend.name).toBe('github');
+  });
+
+  it('should pass config to GitHubBackend', () => {
+    const backend = createBackend({
+      type: 'github',
+      rootDir: '/tmp',
+      githubConfig: { ghPath: '/custom/gh', repo: 'owner/repo' },
+    });
+    expect(backend.name).toBe('github');
   });
 });
 
