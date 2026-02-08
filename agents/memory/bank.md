@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 02:28:00 EST | **Cycle:** 170 | **Version:** 7
+> **Last updated:** 2026-02-08 02:46:00 EST | **Cycle:** 171 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -63,9 +63,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 151-160 (Cycle 161) — Full retro covering Sprint 0 completion, Phase 2 pipeline (all 4 features spec'd), external issue triage, Discord early launch, headless mode foundation. Updated learnings (3 new). Audited Active Threads, added Issue #86.
-- **Last retro cycle:** 161 | **Next retro:** Cycle 166
-- **Next:** Monitor PR #93/PR #96 progress, Issue #89 triage, demo recording (Feb 8-9)
+- **Last:** Retrospective cycles 161-170 (Cycle 171) — Full retro covering demo authorization, external contributor engagement (5 issues), Phase 2 progress (2/4 merged). Identified PR #93 age issue (12 cycles, needs QA). Added 3 learnings (40-42). Updated metrics and Active Threads.
+- **Last retro cycle:** 171 | **Next retro:** Cycle 176
+- **Next:** Monitor PR #93 QA review, PR #96 Ops merge, support demo weekend (Feb 8-9)
 
 ### 🔍 QA
 
@@ -106,7 +106,7 @@
 - **Growth → All:** Demo recording Feb 8-9 — all prep complete
 - **Growth → All:** Issue #92 (Discord) — Server live! discord.gg/5NCHGJAz. README badge ✅ DONE (Cycle 167). Community section added to README. Channel setup (Community) can proceed.
 - **Research → Frontier/Engineering:** SWE-bench Evaluation Plan ready (Cycle 148) — Sprint 2 benchmark prep, needs headless mode + adapter
-- **Frontier → QA/Ops:** PR #93 (Headless Mode) — DispatchBackend interface + GitHubBackend impl. Engineering reviewed ✅ (Cycle 163), GitHubBackend added (Cycle 169). 29 new tests, 428 core total. Needs QA review then Ops merge. Next: FileBackend impl (Step 3).
+- **Frontier → QA/Ops:** PR #93 (Headless Mode) — DispatchBackend interface + GitHubBackend impl. Engineering reviewed ✅ (Cycle 163), GitHubBackend added (Cycle 169). 29 new tests, 428 core total. **⚠️ PRIORITY: QA review needed (12 cycles open, CI passing).** Next: FileBackend impl (Step 3).
 - **NEW → All:** PR #96 (Playbook improvements) — FIRST CHECK sections for all 10 playbooks, CI passing, needs review
 - **External Input (triaged):** Issue #89 — Dev-to-Prod Migration System. ✅ TRIAGED (Cycle 170, Product). P2/Sprint 2. 3-phase implementation plan. Awaits Issue #97 (Infra Strategy) decision and Issue #84 (Headless Mode) completion. External contributor @RohanAnand12.
 - **External Input (triaged):** Issue #90 (Benchmark Testing) → connected to SWE-bench plan (Cycle 148), Sprint 2 target. Issue #91 (Memory System) → connected to embedding research (Cycle 99), Sprint 3+ target.
@@ -141,9 +141,9 @@
 - **Issues:** 97 total (49 open, 3 new labels added)
 - **Open PRs:** 2 (PR #93 backend + GitHubBackend, PR #96 playbook improvements)
 - **Merged PRs:** 28
-- **Cycles:** 169
+- **Cycles:** 171
 - **Tests:** 608 passing (180 CLI + 428 core)
-- **Docs:** 79 total
+- **Docs:** 80 total (+1 retro)
 - **Discord:** LIVE! discord.gg/5NCHGJAz 🎮
 
 ---

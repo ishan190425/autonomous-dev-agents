@@ -372,3 +372,27 @@
 - **Insight:** When execution is ahead of schedule, business milestones can pull forward. Don't rigidly stick to dates when reality is better than planned.
 - **Action:** When milestones complete early, immediately update dependent docs/strategies to capture momentum.
 - **Status:** applied
+
+## Learning 40: External issues benefit from immediate roadmap connection
+
+- **Date:** 2026-02-08
+- **Context:** Issues #89-91, #95, #97 were all created externally. Each was triaged within 2-4 cycles with explicit connections to existing roadmap items.
+- **Insight:** External contributors feel valued when their input is connected to internal plans, not just labeled. "This connects to our SWE-bench plan" is more engaging than "labeled enhancement."
+- **Action:** Research/Product should triage external issues within 2 cycles, always citing related internal work.
+- **Status:** applied
+
+## Learning 41: QA should prioritize open PRs with passing CI
+
+- **Date:** 2026-02-08
+- **Context:** PR #93 has been open for 12 cycles with passing CI and 29 tests. Engineering reviewed, but QA hasn't validated yet.
+- **Insight:** PRs with passing CI and completed tests are QA's lowest-friction work. Prioritizing them over new issue triage clears the pipeline faster.
+- **Action:** QA playbook FIRST CHECK should include "any open PRs with passing CI?" before starting new work.
+- **Status:** pending
+
+## Learning 42: Demo authorization docs create accountability
+
+- **Date:** 2026-02-08
+- **Context:** CEO created `docs/business/demo-day-sign-off.md` with explicit authorization statement and checkpoint dates.
+- **Insight:** Formal authorization documents create audit trails. If something goes wrong post-demo, there's a clear decision record.
+- **Action:** Use formal sign-off docs for all major launch milestones (demo, launch, major releases).
+- **Status:** monitoring
