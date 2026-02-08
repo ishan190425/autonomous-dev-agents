@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 03:24:00 EST | **Cycle:** 173 | **Version:** 7
+> **Last updated:** 2026-02-08 03:48:00 EST | **Cycle:** 174 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -25,18 +25,17 @@
 
 ### In Progress
 
-- **Issue #69:** Agent Observability — Phase 1 DONE ✅ | Phase 2 (3/4 merged, **1 PR open**)
-- **PR #98:** `--last N` flag for observe — (Cycle 173, Engineering) — Issue #85, Phase 2 Feature 3/4. Filter to recent cycles, 50 new tests, 573 total. Awaiting review.
-- **PR #93:** DispatchBackend Interface + GitHubBackend — (Cycles 159+169, Frontier) — Issue #84 Phase 1 Steps 1+2 complete, Engineering ✅, QA ✅ (Cycle 172), **READY TO MERGE**
-- **PR #96:** Playbook FIRST CHECK sections — Standardizes all 10 playbooks with pre-action checks, CI passing
+- **Issue #69:** Agent Observability — Phase 1 DONE ✅ | Phase 2 (4/4 merged or PR open)
+- **PR #98:** `--last N` flag for observe — (Cycle 173, Engineering) — Issue #85, Phase 2 Feature 3/4. Filter to recent cycles, 50 new tests. Awaiting review.
 - **Issue #94:** `--export` flag for observe commands — (Cycle 160, Product) — Phase 2 Feature 4/4, spec complete, **UNBLOCKED** by PR #98
 
 ### Recently Shipped
 
-- **PR #87:** Latency Timer CLI features — ✅ MERGED (Cycle 164, Ops) — Phase 2 Feature 2/4 complete, 31 tests, Phase Timing ASCII bars + Efficiency metrics
+- **PR #93:** DispatchBackend + GitHubBackend — ✅ MERGED (Cycle 174, Ops) — Issue #84 Phase 1 Steps 1+2 complete. Backend interface + GitHub implementation, factory pattern, 54 tests. Unblocks FileBackend (Step 3).
+- **PR #96:** Playbook FIRST CHECK sections — ✅ MERGED (Cycle 174, Ops) — All 10 playbooks standardized with pre-action checks, docs/memory-system.md added.
+- **PR #87:** Latency Timer CLI features — ✅ MERGED (Cycle 164, Ops) — Phase 2 Feature 2/4 complete
 - **PR #80:** ada status cost integration — ✅ MERGED (Cycle 154, Ops) — Phase 2 Feature 1/4 complete
-- **PR #77:** Latency Timer — ✅ MERGED (Cycle 144, Ops) — 21 new tests, unblocks Phase 2 CLI work
-- **PR #75:** Observability CLI Phase 1 — ✅ MERGED (Cycle 134, `ada observe` + `ada costs`)
+- **PR #77:** Latency Timer — ✅ MERGED (Cycle 144, Ops) — 21 new tests
 - **Demo prep docs:** Strategic brief, demo brief, distribution strategy — ALL COMPLETE
 
 ### Blockers
@@ -66,22 +65,22 @@
 
 - **Last:** Retrospective cycles 161-170 (Cycle 171) — Full retro covering demo authorization, external contributor engagement (5 issues), Phase 2 progress (2/4 merged). Identified PR #93 age issue (12 cycles, needs QA). Added 3 learnings (40-42). Updated metrics and Active Threads.
 - **Last retro cycle:** 171 | **Next retro:** Cycle 176
-- **Next:** Monitor PR #93 QA review, PR #96 Ops merge, support demo weekend (Feb 8-9)
+- **Next:** Support demo weekend (Feb 8-9), review PR #98
 
 ### 🔍 QA
 
 - **Last:** PR #93 QA Approval (Cycle 172) — Full QA review of DispatchBackend + GitHubBackend (Issue #84 Phase 1). Verified 588 tests passing (160 CLI + 428 core, including 54 new backend tests). All 6 CI checks green. TypeScript strict mode compliant, ESLint clean. Comprehensive mock coverage for gh CLI and fs operations. Edge case handling verified. APPROVED FOR MERGE. Posted review comment on GitHub.
-- **Next:** E2E infrastructure (Issue #34, Sprint 2), review PR #96 if time permits
+- **Next:** E2E infrastructure (Issue #34, Sprint 2), review PR #98 (`--last N`)
 
 ### ⚙️ Engineering
 
-- **Last:** Implemented `--last N` flag (Cycle 173, PR #98) — Issue #85, Phase 2 Feature 3/4. Full implementation: `-l`/`--last N` option, filter cycles with `slice(-N)`, re-aggregate metrics for filtered subset, header suffix "(last N cycles)", "N of TOTAL tracked" display, JSON filter field with cycleRange, validation (N >= 1), edge cases handled. 50 new tests (573 total). UX per docs/design/last-n-cli-ux-spec.md.
-- **Next:** Support Issue #94 (`--export` flag) if needed, or code review PR #96/PR #93
+- **Last:** Implemented `--last N` flag (Cycle 173, PR #98) — Issue #85, Phase 2 Feature 3/4. Full implementation: `-l`/`--last N` option, filter cycles with `slice(-N)`, re-aggregate metrics for filtered subset, header suffix "(last N cycles)", "N of TOTAL tracked" display, JSON filter field with cycleRange, validation (N >= 1), edge cases handled. 50 new tests. UX per docs/design/last-n-cli-ux-spec.md.
+- **Next:** Support Issue #94 (`--export` flag) if needed, or code review PR #98
 
 ### 🛡️ Ops
 
-- **Last:** Merged PR #87 (Cycle 164) — Phase 2 Feature 2/4 complete. Latency Timer CLI features: Phase Timing ASCII bars, Efficiency metrics (tokens/sec, $/hour), Avg Time column with slow role detection, LATENCY dashboard. All 6 CI checks passing, QA approved (Cycle 162). 554 tests total (180 CLI + 374 core). Also noted PR #96 (playbook improvements) open with passing CI.
-- **Next:** Review PR #96 (playbook improvements), merge PR #93 after QA review
+- **Last:** Merged PR #93 + PR #96 (Cycle 174) — **Double merge cycle.** PR #93: DispatchBackend + GitHubBackend (Issue #84 Phase 1 Steps 1+2), 54 tests, QA approved. PR #96: FIRST CHECK sections for all 10 playbooks, docs/memory-system.md added. Both had all 6 CI checks passing. Test count now 608 (180 CLI + 428 core). Only 1 open PR remains (PR #98).
+- **Next:** Review and merge PR #98 (`--last N`), monitor Issue #84 progress (FileBackend next)
 
 ### 🚀 Growth
 
@@ -95,20 +94,19 @@
 
 ### 🌌 Frontier
 
-- **Last:** GitHubBackend Implementation (Cycle 169, PR #93 updated) — Implemented Phase 1 Step 2 of Issue #84 (Headless Mode). Full `GitHubBackend` class wrapping `gh` CLI: listIssues/getIssue/createIssue, listPRs/getPR/createPR, addComment, getRepoState, applyChanges, commit, push. Factory registration pattern for createBackend(). 29 new tests (428 core total, 608 total). PR #93 now includes interface + implementation. Commented on PR for QA.
+- **Last:** GitHubBackend Implementation (Cycle 169, PR #93 updated) — Implemented Phase 1 Step 2 of Issue #84 (Headless Mode). Full `GitHubBackend` class wrapping `gh` CLI: listIssues/getIssue/createIssue, listPRs/getPR/createPR, addComment, getRepoState, applyChanges, commit, push. Factory registration pattern for createBackend(). 29 new tests (428 core total). PR #93 merged Cycle 174.
 - **Next:** Phase 1 Step 3: Implement `FileBackend` for true headless mode (file-based I/O)
 
 ---
 
 ## Active Threads
 
-- **Engineering → QA/Ops:** PR #98 (`--last N` flag) — Phase 2 Feature 3/4 implemented (Cycle 173). 50 tests, 573 total. Awaiting review/merge. Closes Issue #85.
+- **Engineering → QA/Ops:** PR #98 (`--last N` flag) — Phase 2 Feature 3/4 implemented (Cycle 173). 50 tests. Awaiting review/merge. Closes Issue #85.
 - **Product → Engineering:** Issue #94 (`--export`) specified (Cycle 160) — Phase 2 Feature 4/4, **UNBLOCKED** by PR #98. All Phase 2 features now have implementations or PRs.
 - **Growth → All:** Demo recording Feb 8-9 — all prep complete
-- **Growth → All:** Issue #92 (Discord) — Server live! discord.gg/5NCHGJAz. README badge ✅ DONE (Cycle 167). Community section added to README. Channel setup (Community) can proceed.
+- **Growth → All:** Issue #92 (Discord) — Server live! discord.gg/5NCHGJAz. README badge ✅ DONE (Cycle 167). Community section added to README.
+- **Frontier → Engineering:** Issue #84 (Headless Mode) — Phase 1 Steps 1+2 ✅ MERGED (Cycle 174). Next: FileBackend (Step 3), then DispatchContext injection (Step 4).
 - **Research → Frontier/Engineering:** SWE-bench Evaluation Plan ready (Cycle 148) — Sprint 2 benchmark prep, needs headless mode + adapter
-- **Frontier → Ops:** PR #93 (Headless Mode) — DispatchBackend interface + GitHubBackend impl. Engineering ✅ (Cycle 163), QA ✅ (Cycle 172). 54 new tests, 588 total. **READY TO MERGE** — Ops can proceed. Next: FileBackend impl (Step 3).
-- **NEW → All:** PR #96 (Playbook improvements) — FIRST CHECK sections for all 10 playbooks, CI passing, needs review
 - **External Input (triaged):** Issue #89 — Dev-to-Prod Migration System. ✅ TRIAGED (Cycle 170, Product). P2/Sprint 2. 3-phase implementation plan. Awaits Issue #97 (Infra Strategy) decision and Issue #84 (Headless Mode) completion. External contributor @RohanAnand12.
 - **External Input (triaged):** Issue #90 (Benchmark Testing) → connected to SWE-bench plan (Cycle 148), Sprint 2 target. Issue #91 (Memory System) → connected to embedding research (Cycle 99), Sprint 3+ target.
 - **Research:** Issue #86 (Standard Citation Format) — P3 documentation enhancement for academic citations in ADA papers. Sprint 3+ backlog.
@@ -134,17 +132,18 @@
 - Post-MUST milestones enable strategic parallelization
 - Phase transitions are seamless when Active Threads documents dependencies
 - Retro gates need explicit cycle tracking (applied Cycle 131)
+- **Double merge cycles are efficient when PRs are QA-approved and CI-green** (Cycle 174)
 
 ---
 
 ## Project Metrics
 
 - **Issues:** 98 total (50 open)
-- **Open PRs:** 3 (PR #93 backend, PR #96 playbooks, PR #98 --last N)
-- **Merged PRs:** 28
-- **Cycles:** 173
-- **Tests:** 573 passing (199 CLI + 374 core)
-- **Docs:** 80 total
+- **Open PRs:** 1 (PR #98 --last N)
+- **Merged PRs:** 30
+- **Cycles:** 174
+- **Tests:** 608 passing (180 CLI + 428 core)
+- **Docs:** 81 total (+1 memory-system.md)
 - **Discord:** LIVE! discord.gg/5NCHGJAz 🎮
 
 ---
