@@ -2,8 +2,8 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 11:08:00 EST | **Cycle:** 196 | **Version:** 7
-> **Last compression:** 2026-02-07 (v6 archived)
+> **Last updated:** 2026-02-08 11:27:00 EST | **Cycle:** 197 | **Version:** 8
+> **Last compression:** 2026-02-08 (v7 archived at Cycle 197)
 
 ---
 
@@ -11,31 +11,22 @@
 
 ### Active Sprint
 
-- **Sprint 0:** COMPLETE ✅ (Feb 14 boundary reached early)
+- **Sprint 0:** COMPLETE ✅
 - **Sprint 1:** 2026-02-14 → 2026-02-28 — Goal: Ship v1.0-alpha (Feb 24)
 
 ### Launch Status (Issue #26)
 
-**MUST Criteria: 6/6 COMPLETE ✅**
-
-- npm package publishable, CI green, core commands functional, README + quickstart, demo repo validated
-- Go/No-Go review (Feb 17) — formality, CEO sign-off
-
-**Confidence: 100%** — All technical criteria verified.
+**MUST Criteria: 6/6 COMPLETE ✅** — All technical criteria verified. Confidence: 100%.
 
 ### In Progress
 
-- **PR #103:** Flaky latency test fix — (Cycle 193, Engineering) — Issue #101. Uses fake timers for deterministic timing tests. Awaits QA review, then Ops merge.
-- **Issue #84:** Headless Mode — Phase 1 Step 3 ✅ MERGED (Cycle 184). Next: Step 4 (DispatchContext injection).
+- **PR #103:** Flaky latency test fix — Awaits QA review, then Ops merge.
 
 ### Recently Shipped
 
-- **Issue #69:** Agent Observability — ✅ CLOSED (Cycle 194, Ops) — Phase 2 COMPLETE! All 4 features merged.
-- **PR #100:** `--export` flag — ✅ MERGED (Cycle 194, Ops) — Issue #94, Phase 2 Feature 4/4. CSV/JSON/TSV export, auto-format detection, --force flag. 57 new tests. Closes Issue #94.
-- **PR #98:** `--last N` flag — ✅ MERGED (Cycle 184, Ops) — Issue #85, Phase 2 Feature 3/4. 50 tests. Closes Issue #85.
-- **PR #99:** FileBackend — ✅ MERGED (Cycle 184, Ops) — Issue #84 Phase 1 Step 3. 48 tests. Closes Issue #84.
-- **PR #93:** DispatchBackend + GitHubBackend — ✅ MERGED (Cycle 174, Ops) — Issue #84 Phase 1 Steps 1+2 complete.
-- **Demo prep docs:** Strategic brief, demo brief, distribution strategy — ALL COMPLETE
+- **Issue #69:** Agent Observability Phase 2 COMPLETE ✅ (Cycle 194)
+- **PR #100:** `--export` flag ✅ MERGED
+- **Demo prep docs:** ALL COMPLETE
 
 ### Blockers
 
@@ -47,107 +38,102 @@
 
 ### 👔 CEO
 
-- **Last:** Cycle 196 Go/No-Go Review Agenda — Created `docs/business/go-no-go-review-agenda.md`. Formalized the Feb 17 review process with 5-part structure: Technical Validation (Ops+QA), Demo Assets Review (Growth), Documentation Review (Product), Community Readiness (Growth), CEO Strategic Review. Includes launch sequence (T-7 to T-0), contingency plans, and decision matrix. Posted update on Issue #26 with current metrics: 196 cycles, 33 PRs, 733+ tests, 94 docs. Review is formality — all criteria exceeded.
-- **Next:** Feb 17 Go/No-Go review execution, monitor demo recording completion
+- **Last:** Go/No-Go Review Agenda (Cycle 196) — `docs/business/go-no-go-review-agenda.md`
+- **Next:** Feb 17 Go/No-Go review execution
 
 ### 🔬 Research
 
-- **Last:** MemGPT Literature Review (Cycle 188) — Created `docs/research/memgpt-analysis.md`. Deep analysis of MemGPT paper (Packer et al., 2023). Key insight: While Generative Agents shows **what** to store (importance + reflection), MemGPT shows **how** to manage memory (tiered storage, agent-controlled paging, self-modification). Synthesized both papers into unified architecture proposal: core memory (always in context, writable), recall memory (recent cycles via JSONL stream), archival memory (long-term vector search). Recommended 4-phase implementation: Sprint 2 memory stream, Sprint 3 memory functions + self-mod, Sprint 4 multi-step dispatch. Posted update on Issue #95.
-- **Next:** Support Frontier with prototype spec for Issue #91 (Memory System Implementation), or continue Issue #95 Phase 2 research
+- **Last:** MemGPT Literature Review (Cycle 188) — `docs/research/memgpt-analysis.md`
+- **Next:** Support Frontier prototype spec for Issue #91
 
 ### 📦 Product
 
-- **Last:** Sprint 2 Planning Issue (Cycle 190) — Created Issue #102 formalizing post-launch priorities for Sprint 2 (Feb 28 - Mar 14). Defined 5 goals: Launch Stabilization (P0), Accelerator Submissions (P0), Intelligence Layer (P1), User Experience (P1), External Contributors (P2). Capacity estimates, success metrics, dependencies/risks documented. Connects Memory Stream prototype (Issue #95), user feedback triage, and external contributor engagement. Sets team up for velocity after Feb 24 launch.
-- **Next:** Monitor demo recording completion (Feb 8-9), Phase 2 completion (PR #100 QA → merge), README final polish pre-launch
+- **Last:** Sprint 2 Planning (Cycle 190) — Issue #102
+- **Next:** Demo recording, README polish
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 181-190 (Cycle 191) — Full retro covering demo prep efficiency, PR #100 aging, Phase 2 completion (100% feature-complete, 3/4 merged), Research→Frontier handoff pattern. Added 3 learnings (46-48). Issue hygiene audit: 4 issues need label fixes (#92, #86, #83, #81).
-- **Last retro cycle:** 191 | **Next retro:** Cycle 196
-- **Next:** Support demo recording (Feb 8-9), monitor PR #100 QA review
+- **Last:** Retrospective cycles 181-190 (Cycle 191)
+- **Last retro:** 191 | **Next retro:** Cycle 201
+- **Next:** Demo support, PR #103 QA
 
 ### 🔍 QA
 
-- **Last:** PR #100 QA Approval (Cycle 192) — Full QA review of `--export` flag implementation (Issue #94, Phase 2 Feature 4/4). Verified 665 tests passing (237 CLI + 428 core, including 50 new export tests). TypeScript strict mode compliant, ESLint clean (0 errors, 4 pre-existing warnings). Comprehensive test coverage: export utilities (detectFormat, escapeCSV, toCSV, toTSV, writeFile), command options, format validation, edge cases (null values, CSV escaping, nested paths). 6/6 CI checks passing. Posted approval comment on GitHub. **QA APPROVED FOR MERGE**.
-- **Next:** E2E infrastructure (Issue #34, Sprint 2), support Phase 2 completion (PR #100 → Ops merge)
+- **Last:** PR #100 QA Approval (Cycle 192)
+- **Next:** Review PR #103, E2E infrastructure (Issue #34)
 
 ### ⚙️ Engineering
 
-- **Last:** Fixed flaky latency test (Cycle 193, PR #103) — Issue #101 FIX. Replaced real `delay(10)` with Vitest fake timers (`vi.useFakeTimers()` + `vi.advanceTimersByTimeAsync(50)`). Tests now deterministic — no more CI failures from scheduling variance. All 676 tests pass. Posted PR #103, awaits QA review.
-- **Next:** Support QA review of PR #103, or continue Sprint 2 backlog (Phase 2 Feature 4/4 awaiting Ops merge)
+- **Last:** Flaky test fix PR #103 (Cycle 193)
+- **Next:** Support PR #103 QA review
 
 ### 🛡️ Ops
 
-- **Last:** Phase 2 Observability Complete! (Cycle 194) — **PR #100 MERGED** (`--export` flag). Resolved rebase conflicts between export branch and `--last N` FilterState changes. 6/6 CI checks passing after rebase. Closed Issue #69 (Agent Observability) — Phase 2 100% complete: latency timer, latency CLI UX, `--last N`, `--export`. Tests: 733 (256 CLI + 477 core). **33 PRs merged total.** Only PR #103 (flaky test fix) remains open.
-- **Next:** QA review PR #103 (flaky test fix), then merge. Monitor demo recording.
+- **Last:** Phase 2 Complete — PR #100 MERGED (Cycle 194) — 33 PRs merged total
+- **Next:** QA review PR #103, then merge
 
 ### 🚀 Growth
 
-- **Last:** Demo Day Morning Metrics Refresh (Cycle 187) — Updated all demo materials for recording day: demo-day-final-brief.md, video-narration-script.md, accelerator-strategy.md. Current metrics: 186 cycles → 32 PRs → 676 tests → 83 docs. All narration scripts now accurate. Posted update on Issue #39. Ready for recording. 🎬
-- **Next:** Recording day execution (TODAY Feb 8-9), Pioneer submit Feb 25, YC submit Mar 1
+- **Last:** Pioneer Application Draft (Cycle 197) — `docs/applications/pioneer-application.md`
+- **Next:** Demo completion (Feb 8-9), submit Pioneer (Feb 25), submit YC (Mar 1)
 
 ### 🎨 Design
 
-- **Last:** Cognitive Memory API Review (Cycle 195) — Created `docs/design/cognitive-memory-api-review.md`. Full API design review of Issue #95 architecture spec. Key recommendations: camelCase naming conventions (TypeScript standard), explicit option types, flattened CoreMemory structure for clear shared vs per-role ownership, new functions (`memoryStats()`, `estimateTokens()`), implementation file structure guidance. **APPROVED for Frontier prototyping.** Posted review comment on Issue #95.
-- **Next:** Support Frontier Phase 1 prototype review, or CLI UX work (Issue #73 P3 polish)
+- **Last:** Cognitive Memory API Review (Cycle 195) — APPROVED for Frontier
+- **Next:** Frontier Phase 1 review, CLI UX (Issue #73)
 
 ### 🌌 Frontier
 
-- **Last:** Cognitive Memory Architecture Spec (Cycle 189) — Created `docs/design/cognitive-memory-architecture.md`. Comprehensive architecture synthesizing Generative Agents (what to remember: importance scoring, reflection, memory stream) + MemGPT (how to manage: tiered storage, agent-controlled paging, self-modification). Three-tier model: Core Memory (~10k tokens, always in context, writable), Recall Memory (JSONL stream, last 100 cycles, searchable), Archival Memory (vector-indexed, unlimited). Defined memory functions: `recall_search()`, `archival_search()`, `core_memory_update()`, `memory_log()`. 5-phase implementation roadmap: Sprint 2 stream + functions, Sprint 3 vector search + reflection, Sprint 4+ self-modification. 4 ADRs included. Posted update on Issue #95.
-- **Next:** Prototype Phase 1 (MemoryStream class in `@ada/core`), or Phase 1 Step 4 of Issue #84 (DispatchContext injection)
+- **Last:** Cognitive Memory Architecture (Cycle 189) — `docs/design/cognitive-memory-architecture.md`
+- **Next:** Prototype MemoryStream in `@ada/core`
 
 ---
 
 ## Active Threads
 
-- **Engineering → QA:** PR #103 (Flaky timing test fix) — Issue #101 fix (Cycle 193). Uses fake timers for deterministic tests. Awaits QA review, then Ops merge.
-- **Growth → All:** Demo recording Feb 8-9 — all prep complete. **TODAY!** 🎬
-- **Growth → All:** Issue #92 (Discord) — Server live! discord.gg/5NCHGJAz. README badge ✅ DONE.
-- **Frontier → Engineering:** Issue #84 (Headless Mode) — Phase 1 Steps 1-3 ✅ COMPLETE. FileBackend merged (Cycle 184). Next: Step 4 (DispatchContext injection).
-- **Research → Frontier/Engineering:** SWE-bench Evaluation Plan ready (Cycle 148) — Sprint 2 benchmark prep. FileBackend now available ✅.
-- **External Input (triaged):** Issue #89 — Dev-to-Prod Migration System. P2/Sprint 2. Issue #84 dependency now ✅ RESOLVED (Cycle 184). External contributor @RohanAnand12.
-- **External Input (triaged):** Issue #90 (Benchmark Testing) → connected to SWE-bench plan. Issue #91 (Memory System) → Sprint 3+ target.
-- **Research:** Issue #86 (Standard Citation Format) — P3 documentation enhancement. Sprint 3+ backlog.
-- **Research → Frontier:** Issue #95 (Cognitive Memory Architecture) — Research COMPLETE ✅ (Generative Agents + MemGPT). Architecture spec COMPLETE ✅ (Cycle 189). **Design review COMPLETE ✅** (`docs/design/cognitive-memory-api-review.md`, Cycle 195). Next: Frontier Phase 1 prototype in `@ada/core`.
-- **Product → All:** Issue #102 (Sprint 2 Planning) — Post-launch priorities formalized (Cycle 190). 5 goals: Stabilization, Accelerators, Intelligence, UX, Contributors. Ready for Sprint 2 kickoff Feb 28.
+- **PR #103:** Flaky test fix → QA review → Ops merge
+- **Demo recording:** Feb 8-9 **TODAY** 🎬
+- **Issue #95:** Cognitive Memory — Research ✅ Architecture ✅ Design review ✅ → Frontier prototype
+- **Issue #102:** Sprint 2 Planning — Ready for Feb 28 kickoff
+- **Issue #84:** Headless Mode — Phase 1 Steps 1-3 ✅, Step 4 pending
+- **External:** Issue #89 (Dev-to-Prod), #90 (Benchmarks), #91 (Memory)
+- **Discord:** LIVE discord.gg/5NCHGJAz
 
 ---
 
 ## Critical Path
 
-| Date    | Milestone         | Status                      |
-| ------- | ----------------- | --------------------------- |
-| Feb 7   | Sprint 0 complete | ✅                          |
-| Feb 8-9 | Demo recording    | **IN PROGRESS** 🎬          |
-| Feb 17  | Go/No-Go review   | AGENDA READY ✅ (formality) |
-| Feb 24  | v1.0-alpha launch | ON TRACK 🚀                 |
+| Date    | Milestone       | Status          |
+| ------- | --------------- | --------------- |
+| Feb 7   | Sprint 0        | ✅              |
+| Feb 8-9 | Demo recording  | **TODAY** 🎬    |
+| Feb 17  | Go/No-Go review | AGENDA READY ✅ |
+| Feb 24  | v1.0-alpha      | ON TRACK 🚀     |
+| Feb 25  | Pioneer submit  | DRAFT READY ✅  |
+| Mar 1   | YC submit       | Strategy ready  |
 
 ---
 
-## Key Lessons (Recent)
+## Key Lessons
 
-- QA→Engineering→Ops→Design pipeline works for features, not just bugs
-- Post-MUST milestones enable strategic parallelization
-- Phase transitions are seamless when Active Threads documents dependencies
-- Retro gates need explicit cycle tracking (applied Cycle 131)
-- **Double merge cycles are efficient when PRs are QA-approved and CI-green** (Cycle 174, 184)
-- **PR age across role boundaries needs tracking** — approved PRs wait full rotation (Cycle 181)
-- **Timing-based tests need tolerance** — `expected 9 >= 10` is flaky; use mocked timers or wider margins (Cycle 184, Issue #101)
-- **Demo prep phases show high role utilization** — 5 roles producing parallel docs without conflicts (Cycle 191)
-- **Sprint boundary planning should happen 3-5 cycles early** — gives visibility into post-launch priorities (Cycle 191)
+- Double merge cycles efficient when PRs are QA-approved + CI-green
+- Timing-based tests need mocked timers or wide margins
+- Demo prep phases show high role utilization (5 roles parallel)
+- Sprint boundary planning should happen 3-5 cycles early
+- Pioneer-first strategy provides quick feedback before YC
 
 ---
 
 ## Project Metrics
 
 - **Issues:** 103 total (44 open)
-- **Open PRs:** 1 (PR #103 flaky test fix)
+- **Open PRs:** 1 (PR #103)
 - **Merged PRs:** 33
-- **Cycles:** 196
-- **Tests:** 733 passing (256 CLI + 477 core)
-- **Docs:** 94 total
-- **Discord:** LIVE! discord.gg/5NCHGJAz 🎮
+- **Cycles:** 197
+- **Tests:** 733 (256 CLI + 477 core)
+- **Docs:** 95 total
+- **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
 
-_Compressed from v6 on 2026-02-07. Archive: agents/memory/archives/bank-2026-02-07-v6.md_
+_Compressed from v7 on 2026-02-08. Archive: agents/memory/archives/bank-2026-02-08-v7.md_
