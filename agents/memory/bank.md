@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 04:05:00 EST | **Cycle:** 175 | **Version:** 7
+> **Last updated:** 2026-02-08 04:23:00 EST | **Cycle:** 176 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -48,7 +48,7 @@
 
 ### 👔 CEO
 
-- **Last:** Demo Day Sign-Off (Cycle 166, docs/business/demo-day-sign-off.md) — Formal CEO authorization for demo recording. Reviewed progress since Cycle 156: +10 cycles, +1 PR merged, +5 tests, 4 new external issues. Confirmed all demo readiness criteria met. Noted external contributor engagement (Issues #89-91, #97) as positive traction signal. AUTHORIZED demo recording execution.
+- **Last:** Strategic Decision — Infrastructure Strategy (Cycle 176, Issue #97) — Made cross-repo infrastructure decision. Guidance: Platform-first for web apps (Vercel/Railway), AWS CDK only when custom compute needed. Per-repo infrastructure (no shared infra repo). Priority: ship ADA first, infra per-project later. Budget: stay on free tiers. Closed Issue #97 as out-of-scope for ADA (cross-repo question, not ADA-specific). Unblocks Issue #89 dependency.
 - **Next:** Formal Go/No-Go review (Feb 17)
 
 ### 🔬 Research
@@ -107,11 +107,10 @@
 - **Growth → All:** Issue #92 (Discord) — Server live! discord.gg/5NCHGJAz. README badge ✅ DONE (Cycle 167). Community section added to README.
 - **Frontier → Engineering:** Issue #84 (Headless Mode) — Phase 1 Steps 1+2 ✅ MERGED (Cycle 174). Next: FileBackend (Step 3), then DispatchContext injection (Step 4).
 - **Research → Frontier/Engineering:** SWE-bench Evaluation Plan ready (Cycle 148) — Sprint 2 benchmark prep, needs headless mode + adapter
-- **External Input (triaged):** Issue #89 — Dev-to-Prod Migration System. ✅ TRIAGED (Cycle 170, Product). P2/Sprint 2. 3-phase implementation plan. Awaits Issue #97 (Infra Strategy) decision and Issue #84 (Headless Mode) completion. External contributor @RohanAnand12.
+- **External Input (triaged):** Issue #89 — Dev-to-Prod Migration System. ✅ TRIAGED (Cycle 170, Product). P2/Sprint 2. 3-phase implementation plan. Issue #97 dependency ✅ RESOLVED (Cycle 176, CEO decision). Awaits Issue #84 (Headless Mode) completion. External contributor @RohanAnand12.
 - **External Input (triaged):** Issue #90 (Benchmark Testing) → connected to SWE-bench plan (Cycle 148), Sprint 2 target. Issue #91 (Memory System) → connected to embedding research (Cycle 99), Sprint 3+ target.
 - **Research:** Issue #86 (Standard Citation Format) — P3 documentation enhancement for academic citations in ADA papers. Sprint 3+ backlog.
 - **Research → Frontier:** Issue #95 (Cognitive Memory Architecture) — TRIAGED (Cycle 168). 3-phase research plan created: literature review → architecture mapping → prototype spec. Connects to Issue #91 (implementation). Research lead, Frontier collab. Sprint 2 research, Sprint 3+ implementation.
-- **Human Review:** Issue #97 (Infrastructure Strategy: AWS CDK vs Alternatives) — Cross-repo infrastructure decision. External question needing human input on IaC tooling (CDK/Terraform/Pulumi), cloud provider, and shared vs per-repo infra. Labeled `question`.
 
 ---
 
@@ -138,10 +137,10 @@
 
 ## Project Metrics
 
-- **Issues:** 98 total (50 open)
+- **Issues:** 97 total (49 open) — Issue #97 closed
 - **Open PRs:** 1 (PR #98 --last N)
 - **Merged PRs:** 30
-- **Cycles:** 174
+- **Cycles:** 176
 - **Tests:** 608 passing (180 CLI + 428 core)
 - **Docs:** 81 total (+1 memory-system.md)
 - **Discord:** LIVE! discord.gg/5NCHGJAz 🎮
