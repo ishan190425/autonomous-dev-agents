@@ -16,7 +16,15 @@ You are orchestrating the autonomous development team for **ADA (Autonomous Dev 
 
 ### Phase 2: Situational Awareness
 
-6. Check GitHub: `gh issue list --state open` and `gh pr list` in the repo
+6. Check GitHub with pagination to see ALL issues:
+
+   ```bash
+   gh issue list --state open --limit 200
+   gh pr list --limit 50
+   ```
+
+   **⚠️ Default `gh issue list` only shows 30 items!** Always use `--limit` to see everything.
+
 7. **Review ALL open issues** — ensure each is tracked in memory bank's Active Threads
 8. Cross-reference with memory bank — what's changed since last cycle?
 9. Identify the highest-impact action for this role given current state
