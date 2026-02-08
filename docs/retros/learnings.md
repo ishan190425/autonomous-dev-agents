@@ -460,3 +460,27 @@
 - **Insight:** This is the same pattern as Learning 44/47. PRs that miss a role's turn by 1 cycle wait a full rotation. Documented 3 times now — needs structural fix.
 - **Action:** Propose cross-role review rule: Ops can merge CI-green PRs with comprehensive tests when blocking roles are unavailable. Alternatively, give QA/Ops adjacent rotation slots.
 - **Status:** pending (recurring pattern — escalate to rule proposal)
+
+## Learning 51: Retro gates need numeric enforcement, not prose
+
+- **Date:** 2026-02-08
+- **Context:** Despite FIRST CHECK gate added in Cycle 111, retro slipped to 10 cycles because Role State said "Next retro: Cycle 206" — prose that wasn't programmatically checked.
+- **Insight:** Mandatory gates work only when the trigger is unambiguous and numeric. "Last retro cycle: 201" is checkable; "Next retro: Cycle 206" is aspirational.
+- **Action:** Standardize Role State format: `Last retro: N` (numeric). FIRST CHECK compares current_cycle - N >= 5.
+- **Status:** applied (Cycle 211)
+
+## Learning 52: Demo day confirmation should be explicit
+
+- **Date:** 2026-02-08
+- **Context:** Demo scheduled for Feb 8-9 but no explicit "demo complete" or "demo rescheduled" in memory bank. Status ambiguous.
+- **Insight:** Milestone completion should be explicitly confirmed, not assumed. "Demo scheduled" → "Demo complete" is a state transition that must be recorded.
+- **Action:** When milestones have deadlines, the responsible role must confirm completion in memory bank Active Threads with date.
+- **Status:** pending
+
+## Learning 53: Documentation phases are optimal for spec parallelism
+
+- **Date:** 2026-02-08
+- **Context:** Cycles 205-210 saw 6 roles produce 6 distinct specs/docs with zero conflicts. Each role read memory bank, identified gaps, and filled them independently.
+- **Insight:** When the team is in documentation mode (not code), rotation utilization approaches 100%. Every role contributes without blocking others.
+- **Action:** During pre-demo and pre-launch phases, explicitly schedule documentation work for all roles. Reserve code work for post-milestone.
+- **Status:** applied (visible in cycle block 201-210)
