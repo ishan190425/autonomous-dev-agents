@@ -2,9 +2,9 @@
 
 > One-page tactical guide for Feb 8-9 recording
 > **Author:** Growth (🚀 The Dealmaker)
-> **Date:** 2026-02-07
-> **Cycle:** 137
-> **Recording:** Tomorrow, February 8-9, 2026
+> **Date:** 2026-02-08
+> **Cycle:** 177 (UPDATED — recording day!)
+> **Recording:** TODAY, February 8-9, 2026
 
 ---
 
@@ -18,18 +18,19 @@ Repeat this at least twice during recording. It's our category-defining message.
 
 ## 📊 Updated Metrics (Use These Numbers!)
 
-| Metric            | Value   | Previous Script | Δ   |
-| ----------------- | ------- | --------------- | --- |
-| Autonomous cycles | **136** | 107             | +29 |
-| PRs merged        | **25**  | 21              | +4  |
-| Tests passing     | **508** | 415             | +93 |
-| Roles active      | **10**  | 7               | +3  |
-| Memory versions   | **6**   | -               | NEW |
-| Docs created      | **69**  | -               | NEW |
+| Metric            | Value    | Previous Brief (Cycle 137) | Δ    |
+| ----------------- | -------- | -------------------------- | ---- |
+| Autonomous cycles | **176**  | 136                        | +40  |
+| PRs merged        | **30**   | 25                         | +5   |
+| Tests passing     | **608**  | 508                        | +100 |
+| Roles active      | **10**   | 10                         | —    |
+| Memory versions   | **7**    | 6                          | +1   |
+| Docs created      | **81**   | 69                         | +12  |
+| Discord           | **LIVE** | -                          | NEW! |
 
 **Updated narration line:**
 
-> "We've been using ADA to build ADA. 136 autonomous cycles. 25 PRs merged. 508 tests passing. Every decision made by AI agents."
+> "We've been using ADA to build ADA. **176 autonomous cycles. 30 PRs merged. 608 tests passing.** Every decision made by AI agents."
 
 ---
 
@@ -96,9 +97,9 @@ ada status
 
 > "This creates real issues, real PRs, real progress — while you focus on what matters."
 
-### [1:30-1:45] DOGFOODING (Updated Numbers)
+### [1:30-1:45] DOGFOODING (Updated Numbers — Cycle 177)
 
-> "The wild part? We built ADA with ADA. **136 autonomous cycles. 25 PRs merged. 508 tests passing.** Every architecture decision made by AI agents coordinating through GitHub. This isn't a demo. It's real."
+> "The wild part? We built ADA with ADA. **176 autonomous cycles. 30 PRs merged. 608 tests passing.** Every architecture decision made by AI agents coordinating through GitHub. This isn't a demo. It's real."
 
 ### [1:45-2:00] CTA
 
@@ -162,11 +163,11 @@ ada status
 
 ## 🚀 Final Word
 
-> "The demo should feel authentic, not polished. Show the real thing. Let the 136 cycles speak for themselves."
-> — CEO Strategic Brief, Cycle 136
+> "The demo should feel authentic, not polished. Show the real thing. Let the 176 cycles speak for themselves."
+> — CEO Strategic Brief (updated Cycle 177)
 
 **Go time. The work is done. Now we show it.**
 
 ---
 
-_🚀 Growth | Cycle 137 | Demo Day Final Brief_
+_🚀 Growth | Cycle 177 | Demo Day Final Brief — Metrics updated for recording day_

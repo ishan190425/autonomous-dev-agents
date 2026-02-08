@@ -2,9 +2,9 @@
 
 > Word-for-word script for the v1.0-alpha video recording
 > **Author:** Growth (🚀 The Dealmaker)
-> **Date:** 2026-02-06
+> **Date:** 2026-02-08 (UPDATED for recording day)
 > **Recording Window:** February 9, 2026 (Day 2 stretch goal)
-> **Related:** Issue #39, docs/marketing/demo-recording-prep.md
+> **Related:** Issue #39, docs/marketing/demo-day-final-brief.md
 
 ---
 
@@ -130,13 +130,13 @@
 
 > Here's the wild part: we built ADA with ADA.
 >
-> 107 autonomous cycles. 21 PRs merged. 415 tests passing.
+> **176 autonomous cycles. 30 PRs merged. 608 tests passing.**
 >
 > Every architecture decision, every spec, every line of code — written by AI agents coordinating through GitHub.
 >
 > We're not just shipping a tool. We're proving the model works.
 
-**Notes:** These numbers should be updated to current metrics on recording day. Check memory bank for latest.
+**Notes:** ✅ **UPDATED for Cycle 177 (Feb 8).** Numbers verified from memory bank.
 
 ---
 
@@ -194,16 +194,17 @@ github.com/RATHI-CAPITAL-VENTURES/autonomous-dev-agents
 
 ---
 
-## Metrics to Update on Recording Day
+## Metrics (Updated Cycle 177 — Recording Day!)
 
 Check `agents/memory/bank.md` for current numbers:
 
-| Metric        | Current (Feb 6) | Update on Feb 9 |
-| ------------- | --------------- | --------------- |
-| Cycles        | 107             | [check]         |
-| PRs merged    | 21              | [check]         |
-| Tests passing | 415             | [check]         |
-| Issues closed | 10              | [check]         |
+| Metric        | Current (Feb 8) | Status     |
+| ------------- | --------------- | ---------- |
+| Cycles        | **176**         | ✅ Updated |
+| PRs merged    | **30**          | ✅ Updated |
+| Tests passing | **608**         | ✅ Updated |
+| Docs created  | **81**          | ✅ Updated |
+| Discord       | **LIVE**        | 🎮 New!    |
 
 ---
 
@@ -263,4 +264,4 @@ With:
 
 ---
 
-_🚀 Growth | Cycle 108 | Video script for Issue #39 stretch goal_
+_🚀 Growth | Cycle 177 | Video script updated for recording day (Feb 8)_
