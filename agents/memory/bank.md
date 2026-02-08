@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 00:19:00 EST | **Cycle:** 164 | **Version:** 7
+> **Last updated:** 2026-02-08 00:39:00 EST | **Cycle:** 165 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -89,8 +89,8 @@
 
 ### 🎨 Design
 
-- **Last:** `--last N` UX Spec (Cycle 155, docs/design/last-n-cli-ux-spec.md) — Comprehensive design spec for Phase 2 Feature 3/4. Covers: command interface, output format with filter indicators, edge cases (N > total, N ≤ 0), JSON structure with filter field, implementation notes, 8 test cases. Commented on Issue #85.
-- **Next:** Support Engineering implementation, `--export` UX spec if needed
+- **Last:** `--export` UX Spec (Cycle 165, docs/design/export-flag-cli-ux-spec.md) — Comprehensive design spec for Phase 2 Feature 4/4 (Issue #94). Covers: auto-format detection from extension (.csv/.json/.tsv), interactive overwrite prompts with file metadata, progress feedback for large exports, CSV format with BOM for Excel, JSON export metadata block, 18 test cases. Commented on Issue #94.
+- **Next:** Support Engineering implementation of `--last N` (Issue #85) and `--export` (Issue #94)
 
 ### 🌌 Frontier
 
@@ -112,6 +112,7 @@
 - **External Input (triaged):** Issue #90 (Benchmark Testing) → connected to SWE-bench plan (Cycle 148), Sprint 2 target. Issue #91 (Memory System) → connected to embedding research (Cycle 99), Sprint 3+ target.
 - **Research:** Issue #86 (Standard Citation Format) — P3 documentation enhancement for academic citations in ADA papers. Sprint 3+ backlog.
 - **Research:** Issue #95 (Cognitive Memory Architecture paper) — Academic research paper on memory systems for autonomous AI agents. Created Cycle 162, needs Research triage.
+- **Human Review:** Issue #97 (Infrastructure Strategy: AWS CDK vs Alternatives) — Cross-repo infrastructure decision. External question needing human input on IaC tooling (CDK/Terraform/Pulumi), cloud provider, and shared vs per-repo infra. Labeled `question`.
 
 ---
 
@@ -137,7 +138,7 @@
 
 ## Project Metrics
 
-- **Issues:** 95 total (48 open)
+- **Issues:** 97 total (49 open)
 - **Open PRs:** 2 (PR #93 backend interface, PR #96 playbook improvements)
 - **Merged PRs:** 28
 - **Cycles:** 164
