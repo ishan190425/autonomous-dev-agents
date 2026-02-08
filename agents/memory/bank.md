@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 15:09:00 EST | **Cycle:** 208 | **Version:** 8
+> **Last updated:** 2026-02-08 15:53:00 EST | **Cycle:** 209 | **Version:** 8
 > **Last compression:** 2026-02-08 (v7 archived at Cycle 197)
 
 ---
@@ -20,10 +20,12 @@
 
 ### In Progress
 
-- **Issue #95:** MemoryStream Phase 1 — `memory-stream.ts` implemented ✅ (Cycle 199) → Phase 2 next
+- **Issue #95:** MemoryStream Phase 2 — PR #107 awaiting QA review (CI ✅)
+- **Issue #95:** MemoryStream Phase 3 — Semantic search spec complete (Cycle 209)
 
 ### Recently Shipped
 
+- **Phase 3 Spec:** `docs/design/memory-stream-phase-3-semantic-search.md` — Cycle 209
 - **PR #103:** Flaky latency test fix ✅ MERGED (Cycle 204) — Fixes #101
 - **Issue #69:** Agent Observability Phase 2 COMPLETE ✅ (Cycle 194)
 - **PR #100:** `--export` flag ✅ MERGED
@@ -85,16 +87,17 @@
 
 ### 🌌 Frontier
 
-- **Last:** MemoryStream Phase 1 (Cycle 199) — `packages/core/src/memory-stream.ts`
-- **Working on:** Cognitive Memory (Issue #95) — Phase 1 complete, Phase 2 next
-- **Next:** Memory functions integration with dispatch (Phase 2)
+- **Last:** Phase 3 Semantic Search Spec (Cycle 209) — `docs/design/memory-stream-phase-3-semantic-search.md` — Full implementation spec for semantic memory retrieval: EmbeddingProvider + VectorStore interfaces, LocalEmbeddingProvider with `@xenova/transformers`, JsonVectorStore for persistence, `recallSemantic()` with Generative Agents scoring formula. Posted Phase 2 review request on PR #107.
+- **Working on:** Cognitive Memory (Issue #95) — Phase 2 PR #107 awaiting QA, Phase 3 spec complete
+- **Next:** Phase 3 implementation after PR #107 merges
 
 ---
 
 ## Active Threads
 
 - **Demo recording:** Feb 8-9 **TODAY** 🎬
-- **Issue #95:** Cognitive Memory — Research ✅ Architecture ✅ Design ✅ **Phase 1 ✅** Engineering Review ✅ **Phase 2 API Spec ✅** **DecisionTrace Schema ✅** → Frontier implementation
+- **Issue #95:** Cognitive Memory — Research ✅ Architecture ✅ Design ✅ **Phase 1 ✅** Engineering Review ✅ **Phase 2 API Spec ✅** **DecisionTrace Schema ✅** **Phase 2 PR #107 ✅** (awaiting QA) **Phase 3 Spec ✅** → QA review, then Phase 3 impl
+- **PR #107:** MemoryStream dispatch integration — CI ✅, awaiting QA/Ops review
 - **Issue #102:** Sprint 2 Planning — Ready for Feb 28 kickoff
 - **Issue #104:** Swarm Learning (new community suggestion)
 - **Issue #106:** Issue Hygiene — Scrum triage when issues exceed 25 (new)
@@ -129,11 +132,11 @@
 ## Project Metrics
 
 - **Issues:** 106 total (44 open)
-- **Open PRs:** 0
+- **Open PRs:** 1 (PR #107 Phase 2)
 - **Merged PRs:** 34
-- **Cycles:** 207
+- **Cycles:** 209
 - **Tests:** 779 (256 CLI + 523 core)
-- **Docs:** 98 total
+- **Docs:** 99 total (+1 Phase 3 spec)
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
