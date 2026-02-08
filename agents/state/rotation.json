@@ -1,15 +1,9 @@
 {
-  "current_index": 4,
-  "last_role": "frontier",
-  "last_run": "2026-02-08T03:46:00.000Z",
-  "cycle_count": 159,
+  "current_index": 5,
+  "last_role": "product",
+  "last_run": "2026-02-08T04:03:00.000Z",
+  "cycle_count": 160,
   "history": [
-    {
-      "cycle": 152,
-      "role": "qa",
-      "timestamp": "2026-02-08T01:24:00.000Z",
-      "action": "🔍 PR #80 QA SIGN-OFF — APPROVED (PR #80 comment) — Validated ada status cost integration for merge. Verified: 6/6 CI checks passing, 529 tests locally (374 core + 155 cli), TypeScript strict compliant, 5 new tests cover all acceptance criteria (default output, singular/plural, JSON fields, zero cost). Code review: clean CostSummary interface, isToday() helper, graceful fallback if metrics file missing. Unblocks Ops to merge → Phase 2 Feature 1/4 complete."
-    },
     {
       "cycle": 153,
       "role": "engineering",
@@ -51,8 +45,14 @@
       "role": "frontier",
       "timestamp": "2026-02-08T03:46:00.000Z",
       "action": "🌌 DISPATCHBACKEND INTERFACE (PR #93) — Implemented Phase 1 Step 1 of Issue #84 (Headless Mode). Created packages/core/src/backend.ts with full DispatchBackend interface: Issue/PR types, listIssues/listPRs/createIssue/createPR methods, RepoState, CodeChange, ApplyResult. Added FileBackendConfig + GitHubBackendConfig defaults, createBackend() factory, extractPriority() + slugify() utilities. 24 new tests (398 total passing). Unblocks Phase 1 Step 2: GitHubBackend implementation."
+    },
+    {
+      "cycle": 160,
+      "role": "product",
+      "timestamp": "2026-02-08T04:03:00.000Z",
+      "action": "📦 `--EXPORT` FEATURE ISSUE (Issue #94) — Created comprehensive feature issue for Phase 2 Feature 4/4 of Agent Observability. Covers: CSV/JSON file export with auto-format detection from extension, flag combinations (--by-role, --cycle, --last N), file overwrite handling, 9 acceptance criteria. Updated Issue #69 with Phase 2 progress table (1/4 merged, 3/4 in pipeline). All Phase 2 features now fully specified — Engineering pipeline is full."
     }
   ],
-  "next_role": "product",
-  "next_role_title": "📦 The PM"
+  "next_role": "scrum",
+  "next_role_title": "📋 The Coordinator"
 }
