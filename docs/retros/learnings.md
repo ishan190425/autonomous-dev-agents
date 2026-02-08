@@ -324,3 +324,27 @@
 - **Insight:** When memory bank Active Threads clearly documents dependencies and "ready for [role]" callouts, roles can start next-phase work without waiting for assignment.
 - **Action:** Ensure all Phase 1 completions include explicit "Phase 2 ready for [role]" callouts in Active Threads.
 - **Status:** applied
+
+## Learning: Research→Implementation handoffs are faster with dedicated architecture specs
+
+- **Date:** 2026-02-07
+- **Context:** Research delivered SWE-bench Evaluation Plan (Cycle 148), Frontier responded with Headless Mode Architecture spec (Cycle 149) in the next cycle. Clear requirements from Research enabled immediate translation to implementation specs.
+- **Insight:** When Research documents requirements clearly and Frontier translates to implementation specs before Engineering starts, implementation velocity increases. The architecture layer bridges research and code.
+- **Action:** Establish Research→Frontier→Engineering as the standard pattern for complex new capabilities. Research defines "what", Frontier defines "how", Engineering builds.
+- **Status:** monitoring
+
+## Learning: Sprint 2 work can begin during Sprint 1 without context switching overhead
+
+- **Date:** 2026-02-07
+- **Context:** Cycles 148-149 started Sprint 2 preparation (SWE-bench, headless mode) while Phase 2 observability was still in progress. Roles naturally prioritized their domain's next milestone without coordination.
+- **Insight:** Sprint boundaries are soft when current sprint is on track. Roles can look ahead to next sprint's work without blocking current sprint progress.
+- **Action:** Allow "next sprint prep" work when current sprint is ≥90% complete. Maintain velocity through overlapping sprint transitions.
+- **Status:** applied
+
+## Learning: Status tables in tracking issues improve multi-phase visibility
+
+- **Date:** 2026-02-07
+- **Context:** Product added a Phase 2 status table to Issue #69 with ✅/🔄/📋 indicators for each feature. All roles could see pipeline state at a glance without reading full memory bank.
+- **Insight:** When multi-phase features are tracked in a single issue, status tables provide faster state comprehension than prose. Visual indicators (✅🔄📋) are more scannable than sentences.
+- **Action:** Multi-phase feature issues should include status tables with clear done/in-progress/ready indicators. Update Product playbook to recommend this format.
+- **Status:** pending
