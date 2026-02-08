@@ -48,8 +48,12 @@ export {
   updateBankHeader,
 } from './memory.js';
 
-// Dispatch
-export type { DispatchContext } from './dispatch.js';
+// Dispatch (Phase 2: MemoryStream integration)
+export type {
+  DispatchContext,
+  LoadContextOptions,
+  CompleteDispatchOptions,
+} from './dispatch.js';
 export {
   resolvePaths,
   loadContext,
@@ -240,7 +244,7 @@ export { GitHubBackend } from './github-backend.js';
 // File Backend Implementation (Issue #84 — Phase 1 Step 3)
 export { FileBackend } from './file-backend.js';
 
-// Memory Stream (Issue #95 — Cognitive Memory Phase 1)
+// Memory Stream (Issue #95 — Cognitive Memory Phase 1 + Phase 2)
 export type {
   StreamEntryType,
   StreamRoleId,
@@ -260,4 +264,8 @@ export {
   MemoryStream,
   createMemoryStream,
   DEFAULT_STREAM_PATH,
+  // Phase 2: Reference extraction and importance calculation
+  extractIssueRefs,
+  extractPRRefs,
+  calculateDefaultImportance,
 } from './memory-stream.js';

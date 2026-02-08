@@ -3,6 +3,8 @@
  *
  * Tests for the pure functions in the dispatch module:
  * resolvePaths (pure path resolution)
+ *
+ * Phase 2 adds MemoryStream integration tests.
  */
 
 import { describe, it, expect } from 'vitest';
@@ -28,6 +30,9 @@ describe('resolvePaths', () => {
     expect(paths.playbook).toBe(
       '/home/user/project/agents/playbooks/engineering.md'
     );
+    expect(paths.stream).toBe(
+      '/home/user/project/agents/memory/stream.jsonl'
+    );
   });
 
   it('uses the correct role ID for the playbook path', () => {
@@ -46,6 +51,7 @@ describe('resolvePaths', () => {
     expect(paths.memoryBank).toBe('/root/.ada/memory/bank.md');
     expect(paths.archives).toBe('/root/.ada/memory/archives');
     expect(paths.playbook).toBe('/root/.ada/playbooks/ops.md');
+    expect(paths.stream).toBe('/root/.ada/memory/stream.jsonl');
   });
 
   it('handles rootDir with trailing slash', () => {
@@ -62,5 +68,12 @@ describe('resolvePaths', () => {
     expect(paths.playbook).toBe(
       '/root/agents/playbooks/my-custom-role.md'
     );
+  });
+
+  it('uses custom stream path when provided (Phase 2)', () => {
+    const customPath = '/custom/path/stream.jsonl';
+    const paths = resolvePaths('/root', 'ops', {}, customPath);
+
+    expect(paths.stream).toBe(customPath);
   });
 });
