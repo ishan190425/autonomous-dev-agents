@@ -236,3 +236,6 @@ export {
 
 // GitHub Backend Implementation (Issue #84 — Phase 1 Step 2)
 export { GitHubBackend } from './github-backend.js';
+
+// File Backend Implementation (Issue #84 — Phase 1 Step 3)
+export { FileBackend } from './file-backend.js';
