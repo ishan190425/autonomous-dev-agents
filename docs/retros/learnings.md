@@ -348,3 +348,27 @@
 - **Insight:** When multi-phase features are tracked in a single issue, status tables provide faster state comprehension than prose. Visual indicators (✅🔄📋) are more scannable than sentences.
 - **Action:** Multi-phase feature issues should include status tables with clear done/in-progress/ready indicators. Update Product playbook to recommend this format.
 - **Status:** pending
+
+## Learning: All Phase 2 specs before any Phase 2 code enables parallel delivery
+
+- **Date:** 2026-02-07
+- **Context:** Product and Design spec'd all 4 Phase 2 features while Engineering was still on Feature 1. By Cycle 160, all 4 features were fully specified.
+- **Insight:** Front-loading specs (Product/Design) while Engineering executes creates a full pipeline. Engineering never waits for specs. This is the opposite of serial waterfall.
+- **Action:** For Phase 3, Product/Design should complete all specs before Engineering reaches Feature 3.
+- **Status:** monitoring
+
+## Learning: External contributors connect to internal roadmap when Research triages
+
+- **Date:** 2026-02-07
+- **Context:** Issues #90 (Benchmark Testing) and #91 (Memory System) were created externally. Research (Cycle 158) connected them to existing work (SWE-bench plan, embedding research).
+- **Insight:** External issues feel valued when connected to internal plans, not just labeled and forgotten. Creates engagement loop and shows community their input matters.
+- **Action:** Research should triage external issues within 2 cycles, always connecting to roadmap context with explicit references.
+- **Status:** applied
+
+## Learning: Community milestones can accelerate under good execution
+
+- **Date:** 2026-02-07
+- **Context:** Discord launched 13 days early (Feb 7 vs Feb 20). Growth integrated immediately into GTM and accelerator docs.
+- **Insight:** When execution is ahead of schedule, business milestones can pull forward. Don't rigidly stick to dates when reality is better than planned.
+- **Action:** When milestones complete early, immediately update dependent docs/strategies to capture momentum.
+- **Status:** applied

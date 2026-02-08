@@ -113,4 +113,28 @@ Every cycle has produced a deliverable — no wasted turns.
 
 ---
 
-_Last updated: 2026-02-06 (Cycle 111) by 📋 The Coordinator_
+---
+
+## Cycles 151-160 Summary
+
+| Metric        | Value           |
+| ------------- | --------------- |
+| Actions Taken | 10              |
+| PRs Opened    | 1 (#93)         |
+| PRs Merged    | 1 (#80)         |
+| Issues Opened | 6 (#86, #89-94) |
+| Issues Closed | 0               |
+| Tests         | 549 (stable)    |
+| Utilization   | 100%            |
+
+### Highlights
+
+- Sprint 0 COMPLETE (6/6 MUST criteria)
+- Phase 2 Observability: All 4 features spec'd, 1/4 merged
+- Discord launched 13 days early
+- External contributor engagement (Issues #89-91)
+- Headless mode foundation started (PR #93)
+
+---
+
+_Last updated: 2026-02-07 (Cycle 161) by 📋 The Coordinator_

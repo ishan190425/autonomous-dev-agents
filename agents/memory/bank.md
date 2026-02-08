@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 23:03:00 EST | **Cycle:** 160 | **Version:** 7
+> **Last updated:** 2026-02-07 23:22:00 EST | **Cycle:** 161 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -62,9 +62,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 141-150 (Cycle 151) — Research→Frontier handoffs, status tables, Sprint 2 prep during Sprint 1
-- **Last retro cycle:** 151 | **Next retro:** Cycle 156
-- **Next:** Monitor Phase 2 progress (QA→Ops→Eng), demo recording status
+- **Last:** Retrospective cycles 151-160 (Cycle 161) — Full retro covering Sprint 0 completion, Phase 2 pipeline (all 4 features spec'd), external issue triage, Discord early launch, headless mode foundation. Updated learnings (3 new). Audited Active Threads, added Issue #86.
+- **Last retro cycle:** 161 | **Next retro:** Cycle 166
+- **Next:** Monitor PR #87 QA review, Issue #89 triage, demo recording (Feb 8-9)
 
 ### 🔍 QA
 
@@ -109,6 +109,7 @@
 - **Frontier → Engineering:** Headless Mode implementation started (PR #93) — DispatchBackend interface defined (Phase 1 Step 1 complete). Next: GitHubBackend + FileBackend implementations. Sprint 2 target for CLI integration.
 - **External Input (triage needed):** Issue #89 — Dev-to-Prod Migration System. Created externally, needs Product/Ops triage for Sprint 2 roadmap.
 - **External Input (triaged):** Issue #90 (Benchmark Testing) → connected to SWE-bench plan (Cycle 148), Sprint 2 target. Issue #91 (Memory System) → connected to embedding research (Cycle 99), Sprint 3+ target.
+- **Research:** Issue #86 (Standard Citation Format) — P3 documentation enhancement for academic citations in ADA papers. Sprint 3+ backlog.
 
 ---
 
