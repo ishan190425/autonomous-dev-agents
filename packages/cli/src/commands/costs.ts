@@ -6,6 +6,7 @@
  *
  * @see Issue #69 for full specification
  * @see docs/product/observability-cli-spec.md for user stories
+ * @see Issue #94 for export specification
  */
 
 import { Command } from 'commander';
@@ -15,11 +16,25 @@ import {
   formatCost,
 } from '@ada/core';
 import type { CycleMetrics } from '@ada/core';
+import {
+  detectFormat,
+  getSupportedExtensions,
+  confirmOverwrite,
+  fileExists,
+  writeFile,
+  toCSV,
+  toTSV,
+  type ExportFormat,
+  type CostExportRow,
+  COST_HEADERS,
+} from '../lib/export.js';
 
 /** Options for the costs command */
 interface CostsOptions {
   dir: string;
   json?: boolean;
+  export?: string;
+  force?: boolean;
 }
 
 /**
@@ -61,12 +76,71 @@ function calculateWeekCost(cycles: readonly CycleMetrics[]): { cost: number; cou
   return { cost, count };
 }
 
+/**
+ * Export cost summary to file.
+ */
+function exportCostsToFile(
+  filePath: string,
+  format: ExportFormat,
+  data: {
+    today: { cost: number; count: number };
+    week: { cost: number; count: number };
+    total: { cost: number; cycles: number };
+    avgPerCycle: number;
+    model: string;
+  }
+): void {
+  let content: string;
+
+  if (format === 'json') {
+    content = `${JSON.stringify({
+      today: { cost: data.today.cost, cycles: data.today.count },
+      week: { cost: data.week.cost, cycles: data.week.count },
+      total: { cost: data.total.cost, cycles: data.total.cycles },
+      avgPerCycle: data.avgPerCycle,
+      model: data.model,
+    }, null, 2)  }\n`;
+  } else {
+    // CSV/TSV export with period rows
+    const rows: CostExportRow[] = [
+      { period: 'today', cost: data.today.cost, cycles: data.today.count },
+      { period: 'week', cost: data.week.cost, cycles: data.week.count },
+      { period: 'total', cost: data.total.cost, cycles: data.total.cycles },
+    ];
+    const converter = format === 'tsv' ? toTSV : toCSV;
+    content = converter(rows, COST_HEADERS);
+  }
+
+  writeFile(filePath, content);
+}
+
 export const costsCommand = new Command('costs')
   .description('Quick cost check for agent operations')
   .option('-d, --dir <path>', 'Agents directory (default: "agents/")', 'agents')
   .option('--json', 'Output as JSON for scripting')
+  .option('-e, --export <file>', 'Export costs to file (auto-detects format from extension: .csv, .json, .tsv)')
+  .option('-f, --force', 'Overwrite existing file without confirmation')
   .action(async (options: CostsOptions) => {
     const cwd = process.cwd();
+
+    // Validate export format if --export is used
+    let exportFormat: ExportFormat | null = null;
+    if (options.export) {
+      exportFormat = detectFormat(options.export);
+      if (!exportFormat) {
+        console.error(chalk.red(`❌ Unsupported file extension. Supported formats: ${getSupportedExtensions().join(', ')}`));
+        process.exit(1);
+      }
+
+      // Check for file overwrite
+      if (fileExists(options.export) && !options.force) {
+        const confirmed = await confirmOverwrite(options.export);
+        if (!confirmed) {
+          console.log(chalk.gray('Export cancelled.'));
+          return;
+        }
+      }
+    }
 
     try {
       const metricsManager = createMetricsManager(cwd, options.dir);
@@ -75,7 +149,17 @@ export const costsCommand = new Command('costs')
 
       // Handle empty state
       if (cycles.length === 0 || !aggregated) {
-        if (options.json) {
+        if (options.export && exportFormat) {
+          // Export empty data
+          exportCostsToFile(options.export, exportFormat, {
+            today: { cost: 0, count: 0 },
+            week: { cost: 0, count: 0 },
+            total: { cost: 0, cycles: 0 },
+            avgPerCycle: 0,
+            model: 'unknown',
+          });
+          console.log(chalk.green(`✅ Exported empty cost data to ${options.export}`));
+        } else if (options.json) {
           console.log(JSON.stringify({ error: 'No cost data collected yet.' }));
         } else {
           console.log(chalk.yellow('💰 No cost data collected yet.'));
@@ -89,6 +173,19 @@ export const costsCommand = new Command('costs')
       const week = calculateWeekCost(cycles);
       const lastCycle = cycles[cycles.length - 1];
       const model = lastCycle?.model ?? 'unknown';
+
+      // Export mode
+      if (options.export && exportFormat) {
+        exportCostsToFile(options.export, exportFormat, {
+          today,
+          week,
+          total: { cost: aggregated.totalCost.totalCost, cycles: aggregated.totalCycles },
+          avgPerCycle: aggregated.avgCostPerCycle.totalCost,
+          model,
+        });
+        console.log(chalk.green(`✅ Exported cost summary to ${options.export}`));
+        return;
+      }
 
       if (options.json) {
         console.log(JSON.stringify({
@@ -113,7 +210,7 @@ export const costsCommand = new Command('costs')
       console.log();
       console.log(chalk.gray("Use 'ada observe' for full breakdown"));
     } catch (err) {
-      if (options.json) {
+      if (options.export || options.json) {
         console.error(JSON.stringify({ error: (err as Error).message }));
       } else {
         console.error(chalk.red('❌ Could not load cost data:'), (err as Error).message);
