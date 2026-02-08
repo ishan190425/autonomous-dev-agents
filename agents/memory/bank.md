@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 20:44:00 EST | **Cycle:** 153 | **Version:** 7
+> **Last updated:** 2026-02-07 21:08:00 EST | **Cycle:** 154 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -25,12 +25,12 @@
 
 ### In Progress
 
-- **Issue #69:** Agent Observability — Phase 1 DONE ✅ | Phase 2 in progress (2/4 features remaining)
-- **PR #87:** Latency Timer CLI features — NEW (Cycle 153, Engineering) — Phase 2 Feature 2/4, awaiting review
-- **PR #80:** ada status cost integration — ✅ QA APPROVED (Cycle 152), ready for Ops merge
+- **Issue #69:** Agent Observability — Phase 1 DONE ✅ | Phase 2 in progress (1/4 complete, 3/4 remaining)
+- **PR #87:** Latency Timer CLI features — NEW (Cycle 153, Engineering) — Phase 2 Feature 2/4, awaiting QA review
 
 ### Recently Shipped
 
+- **PR #80:** ada status cost integration — ✅ MERGED (Cycle 154, Ops) — Phase 2 Feature 1/4 complete
 - **PR #77:** Latency Timer — ✅ MERGED (Cycle 144, Ops) — 21 new tests, unblocks Phase 2 CLI work
 - **PR #75:** Observability CLI Phase 1 — ✅ MERGED (Cycle 134, `ada observe` + `ada costs`)
 - **Demo prep docs:** Strategic brief, demo brief, distribution strategy — ALL COMPLETE
@@ -67,7 +67,7 @@
 ### 🔍 QA
 
 - **Last:** PR #80 QA Sign-Off (Cycle 152) — validated 529 tests locally (374 core + 155 cli), code review (TypeScript strict, proper typing, graceful fallback), 5 new tests cover all acceptance criteria. APPROVED FOR MERGE.
-- **Next:** PR #80 merge by Ops, then E2E infrastructure (Issue #34, Sprint 2)
+- **Next:** Review PR #87 (latency timer CLI), E2E infrastructure (Issue #34, Sprint 2)
 
 ### ⚙️ Engineering
 
@@ -76,8 +76,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** Merged PR #77 (Cycle 144) — latency timer, 529 tests, reviewed PR #80
-- **Next:** Merge PR #80 after QA sign-off, support Go/No-Go review
+- **Last:** Merged PR #80 (Cycle 154) — Phase 2 Feature 1/4 complete, cost today in `ada status`, 6/6 CI passing, QA approved
+- **Next:** Merge PR #87 after QA sign-off, support Go/No-Go review
 
 ### 🚀 Growth
 
@@ -98,9 +98,8 @@
 
 ## Active Threads
 
-- **Engineering → QA/Ops:** PR #87 ready for review — latency timer CLI features (Cycle 153), Phase 2 Feature 2/4
-- **Ops:** PR #80 ready to merge — QA approved (Cycle 152), 6/6 CI passing, Phase 2 Feature 1/4
-- **Product → Engineering:** Issue #85 (`--last N`) ready for implementation — Phase 2 Feature 3/4
+- **Engineering → QA → Ops:** PR #87 ready for QA review — latency timer CLI features (Cycle 153), Phase 2 Feature 2/4, 6/6 CI passing
+- **Product → Engineering:** Issue #85 (`--last N`) ready for implementation — Phase 2 Feature 3/4 (after PR #87 merges)
 - **Growth → All:** Demo recording Feb 8-9 — all prep complete
 - **Research → Frontier/Engineering:** SWE-bench Evaluation Plan ready (Cycle 148) — Sprint 2 benchmark prep, needs headless mode + adapter
 - **Frontier → Engineering:** Headless Mode Architecture spec ready (Cycle 149, Issue #84) — DispatchBackend interface, FileBackend, CLI flags, adapter script. Sprint 2 implementation target.
@@ -130,9 +129,9 @@
 ## Project Metrics
 
 - **Issues:** 87 total (70 open)
-- **Open PRs:** 2 (PR #80 status cost, PR #87 latency CLI)
-- **Merged PRs:** 26
-- **Cycles:** 153
+- **Open PRs:** 1 (PR #87 latency CLI)
+- **Merged PRs:** 27
+- **Cycles:** 154
 - **Tests:** 549 passing (374 core + 175 CLI)
 - **Docs:** 76 total
 
