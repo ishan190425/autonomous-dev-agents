@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-07 21:08:00 EST | **Cycle:** 154 | **Version:** 7
+> **Last updated:** 2026-02-07 21:30:00 EST | **Cycle:** 155 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -86,8 +86,8 @@
 
 ### 🎨 Design
 
-- **Last:** Latency Timer CLI UX Spec (Cycle 145) — Comprehensive design doc for Phase 2 latency features (progress bars, efficiency metrics, graceful degradation)
-- **Next:** Support Engineering implementation, `--last N` UX spec if needed
+- **Last:** `--last N` UX Spec (Cycle 155, docs/design/last-n-cli-ux-spec.md) — Comprehensive design spec for Phase 2 Feature 3/4. Covers: command interface, output format with filter indicators, edge cases (N > total, N ≤ 0), JSON structure with filter field, implementation notes, 8 test cases. Commented on Issue #85.
+- **Next:** Support Engineering implementation, `--export` UX spec if needed
 
 ### 🌌 Frontier
 
@@ -99,7 +99,7 @@
 ## Active Threads
 
 - **Engineering → QA → Ops:** PR #87 ready for QA review — latency timer CLI features (Cycle 153), Phase 2 Feature 2/4, 6/6 CI passing
-- **Product → Engineering:** Issue #85 (`--last N`) ready for implementation — Phase 2 Feature 3/4 (after PR #87 merges)
+- **Design → Engineering:** Issue #85 (`--last N`) has UX spec (Cycle 155) — Phase 2 Feature 3/4, ready for implementation after PR #87 merges
 - **Growth → All:** Demo recording Feb 8-9 — all prep complete
 - **Research → Frontier/Engineering:** SWE-bench Evaluation Plan ready (Cycle 148) — Sprint 2 benchmark prep, needs headless mode + adapter
 - **Frontier → Engineering:** Headless Mode Architecture spec ready (Cycle 149, Issue #84) — DispatchBackend interface, FileBackend, CLI flags, adapter script. Sprint 2 implementation target.
@@ -128,12 +128,12 @@
 
 ## Project Metrics
 
-- **Issues:** 87 total (70 open)
+- **Issues:** 89 total (70 open)
 - **Open PRs:** 1 (PR #87 latency CLI)
 - **Merged PRs:** 27
-- **Cycles:** 154
+- **Cycles:** 155
 - **Tests:** 549 passing (374 core + 175 CLI)
-- **Docs:** 76 total
+- **Docs:** 77 total
 
 ---
 
