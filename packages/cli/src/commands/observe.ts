@@ -1,11 +1,13 @@
 /**
- * `ada observe` — Show agent observability metrics (cost, tokens, health).
+ * `ada observe` — Show agent observability metrics (cost, tokens, health, latency).
  *
  * Surfaces the observability data collected by @ada/core to users.
- * Shows cost breakdown, token usage, success rates, and per-role analysis.
+ * Shows cost breakdown, token usage, success rates, per-role analysis,
+ * and Phase 2 latency timing with visual progress bars.
  *
  * @see Issue #69 for full specification
  * @see docs/product/observability-cli-spec.md for user stories
+ * @see docs/design/latency-timer-cli-ux-spec.md for Phase 2 UX design
  */
 
 import { Command } from 'commander';
@@ -17,7 +19,12 @@ import {
   formatTokens,
   readRoster,
 } from '@ada/core';
-import type { AggregatedMetrics, CycleMetrics, Roster } from '@ada/core';
+import type {
+  AggregatedMetrics,
+  CycleMetrics,
+  Roster,
+  DispatchPhase,
+} from '@ada/core';
 
 /** Options for the observe command */
 interface ObserveOptions {
@@ -27,6 +34,30 @@ interface ObserveOptions {
   last?: string;
   json?: boolean;
 }
+
+/** Phase display name abbreviations per design spec */
+const PHASE_DISPLAY_NAMES: Record<DispatchPhase, string> = {
+  context_load: 'context_load',
+  situational_awareness: 'situational',
+  action_selection: 'selection',
+  action_execution: 'execution',
+  memory_update: 'memory_update',
+  compression_check: 'compression',
+  evolution_check: 'evolution',
+  state_update: 'state_update',
+};
+
+/** Order phases appear in output */
+const PHASE_ORDER: DispatchPhase[] = [
+  'context_load',
+  'situational_awareness',
+  'action_selection',
+  'action_execution',
+  'memory_update',
+  'compression_check',
+  'evolution_check',
+  'state_update',
+];
 
 /**
  * Format a duration in milliseconds to human-readable string.
@@ -86,6 +117,100 @@ function calculateTodayCost(cycles: readonly CycleMetrics[]): { cost: number; co
 }
 
 /**
+ * Render a progress bar for latency visualization.
+ * Uses █ (full) and ░ (empty) characters.
+ * 
+ * @param ratio - Value between 0 and 1
+ * @param width - Total width in characters (default: 20)
+ */
+function renderProgressBar(ratio: number, width: number = 20): string {
+  const clampedRatio = Math.max(0, Math.min(1, ratio));
+  // Ensure at least 1 bar if there's any duration
+  const filled = clampedRatio > 0 ? Math.max(1, Math.round(clampedRatio * width)) : 0;
+  const empty = width - filled;
+  return chalk.green('█'.repeat(filled)) + '░'.repeat(empty);
+}
+
+/**
+ * Calculate hourly spend rate from cost and duration.
+ */
+function calculateSpendRate(cost: number, durationMs: number): number {
+  if (durationMs === 0) return 0;
+  const hoursElapsed = durationMs / (1000 * 60 * 60);
+  return cost / hoursElapsed;
+}
+
+/**
+ * Calculate efficiency: tokens per second.
+ * Useful for comparing roles or models.
+ */
+function calculateEfficiency(tokens: number, durationMs: number): number {
+  if (durationMs === 0) return 0;
+  return Math.round((tokens / durationMs) * 1000);
+}
+
+/**
+ * Check if cycle has latency data (Phase 2+).
+ */
+function hasLatencyData(cycle: CycleMetrics): boolean {
+  return !!cycle.latency && Object.keys(cycle.latency).length > 0;
+}
+
+/**
+ * Print phase timing section for a cycle (Phase 2 feature).
+ */
+function printPhaseTimingSection(cycle: CycleMetrics): void {
+  if (!cycle.latency || Object.keys(cycle.latency).length === 0) {
+    return;
+  }
+
+  const latency = cycle.latency;
+  const totalDuration = cycle.durationMs;
+
+  console.log();
+  console.log(chalk.bold('⏱️  Phase Timing'));
+  console.log(chalk.gray('─'.repeat(60)));
+
+  for (const phase of PHASE_ORDER) {
+    const phaseLatency = latency[phase];
+    if (!phaseLatency) continue;
+
+    const displayName = PHASE_DISPLAY_NAMES[phase];
+    const duration = phaseLatency.durationMs;
+    const ratio = totalDuration > 0 ? duration / totalDuration : 0;
+    const percent = Math.round(ratio * 100);
+    const bar = renderProgressBar(ratio, 20);
+
+    console.log(
+      `${displayName.padEnd(14)} │ ${formatDuration(duration).padStart(6)} │ ${bar} │ ${String(percent).padStart(3)}%`
+    );
+  }
+
+  console.log(chalk.gray('─'.repeat(60)));
+  console.log(
+    `${'TOTAL'.padEnd(14)} │ ${formatDuration(totalDuration).padStart(6)} │${''.padStart(22)}│ 100%`
+  );
+}
+
+/**
+ * Print efficiency section for a cycle (Phase 2 feature).
+ */
+function printEfficiencySection(cycle: CycleMetrics): void {
+  const totalTokens = cycle.totals.totalTokens;
+  const durationMs = cycle.durationMs;
+  const cost = cycle.cost.totalCost;
+
+  const throughput = calculateEfficiency(totalTokens, durationMs);
+  const spendRate = calculateSpendRate(cost, durationMs);
+
+  console.log();
+  console.log(chalk.bold('📊 Efficiency'));
+  console.log(chalk.gray('─'.repeat(50)));
+  console.log(`${chalk.gray('Throughput:')}    ${throughput.toLocaleString()} tokens/sec`);
+  console.log(`${chalk.gray('Spend Rate:')}    $${spendRate.toFixed(2)}/hour (at this pace)`);
+}
+
+/**
  * Print the main observability dashboard.
  */
 function printDashboard(
@@ -138,6 +263,53 @@ function printDashboard(
   console.log(`  ${chalk.gray('Avg per cycle:')}  ${formatTokens(metrics.avgTokensPerCycle.totalTokens)} tokens`);
   console.log();
 
+  // Latency Section (Phase 2) — only show if ≥10 cycles have timing data
+  const cyclesWithLatency = cycles.filter(hasLatencyData);
+  if (cyclesWithLatency.length >= 10) {
+    // Calculate slowest/fastest roles
+    const roleLatencies: Record<string, { totalMs: number; count: number }> = {};
+    for (const cycle of cyclesWithLatency) {
+      const existing = roleLatencies[cycle.role] ?? { totalMs: 0, count: 0 };
+      existing.totalMs += cycle.durationMs;
+      existing.count++;
+      roleLatencies[cycle.role] = existing;
+    }
+
+    const roleAvgs = Object.entries(roleLatencies)
+      .filter(([, stats]) => stats.count >= 3) // Need ≥3 cycles for significance
+      .map(([role, stats]) => ({ role, avgMs: stats.totalMs / stats.count }));
+
+    // Find slowest/fastest roles (only if we have data)
+    let slowestRole: { role: string; avgMs: number } | undefined;
+    let fastestRole: { role: string; avgMs: number } | undefined;
+    if (roleAvgs.length > 0) {
+      slowestRole = roleAvgs.reduce((max, r) => r.avgMs > max.avgMs ? r : max, roleAvgs[0]!);
+      fastestRole = roleAvgs.reduce((min, r) => r.avgMs < min.avgMs ? r : min, roleAvgs[0]!);
+    }
+
+    // Overall throughput
+    const totalTokens = cyclesWithLatency.reduce((sum, c) => sum + c.totals.totalTokens, 0);
+    const totalDuration = cyclesWithLatency.reduce((sum, c) => sum + c.durationMs, 0);
+    const avgThroughput = calculateEfficiency(totalTokens, totalDuration);
+    
+    // Calculate avg duration from cycles (fallback if not in aggregated metrics)
+    const avgDurationMs = totalDuration / cyclesWithLatency.length;
+
+    console.log(chalk.bold('⏱️  LATENCY'));
+    console.log(chalk.gray('─'.repeat(50)));
+    console.log(`  ${chalk.gray('Avg cycle:')}      ${formatDuration(avgDurationMs)}`);
+    if (slowestRole) {
+      const slowEmoji = getRoleEmoji(slowestRole.role, null);
+      console.log(`  ${chalk.gray('Slowest role:')}   ${slowEmoji} ${slowestRole.role.charAt(0).toUpperCase() + slowestRole.role.slice(1)} (${formatDuration(slowestRole.avgMs)} avg)`);
+    }
+    if (fastestRole) {
+      const fastEmoji = getRoleEmoji(fastestRole.role, null);
+      console.log(`  ${chalk.gray('Fastest role:')}   ${fastEmoji} ${fastestRole.role.charAt(0).toUpperCase() + fastestRole.role.slice(1)} (${formatDuration(fastestRole.avgMs)} avg)`);
+    }
+    console.log(`  ${chalk.gray('Throughput:')}     ${avgThroughput.toLocaleString()} tokens/sec`);
+    console.log();
+  }
+
   // Health Box
   const successRate = metrics.totalCycles > 0
     ? Math.round((metrics.successfulCycles / metrics.totalCycles) * 100)
@@ -158,40 +330,104 @@ function printDashboard(
 }
 
 /**
- * Print per-role breakdown.
+ * Print per-role breakdown with Phase 2 latency column.
  */
-function printByRole(metrics: AggregatedMetrics, roster: Roster | null): void {
+function printByRole(
+  metrics: AggregatedMetrics,
+  cycles: readonly CycleMetrics[],
+  roster: Roster | null
+): void {
   console.log(chalk.bold.blue(`📊 Cost by Role — last ${metrics.totalCycles} cycles`));
-  console.log(chalk.gray('═'.repeat(60)));
+  console.log(chalk.gray('═'.repeat(72)));
   console.log();
 
-  // Header
-  console.log(
-    `${chalk.gray('Role'.padEnd(16))} │ ${chalk.gray('Cycles'.padStart(6))} │ ${chalk.gray('Tokens'.padStart(8))} │ ${chalk.gray('Cost'.padStart(8))} │ ${chalk.gray('Avg/Cycle'.padStart(9))}`
-  );
-  console.log(chalk.gray('─'.repeat(60)));
+  // Calculate per-role latency averages from cycles with latency data
+  const roleLatencies: Record<string, { totalMs: number; count: number }> = {};
+  const cyclesWithLatency = cycles.filter(hasLatencyData);
+  
+  for (const cycle of cyclesWithLatency) {
+    const existing = roleLatencies[cycle.role] ?? { totalMs: 0, count: 0 };
+    existing.totalMs += cycle.durationMs;
+    existing.count++;
+    roleLatencies[cycle.role] = existing;
+  }
+
+  const hasAnyLatency = cyclesWithLatency.length > 0;
+
+  // Header with optional Avg Time column
+  if (hasAnyLatency) {
+    console.log(
+      `${chalk.gray('Role'.padEnd(16))} │ ${chalk.gray('Cycles'.padStart(6))} │ ${chalk.gray('Tokens'.padStart(8))} │ ${chalk.gray('Cost'.padStart(8))} │ ${chalk.gray('Avg/Cycle'.padStart(9))} │ ${chalk.gray('Avg Time'.padStart(8))}`
+    );
+    console.log(chalk.gray('─'.repeat(72)));
+  } else {
+    console.log(
+      `${chalk.gray('Role'.padEnd(16))} │ ${chalk.gray('Cycles'.padStart(6))} │ ${chalk.gray('Tokens'.padStart(8))} │ ${chalk.gray('Cost'.padStart(8))} │ ${chalk.gray('Avg/Cycle'.padStart(9))}`
+    );
+    console.log(chalk.gray('─'.repeat(60)));
+  }
 
   // Sort roles by cost (descending)
   const sortedRoles = Object.entries(metrics.byRole).sort(
     ([, a], [, b]) => b.cost.totalCost - a.cost.totalCost
   );
 
+  // Calculate overall avg duration for insight comparison
+  const overallAvgDuration = cyclesWithLatency.length > 0
+    ? cyclesWithLatency.reduce((sum, c) => sum + c.durationMs, 0) / cyclesWithLatency.length
+    : 0;
+
+  let slowRoleInsight: { role: string; emoji: string; avgMs: number; percentSlower: number } | null = null;
+
   for (const [roleId, stats] of sortedRoles) {
     const emoji = getRoleEmoji(roleId, roster);
     const avgCost = stats.cycles > 0 ? stats.cost.totalCost / stats.cycles : 0;
 
-    console.log(
-      `${emoji}  ${roleId.padEnd(13)} │ ${String(stats.cycles).padStart(6)} │ ${formatTokens(stats.tokens.totalTokens).padStart(8)} │ ${formatCost(stats.cost.totalCost).padStart(8)} │ ${formatCost(avgCost).padStart(9)}`
-    );
+    // Get latency data for this role
+    const roleLatency = roleLatencies[roleId];
+    const avgTime = roleLatency && roleLatency.count > 0
+      ? formatDuration(roleLatency.totalMs / roleLatency.count)
+      : '--';
+
+    // Check for slow role insight (30% slower than average, ≥3 cycles)
+    if (roleLatency && roleLatency.count >= 3 && overallAvgDuration > 0) {
+      const roleAvgMs = roleLatency.totalMs / roleLatency.count;
+      const percentSlower = Math.round(((roleAvgMs / overallAvgDuration) - 1) * 100);
+      if (percentSlower >= 30 && (!slowRoleInsight || roleAvgMs > slowRoleInsight.avgMs)) {
+        slowRoleInsight = { role: roleId, emoji, avgMs: roleAvgMs, percentSlower };
+      }
+    }
+
+    if (hasAnyLatency) {
+      console.log(
+        `${emoji}  ${roleId.padEnd(13)} │ ${String(stats.cycles).padStart(6)} │ ${formatTokens(stats.tokens.totalTokens).padStart(8)} │ ${formatCost(stats.cost.totalCost).padStart(8)} │ ${formatCost(avgCost).padStart(9)} │ ${avgTime.padStart(8)}`
+      );
+    } else {
+      console.log(
+        `${emoji}  ${roleId.padEnd(13)} │ ${String(stats.cycles).padStart(6)} │ ${formatTokens(stats.tokens.totalTokens).padStart(8)} │ ${formatCost(stats.cost.totalCost).padStart(8)} │ ${formatCost(avgCost).padStart(9)}`
+      );
+    }
   }
 
-  console.log(chalk.gray('─'.repeat(60)));
-  console.log(
-    `${'TOTAL'.padEnd(16)} │ ${String(metrics.totalCycles).padStart(6)} │ ${formatTokens(metrics.totalTokens.totalTokens).padStart(8)} │ ${formatCost(metrics.totalCost.totalCost).padStart(8)} │ ${formatCost(metrics.avgCostPerCycle.totalCost).padStart(9)}`
-  );
+  // Total row
+  const totalAvgTime = cyclesWithLatency.length > 0
+    ? formatDuration(cyclesWithLatency.reduce((sum, c) => sum + c.durationMs, 0) / cyclesWithLatency.length)
+    : '--';
+
+  if (hasAnyLatency) {
+    console.log(chalk.gray('─'.repeat(72)));
+    console.log(
+      `${'TOTAL'.padEnd(16)} │ ${String(metrics.totalCycles).padStart(6)} │ ${formatTokens(metrics.totalTokens.totalTokens).padStart(8)} │ ${formatCost(metrics.totalCost.totalCost).padStart(8)} │ ${formatCost(metrics.avgCostPerCycle.totalCost).padStart(9)} │ ${totalAvgTime.padStart(8)}`
+    );
+  } else {
+    console.log(chalk.gray('─'.repeat(60)));
+    console.log(
+      `${'TOTAL'.padEnd(16)} │ ${String(metrics.totalCycles).padStart(6)} │ ${formatTokens(metrics.totalTokens.totalTokens).padStart(8)} │ ${formatCost(metrics.totalCost.totalCost).padStart(8)} │ ${formatCost(metrics.avgCostPerCycle.totalCost).padStart(9)}`
+    );
+  }
   console.log();
 
-  // Add insight if one role is significantly more expensive
+  // Add token usage insight if one role is significantly more expensive
   const avgTokensPerRole = metrics.totalTokens.totalTokens / Object.keys(metrics.byRole).length;
   const expensiveRoles = sortedRoles.filter(
     ([, stats]) => stats.tokens.totalTokens > avgTokensPerRole * 1.5
@@ -205,12 +441,24 @@ function printByRole(metrics: AggregatedMetrics, roster: Roster | null): void {
     console.log(chalk.yellow(`💡 Insight: ${emoji} ${roleId} uses ${percentAboveAvg}% more tokens than average.`));
     console.log(chalk.gray('   Consider reviewing its playbook for optimization.'));
   }
+
+  // Add latency insight if a role is significantly slower
+  if (slowRoleInsight) {
+    console.log(chalk.yellow(`💡 Insight: ${slowRoleInsight.emoji} ${slowRoleInsight.role} cycles are ${slowRoleInsight.percentSlower}% slower than average (${formatDuration(slowRoleInsight.avgMs)} vs ${formatDuration(overallAvgDuration)}).`));
+    console.log(chalk.gray('   Execution phase dominates — review action complexity.'));
+  }
+
+  // Footer note for partial latency data
+  if (hasAnyLatency && cyclesWithLatency.length < cycles.length) {
+    console.log();
+    console.log(chalk.gray(`* Avg Time based on ${cyclesWithLatency.length}/${cycles.length} cycles (timing unavailable for older cycles)`));
+  }
 }
 
 /**
- * Print specific cycle details.
+ * Print specific cycle details with Phase 2 latency sections.
  */
-function printCycleDetails(cycle: CycleMetrics, roster: Roster | null): void {
+function printCycleDetails(cycle: CycleMetrics, roster: Roster | null, firstTrackedCycle: number): void {
   const emoji = getRoleEmoji(cycle.role, roster);
   const statusEmoji = cycle.success ? '✅' : '❌';
   const statusText = cycle.success ? 'Success' : 'Failed';
@@ -234,18 +482,7 @@ function printCycleDetails(cycle: CycleMetrics, roster: Roster | null): void {
   );
   console.log(chalk.gray('─'.repeat(50)));
 
-  const phaseOrder = [
-    'context_load',
-    'situational_awareness',
-    'action_selection',
-    'action_execution',
-    'memory_update',
-    'compression_check',
-    'evolution_check',
-    'state_update',
-  ];
-
-  for (const phase of phaseOrder) {
+  for (const phase of PHASE_ORDER) {
     const usage = cycle.phases[phase as keyof typeof cycle.phases];
     if (usage) {
       const phaseName = phase.replace(/_/g, ' ');
@@ -259,18 +496,36 @@ function printCycleDetails(cycle: CycleMetrics, roster: Roster | null): void {
   console.log(
     `${'TOTAL'.padEnd(24)} │ ${formatTokens(cycle.totals.inputTokens).padStart(10)} │ ${formatTokens(cycle.totals.outputTokens).padStart(10)}`
   );
+
+  // Phase Timing Section (Phase 2)
+  if (hasLatencyData(cycle)) {
+    printPhaseTimingSection(cycle);
+  }
+
   console.log();
   console.log(`${chalk.gray('Cost:')} ${formatCost(cycle.cost.totalCost)} (input: ${formatCost(cycle.cost.inputCost)}, output: ${formatCost(cycle.cost.outputCost)})`);
+
+  // Efficiency Section (Phase 2)
+  if (hasLatencyData(cycle)) {
+    printEfficiencySection(cycle);
+  }
 
   if (cycle.error) {
     console.log();
     console.log(chalk.red.bold('Error:'));
     console.log(chalk.red(`  ${cycle.error}`));
   }
+
+  // Note for cycles without latency data (graceful degradation)
+  if (!hasLatencyData(cycle)) {
+    console.log();
+    console.log(chalk.gray(`ℹ️  Phase timing not available for cycles before ${firstTrackedCycle + 10}.`));
+    console.log(chalk.gray(`    Timing data is collected for cycles ${firstTrackedCycle + 10}+.`));
+  }
 }
 
 /**
- * Print JSON output.
+ * Print JSON output with Phase 2 latency fields.
  */
 function printJson(
   metrics: AggregatedMetrics | null,
@@ -280,9 +535,48 @@ function printJson(
   const output: Record<string, unknown> = {};
 
   if (cycleDetail) {
-    output.cycle = cycleDetail;
+    // Enhanced cycle detail with efficiency metrics
+    const efficiency = cycleDetail.durationMs > 0 ? {
+      tokensPerSecond: calculateEfficiency(cycleDetail.totals.totalTokens, cycleDetail.durationMs),
+      spendRatePerHour: calculateSpendRate(cycleDetail.cost.totalCost, cycleDetail.durationMs),
+    } : null;
+
+    output.cycle = {
+      ...cycleDetail,
+      ...(efficiency && { efficiency }),
+    };
   } else if (metrics) {
-    output.aggregated = metrics;
+    // Enhanced aggregated metrics with efficiency
+    const cyclesWithLatency = cycles.filter(hasLatencyData);
+    const totalTokens = cyclesWithLatency.reduce((sum, c) => sum + c.totals.totalTokens, 0);
+    const totalDuration = cyclesWithLatency.reduce((sum, c) => sum + c.durationMs, 0);
+    const totalCost = cyclesWithLatency.reduce((sum, c) => sum + c.cost.totalCost, 0);
+
+    const efficiency = cyclesWithLatency.length > 0 ? {
+      avgTokensPerSecond: calculateEfficiency(totalTokens, totalDuration),
+      avgSpendRatePerHour: calculateSpendRate(totalCost, totalDuration),
+    } : null;
+
+    // Calculate by-role latency
+    const roleLatencies: Record<string, { avgDurationMs: number; cycles: number }> = {};
+    for (const cycle of cyclesWithLatency) {
+      const existing = roleLatencies[cycle.role] ?? { avgDurationMs: 0, cycles: 0 };
+      existing.avgDurationMs += cycle.durationMs;
+      existing.cycles++;
+      roleLatencies[cycle.role] = existing;
+    }
+    for (const role of Object.keys(roleLatencies)) {
+      const roleData = roleLatencies[role];
+      if (roleData) {
+        roleData.avgDurationMs = Math.round(roleData.avgDurationMs / roleData.cycles);
+      }
+    }
+
+    output.aggregated = {
+      ...metrics,
+      ...(efficiency && { efficiency }),
+      byRoleLatency: Object.keys(roleLatencies).length > 0 ? roleLatencies : undefined,
+    };
     output.recentCycles = cycles.slice(-10);
   }
 
@@ -290,7 +584,7 @@ function printJson(
 }
 
 export const observeCommand = new Command('observe')
-  .description('Show agent observability metrics (cost, tokens, health)')
+  .description('Show agent observability metrics (cost, tokens, health, latency)')
   .option('-d, --dir <path>', 'Agents directory (default: "agents/")', 'agents')
   .option('--by-role', 'Show per-role cost and token breakdown')
   .option('--cycle <n>', 'Show detailed metrics for a specific cycle')
@@ -346,7 +640,7 @@ export const observeCommand = new Command('observe')
         if (options.json) {
           printJson(null, cycles, cycle);
         } else {
-          printCycleDetails(cycle, roster);
+          printCycleDetails(cycle, roster, aggregated.firstCycle);
         }
         return;
       }
@@ -359,7 +653,7 @@ export const observeCommand = new Command('observe')
 
       // By-role view
       if (options.byRole) {
-        printByRole(aggregated, roster);
+        printByRole(aggregated, cycles, roster);
         return;
       }
 
