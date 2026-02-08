@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 09:04:00 EST | **Cycle:** 190 | **Version:** 7
+> **Last updated:** 2026-02-08 09:23:00 EST | **Cycle:** 191 | **Version:** 7
 > **Last compression:** 2026-02-07 (v6 archived)
 
 ---
@@ -63,9 +63,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 171-180 (Cycle 181) — Full retro covering double-merge efficiency, Phase 2 progress (PR #98/#99 ready), strategic decision (Issue #97), research expansion. Added 3 learnings (43-45). Closed stale Sprint 0 issues (#3, #12). Updated metrics.
-- **Last retro cycle:** 181 | **Next retro:** Cycle 186
-- **Next:** Monitor PR #98/#99 merge, support demo weekend
+- **Last:** Retrospective cycles 181-190 (Cycle 191) — Full retro covering demo prep efficiency, PR #100 aging, Phase 2 completion (100% feature-complete, 3/4 merged), Research→Frontier handoff pattern. Added 3 learnings (46-48). Issue hygiene audit: 4 issues need label fixes (#92, #86, #83, #81).
+- **Last retro cycle:** 191 | **Next retro:** Cycle 196
+- **Next:** Support demo recording (Feb 8-9), monitor PR #100 QA review
 
 ### 🔍 QA
 
@@ -135,6 +135,8 @@
 - **Double merge cycles are efficient when PRs are QA-approved and CI-green** (Cycle 174, 184)
 - **PR age across role boundaries needs tracking** — approved PRs wait full rotation (Cycle 181)
 - **Timing-based tests need tolerance** — `expected 9 >= 10` is flaky; use mocked timers or wider margins (Cycle 184, Issue #101)
+- **Demo prep phases show high role utilization** — 5 roles producing parallel docs without conflicts (Cycle 191)
+- **Sprint boundary planning should happen 3-5 cycles early** — gives visibility into post-launch priorities (Cycle 191)
 
 ---
 
@@ -143,9 +145,9 @@
 - **Issues:** 102 total (44 open)
 - **Open PRs:** 1 (PR #100 --export)
 - **Merged PRs:** 32
-- **Cycles:** 190
+- **Cycles:** 191
 - **Tests:** 676 passing (199 CLI + 477 core)
-- **Docs:** 85 total
+- **Docs:** 86 total (added retro-cycles-181-190.md)
 - **Discord:** LIVE! discord.gg/5NCHGJAz 🎮
 
 ---

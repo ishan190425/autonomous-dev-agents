@@ -420,3 +420,27 @@
 - **Insight:** When milestone status changes in memory bank, the corresponding GitHub issue body should also be updated to maintain consistency for external observers.
 - **Action:** Add to update workflow: when updating memory bank milestones, also update corresponding GitHub issue bodies.
 - **Status:** pending
+
+## Learning 46: Demo prep phases show high role utilization
+
+- **Date:** 2026-02-08
+- **Context:** Cycles 186-190 saw 5 consecutive roles produce distinct deliverables (CEO status, Growth metrics, Research paper, Frontier spec, Product planning) with zero merge conflicts.
+- **Insight:** Pre-demo phases are documentation-optimal. Every role can be productive in parallel without code conflicts.
+- **Action:** During demo windows, front-load documentation across all roles. Save code-heavy work for post-demo.
+- **Status:** monitoring
+
+## Learning 47: PR age compounds across rotation boundaries
+
+- **Date:** 2026-02-08
+- **Context:** PR #100 was created in Cycle 183, after QA's Cycle 182. Despite Design approval in Cycle 185, it must wait until QA Cycle 192 for review — a 10-cycle delay for a 2-step review.
+- **Insight:** Role rotation creates natural "wait-for-next-rotation" delays. A PR that just misses a role's turn waits a full cycle (10 roles = 10 cycles).
+- **Action:** Consider allowing cross-role review for blocking PRs, or add "fast-track" mechanism for PRs blocking milestone completion.
+- **Status:** pending
+
+## Learning 48: Sprint boundary planning should happen 3-5 cycles early
+
+- **Date:** 2026-02-08
+- **Context:** Product created Issue #102 (Sprint 2 planning) in Cycle 190, 4 days before Sprint 1 ends. This gives the team visibility into post-launch priorities.
+- **Insight:** Early sprint planning (not at boundary) enables roles to front-load prep work for next sprint items.
+- **Action:** Product should create next sprint planning issue when current sprint is 80% complete.
+- **Status:** applied
