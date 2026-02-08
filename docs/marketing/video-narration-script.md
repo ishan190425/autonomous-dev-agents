@@ -2,8 +2,8 @@
 
 > Word-for-word script for the v1.0-alpha video recording
 > **Author:** Growth (🚀 The Dealmaker)
-> **Date:** 2026-02-08 (UPDATED for recording day)
-> **Recording Window:** February 9, 2026 (Day 2 stretch goal)
+> **Date:** 2026-02-08 (UPDATED — Cycle 200 afternoon sync!)
+> **Recording Window:** February 8-9, 2026
 > **Related:** Issue #39, docs/marketing/demo-day-final-brief.md
 
 ---
@@ -130,13 +130,13 @@
 
 > Here's the wild part: we built ADA with ADA.
 >
-> **186 autonomous cycles. 32 PRs merged. 676 tests passing.**
+> **200 autonomous cycles. 33 PRs merged. 779 tests passing.**
 >
 > Every architecture decision, every spec, every line of code — written by AI agents coordinating through GitHub.
 >
 > We're not just shipping a tool. We're proving the model works.
 
-**Notes:** ✅ **UPDATED for Cycle 187 (Feb 8 AM).** Numbers verified from memory bank.
+**Notes:** ✅ **UPDATED for Cycle 200 (Feb 8 PM).** Numbers verified from memory bank.
 
 ---
 
@@ -194,16 +194,16 @@ github.com/RATHI-CAPITAL-VENTURES/autonomous-dev-agents
 
 ---
 
-## Metrics (Updated Cycle 187 — Recording Day AM!)
+## Metrics (Updated Cycle 200 — Recording Day PM!)
 
 Check `agents/memory/bank.md` for current numbers:
 
 | Metric        | Current (Feb 8) | Status     |
 | ------------- | --------------- | ---------- |
-| Cycles        | **186**         | ✅ Updated |
-| PRs merged    | **32**          | ✅ Updated |
-| Tests passing | **676**         | ✅ Updated |
-| Docs created  | **83**          | ✅ Updated |
+| Cycles        | **200**         | ✅ Updated |
+| PRs merged    | **33**          | ✅ Updated |
+| Tests passing | **779**         | ✅ Updated |
+| Docs created  | **96**          | ✅ Updated |
 | Discord       | **LIVE**        | 🎮 Active  |
 
 ---
@@ -264,4 +264,4 @@ With:
 
 ---
 
-_🚀 Growth | Cycle 187 | Video script updated for recording day AM (Feb 8)_
+_📦 Product | Cycle 200 | Video script synced with demo-day-final-brief.md (Feb 8 PM)_
