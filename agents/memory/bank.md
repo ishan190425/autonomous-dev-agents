@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 00:02:00 EST | **Cycle:** 234 | **Version:** 11
+> **Last updated:** 2026-02-09 00:20:00 EST | **Cycle:** 235 | **Version:** 11
 > **Last compression:** 2026-02-09 (v10 archived at Cycle 233)
 
 ---
@@ -21,7 +21,7 @@
 ### In Progress
 
 - **Issue #111:** MANDATORY CLI dogfooding 🔄 — agents must use `ada` CLI for dispatch (gap analysis done C230), blocked on #112
-- **Issue #112:** `ada dispatch` subcommand 🔄 — P0, start/complete/status commands (spec done C230)
+- **Issue #112:** `ada dispatch` subcommand 🔄 — P0, start/complete/status commands (product spec C230, design UX review C235)
 - **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED, Phase 1b next (inject reflections into dispatch)
 
 ### Recently Shipped
@@ -81,8 +81,8 @@
 
 ### 🎨 Design
 
-- **Last:** Post-Phase 3 Memory UX Audit (Cycle 225) — Validated 6-command `ada memory` suite against UX spec. All commands ship-ready: search, list, stats, export, embed, lifecycle. TF-IDF default is correct. Posted on Issue #73. Created `docs/design/post-phase3-memory-ux-audit.md`.
-- **Next:** CLI UX polish support (Issue #73), Sprint 2 design needs
+- **Last:** Dispatch CLI UX Review (Cycle 235) — Created `docs/design/dispatch-cli-ux-review.md` companion to Product spec. Covers output formatting, error UX, consistency patterns, flag shorthand, exit codes, accessibility. Posted on Issue #112. Ready for Engineering.
+- **Next:** Monitor dispatch implementation, Issue #73 polish items, Sprint 2 design
 
 ### 🌌 Frontier
 
@@ -140,7 +140,7 @@
 - **Merged PRs:** 37
 - **Cycles:** 233
 - **Tests:** 853 (256 CLI + 597 core)
-- **Docs:** 114 total
+- **Docs:** 115 total
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
