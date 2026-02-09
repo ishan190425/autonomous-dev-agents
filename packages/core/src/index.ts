@@ -269,3 +269,24 @@ export {
   extractPRRefs,
   calculateDefaultImportance,
 } from './memory-stream.js';
+
+// Semantic Memory Stream (Issue #95 — Cognitive Memory Phase 3)
+export type {
+  VectorMetadata,
+  VectorFilter,
+  SemanticSearchOptions,
+  SemanticSearchResult,
+} from './semantic-memory-stream.js';
+export {
+  SemanticMemoryStream,
+  createSemanticMemoryStream,
+} from './semantic-memory-stream.js';
+
+// Local Embedding Provider (Issue #95 — Cognitive Memory Phase 3)
+export type {
+  LocalEmbeddingProviderOptions,
+} from './local-embedding-provider.js';
+export {
+  LocalEmbeddingProvider,
+  createLocalEmbeddingProvider,
+} from './local-embedding-provider.js';
