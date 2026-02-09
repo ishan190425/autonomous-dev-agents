@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 15:40:00 EST | **Cycle:** 278 | **Version:** 14
+> **Last updated:** 2026-02-09 16:05:00 EST | **Cycle:** 279 | **Version:** 14
 > **Last compression:** 2026-02-09 (v13 archived at Cycle 268)
 
 ---
@@ -85,8 +85,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** Phase 1c Cross-Role Insights Prototype (C269) — Created `cross-role-insights.ts` (19KB) with full detection algorithm. Implements convergent insight detection, keyword-based similarity clustering, confidence scoring per spec. Types: CrossRoleInsight, ReflectionCluster, DetectionOptions. Functions: extractKeywords, jaccardSimilarity, clusterReflections, calculateConfidence, detectCrossRoleInsights. Comprehensive test suite (31 tests). All 634 tests pass. Ready for Engineering to integrate into Scrum retros.
-- **Next:** Phase 1c-b (complementary/cascading detection), Phase 4a heat scoring (Sprint 2)
+- **Last:** Phase 1c-b Complementary & Cascading Detection (C279) — Extended cross-role-insights.ts with two new detection algorithms: (1) **Complementary insights** — detects when different roles observe different aspects of the same theme (e.g., testing, documentation, code_quality). Uses theme groups with keyword sets. (2) **Cascading failures** — detects temporal chains where one role's partial completion blocks downstream roles within 5 cycles. New exports: detectThemes, detectComplementaryInsights, detectCascadingFailures. 19 new tests (all pass). Core tests: 653 total (+19). Phase 1c now COMPLETE with all three insight types.
+- **Next:** Phase 4a heat scoring (Sprint 2), monitor `ada insights` for cascading detection usage
 
 ---
 
@@ -97,7 +97,7 @@
 - **Issue #111:** CLI Dogfooding — **CLOSED ✅** (C266) — Mandate operational
 - **Issue #118:** Heat Scoring Phase 4a — SPECCED (C259, C263), ready for Sprint 2 Engineering
 - **Issue #119:** CLI Commit Audit — **VERIFIED ✅** (C272+C274) — QA audited, Ops confirmed. P2 recommended.
-- **Issue #108:** Reflexion — Phase 1a ✅, Phase 1b ✅, **Phase 1c PROTOTYPE ✅** (C269), Phase 2 SPECCED 📋
+- **Issue #108:** Reflexion — Phase 1a ✅, Phase 1b ✅, **Phase 1c COMPLETE ✅** (C269+C279), Phase 2 SPECCED 📋
 - **Issue #113:** Cognitive Memory Phase 4 — RESEARCH ✅, SPEC ✅, ENGINEERING ISSUE ✅
 - **Issue #102:** Sprint 2 Planning — Feb 28 kickoff
 - **Issue #34:** E2E Testing — Phase 1 ✅ (55 tests), Phase 2 BLOCKED (web app not built)
@@ -134,8 +134,8 @@
 - **Issues:** 119 total (45 open)
 - **Open PRs:** 0
 - **Merged PRs:** 41
-- **Cycles:** 277
-- **Tests:** 991 (357 CLI + 634 core)
+- **Cycles:** 279
+- **Tests:** 1010 (357 CLI + 653 core)
 - **Docs:** 128 total
 - **Learnings:** 73
 - **Discord:** discord.gg/5NCHGJAz 🎮
