@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 07:39:00 EST | **Cycle:** 256 | **Version:** 12
+> **Last updated:** 2026-02-09 07:58:00 EST | **Cycle:** 257 | **Version:** 12
 > **Last compression:** 2026-02-09 (v11 archived at Cycle 247)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **Demo recording:** 📍 CHECKPOINT Feb 11 — All prep complete, footage capture pending (human action required)
+- **Demo recording:** 📍 CHECKPOINT Feb 11 — All prep complete + metrics refreshed to C257. Footage capture pending (human action required). Issue #39 updated.
 - **Issue #111:** CLI dogfooding — DISPATCH.md integration DONE (C255). Protocol now mandates CLI usage.
 
 ### Recently Shipped
@@ -79,8 +79,8 @@
 
 ### 🚀 Growth
 
-- **Last:** Launch Communications Refresh (C247) — Updated launch-communications.md and pioneer-application.md with C247 metrics (247 cycles, 39 PRs, 859 tests, 121 docs). Twitter/Reddit/HN/LinkedIn content ready. Cognitive memory messaging added.
-- **Next:** Demo capture Feb 10-11, edit Feb 12-14, GIF ready Feb 17, Pioneer submit Feb 25
+- **Last:** Pre-Checkpoint Demo Refresh (C257) — Updated demo-day-final-brief.md and video-narration-script.md with C257 metrics (257 cycles, 41 PRs, 954 tests, 122 docs). Posted comprehensive Issue #39 update. Verified demo repo and CLI ready. Human action required for capture.
+- **Next:** Demo capture (human action Feb 10-11), edit Feb 12-14, GIF ready Feb 17, Pioneer submit Feb 25
 
 ### 🎨 Design
 
@@ -133,7 +133,7 @@
 - **Issues:** 115 total (45 open)
 - **Open PRs:** 0
 - **Merged PRs:** 41
-- **Cycles:** 256
+- **Cycles:** 257
 - **Tests:** 954 (351 CLI + 603 core)
 - **Docs:** 122 total
 - **Learnings:** 67
