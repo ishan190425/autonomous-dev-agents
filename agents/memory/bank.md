@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 13:30:00 EST | **Cycle:** 272 | **Version:** 14
+> **Last updated:** 2026-02-09 13:50:00 EST | **Cycle:** 273 | **Version:** 14
 > **Last compression:** 2026-02-09 (v13 archived at Cycle 268)
 
 ---
@@ -65,8 +65,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** Issue #118 Created (C263) — Engineering implementation issue for Cognitive Memory Phase 4a Heat Scoring. Broke down Frontier's 21KB spec into 9 actionable tasks (~11 hours total). Tagged sprint-2. Posted Issue #113 comment linking handoff. Sprint 2 ready.
-- **Next:** Phase 4a implementation (Sprint 2), support dogfooding
+- **Last:** `ada insights` CLI Command (C273) — Integrated Frontier's Phase 1c cross-role-insights.ts into CLI. New command `ada insights` with subcommands: `list` (detect patterns), `retro` (format for retrospectives), `issue` (generate GitHub issue from insight). Supports --cycles, --min-roles, --min-confidence, --json, --verbose flags. Completes Scrum's C271 recommendation. 6 new tests (all pass). Build ✅, Lint ✅ (0 errors).
+- **Next:** Phase 4a implementation (Sprint 2), monitor ada insights usage during retros
 
 ### 🛡️ Ops
 
@@ -133,8 +133,8 @@
 - **Issues:** 119 total (45 open)
 - **Open PRs:** 0
 - **Merged PRs:** 41
-- **Cycles:** 272
-- **Tests:** 985 (351 CLI + 634 core)
+- **Cycles:** 273
+- **Tests:** 991 (357 CLI + 634 core)
 - **Docs:** 128 total
 - **Learnings:** 73
 - **Discord:** discord.gg/5NCHGJAz 🎮
