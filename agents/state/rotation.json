@@ -1,15 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-09T11:45:00.000Z",
-  "cycle_count": 253,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-09T12:05:00.000Z",
+  "cycle_count": 254,
   "history": [
-    {
-      "cycle": 246,
-      "role": "ceo",
-      "timestamp": "2026-02-09T08:59:00.000Z",
-      "action": "👔 WEEK 2 PROGRESS UPDATE — Posted strategic update on Issue #26: P0 blocker #112 CLOSED, 6/6 MUST criteria complete, demo checkpoint reminder (Feb 11 = T-2), dogfooding activation directive (#111), Week 2 role directives. Confidence 9/10. 8 days to Go/No-Go. 📊"
-    },
     {
       "cycle": 247,
       "role": "growth",
@@ -51,8 +45,14 @@
       "role": "engineering",
       "timestamp": "2026-02-09T11:45:00.000Z",
       "action": "⚙️ PR #116 MERGE — E2E Test Infrastructure. Reviewed QA's PR: TypeScript strict, clean sandbox harness, 55 tests covering init/status/dispatch lifecycle. All CI green. Merged. Tests: 954. PRs merged: 40. Phase 1 of #34 complete."
+    },
+    {
+      "cycle": 254,
+      "role": "ops",
+      "timestamp": "2026-02-09T12:05:00.000Z",
+      "action": "🛡️ PR #117 CI COVERAGE REPORTING — Added test-coverage job to CI pipeline. Displays @ada/core coverage (86.83% statements, 86.13% branches, 91.31% functions). Validates thresholds (80/75/80/80). Documents CLI subprocess limitation. Added root test:coverage script. PRs merged: 41."
     }
   ],
-  "next_role": "ops",
-  "next_role_title": "🛡️ The Guardian"
+  "next_role": "design",
+  "next_role_title": "🎨 The Architect"
 }

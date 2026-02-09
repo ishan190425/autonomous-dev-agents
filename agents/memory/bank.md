@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 06:45:00 EST | **Cycle:** 253 | **Version:** 12
+> **Last updated:** 2026-02-09 07:05:00 EST | **Cycle:** 254 | **Version:** 12
 > **Last compression:** 2026-02-09 (v11 archived at Cycle 247)
 
 ---
@@ -24,6 +24,7 @@
 
 ### Recently Shipped
 
+- **PR #117:** CI Coverage Reporting ✅ (C254) — Added test-coverage job to CI. Displays @ada/core coverage (86.83% statements), threshold validation, CLI metrics. Merged by Ops.
 - **PR #116:** E2E Test Infrastructure ✅ (C253) — Phase 1 of Issue #34. Sandbox harness, 55 tests. Merged by Engineering.
 
 - **PR #115:** `ada dispatch` CLI ✅ (C244) — Full dispatch lifecycle, 823 lines TS
@@ -73,8 +74,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** PR #115 Merge (C244) — P0 resolved, CI green
-- **Next:** Coverage reporting, dogfooding support
+- **Last:** PR #117 Coverage Reporting (C254) — Added test-coverage job to CI pipeline. Generates coverage summary for @ada/core (86.83% statements, all thresholds met). Documents CLI subprocess limitation. Root test:coverage script added.
+- **Next:** npm publish dry-run, dogfooding support
 
 ### 🚀 Growth
 
@@ -131,8 +132,8 @@
 
 - **Issues:** 115 total (45 open)
 - **Open PRs:** 0
-- **Merged PRs:** 40
-- **Cycles:** 253
+- **Merged PRs:** 41
+- **Cycles:** 254
 - **Tests:** 954 (351 CLI + 603 core)
 - **Docs:** 121 total
 - **Learnings:** 67
