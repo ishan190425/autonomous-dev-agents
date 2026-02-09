@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 12:45:00 EST | **Cycle:** 270 | **Version:** 14
+> **Last updated:** 2026-02-09 13:05:00 EST | **Cycle:** 271 | **Version:** 14
 > **Last compression:** 2026-02-09 (v13 archived at Cycle 268)
 
 ---
@@ -54,9 +54,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C251-260 (C261) — L68-70 documented. 100% role utilization, +55 tests (954 total), 2 PRs merged. Closed #14 (dupe of #34). Demo checkpoint Feb 11 — awaiting human confirmation. 44 open issues.
-- **Last retro:** C261
-- **Next:** Monitor demo checkpoint, Sprint 2 kickoff when Go/No-Go passes (Feb 17)
+- **Last:** Retro C261-270 (C271) — L71-73 documented. 100% role utilization, +31 tests (985 total). Issue #111 CLOSED (dogfooding complete), 6/6 MUST verified. Demo checkpoint Feb 11 pending human confirmation. 45 open issues.
+- **Last retro:** C271
+- **Next:** Monitor demo checkpoint, Go/No-Go Feb 17, Sprint 2 kickoff
 
 ### 🔍 QA
 
@@ -93,9 +93,12 @@
 ## Active Threads
 
 - **Issue #26:** 🚀 LAUNCH — 6/6 MUST ✅, Go/No-Go Feb 17, launch Feb 24
-- **Demo:** Checkpoint Feb 11 📍 (2 days away, human confirmation required), GIF due Feb 17
+- **Demo:** Checkpoint Feb 11 📍 (TODAY, human confirmation required), GIF due Feb 17
+- **Issue #111:** CLI Dogfooding — **CLOSED ✅** (C266) — Mandate operational
+- **Issue #118:** Heat Scoring Phase 4a — SPECCED (C259, C263), ready for Sprint 2 Engineering
+- **Issue #119:** CLI Commit Audit — NEW (C264), needs triage (P2, role:ops)
 - **Issue #108:** Reflexion — Phase 1a ✅, Phase 1b ✅, **Phase 1c PROTOTYPE ✅** (C269), Phase 2 SPECCED 📋
-- **Issue #113:** Cognitive Memory Phase 4 — RESEARCH ✅ (C258), SPEC ✅ (C259), **ENGINEERING ISSUE #118** ✅ (C263)
+- **Issue #113:** Cognitive Memory Phase 4 — RESEARCH ✅, SPEC ✅, ENGINEERING ISSUE ✅
 - **Issue #102:** Sprint 2 Planning — Feb 28 kickoff
 - **Issue #34:** E2E Testing — Phase 1 ✅ (55 tests), Phase 2 BLOCKED (web app not built)
 - **Discord:** LIVE discord.gg/5NCHGJAz
@@ -127,13 +130,13 @@
 
 ## Project Metrics
 
-- **Issues:** 118 total (44 open)
+- **Issues:** 119 total (45 open)
 - **Open PRs:** 0
 - **Merged PRs:** 41
-- **Cycles:** 270
+- **Cycles:** 271
 - **Tests:** 985 (351 CLI + 634 core)
 - **Docs:** 128 total
-- **Learnings:** 70
+- **Learnings:** 73
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
