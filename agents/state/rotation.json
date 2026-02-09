@@ -1,15 +1,9 @@
 {
-  "current_index": 5,
-  "last_role": "product",
-  "last_run": "2026-02-09T14:00:22.998Z",
-  "cycle_count": 260,
+  "current_index": 6,
+  "last_role": "scrum",
+  "last_run": "2026-02-09T14:17:52.921Z",
+  "cycle_count": 261,
   "history": [
-    {
-      "cycle": 251,
-      "role": "scrum",
-      "timestamp": "2026-02-09T10:35:00.000Z",
-      "action": "📋 RETRO C241-250 — Created docs/retros/retro-cycles-241-250.md. 100% role utilization, P0 #112 closed, 6/6 MUST verified. Added L65-67 (double-PR cycles, transition guides, confidence tracking). 45 open issues flagged for triage. Demo checkpoint Feb 11 needs status. Next retro: C261."
-    },
     {
       "cycle": 252,
       "role": "qa",
@@ -63,6 +57,12 @@
       "timestamp": "2026-02-09T14:00:22.998Z",
       "cycle": 260,
       "action": "📦 PRE-DEMO PRODUCT VALIDATION (C260) — Final UX sign-off before demo capture checkpoint (Feb 11). Validated CLI UX: status/init/run output clean and polished. Verified demo repo ready (ada-demo-project, Cycle 0, clean slate). Created pre-demo-product-validation-c260.md. Posted Issue #39 approval comment. Product gives green light for human to proceed with footage capture Feb 10-11. Demo prep: 100% complete. 🎬"
+    },
+    {
+      "role": "scrum",
+      "timestamp": "2026-02-09T14:17:52.921Z",
+      "cycle": 261,
+      "action": "📋 RETRO C251-260 — Created docs/retros/retro-cycles-251-260.md. 100% role utilization, +55 tests (954 total), 2 PRs merged (#116, #117). Added L68-70 (sandbox harness, coverage visibility, dogfooding transition guides). Closed #14 (dupe of #34). Issue triage complete: 44 open issues. Demo checkpoint Feb 11 awaiting human confirmation. Next retro: C271."
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 08:57:00 EST | **Cycle:** 260 | **Version:** 13
+> **Last updated:** 2026-02-09 09:15:00 EST | **Cycle:** 261 | **Version:** 13
 > **Last compression:** 2026-02-09 (v12 archived at Cycle 258)
 
 ---
@@ -55,9 +55,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C241-250 (C251) — L65-67 documented. 100% role utilization, P0 #112 closed, 6/6 MUST verified. Demo checkpoint Feb 11 pending. 45 open issues need triage.
-- **Last retro:** C251
-- **Next:** Issue triage, Sprint 2 kickoff prep
+- **Last:** Retro C251-260 (C261) — L68-70 documented. 100% role utilization, +55 tests (954 total), 2 PRs merged. Closed #14 (dupe of #34). Demo checkpoint Feb 11 — awaiting human confirmation. 44 open issues.
+- **Last retro:** C261
+- **Next:** Monitor demo checkpoint, Sprint 2 kickoff when Go/No-Go passes (Feb 17)
 
 ### 🔍 QA
 
@@ -95,10 +95,11 @@
 
 - **Issue #26:** 🚀 LAUNCH — 6/6 MUST ✅, Go/No-Go Feb 17, launch Feb 24
 - **Issue #111:** CLI dogfooding — DISPATCH.md updated (C255), protocol live, playbook examples pending
-- **Demo:** Checkpoint Feb 11, GIF due Feb 17
+- **Demo:** Checkpoint Feb 11 📍 (awaiting human confirmation), GIF due Feb 17
 - **Issue #108:** Reflexion — Phase 1a ✅, Phase 1b ✅, Phase 1c SPECCED 📋, Phase 2 SPECCED 📋
 - **Issue #113:** Cognitive Memory Phase 4 — RESEARCH ✅ (C258), IMPLEMENTATION SPEC ✅ (C259), ready for Engineering Sprint 2
 - **Issue #102:** Sprint 2 Planning — Feb 28 kickoff
+- **Issue #34:** E2E Testing Phase 2 — Phase 1 ✅ (PR #116), Playwright Web E2E pending (QA, L)
 - **Discord:** LIVE discord.gg/5NCHGJAz
 
 ---
@@ -128,13 +129,13 @@
 
 ## Project Metrics
 
-- **Issues:** 115 total (45 open)
+- **Issues:** 115 total (44 open)
 - **Open PRs:** 0
 - **Merged PRs:** 41
-- **Cycles:** 260
+- **Cycles:** 261
 - **Tests:** 954 (351 CLI + 603 core)
-- **Docs:** 125 total
-- **Learnings:** 67
+- **Docs:** 126 total
+- **Learnings:** 70
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
