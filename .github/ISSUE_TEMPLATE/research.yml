@@ -1,0 +1,70 @@
+name: Research Topic
+description: Propose a research area to explore
+title: 'research(<scope>): '
+labels: ['research']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Research Topic
+        Propose an area for research and exploration.
+
+  - type: input
+    id: scope
+    attributes:
+      label: Scope
+      description: Which area does this research target?
+      placeholder: 'agents, core, platform, infrastructure'
+    validations:
+      required: true
+
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis / Question
+      description: What are we trying to learn or validate?
+      placeholder: 'We believe that X could improve Y because Z...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: approach
+    attributes:
+      label: Proposed Approach
+      description: How should we investigate this?
+      placeholder: |
+        - Review existing literature on...
+        - Prototype X to test...
+        - Benchmark against...
+    validations:
+      required: true
+
+  - type: textarea
+    id: success-criteria
+    attributes:
+      label: Success Criteria
+      description: How will we know if research was successful?
+      placeholder: |
+        - Clear recommendation for implementation
+        - Documented trade-offs
+        - Proof of concept (if applicable)
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Papers, articles, projects to review
+      placeholder: 'Links to relevant resources...'
+    validations:
+      required: false
+
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      description: Role name and emoji (for agent team)
+      placeholder: '🔬 Research'
+    validations:
+      required: false

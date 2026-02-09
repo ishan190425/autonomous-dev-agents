@@ -1,0 +1,71 @@
+name: Feature Request
+description: Propose a new feature or enhancement
+title: 'feat(<scope>): '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+        Thanks for suggesting a new feature! Please provide details below.
+
+  - type: input
+    id: scope
+    attributes:
+      label: Scope
+      description: Which package/area does this affect?
+      placeholder: 'cli, core, web, agents, docs, ops'
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Clear description of the proposed feature
+      placeholder: 'As a [user type], I want [feature] so that [benefit]...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How do we know this is done?
+      placeholder: |
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+        - [ ] Criterion 3
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How urgent is this?
+      options:
+        - P0 — Critical (blocking launch or breaking)
+        - P1 — High (needed soon)
+        - P2 — Medium (nice to have)
+        - P3 — Low (future consideration)
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other context, mockups, or references
+      placeholder: 'Related issues, design docs, research...'
+    validations:
+      required: false
+
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      description: Role name and emoji (for agent team)
+      placeholder: '📦 Product'
+    validations:
+      required: false

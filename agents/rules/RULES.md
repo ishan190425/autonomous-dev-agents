@@ -21,6 +21,7 @@
 | R-009 | [npm Workspace Rules](#r-009-npm-workspace-rules)            | Ops     | Init       |
 | R-010 | [PR Management & CI](#r-010-pr-management--ci)               | Ops     | 2026-01-30 |
 | R-011 | [PR Hygiene & Transparency](#r-011-pr-hygiene--transparency) | Ops     | 2026-02-02 |
+| R-012 | [GitHub Templates](#r-012-github-templates)                  | Ops     | 2026-02-09 |
 
 ---
 
@@ -209,6 +210,51 @@ Before starting new work, agents MUST review all open PRs:
 ### Why This Rule Matters
 
 Autonomous agent teams generate PRs at high velocity. Without active hygiene, repos become graveyards of half-finished work that confuse human reviewers and new contributors. Clean PR state = trustworthy project.
+
+---
+
+## R-012: GitHub Templates
+
+### Purpose
+
+Standardized templates for PRs and issues ensure consistent quality, reduce review friction, and make the project accessible to human contributors.
+
+### Templates Available
+
+Located in `.github/`:
+
+- **PR Template** (`PULL_REQUEST_TEMPLATE.md`) — Required sections for all PRs
+- **Issue Templates** (`ISSUE_TEMPLATE/`) — Structured forms for:
+  - Feature requests (`feature.yml`)
+  - Bug reports (`bug.yml`)
+  - Research topics (`research.yml`)
+  - Documentation (`documentation.yml`)
+
+### PR Template Requirements
+
+Every PR MUST include:
+
+1. **Summary** — Brief description of changes
+2. **Type of Change** — One of: feat, fix, docs, refactor, test, chore, ci, perf
+3. **Related Issues** — References to issues (Closes #XX, Relates to #XX)
+4. **Changes Made** — Bullet list of specific changes
+5. **Testing** — Confirmation of local testing
+6. **Checklist** — Conventional commit title, tests included, docs updated
+
+### Issue Template Requirements
+
+All issues SHOULD use the appropriate template when applicable:
+
+- **Features** → Use feature template with acceptance criteria
+- **Bugs** → Use bug template with reproduction steps
+- **Research** → Use research template with hypothesis and success criteria
+- **Docs** → Use documentation template with outline
+
+Blank issues are allowed for quick notes or agent-generated issues that don't fit templates.
+
+### Why This Rule Matters
+
+Templates enforce R-006 (Issue Quality) and R-011 (PR Hygiene) automatically. They reduce cognitive load, speed up reviews, and help new contributors understand expectations. The author field on templates maintains agent attribution in the autonomous workflow.
 
 ---
 

@@ -1,0 +1,63 @@
+name: Documentation
+description: Propose new or updated documentation
+title: 'docs(<scope>): '
+labels: ['documentation']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Documentation Request
+        Propose new documentation or improvements to existing docs.
+
+  - type: input
+    id: scope
+    attributes:
+      label: Scope
+      description: Which area needs documentation?
+      placeholder: 'cli, core, product, research, agents'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Documentation Type
+      options:
+        - New documentation
+        - Update existing docs
+        - Fix errors/typos
+        - Add examples
+        - Architecture decision record (ADR)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What documentation is needed?
+      placeholder: 'We need docs that explain...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: outline
+    attributes:
+      label: Suggested Outline
+      description: What should the documentation cover?
+      placeholder: |
+        1. Overview
+        2. Getting Started
+        3. Usage Examples
+        4. API Reference
+    validations:
+      required: false
+
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      description: Role name and emoji (for agent team)
+      placeholder: '📦 Product'
+    validations:
+      required: false
