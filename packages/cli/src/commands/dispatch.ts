@@ -1,0 +1,821 @@
+/**
+ * `ada dispatch` — Dispatch cycle lifecycle management
+ *
+ * Commands for managing autonomous agent dispatch cycles:
+ *   start    — Initialize a dispatch cycle
+ *   complete — Finalize cycle, update rotation, commit, push
+ *   status   — Show current dispatch state
+ *
+ * Required for Issue #111 (MANDATORY CLI dogfooding).
+ *
+ * @see Issue #112 for full specification
+ * @see docs/product/dispatch-cli-spec.md
+ * @see docs/design/dispatch-cli-ux-review.md
+ */
+
+import { Command } from 'commander';
+import * as path from 'node:path';
+import * as fs from 'node:fs/promises';
+import { exec as execCb } from 'node:child_process';
+import { promisify } from 'node:util';
+import { setTimeout } from 'node:timers/promises';
+import chalk from 'chalk';
+import {
+  readRotationState,
+  readRoster,
+  writeRotationState,
+  getCurrentRole,
+  advanceRotation,
+} from '@ada/core';
+import type { Role, Roster, RotationState, Reflection } from '@ada/core';
+
+const exec = promisify(execCb);
+
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+/** Dispatch cycle in-progress state stored in lock file */
+interface DispatchLock {
+  /** Cycle number when started */
+  cycle: number;
+  /** Role ID for this cycle */
+  role: string;
+  /** ISO timestamp when started */
+  startedAt: string;
+}
+
+/** Exit codes per UX spec */
+const EXIT_CODES = {
+  SUCCESS: 0,
+  CYCLE_IN_PROGRESS: 1,
+  NOT_THIS_ROLES_TURN: 2,
+  GIT_FAILED: 3,
+  MISSING_REQUIRED_FLAG: 4,
+  STATE_CORRUPTION: 5,
+} as const;
+
+// ─── Options Interfaces ──────────────────────────────────────────────────────
+
+interface DispatchStartOptions {
+  dir: string;
+  role?: string;
+  dryRun?: boolean;
+  json?: boolean;
+  quiet?: boolean;
+  noBanner?: boolean;
+  force?: boolean;
+}
+
+interface DispatchCompleteOptions {
+  dir: string;
+  action: string;
+  outcome?: 'success' | 'partial' | 'blocked';
+  reflection?: string;
+  skipPush?: boolean;
+  json?: boolean;
+  quiet?: boolean;
+}
+
+interface DispatchStatusOptions {
+  dir: string;
+  json?: boolean;
+  verbose?: boolean;
+  quiet?: boolean;
+}
+
+// ─── Utilities ───────────────────────────────────────────────────────────────
+
+/**
+ * Get the path to the dispatch lock file.
+ */
+function getLockPath(agentsDir: string): string {
+  return path.join(agentsDir, 'state', '.dispatch.lock');
+}
+
+/**
+ * Check if a dispatch cycle is currently in progress.
+ */
+async function getActiveLock(agentsDir: string): Promise<DispatchLock | null> {
+  const lockPath = getLockPath(agentsDir);
+  try {
+    const content = await fs.readFile(lockPath, 'utf-8');
+    return JSON.parse(content) as DispatchLock;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Create a dispatch lock file.
+ */
+async function createLock(
+  agentsDir: string,
+  lock: DispatchLock
+): Promise<void> {
+  const lockPath = getLockPath(agentsDir);
+  await fs.writeFile(lockPath, JSON.stringify(lock, null, 2), 'utf-8');
+}
+
+/**
+ * Remove the dispatch lock file.
+ */
+async function removeLock(agentsDir: string): Promise<void> {
+  const lockPath = getLockPath(agentsDir);
+  try {
+    await fs.unlink(lockPath);
+  } catch {
+    // Lock file doesn't exist — that's fine
+  }
+}
+
+/**
+ * Format a timestamp as a relative time string.
+ */
+function formatTimeAgo(isoTimestamp: string): string {
+  const date = new Date(isoTimestamp);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+
+  const seconds = Math.floor(diffMs / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (days > 0) return days === 1 ? '1d ago' : `${days}d ago`;
+  if (hours > 0) return hours === 1 ? '1h ago' : `${hours}h ago`;
+  if (minutes > 0) return minutes === 1 ? '1m ago' : `${minutes}m ago`;
+  return 'just now';
+}
+
+/**
+ * Format duration from start time to now.
+ */
+function formatDuration(startedAt: string): string {
+  const start = new Date(startedAt);
+  const now = new Date();
+  const diffMs = now.getTime() - start.getTime();
+
+  const seconds = Math.floor(diffMs / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  if (minutes > 0) {
+    return `${minutes}m ${remainingSeconds}s`;
+  }
+  return `${seconds}s`;
+}
+
+/**
+ * Get role display string with emoji.
+ */
+function formatRole(role: Role): string {
+  return `${role.emoji} ${role.name} (${role.title})`;
+}
+
+/**
+ * Get role at a specific offset from current index.
+ */
+function getRoleAtOffset(roster: Roster, currentIndex: number, offset: number): Role | null {
+  const { rotation_order, roles } = roster;
+  if (rotation_order.length === 0) return null;
+
+  const index = (currentIndex + offset) % rotation_order.length;
+  const roleId = rotation_order[index];
+  return roles.find((r) => r.id === roleId) ?? null;
+}
+
+/**
+ * Format rotation visualization.
+ */
+function formatRotationBanner(roster: Roster, currentIndex: number): string {
+  const { rotation_order, roles } = roster;
+  const lines: string[] = [];
+
+  // Build rotation string with current marker
+  const parts: string[] = [];
+  for (let i = 0; i < rotation_order.length; i++) {
+    const roleId = rotation_order[i];
+    const role = roles.find((r) => r.id === roleId);
+    if (!role) continue;
+
+    if (i === currentIndex) {
+      parts.push(`${role.id}*`);
+    } else {
+      parts.push(role.id);
+    }
+  }
+
+  // Split into two rows for readability
+  const midPoint = Math.ceil(parts.length / 2);
+  const row1 = parts.slice(0, midPoint).join(' → ');
+  const row2 = parts.slice(midPoint).join(' → ');
+
+  lines.push('┌─────────────────────────────────────────────────┐');
+  lines.push(`│  Rotation: ${row1.padEnd(35)} │`);
+  lines.push(`│            ${row2.padEnd(35)} │`);
+  lines.push('└─────────────────────────────────────────────────┘');
+
+  return lines.join('\n');
+}
+
+/**
+ * Execute a git command and return the output.
+ */
+async function gitExec(cwd: string, args: string): Promise<{ stdout: string; stderr: string }> {
+  try {
+    return await exec(`git ${args}`, { cwd });
+  } catch (error) {
+    const err = error as { stdout?: string; stderr?: string; message?: string };
+    throw new Error(err.stderr || err.message || 'Git command failed');
+  }
+}
+
+// ─── Start Command ───────────────────────────────────────────────────────────
+
+/**
+ * Execute dispatch start command.
+ */
+async function executeStart(options: DispatchStartOptions): Promise<void> {
+  const cwd = process.cwd();
+  const agentsDir = path.resolve(cwd, options.dir, 'agents');
+  const statePath = path.join(agentsDir, 'state', 'rotation.json');
+  const rosterPath = path.join(agentsDir, 'roster.json');
+
+  // Load state
+  let state: RotationState;
+  let roster: Roster;
+
+  try {
+    [state, roster] = await Promise.all([
+      readRotationState(statePath),
+      readRoster(rosterPath),
+    ]);
+  } catch (err) {
+    if (options.json) {
+      console.log(JSON.stringify({ error: (err as Error).message }));
+    } else {
+      console.error(chalk.red('❌ Could not read agent state:'), (err as Error).message);
+      console.error(chalk.gray("   Run 'ada init' to set up an agent team.\n"));
+    }
+    process.exit(EXIT_CODES.STATE_CORRUPTION);
+  }
+
+  // Check for active lock
+  const activeLock = await getActiveLock(agentsDir);
+  if (activeLock && !options.force) {
+    const activeRole = roster.roles.find((r) => r.id === activeLock.role);
+    const expectedRole = getCurrentRole(state, roster);
+    const elapsed = formatDuration(activeLock.startedAt);
+
+    if (options.json) {
+      console.log(JSON.stringify({
+        error: 'cycle_in_progress',
+        activeCycle: activeLock.cycle,
+        activeRole: activeLock.role,
+        elapsed,
+        expectedRole: expectedRole?.id ?? null,
+      }));
+    } else {
+      console.log(chalk.yellow('\n⚠️  Cycle Already in Progress\n'));
+      console.log(`  ${chalk.gray('Active:')}    Cycle ${activeLock.cycle} (${activeRole?.emoji ?? '❓'} ${activeRole?.name ?? activeLock.role}) — started ${elapsed} ago`);
+      console.log(`  ${chalk.gray('Expected:')}  Cycle ${state.cycle_count + 1} (${expectedRole ? formatRole(expectedRole) : '(none)'})`);
+      console.log();
+      console.log('  A cycle is already running. Options:\n');
+      console.log(`${chalk.cyan('    ada dispatch complete --action "..."')}   # Complete current cycle`);
+      console.log(`${chalk.red('    ada dispatch start --force')}             # Override (dangerous)`);
+      console.log();
+      console.log(chalk.gray('  Concurrent cycles corrupt rotation state.'));
+    }
+    process.exit(EXIT_CODES.CYCLE_IN_PROGRESS);
+  }
+
+  // Determine current role
+  const currentRole = options.role
+    ? roster.roles.find((r) => r.id === options.role)
+    : getCurrentRole(state, roster);
+
+  if (!currentRole) {
+    if (options.json) {
+      console.log(JSON.stringify({ error: 'no_role_found', requestedRole: options.role ?? null }));
+    } else {
+      console.error(chalk.red(`❌ Role not found: ${options.role ?? '(none configured)'}`));
+    }
+    process.exit(EXIT_CODES.STATE_CORRUPTION);
+  }
+
+  // Check if it's this role's turn (warn if forcing different role)
+  const expectedRole = getCurrentRole(state, roster);
+  if (options.role && expectedRole && options.role !== expectedRole.id) {
+    if (!options.json && !options.quiet) {
+      console.log(chalk.yellow(`\n⚠️  Forcing role ${currentRole.emoji} ${currentRole.name} (expected: ${expectedRole.emoji} ${expectedRole.name})\n`));
+    }
+  }
+
+  // Get memory bank version
+  let bankVersion = 0;
+  try {
+    const bankPath = path.join(agentsDir, 'memory', 'bank.md');
+    const bankContent = await fs.readFile(bankPath, 'utf-8');
+    const versionMatch = bankContent.match(/\*\*Version:\*\*\s*(\d+)/i) ??
+                         bankContent.match(/\| \*\*Cycle:\*\*.*\| \*\*Version:\*\*\s*(\d+)/);
+    if (versionMatch?.[1]) {
+      bankVersion = parseInt(versionMatch[1], 10);
+    }
+  } catch {
+    // Bank might not exist yet
+  }
+
+  const nextCycle = state.cycle_count + 1;
+  const playbookPath = path.join(agentsDir, 'playbooks', `${currentRole.id}.md`);
+
+  // Create lock (unless dry-run)
+  if (!options.dryRun) {
+    const lock: DispatchLock = {
+      cycle: nextCycle,
+      role: currentRole.id,
+      startedAt: new Date().toISOString(),
+    };
+    await createLock(agentsDir, lock);
+  }
+
+  // Output
+  if (options.json) {
+    console.log(JSON.stringify({
+      cycle: nextCycle,
+      role: {
+        id: currentRole.id,
+        emoji: currentRole.emoji,
+        name: currentRole.name,
+        title: currentRole.title,
+      },
+      playbook: playbookPath,
+      memoryBank: {
+        path: path.join(agentsDir, 'memory', 'bank.md'),
+        version: bankVersion,
+      },
+      dryRun: options.dryRun ?? false,
+    }));
+    return;
+  }
+
+  if (options.quiet) {
+    console.log(`Cycle ${nextCycle} started (${currentRole.emoji} ${currentRole.name})`);
+    return;
+  }
+
+  // Full output
+  console.log(chalk.bold.green(`\n🚀 Cycle ${nextCycle} Started\n`));
+  console.log(`  ${chalk.gray('Role:')}      ${formatRole(currentRole)}`);
+  console.log(`  ${chalk.gray('Playbook:')}  ${path.relative(cwd, playbookPath)}`);
+  console.log(`  ${chalk.gray('Memory:')}    agents/memory/bank.md (v${bankVersion})`);
+
+  if (!options.noBanner) {
+    console.log();
+    console.log(formatRotationBanner(roster, state.current_index));
+  }
+
+  console.log();
+  console.log(`Complete with: ${chalk.cyan('ada dispatch complete --action "..."')}`);
+  console.log();
+}
+
+// ─── Complete Command ────────────────────────────────────────────────────────
+
+/**
+ * Execute dispatch complete command.
+ */
+async function executeComplete(options: DispatchCompleteOptions): Promise<void> {
+  const cwd = process.cwd();
+  const agentsDir = path.resolve(cwd, options.dir, 'agents');
+  const statePath = path.join(agentsDir, 'state', 'rotation.json');
+  const rosterPath = path.join(agentsDir, 'roster.json');
+
+  // Validate action flag
+  if (!options.action) {
+    if (options.json) {
+      console.log(JSON.stringify({ error: 'missing_action' }));
+    } else {
+      console.log(chalk.red('\n❌ Missing --action flag\n'));
+      console.log('  The --action flag describes what you did this cycle.\n');
+      console.log('  Usage:');
+      console.log(chalk.cyan('    ada dispatch complete --action "Reviewed PR #110 — approved"'));
+      console.log(chalk.cyan('    ada dispatch complete -a "Wrote docs for memory API"'));
+      console.log();
+      console.log(chalk.gray('  This text appears in commit history and rotation logs.'));
+    }
+    process.exit(EXIT_CODES.MISSING_REQUIRED_FLAG);
+  }
+
+  // Load state
+  let state: RotationState;
+  let roster: Roster;
+
+  try {
+    [state, roster] = await Promise.all([
+      readRotationState(statePath),
+      readRoster(rosterPath),
+    ]);
+  } catch (err) {
+    if (options.json) {
+      console.log(JSON.stringify({ error: (err as Error).message }));
+    } else {
+      console.error(chalk.red('❌ Could not read agent state:'), (err as Error).message);
+    }
+    process.exit(EXIT_CODES.STATE_CORRUPTION);
+  }
+
+  // Check for active lock
+  const activeLock = await getActiveLock(agentsDir);
+  const startTime = activeLock?.startedAt ?? new Date().toISOString();
+  const duration = formatDuration(startTime);
+
+  // Determine current role
+  const currentRole = getCurrentRole(state, roster);
+  if (!currentRole) {
+    if (options.json) {
+      console.log(JSON.stringify({ error: 'no_current_role' }));
+    } else {
+      console.error(chalk.red('❌ No current role in rotation'));
+    }
+    process.exit(EXIT_CODES.STATE_CORRUPTION);
+  }
+
+  // Parse reflection if provided
+  let reflection: Reflection | undefined;
+  if (options.reflection) {
+    reflection = {
+      outcome: options.outcome ?? 'success',
+      whatWorked: options.reflection,
+    };
+  }
+
+  // Advance rotation
+  const outcome = options.outcome ?? 'success';
+  const newState = advanceRotation(state, roster, {
+    action: options.action,
+    ...(reflection ? { reflection } : {}),
+  });
+
+  // Write new state
+  await writeRotationState(statePath, newState);
+
+  // Remove lock
+  await removeLock(agentsDir);
+
+  // Get next role
+  const nextRole = getRoleAtOffset(roster, newState.current_index, 0);
+
+  // Build commit message
+  const roleShort = currentRole.id;
+  const actionShort = options.action.length > 50
+    ? `${options.action.substring(0, 47)}...`
+    : options.action;
+  const commitMessage = `chore(agents): cycle ${newState.cycle_count} — ${roleShort} — ${actionShort}`;
+
+  // Git operations
+  let pushed = false;
+  let commitSha = '';
+  let pushError: string | null = null;
+
+  try {
+    // Stage all changes in agents directory
+    const relativePath = path.relative(cwd, agentsDir);
+    await gitExec(cwd, `add "${relativePath}"`);
+
+    // Commit
+    const { stdout: commitOut } = await gitExec(cwd, `commit -m "${commitMessage.replace(/"/g, '\\"')}"`);
+    const shaMatch = commitOut.match(/\[[\w-]+\s+([a-f0-9]+)\]/);
+    commitSha = shaMatch?.[1] ?? '';
+
+    // Push (unless skip-push)
+    if (!options.skipPush) {
+      try {
+        await gitExec(cwd, 'push origin HEAD');
+        pushed = true;
+      } catch (err) {
+        pushError = (err as Error).message;
+        // Retry once after 2 seconds
+        await setTimeout(2000);
+        try {
+          await gitExec(cwd, 'push origin HEAD');
+          pushed = true;
+          pushError = null;
+        } catch (retryErr) {
+          pushError = (retryErr as Error).message;
+        }
+      }
+    }
+  } catch (err) {
+    if (options.json) {
+      console.log(JSON.stringify({
+        error: 'git_failed',
+        message: (err as Error).message,
+        cycle: newState.cycle_count,
+        action: options.action,
+      }));
+    } else {
+      console.error(chalk.red('❌ Git operation failed:'), (err as Error).message);
+      console.error(chalk.gray('   Rotation state was updated. Manual git commit may be needed.'));
+    }
+    process.exit(EXIT_CODES.GIT_FAILED);
+  }
+
+  // Output
+  if (options.json) {
+    console.log(JSON.stringify({
+      cycle: newState.cycle_count,
+      role: currentRole.id,
+      action: options.action,
+      outcome,
+      duration,
+      git: {
+        commit: commitSha,
+        message: commitMessage,
+        pushed,
+        pushError,
+      },
+      nextRole: nextRole ? {
+        id: nextRole.id,
+        emoji: nextRole.emoji,
+        name: nextRole.name,
+      } : null,
+    }));
+    return;
+  }
+
+  if (options.quiet) {
+    const pushStatus = options.skipPush ? 'committed' : (pushed ? 'pushed' : 'push failed');
+    console.log(`Cycle ${newState.cycle_count} complete (${outcome}) — ${pushStatus}`);
+    return;
+  }
+
+  // Full output
+  if (pushed || options.skipPush) {
+    console.log(chalk.bold.green(`\n✅ Cycle ${newState.cycle_count} Complete\n`));
+  } else {
+    console.log(chalk.bold.yellow(`\n⚠️ Cycle ${newState.cycle_count} Committed (Push Failed)\n`));
+  }
+
+  console.log(`  ${chalk.gray('Role:')}      ${formatRole(currentRole)}`);
+  console.log(`  ${chalk.gray('Action:')}    ${options.action}`);
+  console.log(`  ${chalk.gray('Outcome:')}   ${outcome}`);
+  console.log(`  ${chalk.gray('Duration:')} ${duration}`);
+  console.log();
+
+  console.log(`  ${chalk.gray('Git:')}`);
+  console.log(`    ${chalk.gray('Commit:')}  ${commitMessage}`);
+  console.log(`    ${chalk.gray('Branch:')}  main`);
+
+  if (options.skipPush) {
+    console.log(`    ${chalk.gray('Pushed:')}  ${chalk.yellow('⏭ skipped (--skip-push)')}`);
+  } else if (pushed) {
+    console.log(`    ${chalk.gray('Pushed:')}  ${chalk.green('✓ origin/main')}`);
+  } else {
+    console.log(`    ${chalk.gray('Pushed:')}  ${chalk.red('✗ Failed')}`);
+    console.log();
+    console.log('  ┌─────────────────────────────────────────────────┐');
+    console.log('  │  Changes are committed locally but not pushed.  │');
+    console.log('  │                                                 │');
+    console.log('  │  Run: git push origin main                      │');
+    console.log('  └─────────────────────────────────────────────────┘');
+  }
+
+  console.log();
+  if (nextRole) {
+    console.log(`  ${chalk.gray('Next:')}      ${formatRole(nextRole)}`);
+  }
+  console.log();
+}
+
+// ─── Status Command ──────────────────────────────────────────────────────────
+
+/**
+ * Execute dispatch status command.
+ */
+async function executeStatus(options: DispatchStatusOptions): Promise<void> {
+  const cwd = process.cwd();
+  const agentsDir = path.resolve(cwd, options.dir, 'agents');
+  const statePath = path.join(agentsDir, 'state', 'rotation.json');
+  const rosterPath = path.join(agentsDir, 'roster.json');
+
+  // Load state
+  let state: RotationState;
+  let roster: Roster;
+
+  try {
+    [state, roster] = await Promise.all([
+      readRotationState(statePath),
+      readRoster(rosterPath),
+    ]);
+  } catch (err) {
+    if (options.json) {
+      console.log(JSON.stringify({ error: (err as Error).message }));
+    } else {
+      console.error(chalk.red('❌ Could not read agent state:'), (err as Error).message);
+      console.error(chalk.gray("   Run 'ada init' to set up an agent team.\n"));
+    }
+    process.exit(EXIT_CODES.STATE_CORRUPTION);
+  }
+
+  // Check for active lock
+  const activeLock = await getActiveLock(agentsDir);
+  const isInProgress = activeLock !== null;
+
+  // Get roles
+  const currentRole = getCurrentRole(state, roster);
+  const nextRole = getRoleAtOffset(roster, state.current_index, 1);
+
+  // Get last entry from history
+  const lastEntry = state.history.length > 0
+    ? state.history[state.history.length - 1]
+    : null;
+  const lastRole = lastEntry
+    ? roster.roles.find((r) => r.id === lastEntry.role)
+    : null;
+
+  // Output
+  if (options.json) {
+    console.log(JSON.stringify({
+      cycle: state.cycle_count + (isInProgress ? 1 : 0),
+      state: isInProgress ? 'in_progress' : 'ready',
+      inProgress: isInProgress,
+      activeLock: activeLock ?? null,
+      currentRole: currentRole ? {
+        id: currentRole.id,
+        emoji: currentRole.emoji,
+        name: currentRole.name,
+        title: currentRole.title,
+      } : null,
+      lastCycle: lastEntry ? {
+        cycle: lastEntry.cycle,
+        role: lastEntry.role,
+        action: lastEntry.action,
+        timestamp: lastEntry.timestamp,
+        ageMs: lastEntry.timestamp ? Date.now() - new Date(lastEntry.timestamp).getTime() : null,
+      } : null,
+      nextRole: nextRole ? {
+        id: nextRole.id,
+        emoji: nextRole.emoji,
+        name: nextRole.name,
+      } : null,
+      history: options.verbose ? state.history.slice(-10) : state.history.slice(-5),
+    }));
+    return;
+  }
+
+  if (options.quiet) {
+    const stateStr = isInProgress ? '🔄 In Progress' : 'Ready';
+    const roleStr = currentRole ? `${currentRole.emoji} ${currentRole.name}` : '(none)';
+    const lastStr = lastEntry && lastEntry.timestamp
+      ? `Last: ${lastEntry.cycle} (${formatTimeAgo(lastEntry.timestamp)})`
+      : '';
+    console.log(`${stateStr} | ${roleStr} | ${lastStr}`);
+    return;
+  }
+
+  // Full output
+  console.log(chalk.bold('\n📊 Dispatch Status\n'));
+
+  // State box
+  console.log('  ┌─────────────────────────────────────────────────┐');
+  console.log(`  │  ${chalk.gray('Cycle:')}     ${(state.cycle_count + (isInProgress ? 1 : 0)).toString().padEnd(33)} │`);
+
+  if (isInProgress && activeLock) {
+    const elapsed = formatDuration(activeLock.startedAt);
+    console.log(`  │  ${chalk.gray('State:')}     ${chalk.yellow('🔄 In Progress').padEnd(42)} │`);
+    console.log(`  │  ${chalk.gray('Active:')}    ${(currentRole ? formatRole(currentRole) : '(none)').substring(0, 31).padEnd(31)} │`);
+    console.log(`  │  ${chalk.gray('Started:')}   ${elapsed.padEnd(33)} │`);
+  } else {
+    console.log(`  │  ${chalk.gray('State:')}     ${chalk.green('Ready (no cycle in progress)').padEnd(42)} │`);
+    console.log(`  │  ${chalk.gray('Current:')}   ${(currentRole ? formatRole(currentRole) : '(none)').substring(0, 31).padEnd(31)} │`);
+    if (lastEntry && lastEntry.timestamp) {
+      const lastStr = `${lastRole?.emoji ?? '❓'} ${lastRole?.name ?? lastEntry.role} — ${formatTimeAgo(lastEntry.timestamp)} (Cycle ${lastEntry.cycle})`;
+      console.log(`  │  ${chalk.gray('Last:')}      ${lastStr.substring(0, 31).padEnd(31)} │`);
+    }
+  }
+
+  if (nextRole) {
+    console.log(`  │  ${chalk.gray('Next:')}      ${formatRole(nextRole).substring(0, 31).padEnd(31)} │`);
+  }
+  console.log('  └─────────────────────────────────────────────────┘');
+
+  // Rotation order
+  console.log();
+  console.log(chalk.gray('  Rotation Order:'));
+  const parts: string[] = [];
+  for (let i = 0; i < roster.rotation_order.length; i++) {
+    const roleId = roster.rotation_order[i];
+    if (!roleId) continue; // TypeScript strict array access
+    const isCurrent = i === state.current_index;
+    parts.push(isCurrent ? `${roleId}*` : roleId);
+  }
+  const rotationStr = `    ${parts.join(' → ')}`;
+  console.log(rotationStr);
+
+  // History
+  const historyCount = options.verbose ? 10 : 5;
+  const historyToShow = state.history.slice(-historyCount).reverse();
+  if (historyToShow.length > 0) {
+    console.log();
+    console.log(chalk.gray(`  History (last ${historyToShow.length}):`));
+    for (const entry of historyToShow) {
+      const role = roster.roles.find((r) => r.id === entry.role);
+      const emoji = role?.emoji ?? '❓';
+      const name = (role?.name ?? entry.role).padEnd(10);
+      // Strip leading emoji from action (already have role emoji)
+      const action = (entry.action ?? '').replace(
+        /^[\p{Emoji}\p{Emoji_Modifier}\p{Emoji_Component}\p{Emoji_Modifier_Base}\p{Emoji_Presentation}\uFE0F]+\s*/u,
+        ''
+      );
+      const actionTrunc = action.length > 35 ? `${action.substring(0, 32)}...` : action;
+      const timeAgo = entry.timestamp ? formatTimeAgo(entry.timestamp) : 'unknown';
+      console.log(`    ${chalk.gray(entry.cycle.toString().padStart(3))}  ${emoji} ${chalk.cyan(name)} ${actionTrunc.padEnd(35)} ${chalk.gray(timeAgo)}`);
+    }
+  }
+
+  // Call to action if in progress
+  if (isInProgress) {
+    console.log();
+    console.log(`  Complete with: ${chalk.cyan('ada dispatch complete --action "..."')}`);
+  }
+
+  console.log();
+}
+
+// ─── Command Definitions ─────────────────────────────────────────────────────
+
+export const dispatchCommand = new Command('dispatch')
+  .description('🏭 Dispatch cycle lifecycle management')
+  .addCommand(
+    new Command('start')
+      .description('Initialize a dispatch cycle')
+      .option('-d, --dir <path>', 'Project root directory', '.')
+      .option('-r, --role <id>', 'Force a specific role (for debugging)')
+      .option('-n, --dry-run', 'Validate without starting')
+      .option('-j, --json', 'Output as JSON for programmatic use')
+      .option('-q, --quiet', 'Minimal output')
+      .option('--no-banner', 'Skip rotation visualization')
+      .option('--force', 'Override active cycle (dangerous)')
+      .action(async (options: DispatchStartOptions) => {
+        try {
+          await executeStart(options);
+        } catch (err) {
+          const error = err as Error;
+          if ((options as DispatchStartOptions).json) {
+            console.log(JSON.stringify({ error: error.message }));
+          } else {
+            console.error(chalk.red(`\n❌ Error: ${error.message}`));
+          }
+          process.exit(1);
+        }
+      })
+  )
+  .addCommand(
+    new Command('complete')
+      .description('Finalize cycle, update rotation, commit, and push')
+      .requiredOption('-a, --action <text>', 'Description of what was done (required)')
+      .option('-d, --dir <path>', 'Project root directory', '.')
+      .option('-o, --outcome <type>', 'Outcome: success (default), partial, blocked', 'success')
+      .option('-R, --reflection <text>', 'Self-critique reflection (Reflexion Phase 1b)')
+      .option('--skip-push', 'Commit but do not push')
+      .option('-j, --json', 'Output as JSON')
+      .option('-q, --quiet', 'Minimal output')
+      .action(async (options: DispatchCompleteOptions) => {
+        try {
+          await executeComplete(options);
+        } catch (err) {
+          const error = err as Error;
+          if ((options as DispatchCompleteOptions).json) {
+            console.log(JSON.stringify({ error: error.message }));
+          } else {
+            console.error(chalk.red(`\n❌ Error: ${error.message}`));
+          }
+          process.exit(1);
+        }
+      })
+  )
+  .addCommand(
+    new Command('status')
+      .description('Show current dispatch state')
+      .option('-d, --dir <path>', 'Project root directory', '.')
+      .option('-j, --json', 'Output as JSON')
+      .option('-v, --verbose', 'Show full history (10 entries)')
+      .option('-q, --quiet', 'State only, no history')
+      .action(async (options: DispatchStatusOptions) => {
+        try {
+          await executeStatus(options);
+        } catch (err) {
+          const error = err as Error;
+          if ((options as DispatchStatusOptions).json) {
+            console.log(JSON.stringify({ error: error.message }));
+          } else {
+            console.error(chalk.red(`\n❌ Error: ${error.message}`));
+          }
+          process.exit(1);
+        }
+      })
+  );
+
+// Default action: show help
+dispatchCommand.action(() => {
+  dispatchCommand.outputHelp();
+});
