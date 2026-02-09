@@ -92,17 +92,64 @@
 
 ## Active Threads
 
-- **Issue #26:** 🚀 LAUNCH — 6/6 MUST ✅, Go/No-Go Feb 17, launch Feb 24
-- **Demo:** Checkpoint Feb 11 📍 (TODAY, human confirmation required), GIF due Feb 17
-- **Issue #111:** CLI Dogfooding — **CLOSED ✅** (C266) — Mandate operational
-- **Issue #118:** Heat Scoring Phase 4a — SPECCED (C259, C263), ready for Sprint 2 Engineering
-- **Issue #119:** CLI Commit Audit — **VERIFIED ✅** (C272+C274) — QA audited, Ops confirmed. P2 recommended.
-- **Issue #108:** Reflexion — Phase 1a ✅, Phase 1b ✅, **Phase 1c COMPLETE ✅** (C269+C279), Phase 2 SPECCED 📋
-- **Issue #113:** Cognitive Memory Phase 4 — RESEARCH ✅, SPEC ✅, ENGINEERING ISSUE ✅
-- **Issue #102:** Sprint 2 Planning — Feb 28 kickoff
-- **Issue #34:** E2E Testing — Phase 1 ✅ (55 tests), Phase 2 BLOCKED (web app not built)
-- **Issue #73:** CLI UX Polish — P3 backlog, 7 items (2 new from C275 design review)
-- **Discord:** LIVE discord.gg/5NCHGJAz
+### Active (P0-P1, In Progress)
+
+- **Issue #26:** 🚀 LAUNCH (P0, CEO, L) — 6/6 MUST ✅, Go/No-Go Feb 17, launch Feb 24
+- **Issue #39:** Demo Asset Production (P0, Growth, M) — 📍 CHECKPOINT Feb 11 (TODAY), GIF due Feb 17
+- **Issue #74:** Accelerator Application Strategy (P1, Growth, M) — Pre-launch prep
+- **Issue #102:** Sprint 2 Planning (P1, Scrum, M) — Feb 28 kickoff
+- **Issue #108:** Reflexion (P1, Frontier, L) — Phase 1a ✅, Phase 1b ✅, Phase 1c COMPLETE ✅ (C269+C279), Phase 2 SPECCED 📋
+- **Issue #113:** Cognitive Memory Phase 4 (P1, Frontier, L) — RESEARCH ✅, SPEC ✅, ENGINEERING ISSUE ✅
+- **Issue #118:** Heat Scoring Phase 4a (P1, Engineering, M) — SPECCED (C259, C263), ready for Sprint 2 Engineering
+- **Issue #34:** E2E Testing (P1, QA, L) — Phase 1 ✅ (55 tests), Phase 2 BLOCKED (web app not built)
+
+### Active (P2, Current Sprint)
+
+- **Issue #89:** Dev-to-Prod Migration (P2, Ops, L) — Sprint 2, platform
+- **Issue #90:** Benchmark Testing (P2, Research, M) — Research, enhancement
+- **Issue #91:** Improving Memory System (P2, Frontier, L) — Research, enhancement
+- **Issue #106:** Issue Hygiene (P2, Scrum, S) — Triage cycle when issues > 25
+- **Issue #119:** CLI Commit Audit (P2, Ops, S) — VERIFIED ✅ (C272+C274), QA audited, Ops confirmed
+- **Issue #120:** Agent Dashboard Visualizations (P2, Design, M) — Live character visualizations for web dashboard
+
+### Backlog (P2-P3, Post-Launch)
+
+- **Issue #73:** CLI UX Polish (P3, Design, M) — 7 items (2 new from C275 design review)
+- **Issue #7:** Auto-update propagation (P3, Core, L) — Downstream agent teams
+- **Issue #8:** Notification system (P3, Core, L) — Slack/Telegram/Discord integration
+- **Issue #9:** Deployment monitoring (P3, Ops, L) — Vercel/AWS integration
+- **Issue #18:** ADA Hub web dashboard (P2, Product, XL) — Major feature, post-launch
+- **Issue #19:** Sub-teams with assignees (P3, Research, M) — Org-style management
+- **Issue #25:** Interactive TUI (P2, CLI, M) — Real-time dashboard
+- **Issue #27:** Release Management (P2, CEO, M) — CEO + Product coordination
+- **Issue #29:** Branch Maintenance (P2, Ops, M) — Automated cleanup
+- **Issue #30:** LLM-Guided Onboarding (P3, CLI, M) — Research
+- **Issue #31:** Human-in-the-Loop (P3, Research, M) — When & how to prompt
+- **Issue #41:** Demo Repository (P2, Product, M) — External validation
+- **Issue #43:** Executive Digest (P3, Notifications, M) — Rollup of decisions
+- **Issue #44:** Budget-Aware Infrastructure (P3, Research, L) — Real resources safely
+- **Issue #45:** CFO Role (P3, Roles, M) — Financial oversight
+- **Issue #46:** Consultant Mode (P3, Core, M) — Docs/issues only
+- **Issue #48:** LaTeX formatting (P3, Docs, S) — Style enhancement
+- **Issue #53:** nw_wrld integration (P3, Research, M) — Visual sequencer
+- **Issue #59:** Agent Briefings (P3, Docs, S) — Interim solution
+- **Issue #60:** X/Twitter API secrets (P2, Ops, S) — Documentation
+- **Issue #64:** Claude Code Integration (P3, Integration, M) — Enhancement
+- **Issue #65:** Issue & PR hygiene (P2, Product, M) — Prevent abandonment
+- **Issue #68:** SaaS Revenue Model (P2, Business, L) — Managed ADA + OpenClaw
+- **Issue #76:** Automated Research Ingestion (P3, Frontier, M) — Newsletters + arXiv
+- **Issue #78:** Role Assignment (P3, Process, S) — Labels vs bot users
+- **Issue #79:** Auto-Format Diagrams (P3, Docs, S) — Documentation
+- **Issue #81:** Continuous 24/7 Development (P3, Research, L) — Event-driven orchestration
+- **Issue #82:** Dev/Prod Supabase (P2, Infrastructure, M) — Separate environments
+- **Issue #83:** Dogfooding CLI (P2, Process, M) — Enhancement (already operational)
+- **Issue #86:** Citation Format (P3, Research, S) — For papers
+- **Issue #92:** Discord Server (P3, Community, S) — LIVE discord.gg/5NCHGJAz
+- **Issue #104:** Swarm Learning (P3, Platform, L) — Downstream repos
+
+### Recently Closed
+
+- **Issue #111:** CLI Dogfooding — CLOSED ✅ (C266) — Mandate operational
 
 ---
 

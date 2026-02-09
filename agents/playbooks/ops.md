@@ -17,6 +17,21 @@ Before any action:
 3. **If CI is broken, fix it first** — nothing else matters if the pipeline is red
 4. **If PRs are ready, merge them** — don't let PRs rot
 
+## FIRST CHECK — Issue Cleanup (EVERY CYCLE)
+
+**Before any action, verify closed issues are removed from Active Threads:**
+
+1. **Check closed issues:** `gh issue list --state closed --limit 50 --sort updated`
+2. **Cross-reference with memory bank:** Read `agents/memory/bank.md` Active Threads section
+3. **If closed issue is in Active Threads:** Remove it immediately
+4. **Update memory bank:** Move to "Recently Closed" section if significant, otherwise just remove
+
+**Format for removal:**
+- Remove from Active Threads
+- Optionally add to "Recently Closed" section if it was a major milestone
+
+**Why this matters:** Closed issues in Active Threads create confusion and make the team think work is still pending. See R-013 in RULES.md.
+
 **Merge Checklist:**
 
 ```markdown

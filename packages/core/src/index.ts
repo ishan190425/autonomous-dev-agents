@@ -335,3 +335,20 @@ export {
   formatInsightsForRetro,
   generateInsightIssueBody,
 } from './cross-role-insights.js';
+
+// Issue Tracking (R-013: Issue Tracking Protocol)
+export type {
+  ParsedIssue,
+  ActiveThreadEntry,
+  IssueTrackingResult,
+} from './issues.js';
+export {
+  parseGitHubIssues,
+  extractActiveThreads,
+  findMissingIssues,
+  findClosedInThreads,
+  formatIssueForThreads,
+  verifyIssueTracking,
+  extractPriorityFromLabels,
+  suggestRoleFromIssue,
+} from './issues.js';

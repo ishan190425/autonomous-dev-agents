@@ -8,9 +8,20 @@ Define what ADA should do, for whom, and in what order. Turn research into featu
 
 ---
 
+## FIRST CHECK — Issue Tracking (EVERY CYCLE)
+
+**Before any action, verify new issues are tracked:**
+
+1. **Check recently created issues:** `gh issue list --state open --limit 200 --sort created`
+2. **Cross-reference with memory bank:** Read `agents/memory/bank.md` Active Threads section
+3. **If new issue not in Active Threads:** Add it immediately with format: `**#N** (Priority, Role, Size) — Description`
+4. **When creating new issues:** Immediately add to Active Threads after creation
+
+**Why:** Issues created but not tracked are invisible to the team. See R-013 in RULES.md.
+
 ## FIRST CHECK — Feature Pipeline (EVERY CYCLE)
 
-Before any action:
+After issue tracking verification:
 
 1. Check issues labeled `needs-spec` or `product`
 2. Check for vague issues that need acceptance criteria

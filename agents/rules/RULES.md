@@ -22,6 +22,7 @@
 | R-010 | [PR Management & CI](#r-010-pr-management--ci)               | Ops     | 2026-01-30 |
 | R-011 | [PR Hygiene & Transparency](#r-011-pr-hygiene--transparency) | Ops     | 2026-02-02 |
 | R-012 | [GitHub Templates](#r-012-github-templates)                  | Ops     | 2026-02-09 |
+| R-013 | [Issue Tracking Protocol](#r-013-issue-tracking-protocol)    | Scrum   | 2026-02-10 |
 
 ---
 
@@ -255,6 +256,77 @@ Blank issues are allowed for quick notes or agent-generated issues that don't fi
 ### Why This Rule Matters
 
 Templates enforce R-006 (Issue Quality) and R-011 (PR Hygiene) automatically. They reduce cognitive load, speed up reviews, and help new contributors understand expectations. The author field on templates maintains agent attribution in the autonomous workflow.
+
+---
+
+## R-013: Issue Tracking Protocol
+
+### Principle
+
+**All open GitHub issues MUST be tracked in the memory bank's Active Threads section.** Issues not in Active Threads are invisible to the team and will not be acted upon.
+
+### Requirements
+
+**Every dispatch cycle MUST:**
+
+1. **Verify issue tracking** (FIRST CHECK in Phase 3 of DISPATCH.md):
+   - Run `gh issue list --state open --limit 200`
+   - Cross-reference with `agents/memory/bank.md` Active Threads section
+   - Every open issue MUST appear in Active Threads
+
+2. **Add missing issues immediately:**
+   - Format: `**#N** (Priority, Role, Size) — Brief description`
+   - Priority: P0, P1, P2, or P3
+   - Role: Which role should work on it (e.g., Engineering, Product, Ops)
+   - Size: S (small, 1-2 cycles), M (medium, 3-5 cycles), L (large, 6+ cycles)
+
+3. **Remove closed issues:**
+   - When an issue is closed, remove it from Active Threads
+   - Optionally move to "Recently Closed" section if it was a major milestone
+
+### Role-Specific Responsibilities
+
+- **Scrum:** Issue scoping is a FIRST CHECK every cycle (not just during retros)
+- **Product:** When creating new issues, immediately add to Active Threads
+- **Ops:** When closing issues, immediately remove from Active Threads
+- **All roles:** Verify issue tracking before acting (see DISPATCH.md Phase 3)
+
+### Active Threads Format
+
+```markdown
+## Active Threads
+
+### Active (P0-P1, In Progress)
+- **#26** (P0, CEO, L) — v1.0-alpha Launch Coordination
+- **#39** (P0, Growth, M) — Demo Asset Production
+
+### Active (P2, Current Sprint)
+- **#89** (P2, Ops, L) — Dev-to-Prod Migration System
+
+### Backlog (P2-P3, Post-Launch)
+- **#73** (P3, Design, M) — CLI UX Polish
+```
+
+### Verification
+
+Use CLI command (when available): `ada issues verify`
+
+Or manually:
+```bash
+gh issue list --state open --limit 200 > /tmp/open_issues.txt
+grep -E "^\\*\\*#[0-9]+" agents/memory/bank.md > /tmp/tracked_issues.txt
+# Compare lists
+```
+
+### Why This Rule Matters
+
+**Issue #106 demonstrated the problem:** 45 open issues, only 9 tracked in Active Threads. This creates:
+- **Invisible work:** Issues not tracked are never acted upon
+- **Coordination gaps:** Team doesn't know what's pending
+- **Priority confusion:** Can't prioritize what we can't see
+- **Wasted cycles:** Agents work on wrong things because context is incomplete
+
+**Enforcement:** This is a FIRST CHECK in DISPATCH.md Phase 3. No exceptions.
 
 ---
 

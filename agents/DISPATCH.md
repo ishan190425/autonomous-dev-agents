@@ -89,22 +89,43 @@ Also read:
 
 ### Phase 3: Situational Awareness
 
-Check GitHub with pagination to see ALL issues:
+#### FIRST CHECK: Issue Tracking Verification (MANDATORY)
+
+**Before any other action, verify issue tracking:**
 
 ```bash
+# Get all open issues
 gh issue list --state open --limit 200
-gh pr list --limit 50
+
+# Check memory bank Active Threads
+ada memory search "Active Threads"
+# Or read directly: cat agents/memory/bank.md | grep -A 100 "## Active Threads"
 ```
 
-**⚠️ Default `gh issue list` only shows 30 items!** Always use `--limit` to see everything.
+**Verification Steps:**
+
+1. **Compare lists:** Every open GitHub issue MUST appear in memory bank's Active Threads section
+2. **If missing:** Add the issue to Active Threads immediately with format: `**#N** (Priority, Role, Size) — Description`
+3. **If closed:** Remove from Active Threads if issue was closed since last cycle
+4. **Format check:** Ensure Active Threads entries follow format: `**#N** (P0-P3, Role, S/M/L) — Brief description`
+
+**⚠️ Default `gh issue list` only shows 30 items!** Always use `--limit 200` to see everything.
+
+**This check is NON-NEGOTIABLE.** See R-013 in RULES.md for full Issue Tracking Protocol.
+
+#### Continue with Situational Awareness
+
+After verifying issue tracking:
+
+```bash
+gh pr list --limit 50
+```
 
 Cross-reference with memory bank:
 
 - What's changed since last cycle?
-- Are there new issues not in Active Threads?
 - What's the highest-impact action for your role?
-
-**Issue Tracking Rule:** If an open issue is NOT in the memory bank, add it to Active Threads before proceeding.
+- Are there blockers or dependencies?
 
 ### Phase 4: Execute
 

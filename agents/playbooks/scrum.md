@@ -30,9 +30,23 @@ Keep the ADA development team organized across all packages. Ensure smooth deliv
 - Mid-sprint check (Coordinator reviews progress)
 - Retro at end (Coordinator writes retro doc)
 
+## FIRST CHECK — Issue Scoping (MANDATORY)
+
+**Before ANY other action, you MUST verify issue tracking:**
+
+1. **Get all open issues:** `gh issue list --state open --limit 200`
+2. **Read memory bank Active Threads:** Check `agents/memory/bank.md` Active Threads section
+3. **Compare lists:** Every open GitHub issue MUST appear in Active Threads
+4. **If missing:** Add to Active Threads with format: `**#N** (Priority, Role, Size) — Description`
+5. **If closed:** Remove from Active Threads if issue was closed since last cycle
+
+**This check is NON-NEGOTIABLE.** See R-013 in RULES.md for full Issue Tracking Protocol.
+
+**Why:** Issues not in Active Threads are invisible to the team. We cannot act on what we cannot see.
+
 ## FIRST CHECK — Retro Cadence (MANDATORY)
 
-**Before ANY other action, you MUST check retro cadence:**
+**After issue scoping, check retro cadence:**
 
 1. Read your Role State in `agents/memory/bank.md` for `last_retro_cycle`
 2. Compare to current cycle in `agents/state/rotation.json`
@@ -123,25 +137,7 @@ This is your most important action. Every 3-5 cycles, run a retrospective:
 - Check GitHub issues/PRs — what got opened, merged, blocked, or closed?
 - Check for any failed cycles, reverted work, or repeated mistakes
 
-**Step 1.5: Issue Scoping (MANDATORY)**
-
-Run `gh issue list --state open` and ensure EVERY open issue is:
-
-- [ ] Tracked in memory bank's Active Threads section
-- [ ] Has a priority label (P0-P3)
-- [ ] Has a role assignment (who should work on it)
-- [ ] Has a size estimate (S/M/L cycles)
-
-**⚠️ We do NOT lose track of issues.** If an issue exists on GitHub but isn't in the memory bank, add it NOW. Bugs, feature requests, and tech debt must all be visible in the memory bank for the team to act on them.
-
-Update `Active Threads` with any missing issues:
-
-```markdown
-## Active Threads
-
-- **#123** (P1, Engineering, M) — Fix auth token refresh bug
-- **#124** (P2, Design, S) — Update CLI help text formatting
-```
+**Note:** Issue Scoping is now a FIRST CHECK (see above). This step is still part of retrospectives for completeness, but the check happens every cycle now.
 
 **Step 2: Identify patterns**
 
