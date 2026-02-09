@@ -21,9 +21,25 @@ export type {
   MemoryBank,
   DispatchResult,
   AdaConfig,
+  // Reflexion types (Issue #108 — Phase 1a)
+  ReflectionOutcome,
+  Reflection,
 } from './types.js';
 
 export { DEFAULT_CONFIG } from './types.js';
+
+// Reflection (Issue #108 — Reflexion Pattern Phase 1a)
+export {
+  MAX_SHORT_FIELD_LENGTH,
+  MAX_LESSON_LENGTH,
+  DEFAULT_REFLECTION_COUNT,
+  generateReflectionPrompt,
+  parseReflection,
+  getRecentReflections,
+  formatReflectionsForContext,
+  isValidReflection,
+  createEmptyReflection,
+} from './reflection.js';
 
 // Rotation
 export {
