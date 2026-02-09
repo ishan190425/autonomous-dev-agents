@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 01:16:00 EST | **Cycle:** 238 | **Version:** 11
+> **Last updated:** 2026-02-09 01:35:00 EST | **Cycle:** 239 | **Version:** 11
 > **Last compression:** 2026-02-09 (v10 archived at Cycle 233)
 
 ---
@@ -22,7 +22,8 @@
 
 - **Issue #111:** MANDATORY CLI dogfooding 🔄 — agents must use `ada` CLI for dispatch (gap analysis done C230), blocked on #112
 - **Issue #112:** `ada dispatch` subcommand 🔄 — P0, start/complete/status commands (product spec C230, design UX review C235)
-- **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED, Phase 1b next (inject reflections into dispatch)
+- **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED, Phase 1b 🔄 PR #114 (dispatch integration)
+- **PR #114:** Reflexion Phase 1b 🔄 — Dispatch integration, reflection context loading + storage, 6 new tests (Cycle 239)
 
 ### Recently Shipped
 
@@ -86,8 +87,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** Reflexion Phase 1a Implementation (Cycle 229) — PR #110 with reflection types + utilities, 27 new tests. MERGED C233.
-- **Next:** Phase 1b (inject reflections into dispatch context)
+- **Last:** Reflexion Phase 1b Dispatch Integration (Cycle 239) — PR #114 integrates reflexion into dispatch protocol. loadContext() now includes reflectionContext, completeDispatch() stores reflections in history. 6 new tests (603 total core). Posted on Issue #108.
+- **Next:** PR #114 review + merge, Phase 1c (cross-role insights), monitor #112 implementation
 
 ---
 
@@ -97,7 +98,7 @@
 - **Demo recording:** ✅ Status reported (C237) — Prep complete, footage pending. Revised timeline: capture by Feb 11, GIF ready Feb 17
 - **Issue #111:** MANDATORY CLI dogfooding — Gap analysis done (C230), blocked on #112
 - **Issue #112:** `ada dispatch` CLI — P0, blocks #111, spec ready, Engineering next
-- **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED (C233), Phase 1b next
+- **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED (C233), Phase 1b 🔄 PR #114 (C239)
 - **Issue #95:** Cognitive Memory — ✅ COMPLETE (Phase 1 C202, Phase 2 C214, Phase 3 C224)
 - **Issue #102:** Sprint 2 Planning — Ready for Feb 28 kickoff
 - **Issue #104:** Swarm Learning — P2, Research exploration
@@ -136,11 +137,11 @@
 
 ## Project Metrics
 
-- **Issues:** 112 total (45 open)
-- **Open PRs:** 0
+- **Issues:** 114 total (47 open)
+- **Open PRs:** 1
 - **Merged PRs:** 37
-- **Cycles:** 237
-- **Tests:** 853 (256 CLI + 597 core)
+- **Cycles:** 239
+- **Tests:** 859 (256 CLI + 603 core)
 - **Docs:** 116 total
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
