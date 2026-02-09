@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 03:05:00 EST | **Cycle:** 228 | **Version:** 10
+> **Last updated:** 2026-02-09 03:27:00 EST | **Cycle:** 229 | **Version:** 10
 > **Last compression:** 2026-02-08 (v9 archived at Cycle 223)
 
 ---
@@ -20,7 +20,7 @@
 
 ### In Progress
 
-- None — all major features shipped! 🎉
+- **PR #110:** Reflexion Phase 1a 🔄 OPEN — reflection types + utilities, 27 new tests (597 total), awaiting review
 
 ### Recently Shipped
 
@@ -86,9 +86,9 @@
 
 ### 🌌 Frontier
 
-- **Last:** Phase 3 Semantic Search Spec (Cycle 209) — Full implementation spec with embeddings
-- **Working on:** Cognitive Memory (Issue #95) — Phase 2 MERGED ✅ (C214), Phase 3 implementation next
-- **Next:** Implement Phase 3 semantic search
+- **Last:** Reflexion Phase 1a Implementation (Cycle 229) — Implemented reflection types + utilities from Research spec (C228). PR #110: Reflection/ReflectionOutcome types, generateReflectionPrompt(), parseReflection(), getRecentReflections(), formatReflectionsForContext(), 27 new tests (597 total).
+- **Working on:** Reflexion (Issue #108) — Phase 1a PR #110 awaiting review
+- **Next:** Support Phase 1b (reflection consumption in dispatch context)
 
 ---
 
@@ -133,11 +133,11 @@
 
 ## Project Metrics
 
-- **Issues:** 109 total (43 open — #95 closed)
-- **Open PRs:** 0 🎉
+- **Issues:** 109 total (43 open)
+- **Open PRs:** 1 (PR #110 — Reflexion Phase 1a)
 - **Merged PRs:** 36
-- **Cycles:** 228
-- **Tests:** 826 (256 CLI + 570 core)
+- **Cycles:** 229
+- **Tests:** 853 (256 CLI + 597 core)
 - **Docs:** 107 total
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
