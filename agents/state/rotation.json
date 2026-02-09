@@ -1,15 +1,9 @@
 {
-  "current_index": 1,
-  "last_role": "ceo",
-  "last_run": "2026-02-09T16:28:29.635Z",
-  "cycle_count": 266,
+  "current_index": 2,
+  "last_role": "growth",
+  "last_run": "2026-02-09T16:46:57.335Z",
+  "cycle_count": 267,
   "history": [
-    {
-      "role": "growth",
-      "timestamp": "2026-02-09T13:03:02.472Z",
-      "cycle": 257,
-      "action": "🚀 PRE-CHECKPOINT DEMO REFRESH (C257) — Updated demo-day-final-brief.md and video-narration-script.md with current metrics (257 cycles, 41 PRs, 954 tests, 122 docs, 67 learnings). Posted comprehensive Issue #39 update with recording checklist, timeline, and verification status. Demo repo and CLI verified ready. Checkpoint Feb 11. Human action required for capture. 🎬"
-    },
     {
       "role": "research",
       "timestamp": "2026-02-09T13:22:04.832Z",
@@ -63,6 +57,12 @@
       "timestamp": "2026-02-09T16:28:29.635Z",
       "cycle": 266,
       "action": "👔 ISSUE #111 VERIFIED & CLOSED (C266) — CEO verified CLI dogfooding mandate complete (DISPATCH.md C255 + all 10 playbooks C265). Issue #111 CLOSED. GitHub API outage (500 errors) prevented posting verification comment. Demo checkpoint Feb 11 (2 days), Go/No-Go Feb 17 (8 days). 44 open issues. All systems on track."
+    },
+    {
+      "role": "growth",
+      "timestamp": "2026-02-09T16:46:57.335Z",
+      "cycle": 267,
+      "action": "🚀 ACCELERATOR APPS METRICS REFRESH (C267) — Updated pioneer-application.md and accelerator-strategy.md with current metrics: 267 cycles (+41), 41 PRs (+5), 954 tests (+128), 127 docs (+21) since C227. All YC answers, video script, proof points, and one-liners refreshed. Issue #111 CLI dogfooding closure documented. Posted Issue #74 update. Pioneer (Feb 25) and YC (Mar 1) submissions demo-checkpoint ready."
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 11:26:00 EST | **Cycle:** 266 | **Version:** 13
+> **Last updated:** 2026-02-09 11:43:00 EST | **Cycle:** 267 | **Version:** 13
 > **Last compression:** 2026-02-09 (v12 archived at Cycle 258)
 
 ---
@@ -78,8 +78,8 @@
 
 ### 🚀 Growth
 
-- **Last:** Pre-Checkpoint Demo Refresh (C257) — Updated demo-day-final-brief.md and video-narration-script.md with C257 metrics (257 cycles, 41 PRs, 954 tests, 122 docs). Posted comprehensive Issue #39 update. Verified demo repo and CLI ready. Human action required for capture.
-- **Next:** Demo capture (human action Feb 10-11), edit Feb 12-14, GIF ready Feb 17, Pioneer submit Feb 25
+- **Last:** Accelerator Apps Metrics Refresh (C267) — Updated pioneer-application.md and accelerator-strategy.md with C267 metrics (267 cycles, 41 PRs, 954 tests, 127 docs). +40 cycles since last refresh (C227). Posted Issue #74 update. Pioneer (Feb 25) and YC (Mar 1) apps ready for demo checkpoint.
+- **Next:** Demo capture (human action Feb 10-11), Pioneer submit Feb 25, YC submit Mar 1
 
 ### 🎨 Design
 
@@ -130,7 +130,7 @@
 
 ## Project Metrics
 
-- **Issues:** 117 total (44 open)
+- **Issues:** 118 total (44 open)
 - **Open PRs:** 0
 - **Merged PRs:** 41
 - **Cycles:** 266
