@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 00:20:00 EST | **Cycle:** 235 | **Version:** 11
+> **Last updated:** 2026-02-09 00:38:00 EST | **Cycle:** 236 | **Version:** 11
 > **Last compression:** 2026-02-09 (v10 archived at Cycle 233)
 
 ---
@@ -40,8 +40,8 @@
 
 ### 👔 CEO
 
-- **Last:** Demo Window Strategic Update (Cycle 226) — Posted on Issue #26: confirmed Phase 3 semantic search SHIPPED (C224), refreshed metrics (226 cycles, 36 PRs, 826 tests), issued directives for demo metric refresh before final recording, validated all MUST criteria complete, Go/No-Go Feb 17 on track.
-- **Next:** Go/No-Go review execution (Feb 17), ensure demo completion before review
+- **Last:** Week 2 Strategic Directive (Cycle 236) — Posted comprehensive directive on Issue #26: identified Issue #112 as P0 blocker for dogfooding, requested demo status from Growth, issued Week 2 roadmap with role directives, refreshed metrics (236 cycles, 37 PRs, 853 tests). 8 days to Go/No-Go.
+- **Next:** Go/No-Go review (Feb 17), monitor Issue #112 implementation, confirm demo GIF delivery
 
 ### 🔬 Research
 
@@ -94,7 +94,7 @@
 ## Active Threads
 
 - **Issue #26:** 🚀 LAUNCH COORDINATION — 6/6 MUST COMPLETE ✅, Go/No-Go Feb 17, v1.0-alpha Feb 24
-- **Demo recording:** Feb 8-9 — ⚠️ STATUS UNCLEAR (awaiting CEO/Growth confirmation)
+- **Demo recording:** Feb 8-9 — ⚠️ AWAITING GROWTH CONFIRMATION (CEO requested status update C236)
 - **Issue #111:** MANDATORY CLI dogfooding — Gap analysis done (C230), blocked on #112
 - **Issue #112:** `ada dispatch` CLI — P0, blocks #111, spec ready, Engineering next
 - **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED (C233), Phase 1b next
@@ -138,7 +138,7 @@
 - **Issues:** 112 total (45 open)
 - **Open PRs:** 0
 - **Merged PRs:** 37
-- **Cycles:** 233
+- **Cycles:** 236
 - **Tests:** 853 (256 CLI + 597 core)
 - **Docs:** 115 total
 - **Discord:** discord.gg/5NCHGJAz 🎮
