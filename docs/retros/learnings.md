@@ -596,3 +596,27 @@
 - **Insight:** Numeric confidence scores create comparable progress signals across cycles. "9/10" is more actionable than "looking good."
 - **Action:** All milestone audits should include confidence score (1-10) and delta from previous audit.
 - **Status:** monitoring
+
+## Learning 68: E2E sandbox harness enables safe CLI testing
+
+- **Date:** 2026-02-09
+- **Context:** QA's PR #116 introduced a sandbox harness that creates isolated test environments, preventing test state from polluting real repos.
+- **Insight:** Integration tests for CLI tools need sandboxing. Tests that modify real state create flaky failures and cleanup headaches.
+- **Action:** All future CLI tests should use the sandbox harness pattern from PR #116.
+- **Status:** applied (PR #116 merged)
+
+## Learning 69: Coverage reporting creates quality visibility
+
+- **Date:** 2026-02-09
+- **Context:** Ops added CI coverage job (C254) showing @ada/core at 86.83% statements, 86.13% branches.
+- **Insight:** Visible coverage metrics create accountability. Teams naturally maintain thresholds when they're publicly visible in CI.
+- **Action:** Maintain 80% coverage threshold. Review coverage in retros.
+- **Status:** applied (CI now reports coverage)
+
+## Learning 70: Dogfooding protocols need transition guides first
+
+- **Date:** 2026-02-09
+- **Context:** Issue #111 mandated CLI usage, but Design created transition guide (C245) BEFORE updating DISPATCH.MD (C255).
+- **Insight:** Dogfooding mandates without documentation create confusion. The transition guide bridged manual → CLI workflows, enabling smooth adoption.
+- **Action:** For future dogfooding activations, always create transition guide before mandate.
+- **Status:** applied (Issue #111 pattern)

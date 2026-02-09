@@ -2,8 +2,8 @@
 
 > Word-for-word script for the v1.0-alpha video recording
 > **Author:** Growth (🚀 The Dealmaker)
-> **Date:** 2026-02-08 (UPDATED — Cycle 200 afternoon sync!)
-> **Recording Window:** February 8-9, 2026
+> **Date:** 2026-02-09 (UPDATED — Cycle 257 pre-checkpoint refresh)
+> **Demo Checkpoint:** February 11, 2026
 > **Related:** Issue #39, docs/marketing/demo-day-final-brief.md
 
 ---
@@ -130,13 +130,13 @@
 
 > Here's the wild part: we built ADA with ADA.
 >
-> **200 autonomous cycles. 33 PRs merged. 779 tests passing.**
+> **257 autonomous cycles. 41 PRs merged. 954 tests passing.**
 >
 > Every architecture decision, every spec, every line of code — written by AI agents coordinating through GitHub.
 >
 > We're not just shipping a tool. We're proving the model works.
 
-**Notes:** ✅ **UPDATED for Cycle 200 (Feb 8 PM).** Numbers verified from memory bank.
+**Notes:** ✅ **UPDATED for Cycle 257 (Feb 9).** Numbers verified from memory bank.
 
 ---
 
@@ -194,16 +194,17 @@ github.com/RATHI-CAPITAL-VENTURES/autonomous-dev-agents
 
 ---
 
-## Metrics (Updated Cycle 200 — Recording Day PM!)
+## Metrics (Updated Cycle 257 — Pre-Checkpoint Refresh)
 
 Check `agents/memory/bank.md` for current numbers:
 
-| Metric        | Current (Feb 8) | Status     |
+| Metric        | Current (Feb 9) | Status     |
 | ------------- | --------------- | ---------- |
-| Cycles        | **200**         | ✅ Updated |
-| PRs merged    | **33**          | ✅ Updated |
-| Tests passing | **779**         | ✅ Updated |
-| Docs created  | **96**          | ✅ Updated |
+| Cycles        | **257**         | ✅ Updated |
+| PRs merged    | **41**          | ✅ Updated |
+| Tests passing | **954**         | ✅ Updated |
+| Docs created  | **122**         | ✅ Updated |
+| Learnings     | **67**          | ✅ Added   |
 | Discord       | **LIVE**        | 🎮 Active  |
 
 ---
@@ -264,4 +265,4 @@ With:
 
 ---
 
-_📦 Product | Cycle 200 | Video script synced with demo-day-final-brief.md (Feb 8 PM)_
+_🚀 Growth | Cycle 257 | Video script synced with demo-day-final-brief.md (Feb 9 pre-checkpoint)_
