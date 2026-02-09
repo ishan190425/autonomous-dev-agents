@@ -6,7 +6,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import type { Roster, RotationState } from '../../src/types.js';
+import type { Reflection, Roster, RotationState } from '../../src/types.js';
 import {
   getCurrentRole,
   getCurrentRoleId,
@@ -299,6 +299,109 @@ describe('advanceRotation', () => {
     const newState = advanceRotation(state, roster, 'test');
 
     expect(newState).toBe(state); // same reference
+  });
+
+  // Phase 1b: Reflection storage tests
+  describe('reflection storage (Phase 1b)', () => {
+    it('stores reflection in history entry when provided', () => {
+      const roster = createTestRoster();
+      const state = createTestState({ current_index: 0, cycle_count: 10 });
+      const reflection: Reflection = {
+        outcome: 'success',
+        whatWorked: 'Good approach',
+        whatToImprove: 'Could be faster',
+      };
+
+      const newState = advanceRotation(state, roster, {
+        action: 'wrote tests',
+        reflection,
+      });
+
+      expect(newState.history).toHaveLength(1);
+      const entry = newState.history[0];
+      expect(entry?.reflection).toBeDefined();
+      expect(entry?.reflection?.outcome).toBe('success');
+      expect(entry?.reflection?.whatWorked).toBe('Good approach');
+      expect(entry?.reflection?.whatToImprove).toBe('Could be faster');
+    });
+
+    it('handles reflection with all fields', () => {
+      const roster = createTestRoster();
+      const state = createTestState();
+      const reflection: Reflection = {
+        outcome: 'partial',
+        whatWorked: 'Research was thorough',
+        whatToImprove: 'Should have checked existing code',
+        lessonLearned: 'Always review before writing',
+      };
+
+      const newState = advanceRotation(state, roster, {
+        action: 'refactored module',
+        reflection,
+      });
+
+      const entry = newState.history[0];
+      expect(entry?.reflection?.outcome).toBe('partial');
+      expect(entry?.reflection?.lessonLearned).toBe('Always review before writing');
+    });
+
+    it('handles reflection with minimal fields', () => {
+      const roster = createTestRoster();
+      const state = createTestState();
+      const reflection: Reflection = {
+        outcome: 'unknown',
+      };
+
+      const newState = advanceRotation(state, roster, {
+        action: 'experimental change',
+        reflection,
+      });
+
+      const entry = newState.history[0];
+      expect(entry?.reflection?.outcome).toBe('unknown');
+      expect(entry?.reflection?.whatWorked).toBeUndefined();
+    });
+
+    it('does not include reflection field when not provided', () => {
+      const roster = createTestRoster();
+      const state = createTestState();
+
+      const newState = advanceRotation(state, roster, {
+        action: 'simple action',
+      });
+
+      const entry = newState.history[0];
+      expect(entry?.action).toBe('simple action');
+      expect(entry?.reflection).toBeUndefined();
+    });
+
+    it('accepts string for backward compatibility', () => {
+      const roster = createTestRoster();
+      const state = createTestState();
+
+      const newState = advanceRotation(state, roster, 'legacy action');
+
+      const entry = newState.history[0];
+      expect(entry?.action).toBe('legacy action');
+      expect(entry?.reflection).toBeUndefined();
+    });
+
+    it('handles blocked outcome reflection', () => {
+      const roster = createTestRoster();
+      const state = createTestState();
+      const reflection: Reflection = {
+        outcome: 'blocked',
+        whatToImprove: 'Wait for dependency PR to merge',
+      };
+
+      const newState = advanceRotation(state, roster, {
+        action: 'attempted feature',
+        reflection,
+      });
+
+      const entry = newState.history[0];
+      expect(entry?.reflection?.outcome).toBe('blocked');
+    });
   });
 });
 

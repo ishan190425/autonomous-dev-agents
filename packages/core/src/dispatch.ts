@@ -11,6 +11,7 @@ import * as path from 'node:path';
 import type {
   AdaConfig,
   DispatchResult,
+  Reflection,
   Role,
   Roster,
   RotationState,
@@ -40,6 +41,11 @@ import {
   calculateDefaultImportance,
   type StreamEntryType,
 } from './memory-stream.js';
+import {
+  getRecentReflections,
+  formatReflectionsForContext,
+  DEFAULT_REFLECTION_COUNT,
+} from './reflection.js';
 
 /** Context loaded in Phase 1 of the dispatch protocol */
 export interface DispatchContext {
@@ -63,10 +69,12 @@ export interface DispatchContext {
   };
   /** MemoryStream instance for structured logging (Phase 2) — undefined if disabled */
   readonly memoryStream: MemoryStream | undefined;
+  /** Formatted reflection context for the current role (Phase 1b) — empty string if no reflections */
+  readonly reflectionContext: string;
 }
 
 /**
- * Options for loadContext() — Phase 2.
+ * Options for loadContext() — Phase 2 + 1b.
  */
 export interface LoadContextOptions {
   /** Enable MemoryStream integration (default: true) */
@@ -74,12 +82,19 @@ export interface LoadContextOptions {
 
   /** Custom stream path (default: agents/memory/stream.jsonl) */
   streamPath?: string;
+
+  /** Enable reflection context loading (default: true) — Phase 1b */
+  enableReflections?: boolean;
+
+  /** Number of recent reflections to include (default: 3) — Phase 1b */
+  reflectionCount?: number;
 }
 
 /**
- * Phase 2 completion options for completeDispatch().
+ * Phase 2 + 1b completion options for completeDispatch().
  *
  * Supports both simple string (backward compatible) and rich metadata.
+ * Phase 1b adds reflection support for the Reflexion pattern.
  */
 export interface CompleteDispatchOptions {
   /** Action description (required) */
@@ -105,6 +120,9 @@ export interface CompleteDispatchOptions {
 
   /** Optional: Skip memory logging (for special cases) */
   skipMemoryLog?: boolean;
+
+  /** Optional: Self-critique reflection on the action (Phase 1b: Reflexion) */
+  reflection?: Reflection;
 }
 
 /**
@@ -140,11 +158,13 @@ export function resolvePaths(
  * Phase 1: Load all context needed for a dispatch cycle.
  *
  * Reads rotation state, roster, determines current role,
- * and loads the memory bank. Phase 2 adds optional MemoryStream.
+ * and loads the memory bank.
+ * Phase 2 adds optional MemoryStream.
+ * Phase 1b adds reflection context loading.
  *
  * @param rootDir - Root directory of the project
  * @param config - Optional ADA configuration overrides
- * @param options - Optional context loading options (Phase 2)
+ * @param options - Optional context loading options (Phase 2 + 1b)
  * @returns Loaded dispatch context, or null if no roles are configured
  */
 export async function loadContext(
@@ -175,6 +195,14 @@ export async function loadContext(
     memoryStream = createMemoryStream(paths.stream);
   }
 
+  // Phase 1b: Load reflection context for the current role
+  let reflectionContext = '';
+  if (options.enableReflections !== false) {
+    const count = options.reflectionCount ?? DEFAULT_REFLECTION_COUNT;
+    const reflections = getRecentReflections(state.history, role.id, count);
+    reflectionContext = formatReflectionsForContext(role.id, reflections);
+  }
+
   return {
     state,
     roster,
@@ -182,6 +210,7 @@ export async function loadContext(
     memoryBank,
     paths,
     memoryStream,
+    reflectionContext,
   };
 }
 
@@ -230,11 +259,16 @@ export async function checkCompression(
  *
  * Phase 2 enhancement: Accepts either a simple string (backward compatible)
  * or a CompleteDispatchOptions object for rich metadata logging.
+ * Phase 1b enhancement: Stores reflections in rotation history.
  *
  * When MemoryStream is configured:
  * - Automatically logs the action to the stream
  * - Auto-extracts issue/PR refs if not provided
  * - Auto-calculates importance if not provided
+ *
+ * When reflection is provided:
+ * - Stores reflection in the rotation history entry
+ * - Enables the Reflexion pattern for self-improving agents
  *
  * @param context - Current dispatch context
  * @param options - Action description (string) or completion options (object)
@@ -274,12 +308,11 @@ export async function completeDispatch(
     });
   }
 
-  // Existing rotation logic
-  const newState = advanceRotation(
-    context.state,
-    context.roster,
-    opts.action
-  );
+  // Phase 1b: Pass reflection to advanceRotation if provided
+  const newState = advanceRotation(context.state, context.roster, {
+    action: opts.action,
+    ...(opts.reflection ? { reflection: opts.reflection } : {}),
+  });
   await writeRotationState(context.paths.state, newState);
 
   return {

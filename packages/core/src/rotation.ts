@@ -9,6 +9,7 @@
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import type {
+  Reflection,
   Role,
   RoleId,
   Roster,
@@ -106,29 +107,47 @@ export function getCurrentRoleId(
 }
 
 /**
+ * Options for advanceRotation().
+ *
+ * Phase 1b: Added reflection support for the Reflexion pattern.
+ */
+export interface AdvanceRotationOptions {
+  /** Brief description of the action taken this cycle */
+  action?: string;
+  /** Self-critique reflection on the action (Phase 1b: Reflexion) */
+  reflection?: Reflection;
+}
+
+/**
  * Advance the rotation to the next role.
  *
  * Creates a new state with:
  * - Incremented current_index (wraps around)
  * - Updated last_role and last_run
  * - Incremented cycle_count
- * - New history entry (trimmed to MAX_HISTORY)
+ * - New history entry with optional reflection (trimmed to MAX_HISTORY)
+ *
+ * Phase 1b: Added support for storing reflections in history entries.
  *
  * @param state - Current rotation state
  * @param roster - Team roster (for rotation_order length)
- * @param actionDescription - Brief description of what was done this cycle
+ * @param options - Action description and optional reflection
  * @returns New rotation state (does not mutate input)
  */
 export function advanceRotation(
   state: RotationState,
   roster: Roster,
-  actionDescription?: string
+  options?: AdvanceRotationOptions | string
 ): RotationState {
   const { rotation_order } = roster;
 
   if (rotation_order.length === 0) {
     return state;
   }
+
+  // Normalize options — backward compatible with string form
+  const opts: AdvanceRotationOptions =
+    typeof options === 'string' ? { action: options } : (options ?? {});
 
   const currentIndex = state.current_index % rotation_order.length;
   const currentRole = rotation_order[currentIndex];
@@ -143,7 +162,8 @@ export function advanceRotation(
     role: currentRole,
     timestamp: now,
     cycle: newCycleCount,
-    ...(actionDescription ? { action: actionDescription } : {}),
+    ...(opts.action ? { action: opts.action } : {}),
+    ...(opts.reflection ? { reflection: opts.reflection } : {}),
   };
 
   // Keep only the last MAX_HISTORY entries

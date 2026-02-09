@@ -42,6 +42,7 @@ export {
 } from './reflection.js';
 
 // Rotation
+export type { AdvanceRotationOptions } from './rotation.js';
 export {
   readRotationState,
   writeRotationState,
