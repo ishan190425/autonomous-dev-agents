@@ -45,6 +45,25 @@ Before any action, check for pending reviews:
 
 ---
 
+## CLI Usage (MANDATORY)
+
+All dispatch cycles use the `ada` CLI. See DISPATCH.md for full protocol.
+
+```bash
+# Start your cycle
+ada dispatch start
+
+# Load context
+ada dispatch status --verbose
+ada memory list
+ada memory search "testing"
+
+# After your action, complete the cycle
+ada dispatch complete --action "🔍 Description of what you did"
+```
+
+---
+
 ## Core Principle: Test Infrastructure is a First-Class Citizen
 
 Testing is not an afterthought. Every cycle, you should be thinking about:

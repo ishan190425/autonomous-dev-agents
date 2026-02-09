@@ -19,6 +19,25 @@ Before any action:
 
 ---
 
+## CLI Usage (MANDATORY)
+
+All dispatch cycles use the `ada` CLI. See DISPATCH.md for full protocol.
+
+```bash
+# Start your cycle
+ada dispatch start
+
+# Load context
+ada dispatch status --verbose
+ada memory list
+ada memory search "engineering"
+
+# After your action, complete the cycle
+ada dispatch complete --action "⚙️ Description of what you did"
+```
+
+---
+
 ## Technical Stack
 
 - **Language:** TypeScript (strict mode)

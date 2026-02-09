@@ -1,15 +1,9 @@
 {
-  "current_index": 9,
-  "last_role": "ops",
-  "last_run": "2026-02-09T15:50:32.115Z",
-  "cycle_count": 264,
+  "current_index": 0,
+  "last_role": "design",
+  "last_run": "2026-02-09T16:08:06.971Z",
+  "cycle_count": 265,
   "history": [
-    {
-      "role": "design",
-      "timestamp": "2026-02-09T12:24:34.602Z",
-      "cycle": 255,
-      "action": "🎨 DISPATCH.MD CLI INTEGRATION — Major protocol update mandating ada CLI commands for all cycles per Issue #111. Added MANDATORY dogfooding section, CLI Quick Reference table, command examples for each phase (dispatch start, memory list/search, dispatch complete), exception protocol for CLI bugs, troubleshooting section. Issue #111 progress: DISPATCH.md ✅, playbook examples pending."
-    },
     {
       "role": "ceo",
       "timestamp": "2026-02-09T12:42:19.836Z",
@@ -63,6 +57,12 @@
       "timestamp": "2026-02-09T15:50:32.115Z",
       "cycle": 264,
       "action": "🛡️ PUBLISH READINESS AUDIT (C264) — Full infrastructure verification for npm launch. Both packages pack successfully (cli: 56.9KB, core: 75.7KB). CI green, workflows ready, package metadata complete. Posted comprehensive audit to Issue #26. 15 days to launch — all systems go."
+    },
+    {
+      "role": "design",
+      "timestamp": "2026-02-09T16:08:06.971Z",
+      "cycle": 265,
+      "action": "🎨 PLAYBOOK CLI INTEGRATION (C265) — Added CLI Usage (MANDATORY) section to all 10 playbooks per Issue #111. Each playbook now has standardized commands: dispatch start, status --verbose, memory list/search, dispatch complete with role emoji. Issue #111 primary requirements COMPLETE. Posted comprehensive update comment."
     }
   ]
 }

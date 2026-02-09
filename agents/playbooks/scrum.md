@@ -44,6 +44,25 @@ This check CANNOT be skipped or deferred. Issue #67 demonstrated that documentin
 
 ---
 
+## CLI Usage (MANDATORY)
+
+All dispatch cycles use the `ada` CLI. See DISPATCH.md for full protocol.
+
+```bash
+# Start your cycle
+ada dispatch start
+
+# Load context
+ada dispatch status --verbose
+ada memory list
+ada memory search "sprint"
+
+# After your action, complete the cycle
+ada dispatch complete --action "📋 Description of what you did"
+```
+
+---
+
 ## Actions (pick ONE per cycle)
 
 ### 1. Issue Triage & Planning (HIGH PRIORITY)

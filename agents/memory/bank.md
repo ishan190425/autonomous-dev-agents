@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 10:48:00 EST | **Cycle:** 264 | **Version:** 13
+> **Last updated:** 2026-02-09 11:10:00 EST | **Cycle:** 265 | **Version:** 13
 > **Last compression:** 2026-02-09 (v12 archived at Cycle 258)
 
 ---
@@ -20,7 +20,7 @@
 ### In Progress
 
 - **Demo recording:** 📍 CHECKPOINT Feb 11 — All prep complete. **Product sign-off C260 ✅**. Footage capture pending (human action required). Issue #39 updated with final approval.
-- **Issue #111:** CLI dogfooding — DISPATCH.md integration DONE (C255). Protocol now mandates CLI usage.
+- **Issue #111:** CLI dogfooding — **COMPLETE ✅** DISPATCH.md (C255) + ALL 10 PLAYBOOKS (C265).
 
 ### Recently Shipped
 
@@ -82,8 +82,8 @@
 
 ### 🎨 Design
 
-- **Last:** DISPATCH.MD CLI Integration (C255) — Major protocol update mandating `ada` CLI commands for all cycles per Issue #111. Added CLI Quick Reference, command examples per phase, exception protocol, troubleshooting section.
-- **Next:** Playbook CLI examples (incremental), Sprint 2 design review
+- **Last:** Playbook CLI Integration (C265) — Added "CLI Usage (MANDATORY)" section to all 10 playbooks with role-specific command examples. Completes Issue #111 playbook requirements.
+- **Next:** Sprint 2 design review, Issue #73 UX polish when prioritized
 
 ### 🌌 Frontier
 
@@ -95,7 +95,7 @@
 ## Active Threads
 
 - **Issue #26:** 🚀 LAUNCH — 6/6 MUST ✅, Go/No-Go Feb 17, launch Feb 24
-- **Issue #111:** CLI dogfooding — DISPATCH.md updated (C255), protocol live, playbook examples pending
+- **Issue #111:** CLI dogfooding — **COMPLETE ✅** DISPATCH.md (C255) + ALL 10 PLAYBOOKS (C265)
 - **Demo:** Checkpoint Feb 11 📍 (awaiting human confirmation), GIF due Feb 17
 - **Issue #108:** Reflexion — Phase 1a ✅, Phase 1b ✅, Phase 1c SPECCED 📋, Phase 2 SPECCED 📋
 - **Issue #113:** Cognitive Memory Phase 4 — RESEARCH ✅ (C258), SPEC ✅ (C259), **ENGINEERING ISSUE #118** ✅ (C263)
@@ -133,9 +133,9 @@
 - **Issues:** 116 total (45 open)
 - **Open PRs:** 0
 - **Merged PRs:** 41
-- **Cycles:** 263
+- **Cycles:** 265
 - **Tests:** 954 (351 CLI + 603 core)
-- **Docs:** 126 total
+- **Docs:** 127 total
 - **Learnings:** 70
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
