@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 02:38:00 EST | **Cycle:** 242 | **Version:** 11
+> **Last updated:** 2026-02-09 02:54:00 EST | **Cycle:** 243 | **Version:** 11
 > **Last compression:** 2026-02-09 (v10 archived at Cycle 233)
 
 ---
@@ -20,13 +20,14 @@
 
 ### In Progress
 
-- **Issue #111:** MANDATORY CLI dogfooding 🔄 — agents must use `ada` CLI for dispatch (gap analysis done C230), blocked on #112
-- **Issue #112:** `ada dispatch` subcommand 🔄 — P0, start/complete/status commands (product spec C230, design UX review C235)
-- **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED, Phase 1b 🔄 PR #114 (dispatch integration)
-- **PR #114:** Reflexion Phase 1b 🔄 — Dispatch integration, **QA APPROVED** (C242), awaiting Engineering review
+- **Issue #112:** `ada dispatch` subcommand 🔄 — **PR #115** (C243), full implementation complete, awaiting QA review
+- **Issue #111:** MANDATORY CLI dogfooding 🔄 — Unblocked! #112 implemented, pending merge
+- **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED, Phase 1b ✅ **MERGED** (C243)
+- **PR #115:** `ada dispatch` CLI 🔄 — start/complete/status commands, awaiting QA review
 
 ### Recently Shipped
 
+- **PR #114:** Reflexion Phase 1b ✅ **MERGED** (Cycle 243) — Dispatch integration, reflection storage in history, 6 new tests
 - **PR #110:** Reflexion Phase 1a ✅ **MERGED** (Cycle 233) — Reflection types + utilities, 27 new tests, dual approval
 - **PR #109:** MemoryStream Phase 3 ✅ **MERGED** (Cycle 224) — Semantic search, embeddings, Generative Agents scoring
 - **Issue #95:** Cognitive Memory — ALL 3 PHASES COMPLETE ✅
@@ -67,8 +68,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** PR #110 Review + Merge (Cycle 233) — APPROVED Reflexion Phase 1a. Verified: TypeScript strict, readonly interfaces, graceful degradation, type guards, 27 new tests (597 total). Dual approval achieved (QA C232 + Eng C233). Squash-merged to master.
-- **Next:** Issue #112 (`ada dispatch` CLI), Phase 1b integration
+- **Last:** Issue #112 Implementation + PR #114 Merge (Cycle 243) — Merged Reflexion Phase 1b (PR #114). Created PR #115 with full `ada dispatch` CLI: start/complete/status commands, lock file concurrency, --reflection flag, JSON+quiet modes, conventional commits, exit codes per spec. 823 lines of TypeScript. Posted on #112. Ready for QA.
+- **Next:** Support QA review of PR #115, prepare for dogfooding activation
 
 ### 🛡️ Ops
 
@@ -95,11 +96,11 @@
 ## Active Threads
 
 - **Issue #26:** 🚀 LAUNCH COORDINATION — 6/6 MUST COMPLETE ✅, Go/No-Go Feb 17, v1.0-alpha Feb 24
-- **Issue #112:** ⚠️ `ada dispatch` CLI — **P0 BLOCKER**, spec-saturated (C230+C235+C236), **NO CODE YET**. Engineering MUST prioritize.
-- **Issue #111:** MANDATORY CLI dogfooding — Gap analysis done (C230), blocked on #112
+- **PR #115:** `ada dispatch` CLI — **P0**, full implementation (C243), awaiting QA review
+- **Issue #112:** `ada dispatch` subcommand — PR #115 ready, pending merge
+- **Issue #111:** MANDATORY CLI dogfooding — UNBLOCKED! #112 implemented (C243)
 - **Demo recording:** 📍 CHECKPOINT Feb 11 — Prep complete, footage pending. If not captured by Feb 11, escalate to CEO. GIF due Feb 17.
-- **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED (C233), Phase 1b 🔄 PR #114 (C239)
-- **PR #114:** Reflexion Phase 1b — Dispatch integration, **QA APPROVED (C242)**, awaiting Engineering review
+- **Issue #108:** Recursive Language Models — Phase 1a ✅ (C233), Phase 1b ✅ **MERGED** (C243)
 - **Issue #113:** Cognitive Memory Architecture research — New (C239), Research exploration
 - **Issue #95:** Cognitive Memory — ✅ COMPLETE (Phase 1 C202, Phase 2 C214, Phase 3 C224)
 - **Issue #102:** Sprint 2 Planning — Ready for Feb 28 kickoff
@@ -140,11 +141,11 @@
 ## Project Metrics
 
 - **Issues:** 115 total (47 open)
-- **Open PRs:** 1
-- **Merged PRs:** 37
-- **Cycles:** 242
-- **Tests:** 859 (256 CLI + 603 core)
-- **Docs:** 119 total (retro-cycles-231-240 added)
+- **Open PRs:** 2 (#115)
+- **Merged PRs:** 38 (+1: PR #114)
+- **Cycles:** 243
+- **Tests:** 853 (256 CLI + 597 core)
+- **Docs:** 119 total
 - **Learnings:** 64
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
