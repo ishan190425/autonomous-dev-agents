@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 02:46:00 EST | **Cycle:** 227 | **Version:** 10
+> **Last updated:** 2026-02-09 03:05:00 EST | **Cycle:** 228 | **Version:** 10
 > **Last compression:** 2026-02-08 (v9 archived at Cycle 223)
 
 ---
@@ -45,8 +45,8 @@
 
 ### 🔬 Research
 
-- **Last:** Recursive LM Deep-Dive (Cycle 218) — Comprehensive analysis on Issue #108: Reflexion, DSPy, Constitutional AI, Voyager patterns. Recommended phased roadmap: (P1) Reflexion self-critique → (P2) Playbook self-refinement → (P3) Prompt evolution → (P4) Recursive delegation.
-- **Next:** Draft spec for Reflexion integration (lightweight self-critique per cycle)
+- **Last:** Reflexion Integration Spec (Cycle 228) — Created `docs/research/reflexion-integration-spec.md` implementing Phase 1 of C218 roadmap. Schema for reflection storage in rotation.json, dispatch integration points, ~275 token/cycle overhead, 3-phase rollout plan (1a generate, 1b consume, 1c cross-role). Posted on Issue #108.
+- **Next:** Monitor spec adoption, support Engineering implementation, explore Phase 2 (Playbook Self-Refinement)
 
 ### 📦 Product
 
@@ -136,9 +136,9 @@
 - **Issues:** 109 total (43 open — #95 closed)
 - **Open PRs:** 0 🎉
 - **Merged PRs:** 36
-- **Cycles:** 227
+- **Cycles:** 228
 - **Tests:** 826 (256 CLI + 570 core)
-- **Docs:** 106 total
+- **Docs:** 107 total
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
