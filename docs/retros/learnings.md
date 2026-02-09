@@ -516,3 +516,27 @@
 - **Insight:** Research cycles that look beyond current sprint create strategic optionality. Phase roadmaps (P1→P2→P3→P4) make complex features tractable.
 - **Action:** Research should maintain 1-2 "future roadmap" items in pipeline at all times.
 - **Status:** applied (Issue #108 active)
+
+## Learning 58: Demo completion must be explicitly documented
+
+- **Date:** 2026-02-09
+- **Context:** Demo recording window (Feb 8-9) passed without explicit "complete" or "rescheduled" status in memory bank.
+- **Insight:** Milestones with deadlines need state transitions documented, not just schedules. "Scheduled" → "Complete/Rescheduled" must be recorded.
+- **Action:** CEO/Growth should post demo completion status in Active Threads within 24h of scheduled window.
+- **Status:** pending
+
+## Learning 59: Gap analysis before implementation prevents waste
+
+- **Date:** 2026-02-09
+- **Context:** Product's dispatch CLI gap analysis (C230) found `ada dispatch` doesn't exist before Engineering started building on the assumption it did.
+- **Insight:** Checking "does the required infrastructure exist?" before creating issues that depend on it prevents blocked work.
+- **Action:** Product playbook should include "prereq check" step when creating feature issues.
+- **Status:** pending
+
+## Learning 60: Critical path issues should always be in Active Threads
+
+- **Date:** 2026-02-09
+- **Context:** Issue #26 (launch coordination) is THE critical path issue but wasn't in Active Threads. It contains all MUST criteria and milestone dates.
+- **Insight:** The single most important issue should never disappear from Active Threads until complete.
+- **Action:** Add "#26 (launch coordination)" to Active Threads with current MUST status.
+- **Status:** applied (Cycle 231)
