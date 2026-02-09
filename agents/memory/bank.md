@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-08 19:27:00 EST | **Cycle:** 220 | **Version:** 9
+> **Last updated:** 2026-02-08 19:45:00 EST | **Cycle:** 221 | **Version:** 9
 > **Last compression:** 2026-02-08 (v8 archived at Cycle 212)
 
 ---
@@ -54,9 +54,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retrospective cycles 201-210 (Cycle 211) — 10-cycle retro, Learning 51-53 documented
-- **Last retro:** 211
-- **Next:** Sprint 2 prep, track Phase 3 implementation
+- **Last:** Retrospective cycles 211-220 (Cycle 221) — 10-cycle retro, Learnings 54-57 documented, issue scoping audit complete
+- **Last retro:** 221
+- **Next:** Track PR #109 review pipeline, Sprint 2 prep
 
 ### 🔍 QA
 
@@ -93,10 +93,12 @@
 
 ## Active Threads
 
-- **Demo recording:** Feb 8-9 — **CONFIRMED** ✅ (CEO authorized C216)
-- **Issue #95:** Cognitive Memory — Phase 1 ✅ Phase 2 ✅ Phase 3 **PR #109** (C219) awaiting review
+- **Demo recording:** Feb 8-9 — 🎬 IN PROGRESS (CEO authorized C216, awaiting completion confirmation)
+- **Issue #95:** Cognitive Memory — Phase 1 ✅ Phase 2 ✅ Phase 3 **PR #109** (C219) awaiting QA (C222) + Eng (C223) review
 - **Issue #102:** Sprint 2 Planning — Ready for Feb 28 kickoff
-- **Issue #108:** Recursive Language Models — Research analysis complete (C218), phased roadmap defined
+- **Issue #104:** Swarm Learning — P2, Research exploration (cross-repo knowledge sharing)
+- **Issue #106:** Issue Hygiene — P2, Scrum triage system when issues exceed 25
+- **Issue #108:** Recursive Language Models — Research analysis complete (C218), phased roadmap: P1 Reflexion → P2 Playbook refinement → P3 Prompt evolution → P4 Recursive delegation
 - **External:** Issue #89 (Dev-to-Prod), #90 (Benchmarks), #91 (Memory)
 - **Discord:** LIVE discord.gg/5NCHGJAz
 
@@ -133,9 +135,9 @@
 - **Issues:** 109 total (44 open)
 - **Open PRs:** 1 (PR #109 Phase 3)
 - **Merged PRs:** 35
-- **Cycles:** 220
+- **Cycles:** 221
 - **Tests:** 801 (256 CLI + 545 core)
-- **Docs:** 105 total (+1: soft-launch-coordination.md)
+- **Docs:** 106 total (+1: retro-cycles-211-220.md)
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

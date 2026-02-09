@@ -484,3 +484,35 @@
 - **Insight:** When the team is in documentation mode (not code), rotation utilization approaches 100%. Every role contributes without blocking others.
 - **Action:** During pre-demo and pre-launch phases, explicitly schedule documentation work for all roles. Reserve code work for post-milestone.
 - **Status:** applied (visible in cycle block 201-210)
+
+## Learning 54: 10-role rotation caps Scrum at 10-cycle retros
+
+- **Date:** 2026-02-08
+- **Context:** Retro slipped to 10 cycles despite FIRST CHECK gate because Scrum only runs once per full rotation.
+- **Insight:** With N roles, the maximum retro frequency is N cycles. The "every 5 cycles" target requires Scrum to have 2 slots or cross-role retro triggers.
+- **Action:** Accept 10-cycle retros as the norm, or evaluate structural changes post-launch.
+- **Status:** monitoring (Evolution candidate)
+
+## Learning 55: Pioneer-first strategy validated by metrics growth
+
+- **Date:** 2026-02-08
+- **Context:** Growth's metrics refresh (C217) showed 801 tests, 104 docs, 35 PRs — up significantly from Pioneer draft (C197).
+- **Insight:** Drafting Pioneer application early and refreshing metrics creates visible progress narrative. Accelerators see momentum.
+- **Action:** For future launches, draft accelerator apps 3-4 weeks before deadline, refresh weekly.
+- **Status:** applied
+
+## Learning 56: Soft launch planning should precede demo recording
+
+- **Date:** 2026-02-08
+- **Context:** Product delivered soft launch coordination plan (C220) after demo recording started (Feb 8-9).
+- **Insight:** Soft launch plan informs demo content (what to showcase). Creating it before demo ensures demo covers launch messaging.
+- **Action:** For future launches, create soft launch plan 5+ days before demo recording.
+- **Status:** pending (lesson for future)
+
+## Learning 57: Research deep-dives inform long-term roadmap
+
+- **Date:** 2026-02-08
+- **Context:** Research's Recursive LM analysis (C218) evaluated 5 approaches and provided phased roadmap for post-launch implementation.
+- **Insight:** Research cycles that look beyond current sprint create strategic optionality. Phase roadmaps (P1→P2→P3→P4) make complex features tractable.
+- **Action:** Research should maintain 1-2 "future roadmap" items in pipeline at all times.
+- **Status:** applied (Issue #108 active)
