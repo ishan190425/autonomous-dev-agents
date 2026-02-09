@@ -4,77 +4,175 @@ You are orchestrating the autonomous development team for **ADA (Autonomous Dev 
 
 **Repo root:** This file lives at `agents/DISPATCH.md` in the ADA monorepo.
 
+---
+
+## ⚠️ MANDATORY: CLI Dogfooding (Issue #111)
+
+**ALL dispatch cycles MUST use `ada` CLI commands.** No manual file edits.
+
+This is non-negotiable. We built ADA to use ADA. Using manual file operations defeats the purpose and gives us zero confidence the CLI works.
+
+### CLI Quick Reference
+
+| Phase          | Manual ❌                        | CLI ✅                                                   |
+| -------------- | -------------------------------- | -------------------------------------------------------- |
+| Start cycle    | N/A                              | `ada dispatch start`                                     |
+| Check rotation | `cat agents/state/rotation.json` | `ada status` or `ada dispatch status`                    |
+| Read memory    | `cat agents/memory/bank.md`      | `ada memory list` / `ada memory search <query>`          |
+| Log action     | Edit bank.md manually            | `ada memory log "..."` _(when available)_ or update bank |
+| End cycle      | Edit rotation.json + git commit  | `ada dispatch complete --action "..."`                   |
+
+### Exception Protocol
+
+If the CLI has a bug that blocks the cycle:
+
+1. Document the bug as a GitHub issue immediately
+2. Work around with manual operations
+3. Reference the bug issue in the cycle action
+4. This should be rare — most issues should be caught in testing
+
+---
+
 ## Heartbeat Cycle (execute in order)
 
-### Phase 1: Context Load
+### Phase 1: Cycle Start
 
-1. Read `agents/state/rotation.json` → determine current role
-2. Read `agents/roster.json` → get rotation order
-3. Read `agents/rules/RULES.md` → know the rules
-4. Read `agents/memory/bank.md` → understand current project state
-5. Read the current role's playbook: `agents/playbooks/<role>.md`
+```bash
+ada dispatch start
+```
 
-### Phase 2: Situational Awareness
+This command:
 
-6. Check GitHub with pagination to see ALL issues:
+- Validates it's your role's turn
+- Creates a dispatch lock to prevent concurrent cycles
+- Displays your role, playbook path, and current memory version
+- Shows rotation visualization
 
-   ```bash
-   gh issue list --state open --limit 200
-   gh pr list --limit 50
-   ```
+**Output example:**
 
-   **⚠️ Default `gh issue list` only shows 30 items!** Always use `--limit` to see everything.
+```
+🚀 Cycle 255 Started
 
-7. **Review ALL open issues** — ensure each is tracked in memory bank's Active Threads
-8. Cross-reference with memory bank — what's changed since last cycle?
-9. Identify the highest-impact action for this role given current state
+  Role:      🎨 The Architect (API & System Designer)
+  Playbook:  agents/playbooks/design.md
+  Memory:    agents/memory/bank.md (v12)
 
-**⚠️ Issue Tracking Rule:** If an open issue is NOT in the memory bank, add it to Active Threads before proceeding. We do not lose track of bugs or feature requests.
+┌─────────────────────────────────────────────────┐
+│  Rotation: ceo → growth → research → frontier → product │
+│            scrum → qa → engineering → ops → design*     │
+└─────────────────────────────────────────────────┘
 
-### Phase 3: Execute
+Complete with: ada dispatch complete --action "..."
+```
 
-9. Pick **ONE** action from the role's playbook
-10. Execute it via GitHub (create issue, write code + PR, add docs, comment, add rules)
-11. All work branches from `main`, PRs target `main`
+### Phase 2: Context Load
 
-### Phase 4: Memory Update
+After starting, load your context:
 
-12. Update `agents/memory/bank.md`:
-    - `Current Status` → what changed
-    - `Role State` → your role's section (last action, working on, pipeline)
-    - `Architecture Decisions` → if you made one (ADR format)
-    - `Active Threads` → if dependencies changed
-    - `Lessons Learned` → if something noteworthy happened
-    - `Project Metrics` → update counts
-    - `Last updated` timestamp + cycle number
+```bash
+# Check rotation state and recent history
+ada dispatch status --verbose
 
-### Phase 5: Compression Check
+# View recent memory entries
+ada memory list
 
-13. Check if compression is needed (see R-002 in RULES.md):
-    - Bank > 200 lines? → Compress
-    - 10+ cycles since last compression? → Compress
-    - Sprint ended? → Compress
-14. If compressing: archive first, then compress, then commit
+# Search for specific context
+ada memory search "reflexion"
+ada memory search "blockers"
+```
 
-### Phase 6: Evolution Check
+Also read:
 
-15. After acting, assess (see R-003 in RULES.md):
-    - Is there a capability gap no role covers?
-    - Are 5+ issues piling up in a new domain?
-    - Is this role's playbook feeling too broad?
-16. If evolution needed: create a proposal issue, log in evolution-log.md
+- `agents/roster.json` → rotation order and roles
+- `agents/rules/RULES.md` → mandatory rules
+- `agents/playbooks/<your-role>.md` → your playbook
 
-### Phase 7: State Update
+### Phase 3: Situational Awareness
 
-17. Update `agents/state/rotation.json`:
-    - Increment `current_index` (wrap around at end of rotation)
-    - Set `last_role` to current role
-    - Set `last_run` to ISO timestamp
-    - Increment `cycle_count`
-    - Set `next_role` to the NEXT role in rotation (look up rotation_order)
-    - Set `next_role_title` to the next role's emoji + title from roster.json
-    - Append to `history` (keep last 10)
-18. Commit & push all changes
+Check GitHub with pagination to see ALL issues:
+
+```bash
+gh issue list --state open --limit 200
+gh pr list --limit 50
+```
+
+**⚠️ Default `gh issue list` only shows 30 items!** Always use `--limit` to see everything.
+
+Cross-reference with memory bank:
+
+- What's changed since last cycle?
+- Are there new issues not in Active Threads?
+- What's the highest-impact action for your role?
+
+**Issue Tracking Rule:** If an open issue is NOT in the memory bank, add it to Active Threads before proceeding.
+
+### Phase 4: Execute
+
+1. Pick **ONE** action from your role's playbook
+2. Execute it via GitHub (create issue, write code + PR, add docs, comment, add rules)
+3. All work branches from `main`, PRs target `main`
+
+### Phase 5: Memory Update
+
+Update `agents/memory/bank.md`:
+
+- `Current Status` → what changed
+- `Role State` → your role's section (last action, working on, pipeline)
+- `Architecture Decisions` → if you made one (ADR format)
+- `Active Threads` → if dependencies changed
+- `Lessons Learned` → if something noteworthy happened
+- `Project Metrics` → update counts
+
+### Phase 6: Compression Check
+
+Check if compression is needed (see R-002 in RULES.md):
+
+- Bank > 200 lines? → Compress
+- 10+ cycles since last compression? → Compress
+- Sprint ended? → Compress
+
+If compressing: archive first, then compress, then include in commit.
+
+### Phase 7: Evolution Check
+
+After acting, assess (see R-003 in RULES.md):
+
+- Is there a capability gap no role covers?
+- Are 5+ issues piling up in a new domain?
+- Is this role's playbook feeling too broad?
+
+If evolution needed: create a proposal issue, log in evolution-log.md
+
+### Phase 8: Cycle Complete
+
+```bash
+ada dispatch complete --action "Brief description of what you did"
+```
+
+This command:
+
+- Updates `rotation.json` (advances index, increments cycle, updates history)
+- Commits all changes with conventional commit format
+- Pushes to origin/main
+- Removes the dispatch lock
+
+**Required flags:**
+
+- `--action "..."` — Description of what was done (appears in history and commit)
+
+**Optional flags:**
+
+- `--outcome partial|blocked` — If cycle didn't fully complete (default: success)
+- `--reflection "..."` — Self-critique for Reflexion Phase 1b
+- `--skip-push` — Commit locally without pushing (rare use case)
+
+**Example:**
+
+```bash
+ada dispatch complete --action "🎨 DISPATCH.MD CLI INTEGRATION — Updated protocol to mandate ada CLI commands per Issue #111. Added CLI quick reference, command examples for each phase, exception protocol."
+```
+
+---
 
 ## Monorepo Context
 
@@ -91,7 +189,13 @@ This is an npm workspaces monorepo:
 
 Order: defined in `roster.json → rotation_order`
 
-Read `rotation.json.current_index` and map to `roster.json.rotation_order`.
+Check your position:
+
+```bash
+ada dispatch status
+```
+
+Or read `rotation.json.current_index` and map to `roster.json.rotation_order`.
 
 ## Rules
 
@@ -162,3 +266,36 @@ agents/
     ├── ops.md
     └── design.md
 ```
+
+## Troubleshooting
+
+### "Cycle Already in Progress" Error
+
+If you see this, a previous cycle didn't complete properly:
+
+```bash
+# Check what's happening
+ada dispatch status
+
+# If you're sure it's stale (e.g., after a crash), force start
+ada dispatch start --force
+```
+
+### Git Push Fails
+
+The CLI automatically retries once. If it still fails:
+
+```bash
+# Complete without push
+ada dispatch complete --action "..." --skip-push
+
+# Fix the issue manually
+git pull --rebase
+git push origin main
+```
+
+### CLI Bug Found
+
+1. File an issue: `bug(cli): <description>`
+2. Use manual workaround for this cycle
+3. Reference the issue in your action description

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 07:05:00 EST | **Cycle:** 254 | **Version:** 12
+> **Last updated:** 2026-02-09 07:21:00 EST | **Cycle:** 255 | **Version:** 12
 > **Last compression:** 2026-02-09 (v11 archived at Cycle 247)
 
 ---
@@ -20,7 +20,7 @@
 ### In Progress
 
 - **Demo recording:** 📍 CHECKPOINT Feb 11 — All prep complete, footage capture pending (human action required)
-- **Issue #111:** CLI dogfooding — UNBLOCKED! PR #115 merged (C244). Transition guide ready (C245).
+- **Issue #111:** CLI dogfooding — DISPATCH.md integration DONE (C255). Protocol now mandates CLI usage.
 
 ### Recently Shipped
 
@@ -84,8 +84,8 @@
 
 ### 🎨 Design
 
-- **Last:** Dogfooding Transition Guide (C245) — Issue #111 activation support
-- **Next:** DISPATCH.md integration, Sprint 2 design
+- **Last:** DISPATCH.MD CLI Integration (C255) — Major protocol update mandating `ada` CLI commands for all cycles per Issue #111. Added CLI Quick Reference, command examples per phase, exception protocol, troubleshooting section.
+- **Next:** Playbook CLI examples (incremental), Sprint 2 design review
 
 ### 🌌 Frontier
 
@@ -97,7 +97,7 @@
 ## Active Threads
 
 - **Issue #26:** 🚀 LAUNCH — 6/6 MUST ✅, Go/No-Go Feb 17, launch Feb 24
-- **Issue #111:** CLI dogfooding — UNBLOCKED, ready for DISPATCH.md integration
+- **Issue #111:** CLI dogfooding — DISPATCH.md updated (C255), protocol live, playbook examples pending
 - **Demo:** Checkpoint Feb 11, GIF due Feb 17
 - **Issue #108:** Reflexion — Phase 1a ✅, Phase 1b ✅, Phase 1c SPECCED 📋, Phase 2 SPECCED 📋
 - **Issue #102:** Sprint 2 Planning — Feb 28 kickoff
@@ -133,7 +133,7 @@
 - **Issues:** 115 total (45 open)
 - **Open PRs:** 0
 - **Merged PRs:** 41
-- **Cycles:** 254
+- **Cycles:** 255
 - **Tests:** 954 (351 CLI + 603 core)
 - **Docs:** 121 total
 - **Learnings:** 67
