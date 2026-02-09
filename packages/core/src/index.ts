@@ -307,3 +307,31 @@ export {
   LocalEmbeddingProvider,
   createLocalEmbeddingProvider,
 } from './local-embedding-provider.js';
+
+// Cross-Role Insights (Issue #108 — Reflexion Phase 1c)
+export type {
+  InsightType,
+  InsightAction,
+  CrossRoleInsight,
+  ReflectionSource,
+  ReflectionCluster,
+  DetectionOptions,
+  ConfidenceFactors,
+} from './cross-role-insights.js';
+export {
+  DEFAULT_DETECTION_OPTIONS,
+  extractKeywords,
+  jaccardSimilarity,
+  extractReflectionSources,
+  clusterReflections,
+  calculateConfidenceFactors,
+  calculateConfidence,
+  generateInsightId,
+  synthesizeInsight,
+  generateRuleProposal,
+  determineAction,
+  detectConvergentInsights,
+  detectCrossRoleInsights,
+  formatInsightsForRetro,
+  generateInsightIssueBody,
+} from './cross-role-insights.js';

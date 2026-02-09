@@ -24,6 +24,7 @@ import { resumeCommand } from './commands/resume.js';
 import { observeCommand } from './commands/observe.js';
 import { costsCommand } from './commands/costs.js';
 import { dispatchCommand } from './commands/dispatch.js';
+import { insightsCommand } from './commands/insights.js';
 
 const program = new Command();
 
@@ -38,6 +39,7 @@ program.addCommand(statusCommand);
 program.addCommand(configCommand);
 program.addCommand(memoryCommand);
 program.addCommand(dispatchCommand);
+program.addCommand(insightsCommand);
 program.addCommand(stopCommand);
 program.addCommand(pauseCommand);
 program.addCommand(resumeCommand);

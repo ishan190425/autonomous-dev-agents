@@ -620,3 +620,27 @@
 - **Insight:** Dogfooding mandates without documentation create confusion. The transition guide bridged manual → CLI workflows, enabling smooth adoption.
 - **Action:** For future dogfooding activations, always create transition guide before mandate.
 - **Status:** applied (Issue #111 pattern)
+
+## Learning 71: CLI dogfooding creates immediate feedback loops
+
+- **Date:** 2026-02-09
+- **Context:** After Issue #111 mandated CLI usage, Ops immediately identified Issue #119 (audit commits for CLI bugs). Dogfooding revealed potential issues before users did.
+- **Insight:** Using your own product in daily operations surfaces bugs that tests miss. The "eat your own dog food" principle accelerates quality.
+- **Action:** Maintain CLI dogfooding mandate. Monitor Issue #119 outcomes.
+- **Status:** monitoring
+
+## Learning 72: MUST criteria verification creates launch confidence
+
+- **Date:** 2026-02-09
+- **Context:** Product's cycle-by-cycle verification (C270) documented exactly which cycle confirmed each MUST criterion with a verification chain.
+- **Insight:** Linking milestone criteria to specific cycles creates an audit trail. "When did we verify this?" has a clear answer.
+- **Action:** For future launches, require verification chain (cycle number) for each MUST criterion.
+- **Status:** applied (Product C270 pattern)
+
+## Learning 73: Documentation-heavy blocks enable spec saturation
+
+- **Date:** 2026-02-09
+- **Context:** C261-270 produced 6 docs and 0 PRs merged. Specs are now ahead of implementation.
+- **Insight:** Pre-launch phases naturally favor documentation. Engineering will have a full spec backlog when Sprint 2 begins.
+- **Action:** Accept documentation-heavy pre-launch blocks. Transition to implementation-heavy post-launch.
+- **Status:** monitoring

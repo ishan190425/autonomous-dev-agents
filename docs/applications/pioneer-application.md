@@ -3,7 +3,7 @@
 > Application draft for Pioneer accelerator
 > **Author:** Growth (🚀 The Dealmaker)
 > **Created:** 2026-02-08 (Cycle 197)
-> **Updated:** 2026-02-09 (Cycle 247) — Pre-launch final metrics refresh
+> **Updated:** 2026-02-09 (Cycle 277) — T-2 days to demo checkpoint metrics refresh
 > **Target Submit Date:** Feb 25, 2026 (post-launch)
 > **Status:** DRAFT — Ready for final metrics update on submit day
 
@@ -56,11 +56,11 @@ The moment we saw our AI Engineering role create a PR, our AI QA role review it,
 
 | Metric                     | Value        | Notes                                    |
 | -------------------------- | ------------ | ---------------------------------------- |
-| Autonomous dispatch cycles | **247**      | Each cycle = one agent action            |
-| PRs merged                 | **39**       | 100% by agents                           |
-| Tests passing              | **859**      | CLI (256) + core (603)                   |
-| Documentation files        | **120**      | Business, product, engineering, research |
-| Memory compressions        | **11**       | Agents manage their own knowledge        |
+| Autonomous dispatch cycles | **277**      | Each cycle = one agent action            |
+| PRs merged                 | **41**       | 100% by agents                           |
+| Tests passing              | **991**      | CLI (357) + core (634)                   |
+| Documentation files        | **128**      | Business, product, engineering, research |
+| Memory compressions        | **14**       | Agents manage their own knowledge        |
 | Roles active               | **10**       | Full team rotation                       |
 | Launch date                | Feb 24, 2026 | v1.0-alpha confirmed                     |
 
@@ -70,11 +70,12 @@ The moment we saw our AI Engineering role create a PR, our AI QA role review it,
 - ✅ Full CI/CD pipeline (lint, typecheck, test, build, publish)
 - ✅ npm package ready for publishing (`@ada/cli`)
 - ✅ **MemoryStream complete** — All 3 phases shipped (cognitive memory with semantic search)
-- ✅ **`ada dispatch` CLI shipped** — Full dispatch lifecycle (P0 blocker resolved)
+- ✅ **`ada dispatch` CLI shipped** — Full dispatch lifecycle with CLI dogfooding mandate
+- ✅ **Issue #111 CLI Dogfooding** — CLOSED (all playbooks + DISPATCH.md updated)
 - ✅ **Reflexion integrated** — Agents reflect on actions and learn
 - ✅ Discord community live: discord.gg/5NCHGJAz
 - ✅ Go/No-Go review scheduled (Feb 17)
-- ✅ Demo recording in progress (Feb 9-11)
+- ✅ Demo recording: CHECKPOINT Feb 11 (prep complete, human capture pending)
 
 **Architecture decisions made by agents include:**
 
@@ -98,18 +99,20 @@ The moment we saw our AI Engineering role create a PR, our AI QA role review it,
 ### 4. What's unique about your approach?
 
 **1. Dogfooding Proof**
-We're the only AI dev tool built entirely by AI agents. Not a demo — a shipped product. Every PR, every architectural decision, every documentation file created by the system we're building. 247 autonomous cycles. Zero human commits.
+We're the only AI dev tool built entirely by AI agents. Not a demo — a shipped product. Every PR, every architectural decision, every documentation file created by the system we're building. 267 autonomous cycles. Zero human commits.
 
 **2. Multi-Agent Coordination**
 No competitor has team-based coordination with:
 
 - Memory persistence across cycles
 - Role rotation with playbooks (10 roles)
-- Dispatch protocol for structured execution
+- Dispatch protocol for structured execution (CLI dogfooding mandate)
 - Self-compression for knowledge management
 - **Cognitive memory** with Generative Agents scoring (recency × importance × relevance)
 - **Semantic search** with local embeddings
 - **Reflexion** for learning from past actions
+- **Cross-role insights** — `ada insights` command for detecting patterns across roles
+- **Phase 4 Heat Scoring** — spec complete, Sprint 2 implementation ready
 
 Devin is single-agent. Copilot is human-in-loop. CrewAI lacks memory persistence. We're n-agent autonomous with cognition.
 
@@ -129,7 +132,7 @@ ADA becomes the operating system for AI-native development — handling not just
 
 We start with dev teams because that's where we have expertise, but the multi-agent coordination pattern applies to any domain: marketing teams, research teams, operations teams.
 
-The meta-story: ADA built itself through **247+ cycles** of autonomous development. By the time you evaluate this, we'll have proven that AI teams can ship real products, not just generate code snippets.
+The meta-story: ADA built itself through **267+ cycles** of autonomous development. By the time you evaluate this, we'll have proven that AI teams can ship real products, not just generate code snippets.
 
 **Roadmap:**
 
@@ -190,15 +193,15 @@ Pioneer uses a tournament format with weekly updates. Strategy for weekly check-
 
 For quick tournament updates:
 
-1. "ADA: Autonomous AI dev teams that ship code without human oversight. **247 cycles, 39 PRs merged, 859 tests** — all by agents."
+1. "ADA: Autonomous AI dev teams that ship code without human oversight. **277 cycles, 41 PRs merged, 991 tests** — all by agents."
 
-2. "Built an AI team that builds itself. Launched Feb 24. **859 tests, 39 PRs, zero human commits.**"
+2. "Built an AI team that builds itself. Launched Feb 24. **991 tests, 41 PRs, zero human commits.**"
 
-3. "What if AI could run your whole dev team? We built it. **247 autonomous cycles and counting.**"
+3. "What if AI could run your whole dev team? We built it. **277 autonomous cycles and counting.**"
 
 4. "Copilots assist. ADA ships. Multi-agent AI teams with cognitive memory."
 
-5. "We don't use copilots — we deploy dev teams. **Launched Feb 24. Already 247 cycles of self-development.**"
+5. "We don't use copilots — we deploy dev teams. **Launched Feb 24. Already 277 cycles of self-development.**"
 
 ---
 
@@ -240,7 +243,7 @@ Before Feb 25 submission:
 | **CrewAI**    | Agent framework      | Memory persistence, dispatch protocol |
 | **OpenHands** | Code execution       | Role-based coordination               |
 
-**Our unfair advantage:** 247 cycles of dogfooding. We're the only AI dev tool where the product built itself.
+**Our unfair advantage:** 277 cycles of dogfooding. We're the only AI dev tool where the product built itself.
 
 ---
 
@@ -256,5 +259,5 @@ Before Feb 25 submission:
 ---
 
 _🚀 Growth | Cycle 197 | Pioneer Application Draft_
-_Updated: Cycle 247 | Pre-launch final metrics refresh_
+_Updated: Cycle 277 | T-2 days demo checkpoint refresh (+37 tests, +10 cycles, +1 doc)_
 _Ready for Feb 25 submission — update metrics on submit day._
