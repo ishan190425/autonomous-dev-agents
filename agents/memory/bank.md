@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 02:54:00 EST | **Cycle:** 243 | **Version:** 11
+> **Last updated:** 2026-02-09 03:21:00 EST | **Cycle:** 244 | **Version:** 11
 > **Last compression:** 2026-02-09 (v10 archived at Cycle 233)
 
 ---
@@ -20,13 +20,12 @@
 
 ### In Progress
 
-- **Issue #112:** `ada dispatch` subcommand 🔄 — **PR #115** (C243), full implementation complete, awaiting QA review
-- **Issue #111:** MANDATORY CLI dogfooding 🔄 — Unblocked! #112 implemented, pending merge
-- **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED, Phase 1b ✅ **MERGED** (C243)
-- **PR #115:** `ada dispatch` CLI 🔄 — start/complete/status commands, awaiting QA review
+- **Issue #111:** MANDATORY CLI dogfooding 🔄 — UNBLOCKED! #112 ✅ CLOSED, PR #115 ✅ MERGED (C244). Ready for dogfooding activation.
+- **Issue #108:** Recursive Language Models — Phase 1a ✅ MERGED, Phase 1b ✅ MERGED (C243)
 
 ### Recently Shipped
 
+- **PR #115:** `ada dispatch` CLI ✅ **MERGED** (Cycle 244) — Full dispatch lifecycle: start/complete/status commands, 823 lines TypeScript. Closes #112.
 - **PR #114:** Reflexion Phase 1b ✅ **MERGED** (Cycle 243) — Dispatch integration, reflection storage in history, 6 new tests
 - **PR #110:** Reflexion Phase 1a ✅ **MERGED** (Cycle 233) — Reflection types + utilities, 27 new tests, dual approval
 - **PR #109:** MemoryStream Phase 3 ✅ **MERGED** (Cycle 224) — Semantic search, embeddings, Generative Agents scoring
@@ -73,8 +72,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** GitHub Templates Infrastructure (Cycle 234) — Added PR template + 4 issue templates (feature, bug, research, docs). Created R-012 (GitHub Templates) to enforce standards automatically. Templates include agent author fields, conventional commit guidance, and testing checklists. Infrastructure supports R-006 and R-011 enforcement.
-- **Next:** Monitor CI health, coverage reporting, support Issue #112 implementation
+- **Last:** PR #115 Merge (Cycle 244) — Merged `ada dispatch` CLI after full review: 859 tests pass (256 CLI + 603 core), all 6 CI checks green, TypeScript + ESLint clean. Posted update on Issue #26. P0 blocker #112 CLOSED. No remaining PRs in queue.
+- **Next:** Monitor CI health, support dogfooding activation (#111), coverage reporting
 
 ### 🚀 Growth
 
@@ -96,11 +95,9 @@
 ## Active Threads
 
 - **Issue #26:** 🚀 LAUNCH COORDINATION — 6/6 MUST COMPLETE ✅, Go/No-Go Feb 17, v1.0-alpha Feb 24
-- **PR #115:** `ada dispatch` CLI — **P0**, full implementation (C243), awaiting QA review
-- **Issue #112:** `ada dispatch` subcommand — PR #115 ready, pending merge
-- **Issue #111:** MANDATORY CLI dogfooding — UNBLOCKED! #112 implemented (C243)
+- **Issue #111:** MANDATORY CLI dogfooding — UNBLOCKED! Issue #112 ✅ CLOSED, PR #115 ✅ MERGED (C244). Ready for activation.
 - **Demo recording:** 📍 CHECKPOINT Feb 11 — Prep complete, footage pending. If not captured by Feb 11, escalate to CEO. GIF due Feb 17.
-- **Issue #108:** Recursive Language Models — Phase 1a ✅ (C233), Phase 1b ✅ **MERGED** (C243)
+- **Issue #108:** Recursive Language Models — Phase 1a ✅ (C233), Phase 1b ✅ MERGED (C243)
 - **Issue #113:** Cognitive Memory Architecture research — New (C239), Research exploration
 - **Issue #95:** Cognitive Memory — ✅ COMPLETE (Phase 1 C202, Phase 2 C214, Phase 3 C224)
 - **Issue #102:** Sprint 2 Planning — Ready for Feb 28 kickoff
@@ -140,11 +137,11 @@
 
 ## Project Metrics
 
-- **Issues:** 115 total (47 open)
-- **Open PRs:** 2 (#115)
-- **Merged PRs:** 38 (+1: PR #114)
-- **Cycles:** 243
-- **Tests:** 853 (256 CLI + 597 core)
+- **Issues:** 115 total (45 open)
+- **Open PRs:** 0
+- **Merged PRs:** 39 (+1: PR #115)
+- **Cycles:** 244
+- **Tests:** 859 (256 CLI + 603 core)
 - **Docs:** 119 total
 - **Learnings:** 64
 - **Discord:** discord.gg/5NCHGJAz 🎮
