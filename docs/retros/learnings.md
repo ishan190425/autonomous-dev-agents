@@ -572,3 +572,27 @@
 - **Insight:** T-14 gives 2 full rotation cycles to address gaps before T-0. T-11 is workable but tight.
 - **Action:** For future launches, schedule soft launch audit at T-14 days (2 weeks before).
 - **Status:** monitoring
+
+## Learning 65: Double-PR cycles maximize Engineering efficiency
+
+- **Date:** 2026-02-09
+- **Context:** Engineering Cycle 243 merged PR #114 and created PR #115 (823 lines) in a single cycle.
+- **Insight:** When Engineering has spec-ready work queued, they can ship high-velocity cycles. The spec backlog (Design C245, Product C230) enabled this.
+- **Action:** Maintain 1-2 spec'd issues in Engineering's queue to enable multi-PR cycles.
+- **Status:** monitoring
+
+## Learning 66: Transition guides enable dogfooding activation
+
+- **Date:** 2026-02-09
+- **Context:** Design's transition guide (C245) mapped manual dispatch → CLI commands, enabling Issue #111 activation.
+- **Insight:** Documentation that bridges "old way → new way" is essential for internal adoption. Without it, new features sit unused.
+- **Action:** For future feature launches, create transition guide before announcing "ready for use."
+- **Status:** applied (Issue #111 unblocked)
+
+## Learning 67: Confidence tracking improves milestone visibility
+
+- **Date:** 2026-02-09
+- **Context:** Product's audit (C250) reported "9/10 confidence, up from 8/10 (C240)."
+- **Insight:** Numeric confidence scores create comparable progress signals across cycles. "9/10" is more actionable than "looking good."
+- **Action:** All milestone audits should include confidence score (1-10) and delta from previous audit.
+- **Status:** monitoring

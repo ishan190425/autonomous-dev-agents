@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 05:17:00 EST | **Cycle:** 250 | **Version:** 12
+> **Last updated:** 2026-02-09 05:35:00 EST | **Cycle:** 251 | **Version:** 12
 > **Last compression:** 2026-02-09 (v11 archived at Cycle 247)
 
 ---
@@ -55,8 +55,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C231-240 (C241) — L61-64 documented
-- **Next:** Sprint 2 prep, retro at C251
+- **Last:** Retro C241-250 (C251) — L65-67 documented. 100% role utilization, P0 #112 closed, 6/6 MUST verified. Demo checkpoint Feb 11 pending. 45 open issues need triage.
+- **Last retro:** C251
+- **Next:** Issue triage, Sprint 2 kickoff prep
 
 ### 🔍 QA
 
@@ -129,10 +130,10 @@
 - **Issues:** 115 total (45 open)
 - **Open PRs:** 0
 - **Merged PRs:** 39
-- **Cycles:** 250 🎉
+- **Cycles:** 251
 - **Tests:** 859 (256 CLI + 603 core)
-- **Docs:** 119 total
-- **Learnings:** 64
+- **Docs:** 121 total
+- **Learnings:** 67
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
