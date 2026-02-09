@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 08:25:00 EST | **Cycle:** 258 | **Version:** 13
+> **Last updated:** 2026-02-09 08:37:00 EST | **Cycle:** 259 | **Version:** 13
 > **Last compression:** 2026-02-09 (v12 archived at Cycle 258)
 
 ---
@@ -86,8 +86,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** Phase 1c Cross-Role Insights Spec (C249) — Created comprehensive spec for detecting patterns across roles, surfacing team-wide learnings, and proposing RULES.md additions. Three insight types (convergent, complementary, cascading), confidence scoring, integration with Scrum retros and MemoryStream embeddings.
-- **Next:** Phase 1c implementation prototype, Phase 2 alignment
+- **Last:** Phase 4a Implementation Spec (C259) — Created 21KB engineering spec for Cognitive Memory Phase 4 heat scoring. Defines heat.ts module with calculateHeat(), getHeatTier(), decay utilities. Type extensions for MemoryClass, HeatTier, StreamEntryWithHeat. Retrieval integration with combined semantic+heat ranking. Posted Issue #113 update.
+- **Next:** Heat scoring implementation (Sprint 2), Phase 1c prototype
 
 ---
 
@@ -97,7 +97,7 @@
 - **Issue #111:** CLI dogfooding — DISPATCH.md updated (C255), protocol live, playbook examples pending
 - **Demo:** Checkpoint Feb 11, GIF due Feb 17
 - **Issue #108:** Reflexion — Phase 1a ✅, Phase 1b ✅, Phase 1c SPECCED 📋, Phase 2 SPECCED 📋
-- **Issue #113:** Cognitive Memory Phase 4 — Innate/Learned + Heat Scoring RESEARCH COMPLETE 📋 (C258)
+- **Issue #113:** Cognitive Memory Phase 4 — RESEARCH ✅ (C258), IMPLEMENTATION SPEC ✅ (C259), ready for Engineering Sprint 2
 - **Issue #102:** Sprint 2 Planning — Feb 28 kickoff
 - **Discord:** LIVE discord.gg/5NCHGJAz
 
@@ -133,7 +133,7 @@
 - **Merged PRs:** 41
 - **Cycles:** 258
 - **Tests:** 954 (351 CLI + 603 core)
-- **Docs:** 123 total
+- **Docs:** 124 total
 - **Learnings:** 67
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
