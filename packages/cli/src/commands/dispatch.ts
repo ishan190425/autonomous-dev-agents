@@ -465,11 +465,26 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
   const nextRole = getRoleAtOffset(roster, newState.current_index, 0);
 
   // Build commit message
+  // Create a clean subject line (remove emojis, limit to 72 chars for git best practice)
   const roleShort = currentRole.id;
-  const actionShort = options.action.length > 50
-    ? `${options.action.substring(0, 47)}...`
-    : options.action;
-  const commitMessage = `chore(agents): cycle ${newState.cycle_count} — ${roleShort} — ${actionShort}`;
+  
+  // Strip emojis and clean up action for subject line
+  const cleanAction = options.action
+    .replace(/[\u{1F300}-\u{1F9FF}]/gu, '') // Remove emojis
+    .replace(/\s+/g, ' ') // Normalize whitespace
+    .trim();
+  
+  // Create concise subject (first sentence or first 50 chars)
+  const subjectAction = cleanAction.split(/[.!?]\s/)[0] || cleanAction;
+  const maxSubjectLength = 72 - `chore(agents): cycle ${newState.cycle_count} — ${roleShort} — `.length;
+  const subjectShort = subjectAction.length > maxSubjectLength
+    ? `${subjectAction.substring(0, maxSubjectLength - 3)}...`
+    : subjectAction;
+  
+  const commitSubject = `chore(agents): cycle ${newState.cycle_count} — ${roleShort} — ${subjectShort}`;
+  
+  // Full commit message for display (subject + body)
+  const commitMessage = `${commitSubject}\n\n${options.action}`;
 
   // Git operations
   let pushed = false;
@@ -477,12 +492,15 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
   let pushError: string | null = null;
 
   try {
-    // Stage all changes in agents directory
-    const relativePath = path.relative(cwd, agentsDir);
-    await gitExec(cwd, `add "${relativePath}"`);
+    // Stage all changes in the repository (not just agents directory)
+    // This ensures actual work (packages/, docs/, etc.) is included in commits
+    await gitExec(cwd, 'add -A');
 
-    // Commit
-    const { stdout: commitOut } = await gitExec(cwd, `commit -m "${commitMessage.replace(/"/g, '\\"')}"`);
+    // Commit with multi-line message (use multiple -m flags for subject and body)
+    // Escape quotes properly for git
+    const escapedSubject = commitSubject.replace(/"/g, '\\"');
+    const escapedBody = options.action.replace(/"/g, '\\"');
+    const { stdout: commitOut } = await gitExec(cwd, `commit -m "${escapedSubject}" -m "${escapedBody}"`);
     const shaMatch = commitOut.match(/\[[\w-]+\s+([a-f0-9]+)\]/);
     commitSha = shaMatch?.[1] ?? '';
 
