@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "lastUpdateCycle": 0,
+  "lastUpdated": "2026-02-09T02:07:23.304Z",
+  "entries": {
+    "role-state-ceo": {
+      "entryId": "role-state-ceo",
+      "kind": "role_state",
+      "kindWeight": 0.4,
+      "accessCount": 0,
+      "lastAccessCycle": 0,
+      "createdCycle": 1,
+      "score": 0.27999999999999997
+    },
+    "role-state-research": {
+      "entryId": "role-state-research",
+      "kind": "role_state",
+      "kindWeight": 0.4,
+      "accessCount": 0,
+      "lastAccessCycle": 0,
+      "createdCycle": 1,
+      "score": 0.27999999999999997
+    },
+    "role-state-product": {
+      "entryId": "role-state-product",
+      "kind": "role_state",
+      "kindWeight": 0.4,
+      "accessCount": 0,
+      "lastAccessCycle": 0,
+      "createdCycle": 1,
+      "score": 0.27999999999999997
+    },
+    "role-state-scrum": {
+      "entryId": "role-state-scrum",
+      "kind": "role_state",
+      "kindWeight": 0.4,
+      "accessCount": 0,
+      "lastAccessCycle": 0,
+      "createdCycle": 1,
+      "score": 0.27999999999999997
+    },
+    "role-state-qa": {
+      "entryId": "role-state-qa",
+      "kind": "role_state",
+      "kindWeight": 0.4,
+      "accessCount": 0,
+      "lastAccessCycle": 0,
+      "createdCycle": 1,
+      "score": 0.27999999999999997
+    },
+    "role-state-engineering": {
+      "entryId": "role-state-engineering",
+      "kind": "role_state",
+      "kindWeight": 0.4,
+      "accessCount": 0,
+      "lastAccessCycle": 0,
+      "createdCycle": 1,
+      "score": 0.27999999999999997
+    },
+    "role-state-growth": {
+      "entryId": "role-state-growth",
+      "kind": "role_state",
+      "kindWeight": 0.4,
+      "accessCount": 0,
+      "lastAccessCycle": 0,
+      "createdCycle": 1,
+      "score": 0.27999999999999997
+    },
+    "role-state-design": {
+      "entryId": "role-state-design",
+      "kind": "role_state",
+      "kindWeight": 0.4,
+      "accessCount": 0,
+      "lastAccessCycle": 0,
+      "createdCycle": 1,
+      "score": 0.27999999999999997
+    },
+    "role-state-frontier": {
+      "entryId": "role-state-frontier",
+      "kind": "role_state",
+      "kindWeight": 0.4,
+      "accessCount": 0,
+      "lastAccessCycle": 0,
+      "createdCycle": 1,
+      "score": 0.27999999999999997
+    }
+  }
+}
