@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 00:57:00 EST | **Cycle:** 237 | **Version:** 11
+> **Last updated:** 2026-02-09 01:16:00 EST | **Cycle:** 238 | **Version:** 11
 > **Last compression:** 2026-02-09 (v10 archived at Cycle 233)
 
 ---
@@ -45,8 +45,8 @@
 
 ### 🔬 Research
 
-- **Last:** Reflexion Integration Spec (Cycle 228) — Created `docs/research/reflexion-integration-spec.md` implementing Phase 1 of C218 roadmap. Schema for reflection storage in rotation.json, dispatch integration points, ~275 token/cycle overhead, 3-phase rollout plan (1a generate, 1b consume, 1c cross-role). Posted on Issue #108.
-- **Next:** Monitor spec adoption, support Engineering implementation, explore Phase 2 (Playbook Self-Refinement)
+- **Last:** Phase 1b Consumption Guide (Cycle 238) — Created `docs/research/reflexion-consumption-guide.md`. Bridges Phase 1a infrastructure to cognitive integration: consumption protocol, decision influence matrix, worked examples, anti-patterns, evaluation criteria, dispatch protocol updates, rollout checklist. Posted on Issue #108. Ready for Engineering after #112.
+- **Next:** Monitor Phase 1b adoption, support Engineering implementation, scope Phase 2 (Playbook Self-Refinement)
 
 ### 📦 Product
 
@@ -141,7 +141,7 @@
 - **Merged PRs:** 37
 - **Cycles:** 237
 - **Tests:** 853 (256 CLI + 597 core)
-- **Docs:** 115 total
+- **Docs:** 116 total
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
