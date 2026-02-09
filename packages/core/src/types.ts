@@ -88,6 +88,26 @@ export interface Roster {
 
 // ─── Rotation State ──────────────────────────────────────────────────────────
 
+// ─── Reflection Types (Reflexion Pattern) ───────────────────────────────────
+
+/** Outcome of an action for reflection tracking */
+export type ReflectionOutcome = 'success' | 'partial' | 'blocked' | 'unknown';
+
+/**
+ * Reflexion-style self-critique attached to a dispatch cycle.
+ * See: Shinn et al. (2023) — "Reflexion: Language Agents with Verbal Reinforcement Learning"
+ */
+export interface Reflection {
+  /** How did the action turn out? */
+  readonly outcome: ReflectionOutcome;
+  /** What aspect of the approach was effective? (max 100 chars) */
+  readonly whatWorked?: string;
+  /** What would you do differently next time? (max 100 chars) */
+  readonly whatToImprove?: string;
+  /** Any insight worth remembering? (max 150 chars) */
+  readonly lessonLearned?: string;
+}
+
 /** A single entry in the rotation history */
 export interface RotationHistoryEntry {
   /** Role that acted */
@@ -98,6 +118,8 @@ export interface RotationHistoryEntry {
   readonly cycle: number;
   /** Brief description of the action taken */
   readonly action?: string;
+  /** Self-critique reflection on the action (Phase 1a: Reflexion) */
+  readonly reflection?: Reflection;
 }
 
 /** Current rotation state — tracks where we are in the cycle */
