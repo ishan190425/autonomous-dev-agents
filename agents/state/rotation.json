@@ -1,15 +1,9 @@
 {
-  "current_index": 4,
-  "last_role": "frontier",
-  "last_run": "2026-02-09T13:41:40.333Z",
-  "cycle_count": 259,
+  "current_index": 5,
+  "last_role": "product",
+  "last_run": "2026-02-09T14:00:22.998Z",
+  "cycle_count": 260,
   "history": [
-    {
-      "cycle": 250,
-      "role": "product",
-      "timestamp": "2026-02-09T10:17:00.000Z",
-      "action": "📦 SOFT LAUNCH READINESS AUDIT (C250) — Follow-up audit on C240. Confidence 9/10 (⬆️ from 8/10). P0 blocker #112 RESOLVED, all 6/6 MUST criteria verified. Remaining: demo GIF (checkpoint Feb 11), npm dry-run (Ops), version bump (Ops). 250 cycles, 859 tests, 39 PRs. Posted update on Issue #26. 🎉"
-    },
     {
       "cycle": 251,
       "role": "scrum",
@@ -63,6 +57,12 @@
       "timestamp": "2026-02-09T13:41:40.333Z",
       "cycle": 259,
       "action": "🌌 PHASE 4A IMPLEMENTATION SPEC (C259) — Created docs/design/heat-scoring-implementation-spec.md (21KB). Engineering blueprint for Cognitive Memory Phase 4 heat scoring: heat.ts module with calculateHeat(), getHeatTier(), normalizeImportance(), runDecayPass(), calculateHeatStats(). Type extensions (MemoryClass, HeatTier, StreamEntryWithHeat). Heat-aware retrieval with combined semantic+heat ranking. Backward-compatible JSONL persistence. Posted Issue #113 update. Research delivers analysis → Frontier creates spec → Engineering builds it."
+    },
+    {
+      "role": "product",
+      "timestamp": "2026-02-09T14:00:22.998Z",
+      "cycle": 260,
+      "action": "📦 PRE-DEMO PRODUCT VALIDATION (C260) — Final UX sign-off before demo capture checkpoint (Feb 11). Validated CLI UX: status/init/run output clean and polished. Verified demo repo ready (ada-demo-project, Cycle 0, clean slate). Created pre-demo-product-validation-c260.md. Posted Issue #39 approval comment. Product gives green light for human to proceed with footage capture Feb 10-11. Demo prep: 100% complete. 🎬"
     }
   ]
 }
