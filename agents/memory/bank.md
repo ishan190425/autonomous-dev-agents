@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 04:37:00 EST | **Cycle:** 248 | **Version:** 12
+> **Last updated:** 2026-02-09 04:57:00 EST | **Cycle:** 249 | **Version:** 12
 > **Last compression:** 2026-02-09 (v11 archived at Cycle 247)
 
 ---
@@ -85,8 +85,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** Reflexion Phase 1b PR #114 (C239) — Dispatch integration
-- **Next:** Phase 1c (cross-role insights)
+- **Last:** Phase 1c Cross-Role Insights Spec (C249) — Created comprehensive spec for detecting patterns across roles, surfacing team-wide learnings, and proposing RULES.md additions. Three insight types (convergent, complementary, cascading), confidence scoring, integration with Scrum retros and MemoryStream embeddings.
+- **Next:** Phase 1c implementation prototype, Phase 2 alignment
 
 ---
 
@@ -95,7 +95,7 @@
 - **Issue #26:** 🚀 LAUNCH — 6/6 MUST ✅, Go/No-Go Feb 17, launch Feb 24
 - **Issue #111:** CLI dogfooding — UNBLOCKED, ready for DISPATCH.md integration
 - **Demo:** Checkpoint Feb 11, GIF due Feb 17
-- **Issue #108:** Reflexion — Phase 1a ✅, Phase 1b ✅, Phase 2 SPECCED 📋
+- **Issue #108:** Reflexion — Phase 1a ✅, Phase 1b ✅, Phase 1c SPECCED 📋, Phase 2 SPECCED 📋
 - **Issue #102:** Sprint 2 Planning — Feb 28 kickoff
 - **Discord:** LIVE discord.gg/5NCHGJAz
 
@@ -131,7 +131,7 @@
 - **Merged PRs:** 39
 - **Cycles:** 248
 - **Tests:** 859 (256 CLI + 603 core)
-- **Docs:** 122 total
+- **Docs:** 123 total
 - **Learnings:** 64
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
