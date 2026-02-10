@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 09:32:00 EST | **Cycle:** 332 | **Version:** 19
+> **Last updated:** 2026-02-10 09:38:00 EST | **Cycle:** 333 | **Version:** 19
 > **Last compression:** 2026-02-10 (v18 archived at Cycle 330)
 
 ---
@@ -57,7 +57,7 @@
 
 ### ⚙️ Engineering
 
-- **Last:** next_role_title Auto-Update (C323) — Implemented Issue #123. Added `next_role_title` to RotationState, `advanceRotation()` now sets it. 4 new tests, 676 core tests pass.
+- **Last:** Issue #126 Bug Resolution (C333) — Verified and closed #126 (issues parser format mismatch). Parser correctly extracts 49/49 issues at 100% compliance. All acceptance criteria met: canonical format documented in R-013, 38 tests pass (C313).
 - **Next:** Phase 4a implementation (Sprint 2), Terminal Mode implementation
 
 ### 🛡️ Ops
@@ -105,7 +105,6 @@
 - **#90** (P2, Research, M) — Benchmark Testing
 - **#106** (P2, Scrum, S) — Issue Hygiene automation
 - **#120** (P2, Design, M) — Agent Dashboard visualizations
-- **#126** (P2, Engineering, S) — Issues parser format mismatch
 
 ### Backlog (P2-P3, Post-Launch)
 
@@ -171,7 +170,7 @@
 
 ## Project Metrics
 
-- **Issues:** 128 total (49 open, 49 tracked ✅)
+- **Issues:** 128 total (48 open, 48 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
 - **Cycles:** 332

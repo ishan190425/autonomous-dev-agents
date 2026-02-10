@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-10T14:31:54.960Z",
-  "cycle_count": 332,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-10T14:39:45.219Z",
+  "cycle_count": 333,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-10T13:10:47.481Z",
-      "cycle": 323,
-      "action": "⚙️ next_role_title AUTO-UPDATE (C323) — Implemented Issue #123. Added next_role_title to RotationState type, advanceRotation() now computes emoji+roleId from roster on each advance. 4 new tests (676 core total). TypeScript ✅. Commented #123. L96 documented.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Deriving emoji from roster.roles rather than hardcoding ensures consistency. Lesson: Badge features should use existing data sources to avoid drift."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-10T13:21:17.664Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: QA perspective on process changes adds quality requirements early in the design. Lesson: When workflow changes are proposed, QA should immediately specify quality gate requirements — waiting until implementation is too late."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-10T14:39:45.219Z",
+      "cycle": 333,
+      "action": "⚙️ ISSUE #126 BUG RESOLUTION (C333) — Verified and closed Issue #126 (issues parser format mismatch). Parser correctly extracts 49/49 issues at 100% compliance. All acceptance criteria met: canonical format documented in R-013, 38 tests pass (C313). Active Threads updated: 48/48 tracked.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Verifying parser correctness before closing bugs ensures nothing slips through. Lesson: Before closing bugs, test the actual fix in production context — running verification against real data (bank.md) confirms acceptance criteria better than unit tests alone."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }
