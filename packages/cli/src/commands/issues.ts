@@ -13,7 +13,6 @@
  */
 
 import { Command } from 'commander';
-import * as path from 'node:path';
 import * as fs from 'node:fs/promises';
 import { execSync } from 'node:child_process';
 import chalk from 'chalk';
@@ -71,8 +70,7 @@ function getGitHubIssues(state: 'open' | 'closed' = 'open'): ParsedIssue[] {
 /**
  * Read memory bank content.
  */
-async function readBankContent(agentsDir: string): Promise<string> {
-  const bankPath = path.join(agentsDir, 'memory', 'bank.md');
+async function readBankContent(bankPath: string): Promise<string> {
   try {
     return await fs.readFile(bankPath, 'utf-8');
   } catch (error) {
@@ -85,8 +83,7 @@ async function readBankContent(agentsDir: string): Promise<string> {
 /**
  * Write memory bank content.
  */
-async function writeBankContent(agentsDir: string, content: string): Promise<void> {
-  const bankPath = path.join(agentsDir, 'memory', 'bank.md');
+async function writeBankContent(bankPath: string, content: string): Promise<void> {
   await fs.writeFile(bankPath, content, 'utf-8');
 }
 
@@ -157,12 +154,11 @@ function insertIssueIntoThreads(
 async function verifyCommand(options: IssuesVerifyOptions): Promise<void> {
   const { dir, json, verbose } = options;
   const paths = resolvePaths(dir, 'scrum', DEFAULT_CONFIG);
-  const agentsDir = path.dirname(paths.memoryBank);
 
   try {
     const openIssues = getGitHubIssues('open');
     const closedIssues = getGitHubIssues('closed');
-    const bankContent = await readBankContent(agentsDir);
+    const bankContent = await readBankContent(paths.memoryBank);
     const activeThreads = extractActiveThreads(bankContent);
 
     const result = verifyIssueTracking(openIssues, activeThreads, closedIssues);
@@ -179,7 +175,7 @@ async function verifyCommand(options: IssuesVerifyOptions): Promise<void> {
     const statusColor = result.compliance === 1 ? chalk.green : result.compliance >= 0.8 ? chalk.yellow : chalk.red;
     const statusIcon = result.compliance === 1 ? '✅' : result.compliance >= 0.8 ? '⚠️' : '❌';
 
-    console.log(`${statusIcon} Compliance: ${statusColor(compliancePercent + '%')}`);
+    console.log(`${statusIcon} Compliance: ${statusColor(`${compliancePercent  }%`)}`);
     console.log(`   Total Open Issues: ${result.totalOpenIssues}`);
     console.log(`   Tracked Issues: ${result.trackedIssues}`);
     console.log(`   Missing Issues: ${chalk.red(result.missingIssues.length)}`);
@@ -223,12 +219,11 @@ async function verifyCommand(options: IssuesVerifyOptions): Promise<void> {
 async function syncCommand(options: IssuesSyncOptions): Promise<void> {
   const { dir, dryRun, json } = options;
   const paths = resolvePaths(dir, 'scrum', DEFAULT_CONFIG);
-  const agentsDir = path.dirname(paths.memoryBank);
 
   try {
     const openIssues = getGitHubIssues('open');
     const closedIssues = getGitHubIssues('closed');
-    const bankContent = await readBankContent(agentsDir);
+    const bankContent = await readBankContent(paths.memoryBank);
     const activeThreads = extractActiveThreads(bankContent);
 
     const result = verifyIssueTracking(openIssues, activeThreads, closedIssues);
@@ -270,7 +265,7 @@ async function syncCommand(options: IssuesSyncOptions): Promise<void> {
     if (dryRun) {
       console.log(chalk.yellow('\n💡 Dry run mode. No changes written. Remove --dry-run to apply.\n'));
     } else {
-      await writeBankContent(agentsDir, updatedContent);
+      await writeBankContent(paths.memoryBank, updatedContent);
       console.log(chalk.green('\n✅ Active Threads updated successfully.\n'));
     }
   } catch (error) {
@@ -285,11 +280,10 @@ async function syncCommand(options: IssuesSyncOptions): Promise<void> {
 async function listCommand(options: IssuesListOptions): Promise<void> {
   const { dir, category, json } = options;
   const paths = resolvePaths(dir, 'scrum', DEFAULT_CONFIG);
-  const agentsDir = path.dirname(paths.memoryBank);
 
   try {
     const openIssues = getGitHubIssues('open');
-    const bankContent = await readBankContent(agentsDir);
+    const bankContent = await readBankContent(paths.memoryBank);
     const activeThreads = extractActiveThreads(bankContent);
     const trackedNumbers = new Set(activeThreads.map((t) => t.issueNumber));
 

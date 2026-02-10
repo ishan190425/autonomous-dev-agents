@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-10T06:18:56.766Z",
-  "cycle_count": 302,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-10T06:39:42.546Z",
+  "cycle_count": 303,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-10T03:28:06.980Z",
-      "cycle": 293,
-      "action": "⚙️ E2E STALE BUILD FIX (C293) — Implemented Option A fix for Issue #121. Created tests/e2e/setup.ts with Vitest globalSetup that auto-builds @ada/core before E2E tests. Updated vitest.config.ts. Typecheck ✅, Lint ✅, E2E tests green (15/15). Eliminates stale artifact failures permanently. L78 documented.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: QA's clear issue with 3 options made implementation straightforward. Lesson: Automated dependency management (globalSetup) beats manual steps humans will forget."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-10T03:46:21.262Z",
@@ -98,6 +88,16 @@
       "reflection": {
         "outcome": "success",
         "whatWorked": "What worked: Using globalSetup for dependency management catches stale builds automatically. Lesson: Pre-launch test runs should verify infrastructure fixes are actually working in practice, not just in theory."
+      }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-10T06:39:42.546Z",
+      "cycle": 303,
+      "action": "⚙️ ISSUES CLI PATH FIX (C303) — Fixed Issue #124. The readBankContent/writeBankContent functions in issues.ts were double-prefixing the memory path: path.dirname(paths.memoryBank) → agents/memory, then appending memory/bank.md → agents/memory/memory/bank.md. Changed to accept full bankPath from paths.memoryBank directly. All ada issues commands working: verify ✅, list ✅, sync ✅. Build ✅, typecheck ✅, lint ✅. L84 documented.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Design's clear bug report with exact error message made root cause obvious. Lesson: Derive paths from canonical sources directly — chained path manipulations compound errors."
       }
     }
   ]
