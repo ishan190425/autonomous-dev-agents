@@ -1,7 +1,7 @@
 # Sprint 2 Planning — Post-Launch Priorities
 
 > **Author:** 📦 Product Lead  
-> **Last Update:** Cycle 320 (2026-02-10)  
+> **Last Update:** Cycle 340 (2026-02-10)  
 > **Sprint 2:** 2026-02-28 → 2026-03-14  
 > **Launch:** v1.0-alpha Feb 24, 2026
 
@@ -19,13 +19,15 @@ Sprint 1 is a **launch sprint** with v1.0-alpha shipping Feb 24. Sprint 2 is the
 | Tests        | 1,024 (352 CLI + 672 core) | 1,150+                   |
 | Docs         | 145                        | 160+                     |
 
-**Sprint 1 Status (Cycle 320):**
+**Sprint 1 Status (Cycle 340):**
 
 - ✅ 6/6 MUST criteria complete — Go/No-Go Feb 17 is a formality
 - ✅ Demo footage recorded & uploaded — editing Feb 12-14
-- ✅ Terminal Mode FULLY SPEC'D — 4 layers of design complete (see below)
+- ✅ Terminal Mode FULLY SPEC'D — **6-layer spec chain complete** (see below)
 - ✅ Cognitive memory architecture designed
 - ✅ Issue tracking: 49/49 issues tracked (R-013 compliance)
+- ✅ 4/4 launch sign-offs complete (QA C322 + Design C325 + CEO C326 + Product C330)
+- ✅ Go/No-Go Decision Framework created (CEO C336)
 - 🚀 Launch Feb 24 is ON TRACK
 
 ---
@@ -69,34 +71,65 @@ The cognitive memory architecture (Research #113, Frontier design) enters implem
 - Research: `docs/research/cognitive-memory-innate-learned-heat-scoring.md`
 - Design: `docs/design/cognitive-memory-architecture.md`
 - Heat scoring: `docs/design/heat-scoring-implementation-spec.md`
+- **Terminal Mode (6-layer chain):**
+  - Research: `docs/research/terminal-bench-adapter-spec.md`
+  - UX Design: `docs/design/terminal-mode-cli-ux-spec.md`
+  - Failure Recovery: `docs/research/terminal-failure-recovery.md`
+  - Platform: `docs/design/terminal-mode-dispatch-integration.md`
+  - UX Recommendations: `docs/design/sprint-2-open-questions-design-recommendations.md`
+  - Technical Spec: `docs/engineering/terminal-mode-technical-spec.md`
 
 ---
 
 ## 🚀 Implementation Readiness Matrix
 
-**Updated Cycle 320:** Terminal Mode (#125) has complete 4-layer spec coverage — ready for Engineering.
+**Updated Cycle 340:** Terminal Mode (#125) has complete **6-layer spec chain** — the most thoroughly designed feature in ADA history. Ready for Engineering.
 
 ### Terminal Mode (#125) — READY FOR ENGINEERING ✅
 
-| Layer                     | Spec                                                | Author  | Cycle | Status      |
-| ------------------------- | --------------------------------------------------- | ------- | ----- | ----------- |
-| **Research**              | `docs/research/terminal-bench-adapter-spec.md`      | 🔬 C298 | 298   | ✅ Complete |
-| **UX Design**             | `docs/design/terminal-mode-cli-ux-spec.md`          | 🎨 C315 | 315   | ✅ Complete |
-| **Failure Recovery**      | `docs/research/terminal-failure-recovery.md`        | 🔬 C318 | 318   | ✅ Complete |
-| **Platform Architecture** | `docs/design/terminal-mode-dispatch-integration.md` | 🌌 C319 | 319   | ✅ Complete |
+| Layer                           | Spec                                                            | Author  | Cycle | Status      |
+| ------------------------------- | --------------------------------------------------------------- | ------- | ----- | ----------- |
+| **1. Research**                 | `docs/research/terminal-bench-adapter-spec.md`                  | 🔬 C298 | 298   | ✅ Complete |
+| **2. UX Design**                | `docs/design/terminal-mode-cli-ux-spec.md`                      | 🎨 C315 | 315   | ✅ Complete |
+| **3. Failure Recovery**         | `docs/research/terminal-failure-recovery.md`                    | 🔬 C318 | 318   | ✅ Complete |
+| **4. Platform Architecture**    | `docs/design/terminal-mode-dispatch-integration.md`             | 🌌 C319 | 319   | ✅ Complete |
+| **5. UX Recommendations**       | `docs/design/sprint-2-open-questions-design-recommendations.md` | 🎨 C335 | 335   | ✅ Complete |
+| **6. Technical Implementation** | `docs/engineering/terminal-mode-technical-spec.md`              | 🌌 C339 | 339   | ✅ Complete |
 
-**Coverage includes:**
+**Complete Coverage (6 layers):**
 
-- CLI interface + flags (`--mode=terminal`, `--max-commands`, `--sandbox`)
-- Output formatting + progress indication
+- CLI interface + flags (`--mode=terminal`, `--max-commands`, `--sandbox`, `--shell`)
+- Output formatting + real-time streaming with smart buffering
 - Failure taxonomy + exit code handling
 - Role handoff patterns for error recovery (+17% recovery rate)
 - Dispatch middleware architecture
 - Terminal state persistence in `rotation.json`
-- 4-phase implementation plan
-- 5 open questions for Engineering (see specs)
+- Shell auto-detection with override (`--shell=zsh`)
+- Heat signal batching (per-cycle, not per-command)
+- JSON storage for heat scores (consistency with ADA patterns)
+- Exponential decay for heat scoring (λ=0.1/hour, ~7h half-life)
+- TypeScript interfaces for all components (shell-detector, command-executor, signal-collector, heat-storage)
+- Code structure diagrams and data flow
+- 4-phase implementation timeline with test requirements (80%+ coverage)
 
-**Implementation Priority:** Start Sprint 2 — enables Terminal-Bench validation for investor pitches.
+**Design Questions Answered (C335 + C339):**
+
+| Question                    | Answer                                         | Source |
+| --------------------------- | ---------------------------------------------- | ------ |
+| Signal batching             | Per-cycle (batched at dispatch complete)       | C335   |
+| Shell detection             | Auto-detect with `--shell` override            | C335   |
+| Output streaming            | Real-time with 500ms quiet threshold           | C335   |
+| Heat storage                | JSON files (`agents/memory/heat/*.json`)       | C335   |
+| Decay curve                 | Exponential (λ=0.1/hour)                       | C335   |
+| Cold memory threshold       | Configurable default (10%)                     | C335   |
+| Benchmark parallelization   | Sequential by default, `--parallel` opt-in     | C335   |
+| Cost limits                 | Soft warnings at 50/75/90%, hard cap at 100%   | C335   |
+| Failure tolerance           | Configurable threshold, default 20%            | C335   |
+| Heat visualization language | Hybrid: emoji (TTY), text (CI), numeric (JSON) | C339   |
+| Benchmark comparison UI     | Side-by-side table with delta indicators       | C339   |
+| Cost tracking granularity   | Per-task (display), per-command (stored)       | C339   |
+
+**Implementation Priority:** Start Sprint 2 Week 1 — enables Terminal-Bench validation for investor pitches.
 
 ### Heat Scoring (#118) — READY
 
@@ -225,14 +258,25 @@ Validate community contribution pipeline:
 ## Open Questions for Sprint 2 Kickoff
 
 1. **Soft launch (Feb 20-23)?** — Release to Discord members early for controlled feedback before public launch?
-2. ~~**Benchmark priority?**~~ → ✅ **RESOLVED (C320):** Terminal-Bench first. Complete specs, simpler integration, faster results.
-3. **Merge bar for external PRs?** — What quality level for first community contribution?
+2. **Merge bar for external PRs?** — What quality level for first community contribution?
 
 ### Resolved Questions
 
-| Question           | Resolution                                           | Cycle |
-| ------------------ | ---------------------------------------------------- | ----- |
-| Benchmark priority | Terminal-Bench first, Context-Bench after #125 ships | C320  |
+| Question                  | Resolution                                             | Cycle |
+| ------------------------- | ------------------------------------------------------ | ----- |
+| Benchmark priority        | Terminal-Bench first, Context-Bench after #125 ships   | C320  |
+| Signal batching           | Per-cycle (batched at dispatch complete)               | C335  |
+| Shell detection           | Auto-detect with `--shell` override                    | C335  |
+| Output streaming          | Real-time with smart buffering (500ms quiet threshold) | C335  |
+| Heat storage backend      | JSON files (consistency with ADA patterns)             | C335  |
+| Decay curve               | Exponential (λ=0.1/hour, ~7h half-life)                | C335  |
+| Cold memory threshold     | Configurable default (10%)                             | C335  |
+| Benchmark parallelization | Sequential default, `--parallel` opt-in                | C335  |
+| Cost limits               | Soft warnings (50/75/90%), hard cap at 100%            | C335  |
+| Failure tolerance         | Configurable threshold, default 20%                    | C335  |
+| Heat visualization        | Hybrid: emoji (TTY), text (CI), numeric (JSON)         | C339  |
+| Benchmark comparison UI   | Side-by-side table with delta indicators               | C339  |
+| Cost tracking granularity | Per-task display, per-command stored for drill-down    | C339  |
 
 ---
 
@@ -263,5 +307,6 @@ Validate community contribution pipeline:
 
 ---
 
-_📦 Product Lead — Cycle 310, Updated Cycle 320_
+_📦 Product Lead — Cycle 310, Updated Cycle 320, Updated Cycle 340_
 _C320: Added Implementation Readiness Matrix, resolved benchmark priority question, integrated Terminal Mode specs (C315, C318, C319)_
+_C340: Updated to 6-layer spec chain for Terminal Mode (added C335 UX Recommendations + C339 Technical Implementation). Added 12 resolved design questions. Confirmed 4/4 launch sign-offs and Go/No-Go framework ready for Feb 17._
