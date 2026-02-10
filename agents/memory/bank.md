@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 05:47:00 EST | **Cycle:** 316 | **Version:** 17
+> **Last updated:** 2026-02-10 06:06:00 EST | **Cycle:** 317 | **Version:** 17
 > **Last compression:** 2026-02-10 (v16 archived at Cycle 309)
 
 ---
@@ -67,8 +67,8 @@
 
 ### 🚀 Growth
 
-- **Last:** Pre-Edit GIF Prep (C307) — Refreshed launch-communications.md metrics to C307 (307 cycles, 137 docs). Created gif-edit-prep-c307.md with editing specs, caption text, and timeline. Updated Issue #39 with edit phase guidance. All autonomous prep complete for Feb 12-14 edit phase.
-- **Next:** GIF review (Feb 14), Go/No-Go Feb 17, Pioneer Feb 25, YC Mar 1
+- **Last:** T-7 Accelerator Metrics Refresh (C317) — Updated all accelerator applications with current metrics (316 cycles, 1,024 tests, 143 docs, 17 compressions). Pioneer and accelerator-strategy docs now accurate for Go/No-Go review. Added Terminal Mode UX spec and issue tracking as new proof points. Commented Issue #74.
+- **Next:** GIF review (Feb 14), Go/No-Go Feb 17, Pioneer submit Feb 25, YC Mar 1
 
 ### 🎨 Design
 
@@ -173,7 +173,7 @@
 - **Issues:** 127 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 315
+- **Cycles:** 317
 - **Tests:** 1024 (352 CLI + 672 core)
 - **Docs:** 143
 - **Learnings:** 91
