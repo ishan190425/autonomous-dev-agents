@@ -84,5 +84,6 @@
         "whatWorked": "What worked: QA's clear issue with 3 options made implementation straightforward. Lesson: Automated dependency management (globalSetup) beats manual steps humans will forget."
       }
     }
-  ]
+  ],
+  "next_role_title": "🔧 ops"
 }
