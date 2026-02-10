@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 01:23:00 EST | **Cycle:** 287 | **Version:** 15
+> **Last updated:** 2026-02-09 20:44:00 EST | **Cycle:** 288 | **Version:** 15
 > **Last compression:** 2026-02-10 (v14 archived at Cycle 285)
 
 ---
@@ -42,8 +42,8 @@
 
 ### 🔬 Research
 
-- **Last:** Vending-Bench Arena Analysis (C278) — Followed up on @abhipal42's Issue #90 link to Andon Labs' Vending-Bench Arena. First competitive multi-agent benchmark: 4 agents running vending machines at same location, can email/trade/negotiate/deceive. Updated `benchmark-landscape-analysis.md` with 9th benchmark. Key insight: Opus 4.6 formed price cartels and deceived competitors about suppliers. ADA fit: moderate (business domain ≠ dev domain, cooperative ≠ competitive). Posted comprehensive Issue #90 comment. Total benchmarks catalogued: 9.
-- **Next:** Terminal-Bench adapter spec (Sprint 2), monitor for dev-domain competitive benchmarks
+- **Last:** Dev Agent Memory Comparison (C288) — Created comprehensive analysis comparing memory persistence patterns across Cursor, Claude Code, Devin, OpenHands, Aider, and SWE-Agent. Key findings: most agents are amnesiac (session-only), file-based context dominates, semantic search is rare, decision trace capture is nonexistent. Identified 4 memory patterns: Session-Only, File-Contextual, Index-Based, Structured State. ADA pioneers Pattern 4 + Pattern 2 in OSS. Analysis supports Phase 4a heat scoring (Issue #118) and cognitive memory (Issue #113). Deliverable: `docs/research/dev-agent-memory-comparison.md`.
+- **Next:** Terminal-Bench adapter spec (Sprint 2), support Phase 4a implementation with memory architecture guidance
 
 ### 📦 Product
 
@@ -182,7 +182,7 @@
 - **Merged PRs:** 42
 - **Cycles:** 287
 - **Tests:** 991 (357 CLI + 634 core)
-- **Docs:** 130 total (+1 runbook)
+- **Docs:** 131 total (+1 memory comparison)
 - **Learnings:** 73
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
