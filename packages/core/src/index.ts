@@ -308,7 +308,7 @@ export {
   createLocalEmbeddingProvider,
 } from './local-embedding-provider.js';
 
-// Cross-Role Insights (Issue #108 — Reflexion Phase 1c)
+// Cross-Role Insights (Issue #108 — Reflexion Phase 1c + Phase 1c-b)
 export type {
   InsightType,
   InsightAction,
@@ -330,7 +330,13 @@ export {
   synthesizeInsight,
   generateRuleProposal,
   determineAction,
+  // Phase 1c-a: Convergent detection
   detectConvergentInsights,
+  // Phase 1c-b: Complementary & Cascading detection
+  detectThemes,
+  detectComplementaryInsights,
+  detectCascadingFailures,
+  // Main entry point
   detectCrossRoleInsights,
   formatInsightsForRetro,
   generateInsightIssueBody,
@@ -352,3 +358,48 @@ export {
   extractPriorityFromLabels,
   suggestRoleFromIssue,
 } from './issues.js';
+
+// Terminal Mode (Issue #125 — Shell-based benchmarks, Sprint 2)
+export type {
+  // Shell Detection
+  ShellType,
+  ShellConfig,
+  ShellDetectorOptions,
+  // Command Execution
+  ExecutionResult,
+  ExecutionOptions,
+  // Heat Signals
+  HeatSignalType,
+  HeatSignal,
+  CycleSummary,
+  // Heat Storage
+  HeatEntity,
+  HeatStore,
+  HeatStorageOptions,
+  // Heat Display
+  HeatDisplayMode,
+  HeatTier,
+  // Benchmarks
+  CommandCost,
+  TaskCost,
+  BenchmarkComparison,
+  BenchmarkResult,
+} from './terminal/index.js';
+export {
+  TerminalError,
+  // Shell Detector
+  detectShell,
+  validateShell,
+  getShellType,
+  isSupported,
+  // Signal Collector
+  SignalCollector,
+  createSignalCollector,
+  // Heat Display
+  HEAT_TIERS,
+  getHeatTier,
+  formatHeatDisplay,
+  detectHeatDisplayMode,
+  generateHeatBar,
+  formatHeatWithBar,
+} from './terminal/index.js';

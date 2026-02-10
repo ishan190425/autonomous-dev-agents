@@ -550,10 +550,411 @@ export function detectConvergentInsights(
   return insights.sort((a, b) => b.confidence - a.confidence);
 }
 
+// ─── Complementary Insight Detection (Phase 1c-b) ────────────────────────────
+
+/**
+ * Theme groups for detecting complementary insights.
+ * Related keywords that form different facets of a larger concept.
+ */
+const THEME_GROUPS: Record<string, Set<string>> = {
+  testing: new Set(['test', 'tests', 'testing', 'tdd', 'coverage', 'spec', 'specs', 'unit', 'integration', 'e2e', 'qa', 'quality', 'bugs', 'regression']),
+  documentation: new Set(['doc', 'docs', 'documentation', 'readme', 'comments', 'jsdoc', 'spec', 'specification', 'guide', 'examples']),
+  code_quality: new Set(['lint', 'linting', 'eslint', 'format', 'formatting', 'prettier', 'clean', 'refactor', 'style', 'standards']),
+  ci_cd: new Set(['ci', 'cd', 'pipeline', 'build', 'deploy', 'deployment', 'github', 'actions', 'workflow', 'automation']),
+  review: new Set(['review', 'pr', 'prs', 'feedback', 'approval', 'merge', 'code-review', 'reviewer']),
+  planning: new Set(['plan', 'planning', 'spec', 'specification', 'design', 'architecture', 'scope', 'requirements', 'criteria']),
+  communication: new Set(['comment', 'communicate', 'update', 'notify', 'issue', 'issues', 'thread', 'discussion', 'sync']),
+  reuse: new Set(['reuse', 'util', 'utils', 'utility', 'shared', 'common', 'existing', 'duplication', 'dry', 'library']),
+};
+
+/**
+ * Detect which theme groups a text belongs to.
+ *
+ * @param text - Text to analyze
+ * @returns Array of theme names the text matches
+ */
+export function detectThemes(text: string): string[] {
+  const keywords = extractKeywords(text);
+  const themes: string[] = [];
+
+  for (const [theme, themeKeywords] of Object.entries(THEME_GROUPS)) {
+    const overlap = [...keywords].filter(k => themeKeywords.has(k));
+    if (overlap.length >= 1) {
+      themes.push(theme);
+    }
+  }
+
+  return themes;
+}
+
+/**
+ * Detect complementary cross-role insights.
+ *
+ * Complementary insights occur when different roles observe different
+ * aspects of the same underlying pattern. For example:
+ * - Engineering: "TDD helps catch bugs early"
+ * - QA: "PRs with tests have fewer issues"
+ * - Product: "Features with test criteria ship faster"
+ *
+ * These are related but not identical — they complement each other.
+ *
+ * @param history - Rotation history entries
+ * @param options - Detection options
+ * @returns Array of complementary insights
+ */
+export function detectComplementaryInsights(
+  history: readonly RotationHistoryEntry[],
+  options: DetectionOptions = {}
+): CrossRoleInsight[] {
+  const opts = { ...DEFAULT_DETECTION_OPTIONS, ...options };
+
+  // Extract reflection sources
+  const sources = extractReflectionSources(history, opts.lookbackCycles);
+
+  if (sources.length < opts.minRoles) {
+    return [];
+  }
+
+  // Group sources by theme
+  const themeGroups = new Map<string, ReflectionSource[]>();
+
+  for (const source of sources) {
+    const themes = detectThemes(source.text);
+    for (const theme of themes) {
+      if (!themeGroups.has(theme)) {
+        themeGroups.set(theme, []);
+      }
+      themeGroups.get(theme)!.push(source);
+    }
+  }
+
+  // Find themes with diverse role coverage but LOW keyword similarity
+  // (high similarity = convergent, low similarity = complementary)
+  const currentCycle = Math.max(...history.map(h => h.cycle), 0);
+  const insights: CrossRoleInsight[] = [];
+  let insightIndex = 0;
+
+  for (const [theme, themeSources] of themeGroups.entries()) {
+    const roles = [...new Set(themeSources.map(s => s.role))];
+
+    // Need minimum role diversity
+    if (roles.length < opts.minRoles) continue;
+
+    // Check that sources have LOW direct similarity but share the theme
+    // This distinguishes complementary from convergent
+    let totalSim = 0;
+    let pairs = 0;
+
+    for (let a = 0; a < themeSources.length && a < 10; a++) {
+      for (let b = a + 1; b < themeSources.length && b < 10; b++) {
+        const sourceA = themeSources[a];
+        const sourceB = themeSources[b];
+        if (sourceA && sourceB && sourceA.role !== sourceB.role) {
+          const kwA = extractKeywords(sourceA.text);
+          const kwB = extractKeywords(sourceB.text);
+          totalSim += jaccardSimilarity(kwA, kwB);
+          pairs++;
+        }
+      }
+    }
+
+    const avgSimilarity = pairs > 0 ? totalSim / pairs : 0;
+
+    // Complementary = same theme, LOW direct similarity (different perspectives)
+    // Skip if similarity is too high (that's convergent territory)
+    if (avgSimilarity > 0.5) continue;
+
+    // Build the cluster
+    const cycles = [...new Set(themeSources.map(s => s.cycle))].sort((a, b) => a - b);
+
+    const cluster: ReflectionCluster = {
+      theme,
+      entries: themeSources,
+      roles,
+      cycles,
+      avgSimilarity,
+    };
+
+    const confidence = calculateComplementaryConfidence(cluster, theme);
+
+    if (confidence < opts.minConfidence) continue;
+
+    insights.push({
+      id: generateInsightId(currentCycle, 100 + insightIndex++),
+      type: 'complementary',
+      insight: `Multiple roles observed different facets of "${theme}": ${roles.join(', ')}`,
+      roles,
+      cycles,
+      confidence,
+      sourceReflections: themeSources,
+      proposedAction: 'best_practice',
+      proposedText: generateComplementaryProposal(cluster, theme),
+    });
+  }
+
+  return insights.sort((a, b) => b.confidence - a.confidence);
+}
+
+/**
+ * Calculate confidence for complementary insights.
+ *
+ * Similar to convergent but rewards theme clarity over keyword overlap.
+ */
+function calculateComplementaryConfidence(
+  cluster: ReflectionCluster,
+  theme: string
+): number {
+  // Role diversity (40%)
+  const roleDiversity = Math.min(cluster.roles.length / 5, 1) * 0.4;
+
+  // Temporal spread (20%)
+  const cycleRange = cluster.cycles.length > 1
+    ? Math.max(...cluster.cycles) - Math.min(...cluster.cycles)
+    : 0;
+  const temporalSpread = Math.min(cycleRange / 10, 1) * 0.2;
+
+  // Theme coverage - how many sources actually match the theme (40%)
+  let themeMatches = 0;
+  for (const entry of cluster.entries) {
+    if (detectThemes(entry.text).includes(theme)) {
+      themeMatches++;
+    }
+  }
+  const themeCoverage = Math.min(themeMatches / cluster.entries.length, 1) * 0.4;
+
+  return roleDiversity + temporalSpread + themeCoverage;
+}
+
+/**
+ * Generate proposal text for complementary insights.
+ */
+function generateComplementaryProposal(
+  cluster: ReflectionCluster,
+  theme: string
+): string {
+  const lines = [
+    `## Best Practice: ${capitalize(theme)}`,
+    '',
+    `Multiple roles have observed benefits related to ${theme}:`,
+    '',
+  ];
+
+  // Group by role for clearer presentation
+  const byRole = new Map<string, ReflectionSource[]>();
+  for (const entry of cluster.entries) {
+    if (!byRole.has(entry.role)) {
+      byRole.set(entry.role, []);
+    }
+    byRole.get(entry.role)!.push(entry);
+  }
+
+  for (const [role, entries] of byRole) {
+    const firstEntry = entries[0];
+    if (firstEntry) {
+      lines.push(`- **${role}:** "${firstEntry.text}"`);
+    }
+  }
+
+  lines.push('');
+  lines.push(`**Recommendation:** Establish team-wide practices around ${theme}.`);
+
+  return lines.join('\n');
+}
+
+// ─── Cascading Failure Detection (Phase 1c-b) ────────────────────────────────
+
+/**
+ * A failure chain across roles.
+ */
+interface FailureChain {
+  /** The originating failure */
+  readonly origin: ReflectionSource & { outcome: string };
+  /** Downstream blocked/partial entries */
+  readonly cascade: readonly (ReflectionSource & { outcome: string })[];
+  /** All roles affected */
+  readonly roles: readonly RoleId[];
+  /** Cycle span */
+  readonly cycles: readonly number[];
+}
+
+/**
+ * Detect cascading failure insights.
+ *
+ * Cascading failures occur when one role's mistake causes issues for
+ * downstream roles. We detect this by looking for temporal correlations
+ * between 'partial' or 'blocked' outcomes across consecutive cycles.
+ *
+ * Example:
+ * - Engineering C240: outcome=partial, "Should have included types"
+ * - QA C241: outcome=blocked, "Can't test untyped functions"
+ * - Ops C242: outcome=blocked, "PR failed typecheck"
+ *
+ * @param history - Rotation history entries
+ * @param options - Detection options
+ * @returns Array of cascading failure insights
+ */
+export function detectCascadingFailures(
+  history: readonly RotationHistoryEntry[],
+  options: DetectionOptions = {}
+): CrossRoleInsight[] {
+  const opts = { ...DEFAULT_DETECTION_OPTIONS, ...options };
+
+  // Get recent entries with reflections that have outcomes
+  const recentWithOutcomes = history
+    .filter((h): h is RotationHistoryEntry & { reflection: { outcome: string } } =>
+      h.reflection?.outcome !== undefined &&
+      h.reflection.outcome !== 'unknown'
+    )
+    .slice(-opts.lookbackCycles);
+
+  if (recentWithOutcomes.length < 3) {
+    return [];
+  }
+
+  // Find chains of failures (partial/blocked within short cycle windows)
+  const chains: FailureChain[] = [];
+
+  for (let i = 0; i < recentWithOutcomes.length; i++) {
+    const entry = recentWithOutcomes[i];
+    if (!entry) continue;
+
+    // Look for origin failures (partial outcomes that might cascade)
+    if (entry.reflection.outcome !== 'partial') continue;
+
+    const cascade: (ReflectionSource & { outcome: string })[] = [];
+    const seenRoles = new Set<RoleId>([entry.role]);
+
+    // Look for blocked entries within 5 cycles
+    for (let j = i + 1; j < recentWithOutcomes.length; j++) {
+      const downstream = recentWithOutcomes[j];
+      if (!downstream) continue;
+
+      // Within 5 cycles of the origin?
+      if (downstream.cycle - entry.cycle > 5) break;
+
+      // Different role, blocked or partial?
+      if (
+        downstream.role !== entry.role &&
+        (downstream.reflection.outcome === 'blocked' || downstream.reflection.outcome === 'partial')
+      ) {
+        cascade.push({
+          role: downstream.role,
+          cycle: downstream.cycle,
+          timestamp: downstream.timestamp,
+          text: downstream.reflection.whatToImprove || downstream.reflection.lessonLearned || downstream.action || '',
+          field: 'whatToImprove',
+          outcome: downstream.reflection.outcome,
+        });
+        seenRoles.add(downstream.role);
+      }
+    }
+
+    // Need at least 2 downstream failures to suggest a cascade
+    if (cascade.length >= 2 && seenRoles.size >= opts.minRoles) {
+      chains.push({
+        origin: {
+          role: entry.role,
+          cycle: entry.cycle,
+          timestamp: entry.timestamp,
+          text: entry.reflection.whatToImprove || entry.reflection.lessonLearned || entry.action || '',
+          field: 'whatToImprove',
+          outcome: entry.reflection.outcome,
+        },
+        cascade,
+        roles: [...seenRoles],
+        cycles: [entry.cycle, ...cascade.map(c => c.cycle)].sort((a, b) => a - b),
+      });
+    }
+  }
+
+  // Convert chains to insights
+  const currentCycle = Math.max(...history.map(h => h.cycle), 0);
+  const insights: CrossRoleInsight[] = [];
+
+  for (let i = 0; i < chains.length; i++) {
+    const chain = chains[i];
+    if (!chain) continue;
+
+    const confidence = calculateCascadingConfidence(chain);
+
+    if (confidence < opts.minConfidence) continue;
+
+    const allSources: ReflectionSource[] = [
+      chain.origin,
+      ...chain.cascade,
+    ];
+
+    insights.push({
+      id: generateInsightId(currentCycle, 200 + i),
+      type: 'cascading',
+      insight: `Failure cascade from ${chain.origin.role} (C${chain.origin.cycle}) blocked ${chain.cascade.length} downstream roles`,
+      roles: chain.roles,
+      cycles: chain.cycles,
+      confidence,
+      sourceReflections: allSources,
+      proposedAction: 'rules',
+      proposedText: generateCascadingProposal(chain),
+    });
+  }
+
+  return insights.sort((a, b) => b.confidence - a.confidence);
+}
+
+/**
+ * Calculate confidence for cascading failure insights.
+ */
+function calculateCascadingConfidence(chain: FailureChain): number {
+  // Number of affected roles (40%)
+  const roleImpact = Math.min(chain.roles.length / 5, 1) * 0.4;
+
+  // Cascade depth - more blocked entries = stronger signal (30%)
+  const cascadeDepth = Math.min(chain.cascade.length / 4, 1) * 0.3;
+
+  // Temporal tightness - failures close together are more likely related (30%)
+  const cycleSpan = chain.cycles.length > 1
+    ? Math.max(...chain.cycles) - Math.min(...chain.cycles)
+    : 0;
+  const temporalTightness = cycleSpan <= 3 ? 1 : cycleSpan <= 5 ? 0.7 : 0.4;
+
+  return roleImpact + cascadeDepth + (temporalTightness * 0.3);
+}
+
+/**
+ * Generate proposal text for cascading failure insights.
+ */
+function generateCascadingProposal(chain: FailureChain): string {
+  const lines = [
+    `## R-XXX: Prevent ${capitalize(chain.origin.role)} Cascade Failures`,
+    '',
+    `A failure in ${chain.origin.role}'s work caused downstream blocks for ${chain.cascade.length} other roles.`,
+    '',
+    '**Root cause:**',
+    `- ${chain.origin.role} (C${chain.origin.cycle}): "${chain.origin.text}"`,
+    '',
+    '**Downstream impact:**',
+  ];
+
+  for (const downstream of chain.cascade.slice(0, 3)) {
+    lines.push(`- ${downstream.role} (C${downstream.cycle}): ${downstream.outcome} — "${downstream.text}"`);
+  }
+
+  lines.push('');
+  lines.push('**Proposed Prevention:**');
+  lines.push(`- Add pre-commit checks for ${chain.origin.role} deliverables`);
+  lines.push('- Require explicit handoff validation before downstream work begins');
+  lines.push('');
+  lines.push(`**Evidence:** Cascade observed cycles ${chain.cycles.join('→')}`);
+
+  return lines.join('\n');
+}
+
+// ─── Main Detection (Updated) ────────────────────────────────────────────────
+
 /**
  * Detect all types of cross-role insights.
  *
  * This is the main entry point for Phase 1c detection.
+ * Includes: convergent, complementary, and cascading insights.
  *
  * @param history - Rotation history entries
  * @param options - Detection options
@@ -568,10 +969,23 @@ export function detectCrossRoleInsights(
   // 1. Convergent insights (same lesson by 3+ roles)
   insights.push(...detectConvergentInsights(history, options));
 
-  // 2. Complementary insights — TODO in Phase 1c-b
-  // 3. Cascading failures — TODO in Phase 1c-b
+  // 2. Complementary insights (different aspects of same theme)
+  insights.push(...detectComplementaryInsights(history, options));
 
-  return insights;
+  // 3. Cascading failures (one failure blocks downstream roles)
+  insights.push(...detectCascadingFailures(history, options));
+
+  // Deduplicate by removing lower-confidence duplicates with same roles
+  const seen = new Map<string, CrossRoleInsight>();
+  for (const insight of insights) {
+    const key = [...insight.roles].sort().join(',');
+    const existing = seen.get(key);
+    if (!existing || insight.confidence > existing.confidence) {
+      seen.set(key, insight);
+    }
+  }
+
+  return [...seen.values()].sort((a, b) => b.confidence - a.confidence);
 }
 
 // ─── Formatting ──────────────────────────────────────────────────────────────

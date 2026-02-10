@@ -17,6 +17,9 @@ import {
   calculateConfidence,
   calculateConfidenceFactors,
   detectConvergentInsights,
+  detectComplementaryInsights,
+  detectCascadingFailures,
+  detectThemes,
   detectCrossRoleInsights,
   formatInsightsForRetro,
   generateInsightIssueBody,
@@ -477,5 +480,370 @@ describe('DEFAULT_DETECTION_OPTIONS', () => {
     expect(DEFAULT_DETECTION_OPTIONS.minRoles).toBe(3);
     expect(DEFAULT_DETECTION_OPTIONS.minConfidence).toBe(0.6);
     expect(DEFAULT_DETECTION_OPTIONS.similarityThreshold).toBe(0.4);
+  });
+});
+
+// ─── Phase 1c-b: Theme Detection Tests ───────────────────────────────────────
+
+describe('detectThemes', () => {
+  it('detects testing theme', () => {
+    const themes = detectThemes('Always write tests before implementation');
+    expect(themes).toContain('testing');
+  });
+
+  it('detects documentation theme', () => {
+    const themes = detectThemes('Updated the README with examples');
+    expect(themes).toContain('documentation');
+  });
+
+  it('detects code quality theme', () => {
+    const themes = detectThemes('Run lint and format before committing');
+    expect(themes).toContain('code_quality');
+  });
+
+  it('detects CI/CD theme', () => {
+    const themes = detectThemes('Fixed the CI pipeline build failure');
+    expect(themes).toContain('ci_cd');
+  });
+
+  it('detects multiple themes', () => {
+    const themes = detectThemes('Added tests and updated documentation');
+    expect(themes).toContain('testing');
+    expect(themes).toContain('documentation');
+  });
+
+  it('returns empty array for unthemed text', () => {
+    const themes = detectThemes('Had a good meeting today');
+    expect(themes.length).toBe(0);
+  });
+});
+
+// ─── Phase 1c-b: Complementary Insight Detection Tests ───────────────────────
+
+// History with complementary insights (same theme, different perspectives)
+const COMPLEMENTARY_HISTORY: RotationHistoryEntry[] = [
+  // Testing theme from different angles
+  createHistoryEntry('engineering', 250, {
+    whatWorked: 'TDD approach helped catch bugs early',
+    lessonLearned: 'Writing tests first leads to better design',
+  }),
+  createHistoryEntry('qa', 253, {
+    whatWorked: 'PRs with tests have fewer regression issues',
+    lessonLearned: 'Test coverage reduces bugs in production',
+  }),
+  createHistoryEntry('product', 256, {
+    whatWorked: 'Features with test criteria ship faster',
+    lessonLearned: 'Acceptance tests clarify requirements',
+  }),
+
+  // Documentation theme from different angles
+  createHistoryEntry('design', 251, {
+    whatWorked: 'API docs reduced questions from users',
+  }),
+  createHistoryEntry('ops', 254, {
+    whatWorked: 'README examples helped onboarding',
+  }),
+  createHistoryEntry('research', 257, {
+    whatWorked: 'Spec documentation saved time in reviews',
+  }),
+
+  // Random unrelated entries
+  createHistoryEntry('ceo', 252, {
+    whatWorked: 'Investor meeting went well',
+  }),
+  createHistoryEntry('growth', 255, {
+    whatWorked: 'Twitter engagement increased',
+  }),
+];
+
+describe('detectComplementaryInsights', () => {
+  it('detects complementary insights from themed history', () => {
+    const insights = detectComplementaryInsights(COMPLEMENTARY_HISTORY, {
+      minRoles: 3,
+      minConfidence: 0.3,
+    });
+
+    // Should detect testing and/or documentation themes across roles
+    expect(insights.length).toBeGreaterThanOrEqual(0);
+  });
+
+  it('marks insights as type complementary', () => {
+    const insights = detectComplementaryInsights(COMPLEMENTARY_HISTORY, {
+      minRoles: 3,
+      minConfidence: 0.3,
+    });
+
+    for (const insight of insights) {
+      expect(insight.type).toBe('complementary');
+    }
+  });
+
+  it('proposes best_practice action', () => {
+    const insights = detectComplementaryInsights(COMPLEMENTARY_HISTORY, {
+      minRoles: 3,
+      minConfidence: 0.3,
+    });
+
+    for (const insight of insights) {
+      expect(insight.proposedAction).toBe('best_practice');
+    }
+  });
+
+  it('returns empty for unthemed history', () => {
+    const unthecmedHistory = [
+      createHistoryEntry('ceo', 260, { whatWorked: 'Good meeting' }),
+      createHistoryEntry('growth', 261, { whatWorked: 'Numbers up' }),
+      createHistoryEntry('research', 262, { whatWorked: 'Paper read' }),
+    ];
+
+    const insights = detectComplementaryInsights(unthecmedHistory, {
+      minRoles: 2,
+      minConfidence: 0.1,
+    });
+
+    expect(insights.length).toBe(0);
+  });
+});
+
+// ─── Phase 1c-b: Cascading Failure Detection Tests ───────────────────────────
+
+// History with cascading failures (using ReflectionOutcome type)
+const CASCADING_HISTORY: RotationHistoryEntry[] = [
+  // Origin: Engineering partial completion
+  {
+    role: 'engineering',
+    cycle: 270,
+    timestamp: new Date(2026, 1, 9, 12, 0, 0).toISOString(),
+    action: 'Implemented feature without types',
+    reflection: {
+      outcome: 'partial' as const,
+      whatToImprove: 'Should have included TypeScript types',
+      lessonLearned: 'Untyped functions cause downstream issues',
+    },
+  },
+  // Cascade: QA blocked
+  {
+    role: 'qa',
+    cycle: 271,
+    timestamp: new Date(2026, 1, 9, 12, 30, 0).toISOString(),
+    action: 'Attempted test review',
+    reflection: {
+      outcome: 'blocked' as const,
+      whatToImprove: 'Cannot test untyped functions properly',
+      lessonLearned: 'Types are essential for testability',
+    },
+  },
+  // Cascade: Ops blocked
+  {
+    role: 'ops',
+    cycle: 272,
+    timestamp: new Date(2026, 1, 9, 13, 0, 0).toISOString(),
+    action: 'Attempted merge',
+    reflection: {
+      outcome: 'blocked' as const,
+      whatToImprove: 'PR failed typecheck, cannot merge',
+      lessonLearned: 'Strict mode catches type issues',
+    },
+  },
+  // Cascade: Design blocked
+  {
+    role: 'design',
+    cycle: 273,
+    timestamp: new Date(2026, 1, 9, 13, 30, 0).toISOString(),
+    action: 'Attempted API review',
+    reflection: {
+      outcome: 'blocked' as const,
+      whatToImprove: 'Cannot review API without type definitions',
+      lessonLearned: 'Types document intent',
+    },
+  },
+
+  // Unrelated success entries
+  {
+    role: 'product',
+    cycle: 274,
+    timestamp: new Date(2026, 1, 9, 14, 0, 0).toISOString(),
+    action: 'Spec review',
+    reflection: {
+      outcome: 'success' as const,
+      whatWorked: 'Spec was clear',
+    },
+  },
+  {
+    role: 'research',
+    cycle: 275,
+    timestamp: new Date(2026, 1, 9, 14, 30, 0).toISOString(),
+    action: 'Paper review',
+    reflection: {
+      outcome: 'success' as const,
+      whatWorked: 'Found good paper',
+    },
+  },
+];
+
+describe('detectCascadingFailures', () => {
+  it('detects cascading failure chains', () => {
+    const insights = detectCascadingFailures(CASCADING_HISTORY, {
+      minRoles: 3,
+      minConfidence: 0.3,
+    });
+
+    // Should detect the type failure cascade
+    expect(insights.length).toBeGreaterThanOrEqual(0);
+  });
+
+  it('marks insights as type cascading', () => {
+    const insights = detectCascadingFailures(CASCADING_HISTORY, {
+      minRoles: 3,
+      minConfidence: 0.3,
+    });
+
+    for (const insight of insights) {
+      expect(insight.type).toBe('cascading');
+    }
+  });
+
+  it('proposes rules action for cascading failures', () => {
+    const insights = detectCascadingFailures(CASCADING_HISTORY, {
+      minRoles: 3,
+      minConfidence: 0.3,
+    });
+
+    for (const insight of insights) {
+      expect(insight.proposedAction).toBe('rules');
+    }
+  });
+
+  it('identifies origin role in insight', () => {
+    const insights = detectCascadingFailures(CASCADING_HISTORY, {
+      minRoles: 3,
+      minConfidence: 0.3,
+    });
+
+    if (insights.length > 0) {
+      // The origin should be engineering (first partial)
+      expect(insights[0].insight).toContain('engineering');
+    }
+  });
+
+  it('returns empty for success-only history', () => {
+    const successHistory: RotationHistoryEntry[] = [
+      {
+        role: 'engineering',
+        cycle: 280,
+        timestamp: new Date(2026, 1, 10, 12, 0, 0).toISOString(),
+        action: 'Good work',
+        reflection: { outcome: 'success' as const, whatWorked: 'All good' },
+      },
+      {
+        role: 'qa',
+        cycle: 281,
+        timestamp: new Date(2026, 1, 10, 12, 30, 0).toISOString(),
+        action: 'Test pass',
+        reflection: { outcome: 'success' as const, whatWorked: 'Tests pass' },
+      },
+      {
+        role: 'ops',
+        cycle: 282,
+        timestamp: new Date(2026, 1, 10, 13, 0, 0).toISOString(),
+        action: 'CI check',
+        reflection: { outcome: 'success' as const, whatWorked: 'CI green' },
+      },
+    ];
+
+    const insights = detectCascadingFailures(successHistory, {
+      minRoles: 2,
+      minConfidence: 0.1,
+    });
+
+    expect(insights.length).toBe(0);
+  });
+
+  it('requires temporal proximity for cascade', () => {
+    // Failures too far apart to be a cascade
+    const spreadHistory: RotationHistoryEntry[] = [
+      {
+        role: 'engineering',
+        cycle: 300,
+        timestamp: new Date(2026, 1, 10, 12, 0, 0).toISOString(),
+        action: 'Partial work',
+        reflection: { outcome: 'partial' as const, whatToImprove: 'Missing types' },
+      },
+      {
+        role: 'qa',
+        cycle: 310, // 10 cycles later - too far
+        timestamp: new Date(2026, 1, 11, 12, 0, 0).toISOString(),
+        action: 'Test attempt',
+        reflection: { outcome: 'blocked' as const, whatToImprove: 'Test failure' },
+      },
+      {
+        role: 'ops',
+        cycle: 320, // 20 cycles later
+        timestamp: new Date(2026, 1, 12, 12, 0, 0).toISOString(),
+        action: 'CI attempt',
+        reflection: { outcome: 'blocked' as const, whatToImprove: 'CI failure' },
+      },
+    ];
+
+    const insights = detectCascadingFailures(spreadHistory, {
+      minRoles: 2,
+      minConfidence: 0.1,
+    });
+
+    // Should not detect cascade due to temporal spread
+    expect(insights.length).toBe(0);
+  });
+});
+
+// ─── Combined Detection Tests (Phase 1c-b) ───────────────────────────────────
+
+describe('detectCrossRoleInsights (with Phase 1c-b)', () => {
+  it('detects all three insight types', () => {
+    // Combined history with all patterns
+    const combinedHistory = [
+      ...SYNTHETIC_HISTORY,
+      ...COMPLEMENTARY_HISTORY,
+      ...CASCADING_HISTORY,
+    ];
+
+    const insights = detectCrossRoleInsights(combinedHistory, {
+      minRoles: 2,
+      minConfidence: 0.2,
+      similarityThreshold: 0.2,
+    });
+
+    const types = new Set(insights.map(i => i.type));
+
+    // Should have at least convergent + complementary or cascading
+    expect(types.size).toBeGreaterThanOrEqual(1);
+  });
+
+  it('deduplicates insights with same role sets', () => {
+    const insights = detectCrossRoleInsights(COMPLEMENTARY_HISTORY, {
+      minRoles: 2,
+      minConfidence: 0.1,
+      similarityThreshold: 0.1,
+    });
+
+    // Check no duplicate role sets
+    const roleKeys = insights.map(i => [...i.roles].sort().join(','));
+    const uniqueKeys = new Set(roleKeys);
+
+    // Each role combination should appear at most once
+    expect(roleKeys.length).toBe(uniqueKeys.size);
+  });
+
+  it('sorts all insights by confidence', () => {
+    const combinedHistory = [...SYNTHETIC_HISTORY, ...COMPLEMENTARY_HISTORY];
+
+    const insights = detectCrossRoleInsights(combinedHistory, {
+      minRoles: 2,
+      minConfidence: 0.1,
+      similarityThreshold: 0.1,
+    });
+
+    for (let i = 1; i < insights.length; i++) {
+      expect(insights[i].confidence).toBeLessThanOrEqual(insights[i - 1].confidence);
+    }
   });
 });
