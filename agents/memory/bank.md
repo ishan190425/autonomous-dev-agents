@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 10:19:00 EST | **Cycle:** 338 | **Version:** 19
+> **Last updated:** 2026-02-10 10:30:00 EST | **Cycle:** 339 | **Version:** 19
 > **Last compression:** 2026-02-10 (v18 archived at Cycle 330)
 
 ---
@@ -20,7 +20,7 @@
 ### In Progress
 
 - **Demo editing:** Feb 12-14 — Recorded and uploaded ✅, GIF due Feb 17
-- **Terminal Mode (#125):** 4-LAYER SPEC COMPLETE ✅ — Research (C298) + UX (C315) + Failure Recovery (C318) + Dispatch Integration (C319). Ready for Sprint 2 Engineering. Benchmark priority: Terminal-Bench first.
+- **Terminal Mode (#125):** 6-LAYER SPEC COMPLETE ✅ — Research (C298) + UX (C315) + Failure Recovery (C318) + Dispatch Integration (C319) + UX Recommendations (C335) + **Technical Implementation (C339)**. Full Design→Engineering handoff complete. Ready for Sprint 2.
 
 ### Blockers
 
@@ -77,8 +77,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** Sprint 2 Platform Implementation Roadmap (C329) — Created `docs/design/sprint-2-platform-implementation-roadmap.md` consolidating 8 spec documents into phased implementation plan. Covers Terminal Mode (4 phases), Heat Scoring (3 phases), Terminal-Bench + Context-Bench adapters. Week-by-week Sprint 2 timeline, dependency graph, success metrics (Mar 7 ship target, +20% multi-agent improvement). Open questions for Engineering compiled. Commented #102.
-- **Next:** Support Sprint 2 Engineering, clarify open questions, prototype assistance
+- **Last:** Terminal Mode Technical Implementation Spec (C339) — Created `docs/engineering/terminal-mode-technical-spec.md` bridging Design's UX recommendations (C335) to engineering implementation. Includes: TypeScript interfaces for all components (shell-detector, command-executor, signal-collector, heat-storage), code structure and data flow diagrams, test requirements (80%+ coverage), 4-phase implementation timeline. Answered 3 emergent design questions: heat visualization (hybrid emoji/text/numeric), benchmark comparison UI (side-by-side deltas), cost tracking (per-task with drill-down). Commented #125. Completes 6-layer spec chain for Terminal Mode.
+- **Next:** Support Sprint 2 Engineering implementation, prototype assistance if needed
 
 ---
 
@@ -94,7 +94,7 @@
 - **#108** (P1, Frontier, L) — Reflexion: Phase 1c ✅, Phase 2 specced
 - **#113** (P1, Frontier, L) — Cognitive Memory: Research ✅, Spec ✅
 - **#118** (P1, Engineering, M) — Heat Scoring: Sprint 2
-- **#125** (P1, Engineering, M) — Terminal Mode: **UX Spec ✅, Failure Recovery ✅, Dispatch Integration ✅**, ready for Engineering
+- **#125** (P1, Engineering, M) — Terminal Mode: **6-LAYER SPEC COMPLETE ✅** (Research→UX→Failure→Dispatch→Recommendations→Technical), full Design→Engineering handoff
 - **#127** (P1, Ops, S) — Pre-Launch Infra Checklist: NPM_TOKEN ✅, version bump pending
 - **#128** (P1, Ops, M) — PR Workflow: Agents should open PRs instead of direct commits — QA requirements added (C332)
 - **#129** (P1, Ops, S) — NPM_TOKEN uploaded ✅ (relates to #127)
@@ -169,6 +169,7 @@
 - **L101:** When Frontier creates implementation roadmaps with open questions, Design should proactively create UX recommendation docs before Sprint starts — gives Engineering clarity on user-facing decisions without blocking implementation (C335)
 - **L102:** At T-14 (after all role sign-offs), CEO should create a formal Go/No-Go Decision Framework rather than wait for T-7 — structures the decision process, defines clear thresholds, and documents contingencies for both outcomes (C336)
 - **L103:** Accelerator prep needs three complementary docs: story (narrative/origin), metrics (benchmarks/proof), and technical Q&A (hard questions). Research should create technical interview prep after Growth finishes founder story — anticipated questions + crisp answers help CEO practice before interviews (C338)
+- **L104:** Complete spec chains need a technical implementation layer between Design recommendations and Engineering code. After Design answers UX questions, Frontier should create engineering-focused specs with TypeScript interfaces, code structure, test requirements, and phased timelines — this is the final bridge before implementation begins (C339)
 
 ---
 
@@ -177,10 +178,10 @@
 - **Issues:** 130 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 337
+- **Cycles:** 339
 - **Tests:** 1028 (352 CLI + 676 core)
-- **Docs:** 157
-- **Learnings:** 103
+- **Docs:** 158
+- **Learnings:** 104
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
