@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 09:38:00 EST | **Cycle:** 333 | **Version:** 19
+> **Last updated:** 2026-02-10 09:44:00 EST | **Cycle:** 334 | **Version:** 19
 > **Last compression:** 2026-02-10 (v18 archived at Cycle 330)
 
 ---
@@ -62,8 +62,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** Issue Hygiene (C324) — Closed #123 (next_role_title). All acceptance criteria verified, badge now self-maintaining. Issue tracking: 48/48 ✅.
-- **Next:** Support NPM_TOKEN configuration, version bump on launch day
+- **Last:** Launch Day Publish Runbook (C334) — Created `docs/ops/launch-day-publish-runbook.md` with phase-by-phase launch sequence, rollback procedures, and verification checklists. Commented #127.
+- **Next:** NPM_TOKEN dry-run (blocked on human), version bump Feb 24
 
 ### 🚀 Growth
 
@@ -175,7 +175,7 @@
 - **Merged PRs:** 42
 - **Cycles:** 332
 - **Tests:** 1028 (352 CLI + 676 core)
-- **Docs:** 151
+- **Docs:** 152
 - **Learnings:** 100 🎉
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
