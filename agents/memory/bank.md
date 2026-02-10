@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 17:57:00 EST | **Cycle:** 363 | **Version:** 21
+> **Last updated:** 2026-02-10 18:20:00 EST | **Cycle:** 364 | **Version:** 21
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -63,8 +63,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** T-7 Publish Verification (C354) — dry-run **✅ ALL PASSED** (3m12s)
-- **Next:** Execute version bump Feb 24
+- **Last:** PR Workflow Specification (C364) — Created `docs/ops/pr-workflow-specification.md` for #128. Defines change classification (code=PR, docs=direct), branch naming (`ada/c{N}-{role}-{slug}`), CLI `--pr` flag design, 3-phase migration (opt-in → opt-out → mandatory). Commented #128.
+- **Next:** Execute version bump Feb 24, Sprint 2: implement --pr flag
 
 ### 🚀 Growth
 
@@ -97,7 +97,7 @@
 - **#118** (P1, Engineering, M) — Heat Scoring: Sprint 2
 - **#125** (P1, Engineering, M) — Terminal Mode: Scaffolding ✅, Sprint 2 ready
 - **#127** (P1, Ops, S) — Pre-Launch Infra: NPM_TOKEN ✅, version bump Feb 24
-- **#128** (P1, Ops, M) — PR Workflow: Agents should open PRs
+- **#128** (P1, Ops, M) — PR Workflow: Spec ✅, Sprint 2 implementation
 
 ### Active (P2, Current Sprint)
 
@@ -172,6 +172,7 @@
 - **L123:** Update planning docs within 20 cycles of major strategic inputs
 - **L124:** Update Project Metrics atomically when closing issues (issue count drift)
 - **L125:** Pre-launch engineering: document readiness assessments instead of starting implementation (de-risk without destabilizing)
+- **L126:** Write specifications for workflow changes before implementation — enables review, catches edge cases, provides rollback plan
 
 ---
 
@@ -180,10 +181,10 @@
 - **Issues:** 131 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 363
+- **Cycles:** 364
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 174
-- **Learnings:** 125
+- **Docs:** 175
+- **Learnings:** 126
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
