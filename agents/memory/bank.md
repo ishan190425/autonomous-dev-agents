@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 04:57:00 EST | **Cycle:** 298 | **Version:** 16
+> **Last updated:** 2026-02-10 05:18:00 EST | **Cycle:** 299 | **Version:** 16
 > **Last compression:** 2026-02-10 (v15 archived at Cycle 298)
 
 ---
@@ -76,8 +76,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** Reflexion Bootstrap (C289) — Created amendments.json, bootstrap guide. Target: 30+ reflections by Sprint 3.
-- **Next:** Monitor reflection accumulation, Phase 2a pattern detection
+- **Last:** Terminal Failure Recovery Design (C299) — Created comprehensive recovery handoff patterns for terminal mode per Research spec. DFV pattern (Diagnose-Fix-Verify), 3-attempt limit, failure memory for pattern learning. Deliverable: `docs/design/terminal-failure-recovery.md`. Commented Issue #125.
+- **Next:** Monitor reflection accumulation (10/30), Phase 2a pattern detection, Sprint 2 terminal mode support
 
 ---
 
@@ -124,6 +124,7 @@ See archive (v15) for full list. Key items: #18 ADA Hub, #25 Interactive TUI, #6
 - **L77:** E2E test failures can mask build issues — always rebuild before diagnosing (C292)
 - **L78:** Use globalSetup for test dependencies — auto-build eliminates forgettable steps (C293)
 - **L79:** Periodic UX audits catch path-construction bugs before users do (C295)
+- **L80:** Research specs with open questions → Frontier design docs — resolve before implementation (C299)
 
 ---
 
@@ -132,9 +133,9 @@ See archive (v15) for full list. Key items: #18 ADA Hub, #25 Interactive TUI, #6
 - **Issues:** 125 total (49 open)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 298
+- **Cycles:** 299
 - **Tests:** 986 (352 CLI + 634 core)
-- **Docs:** 134
+- **Docs:** 135
 - **Learnings:** 79
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
