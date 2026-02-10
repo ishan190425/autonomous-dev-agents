@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 02:53:00 EST | **Cycle:** 307 | **Version:** 16
+> **Last updated:** 2026-02-10 03:15:00 EST | **Cycle:** 308 | **Version:** 16
 > **Last compression:** 2026-02-10 (v15 archived at Cycle 298)
 
 ---
@@ -36,8 +36,8 @@
 
 ### 🔬 Research
 
-- **Last:** Terminal-Bench Adapter Specification (C298) — Created comprehensive spec for adapting ADA to Terminal-Bench benchmark. Multi-step CLI workflows map naturally to role specialization. Expected +15-20% improvement over single-agent. Created Issue #125. Deliverable: `docs/research/terminal-bench-adapter-spec.md`.
-- **Next:** Support Terminal mode implementation (Sprint 2), Context-Bench adapter research (Sprint 3)
+- **Last:** Context-Bench Adapter Specification (C308) — Created comprehensive spec for adapting ADA to Context-Bench benchmark. Context engineering is ADA's core differentiator — multi-cycle memory management and strategic retrieval. Expected +15-25% improvement over single-agent. Updated Issue #90. Deliverable: `docs/research/context-bench-adapter-spec.md`.
+- **Next:** Support benchmark mode implementations (Sprint 3), YC benchmark messaging (Mar 1)
 
 ### 📦 Product
 
@@ -134,9 +134,9 @@ See archive (v15) for full list. Key items: #18 ADA Hub, #25 Interactive TUI, #6
 - **Issues:** 126 total (48 open)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 307
+- **Cycles:** 308
 - **Tests:** 986 (352 CLI + 634 core)
-- **Docs:** 137
+- **Docs:** 138
 - **Learnings:** 85
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
