@@ -8,6 +8,9 @@ export default defineConfig({
     // - tests/ — integration tests (full CLI commands with temp directories)
     // - src/**/__tests__/ — unit tests colocated with source (ESM compatibility, etc.)
     include: ['tests/**/*.test.ts', 'src/**/__tests__/**/*.test.ts'],
+    // Global setup ensures @ada/core is built before E2E tests run.
+    // Fixes Issue #121: stale build artifacts causing cryptic E2E failures.
+    globalSetup: ['tests/e2e/setup.ts'],
     coverage: {
       provider: 'v8',
       include: ['src/**/*.ts'],

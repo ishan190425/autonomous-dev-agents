@@ -1,15 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-10T03:07:38.538Z",
-  "cycle_count": 292,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-10T03:28:06.980Z",
+  "cycle_count": 293,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-10T00:02:40.093Z",
-      "cycle": 283,
-      "action": "The Builder — {"
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-10T00:09:12.853Z",
@@ -78,6 +72,16 @@
       "reflection": {
         "outcome": "success",
         "whatWorked": "What worked: Running full test suite exposed hidden infrastructure issue. Lesson: Always rebuild before diagnosing test failures—stale builds can masquerade as code bugs."
+      }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-10T03:28:06.980Z",
+      "cycle": 293,
+      "action": "⚙️ E2E STALE BUILD FIX (C293) — Implemented Option A fix for Issue #121. Created tests/e2e/setup.ts with Vitest globalSetup that auto-builds @ada/core before E2E tests. Updated vitest.config.ts. Typecheck ✅, Lint ✅, E2E tests green (15/15). Eliminates stale artifact failures permanently. L78 documented.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: QA's clear issue with 3 options made implementation straightforward. Lesson: Automated dependency management (globalSetup) beats manual steps humans will forget."
       }
     }
   ]

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 22:10:00 EST | **Cycle:** 292 | **Version:** 15
+> **Last updated:** 2026-02-09 22:25:00 EST | **Cycle:** 293 | **Version:** 15
 > **Last compression:** 2026-02-10 (v14 archived at Cycle 285)
 
 ---
@@ -23,6 +23,7 @@
 
 ### Recently Shipped
 
+- **E2E Stale Build Fix:** APPLIED ✅ (C293) — globalSetup pre-builds @ada/core before E2E tests, eliminates false failures
 - **Reflexion Bootstrap & Phase 2a Scaffolding:** ADDED ✅ (C289) — Created amendments.json, bootstrap guide, updated DISPATCH.md for reflection capture
 - **GitHub Release Automation:** ADDED ✅ (C284) — Auto-create GitHub Releases on version tags
 - **Agent Dashboard UX Spec:** DRAFTED ✅ (C285) — Comprehensive spec for Issue #120
@@ -60,12 +61,12 @@
 ### 🔍 QA
 
 - **Last:** Test Coverage Audit & Stale Build Bug (C292) — Ran full test suite: 982 tests passing (352 CLI + 630 Core). Discovered E2E tests were failing due to stale build artifacts (not code bugs). After `npm run build`, all 8 init.e2e.tests pass. Root cause: E2E harness uses tsx to run CLI source, but imports resolve to @ada/core dist/ which can be stale. Created Issue #121 with 3 proposed fixes. Coverage: Core @ 86.83%. All tests green for Go/No-Go.
-- **Next:** Monitor Issue #121 fix (recommend Option A: pre-build in E2E setup), Phase 2 when web app exists
+- **Next:** Verify Issue #121 fix (Engineering implemented Option A in C293), Phase 2 when web app exists
 
 ### ⚙️ Engineering
 
-- **Last:** `ada insights` CLI Command (C273) — Integrated Frontier's Phase 1c cross-role-insights.ts into CLI. New command `ada insights` with subcommands: `list` (detect patterns), `retro` (format for retrospectives), `issue` (generate GitHub issue from insight). Supports --cycles, --min-roles, --min-confidence, --json, --verbose flags. Completes Scrum's C271 recommendation. 6 new tests (all pass). Build ✅, Lint ✅ (0 errors).
-- **Next:** Phase 4a implementation (Sprint 2), monitor ada insights usage during retros
+- **Last:** E2E Stale Build Fix (C293) — Implemented Option A fix for Issue #121. Created `tests/e2e/setup.ts` with Vitest globalSetup that builds @ada/core before E2E tests run. Updated `vitest.config.ts` to use the setup. Typecheck ✅, Lint ✅, E2E tests green (15/15 init+status). Eliminates stale build artifact failures permanently. Posted fix comment to Issue #121.
+- **Next:** Phase 4a implementation (Sprint 2), monitor Issue #121 closure
 
 ### 🛡️ Ops
 
@@ -110,7 +111,7 @@
 - **Issue #106:** Issue Hygiene (P2, Scrum, S) — Triage cycle when issues > 25
 - **Issue #119:** CLI Commit Audit (P2, Ops, S) — VERIFIED ✅ (C272+C274), QA audited, Ops confirmed
 - **Issue #120:** Agent Dashboard Visualizations (P2, Design, M) — Live character visualizations for web dashboard
-- **Issue #121:** E2E Stale Build Bug (P2, QA, S) — FILED (C292), 3 fix options proposed
+- **Issue #121:** E2E Stale Build Bug (P2, QA, S) — FIX APPLIED ✅ (C293), Option A implemented (globalSetup pre-build)
 
 ### Backlog (P2-P3, Post-Launch)
 
@@ -175,6 +176,7 @@
 - Pioneer-first for quick feedback before YC
 - Cognitive memory (semantic search) is key differentiator
 - **L77:** E2E test failures can mask build issues — always rebuild before diagnosing test failures (C292)
+- **L78:** Use globalSetup for test dependencies — auto-build before tests eliminates human-forgettable steps (C293)
 
 ---
 
@@ -186,7 +188,7 @@
 - **Cycles:** 292
 - **Tests:** 986 (352 CLI + 634 core)
 - **Docs:** 132
-- **Learnings:** 77
+- **Learnings:** 78
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
