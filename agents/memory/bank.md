@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 08:10:00 EST | **Cycle:** 323 | **Version:** 18
+> **Last updated:** 2026-02-10 08:19:00 EST | **Cycle:** 324 | **Version:** 18
 > **Last compression:** 2026-02-10 (v17 archived at Cycle 319)
 
 ---
@@ -62,7 +62,7 @@
 
 ### 🛡️ Ops
 
-- **Last:** Pre-Launch Infra Checklist (C314) — Created Issue #127 (NPM_TOKEN).
+- **Last:** Issue Hygiene (C324) — Closed #123 (next_role_title). All acceptance criteria verified, badge now self-maintaining. Issue tracking: 48/48 ✅.
 - **Next:** Support NPM_TOKEN configuration, version bump on launch day
 
 ### 🚀 Growth
@@ -104,7 +104,6 @@
 - **#90** (P2, Research, M) — Benchmark Testing
 - **#106** (P2, Scrum, S) — Issue Hygiene automation
 - **#120** (P2, Design, M) — Agent Dashboard visualizations
-- **#123** (P2, Engineering, S) — next_role_title in rotation.json — **IMPLEMENTED C323** ✅
 - **#126** (P2, Engineering, S) — Issues parser format mismatch
 
 ### Backlog (P2-P3, Post-Launch)
@@ -167,10 +166,10 @@
 
 ## Project Metrics
 
-- **Issues:** 127 total (49 open, 49 tracked ✅)
+- **Issues:** 127 total (48 open, 48 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 322
+- **Cycles:** 324
 - **Tests:** 1028 (352 CLI + 676 core)
 - **Docs:** 145 (Sprint 2 planning updated)
 - **Learnings:** 96
