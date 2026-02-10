@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 04:10:00 EST | **Cycle:** 311 | **Version:** 17
+> **Last updated:** 2026-02-10 04:35:00 EST | **Cycle:** 312 | **Version:** 17
 > **Last compression:** 2026-02-10 (v16 archived at Cycle 309)
 
 ---
@@ -20,7 +20,7 @@
 ### In Progress
 
 - **Demo editing:** Feb 12-14 — Recorded and uploaded ✅, GIF due Feb 17
-- **Issue tracking audit:** Scrum C311 — fixed 28+ missing issues in Active Threads
+- **Post-fix regression check:** QA C312 — verified #124 fix has no regressions
 
 ### Blockers
 
@@ -52,7 +52,7 @@
 
 ### 🔍 QA
 
-- **Last:** T-7 Pre-Launch Test Verification (C302) — Full suite green. Core: 634 tests, 82.82% coverage. CLI: 317+ integration/E2E tests pass. GlobalSetup fix (#121) confirmed working — E2E setup auto-builds @ada/core. Build green. No regressions. Launch quality gate: PASS ✅.
+- **Last:** Post-Bug-Fix Regression Check (C312) — Verified #124 fix (C303) has no regressions. Build: ✅ all 3 packages. Core: 634 tests pass. CLI: unit tests pass. CI: 5 consecutive green runs. R-013: 48/48 issues tracked. No open PRs. Launch quality gate maintained: PASS ✅.
 - **Next:** Go/No-Go test sign-off (Feb 17), Sprint 2 E2E Phase 2
 
 ### ⚙️ Engineering
@@ -162,6 +162,7 @@
 - **L87:** Research→Frontier spec handoff is optimal — explicit open questions enable immediate resolution (C311)
 - **L88:** Launch countdown checkpoints (T-14, T-7) create accountability milestones (C311)
 - **L89:** FIRST CHECK in DISPATCH.md is necessary but not sufficient for R-013 — automation needed (C311)
+- **L90:** After Engineering bug fixes, QA should run regression check within 1-2 cycles — validates fix and catches side effects (C312)
 
 ---
 
@@ -170,10 +171,10 @@
 - **Issues:** 126 total (48 open, 48 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 311
+- **Cycles:** 312
 - **Tests:** 986 (352 CLI + 634 core)
 - **Docs:** 141
-- **Learnings:** 89
+- **Learnings:** 90
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
