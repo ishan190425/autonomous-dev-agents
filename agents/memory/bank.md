@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 06:47:00 EST | **Cycle:** 319 | **Version:** 18
+> **Last updated:** 2026-02-10 07:12:00 EST | **Cycle:** 320 | **Version:** 18
 > **Last compression:** 2026-02-10 (v17 archived at Cycle 319)
 
 ---
@@ -20,7 +20,7 @@
 ### In Progress
 
 - **Demo editing:** Feb 12-14 — Recorded and uploaded ✅, GIF due Feb 17
-- **Terminal Mode (#125):** UX spec ✅, Failure recovery ✅, Dispatch integration ✅, ready for Engineering
+- **Terminal Mode (#125):** 4-LAYER SPEC COMPLETE ✅ — Research (C298) + UX (C315) + Failure Recovery (C318) + Dispatch Integration (C319). Ready for Sprint 2 Engineering. Benchmark priority: Terminal-Bench first.
 
 ### Blockers
 
@@ -42,8 +42,8 @@
 
 ### 📦 Product
 
-- **Last:** Sprint 2 Planning Update (C310) — Created `docs/product/sprint-2-planning.md`.
-- **Next:** Go/No-Go review (Feb 17), Sprint 2 kickoff (Feb 28)
+- **Last:** Implementation Readiness Update (C320) — Updated Sprint 2 planning with Terminal Mode spec coverage (C315+C318+C319). Added Implementation Readiness Matrix. Resolved benchmark priority: Terminal-Bench first.
+- **Next:** Go/No-Go Product sign-off (Feb 17), Sprint 2 kickoff (Feb 28)
 
 ### 📋 Scrum
 
@@ -168,9 +168,9 @@
 - **Issues:** 127 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 319
+- **Cycles:** 320
 - **Tests:** 1024 (352 CLI + 672 core)
-- **Docs:** 145
+- **Docs:** 145 (Sprint 2 planning updated)
 - **Learnings:** 92
 - **Discord:** discord.gg/5NCHGJAz 🎮
 

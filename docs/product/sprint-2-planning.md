@@ -1,7 +1,7 @@
 # Sprint 2 Planning — Post-Launch Priorities
 
 > **Author:** 📦 Product Lead  
-> **Last Update:** Cycle 310 (2026-02-10)  
+> **Last Update:** Cycle 320 (2026-02-10)  
 > **Sprint 2:** 2026-02-28 → 2026-03-14  
 > **Launch:** v1.0-alpha Feb 24, 2026
 
@@ -11,20 +11,21 @@
 
 Sprint 1 is a **launch sprint** with v1.0-alpha shipping Feb 24. Sprint 2 is the first post-launch sprint — balancing user feedback response with the intelligence layer roadmap.
 
-| Metric       | Launch Target (Feb 24)   | Sprint 2 Target (Mar 14) |
-| ------------ | ------------------------ | ------------------------ |
-| npm installs | First external users     | 200+                     |
-| GitHub stars | Initial traction         | 50+                      |
-| Discord      | 92 members ✅            | 150+                     |
-| Tests        | 986 (352 CLI + 634 core) | 1,100+                   |
-| Docs         | 139                      | 150+                     |
+| Metric       | Launch Target (Feb 24)     | Sprint 2 Target (Mar 14) |
+| ------------ | -------------------------- | ------------------------ |
+| npm installs | First external users       | 200+                     |
+| GitHub stars | Initial traction           | 50+                      |
+| Discord      | 92 members ✅              | 150+                     |
+| Tests        | 1,024 (352 CLI + 672 core) | 1,150+                   |
+| Docs         | 145                        | 160+                     |
 
-**Sprint 1 Status (Cycle 310):**
+**Sprint 1 Status (Cycle 320):**
 
 - ✅ 6/6 MUST criteria complete — Go/No-Go Feb 17 is a formality
 - ✅ Demo footage recorded & uploaded — editing Feb 12-14
-- ✅ Benchmark research complete — Terminal-Bench + Context-Bench specs
+- ✅ Terminal Mode FULLY SPEC'D — 4 layers of design complete (see below)
 - ✅ Cognitive memory architecture designed
+- ✅ Issue tracking: 49/49 issues tracked (R-013 compliance)
 - 🚀 Launch Feb 24 is ON TRACK
 
 ---
@@ -56,12 +57,12 @@ Critical deadlines in Sprint 2 window:
 
 The cognitive memory architecture (Research #113, Frontier design) enters implementation:
 
-| Issue    | Feature                     | Effort     | Owner          | Dependencies         |
-| -------- | --------------------------- | ---------- | -------------- | -------------------- |
-| **#118** | Heat Scoring Implementation | 3-4 cycles | Engineering    | Design spec ✅       |
-| **#113** | Cognitive Memory Core       | 4-5 cycles | Frontier + Eng | #118 heat scoring    |
-| **#125** | Terminal Mode               | 2-3 cycles | Engineering    | Design spec ✅       |
-| **#108** | Reflexion Phase 2           | 2-3 cycles | Frontier       | Phase 1c complete ✅ |
+| Issue    | Feature                     | Effort     | Owner          | Dependencies          | Spec Status     |
+| -------- | --------------------------- | ---------- | -------------- | --------------------- | --------------- |
+| **#125** | Terminal Mode               | 3-4 cycles | Engineering    | All specs complete ✅ | 🟢 FULLY SPEC'D |
+| **#118** | Heat Scoring Implementation | 3-4 cycles | Engineering    | Design spec ✅        | 🟢 READY        |
+| **#113** | Cognitive Memory Core       | 4-5 cycles | Frontier + Eng | #118 heat scoring     | 🟡 DEPS PENDING |
+| **#108** | Reflexion Phase 2           | 2-3 cycles | Frontier       | Phase 1c complete ✅  | 🟢 READY        |
 
 **Architecture Reference:**
 
@@ -69,14 +70,68 @@ The cognitive memory architecture (Research #113, Frontier design) enters implem
 - Design: `docs/design/cognitive-memory-architecture.md`
 - Heat scoring: `docs/design/heat-scoring-implementation-spec.md`
 
+---
+
+## 🚀 Implementation Readiness Matrix
+
+**Updated Cycle 320:** Terminal Mode (#125) has complete 4-layer spec coverage — ready for Engineering.
+
+### Terminal Mode (#125) — READY FOR ENGINEERING ✅
+
+| Layer                     | Spec                                                | Author  | Cycle | Status      |
+| ------------------------- | --------------------------------------------------- | ------- | ----- | ----------- |
+| **Research**              | `docs/research/terminal-bench-adapter-spec.md`      | 🔬 C298 | 298   | ✅ Complete |
+| **UX Design**             | `docs/design/terminal-mode-cli-ux-spec.md`          | 🎨 C315 | 315   | ✅ Complete |
+| **Failure Recovery**      | `docs/research/terminal-failure-recovery.md`        | 🔬 C318 | 318   | ✅ Complete |
+| **Platform Architecture** | `docs/design/terminal-mode-dispatch-integration.md` | 🌌 C319 | 319   | ✅ Complete |
+
+**Coverage includes:**
+
+- CLI interface + flags (`--mode=terminal`, `--max-commands`, `--sandbox`)
+- Output formatting + progress indication
+- Failure taxonomy + exit code handling
+- Role handoff patterns for error recovery (+17% recovery rate)
+- Dispatch middleware architecture
+- Terminal state persistence in `rotation.json`
+- 4-phase implementation plan
+- 5 open questions for Engineering (see specs)
+
+**Implementation Priority:** Start Sprint 2 — enables Terminal-Bench validation for investor pitches.
+
+### Heat Scoring (#118) — READY
+
+- Design spec complete: `docs/design/heat-scoring-implementation-spec.md`
+- Implementation order: Core infrastructure → Phase 4a
+
+### Cognitive Memory (#113) — BLOCKED ON #118
+
+- Research complete, Design complete
+- Cannot implement until heat scoring (#118) provides signals
+
+### Reflexion Phase 2 (#108) — READY
+
+- Phase 1c complete (C279), amendment tracking in place
+- Phase 2 spec defined
+
 ### Goal 4: Benchmark Validation (P1)
 
 Prepare ADA for public benchmarks to validate claims:
 
-| Issue   | Benchmark              | Effort     | Owner       | Status                           |
-| ------- | ---------------------- | ---------- | ----------- | -------------------------------- |
-| **#90** | Terminal-Bench adapter | 2-3 cycles | Engineering | Spec ✅ (C298)                   |
-| **#90** | Context-Bench adapter  | 2-3 cycles | Frontier    | Spec ✅ (C308), Design ✅ (C309) |
+| Issue   | Benchmark              | Effort     | Owner       | Status                                       | Priority      |
+| ------- | ---------------------- | ---------- | ----------- | -------------------------------------------- | ------------- |
+| **#90** | Terminal-Bench adapter | 2-3 cycles | Engineering | 4 specs complete ✅ (C298, C315, C318, C319) | 🥇 FIRST      |
+| **#90** | Context-Bench adapter  | 2-3 cycles | Frontier    | Spec ✅ (C308), Design ✅ (C309)             | 🥈 AFTER #125 |
+
+**Benchmark Priority Decision (C320):**
+
+**Terminal-Bench FIRST.** Rationale:
+
+1. Terminal Mode (#125) has complete 4-layer spec — Engineering can start immediately
+2. Shell-based tasks align with ADA's dispatch architecture
+3. Role handoff patterns documented — multi-agent recovery advantage quantifiable (+17%)
+4. Simpler integration (no memory system deps) — faster results for accelerator pitches
+
+Context-Bench follows once Terminal Mode ships and validates the approach.
 
 **Why benchmarks matter:**
 
@@ -86,9 +141,12 @@ Prepare ADA for public benchmarks to validate claims:
 
 **Reference docs:**
 
-- `docs/research/terminal-bench-adapter-spec.md`
-- `docs/research/context-bench-adapter-spec.md`
-- `docs/design/context-bench-memory-integration.md`
+- Terminal-Bench: `docs/research/terminal-bench-adapter-spec.md`
+- Terminal Mode UX: `docs/design/terminal-mode-cli-ux-spec.md`
+- Failure Recovery: `docs/research/terminal-failure-recovery.md`
+- Dispatch Integration: `docs/design/terminal-mode-dispatch-integration.md`
+- Context-Bench: `docs/research/context-bench-adapter-spec.md`
+- Context-Bench Memory: `docs/design/context-bench-memory-integration.md`
 
 ### Goal 5: UX Polish (P2)
 
@@ -167,8 +225,14 @@ Validate community contribution pipeline:
 ## Open Questions for Sprint 2 Kickoff
 
 1. **Soft launch (Feb 20-23)?** — Release to Discord members early for controlled feedback before public launch?
-2. **Benchmark priority?** — Terminal-Bench (simpler, shell-based) or Context-Bench (deeper, memory-focused)?
+2. ~~**Benchmark priority?**~~ → ✅ **RESOLVED (C320):** Terminal-Bench first. Complete specs, simpler integration, faster results.
 3. **Merge bar for external PRs?** — What quality level for first community contribution?
+
+### Resolved Questions
+
+| Question           | Resolution                                           | Cycle |
+| ------------------ | ---------------------------------------------------- | ----- |
+| Benchmark priority | Terminal-Bench first, Context-Bench after #125 ships | C320  |
 
 ---
 
@@ -199,4 +263,5 @@ Validate community contribution pipeline:
 
 ---
 
-_📦 Product Lead — Cycle 310_
+_📦 Product Lead — Cycle 310, Updated Cycle 320_
+_C320: Added Implementation Readiness Matrix, resolved benchmark priority question, integrated Terminal Mode specs (C315, C318, C319)_

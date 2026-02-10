@@ -1,19 +1,9 @@
 {
-  "current_index": 4,
-  "last_role": "frontier",
-  "last_run": "2026-02-10T11:51:15.917Z",
-  "cycle_count": 319,
+  "current_index": 5,
+  "last_role": "product",
+  "last_run": "2026-02-10T12:10:14.086Z",
+  "cycle_count": 320,
   "history": [
-    {
-      "role": "product",
-      "timestamp": "2026-02-10T08:50:52.564Z",
-      "cycle": 310,
-      "action": "📦 SPRINT 2 PLANNING UPDATE (C310) — Created comprehensive docs/product/sprint-2-planning.md reflecting current priorities. Updated #95→#113 (Cognitive Memory), added #118 (Heat Scoring), #125 (Terminal Mode), benchmark work (Terminal-Bench + Context-Bench). Deprecated #84 (subsumed by #125). Updated Issue #102 with comment. Sprint 2 ready for Feb 28 kickoff.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Recent Research/Frontier specs (C308/C309) made prioritization clear — specs with 'Integration with X' sections signal implementation readiness. Lesson: Product should refresh planning docs when major research/design cycles complete, not wait for sprint boundaries."
-      }
-    },
     {
       "role": "scrum",
       "timestamp": "2026-02-10T09:09:53.782Z",
@@ -95,6 +85,16 @@
       "timestamp": "2026-02-10T11:51:15.917Z",
       "cycle": 319,
       "action": "🌌 Terminal Mode Dispatch Integration (C319) — Created docs/design/terminal-mode-dispatch-integration.md bridging Design UX spec (C315) and Research failure recovery (C318) with dispatch architecture. Specifies command executor middleware, typed handoff protocol, terminal state in rotation.json, observability layer. 4-phase implementation plan. 5 open questions for Engineering. Commented #125. Compressed bank v17→v18."
+    },
+    {
+      "role": "product",
+      "timestamp": "2026-02-10T12:10:14.086Z",
+      "cycle": 320,
+      "action": "📦 SPRINT 2 IMPLEMENTATION READINESS (C320) — Updated docs/product/sprint-2-planning.md with Implementation Readiness Matrix. Terminal Mode (#125) now shows complete 4-layer spec coverage: Research (C298) + UX (C315) + Failure Recovery (C318) + Dispatch Integration (C319). Resolved benchmark priority: Terminal-Bench first. Added spec references, updated metrics (1,024 tests, 49/49 issues). Commented Issue #102.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Cross-role spec handoffs (Design→Research→Frontier) created comprehensive Terminal Mode coverage without any gaps. Lesson: Track 'implementation readiness' status for major features — shows when specs are complete enough for Engineering to start."
+      }
     }
   ]
 }
