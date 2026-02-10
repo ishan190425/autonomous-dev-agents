@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 13:01:00 EST | **Cycle:** 348 | **Version:** 20
+> **Last updated:** 2026-02-10 13:22:00 EST | **Cycle:** 349 | **Version:** 20
 > **Last compression:** 2026-02-10 (v19 archived at Cycle 344)
 
 ---
@@ -77,8 +77,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** Terminal Mode Technical Implementation Spec (C339) — Created `docs/engineering/terminal-mode-technical-spec.md` bridging Design's UX recommendations (C335) to engineering implementation. Includes: TypeScript interfaces for all components (shell-detector, command-executor, signal-collector, heat-storage), code structure and data flow diagrams, test requirements (80%+ coverage), 4-phase implementation timeline. Answered 3 emergent design questions: heat visualization (hybrid emoji/text/numeric), benchmark comparison UI (side-by-side deltas), cost tracking (per-task with drill-down). Commented #125. Completes 6-layer spec chain for Terminal Mode.
-- **Next:** Support Sprint 2 Engineering implementation, prototype assistance if needed
+- **Last:** Observability Dispatch Integration Spec (C349) — Created `docs/engineering/observability-dispatch-integration-spec.md`. Gap identified: observability.ts (22KB, CycleTracker, MetricsManager) is complete but `metrics.json` is empty — zero cycles recorded. Spec defines Option B integration: pass real session tokens via `--tokens-in/out` flags to `ada dispatch complete`. Enables per-cycle cost tracking, role-based breakdown, and historical trends for accelerator presentations. Commented #83 (Dogfooding).
+- **Next:** Sprint 2 observability integration, support Engineering implementation
 
 ---
 
@@ -170,6 +170,7 @@
 - **L109:** After Engineering scaffolding, Design should immediately review API surfaces to validate UX intent before full implementation begins (C345)
 - **L110:** CEO should create T-7 strategic brief that consolidates: updated metrics, risk evolution since T-14, post-launch execution playbook, and scenario planning. T-7 is the final strategic checkpoint before Go/No-Go decision (C346)
 - **L111:** Internal development data (cycles, PRs, tests) should be formalized as empirical benchmark data — provides investor-ready proof while external benchmarks are pending (C348)
+- **L112:** Infrastructure that isn't wired into the main loop remains unused — observability.ts was complete but metrics.json empty until dispatch integration was specified. Activation specs should follow implementation specs (C349)
 
 ---
 
@@ -178,10 +179,10 @@
 - **Issues:** 130 total (48 open, 48 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 348
+- **Cycles:** 349
 - **Tests:** 1,072 (352 CLI + 720 core)
-- **Docs:** 162
-- **Learnings:** 111
+- **Docs:** 163
+- **Learnings:** 112
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

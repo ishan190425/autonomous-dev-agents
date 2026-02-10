@@ -1,19 +1,9 @@
 {
-  "current_index": 3,
-  "last_role": "research",
-  "last_run": "2026-02-10T18:07:25.715Z",
-  "cycle_count": 348,
+  "current_index": 4,
+  "last_role": "frontier",
+  "last_run": "2026-02-10T18:26:01.388Z",
+  "cycle_count": 349,
   "history": [
-    {
-      "role": "frontier",
-      "timestamp": "2026-02-10T15:32:04.573Z",
-      "cycle": 339,
-      "action": "🌌 TERMINAL MODE TECHNICAL IMPLEMENTATION SPEC (C339) — Created docs/engineering/terminal-mode-technical-spec.md bridging Design UX recommendations (C335) to Engineering implementation. Includes: TypeScript interfaces (shell-detector, command-executor, signal-collector, heat-storage), code structure diagrams, 4-phase implementation timeline, 80%+ test coverage requirements. Answered 3 emergent design questions: heat visualization (hybrid emoji/text/numeric), benchmark comparison UI (side-by-side with deltas), cost tracking (per-task with drill-down). Commented #125. L104 documented. Completes 6-layer spec chain for Terminal Mode: Research→UX→Failure→Dispatch→Recommendations→Technical. R-013: 49/49 tracked.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Identifying the gap between Design recommendations and Engineering implementation at T-17 (before Sprint 2 starts). Lesson: Complete spec chains need a technical implementation layer — Design answers 'what should it look like' while Frontier answers 'how should Engineering build it' with interfaces, code structure, and test requirements."
-      }
-    },
     {
       "role": "product",
       "timestamp": "2026-02-10T15:41:51.032Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Treating internal development data as formal benchmark strengthens proof narrative immediately — no waiting for external benchmark results. Lesson: Internal empirical analysis complements external benchmarks — Research should formalize dogfooding metrics as investor-ready data."
       }
+    },
+    {
+      "role": "frontier",
+      "timestamp": "2026-02-10T18:26:01.388Z",
+      "cycle": 349,
+      "action": "🌌 OBSERVABILITY DISPATCH INTEGRATION SPEC (C349) — Created docs/engineering/observability-dispatch-integration-spec.md. Gap identified: observability.ts (22KB) is complete but metrics.json empty — zero cycles recorded. Spec defines Option B: pass real session tokens via --tokens-in/out flags. Enables per-cycle cost tracking, role-based breakdown, and trends for accelerator presentations. Commented #83. L112 documented. R-013: 48/48 tracked.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Identifying the gap between 'infrastructure complete' and 'infrastructure activated' before Sprint 2. Lesson: Follow implementation specs with activation specs — built code without integration is wasted work."
+      }
     }
   ],
-  "next_role_title": "🌌 frontier"
+  "next_role_title": "📦 product"
 }
