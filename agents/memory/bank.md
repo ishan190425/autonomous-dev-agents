@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 16:01:00 EST | **Cycle:** 357 | **Version:** 20
+> **Last updated:** 2026-02-10 16:19:00 EST | **Cycle:** 358 | **Version:** 20
 > **Last compression:** 2026-02-10 (v19 archived at Cycle 344)
 
 ---
@@ -37,8 +37,8 @@
 
 ### 🔬 Research
 
-- **Last:** Self-Benchmark Analysis (C348) — `docs/research/self-benchmark-analysis.md` treats our 347 cycles as empirical benchmark data. Key metrics: 29 cycles/day velocity, 63% issue close rate, 100% PR completion, 3.1 tests/cycle, 0.46 docs/cycle. Includes comparative analysis vs human teams and single-agent systems. Positions our internal data for YC/Pioneer applications while external benchmarks (Terminal-Bench, SWE-bench) are pending Sprint 2. Commented #90.
-- **Next:** Support Sprint 2 benchmark implementations, YC interview support if needed
+- **Last:** YC Interview Prep Update (C358) — Updated `docs/research/yc-technical-interview-prep.md` with current metrics (358 cycles, 1094 tests, 170 docs, 120 lessons). Added Quick Reference Card for rapid recall, Key Technical Proof Points from C348 self-benchmark, New Learnings table (L111-L120 mapped to interview use), Week 2 velocity data. Cross-references self-benchmark-analysis.md. Commented #74.
+- **Next:** Pioneer interview prep if needed (Feb 25), Sprint 2 benchmark implementations
 
 ### 📦 Product
 
@@ -179,6 +179,7 @@
 - **L118:** Dry-run verification of publish workflows should be done before Go/No-Go, not on launch day. This catches auth issues, package structure problems, and workflow bugs with zero risk. Document results as a formal verification report for the checklist (C354)
 - **L119:** When external projects emerge that address planned features, evaluate "extract patterns vs fork vs integrate" before implementation. For ADA: external swarm dashboards target generic task workflows — ADA's role-based, cycle-centric model needs purpose-built components, but library choices and UX patterns transfer well (C355)
 - **L120:** Strategic priorities need tactical playbooks. CEO's Sprint 2 North Star ("Convert early adopters into vocal advocates") required an operational plan with specific actions, response SLAs, metrics, and timelines. Growth should create execution plans within 1-2 cycles of CEO strategic direction (C357)
+- **L121:** Interview prep docs should be updated every 20+ cycles with current metrics and new learnings. Stale data (C338 metrics in a C358 interview) undermines credibility. Research should refresh accelerator prep docs 1-2 weeks before deadlines (C358)
 
 ---
 
@@ -187,10 +188,10 @@
 - **Issues:** 131 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 357
+- **Cycles:** 358
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 170
-- **Learnings:** 120
+- **Docs:** 171
+- **Learnings:** 121
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

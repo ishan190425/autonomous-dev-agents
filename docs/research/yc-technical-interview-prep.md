@@ -1,10 +1,11 @@
 # 🎯 YC Technical Interview Prep
 
 > Anticipated hard questions and defensible answers for YC partner interviews
-> **Author:** 🔬 The Scout | **Cycle:** 338 | **Date:** 2026-02-10
+> **Author:** 🔬 The Scout | **Updated:** Cycle 358 | **Date:** 2026-02-10
 > **Related Issues:** #74 (Accelerator Strategy), #90 (Benchmark Testing)
 > **Target:** YC S26 Application (Mar 1) / Interview (~Mar 15-30)
 > **Status:** Research Brief | **Audience:** CEO, Growth — interview prep
+> **References:** `self-benchmark-analysis.md` (C348) — empirical data source
 
 ---
 
@@ -12,9 +13,35 @@
 
 YC partners ask hard questions to stress-test your understanding. This document anticipates the toughest technical questions and provides crisp, defensible answers. Use alongside:
 
+- `self-benchmark-analysis.md` — Empirical benchmark data (347→358 cycles)
 - `founder-story.md` — Narrative and origin
 - `benchmark-investor-positioning.md` — Metrics strategy
 - `competitive-landscape-analysis.md` — Market positioning
+
+---
+
+## Quick Reference Card
+
+For rapid recall during interview:
+
+| Stat           | Value         | Delta Since C338 |
+| -------------- | ------------- | ---------------- |
+| Cycles         | **358**       | +21 cycles       |
+| Issues         | 131 (49 open) | +1 issue         |
+| PRs Merged     | 42            | —                |
+| Tests          | **1,094**     | +66 tests        |
+| Docs           | **170**       | +14 docs         |
+| Roles          | 10            | —                |
+| Memory Version | **v20**       | +1 compression   |
+| Lessons        | **120**       | +18 lessons      |
+| Launch Date    | Feb 24        | T-14 days        |
+| YC Deadline    | Mar 1         | T-19 days        |
+
+**One-liner:** "ADA is an autonomous dev team framework — think 'Cursor but for whole teams, not just code completion.'"
+
+**Differentiator:** "The only multi-agent system that built itself."
+
+**Proof:** "358 cycles, 42 merged PRs, 1,094 tests — all autonomous."
 
 ---
 
@@ -28,9 +55,9 @@ ADA has three core innovations:
 
 1. **Role-Based Dispatch** — Instead of one agent doing everything, we have specialized roles (CEO, Engineering, QA, etc.) that rotate through a shared codebase with defined handoffs. Think microservices, but for cognition.
 
-2. **Persistent Memory Bank** — All roles share a compressed memory file that persists across sessions. Decisions, blockers, context — all survive context window limits.
+2. **Persistent Memory Bank** — All roles share a compressed memory file that persists across sessions. Decisions, blockers, context — all survive context window limits. We've run 358 cycles with only 20 compression versions.
 
-3. **Self-Governing Rules** — An ops role maintains living rules that all other roles follow. The system governs itself without human intervention.
+3. **Self-Governing Rules** — An ops role maintains living rules that all other roles follow. The system governs itself without human intervention. 13 rules emerged organically from development needs.
 
 **Why it matters:** Single-agent systems hit scaling limits at ~2000 lines of code. Our multi-role architecture scales because context is distributed, not centralized.
 
@@ -42,11 +69,11 @@ ADA has three core innovations:
 
 Three key differences:
 
-| Dimension           | CrewAI / AutoGen            | ADA                                    |
-| ------------------- | --------------------------- | -------------------------------------- |
-| **Execution Model** | Task-based (one-shot crews) | Rotation-based (persistent team)       |
-| **Memory**          | Per-task only               | Cross-session memory bank              |
-| **Governance**      | None (humans set rules)     | Self-governing (Ops role + rules file) |
+| Dimension           | CrewAI / AutoGen            | ADA                                     |
+| ------------------- | --------------------------- | --------------------------------------- |
+| **Execution Model** | Task-based (one-shot crews) | Rotation-based (persistent team)        |
+| **Memory**          | Per-task only               | Cross-session memory bank (20 versions) |
+| **Governance**      | None (humans set rules)     | Self-governing (Ops role + 13 rules)    |
 
 CrewAI and AutoGen are orchestration frameworks — they help you define multi-agent tasks. ADA is a persistent autonomous team — it operates continuously without human prompting.
 
@@ -66,7 +93,7 @@ Three reasons:
 
 3. **Accountability** — When something breaks, we know which role made the decision. Rotation history creates an audit trail. Single-agent systems have no trace of reasoning.
 
-**Evidence:** Our memory bank format tracks role decisions. We've had 337 autonomous cycles. Every decision is attributable.
+**Evidence:** Our memory bank format tracks role decisions. We've had 358 autonomous cycles. Every decision is attributable to a specific role.
 
 ---
 
@@ -80,7 +107,7 @@ They can't directly disagree — roles execute in sequence, not parallel. But th
 2. **Comment on Issues** — GitHub issues become the disagreement surface
 3. **Propose Rules** — Ops can codify resolution patterns
 
-This mirrors how async dev teams work — you don't have real-time arguments, you have documented discussions.
+This mirrors how async dev teams work — you don't have real-time arguments, you have documented discussions. We've logged 120 lessons this way — organizational learning through structured disagreement.
 
 ---
 
@@ -90,20 +117,21 @@ This mirrors how async dev teams work — you don't have real-time arguments, yo
 
 **Answer (45 sec):**
 
-We've already proven it. ADA has run 337 autonomous cycles on its own codebase:
+We've already proven it. ADA has run **358 autonomous cycles** on its own codebase over 12 days:
 
-- **130 issues** created and tracked
-- **42 PRs** merged
-- **1028 tests** written (by the agents themselves)
-- **156 docs** authored
-- **102 lessons** logged
+- **131 issues** created and tracked
+- **42 PRs** merged (100% merge rate, 0 abandoned)
+- **1,094 tests** written (by the agents themselves)
+- **170 docs** authored
+- **120 lessons** logged
+- **~29 cycles/day** sustained throughput
 
 We're not demo-ware. We dogfood ADA to build ADA. Every feature was designed, implemented, reviewed, and tested by the agent team.
 
 **Why it works:** Three mechanisms prevent cascade failures:
 
-1. **Memory compression** — Bank stays under 200 lines via automatic archival
-2. **Rules enforcement** — All roles follow RULES.md — no freestyle
+1. **Memory compression** — Bank stays under 200 lines via automatic archival (R-002)
+2. **Rules enforcement** — All roles follow 13 rules in RULES.md — no freestyle
 3. **Rotation isolation** — One role per cycle means errors don't compound in the same turn
 
 ---
@@ -114,15 +142,15 @@ We're not demo-ware. We dogfood ADA to build ADA. Every feature was designed, im
 
 Four moats:
 
-1. **Coordination Data** — We're accumulating the largest corpus of multi-agent development coordination traces. 337 cycles of role handoffs, decision patterns, failure modes. This trains future models.
+1. **Coordination Data** — We're accumulating the largest corpus of multi-agent development coordination traces. 358 cycles of role handoffs, decision patterns, failure modes. 120 documented lessons. This trains future models.
 
 2. **Memory Architecture** — Our heat scoring + innate/learned memory split (spec'd in Issue #113) is novel. No one else has persistent, compressing, role-aware memory.
 
-3. **Self-Evolution** — Our Reflexion system (Issue #108) lets roles improve their own playbooks based on outcomes. The system gets better autonomously.
+3. **Self-Evolution** — Our Reflexion system (Issue #108) lets roles improve their own playbooks based on outcomes. Phase 1c complete, Phase 2 specced. The system gets better autonomously.
 
 4. **Dogfooding Proof** — We're the only multi-agent framework that built itself. That's trust signal competitors can't fake.
 
-OpenAI could add roles. They can't add 337 cycles of coordination learnings.
+OpenAI could add roles. They can't add 358 cycles of coordination learnings.
 
 ---
 
@@ -138,7 +166,9 @@ LLM agents are stateless by nature. When a session ends, context is gone. We nee
 - Compression that keeps context under token limits
 - Format that multiple roles can read/write without conflicts
 
-Solution: The memory bank with versioned compression and role-owned sections. v19 currently, 18 archived snapshots. Works across 337 cycles.
+Solution: The memory bank with versioned compression and role-owned sections. v20 currently, 19 archived snapshots. Works across 358 cycles.
+
+**Recent proof:** We just added observability integration (C353) that wires token tracking into dispatch. The memory architecture made this seamless.
 
 ---
 
@@ -157,6 +187,8 @@ This requires:
 - Parallel dispatch coordination
 
 It's on our roadmap (Issue #81 — Continuous 24/7 Development). We're solving sequential first; parallel is Sprint 3+.
+
+**Note:** Terminal Mode (Issue #125) scaffolding is complete — 44 tests passing, core infrastructure built. This is our Sprint 2 priority.
 
 ---
 
@@ -215,11 +247,12 @@ SWE-bench measures single-shot patch generation. It's where single-agent systems
 
 Our benchmark strategy:
 
-1. **Terminal-Bench** (multi-step workflows) — where sequential coordination matters
-2. **Context-Bench** (long-horizon memory) — where persistent memory matters
-3. **SWE-bench** (patch generation) — table stakes, not differentiator
+1. **Self-Benchmark** ✅ — 358 cycles of empirical data (see `self-benchmark-analysis.md`)
+2. **Terminal-Bench** (multi-step workflows) — where sequential coordination matters
+3. **Context-Bench** (long-horizon memory) — where persistent memory matters
+4. **SWE-bench** (patch generation) — table stakes, not differentiator
 
-We'll have Terminal-Bench results by Mar 7. See `benchmark-investor-positioning.md` for full strategy.
+We have internal benchmark data now. Terminal-Bench and SWE-bench Lite are Sprint 2. See `benchmark-investor-positioning.md` for full strategy.
 
 ---
 
@@ -238,6 +271,7 @@ Mitigation:
 - Model pinning where possible (versioned models)
 - Role playbooks include fallback prompts
 - Heat scoring will weight model-specific patterns (Sprint 2)
+- Observability now tracks tokens per cycle (C353) — we can measure variance
 
 It's a risk for everyone in the space. We're at least tracking it systematically.
 
@@ -283,6 +317,8 @@ Open-source framework is the wedge. Hub and Managed are the monetization.
 
 We're targeting developers first, teams second, enterprises third.
 
+**New (C357):** Early Adopter Advocacy Plan targets 10+ identifiable advocates and 3+ user quotes for accelerators by Mar 1.
+
 ---
 
 ## Closing Questions
@@ -291,7 +327,7 @@ We're targeting developers first, teams second, enterprises third.
 
 **Answer (15 sec):**
 
-"We built an AI dev team that builds itself — and we can prove it works because we've been using it for 337 cycles."
+"We built an AI dev team that builds itself — and we can prove it works because we've been using it for 358 cycles."
 
 Most multi-agent demos are toy examples. ADA is a working autonomous team with real output: issues, PRs, tests, docs. The proof is the product.
 
@@ -311,28 +347,37 @@ We don't need much capital yet — we're pre-revenue by choice (open-source firs
 
 ---
 
-## Quick Reference Card
+## New Learnings Since C338
 
-For rapid recall during interview:
+Key lessons logged C338-358 that strengthen interview answers:
 
-| Stat           | Value         |
-| -------------- | ------------- |
-| Cycles         | 337           |
-| Issues         | 130 (49 open) |
-| PRs Merged     | 42            |
-| Tests          | 1,028         |
-| Docs           | 156           |
-| Roles          | 10            |
-| Memory Version | v19           |
-| Launch Date    | Feb 24        |
-| YC Deadline    | Mar 1         |
-
-**One-liner:** "ADA is an autonomous dev team framework — think 'Cursor but for whole teams, not just code completion.'"
-
-**Differentiator:** "The only multi-agent system that built itself."
-
-**Proof:** "337 cycles, 42 merged PRs, 1028 tests — all autonomous."
+| Lesson   | Insight                                      | Interview Use                                                |
+| -------- | -------------------------------------------- | ------------------------------------------------------------ |
+| L111     | Internal dev data is formal benchmark data   | "Our 358 cycles IS our benchmark — not waiting for external" |
+| L112-113 | Infrastructure needs activation specs        | "We learned that built ≠ useful — now we wire everything"    |
+| L117     | Close activation gaps early                  | "We fix integration issues before launch, not after"         |
+| L118     | Dry-run verification before Go/No-Go         | "Our publish pipeline is verified — zero launch-day risk"    |
+| L119     | Extract patterns vs fork vs integrate        | "We evaluate external projects before building"              |
+| L120     | Strategic priorities need tactical playbooks | "CEO sets direction, roles create execution plans"           |
 
 ---
 
-_Document created for YC S26 interview preparation. Review with CEO/Growth before interviews._
+## Key Technical Proof Points
+
+Updated from C348 Self-Benchmark Analysis:
+
+| Metric           | Value                  | Significance                    |
+| ---------------- | ---------------------- | ------------------------------- |
+| Cycles           | 358                    | Largest multi-agent dev dataset |
+| Cycle velocity   | ~29/day                | Sustained autonomous throughput |
+| Issue throughput | 131 created, 82 closed | 63% close rate                  |
+| PR merge rate    | 42 merged, 0 abandoned | 100% completion                 |
+| Tests written    | 1,094                  | 3+ tests/cycle average          |
+| Docs authored    | 170                    | Comprehensive documentation     |
+| Memory versions  | 20                     | Effective compression           |
+
+**Week 2 velocity:** 39.4 cycles/day — 84% increase from Week 1, showing system maturation.
+
+---
+
+_Document updated at C358 for YC S26 interview preparation. Original C338, updated with C348 self-benchmark data and L111-L120 learnings. Review with CEO/Growth before interviews._
