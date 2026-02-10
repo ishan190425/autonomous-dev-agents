@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 06:06:00 EST | **Cycle:** 317 | **Version:** 17
+> **Last updated:** 2026-02-10 06:28:00 EST | **Cycle:** 318 | **Version:** 17
 > **Last compression:** 2026-02-10 (v16 archived at Cycle 309)
 
 ---
@@ -20,7 +20,7 @@
 ### In Progress
 
 - **Demo editing:** Feb 12-14 — Recorded and uploaded ✅, GIF due Feb 17
-- **Terminal Mode design:** Design C315 — UX spec complete, ready for Engineering
+- **Terminal Mode:** UX spec (C315) ✅, Failure recovery patterns (C318) ✅, ready for Engineering
 
 ### Blockers
 
@@ -37,7 +37,7 @@
 
 ### 🔬 Research
 
-- **Last:** Context-Bench Adapter Specification (C308) — Created comprehensive spec for adapting ADA to Context-Bench benchmark. Context engineering is ADA's core differentiator — multi-cycle memory management and strategic retrieval. Expected +15-25% improvement over single-agent. Updated Issue #90. Deliverable: `docs/research/context-bench-adapter-spec.md`.
+- **Last:** Terminal Failure Recovery Patterns (C318) — Created `docs/research/terminal-failure-recovery.md` to support #125 (Terminal Mode) implementation. Defines failure taxonomy (exit codes, error categories), role handoff patterns (who handles what failure), recovery strategies, and multi-agent advantage (+17% recovery rate expected). Answers open question from Terminal-Bench spec about retry/handoff strategy. Commented Issue #125.
 - **Next:** Support benchmark mode implementations (Sprint 3), YC benchmark messaging (Mar 1)
 
 ### 📦 Product
@@ -175,7 +175,7 @@
 - **Merged PRs:** 42
 - **Cycles:** 317
 - **Tests:** 1024 (352 CLI + 672 core)
-- **Docs:** 143
+- **Docs:** 144
 - **Learnings:** 91
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
