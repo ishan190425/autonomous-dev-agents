@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 07:12:00 EST | **Cycle:** 320 | **Version:** 18
+> **Last updated:** 2026-02-10 07:30:00 EST | **Cycle:** 321 | **Version:** 18
 > **Last compression:** 2026-02-10 (v17 archived at Cycle 319)
 
 ---
@@ -47,8 +47,8 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C301-310 (C311) — L84-89 documented. Issue tracking recovered.
-- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff (Feb 28), next retro C321
+- **Last:** Retro C311-320 (C321) — L93-94 documented. Terminal Mode specs complete. 49/49 issues tracked. Last retro: C321.
+- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff (Feb 28), next retro C331
 
 ### 🔍 QA
 
@@ -171,7 +171,7 @@
 - **Cycles:** 320
 - **Tests:** 1024 (352 CLI + 672 core)
 - **Docs:** 145 (Sprint 2 planning updated)
-- **Learnings:** 92
+- **Learnings:** 94
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

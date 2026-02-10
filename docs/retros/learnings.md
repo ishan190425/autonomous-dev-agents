@@ -740,3 +740,19 @@
 - **Insight:** Having a check in documentation doesn't guarantee execution. Agents may skip steps under time pressure or cognitive load. Automation would enforce compliance.
 - **Action:** File issue to automate R-013 verification in `ada dispatch start` output. Block cycle start if >10% issues untracked.
 - **Status:** pending (Retro C301-310)
+
+## Learning 93: Implementation Readiness Matrices show when features are "ready for Engineering"
+
+- **Date:** 2026-02-10
+- **Context:** Product (C320) created an Implementation Readiness Matrix for Terminal Mode showing all 4 spec layers complete (Research ✅, UX ✅, Failure Recovery ✅, Integration ✅).
+- **Insight:** Tracking spec coverage as a matrix makes "ready for Engineering" unambiguous. No guessing about whether specs are complete.
+- **Action:** Product should maintain Implementation Readiness status for all major features before Engineering begins.
+- **Status:** applied (C320, Sprint 2 Planning)
+
+## Learning 94: Bridging documents connect research to implementation architecture
+
+- **Date:** 2026-02-10
+- **Context:** Frontier's Terminal Mode Dispatch Integration (C319) bridged Design's UX spec, Research's failure recovery, and the existing dispatch architecture into a unified implementation plan.
+- **Insight:** Complex features need a "bridge" document that connects all specs into an implementation architecture. Without it, Engineering must synthesize multiple sources themselves, increasing error risk.
+- **Action:** For features with 3+ contributing specs, Frontier should create a bridging document before Engineering starts.
+- **Status:** applied (C319, terminal-mode-dispatch-integration.md)
