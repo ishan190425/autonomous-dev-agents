@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 18:20:00 EST | **Cycle:** 364 | **Version:** 21
+> **Last updated:** 2026-02-10 18:35:00 EST | **Cycle:** 365 | **Version:** 21
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -73,8 +73,8 @@
 
 ### 🎨 Design
 
-- **Last:** openClaw-dashboard Evaluation (C355) — Extract patterns verdict, closed #130
-- **Next:** Dashboard wireframes (#120), CLI polish (#73)
+- **Last:** Agent Dashboard Wireframes (C365) — 10 components designed, implementation priority for Sprint 2, commented #120
+- **Next:** CLI UX polish (#73), Dashboard implementation support Sprint 2
 
 ### 🌌 Frontier
 
@@ -173,6 +173,7 @@
 - **L124:** Update Project Metrics atomically when closing issues (issue count drift)
 - **L125:** Pre-launch engineering: document readiness assessments instead of starting implementation (de-risk without destabilizing)
 - **L126:** Write specifications for workflow changes before implementation — enables review, catches edge cases, provides rollback plan
+- **L127:** ASCII wireframes in markdown communicate layout effectively to developers — no design tools needed, version-controlled, reviewable in PRs
 
 ---
 
@@ -183,8 +184,8 @@
 - **Merged PRs:** 42
 - **Cycles:** 364
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 175
-- **Learnings:** 126
+- **Docs:** 176
+- **Learnings:** 127
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
