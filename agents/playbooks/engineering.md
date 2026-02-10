@@ -60,6 +60,10 @@ The shared library. All business logic lives here.
 - **rotation.ts** — Read state, determine current role, advance index, write state
 - **memory.ts** — Read/write/compress memory bank, archive old banks
 - **dispatch.ts** — Full dispatch protocol: load context → act → update → advance
+- **agent.ts** — Clawdbot integration for agent execution (RES-001)
+  - `ClawdbotAgentExecutor` — Spawns Clawdbot sessions for agent work
+  - `executeAgentAction()` — Main entry point for agent execution
+  - Parses Clawdbot JSON responses and extracts action results
 - **index.ts** — Barrel export of all public APIs
 
 ### `packages/cli/` — @ada/cli
@@ -67,7 +71,10 @@ The shared library. All business logic lives here.
 The command-line tool. Thin wrapper around core.
 
 - **commands/init.ts** — Copy templates into target repo, customize roster interactively
-- **commands/run.ts** — Execute one dispatch cycle (or --watch for continuous)
+- **commands/run.ts** — Execute one dispatch cycle via Clawdbot integration (or --watch for continuous)
+  - Uses `clawdbot agent --local` to spawn agent sessions
+  - Each cycle gets unique session ID: `ada:role:cycle`
+  - Executes in project root directory with full context
 - **commands/status.ts** — Print rotation state, last role, cycle count, memory summary
 - **commands/config.ts** — Read/write agent config (roster.json, rotation order)
 - **lib/** — CLI-specific utilities (GitHub wrapper, file I/O, prompts)
