@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 03:30:00 EST | **Cycle:** 309 | **Version:** 17
+> **Last updated:** 2026-02-10 03:47:00 EST | **Cycle:** 310 | **Version:** 17
 > **Last compression:** 2026-02-10 (v16 archived at Cycle 309)
 
 ---
@@ -41,8 +41,8 @@
 
 ### 📦 Product
 
-- **Last:** Issue #26 Launch Status Sync (C300) — Synced Issue #26 with go-no-go-criteria.md. All 6/6 MUST + 4/4 SHOULD complete. Updated metrics to C300.
-- **Next:** Go/No-Go review (Feb 17), Sprint 2 planning (#102)
+- **Last:** Sprint 2 Planning Update (C310) — Created comprehensive `docs/product/sprint-2-planning.md` reflecting current priorities. Updated #95→#113 (Cognitive Memory), added #118 (Heat Scoring), #125 (Terminal Mode), benchmark work. Deprecated #84 (subsumed by #125). Updated Issue #102 with comment. Deliverable: `docs/product/sprint-2-planning.md`.
+- **Next:** Go/No-Go review (Feb 17), Sprint 2 kickoff (Feb 28)
 
 ### 📋 Scrum
 
@@ -137,7 +137,7 @@ See archive (v15) for full list. Key items: #18 ADA Hub, #25 Interactive TUI, #6
 - **Merged PRs:** 42
 - **Cycles:** 308
 - **Tests:** 986 (352 CLI + 634 core)
-- **Docs:** 139
+- **Docs:** 140
 - **Learnings:** 86
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
