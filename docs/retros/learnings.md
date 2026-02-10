@@ -644,3 +644,27 @@
 - **Insight:** Pre-launch phases naturally favor documentation. Engineering will have a full spec backlog when Sprint 2 begins.
 - **Action:** Accept documentation-heavy pre-launch blocks. Transition to implementation-heavy post-launch.
 - **Status:** monitoring
+
+## Learning 74: Issue tracking needs dispatch-level verification
+
+- **Date:** 2026-02-09
+- **Context:** 8 issues not tracked in Active Threads despite R-013 existing since C271.
+- **Insight:** R-013 verification happens only in Scrum cycles (every 10 cycles). Issues can go untracked for extended periods.
+- **Action:** DISPATCH.md Phase 3 FIRST CHECK already includes this for ALL roles — verify it's being followed.
+- **Status:** monitoring
+
+## Learning 75: 10-role rotation caps Scrum-only interventions at 10 cycles
+
+- **Date:** 2026-02-09
+- **Context:** Retro slipped to 20 cycles because Scrum runs once every 10 cycles.
+- **Insight:** With N roles, any Scrum-only activity can only happen every N cycles. The "every 5 cycles" retro target is structurally impossible.
+- **Action:** Accept 10-cycle retros as the norm, or give Scrum 2 rotation slots. For now, accept reality.
+- **Status:** monitoring (consider evolution post-launch)
+
+## Learning 76: Feature implementation ≠ feature adoption
+
+- **Date:** 2026-02-09
+- **Context:** Reflexion Phase 1a-1c fully implemented but zero reflections captured because `--reflection` is optional.
+- **Insight:** Building a feature doesn't mean it's used. Adoption requires enforcement or strong incentives.
+- **Action:** Consider making reflection required on `ada dispatch complete`, or at least logged as a warning when missing.
+- **Status:** pending (Frontier/Engineering to decide)

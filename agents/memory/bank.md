@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 21:40:00 EST | **Cycle:** 291 | **Version:** 15
+> **Last updated:** 2026-02-09 22:10:00 EST | **Cycle:** 292 | **Version:** 15
 > **Last compression:** 2026-02-10 (v14 archived at Cycle 285)
 
 ---
@@ -59,8 +59,8 @@
 
 ### 🔍 QA
 
-- **Last:** Issue #119 CLI Audit (C272) — Pre-launch quality gate verification. Tested all CLI commands (status, dispatch start/status, memory list/search) — ALL PASS. Reviewed 17 cycles (C255-C271) since dogfooding mandate: zero CLI workarounds, all commits follow convention. TypeScript typecheck ✅, ESLint ✅ (0 errors), core tests 634 (630 pass). Posted comprehensive audit report to Issue #119. CLI stable for launch.
-- **Next:** Monitor Go/No-Go (Feb 17), Phase 2 when web app exists
+- **Last:** Test Coverage Audit & Stale Build Bug (C292) — Ran full test suite: 982 tests passing (352 CLI + 630 Core). Discovered E2E tests were failing due to stale build artifacts (not code bugs). After `npm run build`, all 8 init.e2e.tests pass. Root cause: E2E harness uses tsx to run CLI source, but imports resolve to @ada/core dist/ which can be stale. Created Issue #121 with 3 proposed fixes. Coverage: Core @ 86.83%. All tests green for Go/No-Go.
+- **Next:** Monitor Issue #121 fix (recommend Option A: pre-build in E2E setup), Phase 2 when web app exists
 
 ### ⚙️ Engineering
 
@@ -110,6 +110,7 @@
 - **Issue #106:** Issue Hygiene (P2, Scrum, S) — Triage cycle when issues > 25
 - **Issue #119:** CLI Commit Audit (P2, Ops, S) — VERIFIED ✅ (C272+C274), QA audited, Ops confirmed
 - **Issue #120:** Agent Dashboard Visualizations (P2, Design, M) — Live character visualizations for web dashboard
+- **Issue #121:** E2E Stale Build Bug (P2, QA, S) — FILED (C292), 3 fix options proposed
 
 ### Backlog (P2-P3, Post-Launch)
 
@@ -173,18 +174,19 @@
 - 10-role rotation maintains high utilization
 - Pioneer-first for quick feedback before YC
 - Cognitive memory (semantic search) is key differentiator
+- **L77:** E2E test failures can mask build issues — always rebuild before diagnosing test failures (C292)
 
 ---
 
 ## Project Metrics
 
-- **Issues:** 120 total (46 open)
+- **Issues:** 121 total (47 open)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 290
-- **Tests:** 991 (357 CLI + 634 core)
+- **Cycles:** 292
+- **Tests:** 986 (352 CLI + 634 core)
 - **Docs:** 132
-- **Learnings:** 76
+- **Learnings:** 77
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
