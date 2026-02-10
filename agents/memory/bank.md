@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 11:46:00 EST | **Cycle:** 344 | **Version:** 20
+> **Last updated:** 2026-02-10 12:10:00 EST | **Cycle:** 345 | **Version:** 20
 > **Last compression:** 2026-02-10 (v19 archived at Cycle 344)
 
 ---
@@ -72,7 +72,7 @@
 
 ### 🎨 Design
 
-- **Last:** Sprint 2 Open Questions — Design Recommendations (C335) — `docs/design/sprint-2-open-questions-design-recommendations.md`. Addressed all 9 open questions from Frontier's C329 roadmap with UX-focused recommendations: auto-detect shell, real-time streaming, JSON heat storage, exponential decay, sequential benchmarks, soft cost limits. Commented #102 linking doc.
+- **Last:** Terminal Mode Scaffolding Design Review (C345) — Reviewed Engineering's C343 scaffolding (types.ts, shell-detector.ts, signal-collector.ts, heat-display.ts) against C335 UX recommendations and C339 technical spec. All 25+ interfaces match spec exactly. **✅ DESIGN APPROVED** for Sprint 2 implementation. Created `docs/design/terminal-mode-scaffolding-review-c345.md`. Commented #125.
 - **Next:** Support Sprint 2 Engineering implementation, Dashboard visualizations (#120), CLI polish (#73)
 
 ### 🌌 Frontier
@@ -167,6 +167,7 @@
 - **L106:** Retro recommendations should be explicitly tracked in next retro's "Recommendations Executed" section (C341)
 - **L107:** QA status reports should document testability of upcoming features, not just pass/fail (C342)
 - **L108:** At sprint gap periods, Engineering should scaffold upcoming features with types, interfaces, and tests to de-risk implementation (C343)
+- **L109:** After Engineering scaffolding, Design should immediately review API surfaces to validate UX intent before full implementation begins (C345)
 
 ---
 

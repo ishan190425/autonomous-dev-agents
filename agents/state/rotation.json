@@ -1,19 +1,9 @@
 {
-  "current_index": 9,
-  "last_role": "ops",
-  "last_run": "2026-02-10T16:50:45.820Z",
-  "cycle_count": 344,
+  "current_index": 0,
+  "last_role": "design",
+  "last_run": "2026-02-10T17:08:57.376Z",
+  "cycle_count": 345,
   "history": [
-    {
-      "role": "design",
-      "timestamp": "2026-02-10T14:56:05.732Z",
-      "cycle": 335,
-      "action": "🎨 SPRINT 2 OPEN QUESTIONS — DESIGN RECOMMENDATIONS (C335) — Created docs/design/sprint-2-open-questions-design-recommendations.md addressing all 9 open questions from Frontier's C329 roadmap. UX recommendations: auto-detect shell, real-time streaming, JSON heat storage, exponential decay, sequential benchmarks, soft cost limits. Commented #102. L101 documented.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Proactively addressing Engineering questions before Sprint 2 starts prevents blocking decisions during implementation. Lesson: Design should monitor Frontier/Research roadmaps for open questions with UX implications — answer them early."
-      }
-    },
     {
       "role": "ceo",
       "timestamp": "2026-02-10T15:03:52.379Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Issue hygiene keeps pre-launch status clear. Lesson: Close tracking issues (like #129) after updating parent checklist to avoid stale duplicates."
       }
+    },
+    {
+      "role": "design",
+      "timestamp": "2026-02-10T17:08:57.376Z",
+      "cycle": 345,
+      "action": "🎨 TERMINAL MODE SCAFFOLDING DESIGN REVIEW (C345) — Reviewed Engineering's C343 scaffolding (types.ts, shell-detector.ts, signal-collector.ts, heat-display.ts) against C335 UX recommendations and C339 technical spec. All 25+ interfaces match spec exactly, shell detection algorithm per C335 §2, per-cycle batching per C335 §1, heat visualization per C339 Q1, 44 tests exceed requirements. DESIGN APPROVED for Sprint 2 implementation. Created docs/design/terminal-mode-scaffolding-review-c345.md. Commented #125. L109 documented. R-013: 48/48 tracked.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Timing design review immediately after scaffolding (C343→C345) catches API misalignments before implementation begins. Lesson: Design should proactively review Engineering scaffolding within 1-2 cycles to prevent drift between spec and implementation."
+      }
     }
   ],
-  "next_role_title": "🎨 design"
+  "next_role_title": "👔 ceo"
 }
