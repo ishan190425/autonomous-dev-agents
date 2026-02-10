@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-10T19:25:59.131Z",
-  "cycle_count": 352,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-10T19:45:56.927Z",
+  "cycle_count": 353,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-10T16:30:12.804Z",
-      "cycle": 343,
-      "action": "⚙️ TERMINAL MODE SCAFFOLDING (C343) — Created Sprint 2 infrastructure in packages/core/src/terminal/: types.ts (25+ interfaces from C339 spec), shell-detector.ts (auto-detection with $SHELL/override/fallback), signal-collector.ts (per-cycle heat batching with pattern inference), heat-display.ts (emoji/text/numeric modes). 44 new tests, all passing. Total: 1072 tests (720 core). Commented #125. L108 documented. De-risks Sprint 2 by validating interfaces early.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Creating foundational modules with comprehensive tests at T-14 catches interface design issues before Sprint 2 implementation begins. Lesson: Engineering should use sprint gaps to scaffold upcoming features — types + tests first, implementation later."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-10T16:50:45.820Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Delta reporting between T-14 and T-7 clearly shows test growth and identifies stable metrics. Lesson: QA milestone updates should quantify changes, not just restate pass/fail — shows velocity and catches regressions."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-10T19:45:56.927Z",
+      "cycle": 353,
+      "action": "⚙️ OBSERVABILITY DISPATCH INTEGRATION (C353) — Implemented C349 spec Option B: added --tokens-in, --tokens-out, --model flags to ada dispatch complete. Wired CycleTracker and MetricsManager into completion flow — when tokens provided, records metrics to agents/state/metrics.json. Added 3 new tests. Closes activation gap (L112-L113). Commented #83. L117 documented. R-013: 50/50 tracked.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Implementing activation early (before Sprint 2) validates integration path and provides immediate data. Lesson: When specs identify activation gaps, close them during pre-launch rather than deferring — activated infrastructure provides proof value for Go/No-Go."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }

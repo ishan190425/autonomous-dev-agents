@@ -26,6 +26,8 @@ import {
   writeRotationState,
   getCurrentRole,
   advanceRotation,
+  createCycleTracker,
+  createMetricsManager,
 } from '@ada/core';
 import type { Role, Roster, RotationState, Reflection } from '@ada/core';
 
@@ -73,6 +75,12 @@ interface DispatchCompleteOptions {
   skipPush?: boolean;
   json?: boolean;
   quiet?: boolean;
+  /** Input tokens consumed (for observability tracking) */
+  tokensIn?: number;
+  /** Output tokens generated (for observability tracking) */
+  tokensOut?: number;
+  /** Model used (for cost calculation, default: claude-4-sonnet) */
+  model?: string;
 }
 
 interface DispatchStatusOptions {
@@ -83,6 +91,17 @@ interface DispatchStatusOptions {
 }
 
 // ─── Utilities ───────────────────────────────────────────────────────────────
+
+/**
+ * Parse an integer option value (for Commander.js).
+ */
+function parseIntOption(value: string): number {
+  const parsed = parseInt(value, 10);
+  if (isNaN(parsed)) {
+    throw new Error(`Invalid number: ${value}`);
+  }
+  return parsed;
+}
 
 /**
  * Get the path to the dispatch lock file.
@@ -461,6 +480,26 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
   // Remove lock
   await removeLock(agentsDir);
 
+  // Record observability metrics if tokens provided (Issue #83 — Dogfooding)
+  if (options.tokensIn !== undefined || options.tokensOut !== undefined) {
+    const model = options.model ?? 'claude-4-sonnet';
+    const tracker = createCycleTracker(newState.cycle_count, currentRole.id, model);
+    
+    // Record tokens in the action_execution phase
+    tracker.recordPhase(
+      'action_execution',
+      options.tokensIn ?? 0,
+      options.tokensOut ?? 0
+    );
+    
+    // Finalize with success status
+    const metrics = tracker.finalize(outcome !== 'blocked');
+    
+    // Record to metrics.json
+    const manager = createMetricsManager(cwd, 'agents/');
+    await manager.record(metrics);
+  }
+
   // Get next role
   const nextRole = getRoleAtOffset(roster, newState.current_index, 0);
 
@@ -539,7 +578,7 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
 
   // Output
   if (options.json) {
-    console.log(JSON.stringify({
+    const output: Record<string, unknown> = {
       cycle: newState.cycle_count,
       role: currentRole.id,
       action: options.action,
@@ -556,7 +595,17 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
         emoji: nextRole.emoji,
         name: nextRole.name,
       } : null,
-    }));
+    };
+    // Include observability data if tokens were provided
+    if (options.tokensIn !== undefined || options.tokensOut !== undefined) {
+      output.observability = {
+        tokensIn: options.tokensIn ?? 0,
+        tokensOut: options.tokensOut ?? 0,
+        model: options.model ?? 'claude-4-sonnet',
+        recorded: true,
+      };
+    }
+    console.log(JSON.stringify(output));
     return;
   }
 
@@ -797,6 +846,9 @@ export const dispatchCommand = new Command('dispatch')
       .option('--skip-push', 'Commit but do not push')
       .option('-j, --json', 'Output as JSON')
       .option('-q, --quiet', 'Minimal output')
+      .option('--tokens-in <number>', 'Input tokens consumed (for observability)', parseIntOption)
+      .option('--tokens-out <number>', 'Output tokens generated (for observability)', parseIntOption)
+      .option('--model <name>', 'Model used for cost calculation (default: claude-4-sonnet)')
       .action(async (options: DispatchCompleteOptions) => {
         try {
           await executeComplete(options);

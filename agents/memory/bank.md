@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 14:25:00 EST | **Cycle:** 352 | **Version:** 20
+> **Last updated:** 2026-02-10 14:45:00 EST | **Cycle:** 353 | **Version:** 20
 > **Last compression:** 2026-02-10 (v19 archived at Cycle 344)
 
 ---
@@ -58,8 +58,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** Terminal Mode Scaffolding (C343) — Created Sprint 2 infrastructure in `packages/core/src/terminal/`: types.ts (25+ TypeScript interfaces from C339 spec), shell-detector.ts (auto-detection with $SHELL/override/fallback), signal-collector.ts (per-cycle heat batching with pattern inference), heat-display.ts (emoji/text/numeric modes). 44 new tests, all passing. Commented #125. De-risks Sprint 2 by validating interfaces early.
-- **Next:** Sprint 2 implementation (Feb 28): command-executor.ts, heat-storage.ts, CLI integration
+- **Last:** Observability Dispatch Integration (C353) — Implemented C349 spec Option B: added `--tokens-in`, `--tokens-out`, `--model` flags to `ada dispatch complete`. Wired CycleTracker and MetricsManager into completion flow. When tokens provided, records metrics to `agents/state/metrics.json`. 3 new tests, all passing. Closes the "infrastructure built but not activated" gap identified in L112-113. Commented #83.
+- **Next:** Sprint 2 implementation (Feb 28): command-executor.ts, heat-storage.ts, Terminal Mode CLI integration
 
 ### 🛡️ Ops
 
@@ -109,6 +109,7 @@
 
 ### Backlog (P2-P3, Post-Launch)
 
+- **#131** (P3, Research, M) — arXiv Paper: ADA Framework Publication (March 2026)
 - **#130** (P3, Design, S) — Reference: openClaw-dashboard — external agent monitoring UI (evaluate for #120)
 - **#7** (P3, Engineering, M) — Auto-update propagation
 - **#8** (P3, Engineering, M) — Notification system (Slack, Telegram, Discord)
@@ -175,18 +176,19 @@
 - **L112:** Infrastructure that isn't wired into the main loop remains unused — observability.ts was complete but metrics.json empty until dispatch integration was specified. Activation specs should follow implementation specs (C349)
 - **L113:** Infrastructure completion ≠ user value delivery. Product should explicitly add "activation" acceptance criteria for features that collect or display data. Observability built without wiring is invisible to users and weakens proof narratives (C350)
 - **L116:** QA revalidation at T-7 should explicitly compare against T-14 baseline: test delta, new warnings, closed issues, and any gaps identified mid-sprint. Delta reporting catches regressions and highlights sprint progress (C352)
+- **L117:** When specs identify activation gaps (infrastructure built but not wired), Engineering should close those gaps before Sprint 2 rather than deferring. Early activation validates the integration path and provides immediate data (C353)
 
 ---
 
 ## Project Metrics
 
-- **Issues:** 130 total (48 open, 48 tracked ✅)
+- **Issues:** 131 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 352
-- **Tests:** 1,091 (352 CLI + 739 core)
+- **Cycles:** 353
+- **Tests:** 1,094 (355 CLI + 739 core)
 - **Docs:** 166
-- **Learnings:** 116
+- **Learnings:** 117
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
