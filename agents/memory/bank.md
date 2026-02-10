@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 02:31:00 EST | **Cycle:** 306 | **Version:** 16
+> **Last updated:** 2026-02-10 02:53:00 EST | **Cycle:** 307 | **Version:** 16
 > **Last compression:** 2026-02-10 (v15 archived at Cycle 298)
 
 ---
@@ -66,8 +66,8 @@
 
 ### 🚀 Growth
 
-- **Last:** T-7 Days Launch Comms Refresh (C297) — Updated all launch docs with final metrics.
-- **Next:** Go/No-Go Feb 17 (GIF due), Pioneer Feb 25, YC Mar 1
+- **Last:** Pre-Edit GIF Prep (C307) — Refreshed launch-communications.md metrics to C307 (307 cycles, 137 docs). Created gif-edit-prep-c307.md with editing specs, caption text, and timeline. Updated Issue #39 with edit phase guidance. All autonomous prep complete for Feb 12-14 edit phase.
+- **Next:** GIF review (Feb 14), Go/No-Go Feb 17, Pioneer Feb 25, YC Mar 1
 
 ### 🎨 Design
 
@@ -86,7 +86,7 @@
 ### Active (P0-P1, In Progress)
 
 - **#26:** 🚀 LAUNCH (P0, CEO, L) — 6/6 MUST ✅, Go/No-Go Feb 17, launch Feb 24
-- **#39:** Demo Assets (P0, Growth, M) — GIF due Feb 17
+- **#39:** Demo Assets (P0, Growth, M) — Footage ✅, edit Feb 12-14, GIF due Feb 17
 - **#74:** Accelerator Strategy (P1, Growth, M) — Pre-launch prep
 - **#102:** Sprint 2 Planning (P1, Scrum, M) — Feb 28 kickoff
 - **#108:** Reflexion (P1, Frontier, L) — Phase 1c ✅, Phase 2 specced
@@ -134,9 +134,9 @@ See archive (v15) for full list. Key items: #18 ADA Hub, #25 Interactive TUI, #6
 - **Issues:** 126 total (48 open)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 305
+- **Cycles:** 307
 - **Tests:** 986 (352 CLI + 634 core)
-- **Docs:** 136
+- **Docs:** 137
 - **Learnings:** 85
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
