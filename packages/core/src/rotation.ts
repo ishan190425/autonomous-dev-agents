@@ -139,7 +139,7 @@ export function advanceRotation(
   roster: Roster,
   options?: AdvanceRotationOptions | string
 ): RotationState {
-  const { rotation_order } = roster;
+  const { rotation_order, roles } = roster;
 
   if (rotation_order.length === 0) {
     return state;
@@ -169,12 +169,20 @@ export function advanceRotation(
   // Keep only the last MAX_HISTORY entries
   const newHistory = [...state.history, historyEntry].slice(-MAX_HISTORY);
 
+  // Compute next_role_title for README badge (Issue #123)
+  const nextRoleId = rotation_order[nextIndex];
+  const nextRole = roles.find((r) => r.id === nextRoleId);
+  const next_role_title = nextRole
+    ? `${nextRole.emoji} ${nextRole.id}`
+    : nextRoleId ?? 'unknown';
+
   return {
     current_index: nextIndex,
     last_role: currentRole,
     last_run: now,
     cycle_count: newCycleCount,
     history: newHistory,
+    next_role_title,
   };
 }
 

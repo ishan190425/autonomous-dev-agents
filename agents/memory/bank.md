@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 07:50:00 EST | **Cycle:** 322 | **Version:** 18
+> **Last updated:** 2026-02-10 08:10:00 EST | **Cycle:** 323 | **Version:** 18
 > **Last compression:** 2026-02-10 (v17 archived at Cycle 319)
 
 ---
@@ -57,7 +57,7 @@
 
 ### ⚙️ Engineering
 
-- **Last:** Issue Tracking Test Coverage (C313) — 38 tests for issues.ts, 668 core tests pass.
+- **Last:** next_role_title Auto-Update (C323) — Implemented Issue #123. Added `next_role_title` to RotationState, `advanceRotation()` now sets it. 4 new tests, 676 core tests pass.
 - **Next:** Phase 4a implementation (Sprint 2), Terminal Mode implementation
 
 ### 🛡️ Ops
@@ -104,7 +104,7 @@
 - **#90** (P2, Research, M) — Benchmark Testing
 - **#106** (P2, Scrum, S) — Issue Hygiene automation
 - **#120** (P2, Design, M) — Agent Dashboard visualizations
-- **#123** (P2, Engineering, S) — next_role_title in rotation.json
+- **#123** (P2, Engineering, S) — next_role_title in rotation.json — **IMPLEMENTED C323** ✅
 - **#126** (P2, Engineering, S) — Issues parser format mismatch
 
 ### Backlog (P2-P3, Post-Launch)
@@ -161,6 +161,7 @@
 - **L91:** Substring-based heuristics in suggestRoleFromIssue have false positives — use word boundaries (C313)
 - **L92:** Platform integration docs bridge Research→Design→Engineering handoffs — all three specs exist for Terminal Mode before implementation begins (C319)
 - **L95:** At T-7 milestones, QA should document formal quality gate status for Go/No-Go decisions — creates audit trail and confirms launch readiness (C322)
+- **L96:** For badge/README features, derive display values from existing roster data (emojis) rather than hardcoding — ensures consistency (C323)
 
 ---
 
@@ -170,9 +171,9 @@
 - **Open PRs:** 0
 - **Merged PRs:** 42
 - **Cycles:** 322
-- **Tests:** 1024 (352 CLI + 672 core)
+- **Tests:** 1028 (352 CLI + 676 core)
 - **Docs:** 145 (Sprint 2 planning updated)
-- **Learnings:** 95
+- **Learnings:** 96
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

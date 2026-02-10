@@ -134,6 +134,8 @@ export interface RotationState {
   cycle_count: number;
   /** Recent history (last N entries) */
   history: RotationHistoryEntry[];
+  /** Display title for the next role (e.g., "⚙️ engineering") — for README badges */
+  next_role_title?: string;
   /** Whether dispatch is paused */
   paused?: boolean;
   /** ISO timestamp when pause was set */

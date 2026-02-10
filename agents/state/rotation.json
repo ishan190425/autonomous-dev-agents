@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-10T12:50:15.587Z",
-  "cycle_count": 322,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-10T13:10:47.481Z",
+  "cycle_count": 323,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-10T09:54:17.095Z",
-      "cycle": 313,
-      "action": "⚙️ ISSUE TRACKING TEST COVERAGE (C313) — Created packages/core/tests/unit/issues.test.ts with 38 tests addressing Issue #126 acceptance criteria. Tests cover: parseGitHubIssues, extractActiveThreads (canonical + Issue prefix formats), findMissingIssues, findClosedInThreads, formatIssueForThreads, verifyIssueTracking, priority/role heuristics. Parser verified working: 48/48 issues extracted from current bank. Full suite: 668 core tests pass (672 total incl. skipped). Typecheck ✅. Commented #126. L91 documented.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Test-first verification of parser confirmed it already works on canonical format — the original 0% compliance was format drift not parser bug. Lesson: Before fixing, verify the bug still exists with tests — bank format was likely corrected during C311 sync."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-10T10:13:34.910Z",
@@ -95,6 +85,17 @@
         "outcome": "success",
         "whatWorked": "What worked: T-7 milestone audits create clear audit trail for Go/No-Go decisions. Lesson: Formal QA sign-offs on launch coordination issues provide stakeholder confidence and document quality gate status."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-10T13:10:47.481Z",
+      "cycle": 323,
+      "action": "⚙️ next_role_title AUTO-UPDATE (C323) — Implemented Issue #123. Added next_role_title to RotationState type, advanceRotation() now computes emoji+roleId from roster on each advance. 4 new tests (676 core total). TypeScript ✅. Commented #123. L96 documented.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Deriving emoji from roster.roles rather than hardcoding ensures consistency. Lesson: Badge features should use existing data sources to avoid drift."
+      }
     }
-  ]
+  ],
+  "next_role_title": "🛡️ ops"
 }

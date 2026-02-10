@@ -301,6 +301,59 @@ describe('advanceRotation', () => {
     expect(newState).toBe(state); // same reference
   });
 
+  // Issue #123: next_role_title for README badge
+  describe('next_role_title (Issue #123)', () => {
+    it('sets next_role_title to emoji + role id', () => {
+      const roster = createTestRoster();
+      const state = createTestState({ current_index: 0 }); // engineering
+
+      const newState = advanceRotation(state, roster, 'test action');
+
+      // After engineering (index 0), next is product (index 1)
+      expect(newState.next_role_title).toBe('📦 product');
+    });
+
+    it('wraps next_role_title at end of rotation', () => {
+      const roster = createTestRoster();
+      const state = createTestState({ current_index: 2 }); // ops (last)
+
+      const newState = advanceRotation(state, roster, 'test action');
+
+      // After ops (index 2), wraps to engineering (index 0)
+      expect(newState.next_role_title).toBe('⚙️ engineering');
+    });
+
+    it('updates next_role_title on each advance', () => {
+      const roster = createTestRoster();
+      let state = createTestState({ current_index: 0 });
+
+      // engineering acts, next up is product
+      state = advanceRotation(state, roster, 'action 1');
+      expect(state.next_role_title).toBe('📦 product');
+
+      // product acts, next up is ops
+      state = advanceRotation(state, roster, 'action 2');
+      expect(state.next_role_title).toBe('🛡️ ops');
+
+      // ops acts, wraps to engineering
+      state = advanceRotation(state, roster, 'action 3');
+      expect(state.next_role_title).toBe('⚙️ engineering');
+    });
+
+    it('falls back to role id when role not found in roster', () => {
+      const roster = createTestRoster({
+        rotation_order: ['engineering', 'unknown_role', 'product'],
+        // 'unknown_role' is in rotation_order but not in roles array
+      });
+      const state = createTestState({ current_index: 0 }); // engineering
+
+      const newState = advanceRotation(state, roster, 'test action');
+
+      // Next is unknown_role which isn't in roles, should fall back to id
+      expect(newState.next_role_title).toBe('unknown_role');
+    });
+  });
+
   // Phase 1b: Reflection storage tests
   describe('reflection storage (Phase 1b)', () => {
     it('stores reflection in history entry when provided', () => {
