@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 15:10:00 EST | **Cycle:** 354 | **Version:** 20
+> **Last updated:** 2026-02-10 15:23:00 EST | **Cycle:** 355 | **Version:** 20
 > **Last compression:** 2026-02-10 (v19 archived at Cycle 344)
 
 ---
@@ -73,8 +73,8 @@
 
 ### 🎨 Design
 
-- **Last:** Terminal Mode Scaffolding Design Review (C345) — Reviewed Engineering's C343 scaffolding (types.ts, shell-detector.ts, signal-collector.ts, heat-display.ts) against C335 UX recommendations and C339 technical spec. All 25+ interfaces match spec exactly. **✅ DESIGN APPROVED** for Sprint 2 implementation. Created `docs/design/terminal-mode-scaffolding-review-c345.md`. Commented #125.
-- **Next:** Support Sprint 2 Engineering implementation, Dashboard visualizations (#120), CLI polish (#73)
+- **Last:** openClaw-dashboard Evaluation (C355) — Evaluated external [bokiko/openClaw-dashboard](https://github.com/bokiko/openClaw-dashboard) as reference for #120. Created `docs/design/openclaw-dashboard-evaluation-c355.md`. **Verdict: Extract patterns, don't fork** — ADA needs role-based, cycle-centric design. Key patterns to adopt: Agent Strip, Command Palette (cmdk), Token Tracking UI, Live Feed, Modal Drilldown. Skip: Kanban (we're cycle-based), drag-and-drop (fixed rotation). Tech stack validated: Next.js 16 + React 19 + Tailwind + Recharts + Radix UI. Commented and closed #130.
+- **Next:** Dashboard wireframes (#120), CLI polish (#73), Support Sprint 2 Engineering
 
 ### 🌌 Frontier
 
@@ -110,7 +110,6 @@
 ### Backlog (P2-P3, Post-Launch)
 
 - **#131** (P3, Research, M) — arXiv Paper: ADA Framework Publication (March 2026)
-- **#130** (P3, Design, S) — Reference: openClaw-dashboard — external agent monitoring UI (evaluate for #120)
 - **#7** (P3, Engineering, M) — Auto-update propagation
 - **#8** (P3, Engineering, M) — Notification system (Slack, Telegram, Discord)
 - **#9** (P3, Engineering, M) — Deployment & log monitoring
@@ -178,18 +177,19 @@
 - **L116:** QA revalidation at T-7 should explicitly compare against T-14 baseline: test delta, new warnings, closed issues, and any gaps identified mid-sprint. Delta reporting catches regressions and highlights sprint progress (C352)
 - **L117:** When specs identify activation gaps (infrastructure built but not wired), Engineering should close those gaps before Sprint 2 rather than deferring. Early activation validates the integration path and provides immediate data (C353)
 - **L118:** Dry-run verification of publish workflows should be done before Go/No-Go, not on launch day. This catches auth issues, package structure problems, and workflow bugs with zero risk. Document results as a formal verification report for the checklist (C354)
+- **L119:** When external projects emerge that address planned features, evaluate "extract patterns vs fork vs integrate" before implementation. For ADA: external swarm dashboards target generic task workflows — ADA's role-based, cycle-centric model needs purpose-built components, but library choices and UX patterns transfer well (C355)
 
 ---
 
 ## Project Metrics
 
-- **Issues:** 131 total (50 open, 50 tracked ✅)
+- **Issues:** 131 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 353
+- **Cycles:** 355
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 167
-- **Learnings:** 118
+- **Docs:** 168
+- **Learnings:** 119
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
