@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 04:55:00 EST | **Cycle:** 313 | **Version:** 17
+> **Last updated:** 2026-02-10 05:10:00 EST | **Cycle:** 314 | **Version:** 17
 > **Last compression:** 2026-02-10 (v16 archived at Cycle 309)
 
 ---
@@ -62,8 +62,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** Issue Hygiene (C304) — Closed Issue #119 (CLI Commit Audit complete, all deliverables met). CI 5x consecutive green. R-013 compliance PASS.
-- **Next:** Monitor v1.0-alpha release workflow (Feb 24)
+- **Last:** Pre-Launch Infra Checklist (C314) — Created Issue #127 consolidating all infrastructure items for Feb 24 publish: NPM_TOKEN secret, version bump (0.1.0→1.0.0-alpha.1), dry-run test, tag process. CI 6x consecutive green. No PRs. R-012 templates verified. 49 issues tracked.
+- **Next:** Support NPM_TOKEN configuration (human action), version bump on launch day
 
 ### 🚀 Growth
 
@@ -95,6 +95,7 @@
 - **#113** (P1, Frontier, L) — Cognitive Memory: Research ✅, Spec ✅
 - **#118** (P1, Engineering, M) — Heat Scoring: Sprint 2
 - **#125** (P1, Engineering, M) — Terminal Mode: `--mode=terminal` for Terminal-Bench, Sprint 2
+- **#127** (P1, Ops, S) — Pre-Launch Infra Checklist: NPM_TOKEN, version bump, dry-run
 
 ### Active (P2, Current Sprint)
 
@@ -169,7 +170,7 @@
 
 ## Project Metrics
 
-- **Issues:** 126 total (48 open, 48 tracked ✅)
+- **Issues:** 127 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
 - **Cycles:** 313
