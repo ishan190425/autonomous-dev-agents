@@ -3,7 +3,7 @@
 > Comprehensive communications strategy and content for ADA's first public release
 > **Author:** Growth (🚀 The Dealmaker)
 > **Created:** 2026-02-04 (Cycle 38)
-> **Updated:** 2026-02-09 (Cycle 247) — Pre-launch metrics refresh
+> **Updated:** 2026-02-10 (Cycle 297) — T-7 Days final metrics refresh
 > **Sprint:** Sprint 1 (v1.0-alpha)
 > **Launch Target:** February 24, 2026
 
@@ -25,15 +25,15 @@ This document contains all launch communications materials for ADA v1.0-alpha. I
 
 ADA isn't just a product — it's a demonstration. Every PR merged, every issue created, every architectural decision in this repository was made by AI agents working autonomously in coordinated roles. The dogfooding story IS the differentiation.
 
-### Key Metrics (Updated Cycle 247)
+### Key Metrics (Updated Cycle 297 — T-7 Days)
 
 | Metric                     | Value   | Notes                                    |
 | -------------------------- | ------- | ---------------------------------------- |
-| Autonomous dispatch cycles | **247** | Each cycle = one agent action            |
-| PRs merged                 | **39**  | 100% agent-authored                      |
-| Tests passing              | **859** | 256 CLI + 603 core                       |
-| Documentation files        | **120** | Business, product, engineering, research |
-| Memory compressions        | **11**  | Agents manage their own knowledge        |
+| Autonomous dispatch cycles | **297** | Each cycle = one agent action            |
+| PRs merged                 | **42**  | 100% agent-authored                      |
+| Tests passing              | **986** | 352 CLI + 634 core                       |
+| Documentation files        | **133** | Business, product, engineering, research |
+| Memory compressions        | **15**  | Agents manage their own knowledge        |
 | Roles active               | **10**  | Full team + Frontier + QA                |
 
 ### Key Messages
@@ -124,9 +124,9 @@ Each role has a playbook. They coordinate through memory.
 
 We've been building ADA with ADA.
 
-247 autonomous dispatch cycles
-39 PRs merged to main
-859 passing tests
+297 autonomous dispatch cycles
+42 PRs merged to main
+986 passing tests
 0 human commits (except initial setup)
 
 Every issue, decision, and line of code was written by agents.
@@ -197,15 +197,15 @@ And we're doing it in public. 🚀
 ````
 🚀 **ADA v1.0-alpha is LIVE!**
 
-After **247 autonomous dispatch cycles**, we're shipping.
+After **297 autonomous dispatch cycles**, we're shipping.
 
 **What is ADA?**
 An open-source CLI that creates autonomous AI development teams for any repository. Multi-role coordination (CEO, Product, Engineering, QA, Ops) through shared memory and dispatch cycles.
 
 **The dogfooding proof:**
-- 39 PRs merged — all by agents
-- 859 tests passing — all written by agents
-- 120 docs created — all by agents
+- 42 PRs merged — all by agents
+- 986 tests passing — all written by agents
+- 133 docs created — all by agents
 - Zero human commits to the agent team
 
 **Try it now:**
@@ -226,11 +226,11 @@ What would you want autonomous dev teams to build? Drop ideas below! 👇
 
 ### Reddit Post (r/programming)
 
-**Title:** We built an open-source framework for autonomous AI dev teams — 247 cycles of agents building themselves
+**Title:** We built an open-source framework for autonomous AI dev teams — 297 cycles of agents building themselves
 
 ```
 
-**TL;DR:** ADA is a CLI tool that creates multi-role AI agent teams for your repo. We've been dogfooding it since day one — 247 autonomous cycles, 39 PRs merged, 859 tests, zero human commits.
+**TL;DR:** ADA is a CLI tool that creates multi-role AI agent teams for your repo. We've been dogfooding it since day one — 297 autonomous cycles, 42 PRs merged, 986 tests, zero human commits.
 
 ---
 
@@ -263,7 +263,7 @@ ada run           # Executes one dispatch cycle
 ada dispatch start/complete  # Full lifecycle control
 ```
 
-**What We Learned Dogfooding (247 cycles)**
+**What We Learned Dogfooding (297 cycles)**
 
 1. **Roles need constraints** — Without playbooks, agents go off-script
 2. **Memory is everything** — Shared memory bank prevents repeated work
@@ -276,7 +276,7 @@ ada dispatch start/complete  # Full lifecycle control
 - TypeScript monorepo (npm workspaces)
 - Commander.js CLI
 - LLM-agnostic (bring your own model)
-- 859 tests (Vitest)
+- 986 tests (Vitest)
 - Cognitive memory with TF-IDF + semantic embeddings
 - Trunk-based development
 
@@ -294,7 +294,7 @@ Questions? AMA in comments.
 
 ### Hacker News "Show HN" (T+7)
 
-**Title:** Show HN: ADA – Open-source framework for autonomous AI dev teams (247 cycles of self-development)
+**Title:** Show HN: ADA – Open-source framework for autonomous AI dev teams (297 cycles of self-development)
 
 ```
 
@@ -302,9 +302,9 @@ ADA creates multi-role AI agent teams that handle your full development lifecycl
 
 We've been dogfooding it to build itself:
 
-- 247 autonomous dispatch cycles
-- 39 PRs merged by agents
-- 859 tests written by agents
+- 297 autonomous dispatch cycles
+- 42 PRs merged by agents
+- 986 tests written by agents
 - Zero human commits (except bootstrap)
 
 The key insights:
@@ -332,7 +332,7 @@ We're iterating fast on v1.0-alpha. Would love feedback on:
 
 ### Product Hunt Tagline Options
 
-1. "Ship software with autonomous AI dev teams — 247 cycles of self-development"
+1. "Ship software with autonomous AI dev teams — 297 cycles of self-development"
 2. "Multi-role AI agents that handle your full dev lifecycle"
 3. "The AI dev team that built itself — now build your own"
 4. "Stop managing copilots. Deploy dev teams."
@@ -353,9 +353,9 @@ ADA creates teams with specialized roles (CEO, Product, Engineering, QA, Ops, Re
 
 We've been using ADA to build ADA since cycle 1.
 
-• 247 autonomous dispatch cycles
-• 39 pull requests merged
-• 859 passing tests
+• 297 autonomous dispatch cycles
+• 42 pull requests merged
+• 986 passing tests
 • Every architectural decision made by agents
 
 The agents proposed new roles (QA, Frontier). They designed the memory system. They wrote the dispatch protocol. They shipped cognitive memory with semantic search.
@@ -531,6 +531,6 @@ For all community posts:
 ---
 
 *Created by 🚀 Growth | Cycle 38*
-*Updated by 🚀 Growth | Cycle 247 | Pre-launch metrics refresh*
+*Updated by 🚀 Growth | Cycle 297 | T-7 Days final metrics refresh*
 *Supporting Issue #26 v1.0-alpha launch coordination*
 ```

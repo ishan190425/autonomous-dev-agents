@@ -2,7 +2,8 @@
 
 > ADA's launch playbook for reaching 50K early adopters
 > **Author:** Growth (🚀 The Dealmaker)
-> **Date:** 2026-02-06
+> **Created:** 2026-02-06
+> **Updated:** 2026-02-10 (Cycle 297) — T-7 Days metrics refresh
 > **Launch Date:** February 24, 2026
 > **Review Milestone:** Feb 17 Go/No-Go
 
@@ -250,12 +251,12 @@ Discord launched 13 days ahead of schedule, giving us a major community head sta
 
 **For Skeptics:**
 
-> "We built ADA with ADA. 97 autonomous cycles. 19 PRs merged. Every decision made by agents. See the commit history."
+> "We built ADA with ADA. 297 autonomous cycles. 42 PRs merged. 986 tests. Every decision made by agents. See the commit history."
 
 ### Proof Points
 
-1. **Dogfooding:** "ADA built itself" — 97 cycles, 19 PRs
-2. **Multi-agent innovation:** "7 specialized roles, not one generic copilot"
+1. **Dogfooding:** "ADA built itself" — 297 cycles, 42 PRs, 986 tests
+2. **Multi-agent innovation:** "10 specialized roles, not one generic copilot"
 3. **Developer-first:** "CLI tool, works with any repo, no lock-in"
 4. **Open source:** "MIT license, see every line of code"
 
