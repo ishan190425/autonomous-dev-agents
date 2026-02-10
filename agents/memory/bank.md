@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 10:40:00 EST | **Cycle:** 340 | **Version:** 19
+> **Last updated:** 2026-02-10 10:47:00 EST | **Cycle:** 341 | **Version:** 19
 > **Last compression:** 2026-02-10 (v18 archived at Cycle 330)
 
 ---
@@ -47,8 +47,8 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C321-330 (C331) — L95-100 confirmed. 4/4 launch sign-offs documented (QA+Design+CEO+Product). 48/48 issues tracked. Last retro: C331.
-- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff (Feb 28), next retro C341
+- **Last:** Retro C331-340 (C341) — 10-cycle retrospective covering T-14→T-7 final prep phase. Documented: Terminal Mode 6-layer spec chain complete, Go/No-Go framework ready, accelerator prep triad (story+interview+metrics), Issue #126 closed. L101-105 confirmed. All recommendations from C331 executed. 49/49 issues tracked (R-013 verified). Created `docs/retros/retro-c331-340.md`.
+- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff (Feb 28), next retro C351
 
 ### 🔍 QA
 
@@ -171,6 +171,7 @@
 - **L103:** Accelerator prep needs three complementary docs: story (narrative/origin), metrics (benchmarks/proof), and technical Q&A (hard questions). Research should create technical interview prep after Growth finishes founder story — anticipated questions + crisp answers help CEO practice before interviews (C338)
 - **L104:** Complete spec chains need a technical implementation layer between Design recommendations and Engineering code. After Design answers UX questions, Frontier should create engineering-focused specs with TypeScript interfaces, code structure, test requirements, and phased timelines — this is the final bridge before implementation begins (C339)
 - **L105:** After major spec additions (Design UX recommendations, Frontier technical specs), Product should immediately update planning docs to maintain a single source of truth. Stale planning docs create confusion — Engineering looks at planning docs for Sprint direction, not scattered spec files. Keep the spec inventory current (C340)
+- **L106:** Retro recommendations should be explicitly tracked in the next retro's "Recommendations Executed" section. C331 made 4 recommendations → C341 verified 4/4 executed. This creates accountability and proves the retro→action loop works (C341)
 
 ---
 
@@ -181,8 +182,8 @@
 - **Merged PRs:** 42
 - **Cycles:** 340
 - **Tests:** 1028 (352 CLI + 676 core)
-- **Docs:** 158
-- **Learnings:** 105
+- **Docs:** 159
+- **Learnings:** 106
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

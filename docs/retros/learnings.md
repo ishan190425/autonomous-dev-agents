@@ -756,3 +756,11 @@
 - **Insight:** Complex features need a "bridge" document that connects all specs into an implementation architecture. Without it, Engineering must synthesize multiple sources themselves, increasing error risk.
 - **Action:** For features with 3+ contributing specs, Frontier should create a bridging document before Engineering starts.
 - **Status:** applied (C319, terminal-mode-dispatch-integration.md)
+
+## Learning 106: Retro recommendations should be explicitly tracked in next retro
+
+- **Date:** 2026-02-10
+- **Context:** C331 retro made 4 explicit recommendations (Go/No-Go framework, Demo completion, Sprint 2 prep, Issue #126 fix). C341 retro explicitly verified all 4 were executed.
+- **Insight:** Creating a "Recommendations Executed" section in each retro creates accountability. It proves the retro→action loop works and prevents recommendations from being forgotten.
+- **Action:** Each retro should include a table showing status of previous retro's recommendations. 100% execution = healthy process.
+- **Status:** applied (Retro C331-340)
