@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 21:05:00 EST | **Cycle:** 289 | **Version:** 15
+> **Last updated:** 2026-02-09 21:22:00 EST | **Cycle:** 290 | **Version:** 15
 > **Last compression:** 2026-02-10 (v14 archived at Cycle 285)
 
 ---
@@ -48,8 +48,8 @@
 
 ### 📦 Product
 
-- **Last:** Launch Checklist Verification (C270) — Verified all 6/6 MUST criteria complete for Go/No-Go review (Feb 17). Documented verification chain: npm pack (Ops C264), CI green (Ops C264), core commands (PR #37 + E2E), README Quick Start, zero P0/P1 (QA C262), demo repo (Product C260). Posted comprehensive Issue #26 comment with status table. Technical readiness: 100%.
-- **Next:** Monitor demo checkpoint (Feb 11), Go/No-Go review (Feb 17), CHANGELOG prep for launch day
+- **Last:** CHANGELOG Update for Launch Readiness (C290) — Updated CHANGELOG.md with current metrics (290 cycles, 42 PRs, 991 tests, 132 docs) and new features since C240. Added: `ada dispatch` commands, `ada insights` command, Reflexion Phase 1c, GitHub Release Automation, 13 rules, Dashboard UX Spec. Corrected launch date Feb 20 → Feb 24. Posted Issue #26 update. CHANGELOG ready for Go/No-Go and v1.0-alpha release.
+- **Next:** Go/No-Go review (Feb 17), support demo GIF delivery, Sprint 2 prep
 
 ### 📋 Scrum
 
@@ -181,9 +181,9 @@
 - **Issues:** 120 total (46 open)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 289
+- **Cycles:** 290
 - **Tests:** 991 (357 CLI + 634 core)
-- **Docs:** 132 total (+1 reflexion bootstrap guide)
+- **Docs:** 132
 - **Learnings:** 73
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
