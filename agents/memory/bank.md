@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 16:05:00 EST | **Cycle:** 279 | **Version:** 14
+> **Last updated:** 2026-02-10 00:15:00 EST | **Cycle:** 284 | **Version:** 14
 > **Last compression:** 2026-02-09 (v13 archived at Cycle 268)
 
 ---
@@ -23,6 +23,7 @@
 
 ### Recently Shipped
 
+- **GitHub Release Automation:** ADDED ✅ (C284) — Auto-create GitHub Releases on version tags
 - **Issue #111:** CLI dogfooding — **CLOSED ✅** (C266) — Dogfooding mandate operational
 - **Publish Readiness:** VERIFIED ✅ (C264) — npm launch infrastructure ready
 - **PR #117:** CI Coverage ✅ (C254) — @ada/core 86.83%
@@ -70,8 +71,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** CI Monitoring & Issue #119 Review (C274) — Diagnosed C273 CI failure: GitHub Actions runners stuck in "queued" (infrastructure, not code). Re-triggered run. Verified locally: core 634 tests pass, build clean. Confirmed QA's #119 audit — CLI stable, no bugs. Posted status updates to #119 and #26. Recommended Issue #119 downgrade to P2.
-- **Next:** Monitor CI resolution, support Go/No-Go (Feb 17)
+- **Last:** GitHub Release Automation (C284) — Enhanced publish.yml with automatic GitHub Release creation. When version tags (v\*) are pushed, new `create-release` job: extracts version info, detects prerelease (alpha/beta/rc), generates categorized changelog from conventional commits (feat→Features, fix→Bug Fixes, docs→Documentation, ci→CI/CD), creates release with softprops/action-gh-release@v2. Includes installation instructions and npm links. Prerelease flag auto-set. YAML validated ✅. Launch-ready infrastructure for v1.0-alpha.
+- **Next:** Monitor v1.0-alpha release workflow (Feb 24), support Go/No-Go (Feb 17)
 
 ### 🚀 Growth
 

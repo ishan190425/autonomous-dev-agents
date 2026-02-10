@@ -6,7 +6,10 @@
  */
 
 import type { DispatchContext } from './dispatch.js';
-import { setTimeout } from 'timers';
+import { exec as execCb } from 'node:child_process';
+import { promisify } from 'node:util';
+
+const exec = promisify(execCb);
 
 /** Result of agent action execution */
 export interface ActionResult {
@@ -142,41 +145,181 @@ Execute ONE meaningful action from your playbook now. Focus on high-impact work 
   /**
    * Spawn a Clawdbot session to execute the agent action.
    *
-   * @param _prompt - Task prompt for the agent (will be used in real Clawdbot integration)
+   * @param prompt - Task prompt for the agent
    * @param context - Dispatch context for working directory
    * @returns Action result from agent execution
    */
   private async spawnAgentSession(
-    _prompt: string,
+    prompt: string,
     context: DispatchContext
   ): Promise<ActionResult> {
-    // This would integrate with Clawdbot's sessions_spawn API
-    // For now, we'll simulate the integration pattern
+    try {
+      // Escape the prompt for shell execution
+      const escapedPrompt = prompt.replace(/'/g, "'\\''");
+      
+      // Build the Clawdbot command
+      // Use --local to run embedded agent locally (requires model provider API keys)
+      // Use --json to get structured output
+      // Use --session-id to create a unique session per cycle
+      const sessionId = `ada:${context.role.id}:${context.state.cycle_count + 1}`;
+      const command = `clawdbot agent --local --message '${escapedPrompt}' --session-id '${sessionId}' --json --timeout 600`;
+      
+      // Execute in the project root directory
+      const { stdout, stderr } = await exec(command, {
+        cwd: context.paths.root,
+        maxBuffer: 10 * 1024 * 1024, // 10MB buffer for large outputs
+        env: {
+          ...process.env,
+          // Ensure we're in the right directory context
+          PWD: context.paths.root,
+        },
+      });
+      
+      // Parse JSON response from Clawdbot
+      let clawdbotResult: any;
+      try {
+        // Clawdbot may output JSON mixed with other text, try to extract it
+        const jsonMatch = stdout.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+          clawdbotResult = JSON.parse(jsonMatch[0]);
+        } else {
+          // If no JSON found, treat the entire stdout as the response
+          clawdbotResult = { response: stdout.trim() };
+        }
+      } catch {
+        // If JSON parsing fails, use the raw output
+        clawdbotResult = { response: stdout.trim(), error: stderr.trim() };
+      }
+      
+      // Extract action details from Clawdbot response
+      const responseText = clawdbotResult.response || clawdbotResult.message || stdout || 'Agent execution completed';
+      
+      // Try to extract structured information from the response
+      // Look for mentions of files, issues, PRs in the response
+      const modifiedFiles = this.extractModifiedFiles(responseText);
+      const createdIssues = this.extractIssueNumbers(responseText);
+      const createdPRs = this.extractPRNumbers(responseText);
+      
+      // Generate a summary action description
+      const actionSummary = this.generateActionSummary(context, responseText, modifiedFiles, createdIssues, createdPRs);
+      
+      return {
+        success: true,
+        action: actionSummary,
+        details: responseText.substring(0, 1000), // Limit details length
+        modifiedFiles,
+        createdIssues,
+        createdPRs,
+      };
+    } catch (error) {
+      // If Clawdbot execution fails, return error result
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      return {
+        success: false,
+        action: `${context.role.name} execution failed`,
+        details: `Clawdbot agent execution error: ${errorMessage}. Make sure Clawdbot is installed and configured with model provider API keys.`,
+        error: errorMessage,
+      };
+    }
+  }
+  
+  /**
+   * Extract modified file paths from agent response text.
+   */
+  private extractModifiedFiles(text: string): string[] {
+    const files: string[] = [];
+    // Look for common patterns like "modified:", "changed:", file paths, etc.
+    const patterns = [
+      /(?:modified|changed|updated|created|edited):\s*([^\n]+)/gi,
+      /(?:file|path):\s*([^\s\n]+\.(ts|js|tsx|jsx|md|json|yml|yaml))/gi,
+    ];
     
-    // In a real implementation, this would:
-    // 1. Call sessions_spawn via Clawdbot API
-    // 2. Pass the agent prompt as task
-    // 3. Set working directory to context.paths.root
-    // 4. Parse the result for action details
+    for (const pattern of patterns) {
+      const matches = text.matchAll(pattern);
+      for (const match of matches) {
+        const file = match[1]?.trim();
+        if (file && !files.includes(file)) {
+          files.push(file);
+        }
+      }
+    }
     
-    // Placeholder implementation - replace with actual Clawdbot integration
-    // In production, these logs would be handled by the CLI layer
+    return files;
+  }
+  
+  /**
+   * Extract GitHub issue numbers from agent response text.
+   */
+  private extractIssueNumbers(text: string): number[] {
+    const issues: number[] = [];
+    // Look for patterns like "#123", "issue #123", "Issue #123"
+    const pattern = /(?:issue\s*)?#(\d+)/gi;
+    const matches = text.matchAll(pattern);
     
-    // Simulate agent work delay
-    const delay = (ms: number): Promise<void> => new Promise(resolve => {
-      // Use Node.js setTimeout
-      setTimeout(resolve, ms);
-    });
-    await delay(2000);
+    for (const match of matches) {
+      const issueMatch = match[1];
+      if (issueMatch) {
+        const issueNum = parseInt(issueMatch, 10);
+        if (!isNaN(issueNum) && !issues.includes(issueNum)) {
+          issues.push(issueNum);
+        }
+      }
+    }
     
-    return {
-      success: true,
-      action: `${context.role.name} executed planned action`,
-      details: `Simulated action execution for ${context.role.id} role. In production, this would spawn a Clawdbot session with the role prompt and execute actual GitHub operations.`,
-      modifiedFiles: [],
-      createdIssues: [],
-      createdPRs: [],
-    };
+    return issues;
+  }
+  
+  /**
+   * Extract GitHub PR numbers from agent response text.
+   */
+  private extractPRNumbers(text: string): number[] {
+    const prs: number[] = [];
+    // Look for patterns like "PR #123", "pull request #123", "#123"
+    const pattern = /(?:pr|pull\s*request)\s*#(\d+)/gi;
+    const matches = text.matchAll(pattern);
+    
+    for (const match of matches) {
+      const prMatch = match[1];
+      if (prMatch) {
+        const prNum = parseInt(prMatch, 10);
+        if (!isNaN(prNum) && !prs.includes(prNum)) {
+          prs.push(prNum);
+        }
+      }
+    }
+    
+    return prs;
+  }
+  
+  /**
+   * Generate a concise action summary from the execution results.
+   */
+  private generateActionSummary(
+    context: DispatchContext,
+    responseText: string,
+    modifiedFiles: string[],
+    createdIssues: number[],
+    createdPRs: number[]
+  ): string {
+    const parts: string[] = [];
+    
+    // Add role name
+    parts.push(context.role.name);
+    
+    // Add what was accomplished
+    if (createdPRs.length > 0) {
+      parts.push(`created PR${createdPRs.length > 1 ? 's' : ''} #${createdPRs.join(', #')}`);
+    } else if (createdIssues.length > 0) {
+      parts.push(`created issue${createdIssues.length > 1 ? 's' : ''} #${createdIssues.join(', #')}`);
+    } else if (modifiedFiles.length > 0) {
+      parts.push(`modified ${modifiedFiles.length} file${modifiedFiles.length > 1 ? 's' : ''}`);
+    } else {
+      // Extract first sentence or key phrase from response
+      const firstLine = responseText.split('\n')[0]?.substring(0, 100) || 'executed action';
+      parts.push(firstLine);
+    }
+    
+    return parts.join(' — ');
   }
 }
 

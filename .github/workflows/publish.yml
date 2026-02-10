@@ -293,3 +293,135 @@ jobs:
           echo '```bash' >> $GITHUB_STEP_SUMMARY
           echo "npm install -g @ada/cli@$cli_version" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
+
+  # =============================================================================
+  # Create GitHub Release — triggered only on tag push (not workflow_dispatch)
+  # =============================================================================
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [verify-publish]
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Need full history for changelog generation
+
+      - name: 📋 Extract version info
+        id: version
+        run: |
+          # Extract version from tag (e.g., v1.0.0-alpha.1 → 1.0.0-alpha.1)
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+          # Determine if prerelease (contains -, e.g., alpha, beta, rc)
+          if [[ "$VERSION" == *"-"* ]]; then
+            echo "prerelease=true" >> $GITHUB_OUTPUT
+            echo "🏷️  Detected prerelease version: $VERSION"
+          else
+            echo "prerelease=false" >> $GITHUB_OUTPUT
+            echo "🏷️  Detected stable version: $VERSION"
+          fi
+
+      - name: 📝 Generate release notes
+        id: changelog
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+
+          # Try to find the previous tag for comparison
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+
+          if [[ -n "$PREV_TAG" ]]; then
+            echo "📚 Generating changelog from $PREV_TAG to ${{ steps.version.outputs.tag }}..."
+            RANGE="$PREV_TAG..HEAD"
+          else
+            echo "📚 Generating changelog for all commits (first release)..."
+            RANGE="HEAD"
+          fi
+
+          # Generate categorized changelog
+          {
+            echo "## What's Changed"
+            echo ""
+
+            # Features
+            FEATURES=$(git log $RANGE --pretty=format:"- %s (%h)" --grep="^feat" 2>/dev/null || true)
+            if [[ -n "$FEATURES" ]]; then
+              echo "### ✨ Features"
+              echo "$FEATURES"
+              echo ""
+            fi
+
+            # Fixes
+            FIXES=$(git log $RANGE --pretty=format:"- %s (%h)" --grep="^fix" 2>/dev/null || true)
+            if [[ -n "$FIXES" ]]; then
+              echo "### 🐛 Bug Fixes"
+              echo "$FIXES"
+              echo ""
+            fi
+
+            # Docs
+            DOCS=$(git log $RANGE --pretty=format:"- %s (%h)" --grep="^docs" 2>/dev/null || true)
+            if [[ -n "$DOCS" ]]; then
+              echo "### 📚 Documentation"
+              echo "$DOCS"
+              echo ""
+            fi
+
+            # CI/Ops
+            CI=$(git log $RANGE --pretty=format:"- %s (%h)" --grep="^ci\|^chore(ops)" 2>/dev/null || true)
+            if [[ -n "$CI" ]]; then
+              echo "### 🔧 CI/CD & Infrastructure"
+              echo "$CI"
+              echo ""
+            fi
+
+            # Installation
+            echo "## 📦 Installation"
+            echo ""
+            echo '```bash'
+            echo "npm install -g @ada/cli@$VERSION"
+            echo '```'
+            echo ""
+            echo "Or install locally:"
+            echo '```bash'
+            echo "npm install @ada/cli@$VERSION"
+            echo '```'
+            echo ""
+
+            # Links
+            echo "## 🔗 Links"
+            echo ""
+            echo "- [npm: @ada/cli](https://www.npmjs.com/package/@ada/cli/v/$VERSION)"
+            echo "- [npm: @ada/core](https://www.npmjs.com/package/@ada/core/v/$VERSION)"
+            echo "- [Documentation](https://github.com/${{ github.repository }}/blob/main/README.md)"
+          } > release_notes.md
+
+          echo "📝 Release notes generated:"
+          cat release_notes.md
+
+      - name: 🚀 Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: ADA ${{ steps.version.outputs.tag }}
+          body_path: release_notes.md
+          prerelease: ${{ steps.version.outputs.prerelease == 'true' }}
+          generate_release_notes: false
+          make_latest: ${{ steps.version.outputs.prerelease != 'true' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📊 Release Summary
+        run: |
+          echo "## 🚀 GitHub Release Created" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** ${{ steps.version.outputs.tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Type:** ${{ steps.version.outputs.prerelease == 'true' && 'Prerelease' || 'Stable' }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "[View Release](https://github.com/${{ github.repository }}/releases/tag/${{ steps.version.outputs.tag }})" >> $GITHUB_STEP_SUMMARY
