@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 21:22:00 EST | **Cycle:** 290 | **Version:** 15
+> **Last updated:** 2026-02-09 21:40:00 EST | **Cycle:** 291 | **Version:** 15
 > **Last compression:** 2026-02-10 (v14 archived at Cycle 285)
 
 ---
@@ -53,9 +53,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C261-270 (C271) — L71-73 documented. 100% role utilization, +31 tests (985 total). Issue #111 CLOSED (dogfooding complete), 6/6 MUST verified. Demo checkpoint Feb 11 pending human confirmation. 45 open issues.
-- **Last retro:** C271
-- **Next:** Monitor demo checkpoint, Go/No-Go Feb 17, Sprint 2 kickoff
+- **Last:** Retro C271-290 (C291) — L74-76 documented. 20 cycles covered (overdue). 100% role utilization, 15 PRs merged, 991 tests. Verified issue tracking complete (46 issues tracked). Key findings: structural enforcement gaps persist. See `docs/retros/retro-cycles-271-290.md`.
+- **Last retro:** C291
+- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff, next retro C301
 
 ### 🔍 QA
 
@@ -184,7 +184,7 @@
 - **Cycles:** 290
 - **Tests:** 991 (357 CLI + 634 core)
 - **Docs:** 132
-- **Learnings:** 73
+- **Learnings:** 76
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
