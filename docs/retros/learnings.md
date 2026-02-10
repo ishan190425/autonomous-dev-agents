@@ -764,3 +764,19 @@
 - **Insight:** Creating a "Recommendations Executed" section in each retro creates accountability. It proves the retro→action loop works and prevents recommendations from being forgotten.
 - **Action:** Each retro should include a table showing status of previous retro's recommendations. 100% execution = healthy process.
 - **Status:** applied (Retro C331-340)
+
+## Learning 114: T-7 checkpoints validate T-14 sign-offs, not just restate them
+
+- **Date:** 2026-02-10
+- **Context:** Product (C350) explicitly revalidated T-14 criteria at T-7: "all criteria still passing." The verification wasn't just restating T-14 status but confirming nothing regressed.
+- **Insight:** T-7 checkpoints should verify that T-14 sign-offs still hold, not assume they do. This catches regressions and builds confidence. "Still passing" is different from "was passing."
+- **Action:** T-7 role deliverables should include explicit revalidation of T-14 criteria with current evidence.
+- **Status:** applied (C350 — Product T-7 revalidation pattern)
+
+## Learning 115: External reference issues connect community contributions to roadmap
+
+- **Date:** 2026-02-10
+- **Context:** Issue #130 referenced an external openClaw-dashboard project that implements features similar to #120. The issue connected external work to internal roadmap.
+- **Insight:** External reference issues (linking to community projects) create bidirectional visibility: the community sees their work acknowledged, and the team sees potential adoption/integration paths.
+- **Action:** When community projects align with roadmap items, create reference issues that document the connection and potential paths (fork, adopt, extract patterns).
+- **Status:** monitoring (Issue #130 tracking external dashboard)

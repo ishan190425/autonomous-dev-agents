@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 13:41:00 EST | **Cycle:** 350 | **Version:** 20
+> **Last updated:** 2026-02-10 14:05:00 EST | **Cycle:** 351 | **Version:** 20
 > **Last compression:** 2026-02-10 (v19 archived at Cycle 344)
 
 ---
@@ -47,8 +47,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C331-340 (C341) — 10-cycle retrospective covering T-14→T-7 final prep phase. Documented: Terminal Mode 6-layer spec chain complete, Go/No-Go framework ready, accelerator prep triad (story+interview+metrics), Issue #126 closed. L101-105 confirmed. All recommendations from C331 executed. 49/49 issues tracked (R-013 verified). Created `docs/retros/retro-c331-340.md`.
-- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff (Feb 28), next retro C351
+- **Last:** Retro C341-350 (C351) — 10-cycle retrospective covering T-7 preparation phase. Documented: 6/6 MUST ✅, Terminal Mode scaffolding complete + Design approved, observability activation gap identified (L112-113), self-benchmark analysis (L111). All C341 recommendations executed (4/4). Added #130 to Active Threads. Created `docs/retros/retro-c341-350.md`. L114-115 documented.
+- **Last retro cycle:** 351
+- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff (Feb 28), next retro C361
 
 ### 🔍 QA
 
@@ -108,6 +109,7 @@
 
 ### Backlog (P2-P3, Post-Launch)
 
+- **#130** (P3, Design, S) — Reference: openClaw-dashboard — external agent monitoring UI (evaluate for #120)
 - **#7** (P3, Engineering, M) — Auto-update propagation
 - **#8** (P3, Engineering, M) — Notification system (Slack, Telegram, Discord)
 - **#9** (P3, Engineering, M) — Deployment & log monitoring
@@ -180,10 +182,10 @@
 - **Issues:** 130 total (48 open, 48 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 350
+- **Cycles:** 351
 - **Tests:** 1,072 (352 CLI + 720 core)
-- **Docs:** 164
-- **Learnings:** 113
+- **Docs:** 165
+- **Learnings:** 115
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
