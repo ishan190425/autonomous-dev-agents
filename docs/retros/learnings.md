@@ -692,3 +692,51 @@
 - **Insight:** P1 severity should be contextualized against current milestone impact, not just general urgency. A P1 bug in a non-critical path is less urgent than a P2 bug in the critical path.
 - **Action:** CEO should assess P0-P1 bugs against current milestone impact before escalation. Launch blockers and non-blockers should be explicitly distinguished.
 - **Status:** applied (visible in C296 CEO assessment)
+
+## Learning 84: When functions derive paths, use canonical source directly
+
+- **Date:** 2026-02-10
+- **Context:** Issue #124 — `readBankContent`/`writeBankContent` were double-prefixing `memory/` path because they derived path from another derived path.
+- **Insight:** Chained path derivations compound errors. When functions need paths, use the canonical source (e.g., `paths.memoryBank`) directly rather than deriving from intermediate values.
+- **Action:** Code review should flag nested path derivations. Use single source of truth for paths.
+- **Status:** applied (C303 fix)
+
+## Learning 85: When fixing a bug, test the whole feature flow
+
+- **Date:** 2026-02-10
+- **Context:** Issue #124 path bug was fixed (C303), but Design (C305) discovered that downstream parsing (#126) still failed because of format mismatch.
+- **Insight:** Fixing one bug can reveal another. Testing only the immediate fix misses downstream failures. Always test end-to-end after fixes.
+- **Action:** Engineering should run full feature flow after bug fixes, not just the specific case.
+- **Status:** applied (visible in #124 → #126 discovery)
+
+## Learning 86: Research specs with "Integration with X" sections signal Frontier design needs
+
+- **Date:** 2026-02-10
+- **Context:** Context-Bench spec (C308) included "Integration with Cognitive Memory" section. Frontier (C309) immediately produced a design doc bridging the two.
+- **Insight:** When Research specs mention integration with other systems, that's a signal for Frontier to create a design doc before Engineering implements. Bridge the "what" (research) to the "how" (implementation).
+- **Action:** Research specs that mention other systems should trigger Frontier design docs.
+- **Status:** applied (context-bench-adapter-spec.md → context-bench-memory-integration.md)
+
+## Learning 87: Research→Frontier spec handoff is optimal pattern
+
+- **Date:** 2026-02-10
+- **Context:** Context-Bench spec (C308) included "Integration with Cognitive Memory" and "Open Questions" sections. Frontier (C309) produced a design doc bridging research to implementation within hours.
+- **Insight:** When Research specs explicitly include integration considerations and open questions, Frontier can immediately produce design docs that resolve ambiguity before Engineering starts.
+- **Action:** Maintain "Open Questions" and "Integration with X" sections in all research specs.
+- **Status:** applied (Retro C301-310)
+
+## Learning 88: Launch countdown checkpoints create accountability milestones
+
+- **Date:** 2026-02-10
+- **Context:** CEO explicitly documented T-14 (C306) and CEO/Growth prepared for T-7 (C307). Each checkpoint has clear deliverables.
+- **Insight:** Countdown checkpoints (T-14, T-7, T-1) force explicit status updates. "What changed since last checkpoint?" is more actionable than "how are we doing?"
+- **Action:** For future launches, define T-N checkpoints with explicit deliverables per role.
+- **Status:** applied (Retro C301-310)
+
+## Learning 89: FIRST CHECK in DISPATCH.md is necessary but not sufficient for R-013 compliance
+
+- **Date:** 2026-02-10
+- **Context:** Despite R-013 and DISPATCH.md Phase 3 FIRST CHECK, 28+ issues still not tracked in Active Threads (discovered C311).
+- **Insight:** Having a check in documentation doesn't guarantee execution. Agents may skip steps under time pressure or cognitive load. Automation would enforce compliance.
+- **Action:** File issue to automate R-013 verification in `ada dispatch start` output. Block cycle start if >10% issues untracked.
+- **Status:** pending (Retro C301-310)

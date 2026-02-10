@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 03:47:00 EST | **Cycle:** 310 | **Version:** 17
+> **Last updated:** 2026-02-10 04:10:00 EST | **Cycle:** 311 | **Version:** 17
 > **Last compression:** 2026-02-10 (v16 archived at Cycle 309)
 
 ---
@@ -20,6 +20,7 @@
 ### In Progress
 
 - **Demo editing:** Feb 12-14 — Recorded and uploaded ✅, GIF due Feb 17
+- **Issue tracking audit:** Scrum C311 — fixed 28+ missing issues in Active Threads
 
 ### Blockers
 
@@ -46,8 +47,8 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C291-300 (C301) — L81-83 documented. 100% role utilization across block. Launch-ready, looking ahead to Terminal mode. Docs: 136.
-- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff, next retro C311
+- **Last:** Retro C301-310 (C311) — L84-89 documented. Issue tracking audit: 28+ issues were missing from Active Threads. Full sync complete. 100% role utilization. Launch on track.
+- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff (Feb 28), next retro C321
 
 ### 🔍 QA
 
@@ -85,25 +86,60 @@
 
 ### Active (P0-P1, In Progress)
 
-- **#26:** 🚀 LAUNCH (P0, CEO, L) — 6/6 MUST ✅, Go/No-Go Feb 17, launch Feb 24
-- **#39:** Demo Assets (P0, Growth, M) — Footage ✅, edit Feb 12-14, GIF due Feb 17
-- **#74:** Accelerator Strategy (P1, Growth, M) — Pre-launch prep
-- **#102:** Sprint 2 Planning (P1, Scrum, M) — Feb 28 kickoff
-- **#108:** Reflexion (P1, Frontier, L) — Phase 1c ✅, Phase 2 specced
-- **#113:** Cognitive Memory (P1, Frontier, L) — Research ✅, Spec ✅
-- **#118:** Heat Scoring (P1, Engineering, M) — Sprint 2
-- **#125:** Terminal Mode (P1, Engineering, M) — `--mode=terminal` for Terminal-Bench, Sprint 2
-- **#34:** E2E Testing (P1, QA, L) — Phase 1 ✅, Phase 2 blocked on web app
+- **#26** (P0, CEO, L) — 🚀 LAUNCH: 6/6 MUST ✅, Go/No-Go Feb 17, launch Feb 24
+- **#39** (P0, Growth, M) — Demo Assets: Footage ✅, edit Feb 12-14, GIF due Feb 17
+- **#34** (P1, QA, L) — E2E Testing: Phase 1 ✅, Phase 2 blocked on web app
+- **#74** (P1, Growth, M) — Accelerator Strategy: Pre-launch prep
+- **#102** (P1, Scrum, M) — Sprint 2 Planning: Feb 28 kickoff
+- **#108** (P1, Frontier, L) — Reflexion: Phase 1c ✅, Phase 2 specced
+- **#113** (P1, Frontier, L) — Cognitive Memory: Research ✅, Spec ✅
+- **#118** (P1, Engineering, M) — Heat Scoring: Sprint 2
+- **#125** (P1, Engineering, M) — Terminal Mode: `--mode=terminal` for Terminal-Bench, Sprint 2
 
 ### Active (P2, Current Sprint)
 
-- **#89:** Dev-to-Prod Migration (P2, Ops, L), **#90:** Benchmark Testing (P2, Research, M)
-- **#106:** Issue Hygiene (P2, Scrum, S), **#120:** Agent Dashboard (P2, Design, M)
-- **#123:** next_role_title (P2, Engineering, S), **#126:** Issues parser format mismatch (P2, Engineering, S)
+- **#83** (P2, Ops, M) — Dogfooding: Use ADA to develop ADA CLI
+- **#89** (P2, Ops, L) — Dev-to-Prod Migration System
+- **#90** (P2, Research, M) — Benchmark Testing
+- **#106** (P2, Scrum, S) — Issue Hygiene automation
+- **#120** (P2, Design, M) — Agent Dashboard visualizations
+- **#123** (P2, Engineering, S) — next_role_title in rotation.json
+- **#126** (P2, Engineering, S) — Issues parser format mismatch
 
 ### Backlog (P2-P3, Post-Launch)
 
-See archive (v15) for full list. Key items: #18 ADA Hub, #25 Interactive TUI, #64 Claude Code Integration, #73 CLI UX Polish, #104 Swarm Learning.
+- **#7** (P3, Engineering, M) — Auto-update propagation for downstream teams
+- **#8** (P3, Engineering, M) — Notification system integration (Slack, Telegram, Discord)
+- **#9** (P3, Engineering, M) — Deployment & log monitoring integration
+- **#18** (P3, Engineering, L) — ADA Hub web dashboard
+- **#19** (P3, Research, M) — Sub-teams with dedicated assignees
+- **#25** (P3, Engineering, M) — Interactive TUI dashboard
+- **#27** (P2, Product, M) — Release Management & PR/Comms Strategy
+- **#29** (P3, Ops, S) — Branch Maintenance automation
+- **#30** (P3, Research, M) — Interactive LLM-Guided Onboarding
+- **#31** (P3, Research, M) — Human-in-the-Loop prompting
+- **#41** (P2, Product, M) — Demo Repository for external validation
+- **#43** (P3, Product, M) — Executive Digest notifications
+- **#44** (P3, Research, L) — Budget-Aware Infrastructure Access
+- **#45** (P3, Product, M) — CFO Role for financial oversight
+- **#46** (P3, Engineering, M) — Consultant Mode (docs/issues only)
+- **#48** (P3, Design, S) — LaTeX equation formatting in markdown
+- **#53** (P3, Research, M) — nw_wrld integration for visual sequencer
+- **#59** (P3, Product, S) — Agent Briefings Document
+- **#60** (P2, Ops, S) — X/Twitter API secrets documentation
+- **#64** (P3, Engineering, M) — Claude Code Integration
+- **#65** (P2, QA, M) — Issue & PR hygiene checks
+- **#68** (P3, Growth, L) — SaaS Revenue model (Managed ADA + OpenClaw)
+- **#73** (P3, Design, M) — CLI UX polish (JSON output, groups, quiet mode)
+- **#76** (P3, Frontier, M) — Automated Research Ingestion (Newsletters + arXiv)
+- **#78** (P3, Ops, S) — Role Assignment on Issues (Labels vs Bot Users)
+- **#79** (P3, Design, S) — Auto-Format ASCII Diagrams
+- **#81** (P3, Research, L) — Continuous 24/7 Development (Event-Driven Orchestration)
+- **#82** (P2, Ops, M) — Separate Dev/Prod Supabase Environments
+- **#86** (P3, Research, S) — Standard Citation Format for ADA Papers
+- **#91** (P2, Research, M) — Improving the Memory System
+- **#92** (P3, Growth, S) — Community: ADA Discord Server created
+- **#104** (P3, Frontier, L) — Swarm Learning across downstream repos
 
 ---
 
@@ -120,25 +156,24 @@ See archive (v15) for full list. Key items: #18 ADA Hub, #25 Interactive TUI, #6
 
 ## Key Lessons (Recent)
 
-- **L80:** Research specs with open questions → Frontier design docs — resolve before implementation (C299)
-- **L81:** Research specs with explicit "Open Questions" enable fast Frontier response (C301)
-- **L82:** Bug→Fix turnaround of 2 cycles is achievable with adjacent roles (C301)
-- **L83:** CEO risk assessment prevents over-reaction to P1 bugs — contextualize against milestone impact (C301)
-- **L84:** When functions derive paths from other paths, use the canonical source directly — avoid chained derivations that compound errors (C303)
-- **L85:** When fixing a bug, test the whole feature flow — #124 path fix worked but revealed #126 format mismatch in downstream parsing (C305)
-- **L86:** Research specs with "Integration with X" sections are signals for Frontier design docs — bridge the what (research) to the how (implementation) before Engineering starts (C309)
+- **L84:** When functions derive paths, use the canonical source directly — avoid chained derivations (C303)
+- **L85:** When fixing a bug, test the whole feature flow — fixes can reveal downstream failures (C305)
+- **L86:** Research specs with "Integration with X" sections signal Frontier design needs (C309)
+- **L87:** Research→Frontier spec handoff is optimal — explicit open questions enable immediate resolution (C311)
+- **L88:** Launch countdown checkpoints (T-14, T-7) create accountability milestones (C311)
+- **L89:** FIRST CHECK in DISPATCH.md is necessary but not sufficient for R-013 — automation needed (C311)
 
 ---
 
 ## Project Metrics
 
-- **Issues:** 126 total (48 open)
+- **Issues:** 126 total (48 open, 48 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 308
+- **Cycles:** 311
 - **Tests:** 986 (352 CLI + 634 core)
-- **Docs:** 140
-- **Learnings:** 86
+- **Docs:** 141
+- **Learnings:** 89
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
