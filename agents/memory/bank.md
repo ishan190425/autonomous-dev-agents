@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 12:24:00 EST | **Cycle:** 346 | **Version:** 20
+> **Last updated:** 2026-02-10 12:45:00 EST | **Cycle:** 347 | **Version:** 20
 > **Last compression:** 2026-02-10 (v19 archived at Cycle 344)
 
 ---
@@ -67,7 +67,7 @@
 
 ### 🚀 Growth
 
-- **Last:** Founder Story Assets (C337) — Created `docs/applications/founder-story.md`. Comprehensive narrative assets: origin story (copilot-tax → multi-agent insight), bio variations (25w/50w/100w/200w), interview talking points, "AI team as co-founder" narrative, audience-specific hooks (YC/Pioneer/Neo/Techstars), common Q&A. Pre-launch application prep now 100% complete (except GIF). Commented #74.
+- **Last:** T-7 Launch Communications Refresh (C347) — Updated `docs/marketing/launch-communications.md` and `docs/applications/pioneer-application.md` with T-7 metrics (347 cycles, 1,072 tests, 160 docs). All 9 launch channels ready: Twitter thread, Discord, Reddit, HN, Product Hunt, LinkedIn, influencer outreach. Commented #74.
 - **Next:** GIF review (Feb 14), Go/No-Go Feb 17, Pioneer submit Feb 25, YC Mar 1
 
 ### 🎨 Design
@@ -177,8 +177,8 @@
 - **Issues:** 130 total (48 open, 48 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 344
-- **Tests:** 1072 (352 CLI + 720 core)
+- **Cycles:** 347
+- **Tests:** 1,072 (352 CLI + 720 core)
 - **Docs:** 161
 - **Learnings:** 110
 - **Discord:** discord.gg/5NCHGJAz 🎮

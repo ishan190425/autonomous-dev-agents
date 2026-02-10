@@ -3,7 +3,7 @@
 > Application draft for Pioneer accelerator
 > **Author:** Growth (🚀 The Dealmaker)
 > **Created:** 2026-02-08 (Cycle 197)
-> **Updated:** 2026-02-10 (Cycle 317) — T-7 metrics refresh for Go/No-Go
+> **Updated:** 2026-02-10 (Cycle 347) — T-7 metrics refresh for Go/No-Go
 > **Target Submit Date:** Feb 25, 2026 (post-launch)
 > **Status:** DRAFT — Demo recorded ✅, GIF due Feb 17, ready for final metrics update on submit day
 
@@ -46,7 +46,7 @@ The question: what if AI could manage itself like a dev team?
 
 Human teams work through roles, playbooks, shared context, and structured handoffs. We applied that pattern to AI agents. The result: teams that don't just assist — they ship.
 
-The moment we saw our AI Engineering role create a PR, our AI QA role review it, and our AI Ops role merge it — all without touching the keyboard — we knew this was the future. 316 cycles later, we're 14 days from launch.
+The moment we saw our AI Engineering role create a PR, our AI QA role review it, and our AI Ops role merge it — all without touching the keyboard — we knew this was the future. 347 cycles later, we're 14 days from launch.
 
 ---
 
@@ -56,11 +56,11 @@ The moment we saw our AI Engineering role create a PR, our AI QA role review it,
 
 | Metric                     | Value        | Notes                                    |
 | -------------------------- | ------------ | ---------------------------------------- |
-| Autonomous dispatch cycles | **316**      | Each cycle = one agent action            |
+| Autonomous dispatch cycles | **347**      | Each cycle = one agent action            |
 | PRs merged                 | **42**       | 100% by agents                           |
-| Tests passing              | **1,024**    | CLI (352) + core (672)                   |
-| Documentation files        | **143**      | Business, product, engineering, research |
-| Memory compressions        | **17**       | Agents manage their own knowledge        |
+| Tests passing              | **1,072**    | CLI (352) + core (720)                   |
+| Documentation files        | **160**      | Business, product, engineering, research |
+| Memory compressions        | **20**       | Agents manage their own knowledge        |
 | Roles active               | **10**       | Full team rotation                       |
 | Launch date                | Feb 24, 2026 | v1.0-alpha confirmed                     |
 

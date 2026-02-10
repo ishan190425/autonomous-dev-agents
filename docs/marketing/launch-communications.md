@@ -3,7 +3,7 @@
 > Comprehensive communications strategy and content for ADA's first public release
 > **Author:** Growth (🚀 The Dealmaker)
 > **Created:** 2026-02-04 (Cycle 38)
-> **Updated:** 2026-02-10 (Cycle 307) — Pre-edit GIF prep + metrics refresh
+> **Updated:** 2026-02-10 (Cycle 347) — T-7 metrics refresh for Go/No-Go
 > **Sprint:** Sprint 1 (v1.0-alpha)
 > **Launch Target:** February 24, 2026
 
@@ -25,16 +25,16 @@ This document contains all launch communications materials for ADA v1.0-alpha. I
 
 ADA isn't just a product — it's a demonstration. Every PR merged, every issue created, every architectural decision in this repository was made by AI agents working autonomously in coordinated roles. The dogfooding story IS the differentiation.
 
-### Key Metrics (Updated Cycle 307 — Pre-Edit)
+### Key Metrics (Updated Cycle 347 — T-7)
 
-| Metric                     | Value   | Notes                                    |
-| -------------------------- | ------- | ---------------------------------------- |
-| Autonomous dispatch cycles | **307** | Each cycle = one agent action            |
-| PRs merged                 | **42**  | 100% agent-authored                      |
-| Tests passing              | **986** | 352 CLI + 634 core                       |
-| Documentation files        | **137** | Business, product, engineering, research |
-| Memory compressions        | **16**  | Agents manage their own knowledge        |
-| Roles active               | **10**  | Full team + Frontier + QA                |
+| Metric                     | Value     | Notes                                    |
+| -------------------------- | --------- | ---------------------------------------- |
+| Autonomous dispatch cycles | **347**   | Each cycle = one agent action            |
+| PRs merged                 | **42**    | 100% agent-authored                      |
+| Tests passing              | **1,072** | 352 CLI + 720 core                       |
+| Documentation files        | **160**   | Business, product, engineering, research |
+| Memory compressions        | **20**    | Agents manage their own knowledge        |
+| Roles active               | **10**    | Full team + Frontier + QA                |
 
 ### Key Messages
 
@@ -49,7 +49,7 @@ ADA isn't just a product — it's a demonstration. Every PR merged, every issue 
 
 1. **Teams, not tools** — Multiple specialized agents > one generalist
 2. **Full lifecycle** — Strategy to shipping, not just code generation
-3. **Self-building** — 247 autonomous cycles, 859 tests, 39 PRs merged
+3. **Self-building** — 347 autonomous cycles, 1,072 tests, 42 PRs merged
 4. **Cognitive memory** — Generative Agents-style semantic recall with embeddings
 5. **Open source** — CLI is free forever, Pro features coming
 
@@ -124,9 +124,9 @@ Each role has a playbook. They coordinate through memory.
 
 We've been building ADA with ADA.
 
-307 autonomous dispatch cycles
+347 autonomous dispatch cycles
 42 PRs merged to main
-986 passing tests
+1,072 passing tests
 0 human commits (except initial setup)
 
 Every issue, decision, and line of code was written by agents.
@@ -197,15 +197,15 @@ And we're doing it in public. 🚀
 ````
 🚀 **ADA v1.0-alpha is LIVE!**
 
-After **307 autonomous dispatch cycles**, we're shipping.
+After **347 autonomous dispatch cycles**, we're shipping.
 
 **What is ADA?**
 An open-source CLI that creates autonomous AI development teams for any repository. Multi-role coordination (CEO, Product, Engineering, QA, Ops) through shared memory and dispatch cycles.
 
 **The dogfooding proof:**
 - 42 PRs merged — all by agents
-- 986 tests passing — all written by agents
-- 137 docs created — all by agents
+- 1,072 tests passing — all written by agents
+- 160 docs created — all by agents
 - Zero human commits to the agent team
 
 **Try it now:**
@@ -226,11 +226,11 @@ What would you want autonomous dev teams to build? Drop ideas below! 👇
 
 ### Reddit Post (r/programming)
 
-**Title:** We built an open-source framework for autonomous AI dev teams — 297 cycles of agents building themselves
+**Title:** We built an open-source framework for autonomous AI dev teams — 347 cycles of agents building themselves
 
 ```
 
-**TL;DR:** ADA is a CLI tool that creates multi-role AI agent teams for your repo. We've been dogfooding it since day one — 307 autonomous cycles, 42 PRs merged, 986 tests, zero human commits.
+**TL;DR:** ADA is a CLI tool that creates multi-role AI agent teams for your repo. We've been dogfooding it since day one — 347 autonomous cycles, 42 PRs merged, 1,072 tests, zero human commits.
 
 ---
 
@@ -263,7 +263,7 @@ ada run           # Executes one dispatch cycle
 ada dispatch start/complete  # Full lifecycle control
 ```
 
-**What We Learned Dogfooding (297 cycles)**
+**What We Learned Dogfooding (347 cycles)**
 
 1. **Roles need constraints** — Without playbooks, agents go off-script
 2. **Memory is everything** — Shared memory bank prevents repeated work
@@ -276,7 +276,7 @@ ada dispatch start/complete  # Full lifecycle control
 - TypeScript monorepo (npm workspaces)
 - Commander.js CLI
 - LLM-agnostic (bring your own model)
-- 986 tests (Vitest)
+- 1,072 tests (Vitest)
 - Cognitive memory with TF-IDF + semantic embeddings
 - Trunk-based development
 
@@ -294,7 +294,7 @@ Questions? AMA in comments.
 
 ### Hacker News "Show HN" (T+7)
 
-**Title:** Show HN: ADA – Open-source framework for autonomous AI dev teams (307 cycles of self-development)
+**Title:** Show HN: ADA – Open-source framework for autonomous AI dev teams (347 cycles of self-development)
 
 ```
 
@@ -302,9 +302,9 @@ ADA creates multi-role AI agent teams that handle your full development lifecycl
 
 We've been dogfooding it to build itself:
 
-- 307 autonomous dispatch cycles
+- 347 autonomous dispatch cycles
 - 42 PRs merged by agents
-- 986 tests written by agents
+- 1,072 tests written by agents
 - Zero human commits (except bootstrap)
 
 The key insights:
@@ -332,7 +332,7 @@ We're iterating fast on v1.0-alpha. Would love feedback on:
 
 ### Product Hunt Tagline Options
 
-1. "Ship software with autonomous AI dev teams — 307 cycles of self-development"
+1. "Ship software with autonomous AI dev teams — 347 cycles of self-development"
 2. "Multi-role AI agents that handle your full dev lifecycle"
 3. "The AI dev team that built itself — now build your own"
 4. "Stop managing copilots. Deploy dev teams."
@@ -353,9 +353,9 @@ ADA creates teams with specialized roles (CEO, Product, Engineering, QA, Ops, Re
 
 We've been using ADA to build ADA since cycle 1.
 
-• 307 autonomous dispatch cycles
+• 347 autonomous dispatch cycles
 • 42 pull requests merged
-• 986 passing tests
+• 1,072 passing tests
 • Every architectural decision made by agents
 
 The agents proposed new roles (QA, Frontier). They designed the memory system. They wrote the dispatch protocol. They shipped cognitive memory with semantic search.
@@ -395,7 +395,7 @@ Hey [Name],
 
 I saw your recent [post/video/thread] about [topic] and thought you might be interested in something we just shipped.
 
-We built an open-source framework called ADA for creating multi-role AI agent teams. The weird part: we've been using it to build itself — 247 autonomous cycles, 39 PRs merged, zero human commits.
+We built an open-source framework called ADA for creating multi-role AI agent teams. The weird part: we've been using it to build itself — 347 autonomous cycles, 42 PRs merged, zero human commits.
 
 The agents have cognitive memory with semantic search, role rotation, and they even proposed new roles for themselves (QA and Frontier weren't in the original design).
 
@@ -439,12 +439,12 @@ For all community posts:
 
 - [x] Record demo GIF (30 seconds: init → dispatch → PR created) — UPLOADED
 - [x] Record optional demo video (2 min) — CAPTURED
-- [ ] Finalize Twitter thread content — Updated C307
+- [x] Finalize Twitter thread content — Updated C347 with T-7 metrics
 
 ### T-7 (Feb 17) — Go/No-Go
 
-- [ ] Demo GIF ready for review
-- [ ] All posts drafted
+- [ ] Demo GIF ready for review (edit Feb 12-14)
+- [x] All posts drafted and metrics updated (C347)
 - [ ] Influencer outreach list finalized
 
 ### T-4 (Feb 20) — Soft Launch Start
@@ -506,7 +506,7 @@ For all community posts:
 | Negative HN reception | Soft launch first, iterate on feedback before HN |
 | Low initial traction | Organic sharing before paid/promoted content |
 | Technical issues on launch day | Ops on standby, rollback plan ready |
-| "Just another AI tool" perception | Emphasize 247 cycles of dogfooding proof |
+| "Just another AI tool" perception | Emphasize 347 cycles of dogfooding proof |
 | Demo not ready | Static screenshots + terminal recordings as fallback |
 
 ---
@@ -531,6 +531,6 @@ For all community posts:
 ---
 
 *Created by 🚀 Growth | Cycle 38*
-*Updated by 🚀 Growth | Cycle 297 | T-7 Days final metrics refresh*
+*Updated by 🚀 Growth | Cycle 347 | T-7 metrics refresh for Go/No-Go*
 *Supporting Issue #26 v1.0-alpha launch coordination*
 ```
