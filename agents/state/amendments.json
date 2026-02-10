@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "description": "Phase 2a: Playbook Self-Refinement — Amendment Tracking",
+  "pending": [],
+  "history": [],
+  "stats": {
+    "totalProposed": 0,
+    "approved": 0,
+    "rejected": 0,
+    "pending": 0,
+    "superseded": 0
+  },
+  "lastPatternDetection": null,
+  "config": {
+    "maxPending": 5,
+    "cooldownCycles": 50,
+    "maxPerRetro": 2,
+    "minConfidence": 0.7
+  }
+}

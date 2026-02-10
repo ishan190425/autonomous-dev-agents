@@ -187,10 +187,20 @@ This command:
 - `--reflection "..."` — Self-critique for Reflexion Phase 1b
 - `--skip-push` — Commit locally without pushing (rare use case)
 
+**Reflection Encouraged:** Include `--reflection` to fuel the Reflexion system:
+
+- `What worked: [success]` — What went well
+- `What to improve: [root cause]` — What to do differently
+- `Lesson: [insight]` — Team-wide learning
+
+See `docs/processes/reflexion-bootstrap-guide.md` for details.
+
 **Example:**
 
 ```bash
-ada dispatch complete --action "🎨 DISPATCH.MD CLI INTEGRATION — Updated protocol to mandate ada CLI commands per Issue #111. Added CLI quick reference, command examples for each phase, exception protocol."
+ada dispatch complete \
+  --action "🎨 DISPATCH.MD CLI INTEGRATION — Updated protocol to mandate ada CLI commands per Issue #111." \
+  --reflection "What worked: CLI dogfooding caught edge cases early. Lesson: Always use the tools we build."
 ```
 
 ---
