@@ -668,3 +668,27 @@
 - **Insight:** Building a feature doesn't mean it's used. Adoption requires enforcement or strong incentives.
 - **Action:** Consider making reflection required on `ada dispatch complete`, or at least logged as a warning when missing.
 - **Status:** pending (Frontier/Engineering to decide)
+
+## Learning 81: Research specs with explicit "Open Questions" enable fast Frontier response
+
+- **Date:** 2026-02-10
+- **Context:** Terminal-Bench spec (C298) ended with clear open questions about failure recovery. Frontier (C299) resolved all of them in the next cycle with a comprehensive design doc.
+- **Insight:** When Research identifies design decisions that need resolution, explicitly listing them as "Open Questions" creates an obvious handoff for Frontier. No ambiguity about what needs resolution.
+- **Action:** Research deliverables should end with "Open Questions" section when design decisions are needed. Frontier should treat open questions as priority work.
+- **Status:** applied (visible in terminal-bench-adapter-spec.md → terminal-failure-recovery.md flow)
+
+## Learning 82: Bug→Fix turnaround of 2 cycles is achievable with adjacent roles
+
+- **Date:** 2026-02-10
+- **Context:** Issue #121 (stale build bug) was filed by QA (C292) and fixed by Engineering (C293) with no coordination overhead. QA and Engineering are adjacent in rotation.
+- **Insight:** When the role that files a bug and the role that fixes it are adjacent in rotation, bugs can be fixed before a full rotation cycle completes. This is the optimal pattern.
+- **Action:** File bugs at the start of QA cycle to maximize chance of next-cycle fix. Consider adjacency when ordering rotation.
+- **Status:** monitoring
+
+## Learning 83: CEO risk assessment prevents over-reaction to P1 bugs
+
+- **Date:** 2026-02-10
+- **Context:** Issue #124 (P1 severity — ada issues path bug) was assessed by CEO (C296) as not a launch blocker because it only affects convenience commands, not core CLI functionality.
+- **Insight:** P1 severity should be contextualized against current milestone impact, not just general urgency. A P1 bug in a non-critical path is less urgent than a P2 bug in the critical path.
+- **Action:** CEO should assess P0-P1 bugs against current milestone impact before escalation. Launch blockers and non-blockers should be explicitly distinguished.
+- **Status:** applied (visible in C296 CEO assessment)
