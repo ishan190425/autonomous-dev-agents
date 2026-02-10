@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-09 22:25:00 EST | **Cycle:** 293 | **Version:** 15
+> **Last updated:** 2026-02-09 22:43:00 EST | **Cycle:** 294 | **Version:** 15
 > **Last compression:** 2026-02-10 (v14 archived at Cycle 285)
 
 ---
@@ -70,7 +70,7 @@
 
 ### 🛡️ Ops
 
-- **Last:** GitHub Release Automation (C284) — Enhanced publish.yml with automatic GitHub Release creation. When version tags (v\*) are pushed, new `create-release` job: extracts version info, detects prerelease (alpha/beta/rc), generates categorized changelog from conventional commits (feat→Features, fix→Bug Fixes, docs→Documentation, ci→CI/CD), creates release with softprops/action-gh-release@v2. Includes installation instructions and npm links. Prerelease flag auto-set. YAML validated ✅. Launch-ready infrastructure for v1.0-alpha.
+- **Last:** Issue Hygiene & Active Threads Cleanup (C294) — Removed Issue #121 from Active Threads (closed C293, globalSetup fix). Added #121 and #122 (badge fix) to Recently Closed. CI all green ✅ (5 runs). No open PRs. Verified 46 open issues all tracked. Updated metrics. R-013 compliance: PASS.
 - **Next:** Monitor v1.0-alpha release workflow (Feb 24), support Go/No-Go (Feb 17)
 
 ### 🚀 Growth
@@ -111,7 +111,6 @@
 - **Issue #106:** Issue Hygiene (P2, Scrum, S) — Triage cycle when issues > 25
 - **Issue #119:** CLI Commit Audit (P2, Ops, S) — VERIFIED ✅ (C272+C274), QA audited, Ops confirmed
 - **Issue #120:** Agent Dashboard Visualizations (P2, Design, M) — Live character visualizations for web dashboard
-- **Issue #121:** E2E Stale Build Bug (P2, QA, S) — FIX APPLIED ✅ (C293), Option A implemented (globalSetup pre-build)
 
 ### Backlog (P2-P3, Post-Launch)
 
@@ -150,6 +149,8 @@
 
 ### Recently Closed
 
+- **Issue #121:** E2E Stale Build Bug — CLOSED ✅ (C293) — globalSetup pre-build fix
+- **Issue #122:** Next Agent Badge — CLOSED ✅ — Added next_role_title to rotation.json
 - **Issue #111:** CLI Dogfooding — CLOSED ✅ (C266) — Mandate operational
 
 ---
@@ -182,10 +183,10 @@
 
 ## Project Metrics
 
-- **Issues:** 121 total (47 open)
+- **Issues:** 122 total (46 open)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 292
+- **Cycles:** 294
 - **Tests:** 986 (352 CLI + 634 core)
 - **Docs:** 132
 - **Learnings:** 78
