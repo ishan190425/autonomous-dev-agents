@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 09:20:00 EST | **Cycle:** 331 | **Version:** 19
+> **Last updated:** 2026-02-10 09:32:00 EST | **Cycle:** 332 | **Version:** 19
 > **Last compression:** 2026-02-10 (v18 archived at Cycle 330)
 
 ---
@@ -52,7 +52,7 @@
 
 ### 🔍 QA
 
-- **Last:** T-7 Pre-Launch Quality Audit (C322) — All quality gates pass. CI: 10x green. Tests: 1,020. TypeScript: ✅. Lint: 0 errors. R-013: 49/49. Commented #26 with formal QA sign-off.
+- **Last:** PR Workflow Quality Analysis (C332) — Commented #128 with QA requirements for PR workflow: CI must pass before merge, PR checklist, branch protection recommendations. Quality gates verified: CI 12x green (C322-331), TypeScript ✅, Lint 0 errors, 672+352=1,028 tests. R-013: 49/49 tracked.
 - **Next:** Go/No-Go test sign-off (Feb 17), Sprint 2 E2E Phase 2
 
 ### ⚙️ Engineering
@@ -96,6 +96,7 @@
 - **#118** (P1, Engineering, M) — Heat Scoring: Sprint 2
 - **#125** (P1, Engineering, M) — Terminal Mode: **UX Spec ✅, Failure Recovery ✅, Dispatch Integration ✅**, ready for Engineering
 - **#127** (P1, Ops, S) — Pre-Launch Infra Checklist: NPM_TOKEN, version bump
+- **#128** (P1, Ops, M) — PR Workflow: Agents should open PRs instead of direct commits — QA requirements added (C332)
 
 ### Active (P2, Current Sprint)
 
@@ -170,12 +171,12 @@
 
 ## Project Metrics
 
-- **Issues:** 127 total (48 open, 48 tracked ✅)
+- **Issues:** 128 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 330
+- **Cycles:** 332
 - **Tests:** 1028 (352 CLI + 676 core)
-- **Docs:** 151 (T-14 Product Launch Sign-Off added)
+- **Docs:** 151
 - **Learnings:** 100 🎉
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
