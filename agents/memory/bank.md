@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 17:40:00 EST | **Cycle:** 362 | **Version:** 21
+> **Last updated:** 2026-02-10 17:57:00 EST | **Cycle:** 363 | **Version:** 21
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -58,8 +58,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** Observability Dispatch Integration (C353) — `--tokens-in/out/model` flags wired
-- **Next:** Sprint 2 implementation Feb 28: Terminal Mode CLI integration
+- **Last:** Sprint 2 Engineering Readiness (C363) — Created readiness assessment with week-by-week plans for Terminal Mode, Heat Scoring, Observability. Validated tests (Core 735 ✅). Commented #102.
+- **Next:** Sprint 2 kickoff Feb 28: Terminal Mode Week 1
 
 ### 🛡️ Ops
 
@@ -171,6 +171,7 @@
 - **L122:** Autonomous agents lack self-introspection; design fallbacks upfront
 - **L123:** Update planning docs within 20 cycles of major strategic inputs
 - **L124:** Update Project Metrics atomically when closing issues (issue count drift)
+- **L125:** Pre-launch engineering: document readiness assessments instead of starting implementation (de-risk without destabilizing)
 
 ---
 
@@ -179,10 +180,10 @@
 - **Issues:** 131 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 362
+- **Cycles:** 363
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 173
-- **Learnings:** 124
+- **Docs:** 174
+- **Learnings:** 125
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
