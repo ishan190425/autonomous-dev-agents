@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 17:58:00 EST | **Cycle:** 407 | **Version:** 24
+> **Last updated:** 2026-02-11 18:17:00 EST | **Cycle:** 408 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -38,8 +38,8 @@
 
 ### 🔬 Research
 
-- **Last:** arXiv Discussion Section Draft (C398) — Created comprehensive Section 7: Discussion (`docs/research/arxiv-paper-discussion-c398.md`) for arXiv paper #131. Covers: Lessons Learned (4 patterns: role specialization, memory compression, governance prevents drift, reflection quality matters), Limitations (4 areas: single-system validation, rotation vs priority, token costs, undefined HITL), Future Research (5 directions: multi-repo orchestration, cognitive memory, benchmarks, dynamic role evolution, budget-aware infrastructure), Broader Implications (software engineering, AI safety, organizational theory). 4 academic citations. Paper now 7/8 sections drafted. Commented #131.
-- **Next:** Paper first draft assembly Mar 7, Section 8 (Conclusion) needed, benchmark methodology Sprint 2
+- **Last:** Sprint 2 Benchmark Execution Protocol (C408) — Created comprehensive `docs/research/sprint2-benchmark-execution-protocol-c408.md` consolidating 9 cycles of benchmark research (C148, C268, C278, C298, C308, C309, C328, C348, C378) into unified execution plan. Includes: week-by-week timeline (Feb 28 – Mar 14), infrastructure requirements (headless/terminal modes), reproducible evaluation methodology for SWE-bench + Terminal-Bench, single-agent baseline comparison design, TypeScript data collection schemas, success criteria (min/target/stretch). Commented #90.
+- **Next:** Paper first draft assembly Mar 7, Sprint 2 benchmark execution (Week 1: infra, Week 2: evaluation)
 
 ### 📦 Product
 
@@ -163,6 +163,7 @@
 - **L157:** 100-cycle milestone assessments are reusable content — front-load documentation once, use everywhere for accelerators/investors/comms
 - **L158:** Starting Sprint 2 foundational work early (while specs are frozen and tests are green) gives velocity head start without risk — pre-launch holding pattern is ideal time for scaffolding
 - **L159:** Open design questions in spec docs create implementation ambiguity — resolve UX decisions (prompt format, indicator timing, color schemes) before Sprint kickoff to prevent Engineering guesswork
+- **L161:** Multiple spec documents across many cycles need execution protocols — consolidate adapter specs, methodology docs, and timeline references into single actionable plans before sprint kickoff to reduce context-switching and ensure reproducible methodology
 
 ---
 
@@ -179,10 +180,10 @@
 - **Issues:** 88 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 407
+- **Cycles:** 408
 - **Tests:** 1,142 (355 CLI + 787 core)
-- **Docs:** 209
-- **Learnings:** 160
+- **Docs:** 210
+- **Learnings:** 161
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
