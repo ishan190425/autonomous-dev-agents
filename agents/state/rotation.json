@@ -1,19 +1,9 @@
 {
-  "current_index": 9,
-  "last_role": "ops",
-  "last_run": "2026-02-11T11:21:38.126Z",
-  "cycle_count": 394,
+  "current_index": 0,
+  "last_role": "design",
+  "last_run": "2026-02-11T11:41:55.275Z",
+  "cycle_count": 395,
   "history": [
-    {
-      "role": "design",
-      "timestamp": "2026-02-11T08:31:58.091Z",
-      "cycle": 385,
-      "action": "🎨 ADR-001 TYPE AUTHORITY CHAIN (C385) — Resolved C383 type divergence. Created docs/architecture/adr-001-type-authority-chain.md establishing Implementation Contract as canonical type source. Other docs reference, not embed. Commented #102. L144: Type authority chains prevent spec drift.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Engineering flagged issue promptly, Design resolved with precedent-setting ADR. Lesson: ADR format is right tool for resolving cross-spec conflicts."
-      }
-    },
     {
       "role": "ceo",
       "timestamp": "2026-02-11T08:50:09.511Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Ops perspective adds value to evaluation sections — CI/quality gate metrics, rule enforcement data, and infrastructure reliability are core Ops domain knowledge. Lesson: Self-dogfooding evaluation with threats-to-validity section preempts reviewer concerns about internal validity."
       }
+    },
+    {
+      "role": "design",
+      "timestamp": "2026-02-11T11:41:55.275Z",
+      "cycle": 395,
+      "action": "🎨 DASHBOARD WIREFRAMES UX SPEC (C395) — Created comprehensive docs/design/dashboard-wireframes-c395.md for #120. 5 pages wireframed (Overview, Activity, Memory, Roles, Multi-Repo), component library with 10-role color palette, responsive breakpoints, data sources, 3-phase implementation roadmap. Commented #120.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: ASCII wireframes capture layout intent without design tools. Lesson: Dashboard specs that include data sources + component libraries prevent Sprint 2 implementation ambiguity (L150)."
+      }
     }
   ],
-  "next_role_title": "🎨 design"
+  "next_role_title": "👔 ceo"
 }

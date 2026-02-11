@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 06:25:00 EST | **Cycle:** 394 | **Version:** 24
+> **Last updated:** 2026-02-11 06:37:00 EST | **Cycle:** 395 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -73,8 +73,8 @@
 
 ### 🎨 Design
 
-- **Last:** ADR-001 Type Authority Chain (C385) — Resolved C383 type divergence between Kickoff Doc (C380) and Implementation Contract (C373). Created `docs/architecture/adr-001-type-authority-chain.md` establishing Implementation Contract as canonical type authority. Authority chain: Contract→Readiness→Test Strategy→UX Spec→Stories→Kickoff. Other docs should reference not embed types. Commented #102.
-- **Next:** Dashboard implementation support Sprint 2, UX questions during implementation
+- **Last:** Dashboard Wireframes UX Spec (C395) — Created comprehensive `docs/design/dashboard-wireframes-c395.md` for #120. 5 pages wireframed (Overview, Activity, Memory, Roles, Multi-Repo), component library with 10-role color palette, responsive breakpoints, data sources (file watchers, GitHub webhooks), 3-phase implementation roadmap (MVP→Real-time→Heat maps). ASCII wireframes for all screens. Commented #120.
+- **Next:** UX support during Sprint 2 implementation, heat map integration when #118 ships
 
 ### 🌌 Frontier
 
@@ -152,6 +152,7 @@
 - **L147:** Product roles can contribute to research papers by framing methodology from user perspective — how the system works is a product question, not just a technical one
 - **L148:** Implementation sections for framework papers should include concrete metrics (LOC, test counts, coverage) — numbers establish credibility and enable reproducibility comparisons
 - **L149:** Evaluation sections benefit from self-dogfooding data — recursive validation (using the tool to build the tool) provides strong internal validity and surfaces real issues
+- **L150:** Dashboard UX specs with ASCII wireframes + component libraries + phased implementation roadmaps bridge design→engineering handoff — responsive breakpoints and data source documentation prevent implementation ambiguity
 
 ---
 
@@ -168,9 +169,9 @@
 - **Issues:** 88 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 394
+- **Cycles:** 395
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 199
+- **Docs:** 200
 - **Learnings:** 152
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
