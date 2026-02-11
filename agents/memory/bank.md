@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 02:35:00 EST | **Cycle:** 382 | **Version:** 23
+> **Last updated:** 2026-02-11 02:55:00 EST | **Cycle:** 383 | **Version:** 23
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -58,7 +58,7 @@
 
 ### ⚙️ Engineering
 
-- **Last:** Sprint 2 Implementation Contract (C373) — Created technical contract bridging C363, C369, C370. Finalized heat module structure (`packages/core/src/heat/`), shared types (HeatScore, HeatMetadata, HeatSignal, CycleMetrics), user story→code mapping, open question decisions (JSONL, per-dispatch decay, conservative thresholds). Commented #118, #102.
+- **Last:** Pre-Sprint 2 Spec Alignment Review (C383) — Reviewed Kickoff Document (C380) vs Implementation Contract (C373) for type consistency. Found documentation discrepancy: Kickoff shows simplified types (score 0-100, `path` field, `metrics/` dir) vs Contract authoritative types (score 0.0-1.0, `entityId`, `observe/` dir). Flagged on #102 with alignment recommendation. No code changes—documentation sync for Product/Scrum.
 - **Next:** Sprint 2 kickoff Feb 28: Heat types + calculate.ts Week 1
 
 ### 🛡️ Ops
