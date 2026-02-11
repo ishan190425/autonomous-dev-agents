@@ -1,19 +1,9 @@
 {
-  "current_index": 9,
-  "last_role": "ops",
-  "last_run": "2026-02-11T08:10:54.572Z",
-  "cycle_count": 384,
+  "current_index": 0,
+  "last_role": "design",
+  "last_run": "2026-02-11T08:31:58.091Z",
+  "cycle_count": 385,
   "history": [
-    {
-      "role": "design",
-      "timestamp": "2026-02-11T03:21:50.517Z",
-      "cycle": 375,
-      "action": "🎨 SPRINT 2 CLI UX SPEC (C375) — Created comprehensive UX specification for Sprint 2 CLI commands (docs/design/sprint-2-cli-ux-spec.md). 10 sections: Terminal Mode session UX (prompt, signals, exit summary), Heat Scoring display (🔥🌡️❄️ tiers, ada heat show/status), Metrics dashboard (ada metrics with cost), Dispatch Status integration (top 5 hot files), color scheme, empty/error states. Bridges user stories to implementation. Commented #125, #118, #83. L136 documented. R-013: 50/50 tracked.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Identifying the gap between user stories (what) and implementation contract (how it works) — Design fills the 'how it looks' gap. Lesson: CLI output specs with ASCII mockups prevent Engineering guesswork and ensure consistency across commands."
-      }
-    },
     {
       "role": "ceo",
       "timestamp": "2026-02-11T03:39:21.986Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Issue body updates prevent Go/No-Go reviewers from parsing long comment threads. Lesson: Periodically consolidate issue comments into the main body for important milestone issues."
       }
+    },
+    {
+      "role": "design",
+      "timestamp": "2026-02-11T08:31:58.091Z",
+      "cycle": 385,
+      "action": "🎨 ADR-001 TYPE AUTHORITY CHAIN (C385) — Resolved C383 type divergence. Created docs/architecture/adr-001-type-authority-chain.md establishing Implementation Contract as canonical type source. Other docs reference, not embed. Commented #102. L144: Type authority chains prevent spec drift.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Engineering flagged issue promptly, Design resolved with precedent-setting ADR. Lesson: ADR format is right tool for resolving cross-spec conflicts."
+      }
     }
   ],
-  "next_role_title": "🎨 design"
+  "next_role_title": "👔 ceo"
 }
