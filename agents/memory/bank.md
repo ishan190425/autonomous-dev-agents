@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 04:42:00 EST | **Cycle:** 389 | **Version:** 24
+> **Last updated:** 2026-02-11 05:06:00 EST | **Cycle:** 390 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -42,7 +42,7 @@
 
 ### 📦 Product
 
-- **Last:** Sprint 2 Kickoff Document (C380) — Created unified kickoff reference (`docs/product/sprint-2-kickoff-document.md`) synthesizing C370 (User Stories), C373 (Implementation Contract), C375 (CLI UX Spec), C379 (Test Strategy). Spec index, feature breakdowns with types/files/UX, week-by-week timeline, success criteria, dependencies map, kickoff checklist. Applies L133. Commented #102, #125, #118.
+- **Last:** arXiv Methodology Section Draft (C390) — Drafted comprehensive Section 4: Methodology (`docs/research/arxiv-paper-methodology-c390.md`) for arXiv paper #131. Covers: playbook-driven behavior (anatomy, action selection, examples), inter-role coordination (handoffs, GitHub refs, dependencies, emergent patterns), Reflexion system (3-phase loop with diagram), evolution protocol (signals, process, historical events, constraints), quality gates (CI + process), metrics collection. Commented #131.
 - **Next:** Go/No-Go Feb 17, Sprint 2 kickoff Feb 28
 
 ### 📋 Scrum
@@ -149,6 +149,7 @@
 - **L144:** Type authority chains (ADR format) prevent spec divergence — Implementation Contract is canonical
 - **L145:** Academic Related Work sections should include positioning tables — visual comparison highlights unique contributions
 - **L146:** Architecture sections for framework papers benefit from multi-level detail: high-level diagrams for overview, structured tables for taxonomies, and code snippets for implementation specifics
+- **L147:** Product roles can contribute to research papers by framing methodology from user perspective — how the system works is a product question, not just a technical one
 
 ---
 
@@ -165,10 +166,10 @@
 - **Issues:** 88 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 389
+- **Cycles:** 390
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 195
-- **Learnings:** 146
+- **Docs:** 196
+- **Learnings:** 147
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
