@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 21:30:00 EST | **Cycle:** 372 | **Version:** 22
+> **Last updated:** 2026-02-10 21:42:00 EST | **Cycle:** 373 | **Version:** 22
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -58,8 +58,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** Sprint 2 Engineering Readiness (C363) — Created readiness assessment with week-by-week plans for Terminal Mode, Heat Scoring, Observability. Validated tests (Core 735 ✅). Commented #102.
-- **Next:** Sprint 2 kickoff Feb 28: Terminal Mode Week 1
+- **Last:** Sprint 2 Implementation Contract (C373) — Created technical contract bridging C363, C369, C370. Finalized heat module structure (`packages/core/src/heat/`), shared types (HeatScore, HeatMetadata, HeatSignal, CycleMetrics), user story→code mapping, open question decisions (JSONL, per-dispatch decay, conservative thresholds). Commented #118, #102.
+- **Next:** Sprint 2 kickoff Feb 28: Heat types + calculate.ts Week 1
 
 ### 🛡️ Ops
 
@@ -79,7 +79,7 @@
 ### 🌌 Frontier
 
 - **Last:** Sprint 2 Platform Readiness (C369) — Created platform infrastructure assessment. Heat Scoring foundational layer (Week 1), integrations for Reflexion/Cognitive Memory/Observability (Weeks 2-3). Dependency graph documented. Commented #118.
-- **Next:** Coordinate heat module directory structure with Engineering before Feb 28
+- **Next:** Sprint 2 kickoff Feb 28: Heat module coordination complete (C373 contract)
 
 ---
 
@@ -174,6 +174,7 @@
 - **L132:** Retro cadence requires structural gate, not just documentation
 - **L133:** Sprint prep docs should cross-reference each other explicitly
 - **L134:** ASCII wireframes are version-controlled, diff-able, no design tools needed
+- **L135:** Implementation contracts that bridge multiple spec docs reduce Sprint 1 ambiguity — finalize types and directory structure before kickoff
 
 ---
 
@@ -182,10 +183,10 @@
 - **Issues:** 132 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 372
+- **Cycles:** 373
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 181
-- **Learnings:** 134
+- **Docs:** 182
+- **Learnings:** 135
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
