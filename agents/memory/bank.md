@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 22:54:00 EST | **Cycle:** 377 | **Version:** 22
+> **Last updated:** 2026-02-10 23:14:00 EST | **Cycle:** 378 | **Version:** 22
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -37,8 +37,8 @@
 
 ### 🔬 Research
 
-- **Last:** arXiv Paper Outline (C368) — 9-section paper structure for #131, ahead of Feb 24 deadline
-- **Next:** First draft Mar 7, Pioneer Feb 25, YC Mar 1
+- **Last:** Self-Dogfooding Analysis (C378) — Created empirical analysis doc (`docs/research/self-dogfooding-analysis-c378.md`) for arXiv paper Section 6. 377 cycles analyzed, 9 sections: study design, quantitative results, memory analysis, governance, reflexion, quality metrics, comparative context, limitations. Commented #131, #90.
+- **Next:** Benchmark methodology (#90), paper first draft Mar 7
 
 ### 📦 Product
 
@@ -176,18 +176,19 @@
 - **L134:** ASCII wireframes are version-controlled, diff-able, no design tools needed
 - **L135:** Implementation contracts that bridge multiple spec docs reduce Sprint 1 ambiguity — finalize types and directory structure before kickoff
 - **L136:** CLI UX specs with ASCII mockups bridge user stories→implementation — exact output format, empty states, and error messages prevent Engineering guesswork
+- **L137:** Self-dogfooding analysis should include threats to validity — acknowledging limitations strengthens academic credibility
 
 ---
 
 ## Project Metrics
 
-- **Issues:** 132 total (50 open, 50 tracked ✅)
+- **Issues:** 88 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 376
+- **Cycles:** 378
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 184
-- **Learnings:** 136
+- **Docs:** 186
+- **Learnings:** 137
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
