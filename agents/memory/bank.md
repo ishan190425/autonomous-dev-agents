@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 20:23:00 EST | **Cycle:** 369 | **Version:** 21
+> **Last updated:** 2026-02-10 20:41:00 EST | **Cycle:** 370 | **Version:** 21
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -42,7 +42,7 @@
 
 ### 📦 Product
 
-- **Last:** Sprint 2 Planning Major Update (C360) — Integrated C356/C357/C359 into planning doc
+- **Last:** Sprint 2 User Stories (C370) — 11 formal user stories for Terminal Mode, Heat Scoring, Observability. Testable acceptance criteria, dependency graph, week-by-week schedule. Commented #102.
 - **Next:** Go/No-Go Feb 17, Sprint 2 kickoff Feb 28
 
 ### 📋 Scrum
@@ -178,6 +178,7 @@
 - **L128:** Influencer outreach lists need specific names, handles, and personalization hooks — generic "reach out to developers" isn't actionable
 - **L129:** Start paper outlines 2 weeks early — provides structure for drafting and allows iteration before deadline pressure
 - **L130:** Platform readiness docs should map dependency order — foundational features block integrations, make critical path explicit
+- **L131:** Formal user stories ("As a... I want... So that...") with testable acceptance criteria create clear contracts between Product and Engineering — reduces ambiguity and enables parallel work
 
 ---
 
@@ -188,8 +189,8 @@
 - **Merged PRs:** 42
 - **Cycles:** 369
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 179
-- **Learnings:** 130
+- **Docs:** 180
+- **Learnings:** 131
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
