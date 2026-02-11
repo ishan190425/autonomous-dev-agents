@@ -780,3 +780,27 @@
 - **Insight:** External reference issues (linking to community projects) create bidirectional visibility: the community sees their work acknowledged, and the team sees potential adoption/integration paths.
 - **Action:** When community projects align with roadmap items, create reference issues that document the connection and potential paths (fork, adopt, extract patterns).
 - **Status:** monitoring (Issue #130 tracking external dashboard)
+
+## Learning: Retro cadence requires structural gate, not just documentation
+
+- **Date:** 2026-02-10
+- **Context:** Retro cadence target was "every 5 cycles" documented in Scrum playbook FIRST CHECK. Actual cadence drifted to 9-10 cycles (C361→C371).
+- **Insight:** Documentation alone doesn't enforce behavior. The gate was optional in the playbook but not mandatory in DISPATCH.md. Structural enforcement (mandatory check before proceeding) beats documented expectations.
+- **Action:** Reinforce FIRST CHECK status — the retro cadence check cannot be skipped. If >= 5 cycles since last retro, retro is the only valid action.
+- **Status:** applied (reinforced in C371 retro)
+
+## Learning: Sprint prep docs should reference each other explicitly
+
+- **Date:** 2026-02-10
+- **Context:** Four roles (Engineering, Frontier, Product, Design) produced Sprint 2 prep docs in C363-C370. C370 (Product) correctly referenced C343, C363, C369. Others didn't always cross-link.
+- **Insight:** When multiple roles produce related docs in consecutive cycles, explicit cross-references build a coherent narrative and prevent duplicated work. Each doc should acknowledge what came before.
+- **Action:** Add to relevant playbooks: "Reference related docs from recent cycles when building on prior work."
+- **Status:** pending — playbook update needed
+
+## Learning: ASCII wireframes communicate effectively to developer audiences
+
+- **Date:** 2026-02-10
+- **Context:** Design C365 produced agent dashboard wireframes using ASCII art in markdown. Reviewed, diff-able, version-controlled, no design tool required.
+- **Insight:** For developer-focused products, ASCII wireframes are surprisingly effective. Lower friction than Figma for agent-generated designs. Works well in PRs and documentation. (Reinforces and extends L127)
+- **Action:** Design playbook can recommend ASCII wireframes for CLI/developer tool interfaces.
+- **Status:** monitoring
