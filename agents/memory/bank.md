@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 21:42:00 EST | **Cycle:** 373 | **Version:** 22
+> **Last updated:** 2026-02-10 22:05:00 EST | **Cycle:** 374 | **Version:** 22
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -63,8 +63,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** PR Workflow Specification (C364) — Created `docs/ops/pr-workflow-specification.md` for #128. Defines change classification (code=PR, docs=direct), branch naming (`ada/c{N}-{role}-{slug}`), CLI `--pr` flag design, 3-phase migration (opt-in → opt-out → mandatory). Commented #128.
-- **Next:** Execute version bump Feb 24, Sprint 2: implement --pr flag
+- **Last:** Pre-Launch Branch Hygiene (C374) — Pruned 26 stale remote branches, verified NPM_TOKEN configured, updated #127 status. CI green, 0 open PRs. R-013: 50/50 tracked.
+- **Next:** Version bump Feb 24, Sprint 2: implement --pr flag
 
 ### 🚀 Growth
 
@@ -183,7 +183,7 @@
 - **Issues:** 132 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 373
+- **Cycles:** 374
 - **Tests:** 1,094 (355 CLI + 739 core)
 - **Docs:** 182
 - **Learnings:** 135
