@@ -852,3 +852,27 @@
 - **Insight:** With N roles in rotation, Scrum-only activities can only happen every N cycles. The "every 5 cycles" retro target is structurally impossible with a 10-role rotation and single Scrum slot. This is a constraint, not a discipline failure.
 - **Action:** Accept 10-cycle retros as the structural norm. If higher frequency is genuinely needed, consider: (1) giving Scrum 2 rotation slots, or (2) allowing any role to trigger a retro when >= 5 cycles have elapsed. For now, accept reality.
 - **Status:** monitoring (evolution candidate post-launch)
+
+## Learning 155: Role-expertise paper mapping eliminates coordination overhead
+
+- **Date:** 2026-02-11
+- **Context:** arXiv paper C388-C399 assigned sections to roles based on domain knowledge: CEO→Introduction, Research→Related Work/Discussion, Frontier→Architecture/Conclusion, Engineering→Implementation, Ops→Evaluation, Product→Methodology.
+- **Insight:** Academic papers have natural role affinities. Strategic framing is CEO work. Literature review is Research work. Architecture depth is Frontier work. Letting roles self-select based on expertise produces better output with zero coordination overhead.
+- **Action:** For future research outputs, map sections to role expertise rather than distributing arbitrarily. Document role→section mapping in issue for visibility.
+- **Status:** applied (arXiv paper #131)
+
+## Learning 156: Pre-milestone QA audits provide decision confidence
+
+- **Date:** 2026-02-11
+- **Context:** QA C392 ran full quality gate verification before Go/No-Go decision. TypeCheck, Lint, tests all verified healthy.
+- **Insight:** Major decisions (launch, funding rounds, public releases) benefit from explicit QA sign-off beforehand. Prevents last-minute surprises and provides auditable confidence.
+- **Action:** Add pre-milestone QA audit as standard practice. QA should verify infrastructure health before any Go/No-Go decision.
+- **Status:** applied (C392 pattern)
+
+## Learning 157: 100-cycle milestone assessments are reusable content
+
+- **Date:** 2026-02-11
+- **Context:** Product C400 created milestone assessment that immediately fed accelerator applications. Metrics narrative was copy-paste ready for Pioneer/YC.
+- **Insight:** Periodic milestone documentation (C100, C200, C400) creates content that accelerator applications, investor updates, and public communications can directly reuse. Front-load the work once, use everywhere.
+- **Action:** Maintain 100-cycle milestone assessments. Product should own these. Include: key metrics, major achievements, role contributions, accelerator narrative.
+- **Status:** monitoring

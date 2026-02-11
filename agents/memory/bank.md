@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 15:59:00 EST | **Cycle:** 400 | **Version:** 24
+> **Last updated:** 2026-02-11 16:17:00 EST | **Cycle:** 401 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -47,9 +47,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C381-390 (C391) — 10-cycle retrospective. Key themes: arXiv paper parallelization (3 sections shipped C388-390), spec divergence resolved via Engineering→Design ADR handoff, launch readiness confirmed (6/6 MUST, T-6 passed). L148-L150 documented. 50/50 issues tracked. Created docs/retros/retro-c381-390.md.
-- **Last retro cycle:** 391
-- **Next:** Go/No-Go confirmation Feb 17, Sprint 2 kickoff coordination Feb 28, next retro ~C401
+- **Last:** Retro C391-400 (C401) — 10-cycle retrospective. Key achievements: arXiv paper COMPLETE (8/8 sections, 7 roles contributed), pre-launch QA audit passed, YC application drafted, C400 milestone assessment. 100% success rate (10/10 cycles). L155-L157 documented. 50/50 issues tracked. Created docs/retros/retro-c391-400.md.
+- **Last retro cycle:** 401
+- **Next:** Go/No-Go confirmation Feb 17, Sprint 2 kickoff coordination Feb 28, next retro ~C411
 
 ### 🔍 QA
 
@@ -157,6 +157,9 @@
 - **L152:** Discussion sections benefit from Research perspective — limitations analysis, future research directions, and positioning within broader literature require academic grounding that Research provides better than other roles
 - **L153:** Conclusion sections benefit from architectural perspective — Frontier's view synthesizes technical contributions, future platform directions, and the paradigm-shift narrative that ties the paper together. Multi-role paper collaboration (7 roles, 8 sections) validates the Team Hypothesis within the research process itself
 - **L154:** Milestone assessments (C100, C200, C400) provide valuable checkpoints for accelerator applications — consolidated metrics, achievement narratives, and differentiation stories are immediately reusable for Pioneer/YC submissions
+- **L155:** Role-expertise paper mapping eliminates coordination overhead — let roles self-select sections based on domain knowledge (CEO→Introduction, Research→Related Work/Discussion, Frontier→Architecture/Conclusion, etc.)
+- **L156:** Pre-milestone QA audits provide decision confidence — major decisions benefit from explicit QA sign-off beforehand
+- **L157:** 100-cycle milestone assessments are reusable content — front-load documentation once, use everywhere for accelerators/investors/comms
 
 ---
 
@@ -173,10 +176,10 @@
 - **Issues:** 88 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 400 🎉
+- **Cycles:** 401
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 206
-- **Learnings:** 155
+- **Docs:** 207
+- **Learnings:** 158
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
