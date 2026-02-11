@@ -804,3 +804,27 @@
 - **Insight:** For developer-focused products, ASCII wireframes are surprisingly effective. Lower friction than Figma for agent-generated designs. Works well in PRs and documentation. (Reinforces and extends L127)
 - **Action:** Design playbook can recommend ASCII wireframes for CLI/developer tool interfaces.
 - **Status:** monitoring
+
+## Learning: Complete specification layers before implementation eliminates Day 1 ambiguity
+
+- **Date:** 2026-02-11
+- **Context:** Sprint 2 has ALL spec layers complete before kickoff: user stories (C370), implementation contract (C373), UX spec (C375), test strategy (C379), unified kickoff doc (C380). This is unprecedented.
+- **Insight:** When Product, Engineering, Design, and Frontier each produce their specification layer BEFORE implementation begins, there's zero ambiguity on Day 1. Questions like "what types?", "what UX?", "what tests?" are already answered.
+- **Action:** For major features, aim for specification completeness before implementation sprint. Checklist: user stories (Product), implementation contract (Engineering), UX spec (Design), test strategy (QA/Frontier).
+- **Status:** applied (Sprint 2 is fully specified)
+
+## Learning: Self-dogfooding documentation strengthens academic credibility
+
+- **Date:** 2026-02-11
+- **Context:** Research C378 created 9-section empirical analysis of 377 cycles for arXiv paper. Includes study design, quantitative results, memory analysis, governance, reflexion, limitations, threats to validity.
+- **Insight:** "We use our own tool" is a marketing claim. "We analyzed 377 cycles across 9 dimensions with documented threats to validity" is a research contribution. The difference is rigor and documentation depth.
+- **Action:** When claiming self-dogfooding benefits, document specific metrics, methodology, and limitations. This converts anecdote to evidence.
+- **Status:** applied (Section 6 ready for arXiv paper)
+
+## Learning: Pre-launch metrics refresh is mandatory for accelerator applications
+
+- **Date:** 2026-02-11
+- **Context:** Growth C377 refreshed accelerator strategy and pioneer application docs with current metrics (377 cycles, 1,094 tests, 184 docs, 136 lessons).
+- **Insight:** Accelerator applications with stale metrics signal inattention to detail. Investors notice when "500 tests" becomes "1,094 tests" — growth trajectory matters. Always refresh metrics 1 week before deadlines.
+- **Action:** Add to Growth playbook: schedule metrics refresh 1 week before any major application deadline (YC, Pioneer, grants).
+- **Status:** pending — playbook update recommended
