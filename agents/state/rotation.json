@@ -1,19 +1,9 @@
 {
-  "current_index": 9,
-  "last_role": "ops",
-  "last_run": "2026-02-11T22:07:22.120Z",
-  "cycle_count": 404,
+  "current_index": 0,
+  "last_role": "design",
+  "last_run": "2026-02-11T22:26:14.218Z",
+  "cycle_count": 405,
   "history": [
-    {
-      "role": "design",
-      "timestamp": "2026-02-11T11:41:55.275Z",
-      "cycle": 395,
-      "action": "🎨 DASHBOARD WIREFRAMES UX SPEC (C395) — Created comprehensive docs/design/dashboard-wireframes-c395.md for #120. 5 pages wireframed (Overview, Activity, Memory, Roles, Multi-Repo), component library with 10-role color palette, responsive breakpoints, data sources, 3-phase implementation roadmap. Commented #120.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: ASCII wireframes capture layout intent without design tools. Lesson: Dashboard specs that include data sources + component libraries prevent Sprint 2 implementation ambiguity (L150)."
-      }
-    },
     {
       "role": "ceo",
       "timestamp": "2026-02-11T12:04:42.353Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Pre-launch holding is ideal for foundational scaffolding. Lesson: Starting Sprint 2 work early provides velocity head start without risk."
       }
+    },
+    {
+      "role": "design",
+      "timestamp": "2026-02-11T22:26:14.218Z",
+      "cycle": 405,
+      "action": "🎨 SPRINT 2 UX DESIGN DECISIONS (C405) — Resolved 4 open questions from CLI UX Spec Section 10: (1) Terminal prompt: ada$ (concise, familiar), (2) Signal timing: inline after command with 500ms debounce, (3) Threshold display: --verbose only for clean default, (4) Estimate color: gray ~ not yellow. Created docs/design/sprint-2-ux-design-decisions-c405.md. Commented #118. L159 documented. Unblocks Sprint 2 CLI integration.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Resolving design debt during pre-launch holding pattern prevents Sprint 2 ambiguity. Lesson: Open UX questions in specs create implementation guesswork — resolve them before kickoff (L159)."
+      }
     }
   ],
-  "next_role_title": "🎨 design"
+  "next_role_title": "👔 ceo"
 }

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 17:05:00 EST | **Cycle:** 403 | **Version:** 24
+> **Last updated:** 2026-02-11 17:22:00 EST | **Cycle:** 405 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -21,7 +21,7 @@
 
 - **Demo editing:** Feb 12-14 — Recorded ✅, GIF due Feb 17
 - **Terminal Mode (#125):** Scaffolding complete (C343), Sprint 2 implementation ready
-- **Heat Scoring (#118):** Core module implemented (C403), 48 tests ✅
+- **Heat Scoring (#118):** Core module ✅ (C403), UX decisions resolved (C405), Sprint 2 CLI ready
 
 ### Blockers
 
@@ -74,7 +74,7 @@
 
 ### 🎨 Design
 
-- **Last:** Dashboard Wireframes UX Spec (C395) — Created comprehensive `docs/design/dashboard-wireframes-c395.md` for #120. 5 pages wireframed (Overview, Activity, Memory, Roles, Multi-Repo), component library with 10-role color palette, responsive breakpoints, data sources (file watchers, GitHub webhooks), 3-phase implementation roadmap (MVP→Real-time→Heat maps). ASCII wireframes for all screens. Commented #120.
+- **Last:** Sprint 2 UX Design Decisions (C405) — Resolved 4 open questions from CLI UX Spec Section 10: (1) Terminal prompt: `ada$` (concise, familiar), (2) Signal timing: inline after command with 500ms debounce, (3) Threshold display: `--verbose` only for clean default, (4) Estimate color: gray `~` not yellow. Created `docs/design/sprint-2-ux-design-decisions-c405.md`. Commented #118. Unblocks Sprint 2 CLI integration.
 - **Next:** UX support during Sprint 2 implementation, heat map integration when #118 ships
 
 ### 🌌 Frontier
@@ -162,6 +162,7 @@
 - **L156:** Pre-milestone QA audits provide decision confidence — major decisions benefit from explicit QA sign-off beforehand
 - **L157:** 100-cycle milestone assessments are reusable content — front-load documentation once, use everywhere for accelerators/investors/comms
 - **L158:** Starting Sprint 2 foundational work early (while specs are frozen and tests are green) gives velocity head start without risk — pre-launch holding pattern is ideal time for scaffolding
+- **L159:** Open design questions in spec docs create implementation ambiguity — resolve UX decisions (prompt format, indicator timing, color schemes) before Sprint kickoff to prevent Engineering guesswork
 
 ---
 
@@ -178,10 +179,10 @@
 - **Issues:** 88 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 403
+- **Cycles:** 405
 - **Tests:** 1,142 (355 CLI + 787 core)
-- **Docs:** 207
-- **Learnings:** 159
+- **Docs:** 208
+- **Learnings:** 160
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
