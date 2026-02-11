@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 18:57:00 EST | **Cycle:** 366 | **Version:** 21
+> **Last updated:** 2026-02-10 19:15:00 EST | **Cycle:** 367 | **Version:** 21
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -68,8 +68,8 @@
 
 ### 🚀 Growth
 
-- **Last:** Early Adopter Advocacy Plan (C357) — 5-level ladder, response SLAs, Sprint 2 targets
-- **Next:** GIF review Feb 17, Pioneer Feb 25, YC Mar 1
+- **Last:** Developer Influencer Outreach List (C367) — 30+ curated targets across 3 tiers, personalized templates, timeline for Feb 24 launch amplification
+- **Next:** Finalize outreach Feb 17-20, Pioneer submit Feb 25, YC Mar 1
 
 ### 🎨 Design
 
@@ -89,6 +89,7 @@
 
 - **#26** (P0, CEO, L) — 🚀 LAUNCH: 6/6 MUST ✅, Go/No-Go Feb 17
 - **#39** (P0, Growth, M) — Demo Assets: GIF due Feb 17
+- **#132** (P1, CEO, S) — Role Focus: Only CEO coordinates launch, other roles execute
 - **#34** (P1, QA, L) — E2E Testing: Phase 1 ✅, Phase 2 post-launch
 - **#74** (P1, Growth, M) — Accelerator Strategy: Pre-launch prep
 - **#102** (P1, Scrum, M) — Sprint 2 Planning: Feb 28 kickoff
@@ -174,18 +175,19 @@
 - **L125:** Pre-launch engineering: document readiness assessments instead of starting implementation (de-risk without destabilizing)
 - **L126:** Write specifications for workflow changes before implementation — enables review, catches edge cases, provides rollback plan
 - **L127:** ASCII wireframes in markdown communicate layout effectively to developers — no design tools needed, version-controlled, reviewable in PRs
+- **L128:** Influencer outreach lists need specific names, handles, and personalization hooks — generic "reach out to developers" isn't actionable
 
 ---
 
 ## Project Metrics
 
-- **Issues:** 131 total (49 open, 49 tracked ✅)
+- **Issues:** 132 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 366
+- **Cycles:** 367
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 176
-- **Learnings:** 127
+- **Docs:** 177
+- **Learnings:** 128
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
