@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 04:25:00 EST | **Cycle:** 388 | **Version:** 24
+> **Last updated:** 2026-02-11 04:42:00 EST | **Cycle:** 389 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -78,8 +78,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** Sprint 2 Platform Integration Test Strategy (C379) — Created comprehensive integration test plan (`docs/engineering/sprint-2-platform-integration-test-strategy.md`). 4-layer test architecture: unit→intra-package→cross-package→E2E. Test scenarios for Heat+Memory, Heat+Dispatch, Heat+Terminal, Reflexion+Heat, Observability+Dispatch integrations. Week-by-week timeline, success criteria, risk mitigation. Commented #118, #83, #102.
-- **Next:** Sprint 2 kickoff Feb 28: Support platform feature testing
+- **Last:** arXiv Architecture Section Draft (C389) — Created comprehensive Section 3: Architecture (`docs/research/arxiv-paper-architecture-c389.md`) for arXiv paper. Covers: Role System (taxonomy, playbook structure, roster), Dispatch Protocol (state machine, 8-phase lifecycle, rotation mechanics), Memory System (bank schema, operations, compression algorithm, learnings extraction), Governance Layer (rules, quality gates, evolution protocol, Reflexion integration), Implementation Details (CLI, core lib, file-system-as-database rationale). ASCII diagrams for system architecture and state machines. Complements C388 Related Work. Commented #131.
+- **Next:** Sprint 2 kickoff Feb 28: Platform feature implementation support
 
 ---
 
@@ -148,6 +148,7 @@
 - **L143:** QA sign-off on test strategies resolves open questions before implementation starts
 - **L144:** Type authority chains (ADR format) prevent spec divergence — Implementation Contract is canonical
 - **L145:** Academic Related Work sections should include positioning tables — visual comparison highlights unique contributions
+- **L146:** Architecture sections for framework papers benefit from multi-level detail: high-level diagrams for overview, structured tables for taxonomies, and code snippets for implementation specifics
 
 ---
 
@@ -161,13 +162,13 @@
 
 ## Project Metrics
 
-- **Issues:** 88 total (50 open, 50 tracked ✅)
+- **Issues:** 88 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 388
+- **Cycles:** 389
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 194
-- **Learnings:** 145
+- **Docs:** 195
+- **Learnings:** 146
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
