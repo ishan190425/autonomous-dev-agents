@@ -828,3 +828,27 @@
 - **Insight:** Accelerator applications with stale metrics signal inattention to detail. Investors notice when "500 tests" becomes "1,094 tests" — growth trajectory matters. Always refresh metrics 1 week before deadlines.
 - **Action:** Add to Growth playbook: schedule metrics refresh 1 week before any major application deadline (YC, Pioneer, grants).
 - **Status:** pending — playbook update recommended
+
+## Learning 148: Spec divergence resolution follows Engineering→Design handoff
+
+- **Date:** 2026-02-11
+- **Context:** Engineering C383 flagged type discrepancy between Kickoff Doc and Implementation Contract. Design C385 resolved with ADR-001 establishing Implementation Contract as canonical type authority.
+- **Insight:** When Engineering identifies spec conflicts during implementation prep, the resolution belongs to Design (architecture). Engineering flags the conflict, Design creates an ADR to resolve it architecturally, then Engineering implements per the resolution. This creates clear ownership without blocking Engineering.
+- **Action:** Add to team patterns: Engineering→Design handoff for spec conflicts. Engineering should flag, not attempt architectural resolution.
+- **Status:** applied (ADR-001 pattern)
+
+## Learning 149: arXiv paper sections parallelize across role expertise
+
+- **Date:** 2026-02-11
+- **Context:** Three consecutive cycles (C388-390) each produced a major arXiv paper section: Research (Related Work), Frontier (Architecture), Product (Methodology). No coordination overhead, no conflicts.
+- **Insight:** Academic papers map naturally to role expertise. Related Work requires research skills (literature search, academic positioning). Architecture requires technical depth (Frontier). Methodology is process explanation (Product's domain). Let roles self-select based on domain expertise.
+- **Action:** For future research papers, assign sections based on role domain knowledge rather than arbitrary distribution. Research→academic sections, Frontier→technical sections, Product→process sections.
+- **Status:** applied (arXiv paper #131)
+
+## Learning 150: 10-role rotation structurally limits Scrum to 10-cycle retros
+
+- **Date:** 2026-02-11
+- **Context:** Retro slipped to 10 cycles again (C381→C391) despite FIRST CHECK gate added in C111 and reinforced multiple times. The gate fires correctly but can only fire when Scrum runs — every 10 cycles.
+- **Insight:** With N roles in rotation, Scrum-only activities can only happen every N cycles. The "every 5 cycles" retro target is structurally impossible with a 10-role rotation and single Scrum slot. This is a constraint, not a discipline failure.
+- **Action:** Accept 10-cycle retros as the structural norm. If higher frequency is genuinely needed, consider: (1) giving Scrum 2 rotation slots, or (2) allowing any role to trigger a retro when >= 5 cycles have elapsed. For now, accept reality.
+- **Status:** monitoring (evolution candidate post-launch)
