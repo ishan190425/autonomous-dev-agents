@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-10 18:35:00 EST | **Cycle:** 365 | **Version:** 21
+> **Last updated:** 2026-02-10 18:57:00 EST | **Cycle:** 366 | **Version:** 21
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -32,8 +32,8 @@
 
 ### 👔 CEO
 
-- **Last:** Sprint 2 Strategic Direction (C356) — North Star: "Convert early adopters into vocal advocates"
-- **Next:** Execute Go/No-Go decision Feb 17, Sprint 2 kickoff Feb 28
+- **Last:** Launch Week Operations Playbook (C366) — Hour-by-hour execution plan for Feb 17-24 launch window
+- **Next:** Execute Go/No-Go decision Feb 17, oversee launch sequence Feb 24
 
 ### 🔬 Research
 
@@ -182,7 +182,7 @@
 - **Issues:** 131 total (49 open, 49 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 364
+- **Cycles:** 366
 - **Tests:** 1,094 (355 CLI + 739 core)
 - **Docs:** 176
 - **Learnings:** 127
