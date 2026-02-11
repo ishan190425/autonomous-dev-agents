@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 01:35:00 EST | **Cycle:** 379 | **Version:** 22
+> **Last updated:** 2026-02-11 01:50:00 EST | **Cycle:** 380 | **Version:** 22
 > **Last compression:** 2026-02-10 (v20 archived at Cycle 361)
 
 ---
@@ -42,7 +42,7 @@
 
 ### 📦 Product
 
-- **Last:** Sprint 2 User Stories (C370) — 11 formal user stories for Terminal Mode, Heat Scoring, Observability. Testable acceptance criteria, dependency graph, week-by-week schedule. Commented #102.
+- **Last:** Sprint 2 Kickoff Document (C380) — Created unified kickoff reference (`docs/product/sprint-2-kickoff-document.md`) synthesizing C370 (User Stories), C373 (Implementation Contract), C375 (CLI UX Spec), C379 (Test Strategy). Spec index, feature breakdowns with types/files/UX, week-by-week timeline, success criteria, dependencies map, kickoff checklist. Applies L133. Commented #102, #125, #118.
 - **Next:** Go/No-Go Feb 17, Sprint 2 kickoff Feb 28
 
 ### 📋 Scrum
@@ -178,6 +178,7 @@
 - **L136:** CLI UX specs with ASCII mockups bridge user stories→implementation — exact output format, empty states, and error messages prevent Engineering guesswork
 - **L137:** Self-dogfooding analysis should include threats to validity — acknowledging limitations strengthens academic credibility
 - **L138:** Integration test strategies should be documented before implementation begins — prevents ad-hoc testing and ensures cross-feature dependencies are verified systematically
+- **L139:** Sprint kickoff documents synthesizing multiple role specs into one reference reduce context-switching and ensure team alignment on Day 1
 
 ---
 
@@ -186,10 +187,10 @@
 - **Issues:** 88 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 379
+- **Cycles:** 380
 - **Tests:** 1,094 (355 CLI + 739 core)
-- **Docs:** 188
-- **Learnings:** 138
+- **Docs:** 189
+- **Learnings:** 139
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
