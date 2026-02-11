@@ -359,6 +359,35 @@ export {
   suggestRoleFromIssue,
 } from './issues.js';
 
+// Heat Scoring (Issue #118 — Cognitive Memory Phase 4, Sprint 2)
+// Core heat calculation for reference-based memory scoring.
+// Terminal mode will integrate with these types in Sprint 2.
+export type {
+  MemoryClass,
+  HeatConfig,
+  HeatMetadata,
+  HeatScore,
+  HeatStats,
+} from './heat/index.js';
+export {
+  HEAT_THRESHOLDS,
+  DEFAULT_HEAT_CONFIG,
+  calculateHeat,
+  calculateHeatScore,
+  isHot,
+  isWarm,
+  isCold,
+  projectDecay,
+  daysUntilTierDrop,
+  calculateHeatStats,
+  getHeatEmoji,
+  formatHeatScore,
+} from './heat/index.js';
+export type { EntryType as HeatEntryType } from './heat/index.js';
+export { normalizeImportance as normalizeHeatImportance } from './heat/index.js';
+// Note: HeatTier, HeatSignalType, HeatSignal, getHeatTier exported from terminal for now.
+// Sprint 2 will refactor terminal to import from heat module.
+
 // Terminal Mode (Issue #125 — Shell-based benchmarks, Sprint 2)
 export type {
   // Shell Detection

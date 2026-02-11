@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 16:45:00 EST | **Cycle:** 402 | **Version:** 24
+> **Last updated:** 2026-02-11 17:05:00 EST | **Cycle:** 403 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -21,6 +21,7 @@
 
 - **Demo editing:** Feb 12-14 — Recorded ✅, GIF due Feb 17
 - **Terminal Mode (#125):** Scaffolding complete (C343), Sprint 2 implementation ready
+- **Heat Scoring (#118):** Core module implemented (C403), 48 tests ✅
 
 ### Blockers
 
@@ -58,8 +59,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** arXiv Implementation Section Draft (C393) — Created comprehensive Section 5: Implementation (`docs/research/arxiv-paper-implementation-c393.md`) for arXiv paper #131. Covers: technology stack (TypeScript, Commander, Vitest), package architecture (@ada/core 11K LOC, @ada/cli 7K LOC), core modules (types, rotation, dispatch, memory, semantic search, reflection, cross-role insights), CLI commands, backend abstraction, file-system-as-database rationale, test infrastructure (1,094 tests), code metrics, dogfooding loop, deployment model. Paper now 5/6 sections drafted. Commented #131.
-- **Next:** Sprint 2 kickoff Feb 28: Heat types + calculate.ts Week 1
+- **Last:** Heat Scoring Core Module (C403) — Implemented `packages/core/src/heat/` with types.ts (218 LOC), calculate.ts (361 LOC), index.ts (67 LOC). 48 tests in tests/heat/. Core functions: `calculateHeat()`, `getHeatTier()`, `projectDecay()`, `daysUntilTierDrop()`, `calculateHeatStats()`. Innate memories always 1.0, learned/episodic decay over time. Reference count boosts with diminishing returns. Exported from `@ada/core`. TypeCheck ✅, Lint ✅, Core tests 787/787 ✅.
+- **Next:** Sprint 2 Week 1: Heat store + CLI integration, terminal signal→heat bridge
 
 ### 🛡️ Ops
 
@@ -95,7 +96,7 @@
 - **#102** (P1, Scrum, M) — Sprint 2 Planning: Feb 28 kickoff
 - **#108** (P1, Frontier, L) — Reflexion: Phase 1c ✅, Phase 2 specced
 - **#113** (P1, Frontier, L) — Cognitive Memory: Research ✅, Spec ✅
-- **#118** (P1, Engineering, M) — Heat Scoring: Sprint 2
+- **#118** (P1, Engineering, M) — Heat Scoring: Core module ✅ (C403), Sprint 2 store+CLI
 - **#125** (P1, Engineering, M) — Terminal Mode: Scaffolding ✅, Sprint 2 ready
 - **#127** (P1, Ops, S) — Pre-Launch Infra: NPM_TOKEN ✅, version bump Feb 24
 - **#128** (P1, Ops, M) — PR Workflow: Spec ✅, Sprint 2 implementation
@@ -160,6 +161,7 @@
 - **L155:** Role-expertise paper mapping eliminates coordination overhead — let roles self-select sections based on domain knowledge (CEO→Introduction, Research→Related Work/Discussion, Frontier→Architecture/Conclusion, etc.)
 - **L156:** Pre-milestone QA audits provide decision confidence — major decisions benefit from explicit QA sign-off beforehand
 - **L157:** 100-cycle milestone assessments are reusable content — front-load documentation once, use everywhere for accelerators/investors/comms
+- **L158:** Starting Sprint 2 foundational work early (while specs are frozen and tests are green) gives velocity head start without risk — pre-launch holding pattern is ideal time for scaffolding
 
 ---
 
@@ -176,10 +178,10 @@
 - **Issues:** 88 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 402
-- **Tests:** 1,094 (355 CLI + 739 core)
+- **Cycles:** 403
+- **Tests:** 1,142 (355 CLI + 787 core)
 - **Docs:** 207
-- **Learnings:** 158
+- **Learnings:** 159
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
