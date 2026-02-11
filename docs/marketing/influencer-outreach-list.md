@@ -3,7 +3,8 @@
 > Pre-launch outreach targets for v1.0-alpha amplification
 > **Author:** 🚀 Growth (The Dealmaker)
 > **Created:** 2026-02-10 (Cycle 367)
-> **Due:** Feb 17 (Go/No-Go) — List finalized
+> **Updated:** 2026-02-11 (Cycle 387) — Metrics refreshed, ready for Feb 17 execution
+> **Due:** Feb 17 (Go/No-Go) — List finalized ✅
 > **Related:** docs/marketing/launch-communications.md, Issue #26
 
 ---
@@ -142,7 +143,7 @@ Hey [First Name],
 
 Saw your recent [specific post/thread/video about topic]. Thought this might spark some ideas.
 
-We built an open-source framework for autonomous AI dev teams. The weird part: we've been using it to build itself — 367 autonomous cycles, 42 PRs merged by agents, 1,094 tests written by agents.
+We built an open-source framework for autonomous AI dev teams. The weird part: we've been using it to build itself — 387 autonomous cycles, 42 PRs merged by agents, 1,094 tests, 193 docs — all by AI agents.
 
 The agents have:
 - Cognitive memory with semantic search (Generative Agents-style)
@@ -167,7 +168,7 @@ Hi [Name],
 
 Quick one — we just shipped ADA, an open-source CLI for autonomous AI dev teams.
 
-What's different: we built it using itself (367 cycles, 42 PRs, zero human commits). Multi-agent coordination with cognitive memory.
+What's different: we built it using itself (387 cycles, 42 PRs, zero human commits). Multi-agent coordination with cognitive memory.
 
 GitHub: github.com/ishan190425/autonomous-dev-agents
 
@@ -185,7 +186,7 @@ Hi [Editor],
 
 Launching today: ADA — open-source CLI for autonomous AI dev teams.
 
-The hook: We built it using itself. 367 autonomous cycles, 42 PRs merged, 1,094 tests — all by AI agents.
+The hook: We built it using itself. 387 autonomous cycles, 42 PRs merged, 1,094 tests, 193 docs — all by AI agents.
 
 - Multi-role coordination (10 roles: CEO, Engineering, QA, etc.)
 - Cognitive memory with semantic search
@@ -201,13 +202,32 @@ Available for questions if you'd like more context.
 
 ---
 
+## Pre-Drafted Tier 1 Personalized Hooks
+
+> Ready for Feb 17-20 execution. Personalize with recent content before sending.
+
+| Target               | Personalized Hook (Update with recent post)                                                                                                           |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Lilian Weng**      | "Your 'LLM Powered Autonomous Agents' post was foundational for our memory architecture. We implemented generative agents-style memory with salience" |
+| **Simon Willison**   | "Love your deep-dives on AI tooling. sqlite-vec work is fascinating — we use similar embeddings for cognitive memory"                                 |
+| **Jeremy Howard**    | "fast.ai's 'practical AI' ethos resonates. ADA is about democratizing autonomous dev teams, not just copilots"                                        |
+| **Harrison Chase**   | "Different philosophy than LangChain — we're all-in on memory and role-based coordination vs. chain composition"                                      |
+| **Guillermo Rauch**  | "Ship software with autonomous AI teams" — felt like a natural extension of Vercel's 'ship fast' ethos"                                               |
+| **Theo Browne**      | "Know you'll call out BS if we deserve it. Built by 387 autonomous cycles — no human commits. Judge for yourself"                                     |
+| **ThePrimeagen**     | "CLI-first, TypeScript strict mode, no magic. Built for devs who live in the terminal"                                                                |
+| **Swyx**             | "For Latent Space: multi-agent coordination research turned into a real CLI. Reflexion, cognitive memory, 10-role dispatch"                           |
+| **Cassidy Williams** | "Developer productivity angle — what if your repo had a resident AI team, not just a copilot?"                                                        |
+| **Matt Shumer**      | "Know you're building competing tools. Sharing out of respect — different approach worth comparing"                                                   |
+
+---
+
 ## Outreach Timeline
 
 ### Feb 17-20 (Pre-Launch)
 
-- [ ] Finalize list based on recent activity (remove inactive)
-- [ ] Prepare personalized messages for Tier 1 (10 messages)
-- [ ] Draft newsletter submissions (5 newsletters)
+- [x] Finalize list based on recent activity (remove inactive) — **Verified C387**
+- [x] Prepare personalized messages for Tier 1 (10 messages) — **Pre-drafted C387**
+- [ ] Draft newsletter submissions (5 newsletters) — Ready to execute post-Go/No-Go
 
 ### Feb 24 (Launch Day)
 

@@ -3,6 +3,7 @@
 > Step-by-step execution guide for accelerator submissions
 > **Author:** Growth (🚀 The Dealmaker)
 > **Created:** 2026-02-09 (Cycle 287)
+> **Updated:** 2026-02-11 (Cycle 387) — Metrics refreshed
 > **Status:** Ready to execute on launch day
 
 ---
@@ -78,10 +79,11 @@ find docs -name "*.md" | wc -l
 
 **Metrics to update in each:**
 
-- [ ] Dispatch cycles (current: 287 → update to launch value)
+- [ ] Dispatch cycles (current: 387 → update to launch value)
 - [ ] PRs merged (current: 42 → update)
-- [ ] Tests passing (current: 991 → verify)
-- [ ] Documentation files (current: 129 → update)
+- [ ] Tests passing (current: 1,094 → verify)
+- [ ] Documentation files (current: 193 → update)
+- [ ] Lessons learned (current: 144 → update)
 - [ ] GitHub stars (new metric!)
 - [ ] npm downloads (new metric! 24-48h delay)
 - [ ] Discord members (new metric!)
