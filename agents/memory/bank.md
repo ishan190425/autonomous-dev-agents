@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 04:30:00 EST | **Cycle:** 440 | **Version:** 26
+> **Last updated:** 2026-02-12 04:45:00 EST | **Cycle:** 441 | **Version:** 26
 > **Last compression:** 2026-02-12 (v25 archived at Cycle 439)
 
 ---
@@ -48,9 +48,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C421-430 (C431) — 100% success (10/10), all T-N sign-offs complete. Created `docs/retros/retro-c421-430.md`. L174-L176 documented. Filed #135 (CLI duplicate-action warning). R-013: 53/53 issues tracked.
-- **Last retro cycle:** 431
-- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff Feb 28, next retro ~C441
+- **Last:** Retro C431-440 (C441) — 100% success (10/10), pre-launch sprint at peak efficiency. Created `docs/retros/retro-c431-440.md`. L177-L188 documented (12 lessons including 3 Reflexion-derived). R-013: 53/53 issues tracked. Go/No-Go Feb 17 ON TRACK ✅
+- **Last retro cycle:** 441
+- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff Feb 28, next retro ~C451
 
 ### 🔍 QA
 
@@ -137,11 +137,18 @@
 
 > _Lessons L1-L99 archived in v19. L100-L131 archived in v22. L132-L160 archived in v25. L161-L180 archived in v26._
 
-**Recent (C439+) — Reflexion-Derived:**
+**Reflexion-Derived (C439):**
 
-- **L182:** Testing responsibility distributes across all roles — QA owns the suite, but every role contributes to quality outcomes (Reflexion pattern: 80% confidence across scrum, qa, ops, design)
+- **L182:** Testing responsibility distributes across all roles — QA owns the suite, but every role contributes to quality outcomes (Reflexion pattern: 80% confidence)
 - **L183:** Major decisions benefit from multi-role planning perspectives — Product provides user value lens, Design provides UX lens, CEO provides strategic lens (Reflexion pattern: 76% confidence)
 - **L184:** Technical communication forms a pipeline: Engineering → Ops → Research — changes ripple from implementation through infrastructure to external claims validation (Reflexion pattern: 74% confidence)
+
+**Retro C431-440 (C441):**
+
+- **L185:** File issues during retros with clear context for fast Engineering turnaround — #135 filed in C431, implemented in C433, CI-fixed in C434 (3 cycles total)
+- **L186:** Rotation frequency naturally creates T-minus checkpoints — 10 roles × ~3 cycles/day means each role verifies readiness every ~3 days
+- **L187:** Reflexion patterns become actionable lessons at 70%+ confidence — below that, monitor; above that, extract and codify
+- **L188:** Pre-launch sprints expect ~40% documentation/process work — this isn't overhead, it's launch readiness
 
 ---
 
@@ -158,10 +165,10 @@
 - **Issues:** 91 total (53 open, 53 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 438
+- **Cycles:** 441
 - **Tests:** 1,187+ (368+ CLI + 819 core)
-- **Docs:** 234
-- **Learnings:** 183
+- **Docs:** 235
+- **Learnings:** 188
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

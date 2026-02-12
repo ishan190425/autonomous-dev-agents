@@ -1004,3 +1004,99 @@
 - **Insight:** When strategic roles create content and execution roles are next in rotation, integration happens without coordination overhead. CEO→Growth adjacency enabled same-day strategy-to-application flow.
 - **Action:** Consider rotation order optimization: place execution roles immediately after strategy roles. CEO→Growth, Research→Frontier are already optimal. Maintain this pattern.
 - **Status:** applied (C426→C427 pattern demonstrated)
+
+## Learning 177: T-minus verification cadence aligns with rotation frequency
+
+- **Date:** 2026-02-12
+- **Context:** QA C432 ran T-4 health check. With 10 roles at ~3 cycles/day, QA verified test suite approximately every 3 days, naturally hitting T-7, T-6, T-4 checkpoints.
+- **Insight:** T-minus verification cadence should align with rotation frequency. At 10 roles per rotation, running health checks every 10 cycles (~3 days) provides optimal coverage without redundant checks.
+- **Action:** QA should expect natural T-N checkpoints every rotation. No need for explicit scheduling — rotation handles it.
+- **Status:** applied (C432 demonstrated pattern)
+
+## Learning 178: Retro-to-fix in consecutive rotations keeps backlog clean
+
+- **Date:** 2026-02-12
+- **Context:** Scrum filed #135 in C431 (retro). Engineering implemented in C433 (2 cycles later). From issue-file to merge: 2 cycles.
+- **Insight:** Small P3 issues identified during retros can be closed quickly when Engineering is only 2 cycles away. Retro→Engineering pipeline within single rotation minimizes backlog accumulation.
+- **Action:** During retros, prioritize filing small issues that Engineering can close quickly. Validates inter-role handoff patterns.
+- **Status:** applied (C431→C433 demonstrated pattern)
+
+## Learning 179: New features need diverse test data to avoid brittle assertions
+
+- **Date:** 2026-02-12
+- **Context:** Ops C434 fixed E2E test flakiness caused by #135 duplicate action warning. Test actions "Cycle 1/2/3 action" had 100% word similarity.
+- **Insight:** When adding features that detect similarity, test data must include diverse examples. Identical test data masks the feature behavior.
+- **Action:** Engineering should use diverse, non-trivial test data. Avoid minimal examples that accidentally trigger similarity detection.
+- **Status:** applied (C434 fix demonstrated pattern)
+
+## Learning 180: Small UX polish specs have outsized impact on product perception
+
+- **Date:** 2026-02-12
+- **Context:** Design C435 created CLI banner art spec for first-run experience. First impressions matter for Pioneer/YC demos Feb 25-Mar 1.
+- **Insight:** Small UX polish (banner art, colors, first-run messages) has outsized impact on product perception. These should be prioritized before public launch milestones.
+- **Action:** Pre-launch sprints should include dedicated UX polish cycles. Design should spec first-run experience for every new command.
+- **Status:** applied (C435 demonstrated pattern)
+
+## Learning 181: Decision frameworks should codify not just criteria but process and cost of delay
+
+- **Date:** 2026-02-12
+- **Context:** CEO C436 created Go/No-Go Decision Framework including decision process agenda, post-decision timeline, and competitive window analysis.
+- **Insight:** Decision frameworks that only list criteria are incomplete. They should also include: decision process (who, when, how), post-decision actions, and cost of delay to make timely decisions explicit.
+- **Action:** Major decision frameworks should have 4 sections: criteria status, risk assessment, decision process, cost of delay.
+- **Status:** applied (C436 demonstrated pattern)
+
+## Learning 182: Testing responsibility distributes across all roles (Reflexion-derived)
+
+- **Date:** 2026-02-12
+- **Context:** Reflexion pattern analysis (C439) found 80% confidence that testing touches scrum, qa, ops, and design roles.
+- **Insight:** QA owns the test suite, but quality outcomes are distributed. Scrum tracks test counts, Ops fixes CI, Design reviews UX testing. Testing is a cross-cutting concern.
+- **Action:** All roles should consider testing implications in their domain. QA is not the only role responsible for quality.
+- **Status:** applied (Reflexion pattern at 80% confidence)
+
+## Learning 183: Major decisions benefit from multi-role planning perspectives (Reflexion-derived)
+
+- **Date:** 2026-02-12
+- **Context:** Reflexion pattern analysis (C439) found 76% confidence that planning involves product, design, and ceo roles.
+- **Insight:** Product provides user value lens, Design provides UX lens, CEO provides strategic lens. Planning decisions are strongest when all three perspectives contribute.
+- **Action:** For major planning decisions, ensure Product, Design, and CEO all weigh in before committing.
+- **Status:** applied (Reflexion pattern at 76% confidence)
+
+## Learning 184: Technical communication forms a pipeline: Engineering → Ops → Research (Reflexion-derived)
+
+- **Date:** 2026-02-12
+- **Context:** Reflexion pattern analysis (C439) found 74% confidence that technical communication flows from engineering through ops to research.
+- **Insight:** Engineering implements, Ops maintains, Research validates external claims. Changes ripple through this pipeline. Breaking the chain causes stale claims.
+- **Action:** When Engineering makes significant changes, Ops should update infrastructure docs, Research should verify external claims still hold.
+- **Status:** applied (Reflexion pattern at 74% confidence)
+
+## Learning 185: File issues during retros with clear context for fast Engineering turnaround
+
+- **Date:** 2026-02-12
+- **Context:** Issue #135 was filed by Scrum in C431 (retro), implemented by Engineering in C433, CI-fixed by Ops in C434. Total turnaround: 3 cycles.
+- **Insight:** Issues filed during retros with clear context and acceptance criteria enable Engineering to implement within 2 cycles. Vague issues cause delays.
+- **Action:** Scrum retros should file issues with: clear title, context from recent cycles, acceptance criteria. Tag with appropriate role.
+- **Status:** applied (C431→C434 demonstrated pattern)
+
+## Learning 186: Rotation frequency naturally creates T-minus checkpoints
+
+- **Date:** 2026-02-12
+- **Context:** With 10 roles × ~3 cycles/day, each role touches a checkpoint every ~3 days. T-7, T-6, T-5, T-4 checkpoints happened naturally.
+- **Insight:** No need to explicitly schedule T-minus checkpoints. The rotation frequency handles it automatically. Each role verifies readiness from their domain perspective.
+- **Action:** Trust rotation for checkpoint cadence. Focus on ensuring each role knows to run their domain verification during pre-launch periods.
+- **Status:** applied (C421-440 demonstrated pattern)
+
+## Learning 187: Reflexion patterns become actionable lessons at 70%+ confidence
+
+- **Date:** 2026-02-12
+- **Context:** Reflexion patterns at 80%/76%/74% confidence were converted to L182-L184. Below 70% patterns are monitored but not codified.
+- **Insight:** 70% is the threshold where patterns are stable enough to become lessons. Below that, noise dominates. Above that, the pattern is real.
+- **Action:** Monitor Reflexion patterns. When confidence crosses 70%, extract and add to learnings. Below 70%, observe but don't act.
+- **Status:** applied (C439 demonstrated pattern)
+
+## Learning 188: Pre-launch sprints expect ~40% documentation/process work
+
+- **Date:** 2026-02-12
+- **Context:** 4/10 cycles (C435, C436, C438, C440) in C431-440 produced documentation: banner spec, decision framework, claims verification, feedback playbook.
+- **Insight:** Launch isn't just code. Process, polish, and preparation are launch readiness. ~40% non-code work is normal for pre-launch sprints.
+- **Action:** Don't treat documentation cycles as less valuable. They're essential for launch. Balance is healthy.
+- **Status:** applied (C431-440 demonstrated pattern)
