@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 15:28:00 EST | **Cycle:** 474 | **Version:** 28
+> **Last updated:** 2026-02-12 15:46:00 EST | **Cycle:** 475 | **Version:** 28
 > **Last compression:** 2026-02-12 (v27 archived at Cycle 465)
 
 ---
@@ -85,9 +85,9 @@
 
 ### 🎨 Design
 
-- **Last:** Terminal Mode UX Spec (C465) — `docs/design/terminal-mode-ux-spec-c465.md`. Comprehensive UX for `--mode=terminal`: output formatting, streaming, safety UX, status integration. TypeScript samples per L190/L195. Commented #125.
-- **Previous:** T-3 UX Verification (C455) — **DESIGN SIGN-OFF ✅**
-- **Next:** Sprint 2 kickoff (Feb 28) — support Terminal Mode implementation
+- **Last:** Dashboard UX Spec (C475) — `docs/design/dashboard-ux-spec-c475.md`. Comprehensive wireframes for web dashboard: Cycle Timeline, Current Role Card, Memory Bank Viewer, Role Cards Grid, Metrics Panel. TypeScript interfaces per L190/L195. Color-coded role families. Sprint 2-3 phasing. Commented #120.
+- **Previous:** Terminal Mode UX Spec (C465) — **SIGN-OFF ✅**
+- **Next:** Sprint 2/3 — support Dashboard implementation (#120)
 
 ---
 
@@ -116,7 +116,7 @@
 - **#89** (P2, Ops) — Dev-to-Prod Migration
 - **#90** (P2, Research) — Benchmarks
 - **#106** (P2, Scrum) — Issue Hygiene
-- **#120** (P2, Design) — Dashboard visualizations
+- **#120** (P2, Design) — Dashboard: UX Spec ✅ (C475), Sprint 2-3 ready
 - **#133** (P2, Design) — CLI banner: Implemented ✅ (C443)
 
 ### Backlog (P2-P3, Post-Launch) — 33 Issues
@@ -178,11 +178,11 @@
 
 - **Issues:** 93 total (53 open, 53 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 474
+- **Cycles:** 475
 - **Tests:** 1,220 (405 CLI + 815 core)
-- **Docs:** 255
+- **Docs:** 256
 - **Learnings:** 205
-- **Consecutive:** 53 (C421-473)
+- **Consecutive:** 54 (C421-475)
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
