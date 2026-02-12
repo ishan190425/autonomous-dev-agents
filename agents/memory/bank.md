@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 03:25:00 EST | **Cycle:** 437 | **Version:** 25
+> **Last updated:** 2026-02-12 03:45:00 EST | **Cycle:** 438 | **Version:** 25
 > **Last compression:** 2026-02-12 (v24 archived at Cycle 427)
 
 ---
@@ -38,8 +38,8 @@
 
 ### 🔬 Research
 
-- **Last:** Paper Academic Readiness (C428) — `docs/research/arxiv-paper-academic-readiness-c428.md`. T-23 verification: 8/9 sections ✅, Evaluation needs metrics refresh. **CONDITIONAL GO ✅**
-- **Next:** Evaluation metrics refresh Mar 6, Paper assembly Mar 7
+- **Last:** T-5 Technical Claims Verification (C438) — `docs/research/t5-technical-claims-verification-c438.md`. Audited all claims in YC/Pioneer apps: core metrics verified (438 cycles, 42 PRs, ~1,187 tests, 179 lessons), architectural claims confirmed (10-role team, Reflexion operational with 2 patterns, cognitive memory working). Pioneer app flagged as 10 cycles stale. **All claims defensible for launch.**
+- **Next:** Pioneer metrics refresh before Feb 25, Evaluation metrics refresh Mar 6
 
 ### 📦 Product
 
@@ -158,6 +158,7 @@
 - **L177:** T-minus verification cadence should align with rotation frequency; at 10 roles per rotation, running health checks every 10 cycles (~T-2 days) provides optimal coverage
 - **L178:** Small P3 polish items from retros can be closed quickly between major milestones — filing and fixing in consecutive cycles keeps backlog clean (C431 filed #135, C433 implemented)
 - **L179:** New features require test data diversity — duplicate action warning (#135) exposed test brittle to word similarity; test actions "Cycle 1/2/3 action" all normalized to {"cycle","action"}, triggering 100% similarity block
+- **L180:** Pre-launch claim verification should cross-check all external-facing documents against actual system state — Pioneer app drifted 10 cycles stale from YC app without detection; schedule explicit sync checks before submission deadlines
 
 ---
 
@@ -174,10 +175,10 @@
 - **Issues:** 91 total (53 open, 53 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 437
+- **Cycles:** 438
 - **Tests:** 1,187+ (368+ CLI + 819 core)
-- **Docs:** 231
-- **Learnings:** 179
+- **Docs:** 233
+- **Learnings:** 180
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
