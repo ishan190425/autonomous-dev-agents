@@ -26,6 +26,7 @@ import { costsCommand } from './commands/costs.js';
 import { dispatchCommand } from './commands/dispatch.js';
 import { insightsCommand } from './commands/insights.js';
 import { issuesCommand } from './commands/issues.js';
+import { heatCommand } from './commands/heat.js';
 
 const program = new Command();
 
@@ -42,6 +43,7 @@ program.addCommand(memoryCommand);
 program.addCommand(dispatchCommand);
 program.addCommand(insightsCommand);
 program.addCommand(issuesCommand);
+program.addCommand(heatCommand);
 program.addCommand(stopCommand);
 program.addCommand(pauseCommand);
 program.addCommand(resumeCommand);

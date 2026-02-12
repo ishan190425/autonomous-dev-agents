@@ -9,6 +9,14 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
+    },
+    "./heat": {
+      "types": "./dist/heat/index.d.ts",
+      "default": "./dist/heat/index.js"
+    },
+    "./heat/index.js": {
+      "types": "./dist/heat/index.d.ts",
+      "default": "./dist/heat/index.js"
     }
   },
   "files": [

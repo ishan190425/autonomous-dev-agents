@@ -1,29 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-12T03:47:24.213Z",
-  "cycle_count": 422,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-12T04:11:27.811Z",
+  "cycle_count": 424,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-12T00:59:39.020Z",
-      "cycle": 413,
-      "action": "⚙️ HEAT SCORING STORE MODULE (C413) — Implemented packages/core/src/heat/store.ts (587 LOC) with HeatStore class for JSONL persistence. Methods: load/save, get/set/delete, increment, getByTier, getAllWithScores, decay (dry-run support), stats. 32 new tests (store.test.ts). Atomic writes via temp file. TypeCheck ✅, Core 819/819 ✅. Follows Sprint 2 Implementation Contract §3.1. Pre-decision foundational work per L158, L164.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Following implementation contract from Sprint 2 Platform Plan gave clear spec. Pre-decision holding pattern is productive — built Sprint 2 infra without risk. Lesson: L164 validated — foundational work during spec-frozen periods accelerates next sprint."
-      }
-    },
-    {
-      "role": "ops",
-      "timestamp": "2026-02-12T01:20:15.004Z",
-      "cycle": 414,
-      "action": "🛡️ T-0 OPS READINESS CHECKLIST (C414) — Created docs/ops/t0-ops-readiness-checklist-c414.md complementing QA's T-0 protocol. Covers: CI/CD health, NPM_TOKEN verification, publish pipeline dry-run, version readiness, external services. Provides Ops-specific Go/No-Go criteria and report template. Coordinates with QA C412 for Feb 17 decision. Current health: CI ✅, TypeCheck ✅, Lint ✅ (0 errors/7 warnings), Core 819/819 ✅. Commented #127, #26.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Pre-decision holding pattern enables complementary verification docs — Ops T-0 checklist fills infrastructure gap alongside QA's code quality focus. Lesson: Multiple roles can create parallel T-0 protocols that coordinate rather than duplicate — separation of concerns (infrastructure vs quality) reduces decision-day cognitive load."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-12T01:38:03.371Z",
@@ -103,7 +83,27 @@
         "outcome": "success",
         "whatWorked": "What worked: Daily health checks during T-minus countdown provide objective decision confidence. Lesson: L171 — T-N milestone checkpoints (T-7, T-6...) create audit trail showing continuous readiness, not just point-in-time Go/No-Go decisions."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-12T04:11:11.642Z",
+      "cycle": 423,
+      "action": "⚙️ HEAT CLI SCAFFOLDING (C423) — Created packages/cli/src/commands/heat.ts (320 LOC) with full Sprint 2 command scaffolding. Commands: heat (summary), heat list (tier filter), heat decay (dry-run), heat boost (ref increment), heat get (single entry). Added @ada/core package.json exports for ./heat subpath. 14 new CLI tests. TypeCheck ✅. Addresses Frontier C419 gap (boost via CLI). Follows L158/L164: pre-decision foundational work.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Heat module subpath export pattern — clean separation between core types and implementation while enabling direct imports. Lesson: Package.json exports field enables module-level granularity without polluting main barrel export."
+      }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-12T04:11:27.811Z",
+      "cycle": 424,
+      "action": "⚙️ HEAT CLI SCAFFOLDING (C423) — Created packages/cli/src/commands/heat.ts (320 LOC) with full Sprint 2 command scaffolding. Commands: heat (summary), heat list (tier filter), heat decay (dry-run), heat boost (ref increment), heat get (single entry). Added @ada/core package.json exports for ./heat subpath. 14 new CLI tests. TypeCheck ✅. Addresses Frontier C419 gap (boost via CLI). Follows L158/L164: pre-decision foundational work.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Heat module subpath export pattern — clean separation between core types and implementation while enabling direct imports. Lesson: Package.json exports field enables module-level granularity without polluting main barrel export."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🎨 design"
 }

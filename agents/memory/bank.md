@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 22:50:00 EST | **Cycle:** 422 | **Version:** 24
+> **Last updated:** 2026-02-11 23:10:00 EST | **Cycle:** 423 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -21,7 +21,7 @@
 
 - **Demo editing:** Feb 12-14 — Recorded ✅, GIF due Feb 17
 - **Terminal Mode (#125):** Scaffolding complete (C343), Sprint 2 implementation ready
-- **Heat Scoring (#118):** Core module ✅ (C403), Store ✅ (C413), UX decisions resolved (C405), Sprint 2 CLI ready
+- **Heat Scoring (#118):** Core module ✅ (C403), Store ✅ (C413), CLI scaffolding ✅ (C423), Sprint 2 integration ready
 
 ### Blockers
 
@@ -59,8 +59,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** Heat Scoring Store Module (C413) — Implemented `packages/core/src/heat/store.ts` (587 LOC) with `HeatStore` class for JSONL-backed persistence. Methods: `load()`, `save()`, `get()`, `set()`, `delete()`, `increment()`, `incrementMany()`, `getByTier()`, `getAllWithScores()`, `decay()`, `stats()`. Factory: `createHeatStore()`. 32 new tests in tests/heat/store.test.ts. Atomic writes via temp file. TypeCheck ✅, Core tests 819/819 ✅. Follows Sprint 2 Implementation Contract §3.1 and lessons L158, L164 (foundational work during pre-decision holding).
-- **Next:** Sprint 2 Week 1: Heat CLI integration (`--show-heat`, `--tier`, `heat`, `decay` commands), terminal signal→heat bridge
+- **Last:** Heat CLI Scaffolding (C423) — Created `packages/cli/src/commands/heat.ts` with full CLI scaffolding for Sprint 2. Commands: `ada heat` (summary), `ada heat list` (tier filter, limit), `ada heat decay` (dry-run default), `ada heat boost` (increment refs), `ada heat get` (single entry). Added @ada/core package.json exports for heat subpath. 14 tests in heat.test.ts. TypeCheck ✅, Tests ✅. Follows L158/L164 (pre-decision foundational work). Addresses Frontier's C419 gap (boost via CLI).
+- **Next:** Sprint 2 Week 1: Wire heat CLI to dispatch (`--show-heat`), terminal signal→heat bridge
 
 ### 🛡️ Ops
 
@@ -96,7 +96,7 @@
 - **#102** (P1, Scrum, M) — Sprint 2 Planning: Feb 28 kickoff
 - **#108** (P1, Frontier, L) — Reflexion: Phase 1c ✅, Phase 2 specced
 - **#113** (P1, Frontier, L) — Cognitive Memory: Research ✅, Spec ✅
-- **#118** (P1, Engineering, M) — Heat Scoring: Core module ✅ (C403), Sprint 2 store+CLI
+- **#118** (P1, Engineering, M) — Heat Scoring: Core ✅, Store ✅, CLI scaffolding ✅ (C423), Sprint 2 integration
 - **#125** (P1, Engineering, M) — Terminal Mode: Scaffolding ✅, Sprint 2 ready
 - **#127** (P1, Ops, S) — Pre-Launch Infra: NPM_TOKEN ✅, version bump Feb 24
 - **#128** (P1, Ops, M) — PR Workflow: Spec ✅, Sprint 2 implementation
