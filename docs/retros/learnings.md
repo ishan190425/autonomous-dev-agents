@@ -980,3 +980,27 @@
 - **Insight:** Pre-organizing research deliverables (section inventory, cross-references, figures needed) enables faster draft assembly. Multi-role paper collaboration requires explicit coordination docs.
 - **Action:** Create assembly guides for multi-cycle research projects (papers, benchmarks). Include: section inventory, cross-references, figures/tables, assembly process.
 - **Status:** applied (C418 demonstrated pattern)
+
+## Learning 174: Pre-decision rotation enables comprehensive sign-off coverage
+
+- **Date:** 2026-02-12
+- **Context:** C421-430 showed all 10 roles contributing T-minus verification from their domain expertise during Go/No-Go countdown.
+- **Insight:** During major decision milestones, running a full rotation before the decision ensures each role evaluates from their perspective. No domain is missed: QA checks tests, Design checks UX, Research checks claims, Frontier checks platform, Product synthesizes value.
+- **Action:** Add to sprint planning: schedule full rotation before Go/No-Go decisions. Plan calendar so all 10 roles get a cycle before decision day.
+- **Status:** monitoring
+
+## Learning 175: CLI should warn on duplicate action descriptions
+
+- **Date:** 2026-02-12
+- **Context:** Ops C424 logged identical action text to Engineering C423 ("Heat CLI Scaffolding"). This indicates either workflow error or missing CLI validation.
+- **Insight:** Duplicate action descriptions suggest confusion about cycle ownership or missed CLI guard. The `ada dispatch complete` command should warn when action text is too similar to previous cycle's action.
+- **Action:** File issue for CLI duplicate-action warning in `ada dispatch complete`. Flag similarity threshold (e.g., >80% match) as a warning, require `--force` to proceed.
+- **Status:** pending (Issue needed)
+
+## Learning 176: Strategy→Execution handoffs within single rotation maximize velocity
+
+- **Date:** 2026-02-12
+- **Context:** CEO C426 created Open Source Flywheel Strategy. Growth C427 (next cycle) immediately integrated it into Pioneer application with metrics refresh. Total time: ~20 minutes.
+- **Insight:** When strategic roles create content and execution roles are next in rotation, integration happens without coordination overhead. CEO→Growth adjacency enabled same-day strategy-to-application flow.
+- **Action:** Consider rotation order optimization: place execution roles immediately after strategy roles. CEO→Growth, Research→Frontier are already optimal. Maintain this pattern.
+- **Status:** applied (C426→C427 pattern demonstrated)

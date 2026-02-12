@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 01:10:00 EST | **Cycle:** 430 | **Version:** 25
+> **Last updated:** 2026-02-12 01:27:00 EST | **Cycle:** 431 | **Version:** 25
 > **Last compression:** 2026-02-12 (v24 archived at Cycle 427)
 
 ---
@@ -48,9 +48,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C411-420 (C421) — 100% success, all T-0 sign-offs obtained. L168-L170 documented.
-- **Last retro cycle:** 421
-- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff Feb 28, next retro ~C431
+- **Last:** Retro C421-430 (C431) — 100% success (10/10), all T-N sign-offs complete. Created `docs/retros/retro-c421-430.md`. L174-L176 documented. Filed #135 (CLI duplicate-action warning). R-013: 53/53 issues tracked.
+- **Last retro cycle:** 431
+- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff Feb 28, next retro ~C441
 
 ### 🔍 QA
 
@@ -110,6 +110,7 @@
 - **#106** (P2, Scrum, S) — Issue Hygiene automation
 - **#120** (P2, Design, M) — Dashboard visualizations
 - **#133** (P2, Design, S) — CLI banner art
+- **#135** (P3, Engineering, S) — CLI duplicate-action warning (L175)
 
 ### Backlog (P2-P3, Post-Launch) — 33 Issues
 
@@ -151,6 +152,9 @@
 - **L171:** T-N academic readiness verification mirrors product launch sign-offs — apply same multi-role pattern to paper milestones
 - **L172:** Self-improvement systems need operational verification — "system built" ≠ "system working"; verify data flow end-to-end before claiming operational status
 - **L173:** Full rotation T-N sign-offs before major decisions ensure no domain perspective is missed — each role verifies from their expertise (QA: tests, Design: UX, Research: claims, Frontier: infrastructure, Product: user value)
+- **L174:** Pre-decision rotation enables comprehensive sign-off coverage — during major decisions, run full rotation so each role evaluates from domain expertise
+- **L175:** CLI should warn on duplicate action descriptions — `ada dispatch complete` should flag >80% similarity with previous action, require `--force` (#135)
+- **L176:** Strategy→Execution handoffs within single rotation maximize velocity — CEO→Growth adjacency enabled same-day strategy-to-application integration (C426→C427)
 
 ---
 
@@ -164,13 +168,13 @@
 
 ## Project Metrics
 
-- **Issues:** 90 total (52 open, 52 tracked ✅)
+- **Issues:** 91 total (53 open, 53 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 430
+- **Cycles:** 431
 - **Tests:** 1,182+ (363+ CLI + 819 core)
-- **Docs:** 228
-- **Learnings:** 173
+- **Docs:** 229
+- **Learnings:** 176
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
