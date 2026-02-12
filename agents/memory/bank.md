@@ -2,8 +2,8 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 16:04:00 EST | **Cycle:** 476 | **Version:** 28
-> **Last compression:** 2026-02-12 (v27 archived at Cycle 465)
+> **Last updated:** 2026-02-12 16:23:00 EST | **Cycle:** 477 | **Version:** 29
+> **Last compression:** 2026-02-12 (v28 archived at Cycle 477)
 
 ---
 
@@ -11,32 +11,28 @@
 
 ### Active Sprint
 
-- **Sprint 1:** 2026-02-14 → 2026-02-28 — Goal: Ship v1.0-alpha (**ACCELERATED: Feb 14-17**)
+- **Sprint 1:** 2026-02-14 → 2026-02-28 — Goal: Ship v1.0-alpha (**SHIPPING Feb 14-17**)
 
 ### Launch Status (Issue #26)
 
 🚀 **GO DECISION MADE (C476)** — Human directive: "Launch without GIF✌️"
 
-**MUST Criteria: 6/6 COMPLETE ✅** — All criteria met, all sign-offs verified.
-
-### Sign-offs Complete (All roles verified)
-
-- QA (C462): Tests 1,220 ✅ | Engineering (C463): Code ✅ | Ops (C464): Infra ✅ | Design (C455): UX ✅
+**All MUST Criteria: 6/6 COMPLETE ✅** — All sign-offs verified, launch communications ready.
 
 ### Accelerated Timeline
 
-| Previous        | Now                       |
-| --------------- | ------------------------- |
-| Go/No-Go Feb 17 | ✅ **GO NOW** (Feb 12)    |
-| Launch Feb 24   | **Feb 14-17**             |
-| Wait for GIF    | **Ship now, GIF follows** |
+| Previous        | Now                     |
+| --------------- | ----------------------- |
+| Go/No-Go Feb 17 | ✅ **GO** (Feb 12)      |
+| Launch Feb 24   | **Feb 14-17**           |
+| Wait for GIF    | **Ship now, GIF later** |
 
 ### In Progress
 
-- **Launch execution:** Growth → announcement, Ops → version bump
-- **GIF:** Ships post-launch (nice-to-have)
-- **Terminal Mode (#125):** UX Spec ✅ (C465), Sprint 2 ready
-- **Heat Scoring (#118):** All phases ✅, Sprint 2 integration ready
+- **Launch execution:** Growth → announcements ready (C477), Ops → version bump
+- **GIF:** Ships post-launch
+- **Terminal Mode (#125):** Sprint 2 ready
+- **Heat Scoring (#118):** Sprint 2 ready
 
 ### Blockers
 
@@ -48,57 +44,53 @@
 
 ### 👔 CEO
 
-- **Last:** GO DECISION (C476) — Human directive "Launch without GIF✌️" received. Approved timeline acceleration. Created `docs/business/launch-decision-c476.md`. Closed #138, commented #26 with GO status. Launch Feb 14-17.
-- **Next:** Monitor launch execution, support Growth/Ops/Product
+- **Last:** GO DECISION (C476) — Approved timeline acceleration. Launch Feb 14-17.
+- **Next:** Monitor launch execution
 
 ### 🚀 Growth
 
-- **Last:** T-5 Final Application Sync (C467) — Updated Pioneer and YC applications with C467 metrics. Cycles: 467, PRs: 43, Tests: 1,220, Docs: 250, Lessons: 201. Commented #74, #39.
-- **Next:** GIF due Feb 17 (T-5), Pioneer Feb 25 (T-13), YC Mar 1 (T-17)
+- **Last:** Launch Communications Acceleration (C477) — Created `docs/marketing/launch-acceleration-update-c477.md`. All comms updated for Feb 14-17. Metrics: 477 cycles, 1,220 tests, 43 PRs, 56 consecutive. Twitter/Discord/Reddit/HN ready. Commented #26.
+- **Next:** Execute announcements when Ops triggers npm publish. Pioneer Feb 25, YC Mar 1.
 
 ### 🔬 Research
 
-- **Last:** Pattern Extraction Methodology (C468) — Research doc for Sprint 2 Reflexion Phase 2. Recommends hybrid keyword+embedding approach. Addresses Open Questions #1 and #2 from C459 roadmap. Commented #108.
-- **Next:** Paper assembly Mar 7, evaluation metrics refresh Mar 6
+- **Last:** Pattern Extraction Methodology (C468) — Sprint 2 Reflexion Phase 2 research. Commented #108.
+- **Next:** Paper assembly Mar 7
 
 ### 🌌 Frontier
 
-- **Last:** Reflexion Phase 2 Implementation Spec (C469) — Engineering-ready spec translating C468 research into code. Full TypeScript signatures, CLI commands, test specs. Keyword clustering MVP, role-tagging for cross-role patterns, 70% confidence threshold. Commented #108.
-- **Next:** Sprint 2 Week 1: Execute spec, implement keywords.ts + clusters.ts (Feb 28+)
+- **Last:** Reflexion Phase 2 Implementation Spec (C469) — Engineering-ready spec. Commented #108.
+- **Next:** Sprint 2: Execute spec (Feb 28+)
 
 ### 📦 Product
 
-- **Last:** Timeline Acceleration Response (C470) — Responded to #138 (timeline constraints critique). Agreed countdown ceremony excessive, identified GIF as only real blocker. Proposed CEO execute Go/No-Go when GIF ready (potentially Feb 14-17). Commented #138. R-013: 53/53 tracked.
-- **Next:** Support Go/No-Go execution, execute runbook when launch happens
+- **Last:** Timeline Acceleration Response (C470) — Responded to #138. Commented #138.
+- **Next:** Support launch runbook execution
 
 ### 📋 Scrum
 
-- **Last:** Retro C461-470 (C471) — 100% success, 50 consecutive (C421-470). L202-L205. Multi-role T-5 verification documented. Research→Frontier pipeline pattern identified. Human feedback integration (#138) captured.
-- **Next:** T-0 verification Feb 17, next retro ~C481
+- **Last:** Retro C461-470 (C471) — 100% success, 50 consecutive (C421-470). L202-L205.
+- **Next:** T-0 verification when Ops triggers, next retro ~C481
 
 ### 🔍 QA
 
-- **Last:** T-4 QA Health Report (C472) — Full coverage audit. Core 87.7% (exceeds 80% target), CLI lib 87.36%. Tests 1,220 ✅ confirmed, no regression. Created `docs/qa/t4-qa-health-report-c472.md` with T-0 checklist. Commented #26.
-- **Previous:** T-5 Health Audit (C462) — 1,220 tests ✅. **QA SIGN-OFF ✅**
-- **Next:** T-0 verification Feb 17
+- **Last:** T-4 QA Health Report (C472) — Core 87.7% coverage, 1,220 tests ✅. Created `docs/qa/t4-qa-health-report-c472.md`.
+- **Next:** T-0 verification when launch executes
 
 ### ⚙️ Engineering
 
-- **Last:** T-4 Code Quality Sweep (C473) — Fixed all 16 lint warnings (9 CLI + 7 core). Eliminated non-null assertions and explicit any types. Type-safe patterns for Map.get() and array access. All tests passing.
-- **Previous:** T-5 Technical Readiness (C463) — **ENGINEERING SIGN-OFF ✅**
-- **Next:** Sprint 2 Week 1: Wire heat CLI to dispatch (Feb 28+)
+- **Last:** T-4 Code Quality Sweep (C473) — Fixed all 16 lint warnings. Clean codebase.
+- **Next:** Sprint 2: Wire heat CLI to dispatch (Feb 28+)
 
 ### 🛡️ Ops
 
-- **Last:** T-3 Release Readiness (C474) — 15 consecutive green CI (+5 since T-5). Created version bump procedure (`docs/ops/t3-release-readiness-c474.md`). Lint 0 warnings confirmed post-C473. Commented #26.
-- **Previous:** T-5 Ops Health Watch (C464) — **OPS SIGN-OFF ✅**
-- **Next:** T-0 verification Feb 17, version bump Feb 24
+- **Last:** T-3 Release Readiness (C474) — 15 consecutive green CI. Version bump procedure ready (`docs/ops/t3-release-readiness-c474.md`).
+- **Next:** **Execute version bump & npm publish (Feb 14-17)**
 
 ### 🎨 Design
 
-- **Last:** Dashboard UX Spec (C475) — `docs/design/dashboard-ux-spec-c475.md`. Comprehensive wireframes for web dashboard: Cycle Timeline, Current Role Card, Memory Bank Viewer, Role Cards Grid, Metrics Panel. TypeScript interfaces per L190/L195. Color-coded role families. Sprint 2-3 phasing. Commented #120.
-- **Previous:** Terminal Mode UX Spec (C465) — **SIGN-OFF ✅**
-- **Next:** Sprint 2/3 — support Dashboard implementation (#120)
+- **Last:** Dashboard UX Spec (C475) — `docs/design/dashboard-ux-spec-c475.md`. Sprint 2-3 ready.
+- **Next:** Support Dashboard implementation (#120)
 
 ---
 
@@ -106,19 +98,19 @@
 
 ### Active (P0-P1, In Progress)
 
-- **#26** (P0, CEO, L) — LAUNCH: 6/6 MUST ✅, **GO DECISION MADE (C476)** — Ship Feb 14-17
-- **#39** (P0, Growth, M) — Demo: GIF ships post-launch (not blocking)
-- **#132** (P1, CEO, S) — Role Focus: Only CEO coordinates launch ✅
+- **#26** (P0, Ops, L) — LAUNCH: **GO DECISION MADE**, Ops executes version bump
+- **#39** (P0, Growth, M) — Demo: GIF ships post-launch
+- **#132** (P1, CEO, S) — Role Focus ✅
 - **#134** (P1, Growth, M) — Open Source Flywheel ✅
-- **#34** (P1, QA, L) — E2E Testing: Phase 1 ✅, Phase 2 post-launch
+- **#34** (P1, QA, L) — E2E Testing: Phase 1 ✅
 - **#74** (P1, Growth, M) — Accelerator Strategy ✅
-- **#102** (P1, Scrum, M) — Sprint 2 Planning: Feb 28 kickoff
-- **#108** (P1, Frontier, L) — Reflexion: Phase 1 OPERATIONAL ✅, Phase 2 specced
-- **#113** (P1, Frontier, L) — Cognitive Memory: Spec ✅
-- **#118** (P1, Engineering, M) — Heat Scoring: All phases ✅
-- **#125** (P1, Engineering, M) — Terminal Mode: UX Spec ✅ (C465), Sprint 2 ready
+- **#102** (P1, Scrum, M) — Sprint 2 Planning: Feb 28
+- **#108** (P1, Frontier, L) — Reflexion: Phase 1 ✅, Phase 2 specced
+- **#113** (P1, Frontier, L) — Cognitive Memory ✅
+- **#118** (P1, Engineering, M) — Heat Scoring ✅
+- **#125** (P1, Engineering, M) — Terminal Mode ✅
 - **#127** (P1, Ops, S) — Pre-Launch Infra ✅
-- **#128** (P1, Ops, M) — PR Workflow: Spec ✅, Sprint 2
+- **#128** (P1, Ops, M) — PR Workflow: Sprint 2
 
 ### Active (P2, Current Sprint)
 
@@ -126,8 +118,8 @@
 - **#89** (P2, Ops) — Dev-to-Prod Migration
 - **#90** (P2, Research) — Benchmarks
 - **#106** (P2, Scrum) — Issue Hygiene
-- **#120** (P2, Design) — Dashboard: UX Spec ✅ (C475), Sprint 2-3 ready
-- **#133** (P2, Design) — CLI banner: Implemented ✅ (C443)
+- **#120** (P2, Design) — Dashboard: UX Spec ✅
+- **#133** (P2, Design) — CLI banner ✅
 
 ### Backlog (P2-P3, Post-Launch) — 33 Issues
 
@@ -143,40 +135,22 @@
 | Date      | Milestone   | Status           |
 | --------- | ----------- | ---------------- |
 | Feb 12    | Go/No-Go    | ✅ **GO** (C476) |
-| Feb 14-17 | v1.0-alpha  | 🚀 **SHIPPING**  |
+| Feb 14-17 | v1.0-alpha  | 🚀 **READY**     |
 | Feb 25    | Pioneer     | DEMO READY ✅    |
 | Mar 1     | YC          | DEMO READY ✅    |
 | Mar 7     | arXiv Draft | 🟢 ON TRACK      |
 
 ---
 
-## Key Lessons (L198+)
+## Key Lessons (L202+)
 
-> _Lessons L1-L99 archived v19. L100-L131 archived v22. L132-L160 archived v25. L161-L197 archived v27._
+> _Lessons L1-L197 archived v27-v28._
 
-**Human Directive Response (C476):**
-
-- **L206:** Human directives override automated timelines. When human says "ship now," ship now. Don't wait for process. (C476, #138)
-
-**Retro C461-470 (C471) — Most Recent:**
-
-- **L202:** Multi-role verification sweeps should engage 4+ roles for major milestones. Independent confirmation > consensus meeting. (C462-C467)
-- **L203:** Cross-role handoffs should minimize cycle gaps. Research→Frontier adjacency enables same-day translation. Knowledge decay is real. (C468→C469)
-- **L204:** Human meta-feedback deserves same-cycle response. Process isn't sacred; outcomes are. (#138 → C470)
-- **L205:** Always verify quoted metrics against source at checkpoint boundaries. Memory bank metrics are cached; source is authoritative. (C466)
-
-**Retro C451-460 (C461):**
-
-- **L198:** Bug verification should return to the discovering role — Design→Engineering→Design closes the loop
-- **L199:** Major milestones need three doc types: reactive (FAQ), decision (memo), operational (runbook)
-- **L200:** T-minus checkpoints should be multiple (T-5, T-3, T-0) — each catches different issues
-- **L201:** Research deliverables stack: outline → literature → draft
-
-**Key Patterns (from v27):**
-
-- **L190/L195:** Design specs with TypeScript samples accelerate Engineering
-- **L192:** T-5 verification sweeps: QA + Ops + Engineering before CEO synthesis
-- **L197:** Pre-draft decision memos before decision day
+- **L206:** Human directives override automated timelines. Ship when told. (C476)
+- **L205:** Always verify quoted metrics against source at checkpoints. (C466)
+- **L204:** Human meta-feedback deserves same-cycle response. (C470)
+- **L203:** Research→Frontier adjacency enables same-day translation. (C468→C469)
+- **L202:** Multi-role verification > consensus meetings. (C462-C467)
 
 ---
 
@@ -190,15 +164,17 @@
 
 ## Project Metrics
 
-- **Issues:** 94 total (52 open, 52 tracked ✅) — #138 closed C476
+- **Issues:** 94 total (51 open, 51 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 476
+- **Cycles:** 477
 - **Tests:** 1,220 (405 CLI + 815 core)
+- **Coverage:** 87%+ (core 87.7%, CLI 87.36%)
 - **Docs:** 257
 - **Learnings:** 206
-- **Consecutive:** 55 (C421-476)
+- **Consecutive:** 56 (C421-477)
+- **Compressions:** 29
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
 
-_Compressed v27→v28 on 2026-02-12 (C465). Archive: agents/memory/archives/bank-2026-02-12-v27.md_
+_Compressed v28→v29 on 2026-02-12 (C477). Archive: agents/memory/archives/bank-2026-02-12-v28.md_
