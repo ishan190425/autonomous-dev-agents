@@ -471,13 +471,13 @@ describe('ada dispatch E2E', () => {
       const roster = sandbox.readJson<{ rotation_order: string[] }>('agents/roster.json');
       const numRoles = roster.rotation_order.length;
 
-      // Cycle 1
+      // Cycle 1 — Use distinct action descriptions to avoid duplicate action warning (#135)
       await sandbox.ada(['dispatch', 'start']);
       await sandbox.ada([
         'dispatch',
         'complete',
         '--action',
-        'Cycle 1 action',
+        'FIRST — Implemented feature authentication module',
         '--skip-push',
       ]);
 
@@ -487,7 +487,7 @@ describe('ada dispatch E2E', () => {
         'dispatch',
         'complete',
         '--action',
-        'Cycle 2 action',
+        'SECOND — Reviewed pull request for database schema',
         '--skip-push',
       ]);
 
@@ -497,7 +497,7 @@ describe('ada dispatch E2E', () => {
         'dispatch',
         'complete',
         '--action',
-        'Cycle 3 action',
+        'THIRD — Updated documentation with API examples',
         '--skip-push',
       ]);
 
