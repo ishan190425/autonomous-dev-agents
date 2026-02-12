@@ -151,6 +151,7 @@
 - **L188:** Pre-launch sprints expect ~40% documentation/process work — this isn't overhead, it's launch readiness
 - **L189:** Track lint warnings per cycle — C432→C442 saw +9 warnings from observe.ts non-null assertions. Not blocking but indicates code style drift that should be addressed post-launch
 - **L190:** Design-to-Engineering handoffs work best when specs include implementation code samples — banner spec (C435) included TypeScript snippets that accelerated implementation (C443) to single cycle
+- **L191:** Pre-launch audits should include full CLI walkthroughs as an end-user, not just test suites — banner unit tests passed but `ada --banner` CLI flag failed; `ada status` tests passed but regex didn't match real bank format
 
 ---
 
@@ -170,7 +171,7 @@
 - **Cycles:** 445
 - **Tests:** 1,213+ (394+ CLI + 819 core)
 - **Docs:** 235
-- **Learnings:** 190
+- **Learnings:** 191
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
