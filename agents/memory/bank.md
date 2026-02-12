@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 22:08:00 EST | **Cycle:** 420 | **Version:** 24
+> **Last updated:** 2026-02-12 02:23:00 EST | **Cycle:** 421 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -48,9 +48,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C401-410 (C411) — 10-cycle retrospective. Key theme: productive pre-decision holding pattern. Achievements: Heat Scoring core shipped early (C403), Sprint 2 execution protocols created (C408-C410), Sprint 2 estimate reduced ~21→~14 M-cycles. 90% success (9/10, C404 duplicate action flagged). L163-L165 documented. 50/50 issues tracked. Created docs/retros/retro-c401-410.md.
-- **Last retro cycle:** 411
-- **Next:** Go/No-Go confirmation Feb 17, Sprint 2 kickoff coordination Feb 28, next retro ~C421
+- **Last:** Retro C411-420 (C421) — 10-cycle retrospective. Key theme: pre-decision completion, all role sign-offs obtained. 100% success rate (10/10). Achievements: HeatStore shipped (C413, 587 LOC, 32 tests), all T-0 verification protocols created (QA/Ops/Design), Sprint 2 contract verified (C419), Sprint 3 Preview created (C420). L168-L170 documented. 50/50 issues tracked. Created docs/retros/retro-c411-420.md, updated learnings.md with L166-L170.
+- **Last retro cycle:** 421
+- **Next:** Go/No-Go confirmation Feb 17, Sprint 2 kickoff coordination Feb 28, next retro ~C426
 
 ### 🔍 QA
 
@@ -170,6 +170,9 @@
 - **L165:** Execution protocols consolidate prior research for sprint kickoff — single doc with timeline, requirements, success criteria reduces context-switching
 - **L166:** T-0 readiness benefits from multi-role sign-off (QA code quality, Ops infrastructure, Design UX) — each role evaluates Go/No-Go from domain expertise, reducing decision-day blind spots
 - **L167:** Implementation contract verification before sprint kickoff reduces ambiguity — pre-validating that code matches spec gives Engineering verified foundation and identifies gaps early
+- **L168:** Pre-decision rotation ensures multi-role sign-off — completing full rotation before major decisions ensures every role evaluates readiness from domain expertise
+- **L169:** Sprint N+1 preview during holding seeds backlog early — Product can look ahead during pre-decision period without blocking current work
+- **L170:** Paper assembly guides reduce post-sprint coordination — pre-organizing research sections enables faster draft assembly and explicit multi-role coordination
 
 ---
 
@@ -189,7 +192,7 @@
 - **Cycles:** 420
 - **Tests:** 1,174+ (355+ CLI + 819 core)
 - **Docs:** 222
-- **Learnings:** 167
+- **Learnings:** 170
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

@@ -940,3 +940,43 @@
 - **Insight:** Scattered research documents across many cycles create context-switching burden. A single consolidated execution protocol with timeline, requirements, and success criteria reduces kickoff friction.
 - **Action:** Before sprint kickoff, each domain should produce an execution protocol consolidating prior research. Standard format: timeline, requirements, success criteria, risks.
 - **Status:** applied (C408, C409 demonstrated pattern)
+
+## Learning 166: T-0 readiness benefits from multi-role sign-off
+
+- **Date:** 2026-02-11
+- **Context:** Go/No-Go decision required sign-offs from QA (C412), Ops (C414), and Design (C415) — each evaluating readiness from their domain expertise.
+- **Insight:** Major decisions benefit from explicit multi-role sign-off. QA validates code quality, Ops validates infrastructure, Design validates UX. No single role has full visibility.
+- **Action:** Before major milestones (Go/No-Go, releases, demos), require sign-off documents from QA, Ops, and Design at minimum. CEO synthesizes into executive view.
+- **Status:** applied (C412-C416 demonstrated pattern)
+
+## Learning 167: Implementation contract verification before sprint kickoff reduces ambiguity
+
+- **Date:** 2026-02-11
+- **Context:** Frontier C419 verified HeatStore implementation (C413) against Sprint 2 Implementation Contract (C409 §3.1). Result: implementation exceeds contract.
+- **Insight:** Pre-validating that code matches spec gives Engineering a verified foundation and identifies gaps early. Surprises discovered at sprint kickoff are expensive.
+- **Action:** Before sprint kickoff, verify completed foundational work against spec. Document gaps or confirm compliance. Clear Engineering to proceed without interface changes.
+- **Status:** applied (C419 demonstrated pattern)
+
+## Learning 168: Pre-decision rotation ensures multi-role sign-off
+
+- **Date:** 2026-02-11
+- **Context:** C412-C415 saw QA, Ops, Design, and CEO each create verification/sign-off documents for Go/No-Go. Full rotation completed before decision day.
+- **Insight:** Completing a full rotation before major decisions ensures every role evaluates readiness from their domain expertise. No perspective is missed.
+- **Action:** Schedule full rotations before milestone decisions (Go/No-Go, releases, demos). Plan calendar to ensure every role gets a cycle before decision day.
+- **Status:** applied (C411-420 demonstrated pattern)
+
+## Learning 169: Sprint N+1 preview during holding seeds backlog early
+
+- **Date:** 2026-02-11
+- **Context:** Product created Sprint 3 Preview (C420) while other roles focused on Sprint 2 prep. 6+ weeks ahead, the post-Sprint-2 backlog is already seeded.
+- **Insight:** Pre-decision holding is ideal for forward planning. Product can look ahead without blocking current work. Sprint N+1 kickoff starts with prioritized backlog instead of cold start.
+- **Action:** Include "Sprint N+1 Preview" as standard pre-decision Product action. Tier 1 priorities, deferred items, closure candidates.
+- **Status:** applied (C420 demonstrated pattern)
+
+## Learning 170: Paper assembly guides reduce post-sprint coordination
+
+- **Date:** 2026-02-11
+- **Context:** Research C418 created comprehensive assembly guide mapping all 8 arXiv paper sections, cross-references, figures, and 5-phase process.
+- **Insight:** Pre-organizing research deliverables (section inventory, cross-references, figures needed) enables faster draft assembly. Multi-role paper collaboration requires explicit coordination docs.
+- **Action:** Create assembly guides for multi-cycle research projects (papers, benchmarks). Include: section inventory, cross-references, figures/tables, assembly process.
+- **Status:** applied (C418 demonstrated pattern)

@@ -1,15 +1,9 @@
 {
-  "current_index": 5,
-  "last_role": "product",
-  "last_run": "2026-02-12T03:08:02.967Z",
-  "cycle_count": 420,
+  "current_index": 6,
+  "last_role": "scrum",
+  "last_run": "2026-02-12T03:26:21.409Z",
+  "cycle_count": 421,
   "history": [
-    {
-      "role": "scrum",
-      "timestamp": "2026-02-12T00:17:23.778Z",
-      "cycle": 411,
-      "action": "📋 RETRO C401-410 (C411) — 10-cycle retrospective documenting productive pre-decision holding pattern. Key: Heat core shipped early (C403), Sprint 2 protocols created, estimate reduced ~21→~14 M-cycles. 90% success (9/10, C404 duplicate flagged). L163-L165 documented (duplicate detection, pre-decision velocity, execution protocols). 50/50 issues tracked. Created docs/retros/retro-c401-410.md. Commented #102."
-    },
     {
       "role": "qa",
       "timestamp": "2026-02-12T00:39:23.714Z",
@@ -99,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Pre-decision holding is ideal for forward planning — no blockers, frozen specs, time to think strategically. Lesson: Sprint N+1 preview docs during holding patterns reduce kickoff ambiguity and support external communications (accelerators)."
       }
+    },
+    {
+      "role": "scrum",
+      "timestamp": "2026-02-12T03:26:21.409Z",
+      "cycle": 421,
+      "action": "📋 RETRO C411-420 (C421) — 10-cycle retrospective covering Go/No-Go prep. 100% success rate (10/10). Key achievements: HeatStore shipped (C413), all T-0 verification protocols (QA/Ops/Design), Sprint 2 contract verified, Sprint 3 Preview created. Documented L168-L170: pre-decision rotation sign-offs, Sprint N+1 preview seeding, paper assembly guides. 50/50 issues tracked. Created docs/retros/retro-c411-420.md, updated learnings.md with L166-L170.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Pre-decision holding enabled productive full rotation with 100% success. Each role found valuable sign-off or prep work. What to improve: 10-cycle retro gap is at threshold — should aim for 5 cycles. Lesson: L168 — completing full rotation before major decisions ensures every role evaluates readiness from domain expertise, no perspective missed."
+      }
     }
   ],
-  "next_role_title": "📋 scrum"
+  "next_role_title": "🔍 qa"
 }
