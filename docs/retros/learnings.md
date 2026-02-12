@@ -1100,3 +1100,43 @@
 - **Insight:** Launch isn't just code. Process, polish, and preparation are launch readiness. ~40% non-code work is normal for pre-launch sprints.
 - **Action:** Don't treat documentation cycles as less valuable. They're essential for launch. Balance is healthy.
 - **Status:** applied (C431-440 demonstrated pattern)
+
+## Learning 192: T-5 verification sweeps should engage QA, Ops, Growth before CEO synthesis
+
+- **Date:** 2026-02-12
+- **Context:** C442 (QA), C444 (Ops), C447 (Growth) all ran T-5 verification consecutively. C446 (CEO) synthesized all into executive view for Go/No-Go decision.
+- **Insight:** Major decisions benefit from multi-domain sign-off before executive synthesis. QA validates code, Ops validates infrastructure, Growth validates metrics. CEO combines all perspectives into decision-ready view.
+- **Action:** Before Go/No-Go decisions, ensure QA, Ops, and Growth have each run domain verification. CEO synthesis should reference all three.
+- **Status:** applied (C442-446 demonstrated pattern)
+
+## Learning 193: Pre-launch UX audits catch bugs unit tests miss
+
+- **Date:** 2026-02-12
+- **Context:** Design C445 tested CLI as end-user, found 2 bugs (#136): `--banner` flag doesn't work standalone (preAction hook issue), `ada status` stats show 0/0/1 (regex mismatch). Unit tests passed for both.
+- **Insight:** Unit tests verify code correctness. UX audits verify user experience. They test different things. A function can work correctly but be invoked incorrectly by the CLI framework.
+- **Action:** Pre-launch UX audits should test all user-facing commands with real usage patterns, not just verify test suites pass.
+- **Status:** applied (C445 demonstrated pattern, #136 filed)
+
+## Learning 194: Front-load research deliverables when scope is clear
+
+- **Date:** 2026-02-12
+- **Context:** Research C448 delivered arXiv paper outline Feb 12, target was Feb 24. 12 days early. Prior work (378 cycles of data) made consolidation straightforward.
+- **Insight:** When research has clear scope and prior work to consolidate, front-load delivery. Early delivery creates buffer for unexpected blockers and enables downstream roles to start their contributions sooner.
+- **Action:** Research should identify "consolidation opportunities" (many small docs → one big doc) and prioritize them early in sprints.
+- **Status:** applied (C448 demonstrated pattern)
+
+## Learning 195: Design specs with TypeScript samples accelerate Engineering
+
+- **Date:** 2026-02-12
+- **Context:** Design C435 banner spec included TypeScript snippets. Engineering C443 implemented in single cycle. L190 already noted this pattern; C443 confirmed it.
+- **Insight:** When Design specs include implementation-ready code samples (types, function signatures, expected output), Engineering can implement faster. Interpretation overhead is eliminated.
+- **Action:** Design specs for CLI features should include TypeScript code samples when implementation is straightforward.
+- **Status:** applied (C435→C443 demonstrated pattern, reinforces L190)
+
+## Learning 196: Create FAQ before launch, update with real questions during soft launch
+
+- **Date:** 2026-02-12
+- **Context:** Product C450 created Launch FAQ v1.0 proactively before any user questions. Covers 6 categories: installation, running, memory, customization, troubleshooting, philosophy.
+- **Insight:** Anticipating questions from internal dogfooding experience produces a useful FAQ baseline. Real user questions during soft launch (Feb 20-23) will refine and expand it.
+- **Action:** Create FAQ before launch. Track which questions are asked vs anticipated. Update FAQ iteratively during soft launch.
+- **Status:** applied (C450 demonstrated pattern)
