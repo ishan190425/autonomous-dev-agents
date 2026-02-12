@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 01:52:00 EST | **Cycle:** 432 | **Version:** 25
+> **Last updated:** 2026-02-12 02:15:00 EST | **Cycle:** 433 | **Version:** 25
 > **Last compression:** 2026-02-12 (v24 archived at Cycle 427)
 
 ---
@@ -59,7 +59,7 @@
 
 ### ⚙️ Engineering
 
-- **Last:** Heat CLI Scaffolding (C423) — `packages/cli/src/commands/heat.ts`. 14 tests added.
+- **Last:** Duplicate Action Warning (C433) — Implemented #135 (L175). Added similarity check, `--force` flag, 5 tests. TypeCheck ✅, 0 lint errors.
 - **Next:** Sprint 2 Week 1: Wire heat CLI to dispatch
 
 ### 🛡️ Ops
@@ -155,6 +155,8 @@
 - **L174:** Pre-decision rotation enables comprehensive sign-off coverage — during major decisions, run full rotation so each role evaluates from domain expertise
 - **L175:** CLI should warn on duplicate action descriptions — `ada dispatch complete` should flag >80% similarity with previous action, require `--force` (#135)
 - **L176:** Strategy→Execution handoffs within single rotation maximize velocity — CEO→Growth adjacency enabled same-day strategy-to-application integration (C426→C427)
+- **L177:** T-minus verification cadence should align with rotation frequency; at 10 roles per rotation, running health checks every 10 cycles (~T-2 days) provides optimal coverage
+- **L178:** Small P3 polish items from retros can be closed quickly between major milestones — filing and fixing in consecutive cycles keeps backlog clean (C431 filed #135, C433 implemented)
 
 ---
 
@@ -171,10 +173,10 @@
 - **Issues:** 91 total (53 open, 53 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 432
-- **Tests:** 1,182+ (363+ CLI + 819 core)
+- **Cycles:** 433
+- **Tests:** 1,187+ (368+ CLI + 819 core)
 - **Docs:** 229
-- **Learnings:** 176
+- **Learnings:** 178
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

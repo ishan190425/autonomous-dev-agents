@@ -519,6 +519,104 @@ describe('ada dispatch', () => {
     });
   });
 
+  describe('duplicate action warning (Issue #135)', () => {
+    beforeEach(async () => {
+      // Setup with history containing a previous action
+      const rotationWithHistory = {
+        current_index: 0,
+        last_role: 'dev',
+        last_run: new Date().toISOString(),
+        cycle_count: 10,
+        history: [
+          {
+            role: 'dev',
+            timestamp: new Date(Date.now() - 60000).toISOString(),
+            cycle: 10,
+            action: '⚙️ HEAT CLI SCAFFOLDING — Created packages/cli/src/commands/heat.ts with full Sprint 2 command scaffolding',
+          },
+        ],
+        next_role: 'qa',
+        next_role_title: '🧪 The Tester',
+      };
+      await setupAgentsDir({ rotation: rotationWithHistory });
+    });
+
+    it('warns when action is too similar to previous cycle (exit code 6)', () => {
+      runCli(['dispatch', 'start']);
+
+      // Try to complete with a very similar action
+      const result = runCli([
+        'dispatch', 'complete',
+        '--action', 'HEAT CLI SCAFFOLDING — Created packages/cli/src/commands/heat.ts with full Sprint 2 command scaffolding',
+        '--skip-push',
+      ]);
+
+      expect(result.exitCode).toBe(6);
+      const allOutput = result.stdout + result.stderr;
+      expect(allOutput.toLowerCase()).toMatch(/duplicate|similar|warning/);
+    });
+
+    it('allows similar action with --force flag', () => {
+      runCli(['dispatch', 'start']);
+
+      const result = runCli([
+        'dispatch', 'complete',
+        '--action', 'HEAT CLI SCAFFOLDING — Created packages/cli/src/commands/heat.ts with full Sprint 2 command scaffolding',
+        '--force',
+        '--skip-push',
+      ]);
+
+      expect(result.exitCode).toBe(0);
+    });
+
+    it('allows different action without --force', () => {
+      runCli(['dispatch', 'start']);
+
+      // Completely different action should work
+      const result = runCli([
+        'dispatch', 'complete',
+        '--action', 'Wrote documentation for the memory API and updated README',
+        '--skip-push',
+      ]);
+
+      expect(result.exitCode).toBe(0);
+    });
+
+    it('outputs JSON error format with --json flag', () => {
+      runCli(['dispatch', 'start']);
+
+      // Use very similar action that matches the previous (only different emoji/prefix)
+      const result = runCli([
+        'dispatch', 'complete',
+        '--action', '🧪 HEAT CLI SCAFFOLDING — Created packages/cli/src/commands/heat.ts with full Sprint 2 command scaffolding',
+        '--json',
+        '--skip-push',
+      ]);
+
+      expect(result.exitCode).toBe(6);
+      const json = JSON.parse(result.stdout);
+      expect(json).toHaveProperty('error', 'duplicate_action');
+      expect(json).toHaveProperty('similarity');
+      expect(json).toHaveProperty('previous');
+      expect(json).toHaveProperty('hint');
+    });
+
+    it('shows similarity percentage in warning', () => {
+      runCli(['dispatch', 'start']);
+
+      // Use action that is similar enough to trigger warning (same key words, different phrasing)
+      const result = runCli([
+        'dispatch', 'complete',
+        '--action', 'HEAT CLI SCAFFOLDING — Created packages/cli/src/commands/heat.ts with Sprint 2 full command scaffolding',
+        '--skip-push',
+      ]);
+
+      expect(result.exitCode).toBe(6);
+      expect(result.stdout).toMatch(/\d+%/); // Contains percentage
+      expect(result.stdout).toMatch(/threshold/i);
+    });
+  });
+
   describe('error handling', () => {
     it('fails gracefully when agents directory does not exist', () => {
       const result = runCli(['dispatch', 'start']);

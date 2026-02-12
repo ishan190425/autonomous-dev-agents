@@ -81,6 +81,8 @@ interface DispatchCompleteOptions {
   tokensOut?: number;
   /** Model used (for cost calculation, default: claude-4-sonnet) */
   model?: string;
+  /** Force action even if similar to previous cycle (bypass duplicate warning) */
+  force?: boolean;
 }
 
 interface DispatchStatusOptions {
@@ -235,6 +237,42 @@ function formatRotationBanner(roster: Roster, currentIndex: number): string {
 
   return lines.join('\n');
 }
+
+/**
+ * Normalize action text for similarity comparison.
+ * Removes emojis, extra whitespace, and converts to lowercase.
+ */
+function normalizeAction(text: string): string {
+  return text
+    .replace(/[\u{1F300}-\u{1F9FF}]/gu, '') // Remove emojis
+    .replace(/\(C\d+\)/g, '') // Remove cycle references like (C423)
+    .replace(/[^\w\s]/g, ' ') // Replace punctuation with space
+    .replace(/\s+/g, ' ') // Normalize whitespace
+    .trim()
+    .toLowerCase();
+}
+
+/**
+ * Calculate similarity between two action descriptions.
+ * Uses word-based Jaccard similarity (intersection / union).
+ * Returns a value between 0 and 1.
+ */
+function calculateSimilarity(action1: string, action2: string): number {
+  const words1 = new Set(normalizeAction(action1).split(' ').filter(w => w.length > 2));
+  const words2 = new Set(normalizeAction(action2).split(' ').filter(w => w.length > 2));
+
+  if (words1.size === 0 && words2.size === 0) return 1;
+  if (words1.size === 0 || words2.size === 0) return 0;
+
+  // Calculate Jaccard similarity
+  const intersection = new Set([...words1].filter(w => words2.has(w)));
+  const union = new Set([...words1, ...words2]);
+
+  return intersection.size / union.size;
+}
+
+/** Exit code for duplicate action requiring --force */
+const EXIT_DUPLICATE_ACTION = 6;
 
 /**
  * Execute a git command and return the output.
@@ -456,6 +494,47 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
       console.error(chalk.red('❌ No current role in rotation'));
     }
     process.exit(EXIT_CODES.STATE_CORRUPTION);
+  }
+
+  // Check for duplicate action (Issue #135, L175)
+  const previousEntry = state.history.length > 0 ? state.history[state.history.length - 1] : null;
+  const previousAction = previousEntry?.action ?? '';
+  if (previousEntry && previousAction && !options.force) {
+    const similarity = calculateSimilarity(options.action, previousAction);
+    const SIMILARITY_THRESHOLD = 0.8;
+
+    if (similarity >= SIMILARITY_THRESHOLD) {
+      const previousRole = roster.roles.find((r) => r.id === previousEntry.role);
+
+      if (options.json) {
+        console.log(JSON.stringify({
+          error: 'duplicate_action',
+          similarity: Math.round(similarity * 100),
+          previous: {
+            cycle: previousEntry.cycle,
+            role: previousEntry.role,
+            action: previousAction,
+          },
+          current: options.action,
+          hint: 'Use --force to bypass this check',
+        }));
+      } else {
+        console.log(chalk.yellow('\n⚠️  Duplicate Action Warning\n'));
+        console.log('  Action description is similar to previous cycle\'s action.\n');
+        console.log(`  ${chalk.gray(`Previous (C${previousEntry.cycle} by ${previousRole?.emoji ?? '❓'} ${previousRole?.name ?? previousEntry.role}):`)}  `);
+        console.log(`    ${previousAction.substring(0, 80)}${previousAction.length > 80 ? '...' : ''}\n`);
+        console.log(`  ${chalk.gray('Current:')}`);
+        console.log(`    ${options.action.substring(0, 80)}${options.action.length > 80 ? '...' : ''}\n`);
+        console.log(`  ${chalk.gray('Similarity:')} ${Math.round(similarity * 100)}% (threshold: ${SIMILARITY_THRESHOLD * 100}%)\n`);
+        console.log('  This might indicate:');
+        console.log('  • Workflow confusion about cycle ownership');
+        console.log('  • Copy-paste error in action description');
+        console.log('  • Work that should be attributed to a different role\n');
+        console.log(`  Use ${chalk.cyan('--force')} to proceed anyway.`);
+        console.log();
+      }
+      process.exit(EXIT_DUPLICATE_ACTION);
+    }
   }
 
   // Parse reflection if provided
@@ -846,6 +925,7 @@ export const dispatchCommand = new Command('dispatch')
       .option('--skip-push', 'Commit but do not push')
       .option('-j, --json', 'Output as JSON')
       .option('-q, --quiet', 'Minimal output')
+      .option('-f, --force', 'Bypass duplicate action warning')
       .option('--tokens-in <number>', 'Input tokens consumed (for observability)', parseIntOption)
       .option('--tokens-out <number>', 'Output tokens generated (for observability)', parseIntOption)
       .option('--model <name>', 'Model used for cost calculation (default: claude-4-sonnet)')

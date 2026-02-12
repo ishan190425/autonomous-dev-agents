@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-12T06:51:44.243Z",
-  "cycle_count": 432,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-12T07:11:43.866Z",
+  "cycle_count": 433,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-12T04:11:11.642Z",
-      "cycle": 423,
-      "action": "⚙️ HEAT CLI SCAFFOLDING (C423) — Created packages/cli/src/commands/heat.ts (320 LOC) with full Sprint 2 command scaffolding. Commands: heat (summary), heat list (tier filter), heat decay (dry-run), heat boost (ref increment), heat get (single entry). Added @ada/core package.json exports for ./heat subpath. 14 new CLI tests. TypeCheck ✅. Addresses Frontier C419 gap (boost via CLI). Follows L158/L164: pre-decision foundational work.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Heat module subpath export pattern — clean separation between core types and implementation while enabling direct imports. Lesson: Package.json exports field enables module-level granularity without polluting main barrel export."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-12T04:11:27.811Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Incremental T-N checkpoints (T-7, T-6, T-4) create continuous confidence rather than point-in-time verification. Lesson: L177 — T-minus verification cadence should align with rotation frequency; at 10 roles per rotation, running health checks every 10 cycles (~T-2 days) provides optimal coverage."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-12T07:11:43.866Z",
+      "cycle": 433,
+      "action": "⚙️ DUPLICATE ACTION WARNING (C433) — Implemented #135 (L175). Added similarity check to ada dispatch complete: normalizeAction(), calculateSimilarity() (Jaccard), 80% threshold, --force/-f bypass, exit code 6. 5 tests added (all passing). TypeCheck ✅, Lint 0 errors. Commented #135. Pre-launch polish that prevents C423/C424 situation.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Small P3 issues from retros can be closed quickly — Scrum filed #135 in C431, Engineering implemented in C433. Lesson: L178 — Retro-to-fix in consecutive rotations keeps backlog clean and validates inter-role handoffs."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }
