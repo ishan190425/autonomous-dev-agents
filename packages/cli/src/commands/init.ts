@@ -10,6 +10,7 @@ import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import chalk from 'chalk';
+import { showBanner } from '../lib/banner.js';
 
 /**
  * ESM-compatible __dirname equivalent.
@@ -102,9 +103,8 @@ async function initializeAgentTeam(options: InitOptions): Promise<void> {
   const cwd = process.cwd();
   const agentsDir = path.resolve(cwd, options.dir);
 
-  console.log(
-    chalk.bold.blue('🤖 Autonomous Dev Agents — Team Initialization\n')
-  );
+  // Show the full banner with role panel on first init
+  showBanner({ showRolePanel: true });
 
   // Check if agents directory exists
   const agentsExists = await directoryExists(agentsDir);

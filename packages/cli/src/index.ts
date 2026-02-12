@@ -27,13 +27,23 @@ import { dispatchCommand } from './commands/dispatch.js';
 import { insightsCommand } from './commands/insights.js';
 import { issuesCommand } from './commands/issues.js';
 import { heatCommand } from './commands/heat.js';
+import { showBanner } from './lib/banner.js';
+
+const VERSION = '1.0.0-alpha';
 
 const program = new Command();
 
 program
   .name('ada')
   .description('🤖 Autonomous Dev Agents — AI agent teams for any repo')
-  .version('0.1.0');
+  .version(VERSION, '-v, --version', 'Output the current version')
+  .option('--banner', 'Show the ADA banner')
+  .hook('preAction', (thisCommand) => {
+    // Show banner if --banner flag is passed
+    if (thisCommand.opts().banner) {
+      showBanner({ force: true });
+    }
+  });
 
 program.addCommand(initCommand);
 program.addCommand(runCommand);
@@ -49,5 +59,11 @@ program.addCommand(pauseCommand);
 program.addCommand(resumeCommand);
 program.addCommand(observeCommand);
 program.addCommand(costsCommand);
+
+// Show compact banner if no command is provided
+if (process.argv.length === 2) {
+  showBanner({ compact: true });
+  program.help();
+}
 
 program.parse();

@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-12T10:01:54.040Z",
-  "cycle_count": 442,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-12T10:23:30.564Z",
+  "cycle_count": 443,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-12T07:11:43.866Z",
-      "cycle": 433,
-      "action": "⚙️ DUPLICATE ACTION WARNING (C433) — Implemented #135 (L175). Added similarity check to ada dispatch complete: normalizeAction(), calculateSimilarity() (Jaccard), 80% threshold, --force/-f bypass, exit code 6. 5 tests added (all passing). TypeCheck ✅, Lint 0 errors. Commented #135. Pre-launch polish that prevents C423/C424 situation.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Small P3 issues from retros can be closed quickly — Scrum filed #135 in C431, Engineering implemented in C433. Lesson: L178 — Retro-to-fix in consecutive rotations keeps backlog clean and validates inter-role handoffs."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-12T07:32:23.043Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Intermediate T-N checkpoints catch metric drift early — caught 9 new lint warnings and orphaned issue #135. Lesson: L189 — Track lint warnings per cycle; code style drift happens during rapid feature development."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-12T10:23:30.564Z",
+      "cycle": 443,
+      "action": "⚙️ CLI BANNER ART (C443) — Implemented #133 per Design spec (C435). Created banner.ts (full/compact ASCII art, CI detection, color scheme) + user-config.ts (first-run tracking via ~/.ada/config.json). Updated init.ts (full banner + role panel) and index.ts (--banner flag, compact on no-subcommand). 26 tests added (19 banner, 7 user-config). TypeCheck ✅, Lint 0 errors. Pre-launch polish for Pioneer/YC demos.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Design spec (C435) included TypeScript code samples that accelerated implementation. Design→Engineering handoff in consecutive rotations (C435→C443) delivered feature in 8 cycles. Lesson: L190 — Specs with implementation samples reduce ambiguity and speed delivery."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }
