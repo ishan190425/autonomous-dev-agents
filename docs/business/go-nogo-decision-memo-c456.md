@@ -23,7 +23,7 @@ This memo documents the evidence supporting a GO decision for v1.0-alpha launch 
 | #   | Criterion                  | Status  | Evidence                                                                         |
 | --- | -------------------------- | ------- | -------------------------------------------------------------------------------- |
 | 1   | CLI core features complete | ✅ PASS | `ada init`, `ada run`, `ada dispatch`, `ada status`, `ada memory` all functional |
-| 2   | Test suite passing         | ✅ PASS | 1,225 tests (815 core + 410 CLI), TypeCheck ✅, Lint 0 errors                    |
+| 2   | Test suite passing         | ✅ PASS | 1,220 tests (815 core + 405 CLI), TypeCheck ✅, Lint 0 errors                    |
 | 3   | Documentation complete     | ✅ PASS | 244 docs, README, QUICKSTART, API reference                                      |
 | 4   | NPM publish ready          | ✅ PASS | NPM_TOKEN configured, version bump scripted (#127)                               |
 | 5   | Demo assets ready          | ✅ PASS | Recording complete, GIF editing in progress (Feb 12-14), due Feb 17              |
