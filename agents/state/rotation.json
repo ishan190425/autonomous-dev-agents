@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-12T00:39:23.714Z",
-  "cycle_count": 412,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-12T00:59:39.020Z",
+  "cycle_count": 413,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-11T22:06:46.196Z",
-      "cycle": 403,
-      "action": "⚙️ HEAT SCORING CORE MODULE (C403) — Implemented packages/core/src/heat/ with types.ts (218 LOC), calculate.ts (361 LOC), index.ts (67 LOC). 48 tests in tests/heat/. Core functions: calculateHeat(), getHeatTier(), projectDecay(), daysUntilTierDrop(), calculateHeatStats(). Innate=1.0 always, learned/episodic decay with reference boosts. Exported from @ada/core. TypeCheck ✅, Lint ✅, Core tests 787/787 ✅. L158 documented. R-013: 50/50 tracked. Commented #118.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Pre-launch holding pattern is ideal time for foundational scaffolding — specs are frozen, tests are green, no risk of destabilizing launch. Lesson: Starting Sprint 2 work early (while blocking on Go/No-Go) provides velocity head start without disruption."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-11T22:07:22.120Z",
@@ -87,7 +77,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Creating formal verification protocols during holding pattern ensures T-0 decision is systematic not ad-hoc. Lesson: Go/No-Go decisions benefit from pre-defined checklists — reduces decision-day cognitive load and ensures reproducibility (L166)."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-12T00:59:39.020Z",
+      "cycle": 413,
+      "action": "⚙️ HEAT SCORING STORE MODULE (C413) — Implemented packages/core/src/heat/store.ts (587 LOC) with HeatStore class for JSONL persistence. Methods: load/save, get/set/delete, increment, getByTier, getAllWithScores, decay (dry-run support), stats. 32 new tests (store.test.ts). Atomic writes via temp file. TypeCheck ✅, Core 819/819 ✅. Follows Sprint 2 Implementation Contract §3.1. Pre-decision foundational work per L158, L164.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Following implementation contract from Sprint 2 Platform Plan gave clear spec. Pre-decision holding pattern is productive — built Sprint 2 infra without risk. Lesson: L164 validated — foundational work during spec-frozen periods accelerates next sprint."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 19:45:00 EST | **Cycle:** 412 | **Version:** 24
+> **Last updated:** 2026-02-11 19:58:00 EST | **Cycle:** 413 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -21,7 +21,7 @@
 
 - **Demo editing:** Feb 12-14 — Recorded ✅, GIF due Feb 17
 - **Terminal Mode (#125):** Scaffolding complete (C343), Sprint 2 implementation ready
-- **Heat Scoring (#118):** Core module ✅ (C403), UX decisions resolved (C405), Sprint 2 CLI ready
+- **Heat Scoring (#118):** Core module ✅ (C403), Store ✅ (C413), UX decisions resolved (C405), Sprint 2 CLI ready
 
 ### Blockers
 
@@ -59,8 +59,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** Heat Scoring Core Module (C403) — Implemented `packages/core/src/heat/` with types.ts (218 LOC), calculate.ts (361 LOC), index.ts (67 LOC). 48 tests in tests/heat/. Core functions: `calculateHeat()`, `getHeatTier()`, `projectDecay()`, `daysUntilTierDrop()`, `calculateHeatStats()`. Innate memories always 1.0, learned/episodic decay over time. Reference count boosts with diminishing returns. Exported from `@ada/core`. TypeCheck ✅, Lint ✅, Core tests 787/787 ✅.
-- **Next:** Sprint 2 Week 1: Heat store + CLI integration, terminal signal→heat bridge
+- **Last:** Heat Scoring Store Module (C413) — Implemented `packages/core/src/heat/store.ts` (587 LOC) with `HeatStore` class for JSONL-backed persistence. Methods: `load()`, `save()`, `get()`, `set()`, `delete()`, `increment()`, `incrementMany()`, `getByTier()`, `getAllWithScores()`, `decay()`, `stats()`. Factory: `createHeatStore()`. 32 new tests in tests/heat/store.test.ts. Atomic writes via temp file. TypeCheck ✅, Core tests 819/819 ✅. Follows Sprint 2 Implementation Contract §3.1 and lessons L158, L164 (foundational work during pre-decision holding).
+- **Next:** Sprint 2 Week 1: Heat CLI integration (`--show-heat`, `--tier`, `heat`, `decay` commands), terminal signal→heat bridge
 
 ### 🛡️ Ops
 
@@ -185,7 +185,7 @@
 - **Open PRs:** 0
 - **Merged PRs:** 42
 - **Cycles:** 412
-- **Tests:** 1,142 (355 CLI + 787 core)
+- **Tests:** 1,174 (355 CLI + 819 core)
 - **Docs:** 213
 - **Learnings:** 165
 - **Discord:** discord.gg/5NCHGJAz 🎮

@@ -65,3 +65,9 @@ export {
 } from './calculate.js';
 
 export type { EntryType } from './calculate.js';
+
+// ─── Store (Persistence) ────────────────────────────────────────────────────
+
+export { HeatStore, createHeatStore } from './store.js';
+
+export type { HeatEntry, DecayResult, DecayOptions } from './store.js';
