@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 21:48:00 EST | **Cycle:** 419 | **Version:** 24
+> **Last updated:** 2026-02-11 22:08:00 EST | **Cycle:** 420 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -43,8 +43,8 @@
 
 ### 📦 Product
 
-- **Last:** Sprint 2 Pre-Kickoff Feature Status (C410) — Created comprehensive `docs/product/sprint-2-pre-kickoff-feature-status-c410.md` mapping completed pre-Sprint 2 work (C343, C403, C405) to user stories. Shows what's DONE vs TODO: shell detection 5/5 ✅, heat calculation 4/4 ✅, 44 terminal tests ✅, 48 heat tests ✅. Adjusted Sprint 2 estimate: ~21→~14 M-cycles. Identified quick wins (US-118-2, US-118-3 are small integrations). Critical path: US-125-1 command execution → US-125-3 signals → US-118-1 storage. Commented #102.
-- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff Feb 28
+- **Last:** Sprint 3 Preview (C420) — Created `docs/product/sprint-3-preview.md` — post-Sprint-2 roadmap for Mar 14 kickoff. Theme: "Platform & Community". Tier 1: Demo Repo (#41), PR Workflow (#128), Notifications (#8). Tier 2: CLI Polish (#73), Benchmarks (#90), Memory System (#91). Triaged 33-issue backlog: 6 prioritized, 5 deferred, 2 flagged for closure. Shows accelerators long-term platform vision. Follows L164 (pre-decision holding → Sprint N+1 prep). Commented #102.
+- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff Feb 28, Sprint 3 planning refined after Sprint 2 retro
 
 ### 📋 Scrum
 
@@ -186,9 +186,9 @@
 - **Issues:** 88 total (50 open, 50 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 414
+- **Cycles:** 420
 - **Tests:** 1,174+ (355+ CLI + 819 core)
-- **Docs:** 214
+- **Docs:** 222
 - **Learnings:** 167
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
