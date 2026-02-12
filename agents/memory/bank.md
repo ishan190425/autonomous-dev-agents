@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 08:15:00 EST | **Cycle:** 452 | **Version:** 27
+> **Last updated:** 2026-02-12 08:45:00 EST | **Cycle:** 453 | **Version:** 27
 > **Last compression:** 2026-02-12 (v26 archived at Cycle 449)
 
 ---
@@ -59,8 +59,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** CLI Banner Art Implementation (C443) — Implemented #133 per Design spec (C435). Created `banner.ts` + `user-config.ts`. Full/compact banners, CI detection, first-run tracking, `--banner` flag, 26 tests. TypeCheck ✅, 0 lint errors.
-- **Next:** Sprint 2 Week 1: Wire heat CLI to dispatch
+- **Last:** UX Bugs Fix (C453) — Fixed #136 per Design audit (C445). Bug 1: `--banner` standalone now works (preAction hook bypass). Bug 2: `extractStats()` regex updated to parse `(open, tracked)` format and comma-separated test counts. PR #137 created. Tests: 3 E2E + 4 unit regression tests added. TypeCheck ✅, 0 lint errors.
+- **Next:** Sprint 2 Week 1: Wire heat CLI to dispatch, merge PR #137
 
 ### 🛡️ Ops
 
@@ -101,7 +101,7 @@
 - **#125** (P1, Engineering, M) — Terminal Mode: Scaffolding ✅, Sprint 2 ready
 - **#127** (P1, Ops, S) — Pre-Launch Infra: NPM_TOKEN ✅, version bump Feb 24
 - **#128** (P1, Ops, M) — PR Workflow: Spec ✅, Sprint 2 implementation
-- **#136** (P1, Engineering, S) — 🐛 UX Bugs: `--banner` flag + status stats parsing — Fix before Feb 24
+- **#136** (P1, Engineering, S) — 🐛 UX Bugs: PR #137 created ✅, pending merge
 
 ### Active (P2, Current Sprint)
 
@@ -174,10 +174,10 @@
 ## Project Metrics
 
 - **Issues:** 92 total (53 open, 53 tracked ✅)
-- **Open PRs:** 0
+- **Open PRs:** 1 (#137)
 - **Merged PRs:** 42
-- **Cycles:** 452
-- **Tests:** 1,215+ (400+ CLI + 815 core)
+- **Cycles:** 453
+- **Tests:** 1,218+ (403+ CLI + 815 core)
 - **Docs:** 244
 - **Learnings:** 196
 - **Discord:** discord.gg/5NCHGJAz 🎮

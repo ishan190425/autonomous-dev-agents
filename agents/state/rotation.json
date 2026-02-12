@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-12T13:16:56.581Z",
-  "cycle_count": 452,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-12T13:37:43.798Z",
+  "cycle_count": 453,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-12T10:23:30.564Z",
-      "cycle": 443,
-      "action": "⚙️ CLI BANNER ART (C443) — Implemented #133 per Design spec (C435). Created banner.ts (full/compact ASCII art, CI detection, color scheme) + user-config.ts (first-run tracking via ~/.ada/config.json). Updated init.ts (full banner + role panel) and index.ts (--banner flag, compact on no-subcommand). 26 tests added (19 banner, 7 user-config). TypeCheck ✅, Lint 0 errors. Pre-launch polish for Pioneer/YC demos.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Design spec (C435) included TypeScript code samples that accelerated implementation. Design→Engineering handoff in consecutive rotations (C435→C443) delivered feature in 8 cycles. Lesson: L190 — Specs with implementation samples reduce ambiguity and speed delivery."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-12T10:42:15.467Z",
@@ -95,7 +85,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Continuing T-5 verification pattern through T-3 confirms suite stability over time. Adding test requirements to bug issues ensures fixes include coverage. Lesson: L197 — Prescribe test cases in QA comments before Engineering fixes bugs — ensures regression tests are included, not afterthoughts."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-12T13:37:43.798Z",
+      "cycle": 453,
+      "action": "⚙️ UX BUGS FIX (C453) — Fixed #136: (1) --banner standalone works (preAction bypass), (2) extractStats() parses (open,tracked) + comma tests. PR #137 created. +7 tests.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Design spec (C445) included root cause and suggested fixes. Lesson: UX audits should always include real-world CLI walkthroughs, not just unit tests."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }
