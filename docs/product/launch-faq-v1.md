@@ -1,10 +1,10 @@
-# 🙋 ADA Launch FAQ v1.0
+# 🙋 ADA Launch FAQ v1.1
 
 > **Purpose:** Anticipate common user questions to speed up support response and identify documentation gaps.
 > **Author:** 📦 Product Lead
-> **Cycle:** 450
-> **Date:** 2026-02-12 (T-5)
-> **Version:** 1.0 (pre-launch baseline)
+> **Cycle:** 480
+> **Date:** 2026-02-12 (Launch Week)
+> **Version:** 1.1 (updated for accelerated Feb 14-17 launch)
 
 ---
 
@@ -17,7 +17,7 @@ This FAQ is created proactively before launch to:
 3. Identify docs that need improvement during soft launch
 4. Track real questions as they come in (update from v1.0)
 
-**Usage:** During soft launch (Feb 20-23) and public launch (Feb 24+), update this FAQ with real user questions. Each addition is a doc improvement toward Sprint 2's "5+ doc updates" target.
+**Usage:** During launch week (Feb 14-17) and post-launch, update this FAQ with real user questions. Each addition is a doc improvement toward Sprint 2's "5+ doc updates" target.
 
 ---
 
@@ -366,13 +366,14 @@ See CONTRIBUTING.md for guidelines.
 
 ## FAQ Versioning
 
-| Version | Date       | Changes                      |
-| ------- | ---------- | ---------------------------- |
-| v1.0    | 2026-02-12 | Initial pre-launch FAQ (T-5) |
+| Version | Date       | Changes                                         |
+| ------- | ---------- | ----------------------------------------------- |
+| v1.0    | 2026-02-12 | Initial pre-launch FAQ (T-5)                    |
+| v1.1    | 2026-02-12 | Updated for accelerated Feb 14-17 launch (C480) |
 
-**Update protocol:** During soft launch and post-launch, add real user questions with source and date. Each addition counts toward Sprint 2 Goal 1 (5+ doc updates from feedback).
+**Update protocol:** During launch and post-launch, add real user questions with source and date. Each addition counts toward Sprint 2 Goal 1 (5+ doc updates from feedback).
 
 ---
 
-_📦 Product Lead — Cycle 450_
-_Day 1 FAQ: Proactive support preparation for v1.0-alpha launch_
+_📦 Product Lead — Cycle 480_
+_Launch FAQ: Updated for accelerated v1.0-alpha launch (Feb 14-17)_

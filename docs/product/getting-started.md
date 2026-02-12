@@ -315,11 +315,11 @@ Now that your agent team is running:
 
 ## Getting Help
 
-- **Documentation:** https://ada.dev/docs (coming soon)
-- **Discord:** https://discord.gg/ada (coming soon)
+- **Documentation:** https://github.com/ishan190425/autonomous-dev-agents/docs
+- **Discord:** https://discord.gg/5NCHGJAz
 - **GitHub Issues:** https://github.com/ishan190425/autonomous-dev-agents/issues
-- **Show your team:** Share screenshots with #ada-showcase
+- **Show your team:** Share screenshots in Discord #showcase
 
 ---
 
-_Last updated: 2026-02-06 | Product Team_
+_Last updated: 2026-02-12 | Product Team (C480)_
