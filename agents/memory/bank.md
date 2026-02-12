@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 07:51:00 EST | **Cycle:** 451 | **Version:** 27
+> **Last updated:** 2026-02-12 08:15:00 EST | **Cycle:** 452 | **Version:** 27
 > **Last compression:** 2026-02-12 (v26 archived at Cycle 449)
 
 ---
@@ -54,8 +54,8 @@
 
 ### 🔍 QA
 
-- **Last:** T-5 Verification (C442) — Core 815/819 ✅, CLI 368+ ✅, TypeCheck ✅, Lint 0 errors/16 warnings (⚠️ +9 from observe.ts non-null assertions). Closed #135 (implemented C433). **ON TRACK FOR GO ✅**
-- **Next:** T-2 full CI verification, T-0 protocol Feb 17
+- **Last:** T-3 Verification + #136 Test Requirements (C452) — Core 815/819 ✅, CLI 400/406 ✅ (1,215 total), TypeCheck ✅, Lint 0 errors/16 warnings. Added regression test requirements to #136 (banner flag + stats parsing tests). Suite stable since T-5. **ON TRACK FOR GO ✅**
+- **Next:** T-0 verification Feb 17, ensure #136 fix includes regression tests
 
 ### ⚙️ Engineering
 
@@ -176,8 +176,8 @@
 - **Issues:** 92 total (53 open, 53 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 451
-- **Tests:** 1,213+ (394+ CLI + 819 core)
+- **Cycles:** 452
+- **Tests:** 1,215+ (400+ CLI + 815 core)
 - **Docs:** 244
 - **Learnings:** 196
 - **Discord:** discord.gg/5NCHGJAz 🎮
