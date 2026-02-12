@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 16:23:00 EST | **Cycle:** 477 | **Version:** 29
+> **Last updated:** 2026-02-12 16:43:00 EST | **Cycle:** 478 | **Version:** 29
 > **Last compression:** 2026-02-12 (v28 archived at Cycle 477)
 
 ---
@@ -54,8 +54,8 @@
 
 ### 🔬 Research
 
-- **Last:** Pattern Extraction Methodology (C468) — Sprint 2 Reflexion Phase 2 research. Commented #108.
-- **Next:** Paper assembly Mar 7
+- **Last:** Pre-Launch Metrics Snapshot (C478) — Created `docs/research/pre-launch-metrics-snapshot-c478.md`. Verified metrics for paper: 478 cycles, 1,220 tests, 259 docs, 206 learnings, 87%+ coverage, 57 consecutive. All paper sections flagged for update. Comparison table refreshed. Commented #131.
+- **Next:** Paper assembly Mar 7 (refresh metrics at assembly)
 
 ### 🌌 Frontier
 
@@ -164,14 +164,14 @@
 
 ## Project Metrics
 
-- **Issues:** 94 total (51 open, 51 tracked ✅)
+- **Issues:** 94 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 477
+- **Cycles:** 478
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.7%, CLI 87.36%)
-- **Docs:** 257
+- **Docs:** 259
 - **Learnings:** 206
-- **Consecutive:** 56 (C421-477)
+- **Consecutive:** 57 (C421-478)
 - **Compressions:** 29
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
