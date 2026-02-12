@@ -1140,3 +1140,43 @@
 - **Insight:** Anticipating questions from internal dogfooding experience produces a useful FAQ baseline. Real user questions during soft launch (Feb 20-23) will refine and expand it.
 - **Action:** Create FAQ before launch. Track which questions are asked vs anticipated. Update FAQ iteratively during soft launch.
 - **Status:** applied (C450 demonstrated pattern)
+
+## Learning 206: Human directives override automated timelines — ship when told
+
+- **Date:** 2026-02-12
+- **Context:** Human raised directive in C476 ("Launch without GIF ✌️"). Within 4 cycles (C477-C480), all downstream roles pivoted: Growth updated all launch comms, Research refreshed metrics, Frontier verified Sprint 2 readiness, Product audited user-facing docs.
+- **Insight:** Human directives override automated timelines. When a human says "ship now," the team should pivot immediately, not defend the existing plan. Process isn't sacred; outcomes are.
+- **Action:** When human directives arrive, treat them as highest priority. Execute within same rotation.
+- **Status:** applied (C476 GO decision demonstrated pattern)
+
+## Learning 207: 60 consecutive successful cycles validates autonomous process stability
+
+- **Date:** 2026-02-12
+- **Context:** C421-480 is 60 consecutive successful cycles at 100% success rate. No blocked, partial, or failed cycles.
+- **Insight:** Extended consecutive success signals process maturity. The team recovers from issues within-cycle rather than creating blocked outcomes. The 10-role rotation with memory bank coordination is stable.
+- **Action:** Maintain consecutive success tracking. If streak breaks, investigate root cause immediately.
+- **Status:** monitoring (tracking continues)
+
+## Learning 208: Pre-GO verification sweeps should engage domain specialists independently
+
+- **Date:** 2026-02-12
+- **Context:** Before GO decision (C476), QA (C472), Engineering (C473), and Ops (C474) all ran independent verification. Tests verified, lint clean, CI green. CEO had comprehensive sign-off evidence.
+- **Insight:** GO decisions are evidence-based, not calendar-based. Each domain verifies independently. No single role holds "ready" judgment. Multi-role verification prevents groupthink.
+- **Action:** Before Go/No-Go decisions, require independent verification from QA (tests), Engineering (code), and Ops (infra). CEO synthesizes.
+- **Status:** applied (C472-C476 demonstrated pattern, reinforces L202)
+
+## Learning 209: Pre-launch countdown is optimal for Sprint N+1 preparation
+
+- **Date:** 2026-02-12
+- **Context:** During C471-480 countdown, Design (C475) and Frontier (C479) produced Sprint 2 preparation docs (Dashboard UX spec, Reflexion readiness). Sprint 2 starts with work already done.
+- **Insight:** Pre-launch waiting periods are not dead time. They're ideal for N+1 sprint scaffolding. Specs can be written, readiness verified, docs prepared — all without risk to current launch.
+- **Action:** During pre-decision holding periods, explicitly shift focus to N+1 sprint foundational work.
+- **Status:** applied (C475, C479 demonstrated pattern, reinforces L164)
+
+## Learning 210: When timelines accelerate, audit user-facing docs first
+
+- **Date:** 2026-02-12
+- **Context:** Product (C480) audited user-facing docs after timeline acceleration. Found: Discord link in getting-started.md was outdated, launch-faq referenced old Feb 24 dates. Both fixed before Day 1.
+- **Insight:** Accelerated timelines create documentation drift. Dates that were correct 2 days ago are now wrong. Broken links and wrong dates break trust on Day 1.
+- **Action:** When timelines accelerate, immediately audit user-facing docs (README, getting-started, FAQ, landing pages). Fix dates, links, and version references.
+- **Status:** applied (C480 demonstrated pattern)
