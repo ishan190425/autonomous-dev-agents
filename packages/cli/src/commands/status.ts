@@ -118,10 +118,14 @@ function getRoleAtOffset(roster: Roster, currentIndex: number, offset: number): 
  * Extract stats from the memory bank content.
  * Parses the Project Metrics section for issue/PR/test counts.
  *
+ * Handles multiple formats:
+ * - Issues: "**Issues:** 92 total (53 open, 53 tracked ✅)" or "**Issues:** 29 total (6 closed, 23 open)"
+ * - Tests: "**Tests:** 1,215+ (400+ CLI + 815 core)" or "**Tests:** 88"
+ *
  * @param bankContent - Raw memory bank markdown content
  * @returns Parsed stats object
  */
-function extractStats(bankContent: string): StatusData['stats'] {
+export function extractStats(bankContent: string): StatusData['stats'] {
   const stats = {
     issues: { open: 0, closed: 0 },
     prs: { open: 0, merged: 0 },
@@ -129,15 +133,32 @@ function extractStats(bankContent: string): StatusData['stats'] {
   };
 
   // Try to extract from "Project Metrics" section
-  // Pattern: **Issues:** 29 total (6 closed, 23 open)
-  // Or: - **Total issues:** 0
-  const issueMatch = bankContent.match(/\*\*(?:Issues|Total issues):\*\*\s*(\d+)(?:\s*total)?\s*\((\d+)\s*closed,\s*(\d+)\s*open\)/i);
+  // Format 1: **Issues:** 92 total (53 open, 53 tracked ✅)
+  // Format 2: **Issues:** 29 total (6 closed, 23 open)
+  // Note: "tracked" and "closed" serve similar purposes in different bank versions
+  const issueMatch = bankContent.match(
+    /\*\*(?:Issues|Total issues):\*\*\s*(\d+)\s*total\s*\((\d+)\s*(open|closed),?\s*(\d+)?\s*(open|closed|tracked)?/i
+  );
   if (issueMatch) {
-    stats.issues.closed = parseInt(issueMatch[2] ?? '0', 10);
-    stats.issues.open = parseInt(issueMatch[3] ?? '0', 10);
+    const total = parseInt(issueMatch[1] ?? '0', 10);
+    const firstCount = parseInt(issueMatch[2] ?? '0', 10);
+    const firstLabel = (issueMatch[3] ?? '').toLowerCase();
+    const secondCount = parseInt(issueMatch[4] ?? '0', 10);
+    // Note: secondLabel (issueMatch[5]) could be 'closed', 'tracked', or 'open'
+    // We don't need to inspect it since we derive the second count from context
+
+    // Assign based on labels
+    if (firstLabel === 'open') {
+      stats.issues.open = firstCount;
+      // Second could be 'closed' or 'tracked' — treat tracked as "closed" for display
+      stats.issues.closed = secondCount || (total - firstCount);
+    } else if (firstLabel === 'closed') {
+      stats.issues.closed = firstCount;
+      stats.issues.open = secondCount || (total - firstCount);
+    }
   } else {
-    // Try simpler pattern: - **Total issues:** 0
-    const simpleIssueMatch = bankContent.match(/\*\*Total issues:\*\*\s*(\d+)/i);
+    // Try simpler pattern: - **Total issues:** 0 or **Issues:** 0
+    const simpleIssueMatch = bankContent.match(/\*\*(?:Total )?issues:\*\*\s*(\d+)/i);
     if (simpleIssueMatch) {
       stats.issues.open = parseInt(simpleIssueMatch[1] ?? '0', 10);
     }
@@ -155,10 +176,12 @@ function extractStats(bankContent: string): StatusData['stats'] {
     stats.prs.merged = parseInt(mergedPrMatch[1] ?? '0', 10);
   }
 
-  // Pattern: **Tests:** 88 merged or **Test count:** 0
-  const testsMatch = bankContent.match(/\*\*Tests?(?:\s*count)?:\*\*\s*(\d+)/i);
+  // Pattern: **Tests:** 1,215+ (400+ CLI + 815 core) or **Tests:** 88 or **Test count:** 0
+  // Handle numbers with commas and optional + suffix
+  const testsMatch = bankContent.match(/\*\*Tests?(?:\s*count)?:\*\*\s*([\d,]+)\+?/i);
   if (testsMatch) {
-    stats.tests = parseInt(testsMatch[1] ?? '0', 10);
+    // Remove commas before parsing
+    stats.tests = parseInt((testsMatch[1] ?? '0').replace(/,/g, ''), 10);
   }
 
   return stats;

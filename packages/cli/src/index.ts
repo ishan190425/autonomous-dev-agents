@@ -66,4 +66,11 @@ if (process.argv.length === 2) {
   program.help();
 }
 
+// Handle --banner standalone (without subcommand)
+// preAction hook only fires with subcommands, so we catch it here
+if (process.argv.includes('--banner') && process.argv.length === 3) {
+  showBanner({ force: true });
+  process.exit(0);
+}
+
 program.parse();
