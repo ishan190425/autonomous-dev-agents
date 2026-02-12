@@ -34,7 +34,8 @@ describe('ada status — unit tests', () => {
   // Future: Consider exporting for unit testing if coverage gaps emerge.
 
   describe('extractStats', () => {
-    it('should parse standard memory bank metrics format', () => {
+    it('should parse standard memory bank metrics format (closed, open)', async () => {
+      const { extractStats } = await import('../../src/commands/status.js');
       const bankContent = `
 ## Project Metrics
 
@@ -43,14 +44,47 @@ describe('ada status — unit tests', () => {
 - **Merged PRs:** 6 (#4, #13, #20, #21, #22)
 - **Tests:** 88 merged
 `;
-      // Since extractStats is not exported, we verify via status output
-      // This tests the full integration
-      expect(bankContent).toContain('23 open');
-      expect(bankContent).toContain('5 (#24');
-      expect(bankContent).toContain('88 merged');
+      const stats = extractStats(bankContent);
+      expect(stats.issues.open).toBe(23);
+      expect(stats.issues.closed).toBe(6);
+      expect(stats.prs.open).toBe(5);
+      expect(stats.prs.merged).toBe(6);
+      expect(stats.tests).toBe(88);
     });
 
-    it('should handle simple metrics format', () => {
+    it('should parse (open, tracked) format — Issue #136 regression', async () => {
+      // This is the actual format used in the ADA memory bank
+      const { extractStats } = await import('../../src/commands/status.js');
+      const bankContent = `
+## Project Metrics
+
+- **Issues:** 92 total (53 open, 53 tracked ✅)
+- **Open PRs:** 0
+- **Merged PRs:** 42
+- **Tests:** 1,215+ (400+ CLI + 815 core)
+`;
+      const stats = extractStats(bankContent);
+      expect(stats.issues.open).toBe(53);
+      // "tracked" is treated as closed for display purposes
+      expect(stats.issues.closed).toBe(53);
+      expect(stats.prs.open).toBe(0);
+      expect(stats.prs.merged).toBe(42);
+      expect(stats.tests).toBe(1215);
+    });
+
+    it('should parse tests with commas and plus suffix — Issue #136 regression', async () => {
+      const { extractStats } = await import('../../src/commands/status.js');
+      const bankContent = `
+## Project Metrics
+
+- **Tests:** 1,215+ (400+ CLI + 815 core)
+`;
+      const stats = extractStats(bankContent);
+      expect(stats.tests).toBe(1215);
+    });
+
+    it('should handle simple metrics format', async () => {
+      const { extractStats } = await import('../../src/commands/status.js');
       const bankContent = `
 ## Project Metrics
 
@@ -59,8 +93,11 @@ describe('ada status — unit tests', () => {
 - **Merged PRs:** 0
 - **Test count:** 0
 `;
-      expect(bankContent).toContain('Total issues');
-      expect(bankContent).toContain('Test count');
+      const stats = extractStats(bankContent);
+      expect(stats.issues.open).toBe(0);
+      expect(stats.prs.open).toBe(0);
+      expect(stats.prs.merged).toBe(0);
+      expect(stats.tests).toBe(0);
     });
   });
 
