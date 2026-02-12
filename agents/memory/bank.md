@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 00:28:00 EST | **Cycle:** 428 | **Version:** 25
+> **Last updated:** 2026-02-12 00:47:00 EST | **Cycle:** 429 | **Version:** 25
 > **Last compression:** 2026-02-12 (v24 archived at Cycle 427)
 
 ---
@@ -79,8 +79,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** Sprint 2 Contract Verification (C419) — HeatStore exceeds contract. Engineering cleared for Sprint 2.
-- **Next:** Sprint 2 kickoff Feb 28, Heat CLI integration
+- **Last:** T-5 Platform Readiness (C429) — All platform infrastructure verified for Sprint 2. **Reflexion OPERATIONAL:** 10+ reflections captured, 2 cross-role patterns detected (78% confidence). Created `docs/frontier/t5-platform-readiness-c429.md`.
+- **Next:** Sprint 2 kickoff Feb 28, Heat CLI integration, Memory Stream foundation
 
 ---
 
@@ -95,7 +95,7 @@
 - **#34** (P1, QA, L) — E2E Testing: Phase 1 ✅, Phase 2 post-launch
 - **#74** (P1, Growth, M) — Accelerator Strategy: Pioneer updated (C427)
 - **#102** (P1, Scrum, M) — Sprint 2 Planning: Feb 28 kickoff
-- **#108** (P1, Frontier, L) — Reflexion: Phase 1c ✅, Phase 2 specced
+- **#108** (P1, Frontier, L) — Reflexion: Phase 1 OPERATIONAL ✅ (10+ reflections, 2 patterns), Phase 2 specced
 - **#113** (P1, Frontier, L) — Cognitive Memory: Research ✅, Spec ✅
 - **#118** (P1, Engineering, M) — Heat Scoring: All phases ✅, Sprint 2 integration
 - **#125** (P1, Engineering, M) — Terminal Mode: Scaffolding ✅, Sprint 2 ready
@@ -149,6 +149,7 @@
 - **L169:** Sprint N+1 preview during holding seeds backlog early
 - **L170:** Paper assembly guides reduce post-sprint coordination
 - **L171:** T-N academic readiness verification mirrors product launch sign-offs — apply same multi-role pattern to paper milestones
+- **L172:** Self-improvement systems need operational verification — "system built" ≠ "system working"; verify data flow end-to-end before claiming operational status
 
 ---
 
@@ -165,10 +166,10 @@
 - **Issues:** 90 total (52 open, 52 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 428
+- **Cycles:** 429
 - **Tests:** 1,182+ (363+ CLI + 819 core)
-- **Docs:** 226
-- **Learnings:** 171
+- **Docs:** 227
+- **Learnings:** 172
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---
