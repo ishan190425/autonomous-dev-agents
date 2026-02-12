@@ -1,29 +1,29 @@
-# 🎬 GIF Edit Metrics — T-6 Update (C417)
+# 🎬 GIF Edit Metrics — T-5 Update (C447)
 
-> **Updated:** 2026-02-11 (Cycle 417) — Final metrics refresh before Feb 12-14 edit window
+> **Updated:** 2026-02-12 (Cycle 447) — Edit window refresh (Feb 12-14 active)
 > **Author:** Growth (🚀 The Dealmaker)
-> **Previous:** gif-edit-prep-c307.md (stale — 110 cycles ago)
+> **Previous:** C417 update (30 cycles ago)
 > **GIF Due:** Feb 17 (Go/No-Go)
 
 ---
 
 ## ⚠️ CRITICAL UPDATE
 
-The gif-edit-prep-c307.md has stale metrics from 110 cycles ago. **Use these updated numbers for GIF captions.**
+**T-5 metrics refresh** — 30 more cycles since C417 update. Use these numbers for GIF captions.
 
 ---
 
-## 📊 Updated Metrics for Captions (C417)
+## 📊 Updated Metrics for Captions (C447)
 
-| Metric            | Old (C307) | **Current (C417)** | Δ    | Use In           |
-| ----------------- | ---------- | ------------------ | ---- | ---------------- |
-| Autonomous cycles | 307        | **417**            | +110 | Title/intro card |
-| PRs merged        | 42         | **42**             | —    | Stats overlay    |
-| Tests passing     | 986        | **1,174+**         | +188 | Stats overlay    |
-| Docs created      | 137        | **213**            | +76  | Optional mention |
-| Lessons learned   | —          | **165**            | —    | Optional mention |
-| Roles             | 10         | **10**             | —    | Role intro scene |
-| Discord           | —          | **Live ✅**        | —    | CTA              |
+| Metric            | Old (C417) | **Current (C447)** | Δ   | Use In           |
+| ----------------- | ---------- | ------------------ | --- | ---------------- |
+| Autonomous cycles | 417        | **447**            | +30 | Title/intro card |
+| PRs merged        | 42         | **42**             | —   | Stats overlay    |
+| Tests passing     | 1,174+     | **1,213+**         | +39 | Stats overlay    |
+| Docs created      | 213        | **239**            | +26 | Optional mention |
+| Lessons learned   | 165        | **191**            | +26 | Optional mention |
+| Roles             | 10         | **10**             | —   | Role intro scene |
+| Discord           | Live ✅    | **Live ✅**        | —   | CTA              |
 
 ---
 
@@ -33,22 +33,22 @@ The gif-edit-prep-c307.md has stale metrics from 110 cycles ago. **Use these upd
 
 ```
 🤖 ADA — Autonomous AI Dev Teams
-417 cycles of self-development
+447 cycles of self-development
 ```
 
 ### Stats Overlay (Scene 2-3)
 
 ```
-417 autonomous cycles
+447 autonomous cycles
 42 PRs merged
-1,174 tests passing
-213 docs created
+1,213 tests passing
+239 docs created
 ```
 
 ### Compact One-Liner
 
 ```
-417 cycles. 42 PRs. 1,174 tests. Built by AI teams.
+447 cycles. 42 PRs. 1,213 tests. Built by AI teams.
 ```
 
 ### CTA (Scene 4)
@@ -63,14 +63,15 @@ discord.gg/5NCHGJAz
 
 ## 📅 Timeline Confirmation
 
-| Date       | Milestone                  | Status       |
-| ---------- | -------------------------- | ------------ |
-| Feb 10     | Pre-edit prep (C307)       | ✅ Done      |
-| Feb 11     | **Metrics refresh (C417)** | ✅ This doc  |
-| Feb 12-13  | GIF editing (human)        | 🔜 Tomorrow  |
-| Feb 14     | Review & iterate           | ⏳ Scheduled |
-| **Feb 17** | **GIF ready for Go/No-Go** | ⏳ Target    |
-| Feb 24     | Launch — assets deployed   | ⏳ Target    |
+| Date       | Milestone                  | Status          |
+| ---------- | -------------------------- | --------------- |
+| Feb 10     | Pre-edit prep (C307)       | ✅ Done         |
+| Feb 11     | Metrics refresh (C417)     | ✅ Done         |
+| Feb 12     | **T-5 refresh (C447)**     | ✅ This update  |
+| Feb 12-13  | GIF editing (human)        | 🔄 Active       |
+| Feb 14     | Review & iterate           | ⏳ Scheduled    |
+| **Feb 17** | **GIF ready for Go/No-Go** | ⏳ Target (T-0) |
+| Feb 24     | Launch — assets deployed   | ⏳ Target       |
 
 ---
 
@@ -101,7 +102,7 @@ Use asciinema to replay: `asciinema play ada-demo-final.cast`
 ### Visual Polish
 
 - [ ] Text callouts for key moments
-- [ ] **Use C417 metrics** (this doc)
+- [ ] **Use C447 metrics** (this doc)
 - [ ] Clean terminal theme (dracula/nord)
 - [ ] No debug noise visible
 - [ ] Readable at Twitter embed size (mobile-friendly)
@@ -145,16 +146,17 @@ The GIF is a SHOULD criterion — not blocking launch, but strongly desired for 
 
 ## ✨ Key Message for Human Editor
 
-110 cycles of progress since the last prep doc:
+30 more cycles since C417 prep — use these final T-5 numbers:
 
-- **+110 cycles** (307 → 417)
-- **+188 tests** (986 → 1,174)
-- **+76 docs** (137 → 213)
+- **+30 cycles** (417 → 447)
+- **+39 tests** (1,174 → 1,213)
+- **+26 docs** (213 → 239)
+- **+26 lessons** (165 → 191)
 - **All T-0 role sign-offs complete**
 - **Launch confidence: 100%**
 
-The product is ready. The GIF just needs to reflect the latest numbers. 🚀
+The product is ready. GIF editing active (Feb 12-14). Use **447 cycles** for all captions. 🚀
 
 ---
 
-_🚀 Growth | Cycle 417 | T-6 GIF Metrics Refresh_
+_🚀 Growth | Cycle 447 | T-5 GIF Metrics Refresh_
