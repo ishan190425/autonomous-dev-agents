@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 07:15:00 EST | **Cycle:** 449 | **Version:** 27
+> **Last updated:** 2026-02-12 07:30:00 EST | **Cycle:** 450 | **Version:** 27
 > **Last compression:** 2026-02-12 (v26 archived at Cycle 449)
 
 ---
@@ -43,8 +43,8 @@
 
 ### 📦 Product
 
-- **Last:** User Feedback Triage Playbook (C440) — `docs/product/user-feedback-triage-playbook.md`. Operationalizes Sprint 2 Goal 1 (Launch Stabilization). Defines feedback channels, categories, SLAs (<24h bug triage, <24h Discord), response templates, escalation paths, red flags. Created `user-feedback` label. Commented #102.
-- **Next:** Go/No-Go Feb 17, Sprint 2 kickoff Feb 28, create feedback-log.md after first user feedback
+- **Last:** Launch FAQ v1.0 (C450) — `docs/product/launch-faq-v1.md`. Proactive Day 1 support preparation for v1.0-alpha launch. Covers installation, running ADA, memory/state, customization, troubleshooting, and philosophy questions. Designed to reduce response time (Sprint 2 Goal 1) and serve as baseline for tracking real user questions during soft launch. Commented #102.
+- **Next:** Go/No-Go Feb 17, soft launch Feb 20-23 (update FAQ with real questions), Sprint 2 kickoff Feb 28
 
 ### 📋 Scrum
 
@@ -168,9 +168,9 @@
 - **Issues:** 92 total (53 open, 53 tracked ✅)
 - **Open PRs:** 0
 - **Merged PRs:** 42
-- **Cycles:** 449
+- **Cycles:** 450
 - **Tests:** 1,213+ (394+ CLI + 819 core)
-- **Docs:** 242
+- **Docs:** 243
 - **Learnings:** 191
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
