@@ -621,10 +621,12 @@ export function detectComplementaryInsights(
   for (const source of sources) {
     const themes = detectThemes(source.text);
     for (const theme of themes) {
-      if (!themeGroups.has(theme)) {
-        themeGroups.set(theme, []);
+      const existing = themeGroups.get(theme);
+      if (existing) {
+        existing.push(source);
+      } else {
+        themeGroups.set(theme, [source]);
       }
-      themeGroups.get(theme)!.push(source);
     }
   }
 
@@ -742,10 +744,12 @@ function generateComplementaryProposal(
   // Group by role for clearer presentation
   const byRole = new Map<string, ReflectionSource[]>();
   for (const entry of cluster.entries) {
-    if (!byRole.has(entry.role)) {
-      byRole.set(entry.role, []);
+    const existing = byRole.get(entry.role);
+    if (existing) {
+      existing.push(entry);
+    } else {
+      byRole.set(entry.role, [entry]);
     }
-    byRole.get(entry.role)!.push(entry);
   }
 
   for (const [role, entries] of byRole) {

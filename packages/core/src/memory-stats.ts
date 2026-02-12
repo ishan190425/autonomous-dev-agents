@@ -448,11 +448,11 @@ export async function listArchives(archivesDir: string): Promise<ArchiveInfo[]> 
 
       // Parse filename: bank-2026-02-05-v3.md
       const match = file.match(/bank-(\d{4}-\d{2}-\d{2})-v(\d+)\.md/);
-      if (match) {
+      if (match && match[1] && match[2]) {
         archives.push({
           filename: file,
-          date: match[1]!,
-          version: parseInt(match[2]!, 10),
+          date: match[1],
+          version: parseInt(match[2], 10),
           path: path.join(archivesDir, file),
         });
       }

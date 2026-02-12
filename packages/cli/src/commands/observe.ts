@@ -249,8 +249,12 @@ function aggregateFilteredCycles(cycles: readonly CycleMetrics[]): AggregatedMet
   }
 
   const totalCycleCount = cycles.length;
-  const firstCycle = cycles[0]!;
-  const lastCycle = cycles[cycles.length - 1]!;
+  // TypeScript flow analysis doesn't see the early return above, so use explicit check
+  const firstCycle = cycles[0];
+  const lastCycle = cycles[cycles.length - 1];
+  if (!firstCycle || !lastCycle) {
+    return null; // Defensive: should never happen given length > 0 check above
+  }
 
   // Calculate phase latency stats (Phase 2)
   const hasPhaseLatencyData = Object.keys(phaseLatencyData).length > 0;
@@ -427,9 +431,10 @@ function printDashboard(
     // Find slowest/fastest roles (only if we have data)
     let slowestRole: { role: string; avgMs: number } | undefined;
     let fastestRole: { role: string; avgMs: number } | undefined;
-    if (roleAvgs.length > 0) {
-      slowestRole = roleAvgs.reduce((max, r) => r.avgMs > max.avgMs ? r : max, roleAvgs[0]!);
-      fastestRole = roleAvgs.reduce((min, r) => r.avgMs < min.avgMs ? r : min, roleAvgs[0]!);
+    const firstRoleAvg = roleAvgs[0];
+    if (firstRoleAvg) {
+      slowestRole = roleAvgs.reduce((max, r) => r.avgMs > max.avgMs ? r : max, firstRoleAvg);
+      fastestRole = roleAvgs.reduce((min, r) => r.avgMs < min.avgMs ? r : min, firstRoleAvg);
     }
 
     // Overall throughput
@@ -991,10 +996,12 @@ export const observeCommand = new Command('observe')
         cycles = allCycles.slice(-lastN);
         
         // Build filter state
-        if (cycles.length > 0) {
+        const firstFiltered = cycles[0];
+        const lastFiltered = cycles[cycles.length - 1];
+        if (firstFiltered && lastFiltered) {
           filter = {
             last: lastN,
-            cycleRange: [cycles[0]!.cycle, cycles[cycles.length - 1]!.cycle],
+            cycleRange: [firstFiltered.cycle, lastFiltered.cycle],
             unfilteredTotal,
           };
         }

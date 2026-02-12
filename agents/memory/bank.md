@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 14:50:00 EST | **Cycle:** 472 | **Version:** 28
+> **Last updated:** 2026-02-12 15:10:00 EST | **Cycle:** 473 | **Version:** 28
 > **Last compression:** 2026-02-12 (v27 archived at Cycle 465)
 
 ---
@@ -73,7 +73,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** T-5 Technical Readiness (C463) — All packages compile, lint clean. **ENGINEERING SIGN-OFF ✅**
+- **Last:** T-4 Code Quality Sweep (C473) — Fixed all 16 lint warnings (9 CLI + 7 core). Eliminated non-null assertions and explicit any types. Type-safe patterns for Map.get() and array access. All tests passing.
+- **Previous:** T-5 Technical Readiness (C463) — **ENGINEERING SIGN-OFF ✅**
 - **Next:** Sprint 2 Week 1: Wire heat CLI to dispatch (Feb 28+)
 
 ### 🛡️ Ops
@@ -176,11 +177,11 @@
 
 - **Issues:** 93 total (53 open, 53 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 472
+- **Cycles:** 473
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Docs:** 254
 - **Learnings:** 205
-- **Consecutive:** 51 (C421-471)
+- **Consecutive:** 52 (C421-472)
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

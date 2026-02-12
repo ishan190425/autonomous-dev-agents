@@ -127,9 +127,11 @@ describe('--last N filter logic', () => {
         { cycle: 153 },
         { cycle: 154 },
       ];
+      const firstCycle = cycles[0];
+      const lastCycle = cycles[cycles.length - 1];
       const filter = {
         last: 10,
-        cycleRange: [cycles[0]!.cycle, cycles[cycles.length - 1]!.cycle] as const,
+        cycleRange: [firstCycle?.cycle ?? 0, lastCycle?.cycle ?? 0] as const,
         unfilteredTotal: 154,
       };
       expect(filter.cycleRange[0]).toBe(145);
@@ -162,10 +164,12 @@ describe('--last N filter logic', () => {
 
       const byRole: Record<string, { cycles: number }> = {};
       for (const cycle of filteredCycles) {
-        if (!byRole[cycle.role]) {
-          byRole[cycle.role] = { cycles: 0 };
+        const existing = byRole[cycle.role];
+        if (existing) {
+          existing.cycles++;
+        } else {
+          byRole[cycle.role] = { cycles: 1 };
         }
-        byRole[cycle.role]!.cycles++;
       }
 
       expect(byRole['engineering']?.cycles).toBe(3);

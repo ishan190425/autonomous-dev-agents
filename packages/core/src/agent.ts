@@ -34,6 +34,13 @@ export interface AgentExecutor {
   executeAction(context: DispatchContext): Promise<ActionResult>;
 }
 
+/** Raw response structure from Clawdbot agent session */
+interface ClawdbotResponse {
+  response?: string;
+  message?: string;
+  error?: string;
+}
+
 /**
  * Clawdbot-based agent executor implementing RES-001.
  *
@@ -176,12 +183,12 @@ Execute ONE meaningful action from your playbook now. Focus on high-impact work 
       });
       
       // Parse JSON response from Clawdbot
-      let clawdbotResult: any;
+      let clawdbotResult: ClawdbotResponse;
       try {
         // Clawdbot may output JSON mixed with other text, try to extract it
         const jsonMatch = stdout.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
-          clawdbotResult = JSON.parse(jsonMatch[0]);
+          clawdbotResult = JSON.parse(jsonMatch[0]) as ClawdbotResponse;
         } else {
           // If no JSON found, treat the entire stdout as the response
           clawdbotResult = { response: stdout.trim() };

@@ -597,8 +597,12 @@ export class MetricsManager {
     }
 
     const totalCycleCount = cycles.length;
-    const firstCycle = cycles[0]!; // Safe: we checked cycles.length > 0 above
-    const lastCycle = cycles[cycles.length - 1]!;
+    // TypeScript flow analysis doesn't see the early return above, so use explicit check
+    const firstCycle = cycles[0];
+    const lastCycle = cycles[cycles.length - 1];
+    if (!firstCycle || !lastCycle) {
+      return null; // Defensive: should never happen given length > 0 check above
+    }
 
     // Calculate phase latency stats (Phase 2)
     const hasLatencyData = Object.keys(phaseLatencyData).length > 0;
