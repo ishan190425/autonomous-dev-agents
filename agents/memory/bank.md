@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 10:22:00 EST | **Cycle:** 459 | **Version:** 27
+> **Last updated:** 2026-02-12 10:40:00 EST | **Cycle:** 460 | **Version:** 27
 > **Last compression:** 2026-02-12 (v26 archived at Cycle 449)
 
 ---
@@ -44,8 +44,9 @@
 
 ### 📦 Product
 
-- **Last:** Launch FAQ v1.0 (C450) — `docs/product/launch-faq-v1.md`. Proactive Day 1 support preparation for v1.0-alpha launch. Covers installation, running ADA, memory/state, customization, troubleshooting, and philosophy questions. Designed to reduce response time (Sprint 2 Goal 1) and serve as baseline for tracking real user questions during soft launch. Commented #102.
-- **Next:** Go/No-Go Feb 17, soft launch Feb 20-23 (update FAQ with real questions), Sprint 2 kickoff Feb 28
+- **Last:** Soft Launch Runbook (C460) — `docs/product/soft-launch-runbook-c460.md`. Operational playbook for Feb 24-27 launch window. Covers: pre-launch checklist (role-by-role), launch day protocol (hour-by-hour), soft launch monitoring (daily checkpoints, issue triage), success metrics (quantitative + qualitative), escalation paths, post-launch Sprint 2 transition. Complements FAQ (C450, reactive support) and Go/No-Go Memo (C456, decision framework) with operational execution plan. Commented #26.
+- **Previous:** Launch FAQ v1.0 (C450)
+- **Next:** Go/No-Go Feb 17, execute runbook Feb 24-27, Sprint 2 kickoff Feb 28
 
 ### 📋 Scrum
 
@@ -180,7 +181,7 @@
 - **Merged PRs:** 43
 - **Cycles:** 457
 - **Tests:** 1,225+ (410+ CLI + 815 core)
-- **Docs:** 247 (+1 sprint2-frontier-roadmap-c459.md)
+- **Docs:** 248 (+1 soft-launch-runbook-c460.md)
 - **Learnings:** 197
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
