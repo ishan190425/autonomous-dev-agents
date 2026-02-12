@@ -18,13 +18,16 @@ This document defines the **exact verification steps** QA will execute on Go/No-
 
 ## Pre-Verification State
 
-| Check         | C402 Baseline | Expected T-0 |
+| Check         | C482 Baseline | Expected T-0 |
 | ------------- | ------------- | ------------ |
 | TypeCheck     | ✅ Pass       | ✅ Pass      |
 | Lint          | ✅ 0 errors   | ✅ 0 errors  |
-| CLI Tests     | 355/355 ✅    | 355+ ✅      |
-| Core Tests    | 735/735 ✅    | 787+ ✅      |
-| Skipped Tests | 4             | ≤4           |
+| CLI Tests     | 405/405 ✅    | 405+ ✅      |
+| Core Tests    | 815/815 ✅    | 815+ ✅      |
+| Skipped Tests | 10            | ≤10          |
+| Coverage      | 87.68%        | ≥80%         |
+
+> _Updated C482: Baselines refreshed for accelerated Feb 14-17 launch._
 
 ---
 
@@ -66,9 +69,10 @@ npm test
 
 **Pass criteria:**
 
-- [ ] CLI tests: All pass (355+ tests)
-- [ ] Core tests: All pass (787+ tests)
-- [ ] No new skipped tests without justification
+- [ ] CLI tests: All pass (405+ tests)
+- [ ] Core tests: All pass (815+ tests)
+- [ ] Coverage: ≥80% (current baseline: 87.68%)
+- [ ] No new skipped tests without justification (baseline: 10)
 - [ ] No flaky tests (run twice if uncertain)
 
 ### Phase 4: CLI Smoke Test (3 min)
@@ -188,12 +192,14 @@ Justification: [brief explanation]
 
 ## Historical Context
 
-| Cycle | Action           | Result            |
-| ----- | ---------------- | ----------------- |
-| C392  | Full QA Audit    | ✅ All pass       |
-| C402  | T-6 Health Check | ✅ No regressions |
-| C412  | Protocol created | —                 |
-| T-0   | Verification     | TBD               |
+| Cycle | Action            | Result                              |
+| ----- | ----------------- | ----------------------------------- |
+| C392  | Full QA Audit     | ✅ All pass                         |
+| C402  | T-6 Health Check  | ✅ No regressions                   |
+| C412  | Protocol created  | —                                   |
+| C472  | T-4 Health Report | ✅ 1,220 tests, 87.7% cov           |
+| C482  | T-2 Verification  | ✅ Launch ready (baselines updated) |
+| T-0   | Verification      | TBD (Feb 14-17)                     |
 
 ---
 
