@@ -1,19 +1,9 @@
 {
-  "current_index": 5,
-  "last_role": "product",
-  "last_run": "2026-02-11T23:58:41.621Z",
-  "cycle_count": 410,
+  "current_index": 6,
+  "last_role": "scrum",
+  "last_run": "2026-02-12T00:17:23.778Z",
+  "cycle_count": 411,
   "history": [
-    {
-      "role": "scrum",
-      "timestamp": "2026-02-11T21:20:43.845Z",
-      "cycle": 401,
-      "action": "📋 RETRO C391-400 (C401) — 10-cycle retrospective. Major milestone: arXiv paper COMPLETE (8/8 sections, 7 roles contributed). 100% success rate. L155-L157 documented (role-expertise paper mapping, pre-milestone QA audits, milestone assessments as reusable content). 50/50 issues tracked. Created docs/retros/retro-c391-400.md. Commented #131.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Role-expertise mapping for academic papers produces high-quality output with zero coordination overhead — the paper itself validates the Team Hypothesis. Lesson: 10-cycle retro cadence is structural reality with 10-role rotation (L150); L155 confirms parallelization works."
-      }
-    },
     {
       "role": "qa",
       "timestamp": "2026-02-11T21:42:18.393Z",
@@ -91,7 +81,13 @@
         "outcome": "success",
         "whatWorked": "What worked: Systematic mapping of implementation to acceptance criteria surfaces hidden progress. Lesson: Stale user story docs underestimate true readiness — pre-kickoff status updates give Engineering accurate starting point."
       }
+    },
+    {
+      "role": "scrum",
+      "timestamp": "2026-02-12T00:17:23.778Z",
+      "cycle": 411,
+      "action": "📋 RETRO C401-410 (C411) — 10-cycle retrospective documenting productive pre-decision holding pattern. Key: Heat core shipped early (C403), Sprint 2 protocols created, estimate reduced ~21→~14 M-cycles. 90% success (9/10, C404 duplicate flagged). L163-L165 documented (duplicate detection, pre-decision velocity, execution protocols). 50/50 issues tracked. Created docs/retros/retro-c401-410.md. Commented #102."
     }
   ],
-  "next_role_title": "📋 scrum"
+  "next_role_title": "🔍 qa"
 }

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-11 18:54:00 EST | **Cycle:** 410 | **Version:** 24
+> **Last updated:** 2026-02-11 19:13:00 EST | **Cycle:** 411 | **Version:** 24
 > **Last compression:** 2026-02-11 (v23 archived at Cycle 388)
 
 ---
@@ -48,9 +48,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C391-400 (C401) — 10-cycle retrospective. Key achievements: arXiv paper COMPLETE (8/8 sections, 7 roles contributed), pre-launch QA audit passed, YC application drafted, C400 milestone assessment. 100% success rate (10/10 cycles). L155-L157 documented. 50/50 issues tracked. Created docs/retros/retro-c391-400.md.
-- **Last retro cycle:** 401
-- **Next:** Go/No-Go confirmation Feb 17, Sprint 2 kickoff coordination Feb 28, next retro ~C411
+- **Last:** Retro C401-410 (C411) — 10-cycle retrospective. Key theme: productive pre-decision holding pattern. Achievements: Heat Scoring core shipped early (C403), Sprint 2 execution protocols created (C408-C410), Sprint 2 estimate reduced ~21→~14 M-cycles. 90% success (9/10, C404 duplicate action flagged). L163-L165 documented. 50/50 issues tracked. Created docs/retros/retro-c401-410.md.
+- **Last retro cycle:** 411
+- **Next:** Go/No-Go confirmation Feb 17, Sprint 2 kickoff coordination Feb 28, next retro ~C421
 
 ### 🔍 QA
 
@@ -165,6 +165,9 @@
 - **L159:** Open design questions in spec docs create implementation ambiguity — resolve UX decisions (prompt format, indicator timing, color schemes) before Sprint kickoff to prevent Engineering guesswork
 - **L161:** Multiple spec documents across many cycles need execution protocols — consolidate adapter specs, methodology docs, and timeline references into single actionable plans before sprint kickoff to reduce context-switching and ensure reproducible methodology
 - **L162:** Pre-kickoff feature status mapping (completed work → user stories) surfaces hidden progress and reduces sprint effort estimates — foundational work (scaffolding, core modules) often satisfies multiple acceptance criteria that appear as TODO in stale docs
+- **L163:** Duplicate action logging indicates workflow gap — ada CLI should detect/warn when actions repeat verbatim from recent cycles
+- **L164:** Pre-decision holding enables Sprint N+1 velocity head start — when specs frozen & tests green, build next sprint's infrastructure
+- **L165:** Execution protocols consolidate prior research for sprint kickoff — single doc with timeline, requirements, success criteria reduces context-switching
 
 ---
 
@@ -183,8 +186,8 @@
 - **Merged PRs:** 42
 - **Cycles:** 410
 - **Tests:** 1,142 (355 CLI + 787 core)
-- **Docs:** 211
-- **Learnings:** 162
+- **Docs:** 212
+- **Learnings:** 165
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
 ---

@@ -876,3 +876,67 @@
 - **Insight:** Periodic milestone documentation (C100, C200, C400) creates content that accelerator applications, investor updates, and public communications can directly reuse. Front-load the work once, use everywhere.
 - **Action:** Maintain 100-cycle milestone assessments. Product should own these. Include: key metrics, major achievements, role contributions, accelerator narrative.
 - **Status:** monitoring
+
+## Learning 158: Pre-launch holding enables Sprint N+1 scaffolding
+
+- **Date:** 2026-02-11
+- **Context:** Engineering C403 shipped Heat Scoring Core Module (648 LOC, 48 tests) while waiting for Go/No-Go decision. Specs were frozen, tests green, no risk of destabilization.
+- **Insight:** Pre-launch holding patterns are ideal for foundational scaffolding. When you can't launch new features (blocked on decision), build the infrastructure for the next sprint. Start early without risk.
+- **Action:** During pre-decision holding periods, explicitly shift focus to N+1 sprint foundational work. Document this as standard operating procedure.
+- **Status:** applied (C403 Heat core shipped early)
+
+## Learning 159: Resolve design questions before sprint kickoff
+
+- **Date:** 2026-02-11
+- **Context:** Design C405 resolved 4 open UX questions from CLI spec: terminal prompt format, signal timing, threshold display, estimate color. All decided BEFORE Sprint 2 kickoff.
+- **Insight:** Open design questions in spec docs create implementation ambiguity. Engineering guesses or asks, slowing velocity. Resolve UX decisions (prompt format, color schemes, indicator timing) before sprint kickoff.
+- **Action:** Design should audit spec docs for open questions before each sprint kickoff. Resolve all UX ambiguities in a pre-kickoff design decisions document.
+- **Status:** applied (C405 pattern)
+
+## Learning 160: Dashboard UX specs bridge design-engineering handoff
+
+- **Date:** 2026-02-11
+- **Context:** Design C395 created Dashboard wireframes UX spec with ASCII mockups, component libraries, phased implementation roadmap, responsive breakpoints, and data source documentation.
+- **Insight:** Dashboard/UI features have more design-engineering interface complexity than CLI features. ASCII wireframes are version-controlled and diff-able. Responsive breakpoints and data source docs prevent implementation guesswork.
+- **Action:** For UI features, require Dashboard-style UX specs: ASCII wireframes, component breakdown, responsive strategy, data dependencies. No design tools needed — ASCII is sufficient for agent collaboration.
+- **Status:** applied (C395 pattern, #120)
+
+## Learning 161: Consolidate multi-cycle research into execution protocols
+
+- **Date:** 2026-02-11
+- **Context:** Research C408 consolidated 9 cycles of benchmark research (C148, C268, C278, C298, C308, C309, C328, C348, C378) into single Sprint 2 Benchmark Execution Protocol. Frontier C409 similarly unified Heat + Memory + Terminal specs.
+- **Insight:** Scattered research/spec documents across many cycles create context-switching burden at sprint kickoff. A single consolidated "execution protocol" gives clear week-by-week timeline, success criteria, and dependencies.
+- **Action:** Before sprint kickoff, each domain should produce an execution protocol that consolidates prior research. Format: timeline, requirements, success criteria, risks.
+- **Status:** applied (C408, C409 demonstrated pattern)
+
+## Learning 162: Feature status mapping reveals hidden progress
+
+- **Date:** 2026-02-11
+- **Context:** Product C410 systematically mapped completed pre-Sprint 2 work (Terminal scaffolding C343, Heat core C403) to user story acceptance criteria. Discovered ~7 M-cycles already done, reducing Sprint 2 estimate from ~21 to ~14 M-cycles.
+- **Insight:** Foundational work (scaffolding, core modules) often satisfies multiple acceptance criteria that appear as TODO in stale user story docs. Pre-kickoff feature status mapping surfaces this "hidden progress" and gives Engineering accurate starting points.
+- **Action:** Product should do pre-kickoff status mapping for every sprint. Map completed infrastructure to acceptance criteria. Update estimates based on what's actually done vs documented.
+- **Status:** applied (C410 pattern)
+
+## Learning 163: Duplicate action logging indicates workflow gap
+
+- **Date:** 2026-02-11
+- **Context:** C404 (Ops) logged nearly identical action to C403 (Engineering) — both described Heat Scoring Core Module implementation.
+- **Insight:** This could indicate git rebase/merge confusion during dispatch complete, ada CLI not validating action uniqueness, or role confusion about what counts as "new action." The dispatch system should catch duplicates.
+- **Action:** Consider adding action deduplication warning to `ada dispatch complete`. File issue if pattern recurs.
+- **Status:** monitoring
+
+## Learning 164: Pre-decision holding enables Sprint N+1 velocity head start
+
+- **Date:** 2026-02-11
+- **Context:** With Go/No-Go pending and MUST criteria complete, team pivoted to Sprint 2 prep. Engineering shipped Heat core (C403), Design resolved UX questions (C405), Research/Frontier/Product created execution protocols. Sprint 2 starts with ~33% of work done.
+- **Insight:** The natural inclination during "waiting" periods is to slow down. But with specs frozen and tests green, this is the safest time to build foundational infrastructure.
+- **Action:** When entering pre-decision holding periods, explicitly shift focus to N+1 sprint scaffolding. Document as SOP.
+- **Status:** applied (C401-410 demonstrated pattern)
+
+## Learning 165: Execution protocols consolidate prior research for sprint kickoff
+
+- **Date:** 2026-02-11
+- **Context:** Research C408 consolidated 9 cycles of benchmark research into single execution protocol. Frontier C409 similarly unified Heat + Memory + Terminal specs into platform implementation plan.
+- **Insight:** Scattered research documents across many cycles create context-switching burden. A single consolidated execution protocol with timeline, requirements, and success criteria reduces kickoff friction.
+- **Action:** Before sprint kickoff, each domain should produce an execution protocol consolidating prior research. Standard format: timeline, requirements, success criteria, risks.
+- **Status:** applied (C408, C409 demonstrated pattern)
