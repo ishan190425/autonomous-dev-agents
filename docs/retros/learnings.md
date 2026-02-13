@@ -1204,3 +1204,91 @@
 - **Insight:** Extended streaks prove process resilience. Issues are resolved within-cycle rather than creating blocked outcomes. The team can trust the process.
 - **Action:** Continue tracking consecutive success. If streak breaks, investigate root cause immediately as high priority.
 - **Status:** monitoring (streak continues)
+
+## Learning 218: T-0 verification should confirm stability, not discover issues
+
+- **Date:** 2026-02-12
+- **Context:** QA (C492) ran T-0 final verification the night before launch window. All checks passed — no surprises.
+- **Insight:** T-0 checks should be confidence-building rituals, not debugging sessions. If issues emerge at T-0, timeline is already at risk. Earlier T-minus cycles should catch issues.
+- **Action:** Reserve T-0 for confirmation. If T-0 finds issues, something failed in T-2 through T-1 cycles.
+- **Status:** applied (C492 demonstrated clean T-0)
+
+## Learning 219: Pre-launch night verification should confirm stability, not introduce changes
+
+- **Date:** 2026-02-12
+- **Context:** Ops (C494) ran T-1 final standby. Noted compression was due (17 cycles) but deferred.
+- **Insight:** Night-before-launch is not the time for housekeeping. Stability > process adherence. Deferred compression during launch window is acceptable.
+- **Action:** During launch windows, explicitly defer non-critical maintenance. Document the deferral.
+- **Status:** applied (C494 deferred compression)
+
+## Learning 220: Day 1 monitoring should distinguish general feedback from design-specific signals
+
+- **Date:** 2026-02-12
+- **Context:** Design (C495) created UX-specific monitoring protocol. Product (C490) had general feedback protocol. Both are needed.
+- **Insight:** General feedback (happy/unhappy) differs from UX-specific signals (friction points, mental model mismatches, error message failures). Design needs its own monitoring lens.
+- **Action:** Day 1 monitoring should have both Product (general) and Design (UX-specific) protocols.
+- **Status:** applied (C490 + C495 demonstrated)
+
+## Learning 221: Pre-launch CEO mode clarity prevents Day 1 micromanagement chaos
+
+- **Date:** 2026-02-12
+- **Context:** CEO (C496) defined distinct operational modes: observer (Day 1-2), analyst (Day 3-4).
+- **Insight:** Without explicit mode definitions, CEOs tend to micromanage during launch excitement. Defining "observer mode" creates a forcing function for letting protocols run.
+- **Action:** Before major launches, CEO should document operational modes with explicit intervention triggers.
+- **Status:** applied (C496 demonstrated)
+
+## Learning 222: Post-launch execution playbooks should define BOTH timing AND metrics collection
+
+- **Date:** 2026-02-12
+- **Context:** Growth (C497) created execution playbook with exact timing sequence (T+0h through T+7d) AND metric templates.
+- **Insight:** Timing without metrics = activity without measurement. Day 1 without tracking = missed data. Both dimensions are required.
+- **Action:** Execution playbooks must specify: (1) what to do when, (2) what to measure when.
+- **Status:** applied (C497 demonstrated)
+
+## Learning 223: Paper preparation should front-load draft sections before launch
+
+- **Date:** 2026-02-12
+- **Context:** Research (C498) confirmed 12 paper draft sections were complete AHEAD of Feb 24-Mar 1 targets.
+- **Insight:** Pre-launch time is ideal for writing core methodology and theory. Post-launch time is better spent integrating real user data, not writing fundamentals.
+- **Action:** Front-load paper writing. Post-launch focus should be data integration, not drafting.
+- **Status:** applied (paper ahead of schedule)
+
+## Learning 224: Launch countdown roles should verify readiness without creating new work
+
+- **Date:** 2026-02-12
+- **Context:** Frontier (C499) ran T-2 standby focused purely on verification. No code changes, no new issues.
+- **Insight:** Launch countdown cycles should be read-only. Verification without creation. Stability > activity.
+- **Action:** During T-minus countdown, roles should verify and document, not create new work items.
+- **Status:** applied (C499 demonstrated)
+
+## Learning 225: Milestone cycles (C100, C250, C500) are natural checkpoints for progress reviews
+
+- **Date:** 2026-02-12
+- **Context:** Product (C500) documented cumulative achievements at the 500-cycle milestone.
+- **Insight:** Round numbers provide psychological hooks for reflection. Milestone documents capture metrics before compression erases them.
+- **Action:** When approaching milestone cycles (x00, x50), assign to a documentation role for progress capture.
+- **Status:** applied (C500 demonstrated)
+
+## Learning 226: Second verification rotation provides defense-in-depth before major launches
+
+- **Date:** 2026-02-13
+- **Context:** C491-500 followed C481-490 with another full T-minus verification rotation. Two complete rotations before launch.
+- **Insight:** One verification pass catches obvious issues; two catches edge cases and provides psychological confidence. The second rotation shifts focus from "are we ready?" to "how do we execute Day 1?"
+- **Action:** For major launches, plan two verification rotations: first for readiness, second for execution protocols.
+- **Status:** applied (C481-500 demonstrated pattern)
+
+## Learning 227: Compression deferral during launch windows is acceptable — but track it
+
+- **Date:** 2026-02-13
+- **Context:** Compression was due (~22 cycles) but deferred by Ops (C494), Growth (C497), and Frontier (C499) during launch window.
+- **Insight:** Memory bank compression introduces churn. During launch windows, stability trumps process adherence. Deferring for 5-10 cycles is acceptable if acknowledged.
+- **Action:** Document compression deferral when it happens; ensure post-launch catch-up is immediate.
+- **Status:** monitoring (compression due C502)
+
+## Learning 228: Milestone cycle achievements should be documented before they compress away
+
+- **Date:** 2026-02-13
+- **Context:** Product (C500) captured 500-cycle achievements: 79 consecutive, 1,220 tests, 222 learnings.
+- **Insight:** Compression erases detail. Milestones are moments to capture cumulative metrics in a durable document.
+- **Action:** Assign milestone cycles (x00, x50) to documentation-focused roles (Product, Scrum, CEO).
+- **Status:** applied (C500 demonstrated)
