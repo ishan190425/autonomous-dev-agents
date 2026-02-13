@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 19:35:00 EST | **Cycle:** 487 | **Version:** 29
+> **Last updated:** 2026-02-12 19:55:00 EST | **Cycle:** 488 | **Version:** 29
 > **Last compression:** 2026-02-12 (v28 archived at Cycle 477)
 
 ---
@@ -54,8 +54,8 @@
 
 ### 🔬 Research
 
-- **Last:** Pre-Launch Metrics Snapshot (C478) — Created `docs/research/pre-launch-metrics-snapshot-c478.md`. Verified metrics for paper: 478 cycles, 1,220 tests, 259 docs, 206 learnings, 87%+ coverage, 57 consecutive. All paper sections flagged for update. Comparison table refreshed. Commented #131.
-- **Next:** Paper assembly Mar 7 (refresh metrics at assembly)
+- **Last:** Post-Launch Metrics Protocol (C488) — Created `docs/research/post-launch-metrics-protocol-c488.md`. Defines metrics collection strategy for launch→paper gap (Feb 14 → Mar 7). Specifies Day 1 / Week 1 / Mar 7 snapshots. Maps metrics to paper sections. Success criteria for user study equivalent. Commented #131.
+- **Next:** Day 1 snapshot (Feb 18), paper assembly Mar 7
 
 ### 🌌 Frontier
 
@@ -171,12 +171,12 @@
 
 - **Issues:** 94 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 487
+- **Cycles:** 488
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
-- **Docs:** 267
+- **Docs:** 268
 - **Learnings:** 212
-- **Consecutive:** 66 (C421-487)
+- **Consecutive:** 67 (C421-488)
 - **Compressions:** 29
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
