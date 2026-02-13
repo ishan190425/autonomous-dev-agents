@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-13 05:02:00 EST | **Cycle:** 517 | **Version:** 30
+> **Last updated:** 2026-02-13 05:26:00 EST | **Cycle:** 518 | **Version:** 30
 > **Last compression:** 2026-02-13 (v29 archived at Cycle 504)
 
 ---
@@ -51,7 +51,7 @@
 
 ### 🔬 Research
 
-- **Last:** T-1 Night Research Standby (C508) — Final pre-launch verification. Paper artifacts intact (12 sections + 6 supporting docs). Metrics delta: +10 cycles, +11 learnings since C498. Observation mode standby. 87 consecutive (C421-508). 52/52 tracked.
+- **Last:** T-0 Research Standby (C518) — Launch window ready. Paper artifacts intact (12/12 sections + 6 supporting docs). Metrics delta since C508: +10 cycles, +7 learnings. Research enters full observation mode. 97 consecutive (C421-518). 52/52 tracked. Created docs/research/t0-research-standby-c518.md.
 - **Next:** Day 1 metrics snapshot (Feb 18), Week 1 categorization (Feb 21)
 
 ### 🌌 Frontier
@@ -172,12 +172,12 @@
 
 - **Issues:** 94 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 517
+- **Cycles:** 518
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
 - **Docs:** 276
 - **Learnings:** 236
-- **Consecutive:** 96 (C421-517)
+- **Consecutive:** 97 (C421-518)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
