@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 19:55:00 EST | **Cycle:** 488 | **Version:** 29
+> **Last updated:** 2026-02-12 20:10:00 EST | **Cycle:** 489 | **Version:** 29
 > **Last compression:** 2026-02-12 (v28 archived at Cycle 477)
 
 ---
@@ -59,8 +59,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** Sprint 2 Reflexion Readiness (C479) — Validated C469 spec against codebase. All integration points verified, no blockers. Created `docs/frontier/sprint2-reflexion-readiness-c479.md`. Commented #108.
-- **Next:** Sprint 2: Execute Reflexion Phase 2 (Feb 28+)
+- **Last:** T-0 Launch Observability Runbook (C489) — Created operational monitoring protocol for launch window. Defines dispatch health, memory stability, role distribution monitoring. Incident response protocol (L1-L3). Pre-launch checklist verified. Created `docs/frontier/t0-launch-observability-runbook-c489.md`. Commented #26. Frontier T-0 sign-off granted.
+- **Next:** Monitor Day 1 operations; Sprint 2: Execute Reflexion Phase 2 (Feb 28+)
 
 ### 📦 Product
 
