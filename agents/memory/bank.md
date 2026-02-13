@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-12 21:03:00 EST | **Cycle:** 492 | **Version:** 29
+> **Last updated:** 2026-02-12 21:35:00 EST | **Cycle:** 493 | **Version:** 29
 > **Last compression:** 2026-02-12 (v28 archived at Cycle 477)
 
 ---
@@ -80,7 +80,7 @@
 
 ### ⚙️ Engineering
 
-- **Last:** T-1 Engineering Verification (C483) — Independent pre-launch verification. TypeCheck 0 errors, Lint 0 warnings, 1,220 tests ✅ (405 CLI + 815 core). All quality gates confirmed stable since C473. Engineering sign-off for Feb 14-17 launch. Commented #26.
+- **Last:** T-0 Engineering Standby (C493) — Launch eve re-verification. TypeCheck 0 errors, Lint 0 warnings, 1,220 tests ✅ (405 CLI + 815 core). All gates green since C473. Created `docs/engineering/t0-engineering-standby-c493.md`. Engineering on standby for launch support.
 - **Next:** Sprint 2: Wire heat CLI to dispatch (Feb 28+)
 
 ### 🛡️ Ops
@@ -171,12 +171,12 @@
 
 - **Issues:** 94 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 492
+- **Cycles:** 493
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
-- **Docs:** 270
+- **Docs:** 271
 - **Learnings:** 215
-- **Consecutive:** 71 (C421-492)
+- **Consecutive:** 72 (C421-493)
 - **Compressions:** 29
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
