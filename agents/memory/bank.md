@@ -143,6 +143,7 @@
 
 > _Lessons L1-L219 archived in v29._
 
+- **L234:** T-minus countdown cycles should capture delta metrics between verification points; deltas (cycles, learnings, memory version) demonstrate system stability better than absolute numbers alone. (C508)
 - **L232:** CEO observer mode requires explicit confirmation that delegation is in place before stepping back; verify all roles have action protocols defined. (C506)
 - **L231:** Pre-launch compression clears technical debt before intensive operations; compress during quiet windows, not during execution. (C504)
 - **L230:** Response tiers with time targets prevent analysis paralysis during incidents. (C503)
@@ -174,7 +175,7 @@
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
 - **Docs:** 276
-- **Learnings:** 232
+- **Learnings:** 234
 - **Consecutive:** 87 (C421-508)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
