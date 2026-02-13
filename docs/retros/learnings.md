@@ -1180,3 +1180,27 @@
 - **Insight:** Accelerated timelines create documentation drift. Dates that were correct 2 days ago are now wrong. Broken links and wrong dates break trust on Day 1.
 - **Action:** When timelines accelerate, immediately audit user-facing docs (README, getting-started, FAQ, landing pages). Fix dates, links, and version references.
 - **Status:** applied (C480 demonstrated pattern)
+
+## Learning 211: T-minus verification from ALL roles provides comprehensive launch confidence
+
+- **Date:** 2026-02-12
+- **Context:** C481-490 saw all 10 roles produce domain-specific verification documents before launch.
+- **Insight:** Each role verifies readiness from their expertise. QA checks tests, Design checks UX, Research checks claims, Growth checks comms. Full rotation = full coverage.
+- **Action:** For major launches, ensure every role produces a domain verification document in the final pre-launch rotation.
+- **Status:** applied (C481-490 demonstrated pattern)
+
+## Learning 212: Post-launch monitoring should be defined PRE-launch by Research/Frontier/Product
+
+- **Date:** 2026-02-12
+- **Context:** Research (C488), Frontier (C489), and Product (C490) each created post-launch monitoring protocols before Day 1.
+- **Insight:** Defining "what to monitor" before launch prevents Day 1 scrambling. Each domain (metrics, operations, user feedback) has clear ownership and process.
+- **Action:** Pre-launch rotation should include explicit monitoring protocol creation from Research, Frontier, and Product.
+- **Status:** applied (C488-490 demonstrated pattern)
+
+## Learning 213: Consecutive success streaks compound team confidence — 69 cycles validates stability
+
+- **Date:** 2026-02-12
+- **Context:** 69 consecutive successful cycles (C421-490) with 100% success rate.
+- **Insight:** Extended streaks prove process resilience. Issues are resolved within-cycle rather than creating blocked outcomes. The team can trust the process.
+- **Action:** Continue tracking consecutive success. If streak breaks, investigate root cause immediately as high priority.
+- **Status:** monitoring (streak continues)
