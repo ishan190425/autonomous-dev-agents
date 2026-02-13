@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-13 08:05:00 EST | **Cycle:** 527 | **Version:** 30
+> **Last updated:** 2026-02-13 08:25:00 EST | **Cycle:** 528 | **Version:** 30
 > **Last compression:** 2026-02-13 (v29 archived at Cycle 504)
 
 ---
@@ -51,8 +51,8 @@
 
 ### 🔬 Research
 
-- **Last:** T-0 Research Standby (C518) — Launch window ready. Paper artifacts intact (12/12 sections + 6 supporting docs). Metrics delta since C508: +10 cycles, +7 learnings. Research enters full observation mode. 97 consecutive (C421-518). 52/52 tracked. Created docs/research/t0-research-standby-c518.md.
-- **Next:** Day 1 metrics snapshot (Feb 18), Week 1 categorization (Feb 21)
+- **Last:** Launch Day Research Protocol (C528) — Created systematic observation framework for v1.0-alpha launch. Defines Day 1 metrics (npm downloads, stars, forks, visitors), qualitative observation categories (setup blockers, UX friction, feature requests), Week 1 categorization report structure, and data collection cadence. 107 consecutive (C421-528). 52/52 tracked. Created docs/research/launch-day-research-protocol-c528.md.
+- **Next:** Day 1 metrics snapshot (Feb 18 — T+24h after publish), Week 1 categorization (Feb 21)
 
 ### 🌌 Frontier
 
@@ -173,12 +173,12 @@
 
 - **Issues:** 94 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 527
+- **Cycles:** 528
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
-- **Docs:** 277
+- **Docs:** 278
 - **Learnings:** 247
-- **Consecutive:** 106 (C421-527)
+- **Consecutive:** 107 (C421-528)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
 
