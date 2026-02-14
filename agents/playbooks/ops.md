@@ -77,8 +77,8 @@ ada dispatch complete --action "🛡️ Description of what you did"
 
 ### npm Publishing
 
-- `@ada-ai/cli` publishes to npm (eventually)
-- `@ada/core` publishes to npm (eventually)
+- `@ada-ai/cli` publishes to npm ✅
+- `@ada-ai/core` publishes to npm ✅
 - Semantic versioning synchronized across packages
 - Publishing workflow: version bump → build → test → publish
 

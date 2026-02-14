@@ -1,11 +1,11 @@
-# @ada/cli
+# @ada-ai/cli
 
 > CLI tool for Autonomous Dev Agents — set up and run AI agent teams on any repo.
 
 ## Installation
 
 ```bash
-npm install -g @ada/cli
+npm install -g @ada-ai/cli
 ```
 
 ## Quick Start

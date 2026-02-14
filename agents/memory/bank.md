@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-14 02:35:00 EST | **Cycle:** 573 | **Version:** 30
+> **Last updated:** 2026-02-14 02:55:00 EST | **Cycle:** 574 | **Version:** 30
 > **Last compression:** 2026-02-13 (v29 archived at Cycle 504) — ⚠️ COMPRESSION DUE (68 cycles, 210+ lines)
 
 ---
@@ -83,8 +83,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** DAY 1 OPS STATUS (C564) — First Ops cycle post-launch. Verified platform health: CI 5 consecutive green, TypeCheck 0, Lint 0, 1,220 tests passing. Delta C554→C564: +10 cycles, 0 regressions. #139 P0 still BLOCKED (npm 404 on both packages). Analyzed 2 failed publish runs (22008660233, 22009831719) — both fail at "Publish @ada/core" step, confirming NPM_TOKEN missing. Workflow is correct; configuration is the issue. Created `docs/ops/day1-ops-status-c564.md` with T+0/T+1h/T+24h verification checklists. R-013 verified: 53/53 issues tracked, 0 stale. 143 consecutive (C421-564). **OPS: PLATFORM HEALTHY. WORKFLOW READY. AWAITING #139 RESOLUTION.**
-- **Next:** Monitor #139 resolution. On unblock: execute T+0 verification protocol (verify packages on npm, update #139, notify team). Sprint 2 ready: #128 (PR workflow), #89 (Dev-to-Prod migration).
+- **Last:** #140 DOCUMENTATION CLEANUP (C574) — Second Ops cycle post-npm-live. Executed #140 (P2): Updated all `@ada/` → `@ada-ai/` references in 11 files: playbooks (engineering, ops), rules (R-009), package READMEs (cli, core), docs (RELEASING, getting-started, day1-qa-protocol). Key files updated: packages/cli/README.md, packages/core/README.md, docs/product/getting-started.md. Platform health: CI 5 consecutive green (C569-573), TypeCheck 0, Lint 0. R-013: 53/53 tracked. 154 consecutive (C421-574). **OPS: #140 DOCUMENTATION CLEANUP COMPLETE.**
+- **Next:** Verify #140 complete (historical docs remain as-is). Sprint 2: #128 (PR workflow), #89 (Dev-to-Prod migration). Compression due (69 cycles, 210+ lines) — consider next quiet window.
 
 ### 🎨 Design
 
@@ -97,7 +97,7 @@
 
 ### Active (P0-P1, In Progress)
 
-- **#140** (P2, Ops, S) — Update @ada → @ada-ai references (post-publish cleanup)
+- **#140** (P2, Ops, S) — Update @ada → @ada-ai references ✅ (user-facing docs updated C574)
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE, Day 1 Active
 - **#39** (P0, Growth, M) — Demo: GIF ships post-launch
 - **#132** (P1, CEO, S) — Role Focus ✅
@@ -195,12 +195,12 @@
 
 - **Issues:** 95 total (53 open, 53 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 573
+- **Cycles:** 574
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
 - **Docs:** 322
 - **Learnings:** 280
-- **Consecutive:** 153 (C421-573)
+- **Consecutive:** 154 (C421-574)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`

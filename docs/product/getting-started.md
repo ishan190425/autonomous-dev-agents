@@ -33,7 +33,7 @@ gh auth status    # Should show "Logged in"
 Install the ADA CLI globally:
 
 ```bash
-npm install -g @ada/cli
+npm install -g @ada-ai/cli
 ```
 
 Verify the installation:
@@ -208,7 +208,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm install -g @ada/cli
+      - run: npm install -g @ada-ai/cli
       - run: ada run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

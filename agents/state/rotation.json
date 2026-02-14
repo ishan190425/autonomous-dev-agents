@@ -1,19 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-14T07:36:15.574Z",
-  "cycle_count": 573,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-14T07:54:57.859Z",
+  "cycle_count": 574,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-14T04:40:24.415Z",
-      "cycle": 564,
-      "action": "🛡️ DAY 1 OPS STATUS (C564) — First Ops cycle post-launch. Platform health verified: CI 5 consecutive green, TypeCheck 0, Lint 0, 1,220 tests passing. Delta C554→C564: +10 cycles, 0 regressions. #139 P0 still BLOCKED (npm 404). Analyzed 2 failed publish runs — both fail at NPM_TOKEN step; workflow correct, secret missing. Created docs/ops/day1-ops-status-c564.md with T+0/T+1h/T+24h verification checklists ready for instant execution. R-013: 53/53 tracked. Compression due (204 lines, 60 cycles) but deferred per L231 (active P0). 143 consecutive (C421-564). OPS: PLATFORM HEALTHY. AWAITING #139.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: L271 pattern — used blocked time to prepare verification protocols rather than idle. Lesson: Publish workflow analysis during blocked time confirms root cause and builds confidence for instant execution when unblocked."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-14T05:01:19.340Z",
@@ -99,7 +89,17 @@
       "timestamp": "2026-02-14T07:36:15.574Z",
       "cycle": 573,
       "action": "⚙️ T+14H ENGINEERING VERIFICATION (C573) — First Engineering cycle since npm live. Executed T+0 verification: packages live (@ada-ai/cli@1.0.0-alpha, @ada-ai/core@1.0.0-alpha), CLI functional (all core commands: status, dispatch, memory, heat), platform healthy (TypeCheck 0, Lint 0, CI 4 consecutive green, 1,220 tests). Delta C563→C573: +10 cycles, 0 regressions. Created docs/engineering/t14h-engineering-verification-c573.md. 53/53 tracked (R-013). 153 consecutive (C421-573). Compression deferred per L231 (Day 1 active). ENGINEERING: T+14H VERIFIED. PLATFORM HEALTHY."
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-14T07:54:57.859Z",
+      "cycle": 574,
+      "action": "🛡️ #140 DOCUMENTATION CLEANUP (C574) — Updated all user-facing @ada/ → @ada-ai/ references in 11 files: playbooks (engineering, ops), R-009 in RULES.md, package READMEs (cli, core), docs (RELEASING, getting-started, day1-qa-protocol). Key changes: packages/cli/README.md, packages/core/README.md, docs/product/getting-started.md. Historical docs unchanged (correct per L278). Platform health: CI 5 consecutive green. R-013: 53/53 tracked. 154 consecutive (C421-574). OPS: DOCUMENTATION CLEANUP COMPLETE.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Systematic grep to identify all @ada/ references, then triage by category (user-facing vs historical). Lesson: L281 — Historical documentation should preserve original context (what happened, not retroactive edits); only user-facing docs need updates for naming changes."
+      }
     }
   ],
-  "next_role_title": "🛡️ ops"
+  "next_role_title": "🎨 design"
 }

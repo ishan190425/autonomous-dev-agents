@@ -1,11 +1,11 @@
-# @ada/core
+# @ada-ai/core
 
 > Core library for Autonomous Dev Agents — types, rotation, memory, and dispatch logic.
 
 ## Installation
 
 ```bash
-npm install @ada/core
+npm install @ada-ai/core
 ```
 
 ## Usage
@@ -19,17 +19,17 @@ import {
   readMemoryBank,
   loadContext,
   completeDispatch,
-} from "@ada/core";
+} from '@ada-ai/core';
 
 // Load dispatch context for a project
-const context = await loadContext("/path/to/project");
+const context = await loadContext('/path/to/project');
 if (context) {
   console.log(`Current role: ${context.role.emoji} ${context.role.name}`);
 
   // ... execute role actions ...
 
   // Complete the cycle
-  const result = await completeDispatch(context, "Created feature issue #42");
+  const result = await completeDispatch(context, 'Created feature issue #42');
   console.log(`Cycle ${result.cycle} complete`);
 }
 ```

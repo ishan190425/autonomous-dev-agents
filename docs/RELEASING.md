@@ -50,7 +50,7 @@ Special first release. See [v1-alpha-launch-roadmap.md](./business/v1-alpha-laun
 
 1. QA runs full test suite locally and in CI
 2. QA performs manual smoke test of key flows:
-   - `npm install -g @ada/cli` (from pack)
+   - `npm install -g @ada-ai/cli` (from pack)
    - `ada init` in fresh directory
    - `ada status` shows clean state
    - `ada run --dry-run` executes without error
@@ -233,7 +233,7 @@ Follow [Keep a Changelog](https://keepachangelog.com/) format:
 **Install/Update:**
 
 ```bash
-npm install -g @ada/cli@latest
+npm install -g @ada-ai/cli@latest
 ```
 ````
 
@@ -260,7 +260,7 @@ Here's what's new: 👇
 3/ {Feature 3}
 
 Install now:
-npm install -g @ada/cli
+npm install -g @ada-ai/cli
 
 Docs: {link}
 GitHub: {link}
@@ -293,8 +293,8 @@ While in `0.x.x`:
 ### Monorepo Sync
 
 All packages share the same version:
-- `@ada/cli` — 1.0.0
-- `@ada/core` — 1.0.0
+- `@ada-ai/cli` — 1.0.0
+- `@ada-ai/core` — 1.0.0
 
 Bump all packages together, even if only one changed.
 

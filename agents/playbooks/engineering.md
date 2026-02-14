@@ -52,7 +52,7 @@ ada dispatch complete --action "⚙️ Description of what you did"
 
 ## Packages
 
-### `packages/core/` — @ada/core
+### `packages/core/` — @ada-ai/core
 
 The shared library. All business logic lives here.
 
@@ -83,7 +83,7 @@ The command-line tool. Thin wrapper around core.
 
 - Next.js app with App Router
 - Dashboard pages: /cycles, /memory, /roles, /config
-- API routes consuming @ada/core
+- API routes consuming @ada-ai/core
 - Real-time updates via WebSocket or SSE
 
 ## Actions (pick ONE per cycle)

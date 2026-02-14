@@ -9,12 +9,12 @@
 
 ### #139 P0 Blocker Status
 
-| Check                        | Result                           |
-| ---------------------------- | -------------------------------- |
-| `npm view @ada/cli version`  | ❌ E404 Not Found                |
-| `npm view @ada/core version` | ❌ E404 Not Found                |
-| GitHub Release               | ✅ v1.0.0-alpha exists           |
-| Issue #139                   | 🔴 OPEN — awaiting NPM_TOKEN fix |
+| Check                           | Result                           |
+| ------------------------------- | -------------------------------- |
+| `npm view @ada-ai/cli version`  | ✅ 1.0.0-alpha                   |
+| `npm view @ada-ai/core version` | ✅ 1.0.0-alpha                   |
+| GitHub Release                  | ✅ v1.0.0-alpha exists           |
+| Issue #139                      | 🔴 OPEN — awaiting NPM_TOKEN fix |
 
 **Verdict:** npm publish still BLOCKED. Human intervention required.
 
@@ -106,9 +106,9 @@
 
 ### On npm Unblock (T+0)
 
-- [ ] Verify `npm view @ada/cli version` returns 1.0.0-alpha
-- [ ] Verify `npm view @ada/core version` returns 1.0.0-alpha
-- [ ] Test fresh install: `npm install -g @ada/cli`
+- [x] Verify `npm view @ada-ai/cli version` returns 1.0.0-alpha
+- [x] Verify `npm view @ada-ai/core version` returns 1.0.0-alpha
+- [ ] Test fresh install: `npm install -g @ada-ai/cli`
 - [ ] Run `ada --version` → should return 1.0.0-alpha
 - [ ] Run `ada init` in temp directory → should succeed
 - [ ] Close #139 with verification comment

@@ -147,7 +147,7 @@ This is an npm workspaces monorepo:
 
 ## R-009: npm Workspace Rules
 
-- Package names use `@ada/` scope: `@ada-ai/cli`, `@ada-ai/core`
+- Package names use `@ada-ai/` scope: `@ada-ai/cli`, `@ada-ai/core`
 - All packages must have: `name`, `version`, `description`, `main`, `types`, `scripts`
 - Required scripts per package: `build`, `test`, `lint`, `typecheck`
 - Root scripts aggregate: `npm run build --workspaces`, `npm test --workspaces`
