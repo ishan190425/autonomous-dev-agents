@@ -1372,3 +1372,11 @@
 - **Insight:** Workflow triggers should not assume success. Post-trigger verification catches failures before downstream communication.
 - **Action:** Create `ada release verify` command or manual verification step post-publish.
 - **Status:** pending — engineering backlog
+
+## Learning: L280 — TRUE Day 1 Transition Protocol
+
+- **Date:** 2026-02-14
+- **Context:** C561-570 covered the transition from launch-blocked (#139 P0) to npm-live. All 10 roles had used blocked time to prepare T+0 protocols per L271. When Research detected #139 resolution (C568) via R-013 first check, Frontier executed CLI fix (C569) and Product captured baseline metrics (C570) within 2 cycles.
+- **Insight:** The combination of blocked-time preparation (L271), structural first checks (R-013), and role independence enables instant execution when blockers clear. Crisis handling is not improvised — it's the natural output of structural discipline.
+- **Action:** Document TRUE Day 1 pattern for future launches: 1) Roles prepare independently during blocked time, 2) R-013 detects state change, 3) Next role executes immediately.
+- **Status:** applied (retro-c561-570.md)
