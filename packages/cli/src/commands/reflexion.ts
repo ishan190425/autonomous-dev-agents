@@ -266,6 +266,7 @@ export const reflexionCommand = new Command('reflexion')
 reflexionCommand
   .command('patterns')
   .description('Display extracted patterns with confidence scores')
+  .option('-d, --dir <path>', 'Project directory', '.')
   .option(
     '--min-confidence <n>',
     'Minimum confidence threshold (0.0-1.0)',
@@ -278,8 +279,10 @@ reflexionCommand
     'table'
   )
   .option('--include-rejected', 'Include previously rejected patterns')
-  .action(async (options: PatternsOptions) => {
-    const dir = options.dir || '.';
+  .action(async function (this: Command, options: PatternsOptions) {
+    // Check parent options as fallback (Commander assigns -d to parent when used before subcommand)
+    const parentOpts = this.parent?.opts() as ReflexionOptions | undefined;
+    const dir = (options.dir !== '.' ? options.dir : parentOpts?.dir) || '.';
     const minConfidence = parseFloat(options.minConfidence || '0.7');
     const limit = parseInt(options.limit || '10', 10);
     const format = options.format || 'table';
@@ -381,6 +384,7 @@ reflexionCommand
 reflexionCommand
   .command('suggest')
   .description('Suggest patterns that should be formalized as lessons or rules')
+  .option('-d, --dir <path>', 'Project directory', '.')
   .option(
     '--threshold <n>',
     'Minimum confidence for suggestions',
@@ -391,8 +395,10 @@ reflexionCommand
     'Output format: detail, list, json',
     'detail'
   )
-  .action(async (options: SuggestOptions) => {
-    const dir = options.dir || '.';
+  .action(async function (this: Command, options: SuggestOptions) {
+    // Check parent options as fallback (Commander assigns -d to parent when used before subcommand)
+    const parentOpts = this.parent?.opts() as ReflexionOptions | undefined;
+    const dir = (options.dir !== '.' ? options.dir : parentOpts?.dir) || '.';
     const threshold = parseFloat(options.threshold || '0.85');
     const format = options.format || 'detail';
 
@@ -492,6 +498,7 @@ reflexionCommand
 reflexionCommand
   .command('accept <patternId>')
   .description('Accept a suggested pattern formalization')
+  .option('-d, --dir <path>', 'Project directory', '.')
   .option(
     '--as <type>',
     'Formalization type: lesson, rule, playbook',
@@ -499,8 +506,10 @@ reflexionCommand
   )
   .option('--id <id>', 'Override auto-generated ID (e.g., L298, R-014)')
   .option('--apply', 'Apply changes immediately (vs staging)')
-  .action(async (patternId: string, options: AcceptOptions) => {
-    const dir = options.dir || '.';
+  .action(async function (this: Command, patternId: string, options: AcceptOptions) {
+    // Check parent options as fallback (Commander assigns -d to parent when used before subcommand)
+    const parentOpts = this.parent?.opts() as ReflexionOptions | undefined;
+    const dir = (options.dir !== '.' ? options.dir : parentOpts?.dir) || '.';
     const formalizeAs = options.as || 'lesson';
 
     // Load states
@@ -557,10 +566,13 @@ reflexionCommand
 reflexionCommand
   .command('reject <patternId>')
   .description('Reject a suggested pattern with optional reasoning')
+  .option('-d, --dir <path>', 'Project directory', '.')
   .option('--reason <text>', 'Reason for rejection')
   .option('--permanent', 'Never suggest this pattern again')
-  .action(async (patternId: string, options: RejectOptions) => {
-    const dir = options.dir || '.';
+  .action(async function (this: Command, patternId: string, options: RejectOptions) {
+    // Check parent options as fallback (Commander assigns -d to parent when used before subcommand)
+    const parentOpts = this.parent?.opts() as ReflexionOptions | undefined;
+    const dir = (options.dir !== '.' ? options.dir : parentOpts?.dir) || '.';
 
     // Load states
     const reflexionState = await loadReflexionState(dir);
@@ -590,8 +602,11 @@ reflexionCommand
 reflexionCommand
   .command('stats')
   .description('Show Reflexion system statistics')
-  .action(async (options: ReflexionOptions) => {
-    const dir = options.dir || '.';
+  .option('-d, --dir <path>', 'Project directory', '.')
+  .action(async function (this: Command, options: ReflexionOptions) {
+    // Check parent options as fallback (Commander assigns -d to parent when used before subcommand)
+    const parentOpts = this.parent?.opts() as ReflexionOptions | undefined;
+    const dir = (options.dir !== '.' ? options.dir : parentOpts?.dir) || '.';
 
     // Load states
     const rotationState = await loadRotationState(dir);
