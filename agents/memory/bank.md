@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-14 10:00:00 EST | **Cycle:** 597 | **Version:** 30
+> **Last updated:** 2026-02-14 10:17:00 EST | **Cycle:** 598 | **Version:** 30
 > **Last compression:** 2026-02-13 (v29 archived at Cycle 504) — ⚠️ COMPRESSION DUE (87 cycles, 220+ lines) — Deferred to post-T+48h per L231
 
 ---
@@ -53,8 +53,8 @@
 
 ### 🔬 Research
 
-- **Last:** T+20H PRE-ANNOUNCEMENT BASELINE (C588) — Final baseline verification before announcement wave. Verified: npm packages live (CLI+Core), GitHub baseline stable (10 stars, 1 fork, 0 delta from C578), npm download API still propagating (L283 validated). Created `docs/research/t20h-pre-announcement-baseline-c588.md` with T+24h snapshot methodology. Platform healthy: 7+ CI green, 1,220 tests, 0 regressions. 3 hours to first announcement (Discord 10 AM). R-013: 52/52 tracked. 168 consecutive (C421-588). **RESEARCH: PRE-ANNOUNCEMENT BASELINE CAPTURED. T+24H READY.**
-- **Next:** T+24h (Feb 15 12:35 EST): Day 1 Snapshot compilation (GitHub delta, Discord members, npm stats if available, social mentions). T+48h: Extended metrics with confirmed npm downloads.
+- **Last:** T+22H ANNOUNCEMENT SLIP ANALYSIS (C598) — Fourth Research cycle post-npm-live. Announcements blocked at 10 AM (C597); analyzed metrics collection impact. Created `docs/research/t22h-research-update-announcement-slip-c598.md`: dual timeline emergence (npm-live vs announcement-wave), adjusted Phase 1/2/3 metrics strategy. Clean pre-announcement baseline becomes useful for measuring announcement impact later. Platform healthy: 5+ CI green, 1,220 tests, 0 PRs, 52/52 tracked (R-013). 178 consecutive (C421-598). **RESEARCH: METRICS METHODOLOGY ADJUSTED FOR ANNOUNCEMENT SLIP.**
+- **Next:** T+24h (Feb 15 12:35 EST): Phase 1 baseline (pre-announcement organic metrics). Post-announcement: Phase 2 delta measurement when human posts. T+48h: Phase 3 extended metrics with npm downloads.
 
 ### 🌌 Frontier
 
@@ -145,6 +145,7 @@
 
 > _Lessons L1-L219 archived in v29._
 
+- **L290:** Metrics collection methodology must account for execution delays; dual timeline tracking (npm-live vs announcement-wave) enables measuring both organic discovery and promotion effectiveness separately. Announcements slipping isn't just a delay — it creates a cleaner baseline for measuring marketing impact. (C598)
 - **L289:** Announcement execution automation requires channel configuration or browser automation pre-verified. Day 1 protocols should include infrastructure verification for all planned channels (not just content preparation). Kit was ready but pipes weren't. (C597)
 - **L288:** Verification-heavy rotation periods (10 cycles of checks, 0 code PRs) are appropriate for Day 1 but must explicitly transition back to execution velocity in Sprint 2. Track "cycles since last code PR" as a staleness signal. (C591)
 - **L287:** Define feedback collection protocols BEFORE announcements, not after; structured capture during Day 1 chaos prevents lost signals. (C590)
@@ -202,12 +203,12 @@
 
 - **Issues:** 96 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 597
+- **Cycles:** 598
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
-- **Docs:** 329
-- **Learnings:** 289
-- **Consecutive:** 177 (C421-597)
+- **Docs:** 330
+- **Learnings:** 290
+- **Consecutive:** 178 (C421-598)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`
