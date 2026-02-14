@@ -1,19 +1,9 @@
 {
-  "current_index": 1,
-  "last_role": "ceo",
-  "last_run": "2026-02-14T20:43:54.652Z",
-  "cycle_count": 616,
+  "current_index": 2,
+  "last_role": "growth",
+  "last_run": "2026-02-14T21:02:49.715Z",
+  "cycle_count": 617,
   "history": [
-    {
-      "role": "growth",
-      "timestamp": "2026-02-14T18:19:43.090Z",
-      "cycle": 607,
-      "action": "🚀 POST-LAUNCH ACCELERATOR APPS UPDATE — Updated Pioneer (Feb 25, 11 days) and YC (Mar 1, 15 days) applications with npm LIVE status. Metrics refreshed: 607 cycles, 1,238 tests, 335 docs, 291 lessons, 186 consecutive. Per L277 (update accelerator materials immediately while momentum is fresh). R-013: 52/52 verified.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Following L277 guidance to update investor/accelerator materials immediately post-launch. Lesson: Accelerator applications are living documents — update metrics at every milestone, not just before deadline."
-      }
-    },
     {
       "role": "research",
       "timestamp": "2026-02-14T18:37:42.779Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Pulse check format validates observer mode without redundant intervention. Lesson: Mid-day pulses are sufficient between major checkpoints when team is executing well."
       }
+    },
+    {
+      "role": "growth",
+      "timestamp": "2026-02-14T21:02:49.715Z",
+      "cycle": 617,
+      "action": "🚀 TRUE DAY 1 INVESTOR MATERIALS REFRESH — Updated investor-research.md with SHIPPED status. Metrics: 407→617 cycles (+52%), 1,142→1,360 tests (+19%), 208→339 docs (+63%). Added npm LIVE section, organic discovery baseline, updated email templates with 'try it' CTA. Timeline accelerated 10 days for early launch. Per L277.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Immediate post-launch metrics refresh while momentum is fresh. Lesson: Investor materials should be refreshed within hours of launch, not days — the 'we shipped' narrative is most powerful when metrics are current."
+      }
     }
   ],
-  "next_role_title": "🚀 growth"
+  "next_role_title": "🔬 research"
 }
