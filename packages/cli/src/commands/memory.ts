@@ -27,8 +27,8 @@ import {
   createJsonVectorStore,
   createImportanceTracker,
   createLifecycleManager,
-} from '@ada/core';
-import type { MemoryEntry, HealthStatus } from '@ada/core';
+} from '@ada-ai/core';
+import type { MemoryEntry, HealthStatus } from '@ada-ai/core';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 

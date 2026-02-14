@@ -14,8 +14,8 @@ import chalk from 'chalk';
 import {
   createMetricsManager,
   formatCost,
-} from '@ada/core';
-import type { CycleMetrics } from '@ada/core';
+} from '@ada-ai/core';
+import type { CycleMetrics } from '@ada-ai/core';
 import {
   detectFormat,
   getSupportedExtensions,

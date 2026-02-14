@@ -90,7 +90,7 @@ describe('Dispatch Observability Integration', () => {
     // and verifying metrics.json is created
     // For now, we verify the types and imports are correct
     
-    const { createCycleTracker } = await import('@ada/core');
+    const { createCycleTracker } = await import('@ada-ai/core');
     
     // Verify the factory functions exist and work
     const tracker = createCycleTracker(101, 'engineering', 'claude-4-sonnet');
@@ -114,7 +114,7 @@ describe('Dispatch Observability Integration', () => {
   });
 
   it('should create metrics.json when manager records metrics', async () => {
-    const { createCycleTracker, createMetricsManager } = await import('@ada/core');
+    const { createCycleTracker, createMetricsManager } = await import('@ada-ai/core');
     
     // Create tracker and metrics
     const tracker = createCycleTracker(101, 'engineering', 'claude-4-sonnet');

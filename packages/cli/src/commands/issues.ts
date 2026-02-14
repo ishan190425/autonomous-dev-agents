@@ -25,8 +25,8 @@ import {
   suggestRoleFromIssue,
   DEFAULT_CONFIG,
   resolvePaths,
-} from '@ada/core';
-import type { ParsedIssue } from '@ada/core';
+} from '@ada-ai/core';
+import type { ParsedIssue } from '@ada-ai/core';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 

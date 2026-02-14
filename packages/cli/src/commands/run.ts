@@ -12,7 +12,7 @@ import {
   checkCompression,
   executeAgentAction,
   readRotationState
-} from '@ada/core';
+} from '@ada-ai/core';
 import * as path from 'node:path';
 
 /**

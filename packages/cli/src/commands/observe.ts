@@ -27,7 +27,7 @@ import {
   addCost,
   divideUsage,
   divideCost,
-} from '@ada/core';
+} from '@ada-ai/core';
 import type {
   AggregatedMetrics,
   CycleMetrics,
@@ -36,7 +36,7 @@ import type {
   TokenUsage,
   TokenCost,
   PhaseLatencyStats,
-} from '@ada/core';
+} from '@ada-ai/core';
 import {
   detectFormat,
   getSupportedExtensions,

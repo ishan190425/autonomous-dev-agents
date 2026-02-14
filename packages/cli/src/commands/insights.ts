@@ -21,8 +21,8 @@ import {
   formatInsightsForRetro,
   generateInsightIssueBody,
   DEFAULT_DETECTION_OPTIONS,
-} from '@ada/core';
-import type { DetectionOptions } from '@ada/core';
+} from '@ada-ai/core';
+import type { DetectionOptions } from '@ada-ai/core';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 

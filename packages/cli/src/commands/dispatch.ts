@@ -28,8 +28,8 @@ import {
   advanceRotation,
   createCycleTracker,
   createMetricsManager,
-} from '@ada/core';
-import type { Role, Roster, RotationState, Reflection } from '@ada/core';
+} from '@ada-ai/core';
+import type { Role, Roster, RotationState, Reflection } from '@ada-ai/core';
 
 const exec = promisify(execCb);
 

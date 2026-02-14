@@ -6,7 +6,7 @@
  */
 
 import { Command } from 'commander';
-import { readRotationState, writeRotationState } from '@ada/core';
+import { readRotationState, writeRotationState } from '@ada-ai/core';
 import * as path from 'node:path';
 import { execSync } from 'node:child_process';
 

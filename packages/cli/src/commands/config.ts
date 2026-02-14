@@ -4,7 +4,7 @@
 
 import { Command } from 'commander';
 import * as path from 'node:path';
-import { readRoster } from '@ada/core';
+import { readRoster } from '@ada-ai/core';
 
 export const configCommand = new Command('config')
   .description('View and edit agent team configuration')

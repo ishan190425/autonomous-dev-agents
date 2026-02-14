@@ -21,8 +21,8 @@ import {
   getCurrentRole,
   createMetricsManager,
   formatCost,
-} from '@ada/core';
-import type { RotationState, Roster, RotationHistoryEntry, Role, CycleMetrics } from '@ada/core';
+} from '@ada-ai/core';
+import type { RotationState, Roster, RotationHistoryEntry, Role, CycleMetrics } from '@ada-ai/core';
 
 /** Options for the status command */
 interface StatusOptions {

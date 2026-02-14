@@ -19,8 +19,8 @@ import { showBanner } from '../lib/banner.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-import { DEFAULT_CONFIG } from '@ada/core';
-import type { Roster, RotationState, AdaConfig } from '@ada/core';
+import { DEFAULT_CONFIG } from '@ada-ai/core';
+import type { Roster, RotationState, AdaConfig } from '@ada-ai/core';
 
 interface InitOptions {
   template: string;
