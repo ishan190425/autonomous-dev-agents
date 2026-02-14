@@ -17,6 +17,14 @@
     "./heat/index.js": {
       "types": "./dist/heat/index.d.ts",
       "default": "./dist/heat/index.js"
+    },
+    "./terminal": {
+      "types": "./dist/terminal/index.d.ts",
+      "default": "./dist/terminal/index.js"
+    },
+    "./terminal/index.js": {
+      "types": "./dist/terminal/index.d.ts",
+      "default": "./dist/terminal/index.js"
     }
   },
   "files": [

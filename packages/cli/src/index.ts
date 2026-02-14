@@ -28,6 +28,7 @@ import { insightsCommand } from './commands/insights.js';
 import { issuesCommand } from './commands/issues.js';
 import { heatCommand } from './commands/heat.js';
 import { reflexionCommand } from './commands/reflexion.js';
+import { terminalCommand } from './commands/terminal.js';
 import { showBanner } from './lib/banner.js';
 
 const VERSION = '1.0.0-alpha';
@@ -56,6 +57,7 @@ program.addCommand(insightsCommand);
 program.addCommand(issuesCommand);
 program.addCommand(heatCommand);
 program.addCommand(reflexionCommand);
+program.addCommand(terminalCommand);
 program.addCommand(stopCommand);
 program.addCommand(pauseCommand);
 program.addCommand(resumeCommand);

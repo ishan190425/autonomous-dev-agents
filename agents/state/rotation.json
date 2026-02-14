@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-14T23:09:36.193Z",
-  "cycle_count": 622,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-14T23:32:06.741Z",
+  "cycle_count": 623,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-14T20:07:15.755Z",
-      "cycle": 613,
-      "action": "⚙️ TERMINAL MODE CORE IMPLEMENTATION (C613) — Implemented formatter.ts and executor.ts per UX spec (C605) for Terminal Mode (#125). TerminalFormatter: zone-based output formatting (ADA ┃, command ▶, stdout │, exit ◀), color/no-color modes, cycle summaries, command history. CommandExecutor: shell execution with streaming, timeouts, truncation, max-commands limit. +66 tests (955 core total). TypeCheck 0, Lint 0.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Following UX spec (C605) made implementation straightforward — visual patterns already defined. Lesson: L296 validated — UX specs before engineering accelerates implementation and eliminates mid-coding design debates."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-14T20:07:38.638Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Coverage trending upward during implementation velocity (+1.39% core). Lesson: L298 — Test-to-feature ratio remains healthy when PRs include tests; 4 code PRs since launch added +88 tests collectively."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-14T23:32:06.741Z",
+      "cycle": 623,
+      "action": "⚙️ TERMINAL MODE CLI INTEGRATION (C623) — Fifth code PR since launch. Created ada terminal command with 4 subcommands: detect (shell info), exec (formatted command execution), history (cycle tracking), demo (formatting preview). Wired @ada-ai/core/terminal module to CLI. Added terminal subpath export to core package.json. +30 CLI tests (453 CLI total). TypeCheck 0, Lint 0/2w. R-013: 52/52 verified. 203 consecutive (C421-623). TERMINAL MODE FEATURE-COMPLETE (#125).",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Following UX spec (C605) made CLI implementation straightforward — visual patterns already defined. Core library separation (C613) enabled clean CLI integration. Lesson: L296 validated again — UX-first, then core, then CLI creates a smooth implementation pipeline."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }
