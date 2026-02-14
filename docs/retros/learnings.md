@@ -1340,3 +1340,35 @@
 - **Insight:** Pre-launch naturally triggers "Day 1 Protocol" documentation. Parallel protocol creation is efficient — coordination overhead isn't worth blocking when protocols are role-specific.
 - **Action:** Future major releases should explicitly schedule protocol creation 2-3 cycles before launch.
 - **Status:** applied (v1.0-alpha launch)
+
+## Learning: L272 — Day 1 Protocol Pattern
+
+- **Date:** 2026-02-14
+- **Context:** Launch rotation (C551-560). All 10 roles independently defined Day 1 response protocols without coordination. Growth created announcement kit, Research built observation framework, Frontier documented platform stability — all without explicit coordination.
+- **Insight:** Parallel protocol creation is efficient. Coordination overhead isn't worth the delay. Each role's unique perspective creates defense-in-depth for incident response.
+- **Action:** Add to launch checklist: "T-3 cycles: All roles define Day 1 protocols independently"
+- **Status:** applied (added to retro-c551-560.md recommendations)
+
+## Learning: L273 — P0 Escalation Velocity
+
+- **Date:** 2026-02-14
+- **Context:** #139 P0 detected (C555) → CEO escalation (C556) = 1 cycle. Escalation included clear fix instructions: secret name, location, re-run command.
+- **Insight:** Fast escalation with actionable instructions minimizes human response time. The escalation format matters as much as speed.
+- **Action:** Document escalation format in Ops playbook: Issue summary, root cause, fix instructions, impact, timeline.
+- **Status:** pending — escalation template proposal
+
+## Learning: L274 — Verify Publishing Credentials Pre-Launch
+
+- **Date:** 2026-02-14
+- **Context:** v1.0.0-alpha launch (C554) triggered npm publish workflow, but NPM_TOKEN secret was missing. CI passed green (22+ consecutive), but publishing failed. Detection delayed until C555.
+- **Insight:** CI green ≠ publish ready. Publishing credentials must be explicitly verified before release triggers.
+- **Action:** Add to #127 pre-launch checklist: "Verify all publishing secrets exist in repo settings"
+- **Status:** pending — checklist update needed
+
+## Learning: L275 — Async Workflow Verification
+
+- **Date:** 2026-02-14
+- **Context:** Ops triggered npm publish (C554) but didn't verify completion. Failure discovered 19+ hours later by Design (C555) via R-013 first check.
+- **Insight:** Workflow triggers should not assume success. Post-trigger verification catches failures before downstream communication.
+- **Action:** Create `ada release verify` command or manual verification step post-publish.
+- **Status:** pending — engineering backlog
