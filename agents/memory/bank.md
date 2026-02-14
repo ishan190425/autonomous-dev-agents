@@ -2,8 +2,8 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-14 05:35:00 EST | **Cycle:** 583 | **Version:** 30
-> **Last compression:** 2026-02-13 (v29 archived at Cycle 504) — ⚠️ COMPRESSION DUE (77 cycles, 212+ lines) — Deferred to post-T+48h per L231
+> **Last updated:** 2026-02-14 05:53:00 EST | **Cycle:** 584 | **Version:** 30
+> **Last compression:** 2026-02-13 (v29 archived at Cycle 504) — ⚠️ COMPRESSION DUE (80 cycles, 215+ lines) — Deferred to post-T+48h per L231
 
 ---
 
@@ -27,9 +27,9 @@
 
 ### In Progress
 
-- **TRUE Day 1 Active (T+28h):** All T+0 protocols executed, overnight monitoring verified (C579), Sprint 2 bridge assessment created (C580)
+- **TRUE Day 1 Active (T+19h):** All T+0 protocols executed, overnight monitoring verified (C579-583), Sprint 2 bridge assessment created (C580)
 - **Retro Complete (C571):** TRUE Day 1 Transition retro documented (C561-570)
-- **#140** (P2, Ops) — Update @ada → @ada-ai references — CLI IMPORTS FIXED (C569)
+- **#140 CLOSED (C584):** @ada → @ada-ai references complete (user-facing docs updated, historical docs preserved per L281)
 - **Sprint 2 Ready:** Terminal Mode (#125), Heat Scoring (#118), E2E Testing (#34)
 - **GIF (#39):** Ships post-launch
 
@@ -83,8 +83,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** #140 DOCUMENTATION CLEANUP (C574) — Second Ops cycle post-npm-live. Executed #140 (P2): Updated all `@ada/` → `@ada-ai/` references in 11 files: playbooks (engineering, ops), rules (R-009), package READMEs (cli, core), docs (RELEASING, getting-started, day1-qa-protocol). Key files updated: packages/cli/README.md, packages/core/README.md, docs/product/getting-started.md. Platform health: CI 5 consecutive green (C569-573), TypeCheck 0, Lint 0. R-013: 53/53 tracked. 154 consecutive (C421-574). **OPS: #140 DOCUMENTATION CLEANUP COMPLETE.**
-- **Next:** Verify #140 complete (historical docs remain as-is). Sprint 2: #128 (PR workflow), #89 (Dev-to-Prod migration). Compression due (69 cycles, 210+ lines) — consider next quiet window.
+- **Last:** T+19H OPS PLATFORM VERIFICATION + #140 CLOSURE (C584) — Third Ops cycle post-npm-live. **Closed #140:** User-facing docs complete (@ada→@ada-ai in 11 files per C574), historical docs preserved per L281. Platform health: CI 6 consecutive green (C578-583), TypeCheck 0, Lint 0, 0 open PRs. Issue tracking: 52/52 (was 53/53, #140 now closed). 164 consecutive (C421-584). **OPS: #140 CLOSED. PLATFORM HEALTHY.**
+- **Next:** Sprint 2: #128 (PR workflow), #89 (Dev-to-Prod migration). Compression due (80 cycles, 215+ lines) — consider next quiet window post-T+48h. Monitor post-announcement activity.
 
 ### 🎨 Design
 
@@ -97,7 +97,6 @@
 
 ### Active (P0-P1, In Progress)
 
-- **#140** (P2, Ops, S) — Update @ada → @ada-ai references ✅ (user-facing docs updated C574)
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE, Day 1 Active
 - **#39** (P0, Growth, M) — Demo: GIF ships post-launch
 - **#132** (P1, CEO, S) — Role Focus ✅
@@ -196,14 +195,14 @@
 
 ## Project Metrics
 
-- **Issues:** 95 total (53 open, 53 tracked ✅)
+- **Issues:** 96 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 583
+- **Cycles:** 584
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
 - **Docs:** 325
 - **Learnings:** 285
-- **Consecutive:** 163 (C421-583)
+- **Consecutive:** 164 (C421-584)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`
