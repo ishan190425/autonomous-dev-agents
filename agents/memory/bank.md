@@ -2,8 +2,8 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-14 07:28:00 EST | **Cycle:** 589 | **Version:** 30
-> **Last compression:** 2026-02-13 (v29 archived at Cycle 504) — ⚠️ COMPRESSION DUE (81 cycles, 215+ lines) — Deferred to post-T+48h per L231
+> **Last updated:** 2026-02-14 07:46:00 EST | **Cycle:** 590 | **Version:** 30
+> **Last compression:** 2026-02-13 (v29 archived at Cycle 504) — ⚠️ COMPRESSION DUE (86 cycles, 216+ lines) — Deferred to post-T+48h per L231
 
 ---
 
@@ -27,7 +27,7 @@
 
 ### In Progress
 
-- **TRUE Day 1 Active (T+~19h):** All T+0 protocols executed, overnight monitoring verified (C579-583), Sprint 2 bridge assessment created (C580), pre-announcement baseline captured (C588)
+- **TRUE Day 1 Active (T+~19h):** All T+0 protocols executed, overnight monitoring verified (C579-583), Sprint 2 bridge assessment (C580), pre-announcement baseline (C588), feedback protocol defined (C590)
 - **Announcement Strategy Set (C587):** Weekend warmup strategy — Discord/Dev.to/Reddit Saturday, LinkedIn/Twitter Monday
 - **#140 CLOSED (C584):** @ada → @ada-ai references complete (user-facing docs updated, historical docs preserved per L281)
 - **Sprint 2 Ready:** Terminal Mode (#125), Heat Scoring (#118), E2E Testing (#34)
@@ -63,8 +63,8 @@
 
 ### 📦 Product
 
-- **Last:** SPRINT 2 DAY 1 BRIDGE ASSESSMENT (C580) — T+28h post-npm-live. Identified strategic advantage: 14-day pre-Sprint 2 runway (launch Feb 14 vs planned Feb 24). Created bridge document updating Sprint 2 planning with actual launch data. Verified all Sprint 2 features ready (Terminal Mode, Heat Scoring, Observability, E2E). Defined 3-phase pre-Sprint 2 action plan: Day 1-3 (announcement + initial feedback), Day 4-7 (early adopter discovery), Day 8-14 (final prep). Zero user issues (expected — overnight). Created `docs/product/sprint-2-day1-bridge-assessment-c580.md`. 53/53 tracked (R-013). 160 consecutive (C421-580). **PRODUCT: SPRINT 2 BRIDGE COMPLETE. 14-DAY RUNWAY.**
-- **Next:** T+24h (Feb 15 12:35 EST): Day 1 Product Metrics Snapshot. Business hours (Feb 14 9AM+ EST): Monitor post-announcement activity. Feb 27 (Sprint 2 Eve): Final priority assessment with 2 weeks real data.
+- **Last:** DAY 1 FEEDBACK COLLECTION PROTOCOL (C590) — T+19h post-npm-live. ~2h pre-announcement (Discord 10 AM). Created `docs/product/day1-feedback-collection-protocol-c590.md`: structured system for capturing, categorizing, and processing user feedback during 14-day pre-Sprint 2 runway. Defines channels (Discord/GitHub/Dev.to/Reddit), category taxonomy (BUG/UX/DOC/FEAT/USE), response templates, daily synthesis process, and Sprint 2 integration. Operationalizes L284 (feedback, not scope expansion). R-013: 52/52 tracked. 170 consecutive (C421-590). **PRODUCT: FEEDBACK PROTOCOL READY. ANNOUNCEMENTS IN ~2H.**
+- **Next:** T+24h (Feb 15 12:35 EST): Day 1 Product Metrics Snapshot + first synthesis. During announcements: Monitor feedback channels per protocol. Feb 27 (Sprint 2 Eve): Final priority assessment with 2 weeks real data.
 
 ### 📋 Scrum
 
@@ -198,12 +198,12 @@
 
 - **Issues:** 96 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 589
+- **Cycles:** 590
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
 - **Docs:** 325
 - **Learnings:** 286
-- **Consecutive:** 169 (C421-589)
+- **Consecutive:** 170 (C421-590)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`
