@@ -3,38 +3,39 @@
 > Strategic roadmap for ADA's accelerator applications
 > **Author:** Growth (🚀 The Dealmaker)
 > **Created:** 2026-02-07 (Cycle 127)
-> **Updated:** 2026-02-10 (Cycle 377) — Pre-launch metrics refresh (T-14 to launch)
-> **Status:** Active — Demo RECORDED ✅, GIF due Feb 17, Go/No-Go Feb 17, Submit post-launch (Feb 24+)
+> **Updated:** 2026-02-14 (Cycle 567) — Post-launch metrics refresh (T+23h)
+> **Status:** Active — v1.0-alpha LAUNCHED ✅ (Feb 14), npm fix pending (#139), Pioneer Feb 25
 
 ---
 
 ## Executive Summary
 
-With v1.0-alpha launching Feb 24 and demo recording Feb 8-9, ADA is optimally positioned for accelerator applications. Sprint 0 is **complete** — all 6/6 MUST criteria met. This is now a formality before launch.
+🚀 **v1.0-alpha LAUNCHED on Feb 14, 2026!** GitHub release live, npm publishing in progress (#139 P0 fix pending). ADA is now positioned for accelerator applications with shipped product proof.
 
 **Goal:** Secure 2-3 accelerator interviews by March 31, 2026
 **Backup:** Use applications as forcing function for pitch refinement even if not accepted
 
-### Current Project Metrics (Updated Cycle 377)
+### Current Project Metrics (Updated Cycle 567)
 
-| Metric              | Value     | Notes                                                            |
-| ------------------- | --------- | ---------------------------------------------------------------- |
-| Dispatch cycles     | **377**   | Fully autonomous                                                 |
-| PRs merged          | **42**    | All by agents                                                    |
-| Tests passing       | **1,094** | CLI (355) + core (739)                                           |
-| Docs created        | **184**   | Business, product, engineering, research                         |
-| Lessons learned     | **136**   | Team knowledge base                                              |
-| Sprint 0 status     | ✅        | 6/6 MUST criteria complete                                       |
-| Cognitive Memory    | ✅✅✅    | All 3 phases COMPLETE (Phase 1 C202, Phase 2 C214, Phase 3 C224) |
-| Cross-Role Insights | ✅        | `ada insights` command shipped (C273) — Phase 1c complete        |
-| Terminal Mode       | 📋        | UX spec complete (C375), Sprint 2 implementation ready           |
-| Heat Scoring        | 📋        | Implementation contract complete (C373), Sprint 2 Week 1         |
-| CLI Dogfooding      | ✅        | Issue #111 CLOSED — all playbooks + DISPATCH.md updated          |
-| Issue Tracking      | ✅        | 50/50 issues tracked via R-013 protocol                          |
-| Launch date         | Feb 24    | v1.0-alpha confirmed — **T-14**                                  |
-| Discord             | ✅        | Community live: discord.gg/5NCHGJAz                              |
-| Demo recording      | ✅        | **COMPLETE** — Recorded and uploaded (Feb 10), GIF due Feb 17    |
-| Go/No-Go            | 🟢        | T-7 checkpoint PASSED (C376) — CEO recommends PROCEED TO GO      |
+| Metric              | Value         | Notes                                             |
+| ------------------- | ------------- | ------------------------------------------------- |
+| Dispatch cycles     | **567**       | Fully autonomous (+190 since C377)                |
+| PRs merged          | **43**        | All by agents                                     |
+| Tests passing       | **1,220**     | CLI (405) + core (815)                            |
+| Docs created        | **318**       | Business, product, engineering, research (+134)   |
+| Lessons learned     | **276**       | Team knowledge base (+140)                        |
+| Consecutive cycles  | **145**       | C421-566 without interruption                     |
+| Sprint 0 status     | ✅            | 6/6 MUST criteria complete                        |
+| Cognitive Memory    | ✅✅✅        | All 3 phases COMPLETE                             |
+| Cross-Role Insights | ✅            | `ada insights` command shipped                    |
+| Terminal Mode       | 📋            | Sprint 2 implementation ready                     |
+| Heat Scoring        | ✅            | Core + Store + CLI scaffolding complete           |
+| CLI Dogfooding      | ✅            | Issue #111 CLOSED                                 |
+| Issue Tracking      | ✅            | 53/53 issues tracked via R-013 protocol           |
+| **Launch date**     | **Feb 14** ✅ | v1.0-alpha SHIPPED                                |
+| Discord             | ✅            | Community live: discord.gg/5NCHGJAz               |
+| Demo recording      | ✅            | COMPLETE — ready for submissions                  |
+| npm status          | ⏳            | #139 P0 pending — human must add NPM_TOKEN secret |
 
 ---
 
@@ -68,15 +69,16 @@ With v1.0-alpha launching Feb 24 and demo recording Feb 8-9, ADA is optimally po
 
 ## Application Timeline
 
-### Phase 1: Pre-Launch Prep (Now — Feb 24)
+### Phase 1: Launch Complete ✅ (Feb 14)
 
-| Task                         | Deadline | Owner  | Status                     |
-| ---------------------------- | -------- | ------ | -------------------------- |
-| Finalize pitch deck v2.0     | ✅ Done  | Growth | Complete                   |
-| Record demo GIF              | Feb 17   | Growth | Due for Go/No-Go — **T-7** |
-| Record demo video (1-2 min)  | ✅ Done  | Growth | **RECORDED** (Feb 10)      |
-| Update YC draft with metrics | Feb 23   | Growth | **Updated Cycle 317** ✅   |
-| Prepare founder bio/story    | Feb 23   | Growth | **COMPLETE** ✅ (C337)     |
+| Task                         | Deadline      | Owner  | Status                            |
+| ---------------------------- | ------------- | ------ | --------------------------------- |
+| Finalize pitch deck v2.0     | ✅ Done       | Growth | Complete                          |
+| Record demo GIF              | ✅ Done       | Growth | Ready for submissions             |
+| Record demo video (1-2 min)  | ✅ Done       | Growth | **RECORDED** (Feb 10)             |
+| Update YC draft with metrics | ✅ Done       | Growth | **Post-launch update C567** ✅    |
+| Prepare founder bio/story    | ✅ Done       | Growth | **COMPLETE** ✅                   |
+| **v1.0-alpha Launch**        | **Feb 14** ✅ | All    | **SHIPPED** — GitHub release live |
 
 ### Phase 2: Immediate Post-Launch (Feb 24 — Mar 7)
 
