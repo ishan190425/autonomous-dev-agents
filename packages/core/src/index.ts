@@ -446,3 +446,41 @@ export {
   generateHeatBar,
   formatHeatWithBar,
 } from './terminal/index.js';
+
+// Reflexion Phase 2 (Issue #108 — Pattern Extraction)
+export type {
+  ExtractedKeyword,
+  ReflectionCluster as Phase2ReflectionCluster,
+  ReflexionPattern,
+  PatternExtractionConfig,
+  PatternStatus,
+  ExtractionMethod,
+  ReflectionInput,
+} from './reflexion/index.js';
+export {
+  // Keyword Extraction
+  extractKeywords as extractPatternKeywords,
+  extractKeywordsWithTFIDF,
+  getTopKeywords,
+  tokenize,
+  STOPWORDS,
+  // Clustering
+  clusterReflections as clusterReflectionsPhase2,
+  jaccardSimilarity as jaccardSimilarityPhase2,
+  // Confidence Scoring
+  calculateConfidence as calculatePatternConfidence,
+  isCrossRolePattern,
+  generateTheme,
+  generateDescription as generatePatternDescription,
+  getConfidenceBreakdown,
+  // Pattern Detection
+  extractPatterns,
+  generateLessonSuggestion,
+  generateDetailedLesson,
+  filterByStatus,
+  filterByRole,
+  getCrossRolePatterns,
+  isValidConfig,
+  DEFAULT_PATTERN_CONFIG,
+  DEFAULT_CONFIDENCE_THRESHOLD,
+} from './reflexion/index.js';
