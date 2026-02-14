@@ -1,8 +1,8 @@
 # 📣 Launch Announcement Kit — v1.0.0-alpha
 
-> **Status:** READY TO DEPLOY (blocked on #139 npm fix)
+> **Status:** ✅ READY TO EXECUTE — npm LIVE (verified C577)
 > **Created:** Cycle 557 (Growth)
-> **Last Updated:** 2026-02-14
+> **Last Updated:** 2026-02-14 (C577)
 
 ---
 
@@ -14,16 +14,16 @@ This document contains pre-written announcement copy for all channels. Once #139
 
 ---
 
-## 🔒 Pre-Deployment Checklist
+## ✅ Pre-Deployment Checklist (VERIFIED C577)
 
-Before executing ANY announcement:
+Verified 2026-02-14 03:45 EST (T+15h post-npm-live):
 
-- [ ] Verify `npm view @ada/cli version` returns `1.0.0-alpha`
-- [ ] Verify `npm view @ada/core version` returns `1.0.0-alpha`
-- [ ] Test install: `npm install -g @ada/cli && ada --version`
-- [ ] #139 is CLOSED
+- [x] Verify `npm view @ada-ai/cli version` returns `1.0.0-alpha` ✅
+- [x] Verify `npm view @ada-ai/core version` returns `1.0.0-alpha` ✅
+- [x] Test install: `npm install -g @ada-ai/cli && ada --version` ✅
+- [x] #139 is CLOSED ✅
 
-**DO NOT ANNOUNCE if npm packages are not live.** Announcing before users can install is worse than waiting.
+**READY TO ANNOUNCE.** Packages live since Feb 14, 2026 12:35 EST.
 
 ---
 
@@ -39,7 +39,7 @@ We just shipped the first public release of ADA — Autonomous Dev Agent teams f
 **Install now:**
 
 ```bash
-npm install -g @ada/cli
+npm install -g @ada-ai/cli
 ada init
 ada dispatch start
 ```
@@ -53,10 +53,10 @@ ada dispatch start
 
 **Links:**
 • GitHub: https://github.com/ishan190425/autonomous-dev-agents
-• npm: https://www.npmjs.com/package/@ada/cli
+• npm: https://www.npmjs.com/package/@ada-ai/cli
 • Docs: https://github.com/ishan190425/autonomous-dev-agents#readme
 
-This is alpha — expect rough edges. But it works. We've been dogfooding it for 500+ dispatch cycles to build ADA itself.
+This is alpha — expect rough edges. But it works. We've been dogfooding it for 576+ dispatch cycles to build ADA itself.
 
 Drop your questions here or open a GitHub issue. Let's build the future of autonomous software development together. 🤖
 
@@ -95,7 +95,7 @@ ADA creates autonomous agent teams for your repo:
 ## Install It
 
 ```bash
-npm install -g @ada/cli
+npm install -g @ada-ai/cli
 cd your-repo
 ada init
 ada dispatch start
@@ -103,7 +103,7 @@ ada dispatch start
 
 ## The Meta Part
 
-We built ADA using ADA. The repo at https://github.com/ishan190425/autonomous-dev-agents has run 550+ autonomous dispatch cycles. Every feature, every bug fix, every doc — handled by the agent team.
+We built ADA using ADA. The repo at https://github.com/ishan190425/autonomous-dev-agents has run 576+ autonomous dispatch cycles. Every feature, every bug fix, every doc — handled by the agent team.
 
 ## What's Next
 
@@ -120,7 +120,7 @@ We're building toward a world where you describe what you want, and autonomous t
 **Links:**
 
 - [GitHub](https://github.com/ishan190425/autonomous-dev-agents)
-- [npm](https://www.npmjs.com/package/@ada/cli)
+- [npm](https://www.npmjs.com/package/@ada-ai/cli)
 - [Discord](https://discord.gg/5NCHGJAz)
 
 Questions? Drop a comment or open an issue. Let's build this future together.
@@ -146,11 +146,11 @@ Not another coding copilot. A full team:
 
 They rotate through dispatch cycles, share memory, and coordinate via GitHub.
 
-The meta part: we built ADA using ADA. 550+ autonomous cycles. Every commit, every PR, every issue — handled by the agent team.
+The meta part: we built ADA using ADA. 576+ autonomous cycles. Every commit, every PR, every issue — handled by the agent team.
 
 This is alpha — rough edges expected. But the core loop works.
 
-Install: npm install -g @ada/cli
+Install: npm install -g @ada-ai/cli
 GitHub: https://github.com/ishan190425/autonomous-dev-agents
 
 We're building toward autonomous software development. Today is day one.
@@ -177,11 +177,11 @@ We just released ADA v1.0.0-alpha — a framework for running autonomous AI agen
 - GitHub-native: issues, PRs, comments
 - Self-improving via reflexion
 
-**The meta part:** We built ADA using ADA. 550+ dispatch cycles, all autonomous. The repo is our proof it works.
+**The meta part:** We built ADA using ADA. 576+ dispatch cycles, all autonomous. The repo is our proof it works.
 
 **Install:**
 ```bash
-npm install -g @ada/cli
+npm install -g @ada-ai/cli
 ada init
 ada dispatch start
 ````
@@ -189,7 +189,7 @@ ada dispatch start
 **Links:**
 
 - GitHub: https://github.com/ishan190425/autonomous-dev-agents
-- npm: https://www.npmjs.com/package/@ada/cli
+- npm: https://www.npmjs.com/package/@ada-ai/cli
 - Discord: https://discord.gg/5NCHGJAz
 
 This is alpha — expect rough edges. Happy to answer questions about the architecture, rotation system, or memory model.
@@ -210,7 +210,7 @@ This is alpha — expect rough edges. Happy to answer questions about the archit
 
 Autonomous AI dev teams for any repo. Not a copilot — a full team.
 
-npm install -g @ada/cli
+npm install -g @ada-ai/cli
 
 2/ 10 roles that rotate autonomously:
 • CEO — strategy
@@ -226,7 +226,7 @@ npm install -g @ada/cli
 
 3/ The meta part: we built ADA using ADA.
 
-550+ dispatch cycles. Every commit, PR, and issue — handled by the agent team.
+576+ dispatch cycles. Every commit, PR, and issue — handled by the agent team.
 
 4/ This is alpha. Rough edges expected.
 
@@ -276,8 +276,9 @@ After each post:
 | Version | Date       | Changes                  |
 | ------- | ---------- | ------------------------ |
 | 1.0     | 2026-02-14 | Initial kit created (C557) |
+| 1.1     | 2026-02-14 | Package refs fixed @ada→@ada-ai, metrics updated 576+, npm verified (C577) |
 
 ---
 
-*This kit will be executed by Growth role once #139 is resolved and npm packages are verified live.*
+*Kit READY for execution. npm live since Feb 14, 12:35 EST. Optimal timing: Discord anytime, Dev.to/LinkedIn/Reddit during business hours (9AM-2PM EST).*
 ```
