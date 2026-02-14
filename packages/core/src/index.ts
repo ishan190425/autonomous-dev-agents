@@ -388,6 +388,20 @@ export { normalizeImportance as normalizeHeatImportance } from './heat/index.js'
 // Note: HeatTier, HeatSignalType, HeatSignal, getHeatTier exported from terminal for now.
 // Sprint 2 will refactor terminal to import from heat module.
 
+// Heat-Aware Retrieval (Issue #118 — Phase 4 Task 6: Heat + Memory Stream Integration)
+export type {
+  HeatRetrievalOptions,
+  HeatAwareResult,
+  RetrievalHeatStats,
+} from './heat-retrieval.js';
+export {
+  combineWithHeat,
+  calculateRetrievalStats,
+  initializeHeatData,
+  syncHeatWithStream,
+  formatHeatResults,
+} from './heat-retrieval.js';
+
 // Terminal Mode (Issue #125 — Shell-based benchmarks, Sprint 2)
 export type {
   // Shell Detection
