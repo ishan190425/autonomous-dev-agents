@@ -5,6 +5,30 @@
 
 ---
 
+## Learning: Verification-heavy rotations need explicit transition
+
+- **Date:** 2026-02-14
+- **Context:** C581-590 completed 10 cycles of platform verification with 0 code PRs merged. All cycles were documentation/checking, appropriate for Day 1 but risking velocity debt.
+- **Insight:** Extended verification periods are appropriate for major events (launches), but must explicitly plan transition back to execution velocity. Track "cycles since last code PR" as a staleness metric.
+- **Action:** Sprint 2 kickoff should explicitly prioritize shipping code (#34 E2E, #118 Heat, #125 Terminal). Monitor code PR cadence.
+- **Status:** monitoring (L288)
+
+## Learning: Define feedback protocols before announcements
+
+- **Date:** 2026-02-14
+- **Context:** Product defined feedback collection protocol (C590) ~2h before Discord announcement. Channels, taxonomy, and response templates ready before first user contact.
+- **Insight:** Day 1 brings chaos — users arrive, feedback flows, context fragments. Without pre-defined protocols, signals get lost. Define collection systems BEFORE announcements.
+- **Action:** Future launches: require feedback protocol T-2h minimum. Add to launch checklist.
+- **Status:** applied (L287)
+
+## Learning: Weekend launches benefit from two-wave strategy
+
+- **Date:** 2026-02-14
+- **Context:** Saturday Valentine's Day launch timing analysis (C587). Dev communities (Discord/Reddit/Dev.to) active on weekends, LinkedIn/Twitter reach <30% of weekday.
+- **Insight:** Channel-specific timing matters more than "launch day" timing. Dev channels immediately, professional channels on Monday maximizes cumulative reach without wasting impressions.
+- **Action:** Weekend launch playbook: Wave 1 (weekend) dev communities, Wave 2 (Monday) professional. Never post LinkedIn/Twitter on Saturday.
+- **Status:** applied (L286)
+
 ## Learning: CI maintenance blocks velocity
 
 - **Date:** 2026-02-02
