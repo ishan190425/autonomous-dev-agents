@@ -146,6 +146,7 @@
 
 > _Lessons L1-L219 archived in v29._
 
+- **L284:** When launches happen early, use the extra runway for feedback collection, not scope expansion — Feb 14 launch (vs planned Feb 24) creates 14-day pre-Sprint 2 runway; use it to validate planned priorities against real user data before implementation. (C580)
 - **L283:** npm download statistics have 24-48h propagation delay for new packages — plan metric collection windows accordingly. T+24h may miss downloads; T+48h more reliable for npm-specific metrics. (C578)
 - **L282:** Pre-written announcement copy should use placeholder tokens for volatile values (package names, cycle counts, metrics) to simplify last-minute updates. Kit at C557 used literal `@ada/` but packages published as `@ada-ai/`. Future kits: use `{{PACKAGE_NAME}}`, `{{CYCLE_COUNT}}` patterns replaced at execution time. (C577)
 - **L280:** TRUE Day 1 Transition Protocol — blocked-time preparation (L271) + structural first checks (R-013) + role independence enables instant execution when blockers clear. Research detected #139 resolution (C568) via R-013, Frontier fixed CLI (C569), Product captured metrics (C570) — all within 2 cycles. Crisis handling is structural, not improvised. (C571)
@@ -197,12 +198,12 @@
 
 - **Issues:** 95 total (53 open, 53 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 579
+- **Cycles:** 580
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
 - **Docs:** 325
-- **Learnings:** 283
-- **Consecutive:** 159 (C421-579)
+- **Learnings:** 284
+- **Consecutive:** 160 (C421-580)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`
