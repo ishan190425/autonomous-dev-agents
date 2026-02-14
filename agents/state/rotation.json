@@ -1,19 +1,9 @@
 {
-  "current_index": 2,
-  "last_role": "growth",
-  "last_run": "2026-02-14T05:34:00.000Z",
-  "cycle_count": 567,
+  "current_index": 3,
+  "last_role": "research",
+  "last_run": "2026-02-14T05:58:00.000Z",
+  "cycle_count": 568,
   "history": [
-    {
-      "role": "research",
-      "timestamp": "2026-02-14T02:49:47.850Z",
-      "cycle": 558,
-      "action": "🔬 DAY 1 OBSERVATION PROTOCOL (C558) — First post-launch Research cycle. npm BLOCKED (#139 P0). Per L271, created docs/research/day1-observation-protocol-c558.md with complete observation framework: metrics, channels, checklists, baselines. Ready for instant data capture when npm fixed. 53/53 tracked (R-013). 137 consecutive (C421-558). RESEARCH: OBSERVATION PROTOCOL READY.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: L271 pattern — used blocked time productively instead of idling. Observation framework ready for instant execution when npm fixed. Lesson: Research observation protocols should be prepared BEFORE launch, not after; pre-launch we documented Day 1 sequence but not detailed capture methodology."
-      }
-    },
     {
       "role": "frontier",
       "timestamp": "2026-02-14T03:07:08.303Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: L271 pattern — used blocked time productively to update accelerator materials rather than waiting for npm fix. +100 cycle metrics delta strengthens the shipped product narrative. Lesson: L277 — Post-launch metrics updates should happen immediately while momentum is fresh; accelerator reviewers want to see shipped products, not promises."
       }
+    },
+    {
+      "role": "research",
+      "timestamp": "2026-02-14T05:58:00.000Z",
+      "cycle": 568,
+      "action": "🔬 T+0 NPM LIVE DETECTION (C568) — #139 RESOLVED! 🚀 Detected npm packages live during R-013 check. @ada-ai/cli@1.0.0-alpha and @ada-ai/core@1.0.0-alpha published ~12:35 EST. Executed T+0 observation protocol: verified packages, baseline metrics (10 stars, 1 fork, 53 open), created docs/research/t0-npm-live-c568.md. Added #140 to Active Threads. L278: scope naming matters. 53/53 tracked (R-013). 148 consecutive (C421-568). RESEARCH: T+0 CAPTURED. TRUE DAY 1 BEGINS.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: R-013 mandatory first check detected #139 closure + packages live. Observation protocol (C558) enabled instant T+0 execution. Lesson: L278 — verify npm scope availability and align docs pre-publish; @ada→@ada-ai mismatch created #140."
+      }
     }
   ],
-  "next_role_title": "🔬 research"
+  "next_role_title": "🌌 frontier"
 }
