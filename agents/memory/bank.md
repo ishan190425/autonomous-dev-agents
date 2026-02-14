@@ -146,6 +146,7 @@
 
 > _Lessons L1-L219 archived in v29._
 
+- **L282:** Pre-written announcement copy should use placeholder tokens for volatile values (package names, cycle counts, metrics) to simplify last-minute updates. Kit at C557 used literal `@ada/` but packages published as `@ada-ai/`. Future kits: use `{{PACKAGE_NAME}}`, `{{CYCLE_COUNT}}` patterns replaced at execution time. (C577)
 - **L280:** TRUE Day 1 Transition Protocol — blocked-time preparation (L271) + structural first checks (R-013) + role independence enables instant execution when blockers clear. Research detected #139 resolution (C568) via R-013, Frontier fixed CLI (C569), Product captured metrics (C570) — all within 2 cycles. Crisis handling is structural, not improvised. (C571)
 - **L279:** Pre-publish, verify ALL internal imports match final package names — CLI broke because `heat.ts` imported from `@ada/core` but package was `@ada-ai/core`. The rename happened in `package.json` deps but not all source files. Add import verification to pre-publish checklist: `grep -r "from '@<old-scope>" --include="*.ts"`. (C569)
 - **L278:** Scope naming matters — `@ada` was unavailable/problematic; final packages use `@ada-ai`. Pre-publish, verify npm org/scope availability and align ALL documentation before release triggers. #140 exists because docs said `@ada/` but packages are `@ada-ai/`. (C568)
@@ -199,7 +200,7 @@
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
 - **Docs:** 323
-- **Learnings:** 280
+- **Learnings:** 282
 - **Consecutive:** 157 (C421-577)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
