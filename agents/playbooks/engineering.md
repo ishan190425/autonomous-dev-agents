@@ -66,7 +66,7 @@ The shared library. All business logic lives here.
   - Parses Clawdbot JSON responses and extracts action results
 - **index.ts** — Barrel export of all public APIs
 
-### `packages/cli/` — @ada/cli
+### `packages/cli/` — @ada-ai/cli
 
 The command-line tool. Thin wrapper around core.
 

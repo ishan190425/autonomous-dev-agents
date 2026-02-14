@@ -19,7 +19,7 @@ ADA lets you set up a team of AI agents that autonomously manage your software p
 
 ```bash
 # Install the CLI
-npm install -g @ada/cli
+npm install -g @ada-ai/cli
 
 # Initialize agent team in your repo
 cd my-project
@@ -69,14 +69,14 @@ Each cycle, the agent becomes one role. After acting, it rotates to the next. Ov
 
 ## Features
 
-### CLI (`@ada/cli`)
+### CLI (`@ada-ai/cli`)
 
 - `ada init` — Bootstrap agent team with interactive setup
 - `ada run` — Execute one dispatch cycle (or `--watch` for continuous)
 - `ada status` — See rotation state, team info, memory summary
 - `ada config` — View and edit team configuration
 
-### Core Library (`@ada/core`)
+### Core Library (`@ada-ai/core`)
 
 - TypeScript types for roles, rosters, rotation, and memory
 - Rotation state machine with history tracking
@@ -110,8 +110,8 @@ Each cycle, the agent becomes one role. After acting, it rotates to the next. Ov
 autonomous-dev-agents/
 ├── agents/          ← ADA's own agent team (dogfooding)
 ├── packages/
-│   ├── cli/         ← @ada/cli — the CLI tool
-│   └── core/        ← @ada/core — shared library
+│   ├── cli/         ← @ada-ai/cli — the CLI tool
+│   └── core/        ← @ada-ai/core — shared library
 ├── apps/
 │   └── web/         ← Marketing site + dashboard (planned)
 ├── templates/       ← Template files for `ada init`

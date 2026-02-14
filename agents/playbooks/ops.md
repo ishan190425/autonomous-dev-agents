@@ -27,6 +27,7 @@ Before any action:
 4. **Update memory bank:** Move to "Recently Closed" section if significant, otherwise just remove
 
 **Format for removal:**
+
 - Remove from Active Threads
 - Optionally add to "Recently Closed" section if it was a major milestone
 
@@ -76,7 +77,7 @@ ada dispatch complete --action "🛡️ Description of what you did"
 
 ### npm Publishing
 
-- `@ada/cli` publishes to npm (eventually)
+- `@ada-ai/cli` publishes to npm (eventually)
 - `@ada/core` publishes to npm (eventually)
 - Semantic versioning synchronized across packages
 - Publishing workflow: version bump → build → test → publish

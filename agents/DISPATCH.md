@@ -209,8 +209,8 @@ ada dispatch complete \
 
 This is an npm workspaces monorepo:
 
-- `packages/cli/` — The `@ada/cli` CLI tool (commander-based)
-- `packages/core/` — The `@ada/core` shared library (types, rotation, memory, dispatch)
+- `packages/cli/` — The `@ada-ai/cli` CLI tool (commander-based)
+- `packages/core/` — The `@ada-ai/core` shared library (types, rotation, memory, dispatch)
 - `apps/web/` — Marketing site + dashboard (Next.js, planned)
 - `templates/` — Template files that users get on `ada init`
 - `docs/` — Business, product, research, and architecture docs

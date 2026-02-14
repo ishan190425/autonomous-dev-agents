@@ -51,7 +51,7 @@ ada dispatch complete --action "📦 Description of what you did"
 
 ## Product Areas
 
-### CLI (`@ada/cli`)
+### CLI (`@ada-ai/cli`)
 
 - `ada init` — Initialize agent team in any repo (copies templates, customizes roster)
 - `ada run` — Execute one dispatch cycle (or continuous mode)
@@ -83,7 +83,7 @@ ada dispatch complete --action "📦 Description of what you did"
 
 ### Onboarding Flow
 
-1. `npm install -g @ada/cli`
+1. `npm install -g @ada-ai/cli`
 2. `cd my-project && ada init`
 3. Answer prompts: project type, team size, focus areas
 4. Agent team initialized with customized playbooks

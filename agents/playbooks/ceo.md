@@ -42,7 +42,7 @@ ada dispatch complete --action "👔 Description of what you did"
 
 ADA is a CLI + web dashboard product:
 
-- **CLI** (`@ada/cli`): `ada init` bootstraps agent teams in any repo, `ada run` executes dispatch cycles
+- **CLI** (`@ada-ai/cli`): `ada init` bootstraps agent teams in any repo, `ada run` executes dispatch cycles
 - **Web Dashboard**: Monitor cycles, view memory banks, configure roles
 - **Template Marketplace**: Playbook templates for different project types
 - **POC Customer**: Social Trade app (~/RIA/projects/social-trade/) — our first real user

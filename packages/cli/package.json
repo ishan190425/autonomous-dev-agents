@@ -1,5 +1,5 @@
 {
-  "name": "@ada/cli",
+  "name": "@ada-ai/cli",
   "version": "1.0.0-alpha",
   "description": "CLI tool for Autonomous Dev Agents — set up and run AI agent teams on any repo",
   "type": "module",
@@ -44,7 +44,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ada/core": "*",
+    "@ada-ai/core": "*",
     "commander": "^13.1.0",
     "chalk": "^5.4.1"
   },

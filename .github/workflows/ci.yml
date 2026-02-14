@@ -110,7 +110,7 @@ jobs:
             pkg_name=$(jq -r '.name' "$pkg")
             
             # Check if any workspace packages use workspace protocol
-            workspace_deps=$(jq -r '.dependencies // {} | to_entries[] | select(.key | startswith("@ada/")) | .value' "$pkg" 2>/dev/null || true)
+            workspace_deps=$(jq -r '.dependencies // {} | to_entries[] | select(.key | startswith("@ada-ai/")) | .value' "$pkg" 2>/dev/null || true)
             
             if [[ -n "$workspace_deps" ]]; then
               echo "  $pkg_name uses workspace dependencies:"
@@ -241,7 +241,7 @@ jobs:
 
       - name: 📊 Generate coverage report (core)
         run: |
-          echo "📊 Running @ada/core test coverage..."
+          echo "📊 Running @ada-ai/core test coverage..."
           cd packages/core
           npm run test:coverage -- --reporter=default --reporter=json
           echo ""
@@ -258,7 +258,7 @@ jobs:
       - name: 📊 CLI test metrics
         run: |
           echo ""
-          echo "📊 @ada/cli Test Metrics"
+          echo "📊 @ada-ai/cli Test Metrics"
           echo "========================"
           echo "ℹ️  Note: CLI uses subprocess testing (child processes for each command)."
           echo "    v8 coverage can't capture subprocess execution, but tests are comprehensive."

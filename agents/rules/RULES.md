@@ -138,7 +138,7 @@ This is an npm workspaces monorepo:
 - **Root package.json** defines workspaces: `packages/*`, `apps/*`
 - **Shared dependencies** (TypeScript, ESLint) live at root
 - **Package-specific dependencies** live in each package
-- **Cross-package imports** use npm workspace protocol: `"@ada/core": "workspace:*"`
+- **Cross-package imports** use npm workspace protocol: `"@ada-ai/core": "workspace:*"`
 - **Build order:** core → cli → web (core has no internal deps)
 - Each package has its own `tsconfig.json` extending root
 - Each package has its own `package.json` with proper `main`, `types`, and `exports` fields
@@ -147,7 +147,7 @@ This is an npm workspaces monorepo:
 
 ## R-009: npm Workspace Rules
 
-- Package names use `@ada/` scope: `@ada/cli`, `@ada/core`
+- Package names use `@ada/` scope: `@ada-ai/cli`, `@ada-ai/core`
 - All packages must have: `name`, `version`, `description`, `main`, `types`, `scripts`
 - Required scripts per package: `build`, `test`, `lint`, `typecheck`
 - Root scripts aggregate: `npm run build --workspaces`, `npm test --workspaces`
@@ -297,13 +297,16 @@ Templates enforce R-006 (Issue Quality) and R-011 (PR Hygiene) automatically. Th
 ## Active Threads
 
 ### Active (P0-P1, In Progress)
+
 - **#26** (P0, CEO, L) — v1.0-alpha Launch Coordination
 - **#39** (P0, Growth, M) — Demo Asset Production
 
 ### Active (P2, Current Sprint)
+
 - **#89** (P2, Ops, L) — Dev-to-Prod Migration System
 
 ### Backlog (P2-P3, Post-Launch)
+
 - **#73** (P3, Design, M) — CLI UX Polish
 ```
 
@@ -312,6 +315,7 @@ Templates enforce R-006 (Issue Quality) and R-011 (PR Hygiene) automatically. Th
 Use CLI command (when available): `ada issues verify`
 
 Or manually:
+
 ```bash
 gh issue list --state open --limit 200 > /tmp/open_issues.txt
 grep -E "^\\*\\*#[0-9]+" agents/memory/bank.md > /tmp/tracked_issues.txt
@@ -321,6 +325,7 @@ grep -E "^\\*\\*#[0-9]+" agents/memory/bank.md > /tmp/tracked_issues.txt
 ### Why This Rule Matters
 
 **Issue #106 demonstrated the problem:** 45 open issues, only 9 tracked in Active Threads. This creates:
+
 - **Invisible work:** Issues not tracked are never acted upon
 - **Coordination gaps:** Team doesn't know what's pending
 - **Priority confusion:** Can't prioritize what we can't see

@@ -89,10 +89,10 @@ jobs:
           done
 
   # =============================================================================
-  # Publish @ada/core — must publish first (cli depends on it)
+  # Publish @ada-ai/core — must publish first (cli depends on it)
   # =============================================================================
   publish-core:
-    name: Publish @ada/core
+    name: Publish @ada-ai/core
     runs-on: ubuntu-latest
     needs: quality-gates
     if: |
@@ -114,7 +114,7 @@ jobs:
       - name: 📦 Install dependencies
         run: npm ci
 
-      - name: 🏗️ Build @ada/core
+      - name: 🏗️ Build @ada-ai/core
         run: npm run build --workspace=packages/core
 
       - name: 🔍 Check if version exists on npm
@@ -141,7 +141,7 @@ jobs:
           echo "📦 Package contents:"
           npm pack --dry-run
 
-      - name: 🚀 Publish @ada/core
+      - name: 🚀 Publish @ada-ai/core
         if: |
           steps.version-check.outputs.exists == 'false' &&
           (github.event_name == 'push' || github.event.inputs.dry_run != 'true')
@@ -154,14 +154,14 @@ jobs:
           steps.version-check.outputs.exists == 'false' &&
           github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true'
         run: |
-          echo "🧪 DRY RUN — would publish @ada/core"
+          echo "🧪 DRY RUN — would publish @ada-ai/core"
           npm publish --workspace=packages/core --access public --dry-run
 
   # =============================================================================
-  # Publish @ada/cli — depends on @ada/core being published
+  # Publish @ada-ai/cli — depends on @ada-ai/core being published
   # =============================================================================
   publish-cli:
-    name: Publish @ada/cli
+    name: Publish @ada-ai/cli
     runs-on: ubuntu-latest
     needs: [quality-gates, publish-core]
     if: |
@@ -215,7 +215,7 @@ jobs:
           echo "📦 Package contents:"
           npm pack --dry-run
 
-      - name: 🚀 Publish @ada/cli
+      - name: 🚀 Publish @ada-ai/cli
         if: |
           steps.version-check.outputs.exists == 'false' &&
           (github.event_name == 'push' || github.event.inputs.dry_run != 'true')
@@ -228,7 +228,7 @@ jobs:
           steps.version-check.outputs.exists == 'false' &&
           github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true'
         run: |
-          echo "🧪 DRY RUN — would publish @ada/cli"
+          echo "🧪 DRY RUN — would publish @ada-ai/cli"
           npm publish --workspace=packages/cli --access public --dry-run
 
   # =============================================================================
@@ -254,26 +254,26 @@ jobs:
       - name: ⏳ Wait for npm registry propagation
         run: sleep 15
 
-      - name: ✅ Verify @ada/core
+      - name: ✅ Verify @ada-ai/core
         run: |
           core_version=$(jq -r '.version' packages/core/package.json)
-          echo "Verifying @ada/core@$core_version..."
+          echo "Verifying @ada-ai/core@$core_version..."
 
-          if npm view "@ada/core@$core_version" version 2>/dev/null; then
-            echo "✅ @ada/core@$core_version verified on npm"
+          if npm view "@ada-ai/core@$core_version" version 2>/dev/null; then
+            echo "✅ @ada-ai/core@$core_version verified on npm"
           else
-            echo "⚠️  @ada/core@$core_version not found (may take time to propagate)"
+            echo "⚠️  @ada-ai/core@$core_version not found (may take time to propagate)"
           fi
 
-      - name: ✅ Verify @ada/cli
+      - name: ✅ Verify @ada-ai/cli
         run: |
           cli_version=$(jq -r '.version' packages/cli/package.json)
-          echo "Verifying @ada/cli@$cli_version..."
+          echo "Verifying @ada-ai/cli@$cli_version..."
 
-          if npm view "@ada/cli@$cli_version" version 2>/dev/null; then
-            echo "✅ @ada/cli@$cli_version verified on npm"
+          if npm view "@ada-ai/cli@$cli_version" version 2>/dev/null; then
+            echo "✅ @ada-ai/cli@$cli_version verified on npm"
           else
-            echo "⚠️  @ada/cli@$cli_version not found (may take time to propagate)"
+            echo "⚠️  @ada-ai/cli@$cli_version not found (may take time to propagate)"
           fi
 
       - name: 📊 Summary
@@ -286,12 +286,12 @@ jobs:
 
           echo "| Package | Version | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|---------|---------|--------|" >> $GITHUB_STEP_SUMMARY
-          echo "| @ada/core | $core_version | ✅ Published |" >> $GITHUB_STEP_SUMMARY
-          echo "| @ada/cli | $cli_version | ✅ Published |" >> $GITHUB_STEP_SUMMARY
+          echo "| @ada-ai/core | $core_version | ✅ Published |" >> $GITHUB_STEP_SUMMARY
+          echo "| @ada-ai/cli | $cli_version | ✅ Published |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Installation" >> $GITHUB_STEP_SUMMARY
           echo '```bash' >> $GITHUB_STEP_SUMMARY
-          echo "npm install -g @ada/cli@$cli_version" >> $GITHUB_STEP_SUMMARY
+          echo "npm install -g @ada-ai/cli@$cli_version" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
 
   # =============================================================================
@@ -385,20 +385,20 @@ jobs:
             echo "## 📦 Installation"
             echo ""
             echo '```bash'
-            echo "npm install -g @ada/cli@$VERSION"
+            echo "npm install -g @ada-ai/cli@$VERSION"
             echo '```'
             echo ""
             echo "Or install locally:"
             echo '```bash'
-            echo "npm install @ada/cli@$VERSION"
+            echo "npm install @ada-ai/cli@$VERSION"
             echo '```'
             echo ""
 
             # Links
             echo "## 🔗 Links"
             echo ""
-            echo "- [npm: @ada/cli](https://www.npmjs.com/package/@ada/cli/v/$VERSION)"
-            echo "- [npm: @ada/core](https://www.npmjs.com/package/@ada/core/v/$VERSION)"
+            echo "- [npm: @ada-ai/cli](https://www.npmjs.com/package/@ada-ai/cli/v/$VERSION)"
+            echo "- [npm: @ada-ai/core](https://www.npmjs.com/package/@ada-ai/core/v/$VERSION)"
             echo "- [Documentation](https://github.com/${{ github.repository }}/blob/main/README.md)"
           } > release_notes.md
 
