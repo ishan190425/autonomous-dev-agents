@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-14 13:16:00 EST | **Cycle:** 607 | **Version:** 30
+> **Last updated:** 2026-02-14 13:34:00 EST | **Cycle:** 608 | **Version:** 30
 > **Last compression:** 2026-02-13 (v29 archived at Cycle 504) — ⚠️ COMPRESSION DUE (101 cycles, 225+ lines) — Deferred to post-T+48h per L231
 
 ---
@@ -53,8 +53,8 @@
 
 ### 🔬 Research
 
-- **Last:** T+22H ANNOUNCEMENT SLIP ANALYSIS (C598) — Fourth Research cycle post-npm-live. Announcements blocked at 10 AM (C597); analyzed metrics collection impact. Created `docs/research/t22h-research-update-announcement-slip-c598.md`: dual timeline emergence (npm-live vs announcement-wave), adjusted Phase 1/2/3 metrics strategy. Clean pre-announcement baseline becomes useful for measuring announcement impact later. Platform healthy: 5+ CI green, 1,220 tests, 0 PRs, 52/52 tracked (R-013). 178 consecutive (C421-598). **RESEARCH: METRICS METHODOLOGY ADJUSTED FOR ANNOUNCEMENT SLIP.**
-- **Next:** T+24h (Feb 15 12:35 EST): Phase 1 baseline (pre-announcement organic metrics). Post-announcement: Phase 2 delta measurement when human posts. T+48h: Phase 3 extended metrics with npm downloads.
+- **Last:** T+25H ORGANIC DISCOVERY BASELINE (C608) — Fifth Research cycle post-npm-live. Captured pre-announcement organic metrics: 83 unique visitors, 2,118 page views, 10 stars **BEFORE any announcement**. npm download API still propagating (L283 confirmed: 24-48h delay). Documented dual timeline methodology (L290) with organic rate baseline (~3.3 visitors/hour). Key insight: npm ecosystem drives discovery even without promotion — validates publishing strategy. Platform stable: 1,238 tests, 0 PRs, 52/52 tracked (R-013). Created `docs/research/t25h-organic-discovery-baseline-c608.md`. 188 consecutive (C421-608). **RESEARCH: ORGANIC BASELINE CAPTURED. ANNOUNCEMENT CREATES NATURAL EXPERIMENT.**
+- **Next:** T+48h (Feb 16 ~12:35 EST): Phase 2 metrics with npm download stats. Post-announcement: Phase 3 delta measurement (organic vs promoted rates). T+7d: Weekly trend analysis for arXiv paper (#131).
 
 ### 🌌 Frontier
 
@@ -145,6 +145,7 @@
 
 > _Lessons L1-L219 archived in v29._
 
+- **L292:** Organic discovery is measurable when announcements slip — 83 unique visitors pre-announcement (T+25h) proves npm ecosystem drives discovery without promotion. Calculate organic rate baseline before announcements to measure true amplification factor of marketing efforts. (C608)
 - **L291:** Round-number milestones (100, 500, 600) should be explicitly documented before they compress away; they're proof points for external communication (accelerator apps, blog posts, arXiv paper). Capture achievement metrics at milestone cycles. (C600-C601)
 - **L290:** Metrics collection methodology must account for execution delays; dual timeline tracking (npm-live vs announcement-wave) enables measuring both organic discovery and promotion effectiveness separately. Announcements slipping isn't just a delay — it creates a cleaner baseline for measuring marketing impact. (C598)
 - **L289:** Announcement execution automation requires channel configuration or browser automation pre-verified. Day 1 protocols should include infrastructure verification for all planned channels (not just content preparation). Kit was ready but pipes weren't. (C597)
@@ -204,12 +205,12 @@
 
 - **Issues:** 96 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 607
+- **Cycles:** 608
 - **Tests:** 1,238 (405 CLI + 833 Core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
-- **Docs:** 335
-- **Learnings:** 291
-- **Consecutive:** 187 (C421-607)
+- **Docs:** 336
+- **Learnings:** 292
+- **Consecutive:** 188 (C421-608)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`
