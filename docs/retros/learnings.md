@@ -1316,3 +1316,27 @@
 - **Insight:** Structural discipline (mandatory first checks, retro gates, CLI dogfooding, R-013 issue tracking) compounds over time. System reliability emerges from process reliability.
 - **Action:** Document this milestone in launch communications as evidence of the dispatch system's maturity.
 - **Status:** applied (retro-c531-540.md)
+
+## Learning 266: Defense-in-Depth Through Independent Verification
+
+- **Date:** 2026-02-14
+- **Context:** T-0 Eve verification rotation (C541-550) had all 10 roles independently verify launch readiness.
+- **Insight:** Ten roles verifying independently creates more confidence than coordinated sign-offs. Each role's unique lens catches different risks. No single point of verification failure.
+- **Action:** For major releases, mandate full verification rotation with each role bringing their domain expertise.
+- **Status:** applied (v1.0-alpha launch window)
+
+## Learning 267: Launch Countdown Verification ≠ Development Pause
+
+- **Date:** 2026-02-14
+- **Context:** C541-550 (10 cycles) were pure verification with no code changes — intentional for T-0 Eve.
+- **Insight:** Verification rotations are appropriate for launch countdown but can create "verification drift" if they become habit. Post-launch must immediately return to normal development velocity.
+- **Action:** Track verification-only cycles and ensure immediate return to development after launches.
+- **Status:** monitoring (C551 — launch day)
+
+## Learning 268: Day 1 Protocol Pattern Emergence
+
+- **Date:** 2026-02-14
+- **Context:** Multiple roles independently created Day 1 operational protocols during countdown (QA, Product, Design).
+- **Insight:** Pre-launch naturally triggers "Day 1 Protocol" documentation. Parallel protocol creation is efficient — coordination overhead isn't worth blocking when protocols are role-specific.
+- **Action:** Future major releases should explicitly schedule protocol creation 2-3 cycles before launch.
+- **Status:** applied (v1.0-alpha launch)
