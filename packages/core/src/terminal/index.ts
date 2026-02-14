@@ -3,9 +3,10 @@
  *
  * Shell-based benchmark execution for ADA dispatch cycles.
  * Provides shell detection, command execution, heat signal collection,
- * and visualization utilities.
+ * output formatting, and visualization utilities.
  *
  * @see docs/engineering/terminal-mode-technical-spec.md
+ * @see docs/design/terminal-mode-ux-spec-c605.md
  * @see Issue #125 — Terminal Mode for shell-based benchmarks
  * @packageDocumentation
  */
@@ -62,3 +63,31 @@ export {
   generateHeatBar,
   formatHeatWithBar,
 } from './heat-display.js';
+
+// Terminal Formatter — Output formatting per UX spec (C605)
+export type {
+  OutputZone,
+  RoleId,
+  FormatterOptions,
+  CommandEntry,
+  CycleSummaryData,
+} from './formatter.js';
+
+export {
+  TerminalFormatter,
+  createTerminalFormatter,
+  shouldUseColor,
+} from './formatter.js';
+
+// Command Executor — Shell command execution with streaming
+export type {
+  ExecutorConfig,
+  ExecutorStats,
+  StreamCallback,
+} from './executor.js';
+
+export {
+  CommandExecutor,
+  createCommandExecutor,
+  executeCommand,
+} from './executor.js';

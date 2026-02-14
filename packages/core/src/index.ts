@@ -427,6 +427,16 @@ export type {
   TaskCost,
   BenchmarkComparison,
   BenchmarkResult,
+  // Formatter (C605 UX Spec, C613)
+  OutputZone,
+  RoleId as TerminalRoleId,
+  FormatterOptions,
+  CommandEntry,
+  CycleSummaryData,
+  // Executor (C613)
+  ExecutorConfig,
+  ExecutorStats,
+  StreamCallback,
 } from './terminal/index.js';
 export {
   TerminalError,
@@ -445,6 +455,14 @@ export {
   detectHeatDisplayMode,
   generateHeatBar,
   formatHeatWithBar,
+  // Formatter (C605 UX Spec, C613)
+  TerminalFormatter,
+  createTerminalFormatter,
+  shouldUseColor,
+  // Executor (C613)
+  CommandExecutor,
+  createCommandExecutor,
+  executeCommand,
 } from './terminal/index.js';
 
 // Reflexion Phase 2 (Issue #108 — Pattern Extraction)
