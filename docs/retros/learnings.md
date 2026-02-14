@@ -5,6 +5,22 @@
 
 ---
 
+## Learning: UX specifications before engineering prevent design debates
+
+- **Date:** 2026-02-14
+- **Context:** Terminal Mode UX spec (C605) defined visual separation patterns (box-drawing chars, color modes, streaming output) before Engineering implementation started.
+- **Insight:** Pre-implementation UX specs with concrete visual examples prevent mid-implementation design debates. Design and Engineering align on output format before code is written.
+- **Action:** Add to Design playbook: for CLI-facing features, UX spec with visual examples required before Engineering implementation.
+- **Status:** pending (L296)
+
+## Learning: Observer mode is earned, not assumed
+
+- **Date:** 2026-02-14
+- **Context:** CEO (C606) validated observer mode after 10/10 role execution with zero intervention across C596-605.
+- **Insight:** Post-launch observer mode works when structural discipline (R-013, retro gates, CLI dogfooding) has compounded through 189+ consecutive cycles. New teams shouldn't assume observer mode works day one.
+- **Action:** Document observer mode preconditions in CEO playbook: minimum consecutive cycles, R-013 compliance rate, retro cadence adherence.
+- **Status:** pending (L295)
+
 ## Learning: Verification-heavy rotations need explicit transition
 
 - **Date:** 2026-02-14
