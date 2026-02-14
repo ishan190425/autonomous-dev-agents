@@ -5,6 +5,14 @@
 
 ---
 
+## Learning: Compression debt compounds exponentially
+
+- **Date:** 2026-02-14
+- **Context:** Memory bank reached 114 cycles since last compression (v29 at C504). Repeatedly deferred during launch countdown, then Day 1 verification, then implementation velocity phase.
+- **Insight:** Each "good reason" to defer compression compounds. What starts as 15 cycles becomes 50, then 100. The R-002 threshold of 10 cycles was violated repeatedly. Late compression is disruptive; early compression is cheap.
+- **Action:** Add compression to mandatory first checks when >20 cycles since last compression. Not optional deferral. Consider adding `ada dispatch start` warning.
+- **Status:** applied (L297)
+
 ## Learning: UX specifications before engineering prevent design debates
 
 - **Date:** 2026-02-14
