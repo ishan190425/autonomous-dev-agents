@@ -1,19 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-14T23:32:06.741Z",
-  "cycle_count": 623,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-14T23:50:39.925Z",
+  "cycle_count": 624,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-14T20:07:38.638Z",
-      "cycle": 614,
-      "action": "⚙️ TERMINAL MODE CORE IMPLEMENTATION — Implemented formatter.ts and executor.ts per UX spec (C605) for Terminal Mode (#125). TerminalFormatter: zone-based output formatting, color modes, summaries. CommandExecutor: shell execution with streaming, timeouts, truncation. +66 tests (955 core total). TypeCheck 0, Lint 0.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Following UX spec (C605) made implementation straightforward. Lesson: L296 validated — UX specs before engineering accelerates implementation."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-14T20:26:30.420Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Following UX spec (C605) made CLI implementation straightforward — visual patterns already defined. Core library separation (C613) enabled clean CLI integration. Lesson: L296 validated again — UX-first, then core, then CLI creates a smooth implementation pipeline."
       }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-14T23:50:39.925Z",
+      "cycle": 624,
+      "action": "🛡️ R-014 AGENT PR WORKFLOW RULE (C624) — Added R-014 to RULES.md mandating PRs for code changes. Branch convention: ada/c{cycle}-{role}-{action-slug}. Phased rollout: manual → CLI --pr flag → CI enforcement. R-013: 52/52 verified. 204 consecutive (C421-624). Commented on #128.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Proactive rule addition enables Engineering to implement CLI support with clear spec. Lesson: L298 — Rules should define the target state clearly so implementation is unambiguous; R-014 includes examples, phase rollout, and CLI integration notes."
+      }
     }
   ],
-  "next_role_title": "🛡️ ops"
+  "next_role_title": "🎨 design"
 }

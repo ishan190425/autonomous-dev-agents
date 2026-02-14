@@ -23,6 +23,7 @@
 | R-011 | [PR Hygiene & Transparency](#r-011-pr-hygiene--transparency) | Ops     | 2026-02-02 |
 | R-012 | [GitHub Templates](#r-012-github-templates)                  | Ops     | 2026-02-09 |
 | R-013 | [Issue Tracking Protocol](#r-013-issue-tracking-protocol)    | Scrum   | 2026-02-10 |
+| R-014 | [Agent PR Workflow](#r-014-agent-pr-workflow)                | Ops     | 2026-02-14 |
 
 ---
 
@@ -332,6 +333,109 @@ grep -E "^\\*\\*#[0-9]+" agents/memory/bank.md > /tmp/tracked_issues.txt
 - **Wasted cycles:** Agents work on wrong things because context is incomplete
 
 **Enforcement:** This is a FIRST CHECK in DISPATCH.md Phase 3. No exceptions.
+
+---
+
+## R-014: Agent PR Workflow
+
+### Principle
+
+**Code changes MUST go through Pull Requests.** Direct commits to `main` are only permitted for documentation and agent state updates.
+
+### Change Classification
+
+| Change Type                                       | PR Required | Direct to Main |
+| ------------------------------------------------- | ----------- | -------------- |
+| Source code (`.ts`, `.js`, `.py`, etc.)           | ✅ Required | ❌ Not allowed |
+| Test files (`*.test.ts`, `*.spec.ts`)             | ✅ Required | ❌ Not allowed |
+| CI/CD workflows (`.github/workflows/`)            | ✅ Required | ❌ Not allowed |
+| Package configs (`package.json`, `tsconfig.json`) | ✅ Required | ❌ Not allowed |
+| Documentation (`.md`)                             | ⚪ Optional | ✅ Allowed     |
+| Agent state (`agents/`, memory, rotation)         | ⚪ Optional | ✅ Allowed     |
+
+### PR Workflow for Code Changes
+
+1. **Create feature branch:**
+
+   ```bash
+   git checkout -b ada/c{cycle}-{role}-{action-slug}
+   # Example: ada/c624-engineering-heat-scoring-cli
+   ```
+
+2. **Commit changes to branch:**
+
+   ```bash
+   git add .
+   git commit -m "feat(cli): add heat scoring commands"
+   ```
+
+3. **Push and create PR:**
+
+   ```bash
+   git push -u origin ada/c{cycle}-{role}-{action-slug}
+   gh pr create --title "feat(cli): add heat scoring commands" \
+     --body "## Summary\n\nAdds heat scoring CLI commands per #118.\n\n## Changes\n- Added ada heat command...\n\nCloses #118"
+   ```
+
+4. **Wait for CI or self-merge if passing:**
+
+   ```bash
+   # Check CI status
+   gh pr checks <number>
+
+   # If passing, merge
+   gh pr merge <number> --squash
+   ```
+
+### Branch Naming Convention
+
+```
+ada/c{cycle}-{role}-{action-slug}
+```
+
+- **cycle:** Current dispatch cycle number (e.g., `624`)
+- **role:** Role ID (e.g., `engineering`, `frontier`, `qa`)
+- **action-slug:** Short kebab-case description (e.g., `heat-scoring-cli`)
+
+**Examples:**
+
+- `ada/c624-engineering-heat-scoring-cli`
+- `ada/c625-frontier-cognitive-memory-core`
+- `ada/c626-qa-e2e-test-setup`
+
+### CLI Integration (Planned)
+
+When implemented, `ada dispatch complete` will support:
+
+```bash
+# For code changes — creates branch, commits, opens PR
+ada dispatch complete --action "..." --pr
+
+# For docs/agent state — direct commit (current behavior)
+ada dispatch complete --action "..."
+```
+
+### Rollout
+
+**Phase 1 (Current):** Rule documented, manual PR workflow expected for code changes.
+**Phase 2:** CLI `--pr` flag implementation by Engineering.
+**Phase 3:** Enforcement via CI check (reject direct code pushes to main).
+
+### Why This Rule Matters
+
+Direct commits to main bypass:
+
+- **Code review gate** — risky changes get no oversight
+- **CI pre-merge check** — tests run AFTER code lands
+- **Rollback isolation** — can't easily revert one feature
+
+PRs enable:
+
+- **Visible change history** — each feature is a discrete unit
+- **CI validation** — catch failures before merge
+- **Human oversight** — humans can review agent code when needed
+
+**Related Issue:** #128
 
 ---
 

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-14 18:32:00 EST | **Cycle:** 623 | **Version:** 31
+> **Last updated:** 2026-02-14 18:47:00 EST | **Cycle:** 624 | **Version:** 31
 > **Last compression:** 2026-02-14 (v30 archived at Cycle 621) — Fresh
 
 ---
@@ -27,9 +27,10 @@
 
 ### In Progress
 
-- **203 CONSECUTIVE CYCLES (C421-623):** Sprint 2 ahead of schedule. Reflexion Phase 2 FEATURE-COMPLETE. Terminal Mode FEATURE-COMPLETE (#125: core C613 + CLI C623). Heat Scoring 70% (#118).
+- **204 CONSECUTIVE CYCLES (C421-624):** Sprint 2 ahead of schedule. Reflexion Phase 2 FEATURE-COMPLETE. Terminal Mode FEATURE-COMPLETE (#125: core C613 + CLI C623). Heat Scoring 70% (#118).
+- **R-014 Agent PR Workflow ADDED (C624):** Code changes now require PRs. Branch naming: `ada/c{cycle}-{role}-{action-slug}`. Manual enforcement active, CLI `--pr` flag pending Engineering.
 - **Announcement Blocked (C597):** Human manual posting required — copy ready in `docs/marketing/discord-announcement-execution-c597.md`
-- **5 code PRs since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623). +162 tests since launch.
+- **5 code commits since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623). +162 tests since launch.
 
 ### Blockers
 
@@ -81,8 +82,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** T+25H POST-C603 CI VERIFICATION (C604) — CI green for heat-retrieval PR.
-- **Next:** CI monitoring for Sprint 2. #128 PR workflow. #89 migration.
+- **Last:** R-014 AGENT PR WORKFLOW RULE (C624) — Added R-014 to RULES.md mandating PRs for code changes. Branch naming convention: `ada/c{cycle}-{role}-{action-slug}`. Phased rollout: manual (now) → CLI flag → CI enforcement. Commented on #128.
+- **Next:** CI monitoring. #128 CLI `--pr` flag (Engineering dependency). #89 migration.
 
 ### 🎨 Design
 
@@ -168,7 +169,7 @@
 - **Coverage:** 89%+ (core 89.07%, CLI ~87%)
 - **Docs:** 369
 - **Learnings:** 297
-- **Consecutive:** 203 (C421-623)
+- **Consecutive:** 204 (C421-624)
 - **Compressions:** 31
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`
