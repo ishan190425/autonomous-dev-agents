@@ -1,6 +1,6 @@
 {
   "name": "@ada/cli",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha",
   "description": "CLI tool for Autonomous Dev Agents — set up and run AI agent teams on any repo",
   "type": "module",
   "main": "./dist/index.js",
