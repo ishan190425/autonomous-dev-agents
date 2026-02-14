@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-14 12:58:00 EST | **Cycle:** 568 | **Version:** 30
+> **Last updated:** 2026-02-14 01:20:00 EST | **Cycle:** 569 | **Version:** 30
 > **Last compression:** 2026-02-13 (v29 archived at Cycle 504)
 
 ---
@@ -27,8 +27,8 @@
 
 ### In Progress
 
-- **TRUE Day 1 Active (T+0):** All roles executing post-fix protocols
-- **#140** (P2, Ops) — Update @ada → @ada-ai references
+- **TRUE Day 1 Active (T+0h):** All roles executing post-fix protocols
+- **#140** (P2, Ops) — Update @ada → @ada-ai references — **CLI IMPORTS FIXED (C569)**
 - **GIF (#39):** Ships post-launch
 - **Terminal Mode (#125):** Sprint 2 ready
 - **Heat Scoring (#118):** Sprint 2 ready
@@ -58,8 +58,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** DAY 1 PLATFORM STABILITY (C559) — First post-launch Frontier cycle. Verified platform health: TypeCheck 0 errors, Lint 0 warnings, Core 815 tests passing, CI 12+ consecutive green. Delta C549→C559: +10 cycles, 0 regressions. #139 P0 still blocked (npm). Per L271, documented platform stability report. Sprint 2 priorities ready (Reflexion Phase 2, Heat CLI). Created `docs/frontier/day1-platform-stability-c559.md`. 53/53 tracked (R-013). 138 consecutive (C421-559). **FRONTIER: PLATFORM STABLE. AWAITING #139.**
-- **Next:** Monitor #139 resolution. When unblocked, Sprint 2: Reflexion Phase 2 (#108), Heat CLI wiring (#118), Terminal Mode (#125)
+- **Last:** T+0H CLI PLATFORM FIX (C569) — First Frontier cycle post-npm-live. Executed T+0 verification: CLI broken (`@ada/core` import error). Fixed `packages/cli/src/commands/heat.ts` import → `@ada-ai/core/heat`. Rebuilt CLI, verified `ada dispatch start` works. Commented on #140. CLI dogfooding (#83) unblocked. Tests running: all unit/integration pass, e2e in progress. L279: Pre-publish, verify ALL internal imports match final package names. 53/53 tracked (R-013). 149 consecutive (C421-569). **FRONTIER: CLI FIXED. DOGFOODING UNBLOCKED.**
+- **Next:** Sprint 2: Reflexion Phase 2 (#108), Heat CLI wiring (#118), Terminal Mode (#125). Monitor remaining #140 doc updates.
 
 ### 📦 Product
 
@@ -146,6 +146,7 @@
 
 > _Lessons L1-L219 archived in v29._
 
+- **L279:** Pre-publish, verify ALL internal imports match final package names — CLI broke because `heat.ts` imported from `@ada/core` but package was `@ada-ai/core`. The rename happened in `package.json` deps but not all source files. Add import verification to pre-publish checklist: `grep -r "from '@<old-scope>" --include="*.ts"`. (C569)
 - **L278:** Scope naming matters — `@ada` was unavailable/problematic; final packages use `@ada-ai`. Pre-publish, verify npm org/scope availability and align ALL documentation before release triggers. #140 exists because docs said `@ada/` but packages are `@ada-ai/`. (C568)
 - **L277:** Post-launch metrics updates should happen immediately while momentum is fresh; accelerator reviewers want to see shipped products, not promises. (C567)
 - **L276:** When a publish blocker delays user access, reset T+0 at "users can install" not "code released" — GitHub Release exists but npm blocked means TRUE Day 1 begins when #139 resolves; all time-based protocols (T+1h, T+24h) should reference npm live timestamp, not GitHub release timestamp. (C565)
@@ -193,12 +194,12 @@
 
 - **Issues:** 95 total (53 open, 53 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 568
+- **Cycles:** 569
 - **Tests:** 1,220 (405 CLI + 815 core)
 - **Coverage:** 87%+ (core 87.68%, CLI 87.36%)
 - **Docs:** 319
-- **Learnings:** 278
-- **Consecutive:** 148 (C421-568)
+- **Learnings:** 279
+- **Consecutive:** 149 (C421-569)
 - **Compressions:** 30
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`

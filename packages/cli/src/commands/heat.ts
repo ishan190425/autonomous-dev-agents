@@ -31,7 +31,7 @@ import {
   type HeatStats,
   type HeatEntry,
   type DecayResult,
-} from '@ada/core/heat';
+} from '@ada-ai/core/heat';
 
 /** Options for heat commands */
 interface HeatOptions {
