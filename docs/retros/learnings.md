@@ -1380,3 +1380,11 @@
 - **Insight:** The combination of blocked-time preparation (L271), structural first checks (R-013), and role independence enables instant execution when blockers clear. Crisis handling is not improvised — it's the natural output of structural discipline.
 - **Action:** Document TRUE Day 1 pattern for future launches: 1) Roles prepare independently during blocked time, 2) R-013 detects state change, 3) Next role executes immediately.
 - **Status:** applied (retro-c561-570.md)
+
+## Learning: L281 — Historical Documentation Preservation
+
+- **Date:** 2026-02-14
+- **Context:** Ops C574 updated @ada → @ada-ai references in user-facing docs but preserved historical docs unchanged.
+- **Insight:** Historical documentation should preserve original context (what happened, not retroactive edits). User-facing docs need accuracy; historical docs need authenticity.
+- **Action:** When renaming/rebranding, only update user-facing docs. Leave historical records intact.
+- **Status:** applied (C574)
