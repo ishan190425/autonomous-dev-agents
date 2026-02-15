@@ -517,3 +517,24 @@ export {
   DEFAULT_PATTERN_CONFIG,
   DEFAULT_CONFIDENCE_THRESHOLD,
 } from './reflexion/index.js';
+
+// Playbook Suggestions (Issue #108 — Pattern-to-Playbook Automation, C449 Spec)
+export type {
+  SuggestionType,
+  SuggestionStatus,
+  ConfidenceTier,
+  PlaybookSuggestion,
+  CreateSuggestionInput,
+  SuggestionConfig,
+  ListSuggestionsOptions,
+  SuggestionStats,
+  ValidationResult,
+  ApplyResult as SuggestionApplyResult,
+  RejectResult as SuggestionRejectResult,
+} from './playbook-suggestions/index.js';
+export {
+  DEFAULT_SUGGESTION_CONFIG,
+  SuggestionStore,
+  SuggestionGenerator,
+  createSuggestionGenerator,
+} from './playbook-suggestions/index.js';
