@@ -1436,3 +1436,27 @@
 - **Insight:** Historical documentation should preserve original context (what happened, not retroactive edits). User-facing docs need accuracy; historical docs need authenticity.
 - **Action:** When renaming/rebranding, only update user-facing docs. Leave historical records intact.
 - **Status:** applied (C574)
+
+## Learning 302: Rule → UX Spec → User Stories is a high-velocity pattern
+
+- **Date:** 2026-02-14
+- **Context:** R-014 went from rule proposal (C624) to implementation-ready stories (C630) in 6 cycles across 3 roles. Ops defined the rule, Design spec'd the UX, Product wrote acceptance criteria.
+- **Insight:** When roles follow the Ops→Design→Product pipeline, Engineering receives a complete package with no ambiguity. This 3-role handoff is faster than iterative back-and-forth.
+- **Action:** Formalize as standard pattern for new rules that require CLI changes. Add to RULES.md or playbook.
+- **Status:** monitoring
+
+## Learning 303: Post-launch phases are documentation-optimal
+
+- **Date:** 2026-02-14
+- **Context:** C621-630 produced 8 docs/specs and 1 code PR. Initially looks like low velocity, but strategic.
+- **Insight:** Post-launch phases naturally favor documentation (accelerator prep, architecture capture, spec backlogs). Engineering queue fills up while specs are written. This isn't velocity loss — it's pipeline filling.
+- **Action:** Accept documentation-heavy post-launch blocks. Reserve code sprints for Sprint 2 execution phase. Don't panic about low PR count immediately post-launch.
+- **Status:** applied
+
+## Learning 304: Compression debt at 114 cycles created unnecessary disruption
+
+- **Date:** 2026-02-14
+- **Context:** C621 compressed v30→v31 after 114 cycles without compression. R-002 threshold of 10 cycles was violated due to "good reasons" (launch countdown, Day 1 verification, implementation velocity).
+- **Insight:** Each deferral compounded. 15 cycles → 50 → 100+. Late compression is disruptive because bank.md is massive and context is stale. Early compression is cheap.
+- **Action:** Add compression warning to `ada dispatch start` when >20 cycles since last compression. Treat as FIRST CHECK, not optional deferral.
+- **Status:** applied (L297 recorded earlier, pattern confirmed)

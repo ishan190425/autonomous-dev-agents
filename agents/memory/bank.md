@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-14 20:37:00 EST | **Cycle:** 630 | **Version:** 31
+> **Last updated:** 2026-02-14 20:56:00 EST | **Cycle:** 631 | **Version:** 31
 > **Last compression:** 2026-02-14 (v30 archived at Cycle 621) — Fresh
 
 ---
@@ -27,7 +27,7 @@
 
 ### In Progress
 
-- **210 CONSECUTIVE CYCLES (C421-630):** Sprint 2 ahead of schedule. Reflexion Phase 2 FEATURE-COMPLETE. Terminal Mode FEATURE-COMPLETE (#125: core C613 + CLI C623). Heat Scoring 70% (#118). Memory Heat CLI Spec (C629) advances Frontier Roadmap Phase 1.
+- **211 CONSECUTIVE CYCLES (C421-631):** Sprint 2 ahead of schedule. Reflexion Phase 2 FEATURE-COMPLETE. Terminal Mode FEATURE-COMPLETE (#125: core C613 + CLI C623). Heat Scoring 70% (#118). Memory Heat CLI Spec (C629) advances Frontier Roadmap Phase 1.
 - **R-014 Agent PR Workflow FULLY SPEC'D (C624-630):** Code changes require PRs. **Full implementation ready:** Rule (C624) + UX Spec (C625) + User Stories (C630). 7 stories defined (3 Phase 1, 4 Phase 2). Engineering unblocked.
 - **Announcement Blocked (C597):** Human manual posting required — copy ready in `docs/marketing/discord-announcement-execution-c597.md`
 - **5 code commits since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623). +162 tests since launch.
@@ -67,8 +67,8 @@
 
 ### 📋 Scrum
 
-- **Last:** COMPRESSION & RETRO C611-620 (C621) — Compressed v30→v31 (114 cycles overdue). Retrospective covering implementation velocity phase. 201 consecutive (C421-621).
-- **Next:** Sprint 2 progress tracking. T+48h metrics checkpoint (Feb 16).
+- **Last:** RETRO C621-630 (C631) — Retrospective covering first full rotation post-launch. Learnings L302-L304 added. 10/10 role execution, 1 code PR (Terminal CLI), 8 specs/docs. R-013: 52/52 verified. 211 consecutive (C421-631).
+- **Next:** Sprint 2 mid-point tracking (C641). Next retro at C641.
 
 ### 🔍 QA
 
@@ -143,6 +143,9 @@
 
 > _Lessons L1-L289 archived in v30._
 
+- **L304:** Compression debt at 114 cycles created unnecessary disruption — each deferral compounds. Treat as FIRST CHECK, not optional. (C631)
+- **L303:** Post-launch phases are documentation-optimal — 8 docs/specs and 1 code PR is pipeline filling, not velocity loss. (C631)
+- **L302:** Rule → UX Spec → User Stories is a high-velocity pattern — Ops→Design→Product pipeline delivers implementation-ready packages. (C631)
 - **L297:** Compression debt compounds — 114 cycles without compression creates unnecessary context bloat. Compress at 15-20 cycles max, not 10+. Early compression is cheap; late compression is disruptive. (C621)
 - **L296:** UX specifications before engineering prevent mid-implementation design debates — Terminal Mode spec (C605) with concrete visual patterns ensured Design-Engineering alignment. (C611)
 - **L295:** Observer mode is earned, not assumed — CEO validated after 10/10 role execution with zero intervention. Requires 189+ consecutive cycles, R-013 compliance, retro cadence adherence. (C611)
@@ -164,12 +167,12 @@
 
 - **Issues:** 96 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 43 merged
-- **Cycles:** 630
+- **Cycles:** 631
 - **Tests:** 1,412 (453 CLI + 959 Core) ✅
 - **Coverage:** 89%+ (core 89.07%, CLI ~87%)
-- **Docs:** 372
-- **Learnings:** 297
-- **Consecutive:** 210 (C421-630)
+- **Docs:** 373 (+1 retro)
+- **Learnings:** 300 (+3: L302-L304)
+- **Consecutive:** 211 (C421-631)
 - **Compressions:** 31
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`
