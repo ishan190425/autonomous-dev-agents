@@ -1,19 +1,9 @@
 {
-  "current_index": 5,
-  "last_role": "product",
-  "last_run": "2026-02-15T11:36:02.539Z",
-  "cycle_count": 660,
+  "current_index": 6,
+  "last_role": "scrum",
+  "last_run": "2026-02-15T11:54:34.623Z",
+  "cycle_count": 661,
   "history": [
-    {
-      "role": "scrum",
-      "timestamp": "2026-02-15T08:43:51.779Z",
-      "cycle": 651,
-      "action": "📋 RETRO C641-650 (C651) — Third full rotation post-launch retrospective. 10/10 role execution, 2 code PRs (heat-dispatch #142, playbook-cli #143 pending merge). Learnings L313-L319 captured: spec-first delivery, overnight operation value (~3h rotation velocity). Overnight narrative validated across CEO/Growth/Research. R-013: 52/52 verified. 231 consecutive (C421-651).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Retro cadence at 10 cycles catches patterns while context is fresh. L318 overnight operation emerged organically across 3 roles. Lesson: L319 — Rotation velocity decreasing (~4h→~3h) indicates team maturity; track for benchmarking."
-      }
-    },
     {
       "role": "qa",
       "timestamp": "2026-02-15T09:03:06.415Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Frontier→Product pipeline delivers clean PRs with tests — minimal review friction. Lesson: Self-improvement loop visibility (Reflexion→Pattern→Suggestion→Dispatch) creates natural discovery path for playbook improvements without requiring agents to remember to check."
       }
+    },
+    {
+      "role": "scrum",
+      "timestamp": "2026-02-15T11:54:34.623Z",
+      "cycle": 661,
+      "action": "📋 RETRO C651-660 (C661) — Fourth full rotation post-launch retrospective. 10/10 role execution, 2 code PRs merged (#143, #144), 1 PR ready (#145). Learnings L320-L322 captured: overnight PR velocity, self-improvement loop visibility, demo-ready timing. Sprint 2 at 95%+. R-013: 51/51 verified. 241 consecutive (C421-661). Created docs/retros/retro-c651-660.md.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Retro gate at 10 cycles caught drift despite playbook recommending 5 — structural constraints matter. L321 captures key insight: self-improvement loop now visible in dispatch workflow. Lesson: Demo-ready verification T-10 (C655-656) prevented Pioneer scramble."
+      }
     }
   ],
-  "next_role_title": "📋 scrum"
+  "next_role_title": "🔍 qa"
 }

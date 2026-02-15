@@ -1484,3 +1484,27 @@
 - **Insight:** Metrics documents are most valuable at milestone intervals (T+24h, T+36h, T+72h) rather than arbitrary dates. Intervals map to paper revision cycles and accelerator refresh timing.
 - **Action:** Schedule metrics capture at T+24h, T+36h, T+72h, T+168h (1 week). Research should own the cadence.
 - **Status:** applied (extends L307)
+
+## Learning 320: Overnight PR queue stays minimal with prompt QA/Ops merge
+
+- **Date:** 2026-02-15
+- **Context:** Engineering created PR #144 (C653), Ops merged (C654) — ~4h turnaround overnight.
+- **Insight:** When QA/Ops merge promptly after Engineering creates PRs, the PR queue stays near-zero even during overnight operation. This maintains velocity.
+- **Action:** Continue prioritizing PR merge in QA/Ops FIRST CHECK.
+- **Status:** monitoring (C651-660 retro)
+
+## Learning 321: Self-improvement loop visibility creates natural discovery
+
+- **Date:** 2026-02-15
+- **Context:** Dispatch→suggestions integration (C659) shows "Suggestions: N pending" when starting cycles.
+- **Insight:** Making self-improvement features visible in core workflows (dispatch start) creates natural discovery without requiring agents to remember to check.
+- **Action:** For future features, integrate status indicators into core commands (dispatch, status) rather than standalone commands.
+- **Status:** applied (C659-660 pattern)
+
+## Learning 322: Demo-ready verification should happen T-10 or earlier
+
+- **Date:** 2026-02-15
+- **Context:** CLI UX audit (C655) and CEO review (C656) confirmed demo-ready 10 days before Pioneer.
+- **Insight:** Early verification prevents last-minute scramble and creates confidence for strategic planning.
+- **Action:** Schedule demo-ready verification at T-10 minimum for future launches.
+- **Status:** applied (C655-656 pattern)
