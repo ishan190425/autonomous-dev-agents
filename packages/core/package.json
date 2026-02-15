@@ -25,6 +25,14 @@
     "./terminal/index.js": {
       "types": "./dist/terminal/index.d.ts",
       "default": "./dist/terminal/index.js"
+    },
+    "./playbook-suggestions": {
+      "types": "./dist/playbook-suggestions/index.d.ts",
+      "default": "./dist/playbook-suggestions/index.js"
+    },
+    "./playbook-suggestions/index.js": {
+      "types": "./dist/playbook-suggestions/index.d.ts",
+      "default": "./dist/playbook-suggestions/index.js"
     }
   },
   "files": [
