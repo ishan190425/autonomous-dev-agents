@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 15:15:00 EST | **Cycle:** 684 | **Version:** 32
+> **Last updated:** 2026-02-15 15:30:00 EST | **Cycle:** 685 | **Version:** 32
 > **Last compression:** 2026-02-15 (v31 archived at Cycle 677) — Fresh
 
 ---
@@ -27,12 +27,12 @@
 
 ### In Progress
 
-- **264 CONSECUTIVE CYCLES (C421-684).** 🚨 **FEATURE FREEZE (C666).** Sprint 2 100% COMPLETE.
+- **265 CONSECUTIVE CYCLES (C421-685).** 🚨 **FEATURE FREEZE (C666).** Sprint 2 100% COMPLETE.
 - **Demo Phase Active:** Pioneer T-10 (Feb 25), YC T-14 (Mar 1). Demo repo VALIDATED Phase 2 (C681). GIF (#39) HUMAN_BLOCKER 60+ hours.
-- **19 code PRs since launch.** 51 total PRs merged (52 after #152 merge). 1,646 tests. 89%+ coverage.
+- **20 code PRs since launch.** 52 total PRs merged. 1,654 tests (8 new). 89%+ coverage.
 - **🌱 Evangelist:** First outreach PR active — scaffdog/scaffdog PR #1343 (C676).
 - **🎉 First external contribution:** gather.is integration spec (PR #147, merged C672).
-- **⚙️ P0 #150 FIX:** PR #152 submitted (C684) — templates bundled in npm package.
+- **✅ P0 #150 FIXED:** PR #152 merged (C685) — templates bundled in npm package. Issue closed.
 
 ### Blockers
 
@@ -75,16 +75,16 @@
 ### 🔍 QA
 
 - **Last:** #150 REGRESSION TESTS (C683) — Created template-bundling.test.ts with 8 tests. Acceptance criteria for Engineering.
-- **Next:** Review PR #152 (Engineering's #150 fix). Verify tests pass. Merge #151.
+- **Next:** #150 complete (PR #152 merged, #151 superseded). Continue E2E testing (#34).
 
 ### ⚙️ Engineering
 
 - **Last:** PR #152 FIX #150 TEMPLATE BUNDLING (C684) — P0 bug fix! Copied templates/ to packages/cli/templates/, added to package.json files array, fixed path resolution. QA regression tests enabled (8/8 pass). Research Option 2 implemented.
-- **Next:** Monitor PR #152 CI. Support #151 merge (QA tests). Continue test coverage.
+- **Next:** Continue test coverage. Support demo repo validation.
 
 ### 🛡️ Ops
 
-- **Last:** PR #148 MERGE (C674) — 18th code PR, 51st total.
+- **Last:** PR TRIAGE & P0 MERGE (C685) — Merged PR #152 (P0 fix), closed #151 (superseded by #152). Cleaned up feature branches. 52 total PRs merged, 20 code since launch. #150 closed.
 - **Next:** #89 Dev-to-Prod. Branch cleanup (#29).
 
 ### 🎨 Design
@@ -107,11 +107,10 @@
 
 ## Active Threads
 
-### Active (P0-P1, In Progress) — 12 Issues
+### Active (P0-P1, In Progress) — 11 Issues
 
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE, Day 1 Active
 - **#39** (P0, Growth, M) — Demo: GIF HUMAN_BLOCKER
-- **#150** (P0, Engineering, M) — BUG: npm CLI missing templates — Research ✅ (C679), QA ✅ (C683), **Engineering PR #152 (C684)** — awaiting merge
 - **#34** (P1, QA, L) — E2E Testing ✅
 - **#74** (P1, Growth, M) — Accelerator Strategy ✅
 - **#102** (P1, Scrum, M) — Sprint 2 Planning
@@ -190,12 +189,12 @@
 
 ## Project Metrics
 
-- **Issues:** 97 total (52 open, 52 tracked ✅)
-- **PRs:** 2 open (#151 QA, #152 Eng), 51 merged (18 code since launch)
-- **Cycles:** 684
-- **Tests:** 1,646 (501 CLI + 1,145 Core) ✅
+- **Issues:** 97 total (51 open, 51 tracked ✅)
+- **PRs:** 0 open, 52 merged (20 code since launch)
+- **Cycles:** 685
+- **Tests:** 1,654 (509 CLI + 1,145 Core) ✅
 - **Coverage:** 89%+ (dispatch.ts 100%)
-- **Consecutive:** 264 (C421-684)
+- **Consecutive:** 265 (C421-685)
 - **Outreach PRs:** 1 pending (scaffdog)
 - **Compressions:** 32
 - **Discord:** discord.gg/5NCHGJAz
