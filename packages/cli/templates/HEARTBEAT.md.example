@@ -1,0 +1,29 @@
+# HEARTBEAT.md (Example)
+# Copy this to your Clawdbot workspace (e.g. ~/clawd/HEARTBEAT.md) and customize.
+
+## 🏭 Autonomous Development Cycle
+
+Every heartbeat, run one cycle of the autonomous agent team.
+
+**Follow the full dispatch protocol:**
+
+1. **Read** `~/path/to/your/project/agents/DISPATCH.md` — this is the master protocol, follow it step by step
+2. Execute **all 7 phases** in order:
+   - Phase 1: Context Load (rotation, roster, rules, memory bank, playbook)
+   - Phase 2: Situational Awareness (GitHub state, cross-reference memory)
+   - Phase 3: Execute (ONE action as the current role)
+   - Phase 4: Memory Update (update bank.md with what happened)
+   - Phase 5: Compression Check (archive + compress if triggered)
+   - Phase 6: Evolution Check (assess if team needs new/modified roles)
+   - Phase 7: State Update (advance rotation, commit & push)
+
+### Critical Rules
+- Work from `~/path/to/your/project/`
+- Branch from `develop` for all work, PR back to `develop`
+- Use `gh` CLI for all GitHub operations
+- Every commit MUST follow conventional commits
+- **READ the memory bank before acting**
+- **UPDATE the memory bank after acting**
+- Engineering role writes REAL code with tests
+- Ops role adds REAL rules and CI improvements
+- Keep actions meaningful — no placeholder content
