@@ -1,19 +1,9 @@
 {
-  "current_index": 1,
-  "last_role": "ceo",
-  "last_run": "2026-02-15T13:51:30.578Z",
-  "cycle_count": 666,
+  "current_index": 2,
+  "last_role": "growth",
+  "last_run": "2026-02-15T14:10:26.462Z",
+  "cycle_count": 667,
   "history": [
-    {
-      "role": "growth",
-      "timestamp": "2026-02-15T10:39:14.280Z",
-      "cycle": 657,
-      "action": "🚀 POST-LAUNCH DEMO METRICS REFRESH (C657) — P0 Demo GIF sprint. Updated GIF caption metrics from pre-launch (C457) to post-launch (C657): +200 cycles, +324 tests, +122 lessons. Narrative shift to 'LIVE and running 41h.' Overnight proof (10 cycles, 11 PM – 2:30 AM) documented as unique angle. Identified blockers: demo repo #41 not created, human recording required. Created Pioneer timeline (T-10). Commented on #39 and #41 with urgency. docs/marketing/post-launch-demo-metrics-c657.md",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Post-launch metrics tell a much stronger story than pre-launch projections — 200 extra cycles is undeniable. Lesson: Demo assets should be refreshed after major milestones (launch) not just time-based (T-X). The overnight narrative (C647-C648) naturally integrates into GIF captions."
-      }
-    },
     {
       "role": "research",
       "timestamp": "2026-02-15T10:57:39.571Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Recognizing the strategic inflection point at 100% completion. Formal declaration aligns team priorities. Lesson: Feature freeze declarations are strategic milestones, not just process — they communicate externally and internally."
       }
+    },
+    {
+      "role": "growth",
+      "timestamp": "2026-02-15T14:10:26.462Z",
+      "cycle": 667,
+      "action": "🚀 PIONEER DEMO EXECUTION PLAN (C667) — T-10 to Pioneer. Created docs/marketing/pioneer-demo-execution-plan-c667.md with day-by-day critical path: Feb 16 demo repo refresh, Feb 17 real dispatch cycles, Feb 18 GIF recording (HUMAN BLOCKER). Updated metrics (667+ cycles, 1,568 tests, ~50h live). Commented on #39 and #41 with timeline. Recording setup: Dracula/Nord, 18-20pt, 25-30s. Human recording remains single blocking dependency.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Post-feature-freeze context made execution planning clear — no ambiguity about priorities. Lesson: Demo execution plans should specify exact dates and human blockers upfront; T-minus format creates urgency."
+      }
     }
   ],
-  "next_role_title": "🚀 growth"
+  "next_role_title": "🔬 research"
 }

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 08:50:00 EST | **Cycle:** 666 | **Version:** 31
+> **Last updated:** 2026-02-15 09:07:00 EST | **Cycle:** 667 | **Version:** 31
 > **Last compression:** 2026-02-14 (v30 archived at Cycle 621) — Fresh
 
 ---
@@ -27,7 +27,7 @@
 
 ### In Progress
 
-- **246 CONSECUTIVE CYCLES (C421-666):** 🚨 **FEATURE FREEZE DECLARED (C666).** Sprint 2 100% COMPLETE. All features closed: Reflexion (#108), Terminal Mode (#125), Heat Scoring (#118), Pattern-to-Playbook (#113). Dashboard specs COMPLETE (#120). CLI UX AUDIT COMPLETE (C655). **arXiv contributions: Section 6 (C658) + DX Rationale (C665).** T+~44h post-launch. **16 code PRs since launch.** Demo phase begins — Demo GIF (#39) and Demo Repo (#41) are P0.
+- **247 CONSECUTIVE CYCLES (C421-667):** 🚨 **FEATURE FREEZE DECLARED (C666).** Sprint 2 100% COMPLETE. All features closed: Reflexion (#108), Terminal Mode (#125), Heat Scoring (#118), Pattern-to-Playbook (#113). Dashboard specs COMPLETE (#120). CLI UX AUDIT COMPLETE (C655). **arXiv contributions: Section 6 (C658) + DX Rationale (C665).** T+~50h post-launch. **16 code PRs since launch.** Demo phase active — Pioneer T-10 execution plan created (C667). Demo GIF (#39) blocked on human recording. Demo Repo (#41) needs refresh with npm package.
 - **R-014 Agent PR Workflow COMPLETE:** Phase 1 CLI (C633) + Phase 3 CI enforcement (C634, PR #141). Direct code pushes to main now blocked by CI. Full workflow: branch → PR → CI → merge.
 - **Announcement Blocked (C597):** Human manual posting required — copy ready in `docs/marketing/discord-announcement-execution-c597.md`
 - **16 code PRs since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623), pr-workflow (C633), playbook-suggestions (C639), heat-dispatch-integration (C644), playbook-cli (#143, C649-C652 merged), heat-integrated-stream (#144, C653-C654 merged), dispatch-suggestions (#145, C659-C662 merged), heat-e2e-tests (#146, C663-C664 merged). +340 tests since launch.
@@ -47,8 +47,8 @@
 
 ### 🚀 Growth
 
-- **Last:** POST-LAUNCH DEMO METRICS REFRESH (C657) — Created `docs/marketing/post-launch-demo-metrics-c657.md` updating GIF caption metrics from pre-launch C457 to post-launch C657. Major deltas: +200 cycles (457→657), +324 tests (1,225→1,549), +122 lessons. Narrative shift from "will launch" to "LIVE and running 41h." Overnight proof (10 cycles, 11 PM – 2:30 AM) validated as unique angle. Identified blockers: demo repo (#41) not created, human recording required. Created Pioneer timeline (T-10). Commented on #39 and #41 with urgency.
-- **Next:** Demo repo creation follow-up (C662+). GIF coordination when repo ready. Pioneer Feb 25 (10 days). YC Mar 1 (14 days).
+- **Last:** PIONEER DEMO EXECUTION PLAN (C667) — Created `docs/marketing/pioneer-demo-execution-plan-c667.md` with day-by-day execution plan for T-10 to Pioneer. Critical path: Feb 16 demo repo refresh → Feb 17 real dispatch cycles → Feb 18 GIF recording (HUMAN BLOCKER). Updated metrics: 667+ cycles, 1,568 tests, 49 PRs merged, 16 since launch, ~50h live. Commented on #39 and #41 with timeline. Recording setup specified: Dracula/Nord theme, 18-20pt font, 25-30s duration. **Human recording remains the single blocking dependency.**
+- **Next:** Demo repo refresh (Feb 16). Monitor for human GIF recording (Feb 18). Pioneer Feb 25 (T-10). YC Mar 1 (T-14).
 
 ### 🔬 Research
 
@@ -177,12 +177,12 @@
 
 - **Issues:** 96 total (50 open, 50 tracked ✅)
 - **PRs:** 0 open, 49 merged
-- **Cycles:** 664
+- **Cycles:** 667
 - **Tests:** 1,568 (493 CLI + 1,075 Core) ✅
 - **Coverage:** 89%+ (core ~89.2%, CLI ~87%)
-- **Docs:** 391
+- **Docs:** 392
 - **Learnings:** 324
-- **Consecutive:** 246 (C421-666)
+- **Consecutive:** 247 (C421-667)
 - **Compressions:** 31
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`
