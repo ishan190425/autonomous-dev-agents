@@ -37,6 +37,18 @@ import {
 } from '@ada-ai/core';
 import type { Role, Roster, RotationState, Reflection, CodeChangeResult } from '@ada-ai/core';
 
+// Heat Scoring (Issue #118 — Dispatch Integration)
+import {
+  HeatStore,
+  createHeatStore,
+  getHeatEmoji,
+  formatHeatScore,
+  getHeatTier,
+  type HeatTier,
+  type HeatStats,
+  type HeatEntry,
+} from '@ada-ai/core/heat';
+
 const exec = promisify(execCb);
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -1154,6 +1166,22 @@ async function executeStatus(options: DispatchStatusOptions): Promise<void> {
     ? roster.roles.find((r) => r.id === lastEntry.role)
     : null;
 
+  // Load heat store (Issue #118 — Dispatch Integration)
+  let heatStore: HeatStore | null = null;
+  let heatStats: HeatStats | null = null;
+  let hotEntries: ReadonlyArray<HeatEntry & { heatScore: number; tier?: HeatTier }> = [];
+  try {
+    heatStore = createHeatStore(agentsDir);
+    await heatStore.load();
+    heatStats = heatStore.stats();
+    // Get top 5 hot entries (per C375 UX spec: "focus here" cue)
+    hotEntries = heatStore.getAllWithScores().slice(0, 5);
+  } catch {
+    // Heat store not initialized yet — that's fine, skip heat section
+    heatStore = null;
+    heatStats = null;
+  }
+
   // Output
   if (options.json) {
     console.log(JSON.stringify({
@@ -1180,6 +1208,17 @@ async function executeStatus(options: DispatchStatusOptions): Promise<void> {
         name: nextRole.name,
       } : null,
       history: options.verbose ? state.history.slice(-10) : state.history.slice(-5),
+      // Heat data (Issue #118)
+      heat: heatStats ? {
+        stats: heatStats,
+        top5: hotEntries.map(e => ({
+          id: e.id,
+          score: e.heatScore,
+          tier: e.tier ?? getHeatTier(e.heatScore),
+          memoryClass: e.memoryClass,
+          referenceCount: e.referenceCount,
+        })),
+      } : null,
     }));
     return;
   }
@@ -1251,6 +1290,29 @@ async function executeStatus(options: DispatchStatusOptions): Promise<void> {
       const actionTrunc = action.length > 35 ? `${action.substring(0, 32)}...` : action;
       const timeAgo = entry.timestamp ? formatTimeAgo(entry.timestamp) : 'unknown';
       console.log(`    ${chalk.gray(entry.cycle.toString().padStart(3))}  ${emoji} ${chalk.cyan(name)} ${actionTrunc.padEnd(35)} ${chalk.gray(timeAgo)}`);
+    }
+  }
+
+  // Heat Section (Issue #118 — Dispatch Integration, C375 UX Spec)
+  // Shows top 5 hottest entries with "focus here" cue
+  if (heatStats && heatStats.total > 0) {
+    console.log();
+    console.log(chalk.gray('  Memory Heat:'));
+    const { byTier } = heatStats;
+    // Tier distribution summary
+    console.log(`    ${chalk.red('🔥')} ${byTier.hot} hot  ${chalk.yellow('🌡️')} ${byTier.warm} warm  ${chalk.blue('❄️')} ${byTier.cold} cold`);
+
+    // Top 5 hot entries (focus here cue)
+    if (hotEntries.length > 0 && options.verbose) {
+      console.log();
+      console.log(chalk.gray('  Focus Here (hottest memories):'));
+      for (const entry of hotEntries) {
+        const tier = entry.tier ?? getHeatTier(entry.heatScore);
+        const emoji = getHeatEmoji(tier);
+        const score = formatHeatScore(entry.heatScore);
+        const idTrunc = entry.id.length > 25 ? `${entry.id.substring(0, 22)}...` : entry.id.padEnd(25);
+        console.log(`    ${emoji} ${idTrunc} ${score} (${entry.memoryClass}, refs: ${entry.referenceCount})`);
+      }
     }
   }
 
