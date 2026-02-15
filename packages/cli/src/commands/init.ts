@@ -315,8 +315,10 @@ async function copyTemplateFiles(
   targetDir: string
 ): Promise<void> {
   // Find the CLI package root and locate templates
-  const cliRoot = path.dirname(path.dirname(__dirname)); // ../../ from dist/commands/
-  const templatesDir = path.join(cliRoot, '..', '..', 'templates');
+  // In npm-installed package: templates live inside the CLI package at packages/cli/templates/
+  // __dirname = packages/cli/dist/commands/ → cliRoot = packages/cli/
+  const cliRoot = path.dirname(path.dirname(__dirname));
+  const templatesDir = path.join(cliRoot, 'templates');
   const templateSource = path.join(templatesDir, 'agents');
 
   console.log(chalk.blue('📁 Copying template files...'));

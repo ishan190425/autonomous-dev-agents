@@ -1,0 +1,12 @@
+{
+  "_comment": "Add this to your Clawdbot config (agents.defaults.heartbeat section)",
+  "_instructions": "Use `clawdbot config patch` or edit ~/.clawdbot/clawdbot.json directly",
+  "agents": {
+    "defaults": {
+      "heartbeat": {
+        "every": "45m",
+        "model": "anthropic/claude-sonnet-4-20250514"
+      }
+    }
+  }
+}
