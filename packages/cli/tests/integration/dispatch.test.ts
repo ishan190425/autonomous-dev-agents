@@ -517,6 +517,87 @@ describe('ada dispatch', () => {
       // Should show cycle info
       expect(result.stdout).toMatch(/cycle|last/i);
     });
+
+    it('includes heat data in JSON output when heat store exists (Issue #118)', async () => {
+      // Create a heat store with test entries
+      const heatDir = path.join(testDir, 'agents', 'memory');
+      const heatData = [
+        {
+          id: 'test-entry-1',
+          memoryClass: 'learned',
+          baseImportance: 0.9,
+          referenceCount: 10,
+          lastAccessedAt: Date.now(),
+          createdAt: Date.now() - 1000000,
+        },
+        {
+          id: 'test-entry-2',
+          memoryClass: 'episodic',
+          baseImportance: 0.5,
+          referenceCount: 2,
+          lastAccessedAt: Date.now() - 86400000, // 1 day ago
+          createdAt: Date.now() - 2000000,
+        },
+      ];
+      // Write heat.jsonl (one entry per line)
+      await fs.writeFile(
+        path.join(heatDir, 'heat.jsonl'),
+        `${heatData.map(e => JSON.stringify(e)).join('\n')  }\n`
+      );
+
+      const result = runCli(['dispatch', 'status', '--json']);
+
+      expect(result.exitCode).toBe(0);
+      const json = JSON.parse(result.stdout);
+      // Heat data should be present
+      expect(json).toHaveProperty('heat');
+      expect(json.heat).not.toBeNull();
+      expect(json.heat).toHaveProperty('stats');
+      expect(json.heat).toHaveProperty('top5');
+      expect(json.heat.top5.length).toBeGreaterThan(0);
+      // Top entries should have required fields
+      expect(json.heat.top5[0]).toHaveProperty('id');
+      expect(json.heat.top5[0]).toHaveProperty('score');
+      expect(json.heat.top5[0]).toHaveProperty('tier');
+    });
+
+    it('handles missing heat store gracefully (Issue #118)', () => {
+      // No heat.jsonl file exists
+      const result = runCli(['dispatch', 'status', '--json']);
+
+      expect(result.exitCode).toBe(0);
+      const json = JSON.parse(result.stdout);
+      // Heat store initializes empty when no file exists (graceful handling)
+      expect(json).toHaveProperty('heat');
+      expect(json.heat).toHaveProperty('stats');
+      expect(json.heat.stats.total).toBe(0);
+      expect(json.heat.top5).toEqual([]);
+    });
+
+    it('shows heat summary in verbose terminal output (Issue #118)', async () => {
+      // Create a heat store with test entries
+      const heatDir = path.join(testDir, 'agents', 'memory');
+      const heatData = [
+        {
+          id: 'hot-memory-1',
+          memoryClass: 'innate',
+          baseImportance: 1.0,
+          referenceCount: 50,
+          lastAccessedAt: Date.now(),
+          createdAt: Date.now() - 1000,
+        },
+      ];
+      await fs.writeFile(
+        path.join(heatDir, 'heat.jsonl'),
+        `${heatData.map(e => JSON.stringify(e)).join('\n')  }\n`
+      );
+
+      const result = runCli(['dispatch', 'status', '--verbose']);
+
+      expect(result.exitCode).toBe(0);
+      // Should show heat section with tier counts
+      expect(result.stdout).toMatch(/heat|hot|warm|cold/i);
+    });
   });
 
   describe('duplicate action warning (Issue #135)', () => {
