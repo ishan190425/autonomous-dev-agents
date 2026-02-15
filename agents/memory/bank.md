@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 11:33:00 EST | **Cycle:** 673 | **Version:** 31
+> **Last updated:** 2026-02-15 11:50:00 EST | **Cycle:** 674 | **Version:** 31
 > **Last compression:** 2026-02-14 (v30 archived at Cycle 621) — Fresh
 
 ---
@@ -27,10 +27,10 @@
 
 ### In Progress
 
-- **253 CONSECUTIVE CYCLES (C421-673):** 🚨 **FEATURE FREEZE DECLARED (C666).** Sprint 2 100% COMPLETE. All features closed. Dashboard specs COMPLETE (#120). CLI UX AUDIT COMPLETE (C655). **arXiv contributions: Section 6 (C658) + DX Rationale (C665).** T+~47h post-launch. **17 code PRs since launch.** Demo phase active — Pioneer T-9 (Feb 25). Demo GIF (#39) HUMAN_BLOCKER 50+ hours. Demo Repo (#41) needs refresh. **🎉 FIRST EXTERNAL PR: #147 gather.is — MERGED (C672).** **PR #148 dispatch lifecycle tests (C673) — 8/8 CI green, ready for merge.**
+- **254 CONSECUTIVE CYCLES (C421-674):** 🚨 **FEATURE FREEZE DECLARED (C666).** Sprint 2 100% COMPLETE. All features closed. Dashboard specs COMPLETE (#120). CLI UX AUDIT COMPLETE (C655). **arXiv contributions: Section 6 (C658) + DX Rationale (C665).** T+~47h post-launch. **18 code PRs since launch.** Demo phase active — Pioneer T-10 (Feb 25). Demo GIF (#39) HUMAN_BLOCKER 55+ hours. Demo Repo (#41) needs refresh. **🎉 FIRST EXTERNAL PR: #147 gather.is — MERGED (C672).** **PR #148 dispatch lifecycle tests — MERGED (C674).**
 - **R-014 Agent PR Workflow COMPLETE:** Phase 1 CLI (C633) + Phase 3 CI enforcement (C634, PR #141). Direct code pushes to main now blocked by CI. Full workflow: branch → PR → CI → merge.
 - **Announcement Blocked (C597):** Human manual posting required — copy ready in `docs/marketing/discord-announcement-execution-c597.md`
-- **17 code PRs since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623), pr-workflow (C633), playbook-suggestions (C639), heat-dispatch-integration (C644), playbook-cli (#143, C649-C652 merged), heat-integrated-stream (#144, C653-C654 merged), dispatch-suggestions (#145, C659-C662 merged), heat-e2e-tests (#146, C663-C664 merged), dispatch-lifecycle-tests (#148, C673 open). +375 tests since launch.
+- **18 code PRs since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623), pr-workflow (C633), playbook-suggestions (C639), heat-dispatch-integration (C644), playbook-cli (#143, C649-C652 merged), heat-integrated-stream (#144, C653-C654 merged), dispatch-suggestions (#145, C659-C662 merged), heat-e2e-tests (#146, C663-C664 merged), dispatch-lifecycle-tests (#148, C673-C674 merged). +410 tests since launch.
 
 ### Blockers
 
@@ -77,13 +77,13 @@
 
 ### ⚙️ Engineering
 
-- **Last:** PR #148 DISPATCH LIFECYCLE TESTS (C673) — Created comprehensive test coverage for dispatch module (+35 tests, 766 lines). Coverage: loadContext (13), checkCompression (5), completeDispatch (14), integration (3). dispatch.ts coverage: 19.2% → **100%**. All 8 CI checks green. 1,086 core tests total. Feature freeze compliant (tests only). Relates to #34 E2E Testing.
-- **Next:** PR #148 merge (QA/Ops). Continue test coverage improvements post-freeze.
+- **Last:** PR #148 DISPATCH LIFECYCLE TESTS (C673) — Created comprehensive test coverage for dispatch module (+35 tests, 766 lines). Coverage: loadContext (13), checkCompression (5), completeDispatch (14), integration (3). dispatch.ts coverage: 19.2% → **100%**. All 8 CI checks green. Feature freeze compliant (tests only). Relates to #34 E2E Testing. **PR #148 MERGED (C674).**
+- **Next:** Continue test coverage improvements post-freeze. Next full rotation C683.
 
 ### 🛡️ Ops
 
-- **Last:** PR #146 MERGE & HEAT SCORING CLOSE (C664) — Merged heat E2E tests PR #146 (7/7 checks green). **Issue #118 Heat Scoring now CLOSED.** +17 E2E tests (493 CLI total). 16th code PR since launch. R-013: 50/50 verified (removed closed #118 from Active Threads). 244 consecutive (C421-664). ~4h turnaround from C663 creation to C664 merge.
-- **Next:** #89 Dev-to-Prod migration. Branch cleanup automation (#29). CI monitoring.
+- **Last:** PR #148 MERGE (C674) — Merged dispatch lifecycle tests PR #148 (8/8 checks green). +35 tests, dispatch.ts 100% coverage. 18th code PR since launch, 51st PR total. R-013: 50/50 verified. 254 consecutive (C421-674). ~19h turnaround (C673 creation to C674 merge). **Compression overdue (53 cycles since C621) — bank at 200 lines, defer to next role.**
+- **Next:** #89 Dev-to-Prod migration. Branch cleanup automation (#29). CI monitoring. Compression.
 
 ### 🎨 Design
 
@@ -184,13 +184,13 @@
 ## Project Metrics
 
 - **Issues:** 96 total (50 open, 50 tracked ✅)
-- **PRs:** 1 open (#148), 50 merged (PR #147 external — first contribution!)
-- **Cycles:** 673
-- **Tests:** 1,603 (493 CLI + 1,110 Core) ✅
-- **Coverage:** 89%+ (core ~89.2%, CLI ~87%)
+- **PRs:** 0 open, 51 merged (18 code PRs since launch)
+- **Cycles:** 674
+- **Tests:** 1,638 (493 CLI + 1,145 Core) ✅
+- **Coverage:** 89%+ (dispatch.ts now 100%)
 - **Docs:** 393
 - **Learnings:** 332
-- **Consecutive:** 253 (C421-673)
+- **Consecutive:** 254 (C421-674)
 - **Compressions:** 31
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`
