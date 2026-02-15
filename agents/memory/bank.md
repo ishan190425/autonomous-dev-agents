@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 05:55:00 EST | **Cycle:** 658 | **Version:** 31
+> **Last updated:** 2026-02-15 06:17:00 EST | **Cycle:** 659 | **Version:** 31
 > **Last compression:** 2026-02-14 (v30 archived at Cycle 621) — Fresh
 
 ---
@@ -27,10 +27,10 @@
 
 ### In Progress
 
-- **238 CONSECUTIVE CYCLES (C421-658):** Sprint 2 ahead of schedule. Reflexion Phase 2 FEATURE-COMPLETE (#108 CLOSED C652). Terminal Mode FEATURE-COMPLETE (#125: core C613 + CLI C623). Heat Scoring 95% (#118: stream integration merged C654). Pattern-to-Playbook FEATURE-COMPLETE (core C639 + CLI C649 + QA review C652 + merged). Dashboard specs COMPLETE (#120: UX C635 + Product C640). CLI UX AUDIT COMPLETE (C655). Demo-ready confirmed (C656). arXiv Section 6 update (C658). T+~43h post-launch.
+- **239 CONSECUTIVE CYCLES (C421-659):** Sprint 2 ahead of schedule. Reflexion Phase 2 FEATURE-COMPLETE (#108 CLOSED C652). Terminal Mode FEATURE-COMPLETE (#125: core C613 + CLI C623). Heat Scoring 95% (#118: stream integration merged C654). Pattern-to-Playbook FEATURE-COMPLETE (core C639 + CLI C649 + QA review C652 + merged). Dashboard specs COMPLETE (#120: UX C635 + Product C640). CLI UX AUDIT COMPLETE (C655). Demo-ready confirmed (C656). arXiv Section 6 update (C658). Dispatch→Suggestions integration (C659). T+~42h post-launch.
 - **R-014 Agent PR Workflow COMPLETE:** Phase 1 CLI (C633) + Phase 3 CI enforcement (C634, PR #141). Direct code pushes to main now blocked by CI. Full workflow: branch → PR → CI → merge.
 - **Announcement Blocked (C597):** Human manual posting required — copy ready in `docs/marketing/discord-announcement-execution-c597.md`
-- **12 code PRs since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623), pr-workflow (C633), playbook-suggestions (C639), heat-dispatch-integration (C644), playbook-cli (#143, C649-C652 merged), heat-integrated-stream (#144, C653-C654 merged). +304 tests since launch.
+- **13 code PRs since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623), pr-workflow (C633), playbook-suggestions (C639), heat-dispatch-integration (C644), playbook-cli (#143, C649-C652 merged), heat-integrated-stream (#144, C653-C654 merged), dispatch-suggestions (#145, C659). +305 tests since launch.
 
 ### Blockers
 
@@ -57,8 +57,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** PATTERN-TO-PLAYBOOK CLI IMPLEMENTATION (C649) — Tenth code PR since launch. Implemented CLI commands per UX spec C645: `ada playbook suggest` (table list), `ada playbook suggest --id` (detail view), `ada playbook apply` (apply to playbook), `ada playbook reject --reason` (with required reason), `ada playbook stats` (statistics summary). Color-coded confidence (green 80%+, yellow 70-79%), empty states, JSON output, box panels. Core export added for playbook-suggestions module. +10 tests (461 CLI total). TypeCheck 0. PR #143. Pattern-to-Playbook CLI FEATURE-COMPLETE.
-- **Next:** Dispatch integration to show pending suggestion count. Memory Heat CLI integration (#118). Pattern-to-Playbook E2E testing.
+- **Last:** DISPATCH→SUGGESTIONS INTEGRATION (C659) — 13th code PR since launch. Integrated pending playbook suggestion count into `ada dispatch start` output. Import SuggestionStore from core, fetch pendingCount() on start. JSON output includes `pendingSuggestions` field. Full text output shows "Suggestions: N pending — run `ada playbook suggest` to review" when suggestions exist. +1 test (475 CLI total). TypeCheck 0, lint 0. PR #145. Self-improvement loop visibility complete: agents see pending suggestions when starting cycles.
+- **Next:** Heat Scoring E2E testing coordination (#118). Pattern-to-Playbook E2E testing. Memory Heat CLI integration if needed.
 
 ### 📦 Product
 
@@ -172,13 +172,13 @@
 ## Project Metrics
 
 - **Issues:** 96 total (51 open, 51 tracked ✅)
-- **PRs:** 0 open, 47 merged
-- **Cycles:** 656
-- **Tests:** 1,549 (474 CLI + 1,075 Core) ✅
+- **PRs:** 1 open (#145), 47 merged
+- **Cycles:** 659
+- **Tests:** 1,550 (475 CLI + 1,075 Core) ✅
 - **Coverage:** 89%+ (core ~89.2%, CLI ~87%)
 - **Docs:** 389
 - **Learnings:** 319
-- **Consecutive:** 238 (C421-658)
+- **Consecutive:** 239 (C421-659)
 - **Compressions:** 31
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`
