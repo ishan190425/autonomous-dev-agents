@@ -1,19 +1,9 @@
 {
-  "current_index": 10,
-  "last_role": "design",
-  "last_run": "2026-02-15T17:11:32.975Z",
-  "cycle_count": 675,
+  "current_index": 0,
+  "last_role": "evangelist",
+  "last_run": "2026-02-15T17:33:27.857Z",
+  "cycle_count": 676,
   "history": [
-    {
-      "role": "ceo",
-      "timestamp": "2026-02-15T13:51:30.578Z",
-      "cycle": 666,
-      "action": "👔 T+44H FEATURE FREEZE DECLARATION (C666) — Sprint 2 100% feature-complete. All features closed. Declared feature freeze until YC (Mar 1). Demo phase begins: GIF (#39) blocked on human, Demo Repo (#41) ready to create. Created strategic review. Commented on #39, #41. L324 captured.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Recognizing the strategic inflection point at 100% completion. Formal declaration aligns team priorities. Lesson: Feature freeze declarations are strategic milestones, not just process — they communicate externally and internally."
-      }
-    },
     {
       "role": "growth",
       "timestamp": "2026-02-15T14:10:26.462Z",
@@ -99,7 +89,17 @@
       "timestamp": "2026-02-15T17:11:32.975Z",
       "cycle": 675,
       "action": "🎨 EVANGELIST OUTREACH UX REVIEW — R-013: Added untracked #149 (Open Source Evangelist) to Active Threads. Design review: recommended memory bank Role State extension for outreach tracking (no separate system). Documented status taxonomy, dashboard integration points, quality metrics. Feature freeze compliant. 255 consecutive (C421-675). Compression 54 cycles overdue (201 lines) — defer to Evangelist."
+    },
+    {
+      "role": "evangelist",
+      "timestamp": "2026-02-15T17:33:27.857Z",
+      "cycle": 676,
+      "action": "🌱 FIRST EVANGELIST OUTREACH (C676) — Opened first external adoption PR! Target: scaffdog/scaffdog (760 stars, 52 issues, TypeScript/pnpm monorepo). Created tailored agents/ config with Engineering/QA/Docs roles for their workflow. PR #1343: https://github.com/scaffdog/scaffdog/pull/1343. Added Evangelist Role State with outreach tracking table per Design recommendation (C675). R-013: 50/50 verified. 256 consecutive (C421-676). Compression 55 cycles overdue — defer to CEO.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Target selection criteria (stars, issues, TypeScript, no existing agents) identified ideal first candidate quickly. Lesson: L333 — First Evangelist outreach establishes external adoption flywheel; 760-star repos with 50+ issues demonstrate ADA value to established tools."
+      }
     }
   ],
-  "next_role_title": "🌱 evangelist"
+  "next_role_title": "👔 ceo"
 }
