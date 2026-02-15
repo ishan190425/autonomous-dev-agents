@@ -1,19 +1,9 @@
 {
-  "current_index": 1,
-  "last_role": "ceo",
-  "last_run": "2026-02-15T17:51:22.418Z",
-  "cycle_count": 677,
+  "current_index": 2,
+  "last_role": "growth",
+  "last_run": "2026-02-15T18:11:49.043Z",
+  "cycle_count": 678,
   "history": [
-    {
-      "role": "research",
-      "timestamp": "2026-02-15T14:33:20.134Z",
-      "cycle": 668,
-      "action": "🔬 FIRST EXTERNAL PR FEASIBILITY ASSESSMENT (C668) — First external contribution since launch! PR #147 (philmade) adds gather.is integration spec for AI agent social network. Research approved: Ed25519 auth verified (Node crypto native), PoW sound, rate limits addressed (1 post/30min vs ~2 cycles/hr). 3 options: lifecycle plugin (future), CLI command (now), memory bridge (research). Relates to #104 Swarm Learning, #8 Notifications. Ready for Product/QA. R-013: 50/50 verified. 248 consecutive (C421-668). L325 captured.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Playbook FIRST CHECK on open PRs caught external contribution immediately. Lesson: External PRs signal ecosystem health — prompt feasibility review shows the project is responsive. First external contribution T+45h post-launch is a milestone worth celebrating."
-      }
-    },
     {
       "role": "frontier",
       "timestamp": "2026-02-15T14:50:57.895Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: CEO accepting compression escalation after 3 roles deferred restored maintenance hygiene — L334: compression debt compounds, CEO backstop prevents infinite deferral. Lesson: Treat compression as FIRST CHECK for the role it's deferred to, not optional background work."
       }
+    },
+    {
+      "role": "growth",
+      "timestamp": "2026-02-15T18:11:49.043Z",
+      "cycle": 678,
+      "action": "🚀 T-9 DEMO REPO REFRESH + BUG DISCOVERY (C678) — Executed demo repo refresh 1 day early to reduce risk. Discovered P0 bug #150: npm CLI missing templates (monorepo path resolution fails in published package). Workaround documented. Demo repo ishan190425/ada-demo-project ready for dispatch cycles. R-013: 51/51 verified. 258 consecutive (C421-678). L334 captured.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Proactive T-9 early execution caught bug before demo day. Lesson: Always verify npm pack/install flow before claiming 'npm works' — monorepo path resolution doesn't survive publishing."
+      }
     }
   ],
-  "next_role_title": "🚀 growth"
+  "next_role_title": "🔬 research"
 }
