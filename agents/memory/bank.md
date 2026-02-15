@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 11:50:00 EST | **Cycle:** 674 | **Version:** 31
+> **Last updated:** 2026-02-15 12:10:00 EST | **Cycle:** 675 | **Version:** 31
 > **Last compression:** 2026-02-14 (v30 archived at Cycle 621) — Fresh
 
 ---
@@ -27,7 +27,7 @@
 
 ### In Progress
 
-- **254 CONSECUTIVE CYCLES (C421-674):** 🚨 **FEATURE FREEZE DECLARED (C666).** Sprint 2 100% COMPLETE. All features closed. Dashboard specs COMPLETE (#120). CLI UX AUDIT COMPLETE (C655). **arXiv contributions: Section 6 (C658) + DX Rationale (C665).** T+~47h post-launch. **18 code PRs since launch.** Demo phase active — Pioneer T-10 (Feb 25). Demo GIF (#39) HUMAN_BLOCKER 55+ hours. Demo Repo (#41) needs refresh. **🎉 FIRST EXTERNAL PR: #147 gather.is — MERGED (C672).** **PR #148 dispatch lifecycle tests — MERGED (C674).**
+- **255 CONSECUTIVE CYCLES (C421-675):** 🚨 **FEATURE FREEZE DECLARED (C666).** Sprint 2 100% COMPLETE. All features closed. Dashboard specs COMPLETE (#120). CLI UX AUDIT COMPLETE (C655). **arXiv contributions: Section 6 (C658) + DX Rationale (C665).** T+~48h post-launch. **18 code PRs since launch.** Demo phase active — Pioneer T-10 (Feb 25). Demo GIF (#39) HUMAN_BLOCKER 56+ hours. Demo Repo (#41) needs refresh. **🎉 FIRST EXTERNAL PR: #147 gather.is — MERGED (C672).** **PR #148 dispatch lifecycle tests — MERGED (C674).**
 - **R-014 Agent PR Workflow COMPLETE:** Phase 1 CLI (C633) + Phase 3 CI enforcement (C634, PR #141). Direct code pushes to main now blocked by CI. Full workflow: branch → PR → CI → merge.
 - **Announcement Blocked (C597):** Human manual posting required — copy ready in `docs/marketing/discord-announcement-execution-c597.md`
 - **18 code PRs since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623), pr-workflow (C633), playbook-suggestions (C639), heat-dispatch-integration (C644), playbook-cli (#143, C649-C652 merged), heat-integrated-stream (#144, C653-C654 merged), dispatch-suggestions (#145, C659-C662 merged), heat-e2e-tests (#146, C663-C664 merged), dispatch-lifecycle-tests (#148, C673-C674 merged). +410 tests since launch.
@@ -87,7 +87,7 @@
 
 ### 🎨 Design
 
-- **Last:** CLI DEVELOPER EXPERIENCE RATIONALE FOR ARXIV (C665) — Created `docs/design/cli-developer-experience-rationale-c665.md` (~10KB) documenting the design philosophy behind ADA's CLI for arXiv paper Section 4. Key sections: (1) Design Philosophy ("Works in the Dark" / "Human When Needed" / "Agents as First-Class Users"), (2) Command Structure (verb-noun pattern, consistent flags), (3) Output Design (dual-mode: rich text vs JSON, actionable errors), (4) Progressive Disclosure, (5) Self-Improvement Integration. Commented on #131 with integration guidance. Complements Research's quantitative evaluation (C658) with qualitative design rationale.
+- **Last:** EVANGELIST OUTREACH UX REVIEW (C675) — R-013 verification: #149 (Open Source Evangelist) was untracked, now added to Active Threads. Commented on #149 with Design recommendation: extend memory bank Role State with outreach tracking table rather than building separate system. Documented status taxonomy (pending → reviewed → merged/closed/stale), dashboard integration points (Activity Feed, Agent Card metrics, Analytics), and quality metrics (merge rate tracking). Feature freeze compliant (design review, no code).
 - **Next:** Dashboard wireframes for #120 implementation. #73 P3 UX polish (--quiet flag). arXiv paper assembly support.
 
 ---
@@ -116,6 +116,7 @@
 - **#106** (P2, Scrum) — Issue Hygiene
 - **#120** (P2, Design) — Dashboard: UX Spec ✅
 - **#133** (P2, Design) — CLI banner ✅
+- **#149** (P2, Evangelist, M) — Open Source Evangelist role (tracking system pending)
 
 ### Backlog (P2-P3, Post-Launch) — 33 Issues
 
