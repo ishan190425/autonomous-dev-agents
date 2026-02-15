@@ -28,8 +28,14 @@ import {
   advanceRotation,
   createCycleTracker,
   createMetricsManager,
+  // PR Workflow (Issue #128, R-014)
+  classifyFile,
+  generateBranchName,
+  validateBranchName,
+  generatePRTitle,
+  generatePRBody,
 } from '@ada-ai/core';
-import type { Role, Roster, RotationState, Reflection } from '@ada-ai/core';
+import type { Role, Roster, RotationState, Reflection, CodeChangeResult } from '@ada-ai/core';
 
 const exec = promisify(execCb);
 
@@ -83,6 +89,12 @@ interface DispatchCompleteOptions {
   model?: string;
   /** Force action even if similar to previous cycle (bypass duplicate warning) */
   force?: boolean;
+  /** Create a PR instead of direct commit (R-014) */
+  pr?: boolean;
+  /** Custom branch name (overrides auto-generation) */
+  branch?: string;
+  /** Create PR as draft */
+  draft?: boolean;
 }
 
 interface DispatchStatusOptions {
@@ -284,6 +296,232 @@ async function gitExec(cwd: string, args: string): Promise<{ stdout: string; std
     const err = error as { stdout?: string; stderr?: string; message?: string };
     throw new Error(err.stderr || err.message || 'Git command failed');
   }
+}
+
+// ─── PR Workflow Helpers (Issue #128, R-014) ─────────────────────────────────
+
+/**
+ * Detect modified files and classify them as code or docs.
+ */
+async function detectCodeChanges(cwd: string): Promise<CodeChangeResult> {
+  const { stdout } = await gitExec(cwd, 'status --porcelain');
+  const lines = stdout.trim().split('\n').filter(Boolean);
+
+  const codeFiles: string[] = [];
+  const docFiles: string[] = [];
+  const allFiles: string[] = [];
+
+  for (const line of lines) {
+    // git status --porcelain format: XY filename
+    const filePath = line.substring(3).trim();
+    // Handle renamed files (old -> new)
+    const actualPath = filePath.includes(' -> ') ? filePath.split(' -> ')[1]! : filePath;
+    allFiles.push(actualPath);
+
+    const classification = classifyFile(actualPath);
+    if (classification === 'code') {
+      codeFiles.push(actualPath);
+    } else {
+      docFiles.push(actualPath);
+    }
+  }
+
+  return {
+    hasCodeChanges: codeFiles.length > 0,
+    hasDocChanges: docFiles.length > 0,
+    codeFiles,
+    docFiles,
+    allFiles,
+  };
+}
+
+/**
+ * Display code change detection warning (per UX spec C625).
+ */
+function displayCodeChangeWarning(
+  codeFiles: string[],
+  json: boolean | undefined,
+  quiet: boolean | undefined
+): void {
+  if (json) {
+    console.log(JSON.stringify({
+      error: 'code_changes_detected',
+      message: 'Code changes require --pr or --force',
+      codeFiles,
+      hint: 'Run with --pr to create a PR, or --force to commit directly',
+    }));
+  } else if (!quiet) {
+    console.log(chalk.yellow('\n⚠️  Code Changes Detected\n'));
+    console.log('  You have uncommitted changes to source files:\n');
+    for (const file of codeFiles.slice(0, 10)) {
+      console.log(chalk.gray(`    M  ${file}`));
+    }
+    if (codeFiles.length > 10) {
+      console.log(chalk.gray(`    ... and ${codeFiles.length - 10} more`));
+    }
+    console.log();
+    console.log('  Per R-014, code changes should go through Pull Requests.\n');
+    console.log(`  → Run with ${chalk.cyan('--pr')} to create a PR, or ${chalk.cyan('--force')} to commit directly\n`);
+    console.log(`    ${chalk.cyan('ada dispatch complete --action "..." --pr')}`);
+    console.log(`    ${chalk.cyan('ada dispatch complete --action "..." --force')}`);
+    console.log();
+  }
+}
+
+/**
+ * Execute PR workflow: create branch, commit, push, create PR.
+ */
+async function executePRWorkflow(
+  cwd: string,
+  options: {
+    cycle: number;
+    roleId: string;
+    action: string;
+    branch?: string;
+    draft?: boolean;
+    json?: boolean;
+    quiet?: boolean;
+  }
+): Promise<{
+  success: boolean;
+  prNumber?: number;
+  prUrl?: string;
+  branch: string;
+  commitSha?: string;
+  error?: string;
+}> {
+  const { cycle, roleId, action, draft, json, quiet } = options;
+
+  // Generate or validate branch name
+  let branch: string;
+  if (options.branch) {
+    const validation = validateBranchName(options.branch);
+    if (!validation.valid) {
+      return {
+        success: false,
+        branch: options.branch,
+        error: validation.error ?? 'Invalid branch name',
+      };
+    }
+    branch = options.branch;
+  } else {
+    branch = generateBranchName(cycle, roleId, action);
+  }
+
+  // Step 1: Create branch
+  if (!quiet && !json) {
+    console.log(chalk.gray('🌿 Creating branch...\n'));
+    console.log(`  ${chalk.gray('Branch:')} ${branch}`);
+    console.log(`  ${chalk.gray('Base:')}   main (up-to-date)\n`);
+  }
+
+  try {
+    await gitExec(cwd, `checkout -b ${branch}`);
+    if (!quiet && !json) {
+      console.log(`  ${chalk.green('✓')} Branch created\n`);
+    }
+  } catch (err) {
+    // Branch might already exist
+    const error = (err as Error).message;
+    if (error.includes('already exists')) {
+      // Try with suffix
+      branch = `${branch}-${cycle}`;
+      await gitExec(cwd, `checkout -b ${branch}`);
+    } else {
+      return { success: false, branch, error: `Failed to create branch: ${error}` };
+    }
+  }
+
+  // Step 2: Stage and commit
+  if (!quiet && !json) {
+    console.log(chalk.gray('📝 Committing changes...\n'));
+  }
+
+  await gitExec(cwd, 'add -A');
+
+  const prTitle = generatePRTitle(action, roleId);
+  let commitSha = '';
+
+  try {
+    const escapedTitle = prTitle.replace(/"/g, '\\"');
+    const { stdout } = await gitExec(cwd, `commit -m "${escapedTitle}"`);
+    const shaMatch = stdout.match(/\[[\w/-]+\s+([a-f0-9]+)\]/);
+    commitSha = shaMatch?.[1] ?? '';
+
+    if (!quiet && !json) {
+      console.log(`  ${chalk.gray('Commit:')} ${prTitle}`);
+      console.log(`  ${chalk.green('✓')} Changes committed\n`);
+    }
+  } catch (err) {
+    return { success: false, branch, error: `Failed to commit: ${(err as Error).message}` };
+  }
+
+  // Step 3: Push branch
+  if (!quiet && !json) {
+    console.log(chalk.gray('🚀 Pushing branch...\n'));
+  }
+
+  try {
+    await gitExec(cwd, `push -u origin ${branch}`);
+    if (!quiet && !json) {
+      console.log(`  ${chalk.gray('Remote:')} origin`);
+      console.log(`  ${chalk.gray('Branch:')} ${branch}`);
+      console.log(`  ${chalk.green('✓')} Branch pushed\n`);
+    }
+  } catch (err) {
+    // Return to main but keep the commit
+    await gitExec(cwd, 'checkout main');
+    return { success: false, branch, commitSha, error: `Failed to push: ${(err as Error).message}` };
+  }
+
+  // Step 4: Create PR via gh CLI
+  if (!quiet && !json) {
+    console.log(chalk.gray(draft ? '📋 Creating Pull Request (Draft)...\n' : '📋 Creating Pull Request...\n'));
+  }
+
+  const prBody = generatePRBody({ cycle, role: roleId, action });
+  const escapedBody = prBody.replace(/"/g, '\\"').replace(/\n/g, '\\n');
+  const draftFlag = draft ? '--draft' : '';
+
+  let prNumber: number | undefined;
+  let prUrl: string | undefined;
+
+  try {
+    const ghCmd = `gh pr create --title "${prTitle.replace(/"/g, '\\"')}" --body "${escapedBody}" --base main ${draftFlag}`;
+    const { stdout } = await exec(ghCmd, { cwd });
+    // gh pr create outputs the PR URL
+    prUrl = stdout.trim();
+    // Extract PR number from URL
+    const prMatch = prUrl.match(/\/pull\/(\d+)/);
+    prNumber = prMatch ? parseInt(prMatch[1]!, 10) : undefined;
+
+    if (!quiet && !json) {
+      console.log(`  ${chalk.gray('Title:')}  ${prTitle}`);
+      console.log(`  ${chalk.gray('Base:')}   main`);
+      console.log(`  ${chalk.gray('Head:')}   ${branch}`);
+      console.log(`  ${chalk.green('✓')} ${draft ? 'Draft PR' : 'PR'} created: #${prNumber}\n`);
+    }
+  } catch (err) {
+    // Return to main
+    await gitExec(cwd, 'checkout main');
+    return {
+      success: false,
+      branch,
+      commitSha,
+      error: `Failed to create PR: ${(err as Error).message}. Branch pushed — create PR manually.`,
+    };
+  }
+
+  // Return to main
+  await gitExec(cwd, 'checkout main');
+
+  return {
+    success: true,
+    prNumber: prNumber as number,
+    prUrl: prUrl as string,
+    branch,
+    commitSha,
+  };
 }
 
 // ─── Start Command ───────────────────────────────────────────────────────────
@@ -535,6 +773,144 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
       }
       process.exit(EXIT_DUPLICATE_ACTION);
     }
+  }
+
+  // R-014: Code change detection (US-128-2)
+  // Detect if there are code changes that should go through PR
+  const codeChanges = await detectCodeChanges(cwd);
+  const nextCycle = state.cycle_count + 1;
+
+  // If code changes detected and neither --pr nor --force, warn and exit
+  if (codeChanges.hasCodeChanges && !options.pr && !options.force) {
+    displayCodeChangeWarning(codeChanges.codeFiles, options.json, options.quiet);
+    process.exit(EXIT_CODES.MISSING_REQUIRED_FLAG);
+  }
+
+  // If --pr flag is set, use PR workflow (US-128-1)
+  if (options.pr) {
+    // Validate there are actually changes to commit
+    if (codeChanges.allFiles.length === 0) {
+      if (options.json) {
+        console.log(JSON.stringify({
+          error: 'no_changes',
+          message: 'No changes to commit. Did you forget to stage your changes?',
+        }));
+      } else {
+        console.log(chalk.red('\n❌ No Changes to Commit\n'));
+        console.log('  There are no staged or modified files to commit.\n');
+        console.log('  Did you forget to stage your changes?');
+        console.log(`    ${chalk.cyan('git add <files>')}\n`);
+        console.log('  Or run without --pr for docs/state-only updates.\n');
+      }
+      process.exit(EXIT_CODES.GIT_FAILED);
+    }
+
+    const prResult = await executePRWorkflow(cwd, {
+      cycle: nextCycle,
+      roleId: currentRole.id,
+      action: options.action,
+      ...(options.branch ? { branch: options.branch } : {}),
+      ...(options.draft ? { draft: options.draft } : {}),
+      ...(options.json ? { json: options.json } : {}),
+      ...(options.quiet ? { quiet: options.quiet } : {}),
+    });
+
+    if (!prResult.success) {
+      if (options.json) {
+        console.log(JSON.stringify({
+          error: 'pr_failed',
+          message: prResult.error,
+          branch: prResult.branch,
+          commitSha: prResult.commitSha,
+        }));
+      } else {
+        console.error(chalk.red('❌ PR Creation Failed:'), prResult.error);
+        if (prResult.commitSha) {
+          console.error(chalk.gray('   Commit was made. Create PR manually or retry.'));
+        }
+      }
+      process.exit(EXIT_CODES.GIT_FAILED);
+    }
+
+    // Update action to include PR reference
+    const prAction = `${options.action} — PR #${prResult.prNumber}`;
+
+    // Parse reflection if provided
+    let reflection: Reflection | undefined;
+    if (options.reflection) {
+      reflection = {
+        outcome: options.outcome ?? 'success',
+        whatWorked: options.reflection,
+      };
+    }
+
+    // Advance rotation with PR-enriched action
+    const outcome = options.outcome ?? 'success';
+    const newState = advanceRotation(state, roster, {
+      action: prAction,
+      ...(reflection ? { reflection } : {}),
+    });
+
+    // Write new state
+    await writeRotationState(statePath, newState);
+
+    // Remove lock
+    await removeLock(agentsDir);
+
+    // Record observability metrics if tokens provided
+    if (options.tokensIn !== undefined || options.tokensOut !== undefined) {
+      const model = options.model ?? 'claude-4-sonnet';
+      const tracker = createCycleTracker(newState.cycle_count, currentRole.id, model);
+      tracker.recordPhase('action_execution', options.tokensIn ?? 0, options.tokensOut ?? 0);
+      const metrics = tracker.finalize(outcome !== 'blocked');
+      const manager = createMetricsManager(cwd, 'agents/');
+      await manager.record(metrics);
+    }
+
+    // Get next role
+    const nextRole = getRoleAtOffset(roster, newState.current_index, 0);
+
+    // Output success
+    if (options.json) {
+      console.log(JSON.stringify({
+        cycle: newState.cycle_count,
+        role: currentRole.id,
+        action: prAction,
+        outcome,
+        pr: {
+          number: prResult.prNumber,
+          url: prResult.prUrl,
+          branch: prResult.branch,
+          draft: options.draft ?? false,
+        },
+        commit: {
+          sha: prResult.commitSha,
+        },
+        nextRole: nextRole ? { id: nextRole.id, emoji: nextRole.emoji, name: nextRole.name } : null,
+      }));
+      return;
+    }
+
+    if (options.quiet) {
+      console.log(`Cycle ${newState.cycle_count} complete (${outcome}) — PR #${prResult.prNumber}`);
+      return;
+    }
+
+    // Full PR success output (per UX spec C625)
+    console.log(chalk.bold.green(`\n🎉 Cycle ${newState.cycle_count} Complete — ${options.draft ? 'Draft PR' : 'PR'} Created\n`));
+
+    console.log('┌──────────────────────────────────────────────────────────────────────────────┐');
+    console.log(`│  PR:     #${prResult.prNumber} — ${generatePRTitle(options.action, currentRole.id).substring(0, 50).padEnd(50)} │`);
+    console.log(`│  URL:    ${(prResult.prUrl ?? '').substring(0, 66).padEnd(66)} │`);
+    console.log(`│  Status: ${options.draft ? 'Draft (CI Running)'.padEnd(66) : 'Open (CI Running)'.padEnd(66)} │`);
+    console.log('│                                                                              │');
+    console.log(`│  Next:   ${nextRole ? formatRole(nextRole).substring(0, 58).padEnd(58) : '(none)'.padEnd(58)}       │`);
+    console.log('│                                                                              │');
+    console.log(`${`│  💡 Tip: Run ${chalk.cyan(`gh pr checks ${prResult.prNumber}`)} to monitor CI status`.padEnd(84)  }│`);
+    console.log('└──────────────────────────────────────────────────────────────────────────────┘');
+    console.log();
+
+    return;
   }
 
   // Parse reflection if provided
@@ -925,7 +1301,10 @@ export const dispatchCommand = new Command('dispatch')
       .option('--skip-push', 'Commit but do not push')
       .option('-j, --json', 'Output as JSON')
       .option('-q, --quiet', 'Minimal output')
-      .option('-f, --force', 'Bypass duplicate action warning')
+      .option('-f, --force', 'Bypass code change warning and duplicate action check')
+      .option('-p, --pr', 'Create a PR instead of direct commit (R-014)')
+      .option('-b, --branch <name>', 'Custom branch name (with --pr)')
+      .option('--draft', 'Create PR as draft (with --pr)')
       .option('--tokens-in <number>', 'Input tokens consumed (for observability)', parseIntOption)
       .option('--tokens-out <number>', 'Output tokens generated (for observability)', parseIntOption)
       .option('--model <name>', 'Model used for cost calculation (default: claude-4-sonnet)')

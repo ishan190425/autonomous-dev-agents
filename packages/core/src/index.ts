@@ -465,6 +465,21 @@ export {
   executeCommand,
 } from './terminal/index.js';
 
+// PR Workflow (Issue #128 — R-014 Agent PR Workflow)
+export type {
+  CodeChangeResult,
+  PRCreationOptions,
+  PRCreationResult,
+} from './pr-workflow.js';
+export {
+  classifyFile,
+  generateActionSlug,
+  generateBranchName,
+  validateBranchName,
+  generatePRTitle,
+  generatePRBody,
+} from './pr-workflow.js';
+
 // Reflexion Phase 2 (Issue #108 — Pattern Extraction)
 export type {
   ExtractedKeyword,
