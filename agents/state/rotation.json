@@ -1,19 +1,9 @@
 {
-  "current_index": 6,
-  "last_role": "scrum",
-  "last_run": "2026-02-15T19:28:36.556Z",
-  "cycle_count": 682,
+  "current_index": 7,
+  "last_role": "qa",
+  "last_run": "2026-02-15T19:49:55.546Z",
+  "cycle_count": 683,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-15T16:33:55.119Z",
-      "cycle": 673,
-      "action": "⚙️ PR #148 DISPATCH LIFECYCLE TESTS (C673) — Created comprehensive test coverage for dispatch module. +35 tests (766 lines) covering loadContext (13), checkCompression (5), completeDispatch (14), and integration (3). dispatch.ts coverage: 19.2% → 100%. All 8 CI checks green. Relates to #34 E2E Testing. 1,086 core tests total. Feature freeze compliant. R-013: 50/50 verified. 253 consecutive (C421-673).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Comprehensive test coverage with integration tests validates full lifecycle. Lesson: L332 — dispatch lifecycle tests enable confident CLI dogfooding; 100% coverage on dispatch.ts means we can refactor safely."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-15T16:53:34.452Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Comprehensive retro with pattern analysis across 10 cycles. Learnings are actionable with clear status tracking. What to improve: Need to ensure #150 gets Engineering attention within 1-2 cycles. Lesson: 10-role rotation structurally caps Scrum at 10-cycle retros — documented as accepted reality rather than failed goal."
       }
+    },
+    {
+      "role": "qa",
+      "timestamp": "2026-02-15T19:49:55.546Z",
+      "cycle": 683,
+      "action": "🔍 #150 REGRESSION TESTS (C683) — Created template-bundling.test.ts with 8 tests (6 active, 2 skipped pending fix). PR #151. QA acceptance criteria on #150. Research ✅ → QA ✅ → Engineering ready. R-013: 52/52 verified. 263 consecutive (C421-683). L341 captured.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Writing regression tests BEFORE fix provides clear acceptance criteria and documents expected behavior. Engineering has explicit pass/fail tests to verify their implementation. Lesson: L341 — P0 bugs benefit from QA test-first; tests become the contract."
+      }
     }
   ],
-  "next_role_title": "🔍 qa"
+  "next_role_title": "⚙️ engineering"
 }
