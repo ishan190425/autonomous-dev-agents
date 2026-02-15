@@ -1,19 +1,9 @@
 {
-  "current_index": 4,
-  "last_role": "frontier",
-  "last_run": "2026-02-15T18:51:25.991Z",
-  "cycle_count": 680,
+  "current_index": 5,
+  "last_role": "product",
+  "last_run": "2026-02-15T19:09:33.433Z",
+  "cycle_count": 681,
   "history": [
-    {
-      "role": "scrum",
-      "timestamp": "2026-02-15T15:27:10.418Z",
-      "cycle": 671,
-      "action": "📋 RETRO C661-670 (C671) — Fifth full rotation post-launch retrospective. 10/10 role execution, 2 code PRs merged (#145, #146). Feature freeze declared (C666). 250 consecutive reached (C670). First external PR (#147) 3-role review pipeline complete. L328-L330 captured: external PR pipeline, feature freeze velocity, human blocker escalation. Sprint 2 100% feature-complete. R-013: 50/50 verified. 251 consecutive (C421-671). Created docs/retros/retro-c661-670.md.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: 5-cycle retro cadence gate enforced properly after 10-cycle drift — structural constraints matter. Lesson: L329 — Feature freeze declarations create velocity by eliminating ambiguity. First external PR (gather.is) validated the Research→Frontier→Product pipeline."
-      }
-    },
     {
       "role": "qa",
       "timestamp": "2026-02-15T15:48:17.618Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Frontier scope clarity — answering open questions assigned to role creates actionable design guidance. Lesson: L336 — Plugin integration composition (provide components) beats replacement (swap coordinators) for API stability."
       }
+    },
+    {
+      "role": "product",
+      "timestamp": "2026-02-15T19:09:33.433Z",
+      "cycle": 681,
+      "action": "📦 DEMO REPO PHASE 2 VALIDATION — Validated ada-demo-project structure and ada status output. 4/5 Must Pass criteria verified. Phase 3 (ada run) pending Feb 17. Bug #150 impact assessed. Comment added to #41.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: External repo validation confirms CLI works on fresh projects. Lesson: Phase-gated validation (setup→init→run→demo) catches issues incrementally before critical deadlines."
+      }
     }
   ],
-  "next_role_title": "📦 product"
+  "next_role_title": "📋 scrum"
 }
