@@ -3,9 +3,9 @@
 > Application draft for Pioneer accelerator
 > **Author:** Growth (🚀 The Dealmaker)
 > **Created:** 2026-02-08 (Cycle 197)
-> **Updated:** 2026-02-14 (Cycle 607) — Post-Launch T+1h Metrics (npm LIVE)
-> **Target Submit Date:** Feb 25, 2026 (11 days out)
-> **Status:** READY — v1.0-alpha LIVE ON NPM ✅ (Feb 14, 2026 12:35 EST)
+> **Updated:** 2026-02-15 (Cycle 689) — T-10 Metrics Refresh (Sprint 2 100% Complete)
+> **Target Submit Date:** Feb 25, 2026 (10 days out)
+> **Status:** READY — v1.0-alpha LIVE ON NPM ✅ (Feb 14, 2026 12:35 EST) | Sprint 2 Feature-Complete
 
 ---
 
@@ -53,7 +53,7 @@ Human teams work through roles, playbooks, shared context, and structured handof
 
 ADA's open-source architecture inverts this. Every playbook improvement, every memory optimization, every pattern discovered by any team flows upstream and benefits everyone. More users → more use cases → more pattern discovery → better playbooks → more users. **It's a flywheel that proprietary competitors structurally cannot build.**
 
-607 cycles later, we've shipped v1.0-alpha to npm — and **TRUE Day 1 has begun**.
+689 cycles later, we've shipped v1.0-alpha to npm — and **TRUE Day 1 continues**. Sprint 2 is 100% feature-complete, and our first external contributions are already landing.
 
 ---
 
@@ -65,20 +65,22 @@ ADA's open-source architecture inverts this. Every playbook improvement, every m
 
 | Metric                     | Value            | Notes                                        |
 | -------------------------- | ---------------- | -------------------------------------------- |
-| Autonomous dispatch cycles | **607**          | Each cycle = one agent action                |
-| PRs merged                 | **43**           | 100% by agents                               |
-| Tests passing              | **1,238**        | CLI (405) + core (833)                       |
-| Documentation files        | **335**          | Business, product, engineering, research     |
-| Lessons learned            | **291**          | Team knowledge base                          |
-| Memory compressions        | **30**           | Agents manage their own knowledge            |
-| Roles active               | **10**           | Full team rotation                           |
-| Consecutive cycles         | **186**          | C421-606 without interruption                |
+| Autonomous dispatch cycles | **689**          | Each cycle = one agent action                |
+| PRs merged                 | **52**           | 20 code PRs since launch                     |
+| Tests passing              | **1,654**        | CLI (509) + core (1,145)                     |
+| Documentation files        | **350+**         | Business, product, engineering, research     |
+| Lessons learned            | **342**          | Team knowledge base                          |
+| Memory compressions        | **32**           | Agents manage their own knowledge            |
+| Roles active               | **11**           | Full team + Evangelist role                  |
+| Consecutive cycles         | **268**          | C421-688 without interruption                |
 | Launch date                | **Feb 14, 2026** | v1.0-alpha **LIVE** (`npm i -g @ada-ai/cli`) |
+| External outreach PRs      | **2**            | scaffdog #1343, nao #208 — flywheel active   |
 
 **Key milestones achieved:**
 
 - ✅ **v1.0-alpha LIVE ON NPM** — `npm i -g @ada-ai/cli` (Feb 14, 2026 12:35 EST)
 - ✅ Sprint 0 complete — all 6/6 MUST criteria for launch
+- ✅ **Sprint 2 100% COMPLETE** — Feature freeze declared (C666)
 - ✅ Full CI/CD pipeline (lint, typecheck, test, build, publish)
 - ✅ npm package ready for publishing (`@ada-ai/cli`, `@ada-ai/core`)
 - ✅ **MemoryStream complete** — Cognitive memory with semantic search (Generative Agents-style scoring)
@@ -86,10 +88,11 @@ ADA's open-source architecture inverts this. Every playbook improvement, every m
 - ✅ **Heat Scoring module complete** — Core + Store + CLI scaffolding
 - ✅ **Reflexion integrated** — Agents reflect on actions and improve
 - ✅ Discord community live: discord.gg/5NCHGJAz
-- ✅ **Demo recorded and uploaded** — Ready for submission
-- ✅ **Issue tracking protocol** — 53/53 issues tracked via automated R-013 protocol
-- ✅ **Sprint 2 planning complete** — User stories, UX specs, implementation contracts ready
+- ✅ **Issue tracking protocol** — 51/51 issues tracked via automated R-013 protocol
 - ✅ **Open Source Flywheel Strategy** — Strategic positioning documented
+- ✅ **Evangelist Role Active** — First external outreach PRs submitted (scaffdog, nao)
+- ✅ **First External Contribution** — gather.is integration spec merged (PR #147)
+- ✅ **P0 Bug Turnaround** — 5-cycle multi-role pipeline: Research→QA→Engineering (C679→C684)
 
 **Post-Launch Proof Point — Autonomous Crisis Response:**
 
@@ -144,9 +147,11 @@ Within 4 hours of launch, our agent team detected a P0 blocker (npm publish fail
 - Every proprietary customer is an island; every ADA user is part of a continent
 
 **2. Dogfooding Proof**
-We're the only AI dev tool built entirely by AI agents. Not a demo — a shipped product. **607 autonomous cycles. 291 lessons learned. Zero human commits.**
+We're the only AI dev tool built entirely by AI agents. Not a demo — a shipped product. **689 autonomous cycles. 342 lessons learned. Zero human commits.**
 
 The launch itself proves the system works: agents detected a P0 publishing blocker (npm token missing), escalated to CEO in 1 cycle with clear fix instructions, and prepared downstream work while waiting for resolution. When the fix landed, agents published to npm within 2 cycles. **Autonomous crisis response under production pressure.**
+
+**Post-launch proof:** Day 1 template bundling bug (P0 #150) — fixed in 5 cycles via multi-role pipeline. Research provided feasibility analysis, QA wrote 8 regression tests, Engineering shipped the fix. Our first external contribution (gather.is integration spec) was reviewed through the same pipeline in ~5h. The flywheel is spinning.
 
 **3. Multi-Agent Coordination**
 10-role team coordination with:
@@ -236,15 +241,15 @@ Pioneer uses a tournament format with weekly updates. Strategy for weekly check-
 
 For quick tournament updates:
 
-1. "Claude Code agents forget. **ADA agents share learnings instantly.** Open-source flywheel that proprietary tools can't replicate. **607 cycles, 1,238 tests, v1.0 LIVE ON NPM.**"
+1. "Claude Code agents forget. **ADA agents share learnings instantly.** Open-source flywheel that proprietary tools can't replicate. **689 cycles, 1,654 tests, v1.0 LIVE ON NPM.**"
 
-2. "ADA: Autonomous AI dev teams with compounding intelligence. Every team's learnings benefit every other team — instantly. **v1.0-alpha LIVE. 186 consecutive cycles.**"
+2. "ADA: Autonomous AI dev teams with compounding intelligence. Every team's learnings benefit every other team — instantly. **v1.0-alpha LIVE. 268 consecutive cycles.**"
 
-3. "Built an AI team that built itself and shipped v1.0. Open-source flywheel creates network effects competitors can't copy. **607 cycles, 43 PRs merged, 291 lessons learned.**"
+3. "Built an AI team that built itself and shipped v1.0. Open-source flywheel creates network effects competitors can't copy. **689 cycles, 52 PRs merged, 342 lessons learned.**"
 
-4. "What if AI could run your whole dev team? We built it. And shipped it to npm. **Open source means every user makes every other user smarter.**"
+4. "What if AI could run your whole dev team? We built it. And shipped it to npm. **Open source means every user makes every other user smarter.** First external PRs already submitted."
 
-5. "Copilots assist. ADA ships. Multi-agent AI teams with cognitive memory + **open-source intelligence flywheel.** `npm i -g @ada-ai/cli` — v1.0 live."
+5. "Copilots assist. ADA ships. Multi-agent AI teams with cognitive memory + **open-source intelligence flywheel.** `npm i -g @ada-ai/cli` — v1.0 live. Sprint 2 complete."
 
 ---
 
@@ -252,12 +257,15 @@ For quick tournament updates:
 
 Before Feb 25 submission:
 
-- [x] Update all metrics to post-launch values (607 cycles, 43 PRs, 1,238 tests, 335 docs, 291 lessons)
+- [x] Update all metrics to post-launch values (689 cycles, 52 PRs, 1,654 tests, 350+ docs, 342 lessons)
 - [x] Update narrative to reflect SHIPPED + npm LIVE status
 - [x] Add GitHub release link
 - [x] Confirm npm LIVE (`@ada-ai/cli@1.0.0-alpha`, `@ada-ai/core@1.0.0-alpha`)
-- [ ] Add demo video/GIF link (when available)
-- [ ] Add npm download count (T+48h for reliable metrics per L283)
+- [x] Update Sprint 2 completion + feature freeze status
+- [x] Add Evangelist role and external outreach PRs
+- [x] Add first external contribution (gather.is)
+- [ ] Add demo video/GIF link (HUMAN_BLOCKER)
+- [ ] Add npm download count (T+7 days metrics available)
 - [ ] Add GitHub star count
 - [ ] Add Discord member count
 - [ ] Capture any early user feedback
@@ -325,7 +333,8 @@ Key lessons from our autonomous launch that strengthen the narrative:
 
 ---
 
-_🚀 Growth | Cycle 607 | Pioneer Application — Post-Launch T+1h (npm LIVE)_
-_Updated: 607 cycles, 43 PRs, 335 docs, 1,238 tests, 291 lessons, 186 consecutive cycles._
+_🚀 Growth | Cycle 689 | Pioneer Application — T-10 Metrics Refresh_
+_Updated: 689 cycles, 52 PRs, 350+ docs, 1,654 tests, 342 lessons, 268 consecutive cycles._
 _v1.0-alpha LIVE ON NPM — `npm i -g @ada-ai/cli`_
-_Ready for Feb 25 submission — 11 days out. Final metrics update on submit day._
+_Sprint 2 100% complete. Feature freeze (C666). First external contributions landing._
+_Ready for Feb 25 submission — 10 days out. GIF HUMAN_BLOCKER. Final metrics on submit day._
