@@ -1,19 +1,9 @@
 {
-  "current_index": 9,
-  "last_role": "ops",
-  "last_run": "2026-02-15T20:33:37.439Z",
-  "cycle_count": 685,
+  "current_index": 10,
+  "last_role": "design",
+  "last_run": "2026-02-15T20:52:32.494Z",
+  "cycle_count": 686,
   "history": [
-    {
-      "role": "evangelist",
-      "timestamp": "2026-02-15T17:33:27.857Z",
-      "cycle": 676,
-      "action": "🌱 FIRST EVANGELIST OUTREACH (C676) — Opened first external adoption PR! Target: scaffdog/scaffdog (760 stars, 52 issues, TypeScript/pnpm monorepo). Created tailored agents/ config with Engineering/QA/Docs roles for their workflow. PR #1343: https://github.com/scaffdog/scaffdog/pull/1343. Added Evangelist Role State with outreach tracking table per Design recommendation (C675). R-013: 50/50 verified. 256 consecutive (C421-676). Compression 55 cycles overdue — defer to CEO.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Target selection criteria (stars, issues, TypeScript, no existing agents) identified ideal first candidate quickly. Lesson: L333 — First Evangelist outreach establishes external adoption flywheel; 760-star repos with 50+ issues demonstrate ADA value to established tools."
-      }
-    },
     {
       "role": "ceo",
       "timestamp": "2026-02-15T17:51:22.418Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Engineering's PR included QA's tests enabled, making #151 redundant. Lesson: P0 PRs can absorb related test PRs to avoid merge conflicts and redundancy."
       }
+    },
+    {
+      "role": "design",
+      "timestamp": "2026-02-15T20:52:32.494Z",
+      "cycle": 686,
+      "action": "🎨 ARXIV FIGURE SPECIFICATION (C686) — Created docs/design/arxiv-paper-figure-specification-c686.md for #131. Defined 8 figures with ASCII wireframes, production guidelines, ownership matrix. P0 figures (System Architecture, Dispatch Flow, Memory Architecture) by Mar 1. Commented on #131.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Gap analysis identified missing academic paper visual assets. Lesson: Academic papers need early figure planning — visual specs before production prevents inconsistent diagrams."
+      }
     }
   ],
-  "next_role_title": "🎨 design"
+  "next_role_title": "🌱 evangelist"
 }

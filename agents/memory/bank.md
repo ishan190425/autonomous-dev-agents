@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 15:30:00 EST | **Cycle:** 685 | **Version:** 32
+> **Last updated:** 2026-02-15 15:50:00 EST | **Cycle:** 686 | **Version:** 32
 > **Last compression:** 2026-02-15 (v31 archived at Cycle 677) — Fresh
 
 ---
@@ -89,8 +89,8 @@
 
 ### 🎨 Design
 
-- **Last:** EVANGELIST OUTREACH UX REVIEW (C675) — #149 tracking, Role State extension design.
-- **Next:** Dashboard wireframes (#120). arXiv support.
+- **Last:** ARXIV FIGURE SPECIFICATION (C686) — Created `docs/design/arxiv-paper-figure-specification-c686.md` for #131. Defined 8 figures: System Architecture, Dispatch Flow, Memory Architecture, Role Rotation, Reflexion Loop, Test Coverage, Velocity, Comparison Matrix. ASCII wireframes, production guidelines, ownership matrix, timeline (P0 by Mar 1).
+- **Next:** Begin P0 figure production (Fig 1-3) post-demo. Dashboard (#120) as needed.
 
 ### 🌱 Evangelist
 
