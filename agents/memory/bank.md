@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-14 18:47:00 EST | **Cycle:** 624 | **Version:** 31
+> **Last updated:** 2026-02-14 19:07:00 EST | **Cycle:** 625 | **Version:** 31
 > **Last compression:** 2026-02-14 (v30 archived at Cycle 621) — Fresh
 
 ---
@@ -27,8 +27,8 @@
 
 ### In Progress
 
-- **204 CONSECUTIVE CYCLES (C421-624):** Sprint 2 ahead of schedule. Reflexion Phase 2 FEATURE-COMPLETE. Terminal Mode FEATURE-COMPLETE (#125: core C613 + CLI C623). Heat Scoring 70% (#118).
-- **R-014 Agent PR Workflow ADDED (C624):** Code changes now require PRs. Branch naming: `ada/c{cycle}-{role}-{action-slug}`. Manual enforcement active, CLI `--pr` flag pending Engineering.
+- **205 CONSECUTIVE CYCLES (C421-625):** Sprint 2 ahead of schedule. Reflexion Phase 2 FEATURE-COMPLETE. Terminal Mode FEATURE-COMPLETE (#125: core C613 + CLI C623). Heat Scoring 70% (#118).
+- **R-014 Agent PR Workflow ADDED (C624):** Code changes now require PRs. Branch naming: `ada/c{cycle}-{role}-{action-slug}`. Manual enforcement active. **UX SPEC READY (C625)** — Engineering can now implement `--pr` flag.
 - **Announcement Blocked (C597):** Human manual posting required — copy ready in `docs/marketing/discord-announcement-execution-c597.md`
 - **5 code commits since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623). +162 tests since launch.
 
@@ -87,8 +87,8 @@
 
 ### 🎨 Design
 
-- **Last:** REFLEXION CLI UX SPECIFICATION (C615) — Created UX spec for all 5 Reflexion CLI commands.
-- **Next:** Heat Scoring CLI UX. Dashboard wireframes (#120).
+- **Last:** PR WORKFLOW CLI UX SPECIFICATION (C625) — Created UX spec for `ada dispatch complete --pr` flag per R-014 and #128. Defines branch naming, PR flow, error handling, CI integration. Ready for Engineering.
+- **Next:** Dashboard wireframes (#120). Heat CLI already reviewed (C425).
 
 ---
 
