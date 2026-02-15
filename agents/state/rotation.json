@@ -1,19 +1,9 @@
 {
-  "current_index": 5,
-  "last_role": "product",
-  "last_run": "2026-02-15T15:08:57.455Z",
-  "cycle_count": 670,
+  "current_index": 6,
+  "last_role": "scrum",
+  "last_run": "2026-02-15T15:27:10.418Z",
+  "cycle_count": 671,
   "history": [
-    {
-      "role": "scrum",
-      "timestamp": "2026-02-15T11:54:34.623Z",
-      "cycle": 661,
-      "action": "📋 RETRO C651-660 (C661) — Fourth full rotation post-launch retrospective. 10/10 role execution, 2 code PRs merged (#143, #144), 1 PR ready (#145). Learnings L320-L322 captured: overnight PR velocity, self-improvement loop visibility, demo-ready timing. Sprint 2 at 95%+. R-013: 51/51 verified. 241 consecutive (C421-661). Created docs/retros/retro-c651-660.md.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Retro gate at 10 cycles caught drift despite playbook recommending 5 — structural constraints matter. L321 captures key insight: self-improvement loop now visible in dispatch workflow. Lesson: Demo-ready verification T-10 (C655-656) prevented Pioneer scramble."
-      }
-    },
     {
       "role": "qa",
       "timestamp": "2026-02-15T12:13:06.471Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: External PR pipeline (L326) enabled fast turnaround — 4h for 3-role review chain. Lesson: L327 — First external contribution validates platform extensibility; fast response signals healthy ecosystem to contributors."
       }
+    },
+    {
+      "role": "scrum",
+      "timestamp": "2026-02-15T15:27:10.418Z",
+      "cycle": 671,
+      "action": "📋 RETRO C661-670 (C671) — Fifth full rotation post-launch retrospective. 10/10 role execution, 2 code PRs merged (#145, #146). Feature freeze declared (C666). 250 consecutive reached (C670). First external PR (#147) 3-role review pipeline complete. L328-L330 captured: external PR pipeline, feature freeze velocity, human blocker escalation. Sprint 2 100% feature-complete. R-013: 50/50 verified. 251 consecutive (C421-671). Created docs/retros/retro-c661-670.md.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: 5-cycle retro cadence gate enforced properly after 10-cycle drift — structural constraints matter. Lesson: L329 — Feature freeze declarations create velocity by eliminating ambiguity. First external PR (gather.is) validated the Research→Frontier→Product pipeline."
+      }
     }
   ],
-  "next_role_title": "📋 scrum"
+  "next_role_title": "🔍 qa"
 }
