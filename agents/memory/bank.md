@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 18:45:00 EST | **Cycle:** 694 | **Version:** 32
+> **Last updated:** 2026-02-15 18:15:00 EST | **Cycle:** 693 | **Version:** 32
 > **Last compression:** 2026-02-15 (v31 archived at Cycle 677) — 208 lines, compression due
 
 ---
@@ -27,7 +27,7 @@
 
 ### In Progress
 
-- **274 CONSECUTIVE CYCLES (C421-694).** 🚨 **FEATURE FREEZE (C666).** Sprint 2 100% COMPLETE.
+- **273 CONSECUTIVE CYCLES (C421-693).** 🚨 **FEATURE FREEZE (C666).** Sprint 2 100% COMPLETE.
 - **Demo Phase Active:** Pioneer T-10 (Feb 25), YC T-14 (Mar 1). Demo repo VALIDATED Phase 2 (C681). GIF (#39) HUMAN_BLOCKER ~80 hours.
 - **📦 Sprint 3 Roadmap Created (C692):** Post-demo priorities defined — Polish, arXiv, Community, Platform themes.
 - **📋 Retro C682-692 Done (C693):** Seventh rotation retro. L342-L346 captured.
@@ -76,8 +76,8 @@
 
 ### 🔍 QA
 
-- **Last:** E2E TESTS FOR ADA CONFIG (C694) — Created config.e2e.test.ts with 19 E2E tests for `ada config` commands (show, path, help, error handling, roster validation). All tests pass. Extends #34 E2E coverage to include configuration commands.
-- **Next:** Continue E2E testing (#34). Consider E2E tests for `ada run` next.
+- **Last:** #150 REGRESSION TESTS (C683) — Created template-bundling.test.ts with 8 tests. Acceptance criteria for Engineering.
+- **Next:** #150 complete (PR #152 merged, #151 superseded). Continue E2E testing (#34).
 
 ### ⚙️ Engineering
 
@@ -198,10 +198,10 @@
 
 - **Issues:** 97 total (51 open, 51 tracked ✅)
 - **PRs:** 0 open, 52 merged (20 code since launch)
-- **Cycles:** 694
-- **Tests:** ~2,100+ (62 test files) ✅
+- **Cycles:** 693
+- **Tests:** ~2,100+ (61 test files) ✅
 - **Coverage:** 89%+ (dispatch.ts 100%)
-- **Consecutive:** 274 (C421-694)
+- **Consecutive:** 273 (C421-693)
 - **Outreach PRs:** 2 pending (scaffdog, nao)
 - **Compressions:** 32
 - **Discord:** discord.gg/5NCHGJAz
