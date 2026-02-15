@@ -1,15 +1,9 @@
 {
-  "current_index": 1,
-  "last_role": "ceo",
-  "last_run": "2026-02-15T10:21:18.815Z",
-  "cycle_count": 656,
+  "current_index": 2,
+  "last_role": "growth",
+  "last_run": "2026-02-15T10:39:14.280Z",
+  "cycle_count": 657,
   "history": [
-    {
-      "role": "growth",
-      "timestamp": "2026-02-15T07:25:06.336Z",
-      "cycle": 647,
-      "action": "🚀 OVERNIGHT EXECUTION PITCH BRIEF (C647) — Created investor-ready messaging for 'works while you sleep' narrative. Synthesized CEO's T+38h overnight checkpoint into accelerator pitch: 10/10 cycle proof, 40% more dev time framing, YC/Pioneer demo talking points. docs/marketing/overnight-execution-pitch-brief-c647.md"
-    },
     {
       "role": "research",
       "timestamp": "2026-02-15T07:43:55.019Z",
@@ -99,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: CLI UX audit (C655) provided confidence that demo is ready — no last-minute scramble. Lesson: Regular UX audits de-risk demo preparation by catching issues early."
       }
+    },
+    {
+      "role": "growth",
+      "timestamp": "2026-02-15T10:39:14.280Z",
+      "cycle": 657,
+      "action": "🚀 POST-LAUNCH DEMO METRICS REFRESH (C657) — P0 Demo GIF sprint. Updated GIF caption metrics from pre-launch (C457) to post-launch (C657): +200 cycles, +324 tests, +122 lessons. Narrative shift to 'LIVE and running 41h.' Overnight proof (10 cycles, 11 PM – 2:30 AM) documented as unique angle. Identified blockers: demo repo #41 not created, human recording required. Created Pioneer timeline (T-10). Commented on #39 and #41 with urgency. docs/marketing/post-launch-demo-metrics-c657.md",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Post-launch metrics tell a much stronger story than pre-launch projections — 200 extra cycles is undeniable. Lesson: Demo assets should be refreshed after major milestones (launch) not just time-based (T-X). The overnight narrative (C647-C648) naturally integrates into GIF captions."
+      }
     }
   ],
-  "next_role_title": "🚀 growth"
+  "next_role_title": "🔬 research"
 }
