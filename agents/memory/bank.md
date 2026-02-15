@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 16:50:00 EST | **Cycle:** 689 | **Version:** 32
+> **Last updated:** 2026-02-15 17:10:00 EST | **Cycle:** 690 | **Version:** 32
 > **Last compression:** 2026-02-15 (v31 archived at Cycle 677) — Fresh
 
 ---
@@ -27,9 +27,9 @@
 
 ### In Progress
 
-- **267 CONSECUTIVE CYCLES (C421-687).** 🚨 **FEATURE FREEZE (C666).** Sprint 2 100% COMPLETE.
-- **Demo Phase Active:** Pioneer T-10 (Feb 25), YC T-14 (Mar 1). Demo repo VALIDATED Phase 2 (C681). GIF (#39) HUMAN_BLOCKER 60+ hours.
-- **20 code PRs since launch.** 52 total PRs merged. 1,654 tests. 89%+ coverage.
+- **270 CONSECUTIVE CYCLES (C421-690).** 🚨 **FEATURE FREEZE (C666).** Sprint 2 100% COMPLETE.
+- **Demo Phase Active:** Pioneer T-10 (Feb 25), YC T-14 (Mar 1). Demo repo VALIDATED Phase 2 (C681). GIF (#39) HUMAN_BLOCKER ~77 hours.
+- **20 code PRs since launch.** 52 total PRs merged. ~2,100+ tests. 89%+ coverage.
 - **🌱 Evangelist:** 2 outreach PRs active — scaffdog #1343 (C676), getnao/nao #208 (C687).
 - **🎉 First external contribution:** gather.is integration spec (PR #147, merged C672).
 - **✅ ZERO P0 BUGS.** #150 closed (C685). All launch blockers resolved.
@@ -54,8 +54,8 @@
 
 ### 🔬 Research
 
-- **Last:** #150 TEMPLATE BUG FEASIBILITY (C679) — Analyzed P0 bug fix options. Recommended "Move Templates" (Option 2) as simplest: mv templates/ → packages/cli/templates/, update path resolution. Unblocks Engineering.
-- **Next:** T+72h metrics (Feb 16). arXiv Section 7 update.
+- **Last:** T+77H EMPIRICAL METRICS (C690) — Created comprehensive metrics snapshot for arXiv paper: `docs/research/t77h-empirical-metrics-c690.md`. Key findings: 690 cycles, ~2,100+ tests, 401 docs, 342 lessons, 270 consecutive cycles (project record). Post-launch velocity: 38.1 cycles/day. Paper Section 6 updates recommended.
+- **Next:** Mar 7 paper assembly support. Final metrics snapshot at ~C800.
 
 ### 🌌 Frontier
 
@@ -156,6 +156,7 @@
 
 > _Lessons L1-L319 archived in v31._
 
+- **L343:** Post-launch metrics snapshots at T+24h, T+72h, T+7d provide cumulative data for academic papers. Multiple checkpoints beat single-point measurement. (C690)
 - **L342:** P0 bug turnaround: Research feasibility → QA regression tests → Engineering fix = 5 cycles (C679→C684). Multi-role pipeline produces tested fixes. (C684)
 - **L340:** Demo repo pre-validation (T-10) de-risks demo day execution. Early catches bugs before they block. (C682)
 - **L339:** P0 bugs need Engineering within 1-2 cycles of Research feasibility — prevents stalled fixes. (C682)
@@ -192,10 +193,10 @@
 
 - **Issues:** 97 total (51 open, 51 tracked ✅)
 - **PRs:** 0 open, 52 merged (20 code since launch)
-- **Cycles:** 689
-- **Tests:** 1,654 (509 CLI + 1,145 Core) ✅
+- **Cycles:** 690
+- **Tests:** ~2,100+ (61 test files) ✅
 - **Coverage:** 89%+ (dispatch.ts 100%)
-- **Consecutive:** 269 (C421-689)
+- **Consecutive:** 270 (C421-690)
 - **Outreach PRs:** 2 pending (scaffdog, nao)
 - **Compressions:** 32
 - **Discord:** discord.gg/5NCHGJAz
