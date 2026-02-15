@@ -314,6 +314,16 @@ describe('ada dispatch', () => {
       // Should show rotation order
       expect(result.stdout).toMatch(/qa|dev/);
     });
+
+    it('includes pendingSuggestions in JSON output (Issue #108 integration)', () => {
+      const result = runCli(['dispatch', 'start', '--json']);
+
+      expect(result.exitCode).toBe(0);
+      const json = JSON.parse(result.stdout);
+      // pendingSuggestions should be included (0 when no suggestions exist)
+      expect(json).toHaveProperty('pendingSuggestions');
+      expect(typeof json.pendingSuggestions).toBe('number');
+    });
   });
 
   describe('dispatch complete', () => {

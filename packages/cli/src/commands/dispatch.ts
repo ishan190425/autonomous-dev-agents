@@ -49,6 +49,9 @@ import {
   type HeatEntry,
 } from '@ada-ai/core/heat';
 
+// Playbook Suggestions (Issue #108 — Pattern-to-Playbook Integration)
+import { SuggestionStore } from '@ada-ai/core/playbook-suggestions';
+
 const exec = promisify(execCb);
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -644,6 +647,16 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
     await createLock(agentsDir, lock);
   }
 
+  // Get pending playbook suggestions count (Issue #108 — Pattern-to-Playbook Integration)
+  let pendingSuggestions = 0;
+  try {
+    const suggestionStore = new SuggestionStore(cwd);
+    await suggestionStore.init();
+    pendingSuggestions = await suggestionStore.pendingCount();
+  } catch {
+    // Suggestion store may not be initialized yet — that's fine
+  }
+
   // Output
   if (options.json) {
     console.log(JSON.stringify({
@@ -659,6 +672,7 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
         path: path.join(agentsDir, 'memory', 'bank.md'),
         version: bankVersion,
       },
+      pendingSuggestions,
       dryRun: options.dryRun ?? false,
     }));
     return;
@@ -674,6 +688,11 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
   console.log(`  ${chalk.gray('Role:')}      ${formatRole(currentRole)}`);
   console.log(`  ${chalk.gray('Playbook:')}  ${path.relative(cwd, playbookPath)}`);
   console.log(`  ${chalk.gray('Memory:')}    agents/memory/bank.md (v${bankVersion})`);
+
+  // Show pending suggestions if any (Issue #108 — Pattern-to-Playbook Integration)
+  if (pendingSuggestions > 0) {
+    console.log(`  ${chalk.gray('Suggestions:')} ${chalk.yellow(`${pendingSuggestions} pending`)} ${chalk.gray(`— run ${chalk.cyan('ada playbook suggest')} to review`)}`);
+  }
 
   if (!options.noBanner) {
     console.log();
