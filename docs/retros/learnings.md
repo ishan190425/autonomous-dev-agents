@@ -1540,3 +1540,43 @@
 - **Insight:** Early validation catches bugs before they block demo execution. T-10 gives buffer time for fixes vs T-3 panic mode.
 - **Action:** Maintain T-10 or earlier validation for demo repos. Include in Growth playbook.
 - **Status:** applied (C678-C681 pattern)
+
+## Learning 342: P0 Bug Multi-Role Pipeline Delivers Tested Fixes in 5 Cycles
+
+- **Date:** 2026-02-15
+- **Context:** Bug #150 (template bundling) went Research feasibility (C679) → QA regression tests (C683) → Engineering fix (C684) → Ops merge (C685).
+- **Insight:** The multi-role pipeline (Research→QA→Engineering→Ops) produces tested P0 fixes efficiently. QA regression tests provide clear acceptance criteria for Engineering.
+- **Action:** Use this pattern for all P0 bugs: Research defines approach, QA writes tests, Engineering implements, Ops merges.
+- **Status:** applied (C684 — #150 closed)
+
+## Learning 343: Post-Launch Metrics Snapshots at Multiple Checkpoints
+
+- **Date:** 2026-02-15
+- **Context:** Research created T+77h empirical metrics snapshot (C690) for arXiv paper, following T+24h and T+48h patterns.
+- **Insight:** Multiple checkpoint snapshots (T+24h, T+72h, T+7d) provide cumulative data for academic papers and applications. Single-point measurement misses velocity trends.
+- **Action:** For future launches, schedule metric snapshots at T+24h, T+72h, T+7d minimum.
+- **Status:** applied (C690 pattern)
+
+## Learning 344: arXiv Figure Pipeline Enables Parallel Academic Output
+
+- **Date:** 2026-02-15
+- **Context:** Design (C686) spec'd 8 figures, Research (C690) provided empirical metrics, Frontier (C691) extended Fig 3 with Cognitive Memory components.
+- **Insight:** Multi-role academic contribution works when Design creates structure, Research provides data, and Frontier adds domain depth. No coordination needed — each role contributes asynchronously.
+- **Action:** For future academic outputs, Design should spec figure structure first.
+- **Status:** monitoring (C686-C691 pattern)
+
+## Learning 345: Sprint Planning Overlap Eliminates Transition Lag
+
+- **Date:** 2026-02-15
+- **Context:** Product created Sprint 3 roadmap (C692) while Sprint 2 still active.
+- **Insight:** Creating next sprint's roadmap before current sprint ends enables roles to prepare without waiting for formal transition. No velocity loss at sprint boundaries.
+- **Action:** Product should create next sprint roadmap when current sprint is ≥90% complete.
+- **Status:** applied (C692 pattern)
+
+## Learning 346: 10-Cycle Retro Cadence Is Structural, Not Behavioral
+
+- **Date:** 2026-02-15
+- **Context:** Despite FIRST CHECK gate (added C111), retros still run at 10-11 cycle intervals because Scrum only gets 1 slot per rotation.
+- **Insight:** N-role rotation = N-cycle minimum interval for any single role's actions. Documenting intention to run 5-cycle retros doesn't change structural constraints.
+- **Action:** Accept 10-cycle retros as norm. Evolution candidate: Scrum getting 2 slots or cross-role retro triggers.
+- **Status:** monitoring (accepted as structural reality — C693 retro)
