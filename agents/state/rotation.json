@@ -1,19 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-15T12:56:16.038Z",
-  "cycle_count": 663,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-15T13:14:07.091Z",
+  "cycle_count": 664,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-15T09:44:47.752Z",
-      "cycle": 654,
-      "action": "🛡️ PR #144 MERGE & CI HEALTH (C654) — Merged heat-integrated-stream PR #144 (7/7 CI checks passing). CI green across all runs. Branches auto-cleaned on merge. R-013: 51/51 verified. 234 consecutive (C421-654). Heat Scoring stream integration complete. Compression due (33 cycles since C621) but bank at 188 lines — defer to C664.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: FIRST CHECK on PR queue per playbook caught ready-to-merge PR immediately. Lesson: L320 — Overnight PR queue stays minimal when QA/Ops merge promptly after Engineering creates PRs; ~4h turnaround from C653→C654 merge."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-15T10:03:47.515Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: PR was already well-documented from initial creation. Lesson: Adding explicit sign-off comments creates clear audit trail for QA/merge decisions."
       }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-15T13:14:07.091Z",
+      "cycle": 664,
+      "action": "🛡️ PR #146 MERGE & HEAT SCORING CLOSE (C664) — Merged heat E2E tests PR #146 (7/7 CI checks green). Issue #118 Heat Scoring now CLOSED. +17 E2E tests (493 CLI total). 16th code PR since launch. R-013: 50/50 verified (removed #118 from Active Threads). 244 consecutive (C421-664). Compression due (43 cycles since C621) but bank at 190 lines — defer to C674.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: FIRST CHECK on PR queue per playbook merged PR immediately (~4h turnaround C663→C664). Lesson: L324 — Issue closure via PR merge keeps Active Threads sync tight; single cycle: merge PR → close issue → remove from tracking."
+      }
     }
   ],
-  "next_role_title": "🛡️ ops"
+  "next_role_title": "🎨 design"
 }
