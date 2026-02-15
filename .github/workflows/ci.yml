@@ -7,6 +7,99 @@ on:
     branches: [master, main]
 
 jobs:
+  pr-enforcement:
+    name: PR Enforcement (R-014)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 🔍 Check for code changes requiring PR
+        run: |
+          echo "🛡️ PR Enforcement Check (R-014 Phase 3)"
+          echo "========================================"
+          echo ""
+
+          # Get the commit message
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "📝 Commit message: $COMMIT_MSG"
+          echo ""
+
+          # Check if this is a PR merge commit (squash merge from GitHub)
+          # GitHub squash merges include the PR number in the commit message
+          if echo "$COMMIT_MSG" | grep -qE '\(#[0-9]+\)$'; then
+            echo "✅ This is a PR merge commit — enforcement passed"
+            exit 0
+          fi
+
+          # Check if this is an agent dispatch cycle (allowed for docs/state)
+          if echo "$COMMIT_MSG" | grep -qE '^chore\(agents\): cycle [0-9]+'; then
+            echo "🤖 Agent dispatch cycle detected — checking change types..."
+          fi
+
+          # Get changed files in this commit
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD 2>/dev/null || git diff --name-only HEAD)
+          echo "📁 Changed files:"
+          echo "$CHANGED_FILES" | sed 's/^/   /'
+          echo ""
+
+          # Define code patterns that REQUIRE PRs
+          CODE_PATTERNS="\.ts$|\.js$|\.tsx$|\.jsx$|\.py$"
+          CONFIG_PATTERNS="package\.json$|tsconfig\.json$|\.eslintrc|vitest\.config"
+          CI_PATTERNS="\.github/workflows/"
+
+          # Check for code changes
+          CODE_CHANGES=$(echo "$CHANGED_FILES" | grep -E "$CODE_PATTERNS" || true)
+          CONFIG_CHANGES=$(echo "$CHANGED_FILES" | grep -E "$CONFIG_PATTERNS" || true)
+          CI_CHANGES=$(echo "$CHANGED_FILES" | grep -E "$CI_PATTERNS" || true)
+
+          # Combine all protected changes
+          PROTECTED_CHANGES=""
+          if [[ -n "$CODE_CHANGES" ]]; then
+            PROTECTED_CHANGES="$CODE_CHANGES"
+            echo "⚠️  Code changes detected:"
+            echo "$CODE_CHANGES" | sed 's/^/   /'
+          fi
+          if [[ -n "$CONFIG_CHANGES" ]]; then
+            PROTECTED_CHANGES="$PROTECTED_CHANGES$CONFIG_CHANGES"
+            echo "⚠️  Config changes detected:"
+            echo "$CONFIG_CHANGES" | sed 's/^/   /'
+          fi
+          if [[ -n "$CI_CHANGES" ]]; then
+            PROTECTED_CHANGES="$PROTECTED_CHANGES$CI_CHANGES"
+            echo "⚠️  CI/CD changes detected:"
+            echo "$CI_CHANGES" | sed 's/^/   /'
+          fi
+
+          if [[ -n "$PROTECTED_CHANGES" ]]; then
+            echo ""
+            echo "❌ ENFORCEMENT FAILED"
+            echo "===================="
+            echo "Direct pushes with code/config/CI changes are not allowed."
+            echo "Per R-014 (Agent PR Workflow), these changes must go through a PR."
+            echo ""
+            echo "How to fix:"
+            echo "  1. Revert this commit: git revert HEAD"
+            echo "  2. Create a feature branch: git checkout -b ada/c{cycle}-{role}-{slug}"
+            echo "  3. Cherry-pick your changes: git cherry-pick {commit}"
+            echo "  4. Open a PR: gh pr create"
+            echo ""
+            echo "Or use: ada dispatch complete --action \"...\" --pr"
+            echo ""
+            echo "Allowed direct pushes:"
+            echo "  - Documentation (.md files)"
+            echo "  - Agent state (agents/ directory)"
+            echo "  - PR merge commits"
+            exit 1
+          else
+            echo "✅ No protected changes — direct push allowed"
+            echo "   (Only docs/agent state changes detected)"
+          fi
+
   quality-gates:
     name: Quality Gates
     runs-on: ubuntu-latest
