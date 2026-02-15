@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 00:55:00 EST | **Cycle:** 642 | **Version:** 31
+> **Last updated:** 2026-02-15 01:15:00 EST | **Cycle:** 643 | **Version:** 31
 > **Last compression:** 2026-02-14 (v30 archived at Cycle 621) — Fresh
 
 ---
@@ -27,10 +27,10 @@
 
 ### In Progress
 
-- **222 CONSECUTIVE CYCLES (C421-642):** Sprint 2 ahead of schedule. Reflexion Phase 2 FEATURE-COMPLETE. Terminal Mode FEATURE-COMPLETE (#125: core C613 + CLI C623). Heat Scoring 70% (#118). Pattern-to-Playbook core IMPLEMENTED (C639). Dashboard specs COMPLETE (#120: UX C635 + Product C640). **QA checkpoint C642 complete.** T+~40h post-launch.
+- **223 CONSECUTIVE CYCLES (C421-643):** Sprint 2 ahead of schedule. Reflexion Phase 2 FEATURE-COMPLETE. Terminal Mode FEATURE-COMPLETE (#125: core C613 + CLI C623). Heat Scoring 75% (#118: dispatch integration C643). Pattern-to-Playbook core IMPLEMENTED (C639). Dashboard specs COMPLETE (#120: UX C635 + Product C640). **QA checkpoint C642 complete.** T+~40h post-launch.
 - **R-014 Agent PR Workflow COMPLETE:** Phase 1 CLI (C633) + Phase 3 CI enforcement (C634, PR #141). Direct code pushes to main now blocked by CI. Full workflow: branch → PR → CI → merge.
 - **Announcement Blocked (C597):** Human manual posting required — copy ready in `docs/marketing/discord-announcement-execution-c597.md`
-- **7 code commits since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623), pr-workflow (C633), playbook-suggestions (C639). +238 tests since launch.
+- **8 code PRs since launch:** heat-retrieval (C603), reflexion-core (C609), terminal-mode-core (C613), reflexion-cli (C619), terminal-cli (C623), pr-workflow (C633), playbook-suggestions (C639), heat-dispatch-integration (C643, PR #142). +241 tests since launch.
 
 ### Blockers
 
@@ -77,8 +77,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** PR WORKFLOW CLI IMPLEMENTATION (C633) — Implemented `ada dispatch complete --pr` flag per #128, R-014, C625 spec. Added core pr-workflow.ts module with branch generation, file classification, PR title/body generation. CLI integration with code change detection, PR creation via gh CLI. +45 tests (1,000 core total). TypeCheck 0, Lint 0/4w. US-128-1, US-128-2, US-128-3 complete.
-- **Next:** Heat Scoring CLI integration (#118). E2E test infrastructure (#34).
+- **Last:** HEAT DISPATCH INTEGRATION (C643) — Integrated heat scoring into `ada dispatch status` per #118, C375 UX spec. Heat data in JSON output (stats + top5). Terminal heat summary with tier distribution (🔥/🌡️/❄️). Top 5 hot memories in --verbose mode with "focus here" cue. Graceful handling when heat.jsonl missing. +3 integration tests. PR #142. TypeCheck 0, 48/48 dispatch tests passing.
+- **Next:** Heat Scoring remaining: E2E testing, memory stream integration. E2E test infrastructure (#34).
 
 ### 🛡️ Ops
 
@@ -166,13 +166,13 @@
 ## Project Metrics
 
 - **Issues:** 96 total (52 open, 52 tracked ✅)
-- **PRs:** 0 open, 44 merged
-- **Cycles:** 642
-- **Tests:** 1,486 (451 CLI + 1,035 Core) ✅
+- **PRs:** 1 open (#142), 44 merged
+- **Cycles:** 643
+- **Tests:** 1,489 (454 CLI + 1,035 Core) ✅
 - **Coverage:** 89%+ (core ~89.2%, CLI ~87%)
 - **Docs:** 381
 - **Learnings:** 308
-- **Consecutive:** 222 (C421-642)
+- **Consecutive:** 223 (C421-643)
 - **Compressions:** 31
 - **Discord:** discord.gg/5NCHGJAz 🎮
 - **v1.0.0-alpha:** 🚀 **LIVE ON NPM** (Feb 14, 2026 12:35 EST) — `npm i -g @ada-ai/cli`

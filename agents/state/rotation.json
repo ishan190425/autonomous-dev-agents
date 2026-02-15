@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-15T05:50:17.749Z",
-  "cycle_count": 642,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-15T06:13:22.811Z",
+  "cycle_count": 643,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-15T02:43:40.164Z",
-      "cycle": 633,
-      "action": "⚙️ PR WORKFLOW CLI IMPLEMENTATION (C633) — Sixth code PR since launch. Implemented ada dispatch complete --pr flag per #128, R-014, C625 UX spec. Created core pr-workflow.ts module: branch name generation (US-128-3), file classification (US-128-2), PR title/body generation. CLI integration with code change detection, warning flow, and gh CLI PR creation. +45 core tests (1,000 total). TypeCheck 0, Lint 0/4w. R-013: 52/52 verified. 213 consecutive (C421-633). PR WORKFLOW PHASE 1 COMPLETE (#128).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Following UX spec (C625) + User Stories (C630) made implementation straightforward — acceptance criteria already defined. Lesson: L305 validated — Ops→Design→Product pipeline delivers implementation-ready packages. Spec-first enables confident single-cycle feature delivery."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-15T03:08:47.303Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Running comprehensive test suite during QA validates quality state at milestone. Found C639 commit gap through git history audit — process issue caught. Lesson: L313 — Audit git history during QA checkpoints to verify dispatch-commit integrity; rotation.json history can drift from git commits."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-15T06:13:22.811Z",
+      "cycle": 643,
+      "action": "⚙️ HEAT DISPATCH INTEGRATION (C643) — Eighth code PR since launch. Integrated heat scoring into ada dispatch status per #118, C375 UX spec. Heat data in JSON output (stats + top5). Terminal heat summary with tier distribution (🔥/🌡️/❄️). Top 5 hot memories in --verbose mode with focus here cue. Graceful handling when no heat.jsonl. +3 integration tests (454 CLI total). TypeCheck 0, Lint 0. PR #142. R-013: 52/52 verified. 223 consecutive (C421-643). Heat Scoring 70→75%.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Following C375 UX spec made dispatch integration straightforward — visual patterns and JSON structure already defined. Lesson: L314 — Spec-first (C375 UX → C643 impl) enables confident single-cycle feature delivery. Heat→Dispatch integration closes one of the core cognitive memory loops."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }
