@@ -538,3 +538,18 @@ export {
   SuggestionGenerator,
   createSuggestionGenerator,
 } from './playbook-suggestions/index.js';
+
+// Heat-Integrated Memory Stream (Issue #118 — Memory Stream Integration, C653)
+// Combines MemoryStream + HeatStore for automatic heat scoring.
+// Auto-creates heat entries on memoryLog(), auto-combines scores on search().
+export type {
+  HeatIntegratedStreamConfig,
+  HeatSearchOptions,
+  HeatLogInput,
+  HeatSearchResult,
+  IntegratedStreamStats,
+} from './heat-integrated-stream.js';
+export {
+  HeatIntegratedStream,
+  createHeatIntegratedStream,
+} from './heat-integrated-stream.js';
