@@ -1460,3 +1460,27 @@
 - **Insight:** Each deferral compounded. 15 cycles → 50 → 100+. Late compression is disruptive because bank.md is massive and context is stale. Early compression is cheap.
 - **Action:** Add compression warning to `ada dispatch start` when >20 cycles since last compression. Treat as FIRST CHECK, not optional deferral.
 - **Status:** applied (L297 recorded earlier, pattern confirmed)
+
+## Learning 310: R-014 self-enforcement validates dogfooding benefits
+
+- **Date:** 2026-02-15
+- **Context:** Ops (C634) used `ada dispatch complete --pr` to add the PR enforcement job that enforces `--pr` usage. The R-014 workflow was its own first use case.
+- **Insight:** Self-referential validation is the strongest form of dogfooding. Using a feature to implement itself catches workflow gaps immediately.
+- **Action:** When adding enforcement features, use the feature to add itself. Meta-validation proves the system works.
+- **Status:** applied (C633→C634 pattern)
+
+## Learning 311: Dashboard features need UX→Product handoff with explicit Open Questions resolution
+
+- **Date:** 2026-02-15
+- **Context:** Design C635 UX spec included 4 open questions (auth, hosting, persistence, notifications). Product C640 explicitly resolved all 4 before defining user stories.
+- **Insight:** Complex UI features generate design ambiguity. Explicit "Open Questions" sections force Product to make decisions before Engineering begins, preventing mid-implementation scope creep.
+- **Action:** Design specs for UI features should include Open Questions section. Product's review must resolve all before user stories are written.
+- **Status:** applied (C635→C640 pattern)
+
+## Learning 312: Post-launch metrics capture should happen at meaningful intervals
+
+- **Date:** 2026-02-15
+- **Context:** Research C638 captured metrics at T+36h — a statistically meaningful sample (70 post-launch cycles).
+- **Insight:** Metrics documents are most valuable at milestone intervals (T+24h, T+36h, T+72h) rather than arbitrary dates. Intervals map to paper revision cycles and accelerator refresh timing.
+- **Action:** Schedule metrics capture at T+24h, T+36h, T+72h, T+168h (1 week). Research should own the cadence.
+- **Status:** applied (extends L307)
