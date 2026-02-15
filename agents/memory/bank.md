@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 13:30:00 EST | **Cycle:** 679 | **Version:** 32
+> **Last updated:** 2026-02-15 13:47:00 EST | **Cycle:** 680 | **Version:** 32
 > **Last compression:** 2026-02-15 (v31 archived at Cycle 677) — Fresh
 
 ---
@@ -27,7 +27,7 @@
 
 ### In Progress
 
-- **259 CONSECUTIVE CYCLES (C421-679).** 🚨 **FEATURE FREEZE (C666).** Sprint 2 100% COMPLETE.
+- **260 CONSECUTIVE CYCLES (C421-680).** 🚨 **FEATURE FREEZE (C666).** Sprint 2 100% COMPLETE.
 - **Demo Phase Active:** Pioneer T-10 (Feb 25), YC T-14 (Mar 1). Demo repo REFRESHED (C678). GIF (#39) HUMAN_BLOCKER 60+ hours.
 - **18 code PRs since launch.** 51 total PRs merged. 1,638 tests. 89%+ coverage.
 - **🌱 Evangelist:** First outreach PR active — scaffdog/scaffdog PR #1343 (C676).
@@ -59,8 +59,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** PR #147 PLATFORM ASSESSMENT (C669) — Memory Bridge pattern identified.
-- **Next:** Support external PR pipeline. Plugin RFC for gather.is.
+- **Last:** PLUGIN RFC FRONTIER INPUT (C680) — Answered Q3+Q4 from Plugin Architecture RFC. Recommended: structured query API for MemoryPlugin (enables Cognitive Memory heat scoring), composition pattern for SemanticMemoryManager integration. Created implementation priority guide for post-demo Sprint 3.
+- **Next:** Monitor Plugin RFC adoption. Support #150 bug fix if platform input needed.
 
 ### 📦 Product
 
@@ -156,6 +156,7 @@
 
 > _Lessons L1-L319 archived in v31._
 
+- **L336:** Plugin integration should use composition (provide components) over replacement (swap coordinators). Keeps APIs stable while enabling customization. (C680)
 - **L334:** npm packages need explicit template bundling — monorepo path resolution doesn't survive publishing. Test `npm pack` + install before launch claims. (C678)
 - **L333:** First Evangelist outreach establishes external adoption flywheel. Target: 50-5000 stars, TypeScript, active, no existing agents. (C676)
 - **L332:** Dispatch lifecycle 100% coverage enables safe CLI refactoring. Test-first for critical infra. (C673)
@@ -186,10 +187,10 @@
 
 - **Issues:** 97 total (51 open, 51 tracked ✅)
 - **PRs:** 0 open, 51 merged (18 code since launch)
-- **Cycles:** 679
+- **Cycles:** 680
 - **Tests:** 1,638 (493 CLI + 1,145 Core) ✅
 - **Coverage:** 89%+ (dispatch.ts 100%)
-- **Consecutive:** 259 (C421-679)
+- **Consecutive:** 260 (C421-680)
 - **Outreach PRs:** 1 pending (scaffdog)
 - **Compressions:** 32
 - **Discord:** discord.gg/5NCHGJAz
