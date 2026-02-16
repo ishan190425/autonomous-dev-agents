@@ -96,6 +96,49 @@ Each cycle, the agent becomes one role. After acting, it rotates to the next. Ov
 - Role configuration UI
 - Metrics and analytics
 
+## Cost Optimization
+
+ADA automatically selects the most cost-effective LLM model for each role, saving ~14% compared to using a single model for all operations.
+
+| Model  | Usage | Roles                                  | Cost |
+| ------ | ----- | -------------------------------------- | ---- |
+| Haiku  | 35%   | Scrum, Evangelist, Ops (routine tasks) | $    |
+| Sonnet | 62%   | Engineering, Product, Research, Design | $$   |
+| Opus   | 3%    | CEO (critical decisions only)          | $$$  |
+
+### How It Works
+
+When you run `ada dispatch start`, ADA automatically selects the optimal model based on the current role. No configuration required — it just works.
+
+```
+🚀 Cycle 730 Started
+
+  Role:      🎨 The Architect
+  Model:     ⚖️ sonnet (auto)
+```
+
+### Power User Overrides
+
+For specific cycles where you need a different model:
+
+```bash
+# Force Opus for a critical decision
+ada dispatch start --model=opus
+
+# Force Haiku for a routine task
+ada dispatch start --model=haiku
+```
+
+Or set environment variables for persistent overrides:
+
+| Variable             | Description                                              |
+| -------------------- | -------------------------------------------------------- |
+| `ADA_MODEL_ROUTING`  | Enable/disable auto-routing (default: `true`)            |
+| `ADA_MODEL_OVERRIDE` | Force specific model: `haiku`, `sonnet`, or `opus`       |
+| `ADA_MODEL_FALLBACK` | Enable fallback escalation on failures (default: `true`) |
+
+For deployment configuration, see [Railway deployment docs](docs/deployment/railway.md).
+
 ## Dogfooding 🐕
 
 **ADA builds itself.** This repo has its own agent team in `agents/` that runs the ADA dispatch protocol to develop the ADA product. It's the first and most active customer of its own framework.
