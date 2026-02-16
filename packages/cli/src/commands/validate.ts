@@ -145,17 +145,36 @@ async function validateModelRouting(agentsDir: string): Promise<ValidationResult
 }
 
 /**
+ * Get extended PATH that includes common CLI installation directories.
+ * Handles snap installs on Ubuntu, Homebrew on macOS, etc.
+ */
+function getExtendedPath(): string {
+  const extraPaths = [
+    '/snap/bin',           // Ubuntu snap packages (gh)
+    '/usr/local/bin',      // Homebrew, manual installs
+    '/opt/homebrew/bin',   // Homebrew on Apple Silicon
+  ];
+  return [...(process.env.PATH?.split(':') ?? []), ...extraPaths].join(':');
+}
+
+/**
  * SC-3: Validate GitHub integration — check gh CLI is authenticated
  */
 function validateGitHubIntegration(): ValidationResult {
+  const execEnv = { ...process.env, PATH: getExtendedPath() };
+  
   try {
     // Check if gh CLI is available and authenticated
-    const result = execSync('gh auth status 2>&1', { encoding: 'utf-8', timeout: 10000 });
+    const result = execSync('gh auth status 2>&1', { 
+      encoding: 'utf-8', 
+      timeout: 10000,
+      env: execEnv,
+    });
     
     if (result.includes('Logged in')) {
       // Try a simple API call
       try {
-        execSync('gh api user --jq .login', { encoding: 'utf-8', timeout: 10000 });
+        execSync('gh api user --jq .login', { encoding: 'utf-8', timeout: 10000, env: execEnv });
         return {
           id: 'SC-3',
           name: 'GitHub Integration',
