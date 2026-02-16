@@ -1,0 +1,14 @@
+# ADA SaaS Container - Railway Configuration
+# One-click deploy: autonomous AI dev team for your repo
+#
+# Author: 🛡️ Ops (C729) | Phase 1 Container MVP
+
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3

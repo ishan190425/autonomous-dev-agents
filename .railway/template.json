@@ -1,0 +1,66 @@
+{
+  "$schema": "https://railway.app/railway-template.schema.json",
+  "name": "ADA - Autonomous Dev Agents",
+  "description": "Deploy an autonomous AI development team to your GitHub repo. ADA runs 24/7, triaging issues, writing code, creating PRs, and managing your project.",
+  "icon": "https://raw.githubusercontent.com/ishan190425/autonomous-dev-agents/main/docs/assets/ada-icon.png",
+  "services": [
+    {
+      "name": "ada-agent",
+      "build": {
+        "builder": "DOCKERFILE",
+        "dockerfilePath": "Dockerfile"
+      },
+      "deploy": {
+        "healthcheckPath": "/health",
+        "healthcheckTimeout": 30,
+        "restartPolicyType": "ON_FAILURE",
+        "restartPolicyMaxRetries": 3
+      },
+      "env": {
+        "GITHUB_TOKEN": {
+          "description": "GitHub Personal Access Token with repo scope. Get one at: github.com/settings/tokens",
+          "required": true
+        },
+        "GITHUB_REPO": {
+          "description": "Target repository in owner/repo format (e.g., myorg/myproject)",
+          "required": true
+        },
+        "ANTHROPIC_API_KEY": {
+          "description": "Anthropic API key for Claude LLM. Get one at: console.anthropic.com",
+          "required": true
+        },
+        "ADA_DISPATCH_INTERVAL": {
+          "description": "How often to run dispatch cycles (e.g., 15m, 30m, 1h)",
+          "default": "15m",
+          "required": false
+        },
+        "ADA_ROLES_MODE": {
+          "description": "Permission mode: 'read-only' (issues only) or 'read-write' (code + issues)",
+          "default": "read-write",
+          "required": false
+        },
+        "ADA_MODEL_ROUTING": {
+          "description": "Enable automatic cost-optimized model selection per role",
+          "default": "true",
+          "required": false
+        },
+        "ADA_MODEL_OVERRIDE": {
+          "description": "Force a specific model for all roles (haiku, sonnet, opus). Leave empty for auto.",
+          "default": "",
+          "required": false
+        },
+        "ADA_MODEL_FALLBACK": {
+          "description": "Enable fallback to stronger models if validation fails",
+          "default": "true",
+          "required": false
+        },
+        "ADA_LOG_LEVEL": {
+          "description": "Logging verbosity (debug, info, warn)",
+          "default": "info",
+          "required": false
+        }
+      }
+    }
+  ],
+  "docs": "https://github.com/ishan190425/autonomous-dev-agents#readme"
+}

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 08:28:00 EST | **Cycle:** 728 | **Version:** 35
+> **Last updated:** 2026-02-16 08:45:00 EST | **Cycle:** 729 | **Version:** 35
 > **Last compression:** 2026-02-16 (v34 archived at Cycle 723)
 
 ---
@@ -19,11 +19,12 @@
 
 ### In Progress
 
-- **🎉 728 CYCLES!** 307 CONSECUTIVE (C421-728). 🚨 **FEATURE FREEZE (C666).**
+- **🎉 729 CYCLES!** 308 CONSECUTIVE (C421-729). 🚨 **FEATURE FREEZE (C666).**
 - **📦 #155 is THE PRIORITY.** SaaS Container + GitHub. Phase 1 nearly complete.
 - **💰 COST STRATEGY ENDORSED (C721).** Role-based model routing is P1 Phase 1 dependency.
 - **🌌 MODEL ROUTER FULLY INTEGRATED (C728).** PR #160 (core) + PR #161 (CLI) both merged.
-- **👔 Phase 1 Status:** PR #159 merged ✅. PR #160 merged ✅. PR #161 merged ✅. Remaining: Railway template, docs.
+- **🚂 RAILWAY TEMPLATE CREATED (C729).** `railway.json`, `railway.toml`, `.railway/template.json`, `docs/deployment/railway.md`.
+- **👔 Phase 1 Status:** PR #159 merged ✅. PR #160 merged ✅. PR #161 merged ✅. Railway template ✅. Remaining: Final docs review.
 - **🏷️ Founder Priority System ACTIVE (C710).** Queue: #155, #158, #7, #8.
 - **29 code PRs since launch.** 58 merged. ~2,500+ tests. 89%+ coverage.
 
@@ -77,8 +78,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** PR #159 MERGED (C718) — 1-cycle turnaround. 53/53 issues verified ✅.
-- **Next:** #89 Dev-to-Prod. PR triage.
+- **Last:** RAILWAY TEMPLATE (C729) — Created Railway deployment template with model routing config. Files: `railway.json`, `railway.toml`, `.railway/template.json`, `docs/deployment/railway.md`. Updated `entrypoint.sh` with model routing env vars validation + startup logging. 53/53 issues verified ✅.
+- **Next:** #89 Dev-to-Prod. PR triage. Monitor Phase 1 completion.
 
 ### 🎨 Design
 
@@ -143,6 +144,7 @@
 
 ## Key Lessons (L370+)
 
+- **L378:** Infrastructure deliverables (deployment templates) should be created right after core features land — Railway template (C729) directly follows model router merge (C728) for seamless Phase 1 completion. (C729)
 - **L377:** Full pipeline completion (Research→Frontier→Product→Engineering→QA→Engineering) delivers working features in 6 cycles. Model router: C723 Research → C724 Frontier → C725 Product → C727 QA → C728 Engineering merge. Each role adds distinct value. (C728)
 - **L376:** QA review before merge catches issues early — verifying 1,172 tests pass + lint/typecheck clean gives confidence for fast merge turnaround. (C727)
 - **L374:** Research→Frontier→Engineering pipeline works: Research provides data + TypeScript interfaces, Frontier builds implementation + tests, Engineering integrates. Each role adds value vs. jumping straight to code. (C724)

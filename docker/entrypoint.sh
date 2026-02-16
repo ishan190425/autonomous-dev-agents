@@ -13,6 +13,9 @@ ADA_DISPATCH_INTERVAL="${ADA_DISPATCH_INTERVAL:-15m}"
 ADA_ROLES_MODE="${ADA_ROLES_MODE:-read-write}"
 ADA_LOG_LEVEL="${ADA_LOG_LEVEL:-info}"
 ADA_HEALTH_PORT="${ADA_HEALTH_PORT:-8080}"
+ADA_MODEL_ROUTING="${ADA_MODEL_ROUTING:-true}"
+ADA_MODEL_OVERRIDE="${ADA_MODEL_OVERRIDE:-}"
+ADA_MODEL_FALLBACK="${ADA_MODEL_FALLBACK:-true}"
 
 # Internal state
 CYCLE_COUNT=0
@@ -84,6 +87,14 @@ validate_env() {
     if [[ "$ADA_LOG_LEVEL" != "debug" && "$ADA_LOG_LEVEL" != "info" && "$ADA_LOG_LEVEL" != "warn" ]]; then
         log_error "ADA_LOG_LEVEL must be 'debug', 'info', or 'warn'"
         errors=$((errors + 1))
+    fi
+
+    # Optional: ADA_MODEL_OVERRIDE validation (if set)
+    if [[ -n "$ADA_MODEL_OVERRIDE" ]]; then
+        if [[ "$ADA_MODEL_OVERRIDE" != "haiku" && "$ADA_MODEL_OVERRIDE" != "sonnet" && "$ADA_MODEL_OVERRIDE" != "opus" ]]; then
+            log_error "ADA_MODEL_OVERRIDE must be 'haiku', 'sonnet', or 'opus'"
+            errors=$((errors + 1))
+        fi
     fi
 
     if [[ $errors -gt 0 ]]; then
@@ -195,6 +206,17 @@ parse_interval_to_seconds() {
 main() {
     log_info "ADA Container starting..."
     log_info "Mode: $ADA_ROLES_MODE | Interval: $ADA_DISPATCH_INTERVAL | Log Level: $ADA_LOG_LEVEL"
+    
+    # Log model routing configuration
+    if [[ "$ADA_MODEL_ROUTING" == "true" ]]; then
+        if [[ -n "$ADA_MODEL_OVERRIDE" ]]; then
+            log_info "Model: $ADA_MODEL_OVERRIDE (override) | Fallback: $ADA_MODEL_FALLBACK"
+        else
+            log_info "Model: auto-routing (haiku/sonnet/opus) | Fallback: $ADA_MODEL_FALLBACK"
+        fi
+    else
+        log_info "Model: routing disabled (using default)"
+    fi
     
     # Validate environment on startup
     validate_env
