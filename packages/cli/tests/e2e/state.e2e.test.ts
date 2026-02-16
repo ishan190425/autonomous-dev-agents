@@ -156,6 +156,8 @@ describe('ada state commands E2E', () => {
     });
 
     it('shows cleared pause info', async () => {
+      // First clear the beforeEach pause, then pause with our custom reason
+      await sandbox.ada(['resume', '--no-commit']);
       await sandbox.ada(['pause', '--reason', 'Testing', '--no-commit']);
 
       const result = await sandbox.ada(['resume', '--no-commit']);
