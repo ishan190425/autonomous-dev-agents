@@ -1,0 +1,212 @@
+% Figure 3: Memory Architecture
+% Author: 🎨 The Architect (Design) | Cycle: 697
+% Extended from Frontier's Cognitive Memory spec (C691)
+%
+% This figure shows both:
+%   3A: Current implementation (bank.md)
+%   3B: Cognitive Memory extension (innate/learned with heat scoring)
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes.geometric,arrows.meta,fit,backgrounds,calc,decorations.pathreplacing}
+
+\tikzset{
+    % Memory components
+    membox/.style={
+        draw=black,
+        fill=white,
+        rounded corners=3pt,
+        minimum width=2.8cm,
+        minimum height=2.2cm,
+        align=center,
+        font=\sffamily\small
+    },
+    % Heat tier boxes
+    hotbox/.style={
+        draw=black,
+        fill=red!15,
+        rounded corners=2pt,
+        minimum width=2cm,
+        minimum height=1.6cm,
+        align=center,
+        font=\sffamily\scriptsize
+    },
+    warmbox/.style={
+        draw=black,
+        fill=orange!15,
+        rounded corners=2pt,
+        minimum width=2cm,
+        minimum height=1.6cm,
+        align=center,
+        font=\sffamily\scriptsize
+    },
+    coldbox/.style={
+        draw=black,
+        fill=blue!10,
+        rounded corners=2pt,
+        minimum width=2cm,
+        minimum height=1.6cm,
+        align=center,
+        font=\sffamily\scriptsize
+    },
+    % Innate layer
+    innatebox/.style={
+        draw=black!70,
+        fill=gray!15,
+        rounded corners=3pt,
+        minimum width=2cm,
+        minimum height=1cm,
+        align=center,
+        font=\sffamily\scriptsize
+    },
+    % Container
+    container/.style={
+        draw=black!60,
+        fill=gray!5,
+        rounded corners=5pt,
+        inner sep=10pt
+    },
+    % Labels
+    sectionlabel/.style={
+        font=\sffamily\bfseries\small
+    },
+    % Arrows
+    arrow/.style={
+        -{Stealth[length=2mm]},
+        thick,
+        black!70
+    },
+    bidiarrow/.style={
+        {Stealth[length=2mm]}-{Stealth[length=2mm]},
+        thick,
+        black!70
+    },
+    % Process box
+    process/.style={
+        draw=black,
+        fill=yellow!20,
+        rounded corners=2pt,
+        minimum width=2.5cm,
+        minimum height=0.8cm,
+        align=center,
+        font=\sffamily\footnotesize
+    }
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+% === FIGURE 3A: CURRENT SYSTEM (LEFT SIDE) ===
+\node[sectionlabel] at (0,0) {(A) CURRENT SYSTEM};
+
+% Directory header
+\node[font=\sffamily\footnotesize, draw=black!40, fill=gray!10, rounded corners=2pt, minimum width=5cm] (dirheader) at (0,-0.7) {agents/memory/};
+
+% Memory components
+\node[membox] (bank) at (-2,-2.8) {
+    \textbf{bank.md}\\
+    \footnotesize (Current)\\[3pt]
+    \tiny \textbullet~Status\\
+    \tiny \textbullet~Role State\\
+    \tiny \textbullet~Threads\\
+    \tiny \textbullet~Lessons\\
+    \tiny \textbullet~Metrics
+};
+
+\node[membox, minimum width=2cm, minimum height=1.5cm] (evolution) at (1.5,-2.3) {
+    \textbf{evolution}\\
+    \textbf{-log.md}\\[2pt]
+    \tiny Role changes
+};
+
+\node[membox, minimum width=2cm, minimum height=1.5cm] (archives) at (1.5,-4.2) {
+    \textbf{archives/}\\[2pt]
+    \tiny v1...v32\\
+    \tiny snapshots
+};
+
+% Compression process
+\node[process] (compress) at (-2,-5.2) {
+    \textbf{COMPRESSION}\\
+    \tiny >200 lines trigger
+};
+
+% Arrows
+\draw[arrow] (dirheader.south) -- ++(0,-0.3) -| (bank.north);
+\draw[arrow] (dirheader.south) -- ++(0,-0.3) -| (evolution.north);
+\draw[arrow] (bank.south) -- (compress.north);
+\draw[arrow] (compress.east) -- ++(0.3,0) |- (archives.west);
+\draw[arrow, dashed] (archives.south west) -- ++(-0.5,-0.3) -- ++(-1.5,0) |- node[pos=0.2, right, font=\sffamily\tiny] {restore} (bank.south east);
+
+% === FIGURE 3B: COGNITIVE MEMORY (RIGHT SIDE) ===
+\node[sectionlabel] at (8,0) {(B) COGNITIVE MEMORY};
+
+% Innate layer
+\begin{scope}[local bounding box=innate]
+    \node[innatebox] (safety) at (5.5,-1.2) {
+        \textbf{SAFETY}\\
+        RULES.md
+    };
+    \node[innatebox] (identity) at (7.5,-1.2) {
+        \textbf{IDENTITY}\\
+        roles.json
+    };
+    \node[innatebox] (reasoning) at (9.5,-1.2) {
+        \textbf{REASONING}\\
+        Playbooks
+    };
+\end{scope}
+
+% Innate container
+\begin{pgfonlayer}{background}
+    \node[container, fit=(safety)(identity)(reasoning), inner sep=8pt, label={[font=\sffamily\scriptsize\bfseries]above:INNATE MEMORY (immutable, always hot)}] (innatebox) {};
+\end{pgfonlayer}
+
+% Learned layer with heat tiers
+\node[hotbox] (hot) at (5.5,-3.5) {
+    \textbf{🔥 HOT}\\
+    score >0.8\\[2pt]
+    \tiny Current sprint\\
+    \tiny Active blockers
+};
+
+\node[warmbox] (warm) at (7.5,-3.5) {
+    \textbf{🟠 WARM}\\
+    score 0.4-0.8\\[2pt]
+    \tiny Recent lessons\\
+    \tiny This-week PRs
+};
+
+\node[coldbox] (cold) at (9.5,-3.5) {
+    \textbf{🧊 COLD}\\
+    score <0.4\\[2pt]
+    \tiny Old lessons\\
+    \tiny Closed issues
+};
+
+% Learned container
+\begin{pgfonlayer}{background}
+    \node[container, fit=(hot)(warm)(cold), inner sep=8pt, label={[font=\sffamily\scriptsize\bfseries]above:LEARNED MEMORY (evolving)}] (learnedbox) {};
+\end{pgfonlayer}
+
+% Heat flow arrows
+\draw[arrow] (innatebox.south) -- node[right, font=\sffamily\tiny] {substrate} (learnedbox.north);
+\draw[bidiarrow] (hot.east) -- node[above, font=\sffamily\tiny] {promote} node[below, font=\sffamily\tiny] {decay} (warm.west);
+\draw[bidiarrow] (warm.east) -- node[above, font=\sffamily\tiny] {promote} node[below, font=\sffamily\tiny] {decay} (cold.west);
+
+% Heat formula
+\node[font=\sffamily\tiny, draw=black!40, fill=white, rounded corners=2pt, inner sep=4pt] at (7.5,-5.3) {
+    heat = base\_importance × recency × references$^\alpha$
+};
+
+% === MAPPING ANNOTATIONS ===
+% Dashed line connecting the two systems
+\draw[black!30, dashed, thick] (2.5,0.5) -- (2.5,-6);
+\node[font=\sffamily\tiny\itshape, rotate=90, anchor=south] at (2.8,-2.5) {integration};
+
+% Mapping arrows
+\draw[arrow, black!40, dashed] (bank.east) -- ++(1,0) |- node[pos=0.7, above, font=\sffamily\tiny] {maps to} (learnedbox.west);
+\draw[arrow, black!40, dashed] (archives.east) -- ++(0.5,0) |- (cold.west);
+
+\end{tikzpicture}
+\end{document}
