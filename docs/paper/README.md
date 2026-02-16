@@ -48,15 +48,15 @@ All sections live in `docs/research/` until assembly:
 
 ## Timeline
 
-| Date   | Milestone            | Owner    |
-| ------ | -------------------- | -------- |
-| Feb 17 | T-7 Go/No-Go         | CEO      |
-| Feb 25 | Pioneer Demo         | Growth   |
-| Mar 1  | YC Demo              | Growth   |
-| Mar 7  | **First Draft**      | Research |
-| Mar 14 | Internal Review      | All      |
-| Mar 21 | Revision             | Research |
-| Mar 28 | **arXiv Submission** | Research |
+| Date   | Milestone                    | Owner       | Status |
+| ------ | ---------------------------- | ----------- | ------ |
+| Feb 17 | SaaS Container Phase 1 Start | Engineering | 🟢     |
+| Mar 7  | **First Draft**              | Research    | 🟢     |
+| Mar 14 | Internal Review              | All         | 🟢     |
+| Mar 21 | Revision                     | Research    | 🟢     |
+| Mar 28 | **arXiv Submission**         | Research    | 🟢     |
+
+_Note: Pioneer (Feb 25) and YC (Mar 1) demos CANCELLED per #158 strategic pivot._
 
 ## Assembly Process
 
