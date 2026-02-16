@@ -27,3 +27,4 @@ coverage/
 *.log
 npm-debug.log*
 *.tgz
+.dispatch.lock
