@@ -1,0 +1,138 @@
+% Figure 4: Role Rotation Cycle
+% Author: 🎨 The Architect (Design) | Cycle: 708
+% Usage: Compile standalone or include in arxiv paper via \input{}
+%
+% Standalone compile: pdflatex fig4-role-rotation.tex
+% Paper include: \input{figures/fig4-role-rotation.tex}
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes.geometric,arrows.meta,calc,decorations.markings}
+
+% Style definitions
+\tikzset{
+    % Role node style
+    rolenode/.style={
+        draw=black,
+        fill=white,
+        rounded corners=3pt,
+        minimum width=2cm,
+        minimum height=0.8cm,
+        align=center,
+        font=\sffamily\footnotesize
+    },
+    % Active role (highlighted)
+    activerole/.style={
+        rolenode,
+        fill=gray!25,
+        line width=1.5pt
+    },
+    % Rotation arrow
+    rotarrow/.style={
+        -{Stealth[length=2mm]},
+        thick,
+        black!70
+    },
+    % Cycle arrow (outer)
+    cyclearrow/.style={
+        -{Stealth[length=3mm]},
+        line width=1.5pt,
+        black!50,
+        postaction={decorate},
+        decoration={markings, mark=at position 0.5 with {\node[font=\sffamily\scriptsize,above=2pt] {Cycle};}}
+    },
+    % Center label style
+    centerlabel/.style={
+        font=\sffamily\bfseries\small,
+        align=center
+    },
+    % Phase indicator
+    phase/.style={
+        font=\sffamily\scriptsize,
+        text=black!70
+    }
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+% === ROLES ARRANGED IN CIRCLE ===
+% 11 roles at 360/11 ≈ 32.7 degrees apart
+\def\radius{4cm}
+
+% Calculate positions for each role
+\foreach \role/\emoji/\angle/\idx in {
+    CEO/👔/90/0,
+    Growth/🚀/57.3/1,
+    Research/🔬/24.5/2,
+    Frontier/🌌/-8.2/3,
+    Product/📦/-40.9/4,
+    Scrum/📋/-73.6/5,
+    QA/🔍/-106.4/6,
+    Engineering/⚙️/-139.1/7,
+    Ops/🛡️/-171.8/8,
+    Design/🎨/-204.5/9,
+    Evangelist/🌱/-237.3/10
+} {
+    \ifnum\idx=9
+        % Highlight Design as active (current cycle)
+        \node[activerole] (\role) at (\angle:\radius) {\emoji~\role};
+    \else
+        \node[rolenode] (\role) at (\angle:\radius) {\emoji~\role};
+    \fi
+}
+
+% === ROTATION ARROWS ===
+% Connect each role to the next
+\draw[rotarrow] (CEO.south east) to[bend right=15] (Growth.north);
+\draw[rotarrow] (Growth.south east) to[bend right=15] (Research.east);
+\draw[rotarrow] (Research.south east) to[bend right=15] (Frontier.east);
+\draw[rotarrow] (Frontier.south) to[bend right=15] (Product.east);
+\draw[rotarrow] (Product.south west) to[bend right=15] (Scrum.east);
+\draw[rotarrow] (Scrum.south west) to[bend right=15] (QA.south east);
+\draw[rotarrow] (QA.west) to[bend right=15] (Engineering.south);
+\draw[rotarrow] (Engineering.west) to[bend right=15] (Ops.south);
+\draw[rotarrow] (Ops.north west) to[bend right=15] (Design.south west);
+\draw[rotarrow] (Design.north west) to[bend right=15] (Evangelist.west);
+\draw[rotarrow] (Evangelist.north) to[bend right=15] (CEO.west);
+
+% === CENTER LABEL ===
+\node[centerlabel] at (0,0) {
+    \Large DISPATCH\\[4pt]
+    \normalsize 11-Role\\
+    Rotation
+};
+
+% === OUTER ANNOTATIONS ===
+% Cycle counter
+\node[phase, anchor=south] at (0,\radius+1cm) {
+    \textbf{Cycle N} $\rightarrow$ \textbf{Cycle N+1}
+};
+
+% Phase labels around the circle (strategic groupings)
+\node[phase, anchor=west] at ($(CEO.east)+(0.3,0)$) {Strategy};
+\node[phase, anchor=west] at ($(Research.east)+(0.3,0)$) {Research};
+\node[phase, anchor=north] at ($(Scrum.south)+(0,-0.2)$) {Coordination};
+\node[phase, anchor=east] at ($(Engineering.west)+(-0.3,0)$) {Execution};
+\node[phase, anchor=east] at ($(Design.west)+(-0.3,0)$) {Quality};
+
+% === LEGEND ===
+\node[anchor=north west, font=\sffamily\scriptsize, text width=5cm, align=left] at (-5.5,-4.5) {
+    \textbf{Rotation Order:}\\
+    Each role executes ONE action per cycle,\\
+    then hands off to the next role.\\[4pt]
+    \textbf{Full Rotation:} 11 cycles = 1 complete pass\\[4pt]
+    \textbf{Shaded:} Currently active role
+};
+
+% === TIMING BOX ===
+\node[draw=black!50, rounded corners=2pt, fill=gray!5, font=\sffamily\scriptsize, 
+      text width=3.5cm, align=center, anchor=north east] at (5.5,-4.5) {
+    \textbf{Typical Timing}\\[2pt]
+    Cycle duration: ~15 min\\
+    Full rotation: ~2.75 hours\\
+    Daily throughput: ~96 cycles
+};
+
+\end{tikzpicture}
+\end{document}
