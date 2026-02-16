@@ -7,6 +7,7 @@
  * @see Issue #69 for full specification
  * @see docs/product/observability-cli-spec.md for user stories
  * @see Issue #94 for export specification
+ * @see docs/frontier/model-routing-validation-spec-c735.md for --savings
  */
 
 import { Command } from 'commander';
@@ -14,8 +15,9 @@ import chalk from 'chalk';
 import {
   createMetricsManager,
   formatCost,
+  calculateSavingsAnalysis,
 } from '@ada-ai/core';
-import type { CycleMetrics } from '@ada-ai/core';
+import type { CycleMetrics, SavingsAnalysis } from '@ada-ai/core';
 import {
   detectFormat,
   getSupportedExtensions,
@@ -35,6 +37,7 @@ interface CostsOptions {
   json?: boolean;
   export?: string;
   force?: boolean;
+  savings?: boolean;
 }
 
 /**
@@ -114,12 +117,97 @@ function exportCostsToFile(
   writeFile(filePath, content);
 }
 
+/**
+ * Render a progress bar for model distribution.
+ */
+function renderDistributionBar(percentage: number, width: number = 26): string {
+  const filled = Math.round((percentage / 100) * width);
+  const empty = width - filled;
+  return '█'.repeat(filled) + '░'.repeat(empty);
+}
+
+/**
+ * Get status emoji and color for savings analysis.
+ */
+function getSavingsStatus(analysis: SavingsAnalysis): { emoji: string; color: typeof chalk } {
+  if (analysis.savings.percentage >= analysis.targetPercentage) {
+    return { emoji: '✅', color: chalk.green };
+  } else if (analysis.savings.percentage >= 5) {
+    return { emoji: '⚠️', color: chalk.yellow };
+  }
+  return { emoji: '❌', color: chalk.red };
+}
+
+/**
+ * Display savings analysis output.
+ */
+function displaySavingsAnalysis(analysis: SavingsAnalysis, jsonOutput: boolean): void {
+  if (jsonOutput) {
+    console.log(JSON.stringify({
+      modelDistribution: {
+        haiku: analysis.modelDistribution.haiku,
+        sonnet: analysis.modelDistribution.sonnet,
+        opus: analysis.modelDistribution.opus,
+      },
+      actualCost: analysis.actualCost,
+      baselineCost: analysis.baselineCost,
+      savings: analysis.savings,
+      perCycle: analysis.perCycle,
+      status: analysis.status,
+      target: analysis.targetPercentage,
+      projected: analysis.projectedPercentage,
+      cycleCount: analysis.cycleCount,
+    }, null, 2));
+    return;
+  }
+
+  const { emoji, color } = getSavingsStatus(analysis);
+
+  console.log(chalk.bold.blue('💰 ADA Cost Savings Analysis'));
+  console.log(chalk.gray('═'.repeat(55)));
+  console.log();
+
+  // Model Distribution
+  console.log(chalk.bold('📊 MODEL DISTRIBUTION') + chalk.gray(` (${analysis.cycleCount} cycles)`));
+  console.log(chalk.gray('─'.repeat(55)));
+
+  const dist = analysis.modelDistribution;
+  console.log(`${chalk.cyan('Haiku')}     │ ${chalk.cyan(renderDistributionBar(dist.haiku.percentage))}  ${String(dist.haiku.cycles).padStart(3)} cycles (${dist.haiku.percentage}%)`);
+  console.log(`${chalk.yellow('Sonnet')}    │ ${chalk.yellow(renderDistributionBar(dist.sonnet.percentage))}  ${String(dist.sonnet.cycles).padStart(3)} cycles (${dist.sonnet.percentage}%)`);
+  console.log(`${chalk.magenta('Opus')}      │ ${chalk.magenta(renderDistributionBar(dist.opus.percentage))}  ${String(dist.opus.cycles).padStart(3)} cycles (${dist.opus.percentage}%)`);
+  console.log(chalk.gray('─'.repeat(55)));
+  console.log();
+
+  // Cost Comparison
+  console.log(chalk.bold('💵 COST COMPARISON'));
+  console.log(chalk.gray('─'.repeat(55)));
+  console.log(`${chalk.gray('Actual Cost:')}     ${chalk.white(formatCost(analysis.actualCost))} (${analysis.cycleCount} cycles)`);
+  console.log(`${chalk.gray('Baseline Cost:')}   ${chalk.white(formatCost(analysis.baselineCost))} (if all Sonnet)`);
+  console.log(chalk.gray('─'.repeat(55)));
+  console.log(`${chalk.bold('Savings:')}         ${color(formatCost(analysis.savings.amount))} (${color(`${analysis.savings.percentage}%`)})`);
+  console.log(chalk.gray('─'.repeat(55)));
+  console.log();
+
+  // Status
+  console.log(`${emoji} ${chalk.bold('Status:')} ${color(analysis.status === 'on_track' ? 'ON TRACK' : analysis.status === 'above_target' ? 'ABOVE TARGET' : 'BELOW TARGET')}`);
+  console.log(`   Target: ${analysis.targetPercentage}%+  |  Actual: ${analysis.savings.percentage}%  |  Projected: ${analysis.projectedPercentage}%`);
+  console.log();
+
+  // Per-Cycle Analysis
+  console.log(chalk.bold('📈 Per-Cycle Analysis'));
+  console.log(chalk.gray('─'.repeat(55)));
+  console.log(`${chalk.gray('Avg Actual:')}      ${formatCost(analysis.perCycle.actual)}/cycle`);
+  console.log(`${chalk.gray('Avg Baseline:')}    ${formatCost(analysis.perCycle.baseline)}/cycle`);
+  console.log(`${chalk.gray('Avg Savings:')}     ${formatCost(analysis.perCycle.savings)}/cycle`);
+}
+
 export const costsCommand = new Command('costs')
   .description('Quick cost check for agent operations')
   .option('-d, --dir <path>', 'Agents directory (default: "agents/")', 'agents')
   .option('--json', 'Output as JSON for scripting')
   .option('-e, --export <file>', 'Export costs to file (auto-detects format from extension: .csv, .json, .tsv)')
   .option('-f, --force', 'Overwrite existing file without confirmation')
+  .option('-s, --savings', 'Show model routing savings analysis (Phase 2 dogfooding)')
   .action(async (options: CostsOptions) => {
     const cwd = process.cwd();
 
@@ -184,6 +272,13 @@ export const costsCommand = new Command('costs')
           model,
         });
         console.log(chalk.green(`✅ Exported cost summary to ${options.export}`));
+        return;
+      }
+
+      // Savings analysis mode (Phase 2 dogfooding)
+      if (options.savings) {
+        const analysis = calculateSavingsAnalysis(cycles);
+        displaySavingsAnalysis(analysis, !!options.json);
         return;
       }
 
