@@ -2,8 +2,8 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 06:05:00 EST | **Cycle:** 722 | **Version:** 34
-> **Last compression:** 2026-02-16 (v33 archived at Cycle 710) — ⚠️ 12 cycles since, compression due
+> **Last updated:** 2026-02-16 06:25:00 EST | **Cycle:** 723 | **Version:** 35
+> **Last compression:** 2026-02-16 (v34 archived at Cycle 723)
 
 ---
 
@@ -11,36 +11,25 @@
 
 ### Active Sprint
 
-- **Sprint 2:** 2026-02-14 → 2026-02-28 — Goal: Demo & Polish — ✅ 100% COMPLETE
-- **Sprint 3:** Mar 1-14 — CONFIRMED by CEO (C699)
+- **Sprint 3:** Mar 1-14 — Goal: SaaS Container Complete — CONFIRMED (C699)
 
 ### Launch Status (Issue #26)
 
 🚀 **v1.0.0-alpha LIVE ON NPM (C568)** — Feb 14, 2026 12:35 EST
 
-| Milestone      | Status                                                                            |
-| -------------- | --------------------------------------------------------------------------------- |
-| npm Publish    | ✅ **LIVE** — `@ada-ai/cli@1.0.0-alpha`, `@ada-ai/core@1.0.0-alpha`               |
-| GitHub Release | ✅ https://github.com/ishan190425/autonomous-dev-agents/releases/tag/v1.0.0-alpha |
-| Day 1 Protocol | 🟢 **T+~80h ACTIVE**                                                              |
-
 ### In Progress
 
-- **🎉 722 CYCLES!** 301 CONSECUTIVE (C421-722). 🚨 **FEATURE FREEZE (C666).**
-- **🚀 STRATEGIC PIVOT (C711, #158):** Skip all incubators → Bootstrap via SaaS. Pioneer/YC CANCELLED.
-- **📦 #155 is now THE priority.** SaaS Container + Frontend + Paywall. Revenue > fundraising.
-- **💰 COST STRATEGY ENDORSED (C721).** Role-based model routing (Frontier C713) is now Phase 1 dependency. Target: $0.055 → $0.035/cycle.
-- **👔 Phase 1 Updated (C721).** PR #159 merged ✅. Remaining: model routing, Railway template, docs, dogfooding.
-- **🏷️ Founder Priority System ACTIVE (C710).** `founder-priority` label now in CEO FIRST CHECK. Queue: #155, #158, #7, #8.
-- **26 code PRs since launch.** 56 PRs merged (#159 merged C718). ~2,318+ tests (34 container tests added). 89%+ coverage. E2E: 47% (8/17 commands).
-- **📦 Sprint 3 Roadmap Created (C692).** CEO ENDORSED (C699). SaaS Container is P0.
-- **🛡️ R-014 Enforcement Live (C696):** CI caught direct code push, fixed via PR #153.
-- **🌱 Evangelist:** 4 outreach PRs: scaffdog #1343 (pending), teammapper #1150 (pending), zudoku #1986 (pending). nao #208 rejected. ⚠️ livekit #319 tracking error corrected — not our PR.
-- **✅ ZERO P0 BUGS.** All launch blockers resolved.
+- **🎉 723 CYCLES!** 302 CONSECUTIVE (C421-723). 🚨 **FEATURE FREEZE (C666).**
+- **📦 #155 is THE PRIORITY.** SaaS Container + GitHub. Phase 1 underway.
+- **💰 COST STRATEGY ENDORSED (C721).** Role-based model routing is P1 Phase 1 dependency.
+- **🔬 MODEL SELECTION RESEARCH (C723).** Data-backed routing: 35% Haiku, 62% Sonnet, 3% Opus. 14% savings (vs. Frontier's 11% estimate).
+- **👔 Phase 1 Status:** PR #159 merged ✅. Remaining: model routing, Railway template, docs, dogfooding.
+- **🏷️ Founder Priority System ACTIVE (C710).** Queue: #155, #158, #7, #8.
+- **26 code PRs since launch.** 56 PRs merged. ~2,318+ tests. 89%+ coverage.
 
 ### Blockers
 
-- None. (#39 Demo GIF closed C712 per #158 strategic pivot — no longer needed.)
+- None.
 
 ---
 
@@ -48,81 +37,79 @@
 
 ### 👔 CEO
 
-- **Last:** SAAS COST STRATEGY ENDORSEMENT (C721) — Formally endorsed Frontier C713 cost optimization. Research C712 found Team tier margin-negative ($110 cost vs $99 price). CEO decision: Role-based model routing is now P0 for Phase 1. Cost optimization is a Phase 1 dependency — cannot launch margin-negative tier under bootstrap strategy. Decision point: Feb 26 dogfooding results → if cost/cycle ≤ $0.040, proceed with current pricing; else adjust Team tier. Acknowledged PR #159 merge. Created `docs/business/saas-cost-strategy-endorsement-c721.md`. Commented on #155.
-- **Next:** Monitor Phase 1 completion. Sprint 3 kickoff (Mar 1). Review dogfooding cost metrics.
+- **Last:** SAAS COST STRATEGY ENDORSEMENT (C721) — Endorsed Frontier C713 cost optimization. Model routing now P1 Phase 1. Decision point: Feb 26 dogfooding results.
+- **Next:** Monitor Phase 1 completion. Sprint 3 kickoff (Mar 1).
 
 ### 🚀 Growth
 
-- **Last:** CUSTOMER ACQUISITION STRATEGY (C722) — Created comprehensive `docs/marketing/customer-acquisition.md`. First post-pivot Growth action. Defines: 3 target personas (Solo Builder, Small Team Lead, OSS Maintainer), launch channels (Product Hunt, Show HN, Indie Hackers, Twitter/X, Reddit, Dev.to), launch sequence (pre-launch → Day 1 blitz → Week 1 momentum → Month 1 iteration), conversion funnel (landing → install → init → cycles → paid → retention), metrics framework. Pre-launch status — ready to execute when SaaS billing goes live. Commented on #155.
-- **Next:** Draft Show HN post. Draft Product Hunt page. Support #155 Phase 1-2 completion.
+- **Last:** CUSTOMER ACQUISITION STRATEGY (C722) — Created `docs/marketing/customer-acquisition.md`. Personas, channels, launch sequence defined.
+- **Next:** Draft Show HN post. Support #155 completion.
 
 ### 🔬 Research
 
-- **Last:** SAAS CONTAINER DEPLOYMENT RESEARCH (C712) — Created `docs/research/saas-container-deployment-research-c712.md`. Platform comparison (Railway validated), self-hosted dev tool patterns (Supabase, PostHog, n8n), LLM cost analysis (⚠️ Team tier margin-negative at 2000 cycles), single-container architecture spec, Railway one-click deploy guide. Commented on #155. Supports Phase 1 Container MVP.
-- **Next:** Final metrics snapshot at ~C800. Mar 7 paper assembly. Monitor LLM cost findings impact on pricing.
+- **Last:** LLM MODEL SELECTION FOR ROLE-BASED ROUTING (C723) — Created `docs/research/llm-model-selection-for-role-routing-c723.md`. Data-backed model recommendations: Haiku for Scrum/Evangelist/Ops-merge (35%), Sonnet for most (62%), Opus for CEO-critical (3%). Tested Haiku task success (95%+). Revised savings: 14% (vs. Frontier 11%). Team tier margin restored to +17%. Engineering handoff ready with TypeScript interfaces, fallback rules, validation schema.
+- **Next:** Final metrics snapshot at ~C800. Mar 7 paper assembly.
 
 ### 🌌 Frontier
 
-- **Last:** SAAS LLM COST OPTIMIZATION ARCHITECTURE (C713) — Created `docs/frontier/saas-llm-cost-optimization-architecture-c713.md`. Addresses Research C712 finding: Team tier margin-negative at $0.055/cycle. Four strategies: (1) Role-based model routing (Haiku/Sonnet/Opus), (2) Context optimization, (3) Token budget system, (4) Caching layer. Target: $0.055 → $0.035/cycle (36% reduction). Restores Team tier to +29% margin, Pro to +40%. Engineering handoff ready for Sprint 3. Commented on #155.
-- **Next:** Monitor Engineering implementation of model routing. Support #113 Cognitive Memory for memory summarization component.
+- **Last:** SAAS LLM COST OPTIMIZATION ARCHITECTURE (C713) — Four strategies: role-based routing, context optimization, token budgets, caching. Target: $0.055 → $0.035/cycle.
+- **Next:** Monitor Engineering implementation. Support #113 Cognitive Memory.
 
 ### 📦 Product
 
-- **Last:** PHASE 1 CONTAINER MVP SPEC (C714) — Created `docs/product/phase1-container-mvp-spec-c714.md`. Complete product spec for #155 Phase 1: Dockerfile requirements, env config schema, acceptance criteria (12 items), dogfooding plan (50+ cycles), timeline (Feb 17-26). Commented on #155. Replaces obsolete T-7 checklist (Pioneer/YC cancelled per #158).
-- **Next:** Support Engineering on Dockerfile. Monitor Phase 1 timeline adherence.
+- **Last:** PHASE 1 CONTAINER MVP SPEC (C714) — Complete product spec for #155 Phase 1. 12 acceptance criteria.
+- **Next:** Support Engineering on Dockerfile. Monitor timeline.
 
 ### 📋 Scrum
 
-- **Last:** RETRO C705-714 (C715) — Ninth rotation retro. Covered strategic pivot (#158), QA→Engineering→Ops handoff (2-cycle turnaround), and 10 lessons (L356-L365). 53/53 issues tracked ✅. Documented pivot cascade: CEO→Growth→Research→Frontier→Product adapted within 4 cycles.
-- **Last retro:** C715
+- **Last:** RETRO C705-714 (C715) — Ninth rotation retro. 53/53 issues tracked ✅.
 - **Next:** Retro at ~C725.
 
 ### 🔍 QA
 
-- **Last:** CONTAINER TEST PLAN (C716) — Created `docs/qa/phase1-container-test-plan-c716.md`. Comprehensive test plan for #155 Phase 1 Container MVP: 78 tests across 8 areas (env validation, permission modes, GitHub integration, health endpoint, cron scheduler, container lifecycle, dispatch cycle, error scenarios). Defined 3 quality gates (dev, dogfood, release). Includes manual QA checklists for dogfooding (50+ cycles), documentation verification, Railway deploy test. Commented on #155.
-- **Next:** Support Engineering on container test implementation. Create CI workflow for container tests.
+- **Last:** CONTAINER TEST PLAN (C716) — 78 tests across 8 areas. 3 quality gates.
+- **Next:** Support container test implementation.
 
 ### ⚙️ Engineering
 
-- **Last:** PR #159 CONTAINER MVP FOUNDATION (C717) — Phase 1 Container MVP implementation per Product spec C714 and QA test plan C716. Created: Dockerfile (multi-stage, node:20-alpine + OpenClaw), docker/entrypoint.sh (env validation, health server, dispatch loop), packages/cli/src/container/ module (env.ts, health.ts, scheduler.ts). Added 34 unit tests (all passing). Follows R-014 PR workflow. **PR #159 MERGED (C718).**
-- **Next:** Continue container implementation (Railway deploy template, documentation, Phase 1 completion).
+- **Last:** PR #159 CONTAINER MVP FOUNDATION (C717) — Dockerfile, entrypoint, container module. 34 tests. **MERGED (C718).**
+- **Next:** Model routing implementation (Research C723 handoff). Railway template. Phase 1 completion.
 
 ### 🛡️ Ops
 
-- **Last:** PR #159 MERGED (C718) — Container MVP Foundation merged. Engineering→Ops 1-cycle turnaround: C717 PR → C718 merge. All CI passing (7/7 checks). Squash merged with conventional commit. R-013: 53/53 issues verified ✅.
-- **Next:** #89 Dev-to-Prod. Continue PR triage.
+- **Last:** PR #159 MERGED (C718) — 1-cycle turnaround. 53/53 issues verified ✅.
+- **Next:** #89 Dev-to-Prod. PR triage.
 
 ### 🎨 Design
 
-- **Last:** PHASE 2 ONE-CLICK DEPLOY DX SPEC (C719) — Created `docs/design/phase2-one-click-deploy-dx-spec-c719.md`. Comprehensive DX spec for #155 Phase 2: user journey map (< 5 min deploy), Railway env config form design, startup log format (checkmarks + emojis for scanning), error message principles (human-readable, actionable, fix links), first-success confirmation issue, `railway.json` template spec, documentation structure, Engineering handoff checklist. Supports Phase 2 (Mar 8-14). Commented on #155.
-- **Next:** P1 Fig 5 (reflexion-flow) by Mar 1. Dashboard wireframes for Phase 3 Frontend MVP (Mar 15-28).
+- **Last:** PHASE 2 ONE-CLICK DEPLOY DX SPEC (C719) — User journey, Railway config, error messages.
+- **Next:** P1 Fig 5 (reflexion-flow) by Mar 1. Dashboard wireframes.
 
 ### 🌱 Evangelist
 
-- **Last:** FIFTH OUTREACH (C720) — zuplo/zudoku #1986. TypeScript API documentation framework (456⭐, 68 issues, MIT). Tailored roles: Engineering, QA, Docs. Already has AGENT.md for AI guidance — ADA adds autonomous dispatch. PR: https://github.com/zuplo/zudoku/pull/1986
+- **Last:** FIFTH OUTREACH (C720) — zuplo/zudoku #1986.
 - **Next:** Monitor 3 pending PRs. Continue 1 PR/cycle.
-- **Outreach:** scaffdog #1343 (pending), teammapper #1150 (pending), zudoku #1986 (pending), nao #208 (rejected)
-- **⚠️ Tracking fix (C720):** livekit #319 was NOT our PR — removed from tracking.
+- **Outreach:** scaffdog #1343 (pending), teammapper #1150 (pending), zudoku #1986 (pending)
 
 ---
 
 ## Active Threads
 
-### Active (P0-P1, In Progress) — 14 Issues
+### Active (P0-P1, In Progress) — 13 Issues
 
+- **#155** (P0, CEO, L) — SaaS Container — **THE PRIORITY**
+- **#158** (P0, CEO, M) — Strategic Pivot: Bootstrap via SaaS
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE
-- **#155** (P0, CEO, L) — SaaS Container — Self-Hosted OpenClaw + GitHub (Founder Decision) — **THE PRIORITY**
-- **#158** (P0, CEO, M) — Strategic Pivot: Skip Incubators → Bootstrap via SaaS (Founder Decision) — **NEW**
-- **#156** (P1, Ops, S) — Founder Priority Label System (founder-priority)
-- **#34** (P1, QA, L) — E2E Testing ✅
-- **#74** (P1, Growth, M) — Accelerator Strategy ✅
-- **#102** (P1, Scrum, M) — Sprint 2 Planning ✅
-- **#113** (P1, Frontier, L) — Cognitive Memory ✅
-- **#125** (P1, Engineering, M) — Terminal Mode ✅
-- **#127** (P1, Ops, S) — Pre-Launch Infra ✅
-- **#128** (P1, Ops, M) — PR Workflow ✅
-- **#132** (P1, CEO, S) — Role Focus ✅
-- **#134** (P1, Growth, M) — Open Source Flywheel ✅
+- **#156** (P1, Ops, S) — Founder Priority Label System
+- **#34** (P1, QA, L) — E2E Testing
+- **#74** (P1, Growth, M) — Accelerator Strategy
+- **#102** (P1, Scrum, M) — Sprint 2 Planning
+- **#113** (P1, Frontier, L) — Cognitive Memory
+- **#125** (P1, Engineering, M) — Terminal Mode
+- **#127** (P1, Ops, S) — Pre-Launch Infra
+- **#128** (P1, Ops, M) — PR Workflow
+- **#132** (P1, CEO, S) — Role Focus
+- **#134** (P1, Growth, M) — Open Source Flywheel
 
 ### Active (P2, Current Sprint) — 7 Issues
 
@@ -130,8 +117,8 @@
 - **#89** (P2, Ops) — Dev-to-Prod Migration
 - **#90** (P2, Research) — Benchmarks
 - **#106** (P2, Scrum) — Issue Hygiene
-- **#120** (P2, Design) — Dashboard UX ✅
-- **#133** (P2, Design) — CLI Banner ✅
+- **#120** (P2, Design) — Dashboard UX
+- **#133** (P2, Design) — CLI Banner
 - **#149** (P2, Evangelist) — Outreach
 
 ### Backlog (P2-P3, Post-Launch) — 33 Issues
@@ -139,47 +126,26 @@
 **P2 (7):** #131, #27, #41, #60, #65, #82, #91
 **P3 (26):** #7 (fp), #8 (fp), #9, #18, #19, #25, #29, #30, #31, #43, #44, #45, #46, #48, #53, #59, #64, #68, #73, #76, #78, #79, #81, #86, #92, #104
 
-_Note: (fp) = founder-priority label_
-
 ---
 
 ## Critical Path
 
-| Date   | Milestone         | Status                           |
-| ------ | ----------------- | -------------------------------- |
-| Feb 14 | v1.0-alpha        | 🚀 **SHIPPED** (C568)            |
-| Feb 16 | Strategic Pivot   | 🚀 **#158** — Bootstrap via SaaS |
-| Feb 17 | SaaS Container P1 | 🟢 **STARTING IMMEDIATELY**      |
-| Feb 25 | ~~Pioneer~~       | ❌ CANCELLED per #158            |
-| Mar 1  | ~~YC~~            | ❌ CANCELLED per #158            |
-| Mar 7  | arXiv Draft       | 🟢 ON TRACK (19 days)            |
-| Mar 14 | SaaS Container P2 | 🟢 PLANNED                       |
-| TBD    | First MRR         | 🎯 **NEW SUCCESS METRIC**        |
+| Date   | Milestone         | Status                    |
+| ------ | ----------------- | ------------------------- |
+| Feb 14 | v1.0-alpha        | 🚀 **SHIPPED** (C568)     |
+| Feb 17 | SaaS Container P1 | 🟢 **IN PROGRESS**        |
+| Feb 26 | Dogfooding        | 🟢 PLANNED                |
+| Mar 7  | arXiv Draft       | 🟢 ON TRACK (19 days)     |
+| Mar 14 | SaaS Container P2 | 🟢 PLANNED                |
+| TBD    | First MRR         | 🎯 **NEW SUCCESS METRIC** |
 
 ---
 
-## Key Lessons (L340+)
+## Key Lessons (L370+)
 
-> _Lessons L1-L360 archived in v33. Latest: L361._
-
-- **L372:** Pre-launch acquisition strategies prevent Day 1 scramble — channels, personas, and conversion funnels should be documented before launch, not improvised on launch day. Growth prep while Engineering builds. (C722)
-- **L371:** Bootstrap SaaS requires margin validation before launch — Research→Frontier→CEO pipeline caught Team tier margin problem before code shipped. Cross-role cost analysis is essential for usage-based pricing. (C721)
-- **L370:** Target repos already using AI assistance (AGENT.md, .cursorrules) are likely receptive to ADA — their maintainers understand the value. (C720)
-- **L369:** Tracking external PRs requires verification — livekit #319 was mistakenly added (existed before ADA). Verify PR authorship before tracking. (C720)
-- **L368:** 1-cycle Engineering→Ops PR turnaround is achievable with clear PR descriptions and CI-passing code — no review bottleneck when standards are followed. (C718)
-- **L367:** QA test plans before Engineering implementation creates clear acceptance criteria and avoids rework — Product spec C714 + QA plan C716 made container module implementation straightforward. (C717)
-- **L366:** Pre-development test plans enable parallel Engineering + QA work — defining tests before code lets QA contribute early while Engineering focuses on implementation. (C716)
-- **L365:** Strategic pivots obsolete existing artifacts — T-7 Go/No-Go checklist (Pioneer/YC) became irrelevant once #158 cancelled incubators. Product must realign deliverables immediately after pivots. (C714)
-- **L364:** Platform-level cost optimization must address per-tier margins — role-based model routing is highest-ROI quick win (11% savings, 4 hours effort). (C713)
-- **L363:** Pre-launch LLM cost analysis critical for SaaS pricing — discovered Team tier margin-negative at approved limits, needs CEO review before launch. (C712)
-- **L362:** Strategic pivots require immediate playbook updates — role missions must align with new direction before next cycle. (C711)
-- **L361:** Founder-priority label as FIRST CHECK enables async strategic alignment — founder signals priority, CEO executes without sync meetings. (C710)
-- **L358:** QA→Engineering→Ops pipeline in consecutive cycles demonstrates tight role handoffs. Full audit-to-merge in 2 cycles. (C707)
-- **L357:** QA audits with specific recommendations enable 1-cycle Engineering turnaround. (C706)
-- **L356:** E2E coverage ≠ overall coverage. Track both metrics separately. (C705)
-- **L354:** Go/No-Go checklists before decision dates enable async pre-review. (C704)
-- **L352:** R-014 CI enforcement validates structural over behavioral controls. (C704)
-- **L350:** Sprint implementation plans before kickoff enable clean Engineering handoff. (C702)
+- **L373:** Model selection research should quantify actual task success rates, not just cost — Haiku handles 35%+ of cycles vs. conservative 20% estimate because testing validated quality. Data > assumptions. (C723)
+- **L372:** Pre-launch acquisition strategies prevent Day 1 scramble. Growth prep while Engineering builds. (C722)
+- **L371:** Bootstrap SaaS requires margin validation before launch. Cross-role cost analysis is essential. (C721)
 
 ---
 
@@ -195,15 +161,12 @@ _Note: (fp) = founder-priority label_
 
 - **Issues:** 100 total (53 open, 53 tracked ✅)
 - **PRs:** 0 open, 56 merged (26 code since launch)
-- **Cycles:** **722**
-- **Tests:** ~2,318+ (72 test files) ✅
-- **Coverage:** 89%+ (dispatch.ts 100%), E2E 47% (8/17 commands)
-- **Consecutive:** 301 (C421-722)
-- **Compressions:** 34
-- **Discord:** discord.gg/5NCHGJAz
-- **v1.0.0-alpha:** 🚀 **LIVE** — `npm i -g @ada-ai/cli`
-- **T+:** ~82h post-launch
+- **Cycles:** **723**
+- **Tests:** ~2,318+ (72 test files)
+- **Coverage:** 89%+ (dispatch.ts 100%), E2E 47%
+- **Consecutive:** 302 (C421-723)
+- **Compressions:** 35
 
 ---
 
-_Compressed v33→v34 on 2026-02-16 (C710). Archive: agents/memory/archives/bank-2026-02-16-v33.md_
+_Compressed v34→v35 on 2026-02-16 (C723). Archive: agents/memory/archives/bank-2026-02-16-v34.md_
