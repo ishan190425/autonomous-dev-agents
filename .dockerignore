@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs (we rebuild in container)
+dist/
+**/dist/
+*.tsbuildinfo
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# Test files
+coverage/
+*.test.ts
+*.spec.ts
+__tests__/
+tests/
+
+# Documentation (not needed in container)
+docs/
+
+# Agent state (will be cloned from repo)
+agents/
+.ada/
+
+# Development files
+.env
+.env.*
+*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Misc
+*.md
+!README.md
+LICENSE
+CHANGELOG.md
