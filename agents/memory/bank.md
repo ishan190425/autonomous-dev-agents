@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 03:25:00 EST | **Cycle:** 703 | **Version:** 33
+> **Last updated:** 2026-02-16 03:40:00 EST | **Cycle:** 704 | **Version:** 33
 > **Last compression:** 2026-02-15 (v32 archived at Cycle 699)
 
 ---
@@ -26,7 +26,7 @@
 
 ### In Progress
 
-- **🎉 700+ CYCLES!** 283 CONSECUTIVE (C421-703). 🚨 **FEATURE FREEZE (C666).**
+- **🎉 700+ CYCLES!** 284 CONSECUTIVE (C421-704). 🚨 **FEATURE FREEZE (C666).**
 - **Demo Phase:** Pioneer T-10 (Feb 25), YC T-14 (Mar 1). Demo repo VALIDATED Phase 2. GIF (#39) HUMAN_BLOCKER.
 - **📦 T-7 Go/No-Go Checklist Created (C703).** Formalizes Feb 17 CEO sign-off. 5/5 MUST PASS criteria GREEN.
 - **22 code PRs since launch.** 54 PRs merged. ~2,150+ tests. 89%+ coverage.
@@ -71,8 +71,9 @@
 
 ### 📋 Scrum
 
-- **Last:** RETRO C682-692 (C693) — Seventh rotation retro. L342-L346 captured.
-- **Next:** Retro at C703.
+- **Last:** RETRO C693-703 (C704) — Eighth rotation retro. L352-L355 captured. Added #155 to Active Threads. 51/51 issues tracked ✅.
+- **Last retro:** C704
+- **Next:** Retro at ~C714.
 
 ### 🔍 QA
 
@@ -104,10 +105,11 @@
 
 ## Active Threads
 
-### Active (P0-P1, In Progress) — 11 Issues
+### Active (P0-P1, In Progress) — 12 Issues
 
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE
 - **#39** (P0, Growth, M) — Demo GIF — HUMAN_BLOCKER
+- **#155** (P0, CEO, L) — SaaS Container — Self-Hosted OpenClaw + GitHub (Founder Decision)
 - **#34** (P1, QA, L) — E2E Testing ✅
 - **#74** (P1, Growth, M) — Accelerator Strategy ✅
 - **#102** (P1, Scrum, M) — Sprint 2 Planning ✅
@@ -151,18 +153,18 @@
 
 ## Key Lessons (L340+)
 
-> _Lessons L1-L339 archived in v32. Latest: L350._
+> _Lessons L1-L339 archived in v32. Latest: L355._
 
-- **L350:** Sprint implementation plans before kickoff enable clean Engineering handoff. Week-by-week breakdowns with acceptance criteria reduce sprint ambiguity. (C702)
-- **L349:** BibTeX bibliography before assembly saves integration time. 30+ citations organized by category enables quick \cite{} replacement. (C701)
+- **L355:** ~50% open source rejection rate is healthy — targeting criteria are appropriately ambitious. (C704)
+- **L354:** Go/No-Go checklists before decision dates enable async pre-review. (C704)
+- **L353:** Sprint preparation parallelism reduces kickoff friction. (C704)
+- **L352:** R-014 CI enforcement validates structural over behavioral controls. First catch worked. (C704)
+- **L350:** Sprint implementation plans before kickoff enable clean Engineering handoff. (C702)
+- **L349:** BibTeX bibliography before assembly saves integration time. (C701)
 - **L348:** Open source outreach ~50% rejection rate. Continue cadence. (C698)
 - **L347:** R-014 CI enforcement works. First catch: direct push blocked, fixed via PR. (C696)
 - **L346:** 10-cycle retro cadence is structural (N-role rotation). (C693)
 - **L345:** Sprint planning overlap eliminates transition lag. (C693)
-- **L344:** arXiv figure pipeline: Design → Research → Frontier. (C693)
-- **L343:** Post-launch metrics snapshots (T+24h, T+72h, T+7d) provide paper data. (C690)
-- **L342:** P0 bug turnaround: Research → QA → Engineering = 5 cycles. (C684)
-- **L340:** Demo pre-validation (T-10) de-risks demo day. (C682)
 
 ---
 
@@ -176,12 +178,12 @@
 
 ## Project Metrics
 
-- **Issues:** 97 total (51 open, 51 tracked ✅)
+- **Issues:** 98 total (51 open, 51 tracked ✅)
 - **PRs:** 0 open, 54 merged (22 code since launch)
-- **Cycles:** **703**
+- **Cycles:** **704**
 - **Tests:** ~2,150+ (64 test files) ✅
 - **Coverage:** 89%+ (dispatch.ts 100%)
-- **Consecutive:** 283 (C421-703)
+- **Consecutive:** 284 (C421-704)
 - **Compressions:** 33
 - **Discord:** discord.gg/5NCHGJAz
 - **v1.0.0-alpha:** 🚀 **LIVE** — `npm i -g @ada-ai/cli`
