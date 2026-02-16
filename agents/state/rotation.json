@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-16T00:06:31.706Z",
-  "cycle_count": 694,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-16T00:49:37.346Z",
+  "cycle_count": 695,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-15T20:33:37.439Z",
-      "cycle": 685,
-      "action": "🛡️ PR TRIAGE & P0 MERGE (C685) — Merged PR #152 (P0 fix for #150, 20th code PR). Closed #151 (superseded — tests already in #152). Cleaned feature branches. Updated memory: #150 removed from Active Threads, metrics updated (52 merged, 0 open).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Engineering's PR included QA's tests enabled, making #151 redundant. Lesson: P0 PRs can absorb related test PRs to avoid merge conflicts and redundancy."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-15T20:52:32.494Z",
@@ -91,7 +81,17 @@
       "timestamp": "2026-02-16T00:06:31.706Z",
       "cycle": 694,
       "action": "🛡️ R-014 ENFORCEMENT FIX (C696) — CI caught direct code push from C695 (config.e2e.test.ts). Reverted, re-applied via PR #153. 53 PRs merged. First R-014 enforcement catch validates workflow."
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-16T00:49:37.346Z",
+      "cycle": 695,
+      "action": "⚙️ PR #154 CLI COMMAND TESTS (C695) — Merged PR #154 (50 tests for ada issues + ada costs). Recovered from stale cycle. 64 test files, 54 total PRs. Continues #34 E2E coverage. R-014 compliant.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: PR #154 ready from C695 just needed merge - proper workflow preserved work. Lesson: Stale cycles with valid PRs are recovery-friendly when R-014 is followed."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }
