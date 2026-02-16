@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 15:15:00 EST | **Cycle:** 749 | **Version:** 36
+> **Last updated:** 2026-02-16 15:34:00 EST | **Cycle:** 750 | **Version:** 36
 > **Last compression:** 2026-02-16 (v35 archived at Cycle 743)
 
 ---
@@ -19,13 +19,13 @@
 
 ### In Progress
 
-- **🎉 749 CYCLES!** 328 CONSECUTIVE (C421-749). 🚨 **FEATURE FREEZE (C666).**
+- **🎉 750 CYCLES!** 329 CONSECUTIVE (C421-750). 🚨 **FEATURE FREEZE (C666).**
 - **📦 #155 Phase 2 STARTS TOMORROW! 🎉** Feb 17-26 dogfooding period. Kickoff brief ready (C743).
 - **👔 CEO KICKOFF BRIEF (C743).** Readiness confirmed, daily protocol set, Go/No-Go framework documented.
 - **🎯 NEW NORTH STAR:** First MRR ($100 by Mar 31) replaces cycle count as success metric.
 - **📅 MILESTONES:** Feb 17 Phase 2 Start → Feb 26 Go/No-Go → Mar 1 Sprint 3 → Mar 7 arXiv Draft.
 - **🏷️ Founder Priority System ACTIVE (C710).** Queue: #155, #158, #7, #8.
-- **31 code PRs since launch.** 60 merged. ~2,500+ tests. 89%+ coverage.
+- **32 code PRs since launch.** 61 merged. ~2,500+ tests. 89%+ coverage.
 
 ### Blockers
 
@@ -72,8 +72,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** `ada validate` COMMAND (C739) — PR #163 opened. New CLI command for automated Phase 2 dogfooding validation. Implements all 6 success criteria checks (SC-1 through SC-6): dispatch lifecycle, model routing, GitHub integration, memory persistence, cost savings (≥10%), consecutive cycles (5+). Features: --json, --verbose, --quick flags. GO/NO-GO verdict output for Feb 26 decision. 43 tests (14 passing). Supports automated CI/scripting via exit codes. **PR #163 MERGED (C740).**
-- **Next:** Support Phase 2 dogfooding. #125 Terminal Mode (Sprint 2).
+- **Last:** PR #166 MERGE (C750) — Reviewed and merged QA's PATH fix for `ada validate` SC-3. Adds `getExtendedPath()` helper including `/snap/bin`, `/usr/local/bin`, `/opt/homebrew/bin` for cross-platform gh CLI detection. Closes #165. All CI passing. Phase 2 Day 1 unblocked — `ada validate` now works regardless of gh installation method. 61 merged PRs total (32 code since launch).
+- **Next:** Support Phase 2 dogfooding (Day 1 tomorrow). #125 Terminal Mode (Sprint 2).
 
 ### 🛡️ Ops
 
@@ -95,10 +95,9 @@
 
 ## Active Threads
 
-### Active (P0-P1, In Progress) — 15 Issues
+### Active (P0-P1, In Progress) — 14 Issues
 
 - **#155** (P0, CEO, L) — SaaS Container — **THE PRIORITY**
-- **#165** (P1, QA, S) — `ada validate` SC-3 PATH bug — PR #166 open, CI pending — **NEW**
 - **#158** (P0, CEO, M) — Strategic Pivot: Bootstrap via SaaS
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE
 - **#156** (P1, Ops, S) — Founder Priority Label System
@@ -167,12 +166,12 @@
 
 ## Project Metrics
 
-- **Issues:** 102 total (55 open, 55 tracked ✅)
-- **PRs:** 1 open (#166), 60 merged (32 code since launch)
-- **Cycles:** **749**
+- **Issues:** 102 total (54 open, 54 tracked ✅)
+- **PRs:** 0 open, 61 merged (32 code since launch)
+- **Cycles:** **750**
 - **Tests:** ~2,500+ (77 test files)
 - **Coverage:** 89%+ (dispatch.ts 100%), E2E 47%
-- **Consecutive:** 328 (C421-749)
+- **Consecutive:** 329 (C421-750)
 - **Compressions:** 36
 
 ---
