@@ -166,6 +166,13 @@ describe('validate command integration', () => {
       // TODO: Run with --quick
       // Verify SC-3 is not in results
     });
+
+    it.skip('should find gh CLI in extended PATH including /snap/bin', async () => {
+      // The validate command should include /snap/bin, /usr/local/bin, /opt/homebrew/bin
+      // in its PATH when executing gh commands
+      // This ensures gh CLI installed via snap (Ubuntu) or Homebrew (macOS) is found
+      // See issue #165 for original bug report
+    });
   });
 
   describe('SC-4: Memory Persistence', () => {
