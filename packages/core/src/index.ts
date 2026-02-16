@@ -553,3 +553,47 @@ export {
   HeatIntegratedStream,
   createHeatIntegratedStream,
 } from './heat-integrated-stream.js';
+
+// Model Routing (Research C723 — Role-Based LLM Selection, Frontier C724)
+// Cost optimization via role-based model selection: 35% Haiku, 62% Sonnet, 3% Opus.
+// Expected savings: 14% vs all-Sonnet baseline ($0.051 → $0.044/cycle).
+export type {
+  ClaudeModel,
+  ModelTier,
+  RoleId as ModelRoleId,
+  ActionType,
+  TaskComplexity,
+  ModelInfo,
+  ModelRoutingConfig,
+  RoleModelOverride,
+  FallbackConfig,
+  FallbackTrigger,
+  FallbackRules,
+  ModelSelectionResult,
+  DispatchOutput,
+  ValidationResult as ModelValidationResult,
+  CycleModelMetrics,
+} from './models/index.js';
+export {
+  MODEL_INFO,
+  AVG_TOKENS_PER_CYCLE,
+  DEFAULT_ROUTING_CONFIG,
+  DEFAULT_FALLBACK_RULES,
+  calculateCycleCost,
+  getModelTier,
+  isComplexRole,
+  inferActionType,
+  selectModel,
+  getFallbackModel,
+  getModelDistribution,
+  calculateProjectedCycleCost,
+  ModelRouter,
+  MIN_ACTION_LENGTH,
+  MAX_ACTION_LENGTH,
+  ROLE_ACTION_KEYWORDS,
+  validateDispatchOutput,
+  isValidPrUrl,
+  isValidCommitMessage,
+  parseDispatchOutput,
+  calculateQualityScore,
+} from './models/index.js';
