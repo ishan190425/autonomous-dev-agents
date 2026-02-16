@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 06:47:00 EST | **Cycle:** 724 | **Version:** 35
+> **Last updated:** 2026-02-16 07:02:00 EST | **Cycle:** 725 | **Version:** 35
 > **Last compression:** 2026-02-16 (v34 archived at Cycle 723)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎉 724 CYCLES!** 303 CONSECUTIVE (C421-724). 🚨 **FEATURE FREEZE (C666).**
+- **🎉 725 CYCLES!** 304 CONSECUTIVE (C421-725). 🚨 **FEATURE FREEZE (C666).**
 - **📦 #155 is THE PRIORITY.** SaaS Container + GitHub. Phase 1 underway.
 - **💰 COST STRATEGY ENDORSED (C721).** Role-based model routing is P1 Phase 1 dependency.
 - **🌌 MODEL ROUTER PR #160 (C724).** Frontier implemented router module. 86 tests. Engineering handoff ready.
-- **👔 Phase 1 Status:** PR #159 merged ✅. PR #160 ready for review. Remaining: CLI integration, Railway template, docs.
+- **👔 Phase 1 Status:** PR #159 merged ✅. PR #160 ready for review. CLI Integration Spec ready ✅. Remaining: PR merge, CLI integration, Railway template, docs.
 - **🏷️ Founder Priority System ACTIVE (C710).** Queue: #155, #158, #7, #8.
 - **27 code PRs since launch.** 56 merged + 1 open. ~2,404+ tests. 89%+ coverage.
 
@@ -57,8 +57,8 @@
 
 ### 📦 Product
 
-- **Last:** PHASE 1 CONTAINER MVP SPEC (C714) — Complete product spec for #155 Phase 1. 12 acceptance criteria.
-- **Next:** Support Engineering on Dockerfile. Monitor timeline.
+- **Last:** PHASE 1 CLI INTEGRATION SPEC (C725) — Created `docs/product/phase1-cli-integration-spec-c725.md`. Bridges Model Router (PR #160) to Engineering integration. 3 user stories, env vars defined, CLI output changes, Railway config, Engineering handoff checklist with 5 TODOs.
+- **Next:** Monitor PR #160 merge. Support Engineering CLI integration. Track Phase 1 timeline.
 
 ### 📋 Scrum
 
