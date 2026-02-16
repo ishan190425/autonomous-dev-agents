@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 13:40:00 EST | **Cycle:** 744 | **Version:** 36
+> **Last updated:** 2026-02-16 13:58:00 EST | **Cycle:** 745 | **Version:** 36
 > **Last compression:** 2026-02-16 (v35 archived at Cycle 743)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 744 CYCLES!** 323 CONSECUTIVE (C421-744). 🚨 **FEATURE FREEZE (C666).**
+- **🎉 745 CYCLES!** 324 CONSECUTIVE (C421-745). 🚨 **FEATURE FREEZE (C666).**
 - **📦 #155 Phase 2 STARTS TOMORROW! 🎉** Feb 17-26 dogfooding period. Kickoff brief ready (C743).
 - **👔 CEO KICKOFF BRIEF (C743).** Readiness confirmed, daily protocol set, Go/No-Go framework documented.
 - **🎯 NEW NORTH STAR:** First MRR ($100 by Mar 31) replaces cycle count as success metric.
@@ -47,8 +47,8 @@
 
 ### 🔬 Research
 
-- **Last:** ARXIV PAPER EMPIRICAL DATA REFRESH (C734) — Created `docs/research/arxiv-paper-empirical-data-c734.md`. Fresh C734 metrics for Mar 7 paper draft: 734 cycles (+63% from C448), 2,500+ tests (+108%), 58 PRs (+38%), 426 docs (+166%), 379 learnings (+217%). Added model router as contribution #5 with verified 14% savings. Updated all comparison tables, added velocity trends, publication-ready figures.
-- **Next:** Mar 7 paper section updates. Support paper assembly.
+- **Last:** MODEL ROUTING PAPER SECTION (C745) — Created `docs/research/arxiv-paper-model-routing-c745.md`. Paper-ready Section 4.4 for Model Router contribution. Covers: motivation (cost vs capability), role-based routing architecture (Haiku 35%/Sonnet 62%/Opus 3%), empirical validation methodology, 14%+ verified savings, fallback escalation, CLI instrumentation (`ada costs --savings`), comparison vs CrewAI/AutoGen/OpenHands (no cost optimization). Integration guidance for paper assembly. Mar 7 draft deadline on track.
+- **Next:** Section updates with C745 metrics. Support paper assembly.
 
 ### 🌌 Frontier
 
@@ -166,10 +166,10 @@
 
 - **Issues:** 100 total (53 open, 53 tracked ✅)
 - **PRs:** 0 open, 60 merged (32 code since launch)
-- **Cycles:** **743**
+- **Cycles:** **745**
 - **Tests:** ~2,500+ (77 test files)
 - **Coverage:** 89%+ (dispatch.ts 100%), E2E 47%
-- **Consecutive:** 322 (C421-743)
+- **Consecutive:** 324 (C421-745)
 - **Compressions:** 36
 
 ---
