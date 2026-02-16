@@ -731,3 +731,200 @@ export function calculateEfficiency(tokens: number, durationMs: number): number 
   if (durationMs === 0) return 0;
   return Math.round((tokens / durationMs) * 1000);
 }
+
+// ─── Model Routing Savings Analysis (Phase 2 — C735) ─────────────────────────
+
+/** Model tier for distribution analysis */
+export type ModelTierCategory = 'haiku' | 'sonnet' | 'opus';
+
+/** Distribution of cycles across model tiers */
+export interface ModelDistribution {
+  readonly haiku: { readonly cycles: number; readonly percentage: number; readonly cost: number };
+  readonly sonnet: { readonly cycles: number; readonly percentage: number; readonly cost: number };
+  readonly opus: { readonly cycles: number; readonly percentage: number; readonly cost: number };
+}
+
+/** Status of cost savings vs target */
+export type SavingsStatus = 'on_track' | 'below_target' | 'above_target';
+
+/** Complete savings analysis for model routing validation */
+export interface SavingsAnalysis {
+  /** Distribution of cycles across model tiers */
+  readonly modelDistribution: ModelDistribution;
+  /** Total actual cost */
+  readonly actualCost: number;
+  /** What cost would be if all cycles used Sonnet */
+  readonly baselineCost: number;
+  /** Savings amount and percentage */
+  readonly savings: { readonly amount: number; readonly percentage: number };
+  /** Per-cycle averages */
+  readonly perCycle: { readonly actual: number; readonly baseline: number; readonly savings: number };
+  /** Status vs target (10%+) */
+  readonly status: SavingsStatus;
+  /** Target savings percentage */
+  readonly targetPercentage: number;
+  /** Projected savings from Research C723 */
+  readonly projectedPercentage: number;
+  /** Number of cycles analyzed */
+  readonly cycleCount: number;
+}
+
+/** Sonnet pricing for baseline calculation (per 1M tokens) */
+const SONNET_BASELINE_PRICING = {
+  inputPer1M: 3.0,
+  outputPer1M: 15.0,
+};
+
+/**
+ * Detect model tier from model name string.
+ *
+ * @param model - Model identifier (e.g., "claude-3-5-haiku-20241022")
+ * @returns Model tier category
+ */
+export function detectModelTier(model: string): ModelTierCategory {
+  const modelLower = model.toLowerCase();
+  if (modelLower.includes('haiku')) return 'haiku';
+  if (modelLower.includes('opus')) return 'opus';
+  return 'sonnet';
+}
+
+/**
+ * Calculate what the cost would be if all cycles used Sonnet.
+ * Uses actual token counts with Sonnet pricing.
+ *
+ * @param cycles - Cycles to analyze
+ * @returns Baseline cost in USD
+ */
+export function calculateBaselineCost(cycles: readonly CycleMetrics[]): number {
+  let baseline = 0;
+  for (const cycle of cycles) {
+    const inputCost = (cycle.totals.inputTokens / 1_000_000) * SONNET_BASELINE_PRICING.inputPer1M;
+    const outputCost = (cycle.totals.outputTokens / 1_000_000) * SONNET_BASELINE_PRICING.outputPer1M;
+    baseline += inputCost + outputCost;
+  }
+  return Math.round(baseline * 1_000_000) / 1_000_000; // 6 decimal precision
+}
+
+/**
+ * Calculate model distribution from cycles.
+ *
+ * @param cycles - Cycles to analyze
+ * @returns Distribution of cycles across model tiers
+ */
+export function calculateModelDistribution(cycles: readonly CycleMetrics[]): ModelDistribution {
+  const counts = { haiku: 0, sonnet: 0, opus: 0 };
+  const costs = { haiku: 0, sonnet: 0, opus: 0 };
+
+  for (const cycle of cycles) {
+    const tier = detectModelTier(cycle.model);
+    counts[tier]++;
+    costs[tier] += cycle.cost.totalCost;
+  }
+
+  const total = cycles.length || 1; // Avoid divide by zero
+  return {
+    haiku: {
+      cycles: counts.haiku,
+      percentage: Math.round((counts.haiku / total) * 100),
+      cost: Math.round(costs.haiku * 1_000_000) / 1_000_000,
+    },
+    sonnet: {
+      cycles: counts.sonnet,
+      percentage: Math.round((counts.sonnet / total) * 100),
+      cost: Math.round(costs.sonnet * 1_000_000) / 1_000_000,
+    },
+    opus: {
+      cycles: counts.opus,
+      percentage: Math.round((counts.opus / total) * 100),
+      cost: Math.round(costs.opus * 1_000_000) / 1_000_000,
+    },
+  };
+}
+
+/**
+ * Calculate complete savings analysis for model routing validation.
+ *
+ * Used for Phase 2 dogfooding to verify the 14% projected savings
+ * are actually achieved (target: 10%+).
+ *
+ * @param cycles - Cycles to analyze
+ * @param targetSavings - Target savings percentage (default: 10)
+ * @param projectedSavings - Projected savings from Research C723 (default: 14)
+ * @returns Complete savings analysis
+ *
+ * @example
+ * ```typescript
+ * const analysis = calculateSavingsAnalysis(cycles);
+ * console.log(`Savings: ${analysis.savings.percentage}%`);
+ * console.log(`Status: ${analysis.status}`);
+ * ```
+ */
+export function calculateSavingsAnalysis(
+  cycles: readonly CycleMetrics[],
+  targetSavings: number = 10,
+  projectedSavings: number = 14
+): SavingsAnalysis {
+  const cycleCount = cycles.length;
+
+  if (cycleCount === 0) {
+    return {
+      modelDistribution: {
+        haiku: { cycles: 0, percentage: 0, cost: 0 },
+        sonnet: { cycles: 0, percentage: 0, cost: 0 },
+        opus: { cycles: 0, percentage: 0, cost: 0 },
+      },
+      actualCost: 0,
+      baselineCost: 0,
+      savings: { amount: 0, percentage: 0 },
+      perCycle: { actual: 0, baseline: 0, savings: 0 },
+      status: 'below_target',
+      targetPercentage: targetSavings,
+      projectedPercentage: projectedSavings,
+      cycleCount: 0,
+    };
+  }
+
+  // Calculate distribution
+  const modelDistribution = calculateModelDistribution(cycles);
+
+  // Calculate actual cost
+  let actualCost = 0;
+  for (const cycle of cycles) {
+    actualCost += cycle.cost.totalCost;
+  }
+  actualCost = Math.round(actualCost * 1_000_000) / 1_000_000;
+
+  // Calculate baseline cost (all Sonnet)
+  const baselineCost = calculateBaselineCost(cycles);
+
+  // Calculate savings
+  const savingsAmount = Math.round((baselineCost - actualCost) * 1_000_000) / 1_000_000;
+  const savingsPercentage = baselineCost > 0
+    ? Math.round((savingsAmount / baselineCost) * 1000) / 10 // 1 decimal precision
+    : 0;
+
+  // Determine status
+  let status: SavingsStatus;
+  if (savingsPercentage >= targetSavings) {
+    status = savingsPercentage > projectedSavings ? 'above_target' : 'on_track';
+  } else {
+    status = 'below_target';
+  }
+
+  // Per-cycle averages
+  const perCycleActual = Math.round((actualCost / cycleCount) * 1_000_000) / 1_000_000;
+  const perCycleBaseline = Math.round((baselineCost / cycleCount) * 1_000_000) / 1_000_000;
+  const perCycleSavings = Math.round((savingsAmount / cycleCount) * 1_000_000) / 1_000_000;
+
+  return {
+    modelDistribution,
+    actualCost,
+    baselineCost,
+    savings: { amount: savingsAmount, percentage: savingsPercentage },
+    perCycle: { actual: perCycleActual, baseline: perCycleBaseline, savings: perCycleSavings },
+    status,
+    targetPercentage: targetSavings,
+    projectedPercentage: projectedSavings,
+    cycleCount,
+  };
+}

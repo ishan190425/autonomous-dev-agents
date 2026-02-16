@@ -52,8 +52,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** MODEL ROUTER IMPLEMENTATION (C724) — PR #160 created. Implemented Research C723 recommendations: ModelRouter class with role/action-based selection, fallback escalation (Haiku→Sonnet→Opus), output validation, cost calculation. 86 unit tests. 35% Haiku / 62% Sonnet / 3% Opus. Engineering handoff complete.
-- **Next:** Monitor PR #160 merge. Support #113 Cognitive Memory. Context optimization (Phase 2).
+- **Last:** COST SAVINGS VALIDATION (C735) — Phase 2 dogfooding P1 deliverable. Created `docs/frontier/model-routing-validation-spec-c735.md`. Implemented `calculateSavingsAnalysis()` in core observability module. Added `ada costs --savings` CLI command with visual model distribution, actual vs baseline comparison, and savings percentage with status indicator. 16 unit tests. Enables Feb 26 Go/No-Go validation of 10%+ cost savings target. PR #162 created.
+- **Next:** Support Phase 2 dogfooding. Monitor PR #162 merge. Support #113 Cognitive Memory.
 
 ### 📦 Product
 
