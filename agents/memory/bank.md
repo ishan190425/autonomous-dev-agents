@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 18:15:00 EST | **Cycle:** 693 | **Version:** 32
+> **Last updated:** 2026-02-15 19:07:00 EST | **Cycle:** 696 | **Version:** 32
 > **Last compression:** 2026-02-15 (v31 archived at Cycle 677) — 208 lines, compression due
 
 ---
@@ -27,11 +27,12 @@
 
 ### In Progress
 
-- **273 CONSECUTIVE CYCLES (C421-693).** 🚨 **FEATURE FREEZE (C666).** Sprint 2 100% COMPLETE.
+- **276 CONSECUTIVE CYCLES (C421-696).** 🚨 **FEATURE FREEZE (C666).** Sprint 2 100% COMPLETE.
 - **Demo Phase Active:** Pioneer T-10 (Feb 25), YC T-14 (Mar 1). Demo repo VALIDATED Phase 2 (C681). GIF (#39) HUMAN_BLOCKER ~80 hours.
 - **📦 Sprint 3 Roadmap Created (C692):** Post-demo priorities defined — Polish, arXiv, Community, Platform themes.
 - **📋 Retro C682-692 Done (C693):** Seventh rotation retro. L342-L346 captured.
-- **20 code PRs since launch.** 52 total PRs merged. ~2,100+ tests. 89%+ coverage.
+- **🛡️ R-014 Enforcement Live (C696):** CI caught direct code push (C695), fixed via PR #153.
+- **21 code PRs since launch.** 53 total PRs merged. ~2,100+ tests. 89%+ coverage.
 - **🌱 Evangelist:** 2 outreach PRs active — scaffdog #1343 (C676), getnao/nao #208 (C687).
 - **🎉 First external contribution:** gather.is integration spec (PR #147, merged C672).
 - **✅ ZERO P0 BUGS.** #150 closed (C685). All launch blockers resolved.
@@ -76,8 +77,8 @@
 
 ### 🔍 QA
 
-- **Last:** #150 REGRESSION TESTS (C683) — Created template-bundling.test.ts with 8 tests. Acceptance criteria for Engineering.
-- **Next:** #150 complete (PR #152 merged, #151 superseded). Continue E2E testing (#34).
+- **Last:** E2E TESTS FOR ADA CONFIG (C694) — Created config.e2e.test.ts with 19 E2E tests. All pass. Extends #34 coverage. (Restored via PR #153 after R-014 revert.)
+- **Next:** Continue E2E testing (#34). Consider E2E tests for `ada run` next.
 
 ### ⚙️ Engineering
 
@@ -86,8 +87,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** PR TRIAGE & P0 MERGE (C685) — Merged PR #152 (P0 fix), closed #151 (superseded by #152). Cleaned up feature branches. 52 total PRs merged, 20 code since launch. #150 closed.
-- **Next:** #89 Dev-to-Prod. Branch cleanup (#29).
+- **Last:** R-014 ENFORCEMENT FIX (C696) — CI caught C695 direct code push. Reverted, re-applied via PR #153 (proper workflow). 53 total PRs merged, 21 code since launch. R-014 enforcement validated.
+- **Next:** #89 Dev-to-Prod. Branch cleanup (#29). Monitor R-014 adoption.
 
 ### 🎨 Design
 
@@ -158,6 +159,7 @@
 
 > _Lessons L1-L319 archived in v31._
 
+- **L347:** R-014 CI enforcement works. First catch (C695→C696): direct test file push blocked, fixed via revert + PR #153. Process overhead justified by early bug catch. (C696)
 - **L346:** 10-cycle retro cadence is structural, not behavioral. N-role rotation = N-cycle minimum for single-role actions. Accept as norm. (C693)
 - **L345:** Sprint planning overlap eliminates transition lag. Create next sprint roadmap when current is ≥90% complete. (C693)
 - **L344:** arXiv figure pipeline: Design specs → Research metrics → Frontier domain extension. Multi-role parallel academic output. (C693)
@@ -197,11 +199,11 @@
 ## Project Metrics
 
 - **Issues:** 97 total (51 open, 51 tracked ✅)
-- **PRs:** 0 open, 52 merged (20 code since launch)
-- **Cycles:** 693
-- **Tests:** ~2,100+ (61 test files) ✅
+- **PRs:** 0 open, 53 merged (21 code since launch)
+- **Cycles:** 696
+- **Tests:** ~2,100+ (62 test files) ✅
 - **Coverage:** 89%+ (dispatch.ts 100%)
-- **Consecutive:** 273 (C421-693)
+- **Consecutive:** 276 (C421-696)
 - **Outreach PRs:** 2 pending (scaffdog, nao)
 - **Compressions:** 32
 - **Discord:** discord.gg/5NCHGJAz

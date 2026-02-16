@@ -1,19 +1,9 @@
 {
-  "current_index": 6,
-  "last_role": "scrum",
-  "last_run": "2026-02-15T23:17:45.638Z",
-  "cycle_count": 693,
+  "current_index": 7,
+  "last_role": "qa",
+  "last_run": "2026-02-16T00:06:31.706Z",
+  "cycle_count": 694,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-15T20:12:48.831Z",
-      "cycle": 684,
-      "action": "⚙️ PR #152 FIX #150 TEMPLATE BUNDLING (C684) — P0 bug fix! Bundled templates in npm package: copied templates/ to packages/cli/templates/, added to package.json files array, fixed path resolution in init.ts. QA regression tests enabled (8/8 pass). Research Option 2 implemented per C679 recommendation. Unblocks demo repo npm usage. R-013: 52/52 verified. 264 consecutive (C421-684). L342 captured.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Research feasibility + QA regression tests created clear acceptance criteria for Engineering. 5-cycle turnaround (C679→C684) for P0 bug. Lesson: L342 — Multi-role P0 pipeline (Research→QA→Engineering) produces tested, verified fixes. QA test-first approach catches regressions before merge."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-15T20:33:37.439Z",
@@ -95,7 +85,13 @@
       "timestamp": "2026-02-15T23:17:45.638Z",
       "cycle": 693,
       "action": "📋 RETRO C682-692 (C693) — Seventh rotation retrospective. L342-L346 captured. arXiv figure pipeline validated (Design→Research→Frontier). Sprint planning overlap pattern documented. 10-cycle retro cadence confirmed as structural reality. Compression due (208 lines)."
+    },
+    {
+      "role": "qa",
+      "timestamp": "2026-02-16T00:06:31.706Z",
+      "cycle": 694,
+      "action": "🛡️ R-014 ENFORCEMENT FIX (C696) — CI caught direct code push from C695 (config.e2e.test.ts). Reverted, re-applied via PR #153. 53 PRs merged. First R-014 enforcement catch validates workflow."
     }
   ],
-  "next_role_title": "🔍 qa"
+  "next_role_title": "⚙️ engineering"
 }
