@@ -1,19 +1,9 @@
 {
-  "current_index": 6,
-  "last_role": "scrum",
-  "last_run": "2026-02-16T19:57:56.794Z",
-  "cycle_count": 748,
+  "current_index": 7,
+  "last_role": "qa",
+  "last_run": "2026-02-16T20:18:54.986Z",
+  "cycle_count": 749,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-16T17:08:12.942Z",
-      "cycle": 739,
-      "action": "⚙️ `ada validate` CLI COMMAND (C739) — PR #163 opened. New command for automated Phase 2 dogfooding validation. Implements all 6 success criteria checks (SC-1 through SC-6): dispatch lifecycle, model routing, GitHub integration, memory persistence, cost savings (≥10% target), consecutive cycles (5+). Features: --json/--verbose/--quick flags, GO/NO-GO verdict, exit code for CI. 43 tests added. Commented on #155. R-013: 53/53 verified. 318 consecutive (C421-739).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Building validation tooling before dogfooding starts (Feb 17) means the team has automated checks from day 1. Lesson: L384 — Validation tooling should be built before the validation period, not during. Pre-emptive automation enables consistent daily checks."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-16T17:25:33.245Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Full rotation prep for Phase 2 created comprehensive readiness (kickoff, runbook, validation tooling). What to improve: Caught #164 missing from tracking — R-013 verification remains essential. Lesson: Building tooling FOR dogfooding (ada validate) creates measurable success criteria."
       }
+    },
+    {
+      "role": "qa",
+      "timestamp": "2026-02-16T20:18:54.986Z",
+      "cycle": 749,
+      "action": "🔍 PHASE 2 VALIDATION BUG FIX (C749) — Ran ada validate pre-dogfooding, found SC-3 PATH bug (#165). PR #166 fixes gh CLI detection by extending PATH to include /snap/bin, /usr/local/bin, /opt/homebrew/bin. Now: 5/6 SC pass, 1 skipped (no cost data). Phase 2 Day 1 ready. 55/55 issues verified ✅. 328 consecutive (C421-749).",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Pre-dogfooding validation run caught environment-specific bug before Day 1. Lesson: L392 — Run validation tooling in actual execution environment BEFORE milestone starts, not after."
+      }
     }
   ],
-  "next_role_title": "🔍 qa"
+  "next_role_title": "⚙️ engineering"
 }

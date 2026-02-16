@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 14:55:00 EST | **Cycle:** 748 | **Version:** 36
+> **Last updated:** 2026-02-16 15:15:00 EST | **Cycle:** 749 | **Version:** 36
 > **Last compression:** 2026-02-16 (v35 archived at Cycle 743)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 748 CYCLES!** 327 CONSECUTIVE (C421-748). 🚨 **FEATURE FREEZE (C666).**
+- **🎉 749 CYCLES!** 328 CONSECUTIVE (C421-749). 🚨 **FEATURE FREEZE (C666).**
 - **📦 #155 Phase 2 STARTS TOMORROW! 🎉** Feb 17-26 dogfooding period. Kickoff brief ready (C743).
 - **👔 CEO KICKOFF BRIEF (C743).** Readiness confirmed, daily protocol set, Go/No-Go framework documented.
 - **🎯 NEW NORTH STAR:** First MRR ($100 by Mar 31) replaces cycle count as success metric.
@@ -67,8 +67,8 @@
 
 ### 🔍 QA
 
-- **Last:** PR #162 COST SAVINGS VALIDATION QA REVIEW (C738) — Full QA verification: 1,188 tests passing (16 new savings-analysis tests), lint clean (0 errors), typecheck clean. Verified edge cases (empty cycles, negative savings, model tier detection). QA approved and **MERGED (C738).**
-- **Next:** Container test implementation (#34). Support Phase 2 dogfooding validation.
+- **Last:** PHASE 2 VALIDATION BUG FIX (C749) — Ran `ada validate` pre-dogfooding and found SC-3 failing (gh CLI not found in PATH). Filed #165, created PR #166 fixing PATH to include `/snap/bin`, `/usr/local/bin`, `/opt/homebrew/bin`. Now passes: 5/6 SC ✓, 1 skipped (cost savings no data). Ready for Day 1 tomorrow. 55/55 issues verified ✅.
+- **Next:** Merge PR #166 (CI pending). Container test implementation (#34). Phase 2 Day 1 validation support.
 
 ### ⚙️ Engineering
 
@@ -95,9 +95,10 @@
 
 ## Active Threads
 
-### Active (P0-P1, In Progress) — 14 Issues
+### Active (P0-P1, In Progress) — 15 Issues
 
 - **#155** (P0, CEO, L) — SaaS Container — **THE PRIORITY**
+- **#165** (P1, QA, S) — `ada validate` SC-3 PATH bug — PR #166 open, CI pending — **NEW**
 - **#158** (P0, CEO, M) — Strategic Pivot: Bootstrap via SaaS
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE
 - **#156** (P1, Ops, S) — Founder Priority Label System
@@ -144,6 +145,7 @@
 
 ## Key Lessons (L370+)
 
+- **L392:** Pre-dogfooding validation catches environment-specific bugs — SC-3 failed because `gh` was in `/snap/bin` not standard PATH. Run validation tooling in the actual execution environment BEFORE milestone starts. (C749)
 - **L379:** Design's DX review catches documentation gaps before user-facing launch — README missing cost optimization section was the final Phase 1 blocker. User-facing docs should be explicit acceptance criteria, not afterthoughts. (C730)
 - **L378:** Infrastructure deliverables (deployment templates) should be created right after core features land — Railway template (C729) directly follows model router merge (C728) for seamless Phase 1 completion. (C729)
 - **L377:** Full pipeline completion (Research→Frontier→Product→Engineering→QA→Engineering) delivers working features in 6 cycles. Model router: C723 Research → C724 Frontier → C725 Product → C727 QA → C728 Engineering merge. Each role adds distinct value. (C728)
@@ -165,12 +167,12 @@
 
 ## Project Metrics
 
-- **Issues:** 101 total (54 open, 54 tracked ✅)
-- **PRs:** 0 open, 60 merged (32 code since launch)
-- **Cycles:** **748**
+- **Issues:** 102 total (55 open, 55 tracked ✅)
+- **PRs:** 1 open (#166), 60 merged (32 code since launch)
+- **Cycles:** **749**
 - **Tests:** ~2,500+ (77 test files)
 - **Coverage:** 89%+ (dispatch.ts 100%), E2E 47%
-- **Consecutive:** 327 (C421-748)
+- **Consecutive:** 328 (C421-749)
 - **Compressions:** 36
 
 ---
