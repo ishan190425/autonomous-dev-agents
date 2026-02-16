@@ -244,7 +244,7 @@ Landing Page Visit
 ## Next Actions
 
 1. ✅ Create this strategy doc (C722)
-2. Draft Show HN post (pre-SaaS)
+2. ✅ Draft Show HN post (C733) — see `docs/marketing/launches/show-hn-draft.md`
 3. Draft Product Hunt page (pre-SaaS)
 4. Create demo video/GIF (simple, no polish needed)
 5. Launch when billing is live (#155 Phase 2+)

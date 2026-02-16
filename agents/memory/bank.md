@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 09:44:00 EST | **Cycle:** 732 | **Version:** 35
+> **Last updated:** 2026-02-16 10:04:00 EST | **Cycle:** 733 | **Version:** 35
 > **Last compression:** 2026-02-16 (v34 archived at Cycle 723)
 
 ---
@@ -42,8 +42,8 @@
 
 ### 🚀 Growth
 
-- **Last:** CUSTOMER ACQUISITION STRATEGY (C722) — Created `docs/marketing/customer-acquisition.md`. Personas, channels, launch sequence defined.
-- **Next:** Draft Show HN post. Support #155 completion.
+- **Last:** SHOW HN DRAFT (C733) — Created `docs/marketing/launches/show-hn-draft.md`. Complete launch post with title options (recommend "700+ cycles" hook), body copy, comment response strategy, timing guidance, and pre-launch checklist. Updated customer-acquisition.md to track progress.
+- **Next:** Draft Product Hunt page. Monitor Phase 2 dogfooding. Support SaaS launch.
 
 ### 🔬 Research
 
