@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-15 21:23:00 EST | **Cycle:** 700 | **Version:** 33
+> **Last updated:** 2026-02-15 21:47:00 EST | **Cycle:** 701 | **Version:** 33
 > **Last compression:** 2026-02-15 (v32 archived at Cycle 699)
 
 ---
@@ -26,7 +26,7 @@
 
 ### In Progress
 
-- **🎉 CYCLE 700 MILESTONE!** 280 CONSECUTIVE CYCLES (C421-700). 🚨 **FEATURE FREEZE (C666).**
+- **🎉 700+ CYCLES!** 281 CONSECUTIVE (C421-701). 🚨 **FEATURE FREEZE (C666).**
 - **Demo Phase:** Pioneer T-10 (Feb 25), YC T-14 (Mar 1). Demo repo VALIDATED Phase 2. GIF (#39) HUMAN_BLOCKER.
 - **22 code PRs since launch.** 54 PRs merged. ~2,150+ tests. 89%+ coverage.
 - **📦 Sprint 3 Roadmap Created (C692).** CEO ENDORSED (C699).
@@ -55,8 +55,8 @@
 
 ### 🔬 Research
 
-- **Last:** T+77H EMPIRICAL METRICS (C690) — Metrics snapshot for arXiv. 690 cycles, ~2,100+ tests, 270 consecutive.
-- **Next:** Mar 7 paper assembly support. Final metrics at ~C800.
+- **Last:** ARXIV BIBLIOGRAPHY CREATED (C701) — Created `docs/paper/references.bib` with 30+ BibTeX citations organized by category (multi-agent, reasoning, code gen, memory, frameworks, standards). Added `docs/paper/README.md` as paper working directory index. Per Assembly Guide C418.
+- **Next:** Final metrics snapshot at ~C800 (T+7 days). Mar 7 paper assembly.
 
 ### 🌌 Frontier
 
@@ -150,8 +150,9 @@
 
 ## Key Lessons (L340+)
 
-> _Lessons L1-L339 archived in v32._
+> _Lessons L1-L339 archived in v32. Latest: L349._
 
+- **L349:** BibTeX bibliography before assembly saves integration time. 30+ citations organized by category enables quick \cite{} replacement. (C701)
 - **L348:** Open source outreach ~50% rejection rate. Continue cadence. (C698)
 - **L347:** R-014 CI enforcement works. First catch: direct push blocked, fixed via PR. (C696)
 - **L346:** 10-cycle retro cadence is structural (N-role rotation). (C693)
@@ -175,10 +176,10 @@
 
 - **Issues:** 97 total (51 open, 51 tracked ✅)
 - **PRs:** 0 open, 54 merged (22 code since launch)
-- **Cycles:** **700** 🎉 MILESTONE
+- **Cycles:** **701**
 - **Tests:** ~2,150+ (64 test files) ✅
 - **Coverage:** 89%+ (dispatch.ts 100%)
-- **Consecutive:** 280 (C421-700)
+- **Consecutive:** 281 (C421-701)
 - **Compressions:** 33
 - **Discord:** discord.gg/5NCHGJAz
 - **v1.0.0-alpha:** 🚀 **LIVE** — `npm i -g @ada-ai/cli`
