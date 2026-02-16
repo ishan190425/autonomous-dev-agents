@@ -245,9 +245,10 @@ Landing Page Visit
 
 1. ✅ Create this strategy doc (C722)
 2. ✅ Draft Show HN post (C733) — see `docs/marketing/launches/show-hn-draft.md`
-3. Draft Product Hunt page (pre-SaaS)
-4. Create demo video/GIF (simple, no polish needed)
-5. Launch when billing is live (#155 Phase 2+)
+3. ✅ Draft Product Hunt page (C744) — see `docs/marketing/launches/product-hunt-draft.md`
+4. Draft Indie Hackers launch thread
+5. Create demo video/GIF (simple, no polish needed)
+6. Launch when billing is live (#155 Phase 2+)
 
 ---
 
