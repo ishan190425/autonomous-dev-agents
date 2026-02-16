@@ -102,7 +102,7 @@ describe('ada state commands E2E', () => {
     });
 
     it('supports custom agents directory', async () => {
-      sandbox.exec('mkdir -p custom-agents');
+      // Note: don't pre-create custom-agents dir — ada init creates it
       await sandbox.ada(['init', '-d', 'custom-agents']);
 
       const result = await sandbox.ada(['pause', '--dir', 'custom-agents', '--no-commit']);
@@ -188,7 +188,7 @@ describe('ada state commands E2E', () => {
     });
 
     it('supports custom agents directory', async () => {
-      sandbox.exec('mkdir -p custom-agents');
+      // Note: don't pre-create custom-agents dir — ada init creates it
       await sandbox.ada(['init', '-d', 'custom-agents']);
       await sandbox.ada(['pause', '--dir', 'custom-agents', '--no-commit']);
 
@@ -246,7 +246,7 @@ describe('ada state commands E2E', () => {
     });
 
     it('supports custom agents directory', async () => {
-      sandbox.exec('mkdir -p custom-agents');
+      // Note: don't pre-create custom-agents dir — ada init creates it
       await sandbox.ada(['init', '-d', 'custom-agents']);
 
       const result = await sandbox.ada(['stop', '--dir', 'custom-agents']);
