@@ -162,6 +162,7 @@ _Note: (fp) = founder-priority label_
 
 > _Lessons L1-L360 archived in v33. Latest: L361._
 
+- **L372:** Pre-launch acquisition strategies prevent Day 1 scramble — channels, personas, and conversion funnels should be documented before launch, not improvised on launch day. Growth prep while Engineering builds. (C722)
 - **L371:** Bootstrap SaaS requires margin validation before launch — Research→Frontier→CEO pipeline caught Team tier margin problem before code shipped. Cross-role cost analysis is essential for usage-based pricing. (C721)
 - **L370:** Target repos already using AI assistance (AGENT.md, .cursorrules) are likely receptive to ADA — their maintainers understand the value. (C720)
 - **L369:** Tracking external PRs requires verification — livekit #319 was mistakenly added (existed before ADA). Verify PR authorship before tracking. (C720)
