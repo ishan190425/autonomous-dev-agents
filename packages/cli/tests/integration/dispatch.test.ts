@@ -855,4 +855,68 @@ describe('ada dispatch', () => {
       expect(state.cycle).toBe(8); // Active cycle number
     });
   });
+
+  // Model Router Integration (Issue #155, C728)
+  describe('model routing (C728)', () => {
+    beforeEach(async () => {
+      await setupAgentsDir();
+    });
+
+    it('shows model in JSON output', () => {
+      const result = runCli(['dispatch', 'start', '--json']);
+      expect(result.exitCode).toBe(0);
+      const output = JSON.parse(result.stdout);
+      expect(output.model).toBeDefined();
+      expect(output.model.id).toBeDefined();
+      expect(output.model.name).toBeDefined();
+      expect(output.model.reason).toBeDefined();
+    });
+
+    it('shows model in human-readable output', () => {
+      const result = runCli(['dispatch', 'start']);
+      expect(result.exitCode).toBe(0);
+      expect(result.stdout).toMatch(/Model:/);
+      expect(result.stdout).toMatch(/(haiku|sonnet|opus)/);
+    });
+
+    it('accepts --model flag to override auto-selection', () => {
+      const result = runCli(['dispatch', 'start', '--model', 'haiku', '--json']);
+      expect(result.exitCode).toBe(0);
+      const output = JSON.parse(result.stdout);
+      expect(output.model.name).toBe('haiku');
+      expect(output.model.isOverride).toBe(true);
+      expect(output.model.reason).toContain('override');
+    });
+
+    it('respects ADA_MODEL_OVERRIDE environment variable', () => {
+      const result = runCli(['dispatch', 'start', '--json'], {
+        env: { ...process.env, ADA_MODEL_OVERRIDE: 'opus' },
+      });
+      expect(result.exitCode).toBe(0);
+      const output = JSON.parse(result.stdout);
+      expect(output.model.name).toBe('opus');
+      expect(output.model.isOverride).toBe(true);
+    });
+
+    it('falls back to sonnet when ADA_MODEL_ROUTING=false', () => {
+      const result = runCli(['dispatch', 'start', '--json'], {
+        env: { ...process.env, ADA_MODEL_ROUTING: 'false' },
+      });
+      expect(result.exitCode).toBe(0);
+      const output = JSON.parse(result.stdout);
+      expect(output.model.name).toBe('sonnet');
+      expect(output.model.reason).toContain('Routing disabled');
+    });
+
+    it('stores model in lock file', async () => {
+      const result = runCli(['dispatch', 'start']);
+      expect(result.exitCode).toBe(0);
+
+      const lockPath = path.join(testDir, 'agents', 'state', '.dispatch.lock');
+      const lockContent = await fs.readFile(lockPath, 'utf-8');
+      const lock = JSON.parse(lockContent);
+      expect(lock.model).toBeDefined();
+      expect(lock.modelReason).toBeDefined();
+    });
+  });
 });

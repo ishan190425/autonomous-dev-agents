@@ -34,6 +34,10 @@ import {
   validateBranchName,
   generatePRTitle,
   generatePRBody,
+  // Model Router (Issue #155, Research C723)
+  selectModel,
+  type ClaudeModel,
+  type ModelRoleId,
 } from '@ada-ai/core';
 import type { Role, Roster, RotationState, Reflection, CodeChangeResult } from '@ada-ai/core';
 
@@ -54,6 +58,85 @@ import { SuggestionStore } from '@ada-ai/core/playbook-suggestions';
 
 const exec = promisify(execCb);
 
+// ─── Model Routing Configuration (Issue #155, C728) ─────────────────────────
+
+/**
+ * Model override mapping from user-friendly names to Anthropic model IDs.
+ */
+const MODEL_ALIASES: Record<string, ClaudeModel> = {
+  haiku: 'claude-3-5-haiku-20241022',
+  sonnet: 'claude-3-5-sonnet-20241022',
+  opus: 'claude-3-opus-20240229',
+  'claude-3-5-haiku-20241022': 'claude-3-5-haiku-20241022',
+  'claude-3-5-sonnet-20241022': 'claude-3-5-sonnet-20241022',
+  'claude-3-opus-20240229': 'claude-3-opus-20240229',
+};
+
+/**
+ * Get model selection for a dispatch cycle.
+ * Respects environment variables per Product C725:
+ * - ADA_MODEL_ROUTING: Enable/disable routing (default: true)
+ * - ADA_MODEL_OVERRIDE: Force specific model (haiku/sonnet/opus)
+ * - ADA_MODEL_FALLBACK: Enable fallback escalation (default: true)
+ */
+function getModelForCycle(
+  role: ModelRoleId,
+  cliOverride?: string
+): { model: ClaudeModel; reason: string; isOverride: boolean } {
+  // CLI flag takes priority
+  if (cliOverride) {
+    const model = MODEL_ALIASES[cliOverride.toLowerCase()];
+    if (model) {
+      return { model, reason: `CLI override: --model=${cliOverride}`, isOverride: true };
+    }
+  }
+
+  // Check env var override
+  const envOverride = process.env.ADA_MODEL_OVERRIDE;
+  if (envOverride) {
+    const model = MODEL_ALIASES[envOverride.toLowerCase()];
+    if (model) {
+      return { model, reason: `Env override: ADA_MODEL_OVERRIDE=${envOverride}`, isOverride: true };
+    }
+  }
+
+  // Check if routing is disabled
+  const routingEnabled = process.env.ADA_MODEL_ROUTING !== 'false';
+  if (!routingEnabled) {
+    return {
+      model: 'claude-3-5-sonnet-20241022',
+      reason: 'Routing disabled (ADA_MODEL_ROUTING=false)',
+      isOverride: false,
+    };
+  }
+
+  // Use ModelRouter for automatic selection
+  const selection = selectModel(role);
+  return {
+    model: selection.model,
+    reason: selection.reason,
+    isOverride: false,
+  };
+}
+
+/**
+ * Format model name for display (short human-friendly version).
+ */
+function formatModelName(model: ClaudeModel): string {
+  if (model.includes('haiku')) return 'haiku';
+  if (model.includes('opus')) return 'opus';
+  return 'sonnet';
+}
+
+/**
+ * Get model tier emoji for display.
+ */
+function getModelTierEmoji(model: ClaudeModel): string {
+  if (model.includes('haiku')) return '⚡'; // fast
+  if (model.includes('opus')) return '💎'; // premium
+  return '⚖️'; // balanced
+}
+
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 /** Dispatch cycle in-progress state stored in lock file */
@@ -64,6 +147,10 @@ interface DispatchLock {
   role: string;
   /** ISO timestamp when started */
   startedAt: string;
+  /** Selected model for this cycle (C728 — Model Router Integration) */
+  model?: ClaudeModel;
+  /** Reason for model selection */
+  modelReason?: string;
 }
 
 /** Exit codes per UX spec */
@@ -81,6 +168,7 @@ const EXIT_CODES = {
 interface DispatchStartOptions {
   dir: string;
   role?: string;
+  model?: string;
   dryRun?: boolean;
   json?: boolean;
   quiet?: boolean;
@@ -637,12 +725,17 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
   const nextCycle = state.cycle_count + 1;
   const playbookPath = path.join(agentsDir, 'playbooks', `${currentRole.id}.md`);
 
+  // Select model for this cycle (C728 — Model Router Integration)
+  const modelSelection = getModelForCycle(currentRole.id as ModelRoleId, options.model);
+
   // Create lock (unless dry-run)
   if (!options.dryRun) {
     const lock: DispatchLock = {
       cycle: nextCycle,
       role: currentRole.id,
       startedAt: new Date().toISOString(),
+      model: modelSelection.model,
+      modelReason: modelSelection.reason,
     };
     await createLock(agentsDir, lock);
   }
@@ -667,6 +760,12 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
         name: currentRole.name,
         title: currentRole.title,
       },
+      model: {
+        id: modelSelection.model,
+        name: formatModelName(modelSelection.model),
+        reason: modelSelection.reason,
+        isOverride: modelSelection.isOverride,
+      },
       playbook: playbookPath,
       memoryBank: {
         path: path.join(agentsDir, 'memory', 'bank.md'),
@@ -679,15 +778,20 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
   }
 
   if (options.quiet) {
-    console.log(`Cycle ${nextCycle} started (${currentRole.emoji} ${currentRole.name})`);
+    console.log(`Cycle ${nextCycle} started (${currentRole.emoji} ${currentRole.name}, ${formatModelName(modelSelection.model)})`);
     return;
   }
 
   // Full output
+  const modelDisplay = modelSelection.isOverride
+    ? chalk.yellow(`${formatModelName(modelSelection.model)} (override)`)
+    : chalk.green(`${formatModelName(modelSelection.model)} (auto)`);
+
   console.log(chalk.bold.green(`\n🚀 Cycle ${nextCycle} Started\n`));
   console.log(`  ${chalk.gray('Role:')}      ${formatRole(currentRole)}`);
   console.log(`  ${chalk.gray('Playbook:')}  ${path.relative(cwd, playbookPath)}`);
   console.log(`  ${chalk.gray('Memory:')}    agents/memory/bank.md (v${bankVersion})`);
+  console.log(`  ${chalk.gray('Model:')}     ${getModelTierEmoji(modelSelection.model)} ${modelDisplay}`);
 
   // Show pending suggestions if any (Issue #108 — Pattern-to-Playbook Integration)
   if (pendingSuggestions > 0) {
@@ -1353,6 +1457,7 @@ export const dispatchCommand = new Command('dispatch')
       .description('Initialize a dispatch cycle')
       .option('-d, --dir <path>', 'Project root directory', '.')
       .option('-r, --role <id>', 'Force a specific role (for debugging)')
+      .option('-m, --model <name>', 'Force model: haiku, sonnet, opus (overrides auto-selection)')
       .option('-n, --dry-run', 'Validate without starting')
       .option('-j, --json', 'Output as JSON for programmatic use')
       .option('-q, --quiet', 'Minimal output')
