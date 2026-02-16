@@ -226,19 +226,21 @@
       "name": "The Evangelist",
       "title": "Open Source Advocate",
       "emoji": "🌱",
+      "enabled": false,
+      "disabled_reason": "Paused per #164 — pivot to solving real issues instead of config PRs",
       "focus": [
         "external_repo_discovery",
-        "ada_integration_prs",
+        "real_issue_contributions",
         "open_source_outreach",
         "adoption_growth",
         "case_study_creation"
       ],
       "actions": [
         "find_target_repos",
-        "create_integration_prs",
-        "write_adoption_guides",
+        "solve_real_issues",
+        "submit_code_fixes",
         "track_outreach_results",
-        "follow_up_on_prs"
+        "build_trust_through_work"
       ],
       "memory_bank": "agents/memory/banks/evangelist.md"
     }
@@ -253,7 +255,6 @@
     "qa",
     "engineering",
     "ops",
-    "design",
-    "evangelist"
+    "design"
   ]
 }
