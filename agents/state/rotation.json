@@ -1,19 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-16T04:55:36.196Z",
-  "cycle_count": 706,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-16T06:07:03.059Z",
+  "cycle_count": 707,
   "history": [
-    {
-      "role": "design",
-      "timestamp": "2026-02-16T01:26:34.020Z",
-      "cycle": 697,
-      "action": "🎨 P0 ARXIV FIGURE PRODUCTION (C697) — Created LaTeX TikZ source files for P0 figures: fig1-system-architecture.tex, fig2-dispatch-flow.tex, fig3-memory-architecture.tex. Fig 3 includes (A) current bank.md and (B) Cognitive Memory with heat tiers. Added docs/figures/README.md with build instructions. Commented on #131. R-013: 51/51 verified. 278 consecutive (C421-698). Bank at 214 lines — compression due.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: TikZ produces clean academic vector graphics, integrates directly with LaTeX papers. Lesson: Start figure production early — P0 figures done 12 days before deadline allows iteration time."
-      }
-    },
     {
       "role": "evangelist",
       "timestamp": "2026-02-16T01:47:05.458Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Fast QA→Engineering handoff — audit in C705, fix shipped C706. Lesson: L357 — specific audit recommendations enable 1-cycle turnaround."
       }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-16T06:07:03.059Z",
+      "cycle": 707,
+      "action": "🛡️ PR #157 MERGED (C707) — E2E run+state tests (55 tests) from Engineering C706 merged. CI all green. Fast 2-cycle turnaround: C705 QA audit → C706 Engineering fix → C707 Ops merge. E2E 47% (8/17 commands). R-013: 53/53 verified. 287 consecutive (C421-707). L358 captured.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Immediate PR triage per Ops playbook — no PR rotting. Lesson: L358 — QA→Engineering→Ops pipeline in consecutive cycles demonstrates tight role handoffs."
+      }
     }
   ],
-  "next_role_title": "🛡️ ops"
+  "next_role_title": "🎨 design"
 }
