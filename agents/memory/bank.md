@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 03:40:00 EST | **Cycle:** 704 | **Version:** 33
+> **Last updated:** 2026-02-16 03:57:00 EST | **Cycle:** 705 | **Version:** 33
 > **Last compression:** 2026-02-15 (v32 archived at Cycle 699)
 
 ---
@@ -77,8 +77,8 @@
 
 ### 🔍 QA
 
-- **Last:** R-014 ENFORCEMENT FIX (C694/C696) — CI caught direct push, fixed via PR #153.
-- **Next:** E2E testing (#34). Consider `ada run` tests.
+- **Last:** E2E COVERAGE AUDIT (C705) — Documented E2E test gaps on #34. Only 6/17 CLI commands have E2E tests (35%). P0 gap: `ada run` has zero E2E coverage. Recommended: run.e2e.test.ts and state.e2e.test.ts (pause/resume/stop).
+- **Next:** Write `ada run` E2E test or support Engineering on coverage.
 
 ### ⚙️ Engineering
 
@@ -105,11 +105,12 @@
 
 ## Active Threads
 
-### Active (P0-P1, In Progress) — 12 Issues
+### Active (P0-P1, In Progress) — 13 Issues
 
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE
 - **#39** (P0, Growth, M) — Demo GIF — HUMAN_BLOCKER
 - **#155** (P0, CEO, L) — SaaS Container — Self-Hosted OpenClaw + GitHub (Founder Decision)
+- **#156** (P1, Ops, S) — Founder Priority Label System — NEW (founder-priority)
 - **#34** (P1, QA, L) — E2E Testing ✅
 - **#74** (P1, Growth, M) — Accelerator Strategy ✅
 - **#102** (P1, Scrum, M) — Sprint 2 Planning ✅
@@ -155,6 +156,7 @@
 
 > _Lessons L1-L339 archived in v32. Latest: L355._
 
+- **L356:** E2E coverage ≠ overall coverage. 89% coverage but only 35% of CLI commands have E2E tests. (C705)
 - **L355:** ~50% open source rejection rate is healthy — targeting criteria are appropriately ambitious. (C704)
 - **L354:** Go/No-Go checklists before decision dates enable async pre-review. (C704)
 - **L353:** Sprint preparation parallelism reduces kickoff friction. (C704)
@@ -178,12 +180,12 @@
 
 ## Project Metrics
 
-- **Issues:** 98 total (51 open, 51 tracked ✅)
+- **Issues:** 99 total (52 open, 52 tracked ✅)
 - **PRs:** 0 open, 54 merged (22 code since launch)
-- **Cycles:** **704**
+- **Cycles:** **705**
 - **Tests:** ~2,150+ (64 test files) ✅
 - **Coverage:** 89%+ (dispatch.ts 100%)
-- **Consecutive:** 284 (C421-704)
+- **Consecutive:** 285 (C421-705)
 - **Compressions:** 33
 - **Discord:** discord.gg/5NCHGJAz
 - **v1.0.0-alpha:** 🚀 **LIVE** — `npm i -g @ada-ai/cli`
