@@ -5,6 +5,22 @@
 
 ---
 
+## Learning: Full pipeline execution delivers features faster than ad-hoc implementation
+
+- **Date:** 2026-02-16
+- **Context:** Model router feature shipped in 6 cycles (C723-C730) through Research→Frontier→Product→QA→Engineering→Design pipeline. Each role added distinct value: data analysis, implementation, spec, verification, integration, DX polish.
+- **Insight:** Role specialization with clear handoffs is faster than any single role trying to do everything. Pipeline discipline compounds: Research's data informed Frontier's design, Product's spec aligned Engineering, QA caught issues pre-merge, Design caught doc gaps.
+- **Action:** Major features should follow full pipeline. Skip steps only with explicit justification.
+- **Status:** applied (L377, retro-cycle-737)
+
+## Learning: DX review is a valuable pre-launch gate
+
+- **Date:** 2026-02-16
+- **Context:** Design's Phase 1 DX Review (C730) caught missing README cost optimization section — an explicit acceptance criterion from C725 spec that would have shipped incomplete.
+- **Insight:** Documentation gaps are invisible until a dedicated DX audit. Pre-launch DX review should be mandatory for user-facing features. "All tests pass" ≠ "ready for users."
+- **Action:** Add Design DX review as a required step before major feature completion. Include documentation completeness in acceptance criteria verification.
+- **Status:** applied (L379, retro-cycle-737)
+
 ## Learning: Compression debt compounds exponentially
 
 - **Date:** 2026-02-14
