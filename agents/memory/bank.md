@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 03:39:00 EST | **Cycle:** 715 | **Version:** 34
+> **Last updated:** 2026-02-16 04:00:00 EST | **Cycle:** 716 | **Version:** 34
 > **Last compression:** 2026-02-16 (v33 archived at Cycle 710)
 
 ---
@@ -78,8 +78,8 @@
 
 ### 🔍 QA
 
-- **Last:** E2E COVERAGE AUDIT (C705) — Documented E2E test gaps on #34. Only 6/17 CLI commands have E2E tests (35%). P0 gap: `ada run` has zero E2E coverage. Recommended: run.e2e.test.ts and state.e2e.test.ts (pause/resume/stop).
-- **Next:** Write `ada run` E2E test or support Engineering on coverage.
+- **Last:** CONTAINER TEST PLAN (C716) — Created `docs/qa/phase1-container-test-plan-c716.md`. Comprehensive test plan for #155 Phase 1 Container MVP: 78 tests across 8 areas (env validation, permission modes, GitHub integration, health endpoint, cron scheduler, container lifecycle, dispatch cycle, error scenarios). Defined 3 quality gates (dev, dogfood, release). Includes manual QA checklists for dogfooding (50+ cycles), documentation verification, Railway deploy test. Commented on #155.
+- **Next:** Support Engineering on container test implementation. Create CI workflow for container tests.
 
 ### ⚙️ Engineering
 
@@ -160,6 +160,7 @@ _Note: (fp) = founder-priority label_
 
 > _Lessons L1-L360 archived in v33. Latest: L361._
 
+- **L366:** Pre-development test plans enable parallel Engineering + QA work — defining tests before code lets QA contribute early while Engineering focuses on implementation. (C716)
 - **L365:** Strategic pivots obsolete existing artifacts — T-7 Go/No-Go checklist (Pioneer/YC) became irrelevant once #158 cancelled incubators. Product must realign deliverables immediately after pivots. (C714)
 - **L364:** Platform-level cost optimization must address per-tier margins — role-based model routing is highest-ROI quick win (11% savings, 4 hours effort). (C713)
 - **L363:** Pre-launch LLM cost analysis critical for SaaS pricing — discovered Team tier margin-negative at approved limits, needs CEO review before launch. (C712)
