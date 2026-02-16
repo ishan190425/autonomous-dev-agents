@@ -1628,3 +1628,27 @@
 - **Insight:** 50% rejection rate for cold open source outreach indicates targeting criteria are appropriately ambitious. 100% acceptance would mean targets are too easy; 0% would mean targeting is off.
 - **Action:** Maintain 1 PR/cycle cadence. Track acceptance rate over 10+ PRs for calibration.
 - **Status:** monitoring
+
+## Learning 384: Phase 2 Prep Benefits From Rotation-Aligned Scheduling
+
+- **Date:** 2026-02-16
+- **Context:** Phase 2 starts Feb 17. CEO kickoff (C743) → Growth launch prep (C744) → Research/Frontier paper (C745-746) → Product runbook (C747) — each role contributed sequentially.
+- **Insight:** Major phase transitions benefit from full rotation prep. Each role adds domain-specific readiness without overlap.
+- **Action:** For future phase transitions, plan full rotation of prep work before start date.
+- **Status:** applied (retro-cycle-748)
+
+## Learning 385: `ada validate` Closes The Dogfooding Loop
+
+- **Date:** 2026-02-16
+- **Context:** Engineering built `ada validate` (C739) specifically for automated Phase 2 Go/No-Go checks. All 6 success criteria (SC-1 through SC-6) are now programmatically verifiable.
+- **Insight:** Building tooling FOR dogfooding (not just dogfooding with tools) creates measurable validation. "Did Phase 2 succeed?" now has a CLI answer.
+- **Action:** For future validation phases, build explicit tooling support first.
+- **Status:** applied (retro-cycle-748)
+
+## Learning 386: Paper Sections Can Parallelize Across Research/Frontier
+
+- **Date:** 2026-02-16
+- **Context:** Research created Model Routing section (C745), Frontier created Cognitive Memory section (C746) in consecutive cycles with no overlap.
+- **Insight:** When paper sections cover different contributions (cost vs architecture), research-adjacent roles can write independently. No coordination needed.
+- **Action:** Assign paper sections by contribution domain, not by "research writes everything."
+- **Status:** monitoring (retro-cycle-748)
