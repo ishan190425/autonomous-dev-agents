@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 02:04:00 EST | **Cycle:** 710 | **Version:** 34
+> **Last updated:** 2026-02-16 02:23:00 EST | **Cycle:** 711 | **Version:** 34
 > **Last compression:** 2026-02-16 (v33 archived at Cycle 710)
 
 ---
@@ -26,21 +26,20 @@
 
 ### In Progress
 
-- **🎉 710 CYCLES!** 290 CONSECUTIVE (C421-710). 🚨 **FEATURE FREEZE (C666).**
-- **Demo Phase:** Pioneer T-9 (Feb 25), YC T-13 (Mar 1). Demo repo VALIDATED Phase 2. GIF (#39) HUMAN_BLOCKER.
-- **📦 T-7 Go/No-Go Checklist Created (C703).** CEO sign-off TOMORROW (Feb 17). 5/5 MUST PASS criteria GREEN.
-- **👔 SAAS CONTAINER APPROVED (C710).** #155 strategic execution plan: Phase 1 (Container MVP) starts Feb 26 post-Pioneer.
-- **🏷️ Founder Priority System ACTIVE (C710).** `founder-priority` label now in CEO FIRST CHECK. Queue: #155, #7, #8.
+- **🎉 711 CYCLES!** 291 CONSECUTIVE (C421-711). 🚨 **FEATURE FREEZE (C666).**
+- **🚀 STRATEGIC PIVOT (C711, #158):** Skip all incubators → Bootstrap via SaaS. Pioneer/YC CANCELLED.
+- **📦 #155 is now THE priority.** SaaS Container + Frontend + Paywall. Revenue > fundraising.
+- **👔 SAAS CONTAINER APPROVED (C710).** Timeline accelerated: Phase 1 starts IMMEDIATELY per #158.
+- **🏷️ Founder Priority System ACTIVE (C710).** `founder-priority` label now in CEO FIRST CHECK. Queue: #155, #158, #7, #8.
 - **24 code PRs since launch.** 55 PRs merged. ~2,250+ tests. 89%+ coverage. E2E: 47% (8/17 commands).
-- **📦 Sprint 3 Roadmap Created (C692).** CEO ENDORSED (C699). SaaS Container added as Sprint 3 P0.
-- **🚀 T-10 Accelerator Refresh (C700):** All app metrics updated — 700 cycles, 54 PRs, 2,150+ tests.
+- **📦 Sprint 3 Roadmap Created (C692).** CEO ENDORSED (C699). SaaS Container is P0.
 - **🛡️ R-014 Enforcement Live (C696):** CI caught direct code push, fixed via PR #153.
 - **🌱 Evangelist:** 3 outreach PRs pending — scaffdog #1343, livekit #319, teammapper #1150. nao #208 rejected.
 - **✅ ZERO P0 BUGS.** All launch blockers resolved.
 
 ### Blockers
 
-- **#39 Demo GIF:** HUMAN_BLOCKER. CEO contingency documented (C699): proceed without blocking.
+- **#39 Demo GIF:** ❌ CANCELLED per #158 strategic pivot. Demo prep no longer priority.
 
 ---
 
@@ -53,8 +52,8 @@
 
 ### 🚀 Growth
 
-- **Last:** T-10 APPLICATION METRICS REFRESH (C700) — **MILESTONE: 700 CYCLES.** Updated accelerator-strategy.md with current metrics: 700 cycles, 54 PRs, 2,150+ tests, 348 lessons. YC answers, video script, proof points all refreshed. Pioneer (T-10) and YC (T-14) applications READY.
-- **Next:** GIF capture support (Feb 18, HUMAN_BLOCKER). Monitor Evangelist PRs. Final YC polish (Feb 23).
+- **Last:** GROWTH PLAYBOOK PIVOT (C711) — Executed strategic pivot per #158. Rewrote `agents/playbooks/growth.md`: Mission changed from fundraising → customer acquisition. FIRST CHECK changed from accelerator deadlines → revenue pipeline (#155). Actions replaced: pitch decks/investors → customer acquisition, content marketing, community, conversion optimization, DevRel. Metrics updated to MRR focus. Archived all accelerator work. Commented on #158.
+- **Next:** Customer acquisition strategy doc. Support #155 SaaS launch. Content marketing plan when billing is live.
 
 ### 🔬 Research
 
@@ -107,12 +106,12 @@
 
 ## Active Threads
 
-### Active (P0-P1, In Progress) — 13 Issues
+### Active (P0-P1, In Progress) — 14 Issues
 
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE
-- **#39** (P0, Growth, M) — Demo GIF — HUMAN_BLOCKER
-- **#155** (P0, CEO, L) — SaaS Container — Self-Hosted OpenClaw + GitHub (Founder Decision)
-- **#156** (P1, Ops, S) — Founder Priority Label System — NEW (founder-priority)
+- **#155** (P0, CEO, L) — SaaS Container — Self-Hosted OpenClaw + GitHub (Founder Decision) — **THE PRIORITY**
+- **#158** (P0, CEO, M) — Strategic Pivot: Skip Incubators → Bootstrap via SaaS (Founder Decision) — **NEW**
+- **#156** (P1, Ops, S) — Founder Priority Label System (founder-priority)
 - **#34** (P1, QA, L) — E2E Testing ✅
 - **#74** (P1, Growth, M) — Accelerator Strategy ✅
 - **#102** (P1, Scrum, M) — Sprint 2 Planning ✅
@@ -144,15 +143,16 @@ _Note: (fp) = founder-priority label_
 
 ## Critical Path
 
-| Date   | Milestone         | Status                     |
-| ------ | ----------------- | -------------------------- |
-| Feb 14 | v1.0-alpha        | 🚀 **SHIPPED** (C568)      |
-| Feb 17 | T-7 Go/No-Go      | 🟡 TOMORROW — CEO sign-off |
-| Feb 25 | Pioneer           | DEMO READY ✅ (9 days)     |
-| Feb 26 | SaaS Container P1 | 🟢 APPROVED (C710)         |
-| Mar 1  | YC                | DEMO READY ✅ (13 days)    |
-| Mar 7  | arXiv Draft       | 🟢 ON TRACK (19 days)      |
-| Mar 14 | SaaS Container P2 | 🟢 PLANNED                 |
+| Date   | Milestone         | Status                           |
+| ------ | ----------------- | -------------------------------- |
+| Feb 14 | v1.0-alpha        | 🚀 **SHIPPED** (C568)            |
+| Feb 16 | Strategic Pivot   | 🚀 **#158** — Bootstrap via SaaS |
+| Feb 17 | SaaS Container P1 | 🟢 **STARTING IMMEDIATELY**      |
+| Feb 25 | ~~Pioneer~~       | ❌ CANCELLED per #158            |
+| Mar 1  | ~~YC~~            | ❌ CANCELLED per #158            |
+| Mar 7  | arXiv Draft       | 🟢 ON TRACK (19 days)            |
+| Mar 14 | SaaS Container P2 | 🟢 PLANNED                       |
+| TBD    | First MRR         | 🎯 **NEW SUCCESS METRIC**        |
 
 ---
 
@@ -160,6 +160,7 @@ _Note: (fp) = founder-priority label_
 
 > _Lessons L1-L360 archived in v33. Latest: L361._
 
+- **L362:** Strategic pivots require immediate playbook updates — role missions must align with new direction before next cycle. (C711)
 - **L361:** Founder-priority label as FIRST CHECK enables async strategic alignment — founder signals priority, CEO executes without sync meetings. (C710)
 - **L358:** QA→Engineering→Ops pipeline in consecutive cycles demonstrates tight role handoffs. Full audit-to-merge in 2 cycles. (C707)
 - **L357:** QA audits with specific recommendations enable 1-cycle Engineering turnaround. (C706)
@@ -180,12 +181,12 @@ _Note: (fp) = founder-priority label_
 
 ## Project Metrics
 
-- **Issues:** 99 total (53 open, 53 tracked ✅)
+- **Issues:** 100 total (54 open, 54 tracked ✅)
 - **PRs:** 0 open, 55 merged (24 code since launch)
-- **Cycles:** **710**
+- **Cycles:** **711**
 - **Tests:** ~2,250+ (68 test files) ✅
 - **Coverage:** 89%+ (dispatch.ts 100%), E2E 47% (8/17 commands)
-- **Consecutive:** 290 (C421-710)
+- **Consecutive:** 291 (C421-711)
 - **Compressions:** 34
 - **Discord:** discord.gg/5NCHGJAz
 - **v1.0.0-alpha:** 🚀 **LIVE** — `npm i -g @ada-ai/cli`
