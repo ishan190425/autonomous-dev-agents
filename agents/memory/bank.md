@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 07:45:00 EST | **Cycle:** 727 | **Version:** 35
+> **Last updated:** 2026-02-16 08:28:00 EST | **Cycle:** 728 | **Version:** 35
 > **Last compression:** 2026-02-16 (v34 archived at Cycle 723)
 
 ---
@@ -19,13 +19,13 @@
 
 ### In Progress
 
-- **🎉 727 CYCLES!** 306 CONSECUTIVE (C421-727). 🚨 **FEATURE FREEZE (C666).**
-- **📦 #155 is THE PRIORITY.** SaaS Container + GitHub. Phase 1 underway.
+- **🎉 728 CYCLES!** 307 CONSECUTIVE (C421-728). 🚨 **FEATURE FREEZE (C666).**
+- **📦 #155 is THE PRIORITY.** SaaS Container + GitHub. Phase 1 nearly complete.
 - **💰 COST STRATEGY ENDORSED (C721).** Role-based model routing is P1 Phase 1 dependency.
-- **🌌 MODEL ROUTER PR #160 QA APPROVED (C727).** 86 tests verified. Ready for merge.
-- **👔 Phase 1 Status:** PR #159 merged ✅. PR #160 QA approved ✅. CLI Integration Spec ready ✅. Remaining: PR merge, CLI integration, Railway template, docs.
+- **🌌 MODEL ROUTER FULLY INTEGRATED (C728).** PR #160 (core) + PR #161 (CLI) both merged.
+- **👔 Phase 1 Status:** PR #159 merged ✅. PR #160 merged ✅. PR #161 merged ✅. Remaining: Railway template, docs.
 - **🏷️ Founder Priority System ACTIVE (C710).** Queue: #155, #158, #7, #8.
-- **27 code PRs since launch.** 56 merged + 1 open. ~2,404+ tests. 89%+ coverage.
+- **29 code PRs since launch.** 58 merged. ~2,500+ tests. 89%+ coverage.
 
 ### Blockers
 
@@ -67,13 +67,13 @@
 
 ### 🔍 QA
 
-- **Last:** PR #160 MODEL ROUTER QA REVIEW (C727) — Full test suite verified (1,172 tests passing). Lint clean. Typecheck clean. 86 new model router tests cover role selection, action-level routing, fallback escalation, cost calculation. Code quality verified. QA approved for merge.
-- **Next:** Support PR #160 merge. Monitor container test implementation.
+- **Last:** PR #160 MODEL ROUTER QA REVIEW (C727) — Full test suite verified (1,172 tests passing). Lint clean. Typecheck clean. 86 new model router tests. QA approved for merge. **MERGED (C728).**
+- **Next:** Monitor Phase 1 completion. Container test implementation.
 
 ### ⚙️ Engineering
 
-- **Last:** PR #159 CONTAINER MVP FOUNDATION (C717) — Dockerfile, entrypoint, container module. 34 tests. **MERGED (C718).**
-- **Next:** Model routing implementation (Research C723 handoff). Railway template. Phase 1 completion.
+- **Last:** PR #161 MERGED — CLI MODEL ROUTER INTEGRATION (C728) — Merged PR #161. Complete model routing in CLI: --model flag, env vars (ADA_MODEL_ROUTING, ADA_MODEL_OVERRIDE), model display in dispatch start output. 6 integration tests. Full Research→Frontier→Product→Engineering→QA pipeline complete. 14% cost savings active.
+- **Next:** Railway template for #155. Phase 1 finalization.
 
 ### 🛡️ Ops
 
@@ -143,6 +143,7 @@
 
 ## Key Lessons (L370+)
 
+- **L377:** Full pipeline completion (Research→Frontier→Product→Engineering→QA→Engineering) delivers working features in 6 cycles. Model router: C723 Research → C724 Frontier → C725 Product → C727 QA → C728 Engineering merge. Each role adds distinct value. (C728)
 - **L376:** QA review before merge catches issues early — verifying 1,172 tests pass + lint/typecheck clean gives confidence for fast merge turnaround. (C727)
 - **L374:** Research→Frontier→Engineering pipeline works: Research provides data + TypeScript interfaces, Frontier builds implementation + tests, Engineering integrates. Each role adds value vs. jumping straight to code. (C724)
 - **L373:** Model selection research should quantify actual task success rates, not just cost — Haiku handles 35%+ of cycles vs. conservative 20% estimate because testing validated quality. Data > assumptions. (C723)
@@ -162,11 +163,11 @@
 ## Project Metrics
 
 - **Issues:** 100 total (53 open, 53 tracked ✅)
-- **PRs:** 1 open (#160 QA approved), 56 merged (27 code since launch)
-- **Cycles:** **727**
-- **Tests:** ~2,490+ (76 test files) — PR #160 adds 86 tests
+- **PRs:** 0 open, 58 merged (29 code since launch)
+- **Cycles:** **728**
+- **Tests:** ~2,500+ (76 test files) — PR #160 adds 86, PR #161 adds 6
 - **Coverage:** 89%+ (dispatch.ts 100%), E2E 47%
-- **Consecutive:** 306 (C421-727)
+- **Consecutive:** 307 (C421-728)
 - **Compressions:** 35
 
 ---

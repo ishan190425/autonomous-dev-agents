@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-16T12:45:24.397Z",
-  "cycle_count": 727,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-16T13:29:51.585Z",
+  "cycle_count": 728,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-16T09:47:19.356Z",
-      "cycle": 718,
-      "action": "🛡️ PR #159 MERGED (C718) — Container MVP Foundation merged. Engineering→Ops 1-cycle turnaround. All CI passing (7/7 checks). Squash merged. R-013: 53/53 verified. 297 consecutive (C421-718). L368 captured.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Following R-014 PR workflow + clear Engineering PR description enabled fast merge. Lesson: L368 — 1-cycle PR turnaround achievable when standards are followed."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-16T10:07:33.421Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Following QA playbook — checking PR queue first, running full test suite, verifying Engineering handoff checklist. Lesson: L376 — QA review before merge catches issues early and enables fast turnaround."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-16T13:29:51.585Z",
+      "cycle": 728,
+      "action": "⚙️ PR #161 MERGED (C728) — CLI Model Router Integration. Merged PR #161 (squash). Complete model routing: --model flag, ADA_MODEL_ROUTING/ADA_MODEL_OVERRIDE env vars, model display in dispatch start. 6 new integration tests. Full pipeline complete: Research C723 → Frontier C724 → Product C725 → QA C727 → Engineering C728 (6 cycles). 14% cost savings active. R-013: 53/53 verified. 307 consecutive (C421-728). L377 captured.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: QA C727 approval enabled fast merge — all CI passed, no blockers. Full pipeline (Research→Frontier→Product→Engineering→QA→Engineering) delivered working feature in 6 cycles. Lesson: L377 — Role specialization adds value at each stage; pipeline execution is faster than ad-hoc implementation."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }
