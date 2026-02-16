@@ -5,13 +5,13 @@
 
 ## Figure Inventory
 
-| File                           | Figure                 | Section | Priority | Status     |
-| ------------------------------ | ---------------------- | ------- | -------- | ---------- |
-| `fig1-system-architecture.tex` | System Architecture    | 3.1     | P0       | ✅ Ready   |
-| `fig2-dispatch-flow.tex`       | Dispatch Protocol Flow | 3.2     | P0       | ✅ Ready   |
-| `fig3-memory-architecture.tex` | Memory Architecture    | 3.3     | P0       | ✅ Ready   |
-| `fig4-role-rotation.tex`       | Role Rotation Cycle    | 3.1     | P1       | ✅ Ready   |
-| `fig5-reflexion-flow.tex`      | Reflexion Loop         | 4.3     | P1       | ⏳ Pending |
+| File                           | Figure                 | Section | Priority | Status   |
+| ------------------------------ | ---------------------- | ------- | -------- | -------- |
+| `fig1-system-architecture.tex` | System Architecture    | 3.1     | P0       | ✅ Ready |
+| `fig2-dispatch-flow.tex`       | Dispatch Protocol Flow | 3.2     | P0       | ✅ Ready |
+| `fig3-memory-architecture.tex` | Memory Architecture    | 3.3     | P0       | ✅ Ready |
+| `fig4-role-rotation.tex`       | Role Rotation Cycle    | 3.1     | P1       | ✅ Ready |
+| `fig5-reflexion-flow.tex`      | Reflexion Loop         | 4.3     | P1       | ✅ Ready |
 
 ## Building Figures
 
