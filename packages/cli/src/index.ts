@@ -30,6 +30,7 @@ import { heatCommand } from './commands/heat.js';
 import { reflexionCommand } from './commands/reflexion.js';
 import { terminalCommand } from './commands/terminal.js';
 import { playbookCommand } from './commands/playbook.js';
+import { validateCommand } from './commands/validate.js';
 import { showBanner } from './lib/banner.js';
 
 const VERSION = '1.0.0-alpha';
@@ -65,6 +66,7 @@ program.addCommand(pauseCommand);
 program.addCommand(resumeCommand);
 program.addCommand(observeCommand);
 program.addCommand(costsCommand);
+program.addCommand(validateCommand);
 
 // Show compact banner if no command is provided
 if (process.argv.length === 2) {
