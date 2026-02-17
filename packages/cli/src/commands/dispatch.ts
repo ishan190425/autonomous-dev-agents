@@ -51,6 +51,8 @@ import {
   getHeatEmoji,
   formatHeatScore,
   getHeatTier,
+  trackMultipleReferences,
+  formatTrackingResult,
   type HeatTier,
   type HeatStats,
   type HeatEntry,
@@ -1081,6 +1083,31 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
   // Remove lock
   await removeLock(agentsDir);
 
+  // Track heat references from action text (Issue #113 — Cognitive Memory)
+  // Non-blocking: heat tracking failures shouldn't break dispatch
+  let heatTrackingInfo: string | null = null;
+  try {
+    const heatStore = createHeatStore(agentsDir);
+    await heatStore.load();
+
+    // Track references from action and reflection
+    const textsToTrack = [options.action];
+    if (options.reflection) {
+      textsToTrack.push(options.reflection);
+    }
+
+    const trackingResult = await trackMultipleReferences(textsToTrack, heatStore);
+
+    // Only show if we tracked something
+    if (trackingResult.created.length > 0 || trackingResult.incremented.length > 0) {
+      heatTrackingInfo = formatTrackingResult(trackingResult);
+    }
+  } catch (err) {
+    // Heat tracking is non-critical — log but don't fail
+    const message = err instanceof Error ? err.message : String(err);
+    console.warn(chalk.dim(`[Heat] Reference tracking skipped: ${message}`));
+  }
+
   // Record observability metrics if tokens provided (Issue #83 — Dogfooding)
   if (options.tokensIn !== undefined || options.tokensOut !== undefined) {
     const model = options.model ?? 'claude-4-sonnet';
@@ -1250,13 +1277,18 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
         recorded: true,
       };
     }
+    // Include heat tracking info if we tracked references
+    if (heatTrackingInfo) {
+      output.heat = { tracked: heatTrackingInfo };
+    }
     console.log(JSON.stringify(output));
     return;
   }
 
   if (options.quiet) {
     const pushStatus = options.skipPush ? 'committed' : (pushed ? 'pushed' : 'push failed');
-    console.log(`Cycle ${newState.cycle_count} complete (${outcome}) — ${pushStatus}`);
+    const heatSuffix = heatTrackingInfo ? ` | 🔥 ${heatTrackingInfo}` : '';
+    console.log(`Cycle ${newState.cycle_count} complete (${outcome}) — ${pushStatus}${heatSuffix}`);
     return;
   }
 
@@ -1292,6 +1324,13 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
   }
 
   console.log();
+
+  // Show heat tracking info if we tracked any references
+  if (heatTrackingInfo) {
+    console.log(`  ${chalk.gray('Heat:')}      ${chalk.cyan(heatTrackingInfo)}`);
+    console.log();
+  }
+
   if (nextRole) {
     console.log(`  ${chalk.gray('Next:')}      ${formatRole(nextRole)}`);
   }

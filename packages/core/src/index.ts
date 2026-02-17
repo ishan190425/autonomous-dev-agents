@@ -403,6 +403,20 @@ export { normalizeImportance as normalizeHeatImportance } from './heat/index.js'
 // Note: HeatTier, HeatSignalType, HeatSignal, getHeatTier exported from terminal for now.
 // Sprint 2 will refactor terminal to import from heat module.
 
+// Heat Reference Tracking (Issue #113 — Cognitive Memory, Dispatch Integration)
+// Tracks memory references from dispatch action text and updates heat scores.
+export type {
+  ReferenceType,
+  ParsedReference,
+  TrackingResult,
+} from './heat/index.js';
+export {
+  extractReferences,
+  trackActionReferences,
+  trackMultipleReferences,
+  formatTrackingResult,
+} from './heat/index.js';
+
 // Heat-Aware Retrieval (Issue #118 — Phase 4 Task 6: Heat + Memory Stream Integration)
 export type {
   HeatRetrievalOptions,
