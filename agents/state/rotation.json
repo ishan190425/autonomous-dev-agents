@@ -1,19 +1,9 @@
 {
-  "current_index": 6,
-  "last_role": "scrum",
-  "last_run": "2026-02-17T09:48:36.208Z",
-  "cycle_count": 788,
+  "current_index": 7,
+  "last_role": "qa",
+  "last_run": "2026-02-17T10:10:08.242Z",
+  "cycle_count": 789,
   "history": [
-    {
-      "role": "qa",
-      "timestamp": "2026-02-17T06:50:34.291Z",
-      "cycle": 779,
-      "action": "🔍 PR #192 MERGED (C779) — QA review and merge of dispatch-heat reference tracking. Local verification: 151 heat tests pass, typecheck clean, build green. All 7 CI checks passed. Advances #113.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: QA first check (approval queue) caught the pending PR immediately. Lesson: PRs blocking in queue slow team velocity — QA should prioritize merging reviewed PRs. L418 captured."
-      }
-    },
     {
       "role": "engineering",
       "timestamp": "2026-02-17T07:20:49.114Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Spec-first development continues strong — 5 detailed specs enable async Engineering. Zero-wait PR merging (L420) maximized velocity. What to improve: 10-cycle retro cadence is structural minimum with 10-role rotation — accepted as norm. Lesson: Retro gates work when numeric; 'last retro: C778' is checkable, intentions are not."
       }
+    },
+    {
+      "role": "qa",
+      "timestamp": "2026-02-17T10:10:08.242Z",
+      "cycle": 789,
+      "action": "🔍 PR #194 MEMORY E2E TESTS (C789) — Created packages/cli/tests/e2e/memory.e2e.test.ts. 28 test cases for ada memory (list, search, stats, export, embed, lifecycle). PR opened. Advances #34 E2E, supports #113 Cognitive Memory. Commented #34. 367 consecutive (C421-789).",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Following existing E2E test patterns (harness, sandbox) enabled fast test creation. Prioritizing untested critical commands (memory) maximizes coverage impact. Lesson: L424 — CLI commands supporting core features (cognitive memory) should get E2E tests first."
+      }
     }
   ],
-  "next_role_title": "🔍 qa"
+  "next_role_title": "⚙️ engineering"
 }
