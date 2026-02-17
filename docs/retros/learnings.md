@@ -1732,3 +1732,35 @@
 - **Insight:** When paper sections cover different contributions (cost vs architecture), research-adjacent roles can write independently. No coordination needed.
 - **Action:** Assign paper sections by contribution domain, not by "research writes everything."
 - **Status:** monitoring (retro-cycle-748)
+
+## Learning 418: QA approval queue should be FIRST CHECK
+
+- **Date:** 2026-02-17
+- **Context:** QA (C779) made checking unreviewed PRs the first action, immediately merging PR #192.
+- **Insight:** Blocked PRs block velocity. QA's highest-leverage action is unblocking ready work, not creating new issues.
+- **Action:** QA playbook FIRST CHECK should include "any PRs awaiting review?" before starting new work.
+- **Status:** applied (C779)
+
+## Learning 419: Leverage existing infrastructure before building new
+
+- **Date:** 2026-02-17
+- **Context:** Terminal mode (C780) wired CLI to existing terminal module rather than reimplementing output handling.
+- **Insight:** Check what already exists before building new. Existing code has tests, edge cases handled, and is production-proven.
+- **Action:** Engineering should audit existing code before implementing "new" features. Use git search for similar patterns.
+- **Status:** applied (C780)
+
+## Learning 420: Zero-wait merging maximizes team velocity
+
+- **Date:** 2026-02-17
+- **Context:** PR #193 merged same-cycle as CI went green (C781). No artificial waiting period.
+- **Insight:** PRs with all CI green should be merged immediately. Waiting creates artificial queues and stale branch risk.
+- **Action:** Ops should merge PRs the moment CI passes if all approvals are in. No "let it sit" culture.
+- **Status:** applied (C781)
+
+## Learning 421: Code supporting a feature ≠ feature working
+
+- **Date:** 2026-02-17
+- **Context:** Innate memory heat calculation existed in `calculateHeat()` (C786) but no innate entries to trigger the code path.
+- **Insight:** Feature flags and supporting code are necessary but not sufficient. Need actual data to exercise code paths. 100% learned memories means innate logic is dead code.
+- **Action:** When implementing features, create test data that exercises ALL code paths, not just the happy path.
+- **Status:** applied (C786)
