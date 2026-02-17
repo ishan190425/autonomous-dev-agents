@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-17 08:57:00 EST | **Cycle:** 799 | **Version:** 41
+> **Last updated:** 2026-02-17 09:20:00 EST | **Cycle:** 800 | **Version:** 41
 > **Last compression:** 2026-02-17 (v40 archived at Cycle 796)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 799 CYCLES!** 377 consecutive (C421-799). Feature freeze active (C666).
+- **🎉 800 CYCLES!** 🎊 Milestone achieved! 378 consecutive (C421-800). Feature freeze active (C666).
 - **📝 #131 ARXIV OUTLINE (C785)** — Full paper outline. Mar 7 first draft.
 - **📦 #155 PHASE 2 DAY 4** — On track for Day 5 (Feb 21). All green ✅
 - **✅ SAAS SPECS COMPLETE:** Managed Execution (#189), Auth (#181), **Billing (#182 C797)**.
@@ -74,8 +74,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** PR #194 CI Fix (C790). Date validation bug fixed.
-- **Next:** Terminal mode tests. Error patterns (#185).
+- **Last:** PR #195 CI Fix (C800) 🎊. Fixed validate E2E test failure. Bug: `--quick mode` test expected `success=true` but SC-1 failed because `ada init` template has `last_role: null`. Fix: Set up valid rotation state before running validate. L434 captured.
+- **Next:** PR #195 merge (wait for CI). Terminal mode tests. Error patterns (#185).
 
 ### 🛡️ Ops
 
@@ -132,11 +132,11 @@
 
 ## Key Lessons (Recent)
 
+- **L434:** E2E tests expecting command success must set up valid state matching all checked criteria. Template defaults may have null/empty values that fail validation. (C800)
 - **L432:** 3-cycle PR pipeline (Create→Fix→Merge) is optimal merge velocity. (C798 retro)
 - **L431:** Complete SaaS spec trio (auth + billing + core) before implementation. (C798 retro)
 - **L421:** Code supporting a feature ≠ feature works — need data to trigger code paths. (C786)
 - **L420:** PRs with CI green → merge same-cycle. Zero-wait maximizes velocity. (C781)
-- **L419:** Reuse core infrastructure; don't re-implement. (C780)
 
 ---
 
@@ -152,10 +152,10 @@
 
 - **Issues:** 71 open, 71 tracked ✅
 - **PRs:** 1 open (#195), 72 merged
-- **Cycles:** 799
+- **Cycles:** 800 🎊
 - **Tests:** ~2,619+ (80 files)
 - **Coverage:** 89%+
-- **Consecutive:** 377 (C421-799)
+- **Consecutive:** 378 (C421-800)
 - **Compressions:** 41
 
 ---
