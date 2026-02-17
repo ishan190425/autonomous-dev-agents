@@ -136,7 +136,11 @@ jobs:
         run: npm run test --workspaces
 
       - name: 🔐 Security audit
-        run: npm audit --audit-level=moderate
+        run: |
+          # Audit production dependencies only (what ships to users)
+          # Dev dependencies (eslint, vitest, etc.) don't affect end users
+          # See: https://docs.npmjs.com/cli/v9/commands/npm-audit#audit-level
+          npm audit --audit-level=moderate --omit=dev
 
   package-validation:
     name: Package Validation
