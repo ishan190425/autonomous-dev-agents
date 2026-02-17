@@ -139,6 +139,133 @@ Or set environment variables for persistent overrides:
 
 For deployment configuration, see [Railway deployment docs](docs/deployment/railway.md).
 
+## Notifications
+
+ADA can send notifications to Slack, Telegram, and Discord when agents complete their cycles. This keeps you informed about agent activity without constantly checking the repository.
+
+### Quick Setup
+
+```bash
+# Configure Slack
+ada config notifications set slack <webhook-url>
+
+# Configure Telegram
+ada config notifications set telegram <bot-token> <chat-id>
+
+# Configure Discord
+ada config notifications set discord <webhook-url>
+
+# Test a notification
+ada config notifications test slack
+ada config notifications test telegram
+ada config notifications test discord
+
+# View current configuration
+ada config notifications show
+```
+
+### Slack Setup
+
+1. Go to [https://api.slack.com/apps](https://api.slack.com/apps)
+2. Click **"Create New App"** → **"From scratch"**
+3. Name your app (e.g., "ADA Notifications") and select your workspace
+4. In the app settings, go to **"Incoming Webhooks"**
+5. Toggle **"Activate Incoming Webhooks"** to ON
+6. Click **"Add New Webhook to Workspace"**
+7. Choose the channel where you want notifications
+8. Copy the webhook URL (format: `https://hooks.slack.com/services/T.../B.../...`)
+9. Configure in ADA:
+   ```bash
+   ada config notifications set slack https://hooks.slack.com/services/T.../B.../...
+   ```
+
+### Telegram Setup
+
+1. Open Telegram and search for **[@BotFather](https://t.me/botfather)**
+2. Send `/newbot` and follow the prompts to create a bot
+3. Copy the bot token (format: `123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11`)
+4. Get your chat ID:
+   - For personal chats: Use [@userinfobot](https://t.me/userinfobot) — it will show your user ID
+   - For groups/channels: Add [@getidsbot](https://t.me/getidsbot) to the group/channel
+   - Or visit: `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates` and look for `chat.id`
+5. Configure in ADA:
+   ```bash
+   ada config notifications set telegram <bot-token> <chat-id>
+   ```
+
+### Discord Setup
+
+1. Open your Discord server
+2. Go to **Server Settings** → **Integrations** → **Webhooks**
+3. Click **"New Webhook"**
+4. Configure:
+   - Name (e.g., "ADA Notifications")
+   - Channel where notifications should be sent
+   - Optional: Set an avatar
+5. Click **"Copy Webhook URL"** (format: `https://discord.com/api/webhooks/.../...`)
+6. Configure in ADA:
+   ```bash
+   ada config notifications set discord https://discord.com/api/webhooks/.../...
+   ```
+
+### Managing Notifications
+
+```bash
+# Enable all notifications
+ada config notifications enable
+
+# Enable a specific channel
+ada config notifications enable slack
+ada config notifications enable telegram
+ada config notifications enable discord
+
+# Disable all notifications
+ada config notifications disable
+
+# Disable a specific channel
+ada config notifications disable slack
+```
+
+### What Gets Notified
+
+When an agent completes a cycle (`ada dispatch complete`), notifications include:
+- **Cycle number** and **role** (emoji + name)
+- **Commit subject** and **body** (the action description)
+- **Commit SHA** and **role ID**
+
+Each channel formats messages differently:
+- **Slack**: Block Kit format with expandable sections
+- **Telegram**: Markdown-formatted message
+- **Discord**: Rich embed with color coding based on outcome
+
+### Security
+
+Notification credentials are stored in `agents/config.json`. For security:
+
+1. **Add to `.gitignore`** (if not already there):
+   ```bash
+   echo "agents/config.json" >> .gitignore
+   ```
+
+2. **Use environment variables** (recommended for CI/CD):
+   ```json
+   {
+     "notifications": {
+       "channels": {
+         "slack": {
+           "webhookUrl": "${SLACK_WEBHOOK_URL}"
+         },
+         "telegram": {
+           "botToken": "${TELEGRAM_BOT_TOKEN}",
+           "chatId": "${TELEGRAM_CHAT_ID}"
+         }
+       }
+     }
+   }
+   ```
+
+The system automatically resolves environment variables in config values.
+
 ## Dogfooding 🐕
 
 **ADA builds itself.** This repo has its own agent team in `agents/` that runs the ADA dispatch protocol to develop the ADA product. It's the first and most active customer of its own framework.

@@ -605,3 +605,25 @@ export {
   parseDispatchOutput,
   calculateQualityScore,
 } from './models/index.js';
+
+// Notifications (Issue #8 — Notification System)
+// Sends agent cycle completion notifications to Slack, Telegram, and Discord.
+export type {
+  NotificationChannel,
+  NotificationConfig,
+  NotificationMessage,
+  SlackConfig,
+  TelegramConfig,
+  DiscordConfig,
+  AgentConfig,
+} from './notifications/types.js';
+export {
+  sendCycleNotifications,
+  sendTestNotification,
+} from './notifications/index.js';
+export {
+  loadAgentConfig,
+  getNotificationConfig,
+  writeAgentConfig,
+  resolveEnvVars,
+} from './notifications/config-loader.js';

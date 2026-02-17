@@ -23,6 +23,7 @@ export default [
         Buffer: 'readonly',
         global: 'readonly',
         NodeJS: 'readonly',
+        fetch: 'readonly', // Node.js 18+ global fetch
       },
     },
     plugins: {
