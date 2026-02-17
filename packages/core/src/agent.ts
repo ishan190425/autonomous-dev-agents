@@ -558,7 +558,7 @@ Execute ONE meaningful action from your playbook now. Focus on high-impact work 
         errorMessage.includes('claude-code: not found')
       ) {
         throw new Error(
-          `Claude Code CLI not found. Please install it with: npm install -g @anthropic-ai/claude-code`
+          'Claude Code CLI not found. Please install it with: npm install -g @anthropic-ai/claude-code'
         );
       }
       throw new Error(
@@ -706,7 +706,7 @@ Execute ONE meaningful action from your playbook now. Focus on high-impact work 
         errorMessage.includes('codex: not found')
       ) {
         throw new Error(
-          `Codex CLI not found. Please install it with: npm install -g @openai/codex-cli or follow OpenAI Codex CLI installation instructions.`
+          'Codex CLI not found. Please install it with: npm install -g @openai/codex-cli or follow OpenAI Codex CLI installation instructions.'
         );
       }
       throw new Error(
@@ -787,22 +787,67 @@ export function getExecutor(executorType?: string): AgentExecutor {
 }
 
 /**
+ * Terminal mode command execution callback.
+ * Used when running in terminal mode (--mode=terminal).
+ *
+ * @see Issue #125 — Terminal Mode for shell-based benchmarks
+ */
+export interface TerminalCommandResult {
+  success: boolean;
+  stdout: string;
+  stderr: string;
+  exitCode: number;
+}
+
+/**
+ * Terminal mode execution options.
+ *
+ * @see Issue #125 — Terminal Mode for shell-based benchmarks
+ */
+export interface TerminalModeOptions {
+  /** Terminal runner instance (from CLI) */
+  terminalRunner?: unknown;
+  /** Callback to execute shell commands */
+  onCommand?: (command: string) => Promise<TerminalCommandResult>;
+}
+
+/**
  * Execute an agent action using the configured executor.
  *
  * Supports executor selection via:
  * - `ADA_EXECUTOR` environment variable
  * - `executorType` parameter (from CLI flag)
  *
+ * Terminal Mode (Issue #125):
+ * Pass `terminalOptions` to enable shell command execution.
+ * The agent executor will use the provided callbacks.
+ *
  * Defaults to Clawdbot for backward compatibility.
  *
  * @param context - Dispatch context
  * @param executorType - Optional executor type override
+ * @param terminalOptions - Optional terminal mode configuration
  * @returns Action result
  */
 export function executeAgentAction(
   context: DispatchContext,
-  executorType?: string
+  executorType?: string,
+  terminalOptions?: TerminalModeOptions
 ): Promise<ActionResult> {
   const executor = getExecutor(executorType);
+  
+  // If terminal mode is enabled, inject the command callback into context
+  if (terminalOptions?.onCommand) {
+    // Extend context with terminal capabilities
+    const terminalContext = {
+      ...context,
+      terminal: {
+        enabled: true,
+        executeCommand: terminalOptions.onCommand,
+      },
+    };
+    return executor.executeAction(terminalContext as DispatchContext);
+  }
+  
   return executor.executeAction(context);
 }

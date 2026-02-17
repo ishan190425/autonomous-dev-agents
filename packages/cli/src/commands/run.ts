@@ -3,6 +3,13 @@
  *
  * Loads context, determines the current role, executes one action,
  * updates the memory bank, and advances the rotation.
+ *
+ * Terminal Mode (--mode=terminal):
+ * Enables shell command execution for CLI-based benchmarks like Terminal-Bench.
+ * Agents can execute shell commands, verify results, and diagnose issues.
+ *
+ * @see docs/engineering/terminal-mode-technical-spec.md
+ * @see Issue #125 — Terminal Mode for shell-based benchmarks
  */
 
 import { Command } from 'commander';
@@ -15,6 +22,15 @@ import {
 } from '@ada-ai/core';
 import * as path from 'node:path';
 import * as fs from 'node:fs/promises';
+import chalk from 'chalk';
+import { createTerminalRunner, type TerminalRunner } from '../lib/terminal-runner.js';
+
+/**
+ * Dispatch mode for cycle execution.
+ * - default: Standard agent execution (file edits, GitHub ops)
+ * - terminal: Shell command execution (benchmarks, CLI tasks)
+ */
+export type DispatchMode = 'default' | 'terminal';
 
 /**
  * Get the current cycle number for display
@@ -29,6 +45,14 @@ async function getCycleNumber(cwd: string, agentsDir: string): Promise<number> {
   }
 }
 
+/**
+ * Parse integer CLI option
+ */
+function parseIntOption(value: string, defaultValue: number): number {
+  const parsed = parseInt(value, 10);
+  return isNaN(parsed) ? defaultValue : parsed;
+}
+
 export const runCommand = new Command('run')
   .description('Execute one dispatch cycle as the current role')
   .option('-d, --dir <path>', 'Agents directory (default: "agents/")', 'agents')
@@ -39,17 +63,80 @@ export const runCommand = new Command('run')
     'Interval between cycles in watch mode',
     '30'
   )
+  // Terminal Mode options (Issue #125)
+  .option(
+    '-m, --mode <mode>',
+    'Dispatch mode: "default" or "terminal" for shell-based execution',
+    'default'
+  )
+  .option(
+    '--max-commands <count>',
+    'Maximum commands per cycle in terminal mode (default: 50)',
+    '50'
+  )
+  .option(
+    '--command-timeout <ms>',
+    'Per-command timeout in milliseconds (default: 60000)',
+    '60000'
+  )
+  .option(
+    '--shell <path>',
+    'Shell to use for terminal mode (default: auto-detect)'
+  )
+  .option('--verbose', 'Enable verbose output')
+  .option('--json', 'Output results as JSON')
+  .option('--quiet', 'Minimal output')
   .action(
     async (options: {
       dir: string;
       dryRun?: boolean;
       watch?: boolean;
       interval: string;
+      mode: string;
+      maxCommands: string;
+      commandTimeout: string;
+      shell?: string;
+      verbose?: boolean;
+      json?: boolean;
+      quiet?: boolean;
     }) => {
       const cwd = process.cwd();
+      const isTerminalMode = options.mode === 'terminal';
 
       const cycleNumber = await getCycleNumber(cwd, options.dir);
-      console.log(`🏭 ADA Dispatch Cycle ${cycleNumber}\n`);
+      
+      // Initialize terminal runner if in terminal mode
+      let terminalRunner: TerminalRunner | null = null;
+      if (isTerminalMode) {
+        terminalRunner = createTerminalRunner({
+          maxCommands: parseIntOption(options.maxCommands, 50),
+          commandTimeout: parseIntOption(options.commandTimeout, 60000),
+          cwd,
+          shell: options.shell ?? '',
+          verbose: options.verbose ?? false,
+          json: options.json ?? false,
+          quiet: options.quiet ?? false,
+        });
+
+        if (!options.quiet && !options.json) {
+          console.log(chalk.bold.cyan(`🖥️  ADA Terminal Mode — Cycle ${cycleNumber}\n`));
+          console.log(chalk.gray('  Mode: Shell command execution'));
+          console.log(chalk.gray(`  Max commands: ${options.maxCommands}`));
+          console.log(chalk.gray(`  Timeout: ${options.commandTimeout}ms`));
+        }
+
+        try {
+          await terminalRunner.initialize();
+          if (!options.quiet && !options.json) {
+            console.log(chalk.green('  ✓ Terminal initialized\n'));
+          }
+        } catch (err) {
+          console.error(chalk.red('❌ Failed to initialize terminal mode:'), (err as Error).message);
+          process.exit(1);
+        }
+      } else {
+        console.log(`🏭 ADA Dispatch Cycle ${cycleNumber}\n`);
+      }
 
       try {
         // Check for paused state before dispatch
@@ -115,7 +202,41 @@ export const runCommand = new Command('run')
           // Lock file doesn't exist or is invalid — use default
         }
         
-        const actionResult = await executeAgentAction(context, executorType);
+        // Execute action based on mode
+        let actionResult: Awaited<ReturnType<typeof executeAgentAction>>;
+        
+        if (isTerminalMode && terminalRunner) {
+          // Terminal Mode: Pass terminal runner context to agent execution
+          // The agent executor will use this to execute shell commands
+          actionResult = await executeAgentAction(context, executorType, {
+            terminalRunner,
+            onCommand: async (command: string) => {
+              // Execute command through terminal runner
+              const result = await terminalRunner.executeAction({
+                type: 'execute',
+                command,
+              });
+              return {
+                success: result.success,
+                stdout: result.execution?.stdout ?? '',
+                stderr: result.execution?.stderr ?? '',
+                exitCode: result.execution?.exitCode ?? -1,
+              };
+            },
+          });
+          
+          // Show terminal session summary
+          if (!options.quiet && !options.json) {
+            const session = terminalRunner.finalize(actionResult.action);
+            console.log(chalk.gray('\n📊 Terminal Session Summary:'));
+            console.log(chalk.gray(`   Commands: ${session.commandsExecuted} (${session.commandsSucceeded} ✓, ${session.commandsFailed} ✗)`));
+            console.log(chalk.gray(`   Duration: ${session.totalDurationMs}ms`));
+            console.log();
+          }
+        } else {
+          // Default mode: Standard agent execution
+          actionResult = await executeAgentAction(context, executorType);
+        }
         
         if (actionResult.success) {
           console.log(`✅ Action completed: ${actionResult.action}`);
