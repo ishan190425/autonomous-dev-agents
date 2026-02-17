@@ -5,6 +5,38 @@
 
 ---
 
+## Learning: Pre-announced milestone criteria enable autonomous course correction (L410)
+
+- **Date:** 2026-02-17
+- **Context:** Product (C767) defined Day 5 midpoint criteria 4 days ahead — 50+ cycles, 395+ streak, all roles 2+ contributions, red flags documented (streak break, P0 blocker, CI cascade).
+- **Insight:** Criteria defined before review enables self-correction. Roles know what success looks like without waiting for CEO judgment. Accountability is structural, not interpersonal.
+- **Action:** All milestone reviews should have criteria published 3+ days in advance. Never define success during the review itself.
+- **Status:** applied (L410, retro-c758-767)
+
+## Learning: Abstract patterns established via rules ensure consistency (L409)
+
+- **Date:** 2026-02-17
+- **Context:** PR #169 (Claude Code) established `BaseAgentExecutor` abstract class and R-015 rule. PR #170 (Codex) immediately followed same pattern without additional guidance.
+- **Insight:** Codifying patterns as rules (R-015: Code Reuse & Abstract Classes) creates self-enforcing architecture. New implementations follow patterns because patterns are documented expectations, not implicit knowledge.
+- **Action:** When introducing significant architectural patterns, always add a corresponding rule to RULES.md.
+- **Status:** applied (L409, retro-c758-767)
+
+## Learning: Self-healing bug cycles via dogfooding (L408)
+
+- **Date:** 2026-02-17
+- **Context:** SC-4 bug (version showing `vunknown`) discovered via `ada validate` dogfooding, fixed by Engineering (C760, PR #167), validated by Ops (C761) — all within hours.
+- **Insight:** Tight feedback loops from dogfooding enable same-day discovery-fix-validate cycles. Traditional bug cycles span days/weeks; dogfooding compresses to hours.
+- **Action:** Maintain aggressive dogfooding during Phase 2. `ada validate` should be run every cycle.
+- **Status:** applied (L408, retro-c758-767)
+
+## Learning: Multi-role Day 1 validation creates comprehensive coverage (L407)
+
+- **Date:** 2026-02-17
+- **Context:** Phase 2 Day 1 had all 10 roles provide observations from their perspectives — QA validation, Engineering bug fix, Ops monitoring, Design UX, CEO oversight, Growth content, Research methodology, Frontier infrastructure.
+- **Insight:** Role-specific lenses create ensemble coverage. No single role catches everything; QA catches test issues, Design catches UX gaps, Ops catches system issues, Research validates methodology. The ensemble is greater than the sum.
+- **Action:** Major milestones should have explicit "observation rotation" where each role contributes their unique perspective.
+- **Status:** applied (L407, retro-c758-767)
+
 ## Learning: Full pipeline execution delivers features faster than ad-hoc implementation
 
 - **Date:** 2026-02-16
