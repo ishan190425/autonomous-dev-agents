@@ -8,22 +8,23 @@
 
 ## Rule Index
 
-| ID    | Rule                                                         | Owner   | Added      |
-| ----- | ------------------------------------------------------------ | ------- | ---------- |
-| R-001 | [Memory Bank Protocol](#r-001-memory-bank-protocol)          | System  | Init       |
-| R-002 | [Compression Protocol](#r-002-compression-protocol)          | System  | Init       |
-| R-003 | [Role Evolution Protocol](#r-003-role-evolution-protocol)    | System  | Init       |
-| R-004 | [Commit Standards](#r-004-commit-standards)                  | Ops     | Init       |
-| R-005 | [Branch Strategy](#r-005-branch-strategy)                    | Ops     | Init       |
-| R-006 | [Issue Quality](#r-006-issue-quality)                        | Product | Init       |
-| R-007 | [TypeScript Standards](#r-007-typescript-standards)          | Ops     | Init       |
-| R-008 | [Monorepo Conventions](#r-008-monorepo-conventions)          | Ops     | Init       |
-| R-009 | [npm Workspace Rules](#r-009-npm-workspace-rules)            | Ops     | Init       |
-| R-010 | [PR Management & CI](#r-010-pr-management--ci)               | Ops     | 2026-01-30 |
-| R-011 | [PR Hygiene & Transparency](#r-011-pr-hygiene--transparency) | Ops     | 2026-02-02 |
-| R-012 | [GitHub Templates](#r-012-github-templates)                  | Ops     | 2026-02-09 |
-| R-013 | [Issue Tracking Protocol](#r-013-issue-tracking-protocol)    | Scrum   | 2026-02-10 |
-| R-014 | [Agent PR Workflow](#r-014-agent-pr-workflow)                | Ops     | 2026-02-14 |
+| ID    | Rule                                                                 | Owner       | Added      |
+| ----- | -------------------------------------------------------------------- | ----------- | ---------- |
+| R-001 | [Memory Bank Protocol](#r-001-memory-bank-protocol)                  | System      | Init       |
+| R-002 | [Compression Protocol](#r-002-compression-protocol)                  | System      | Init       |
+| R-003 | [Role Evolution Protocol](#r-003-role-evolution-protocol)            | System      | Init       |
+| R-004 | [Commit Standards](#r-004-commit-standards)                          | Ops         | Init       |
+| R-005 | [Branch Strategy](#r-005-branch-strategy)                            | Ops         | Init       |
+| R-006 | [Issue Quality](#r-006-issue-quality)                                | Product     | Init       |
+| R-007 | [TypeScript Standards](#r-007-typescript-standards)                  | Ops         | Init       |
+| R-008 | [Monorepo Conventions](#r-008-monorepo-conventions)                  | Ops         | Init       |
+| R-009 | [npm Workspace Rules](#r-009-npm-workspace-rules)                    | Ops         | Init       |
+| R-010 | [PR Management & CI](#r-010-pr-management--ci)                       | Ops         | 2026-01-30 |
+| R-011 | [PR Hygiene & Transparency](#r-011-pr-hygiene--transparency)         | Ops         | 2026-02-02 |
+| R-012 | [GitHub Templates](#r-012-github-templates)                          | Ops         | 2026-02-09 |
+| R-013 | [Issue Tracking Protocol](#r-013-issue-tracking-protocol)            | Scrum       | 2026-02-10 |
+| R-014 | [Agent PR Workflow](#r-014-agent-pr-workflow)                        | Ops         | 2026-02-14 |
+| R-015 | [Code Reuse & Abstract Classes](#r-015-code-reuse--abstract-classes) | Engineering | 2026-02-17 |
 
 ---
 
@@ -436,6 +437,151 @@ PRs enable:
 - **Human oversight** — humans can review agent code when needed
 
 **Related Issue:** #128
+
+---
+
+## R-015: Code Reuse & Abstract Classes
+
+### Principle
+
+**Prefer abstract base classes over code duplication.** When implementing multiple similar classes, extract shared functionality into an abstract base class to reduce duplication, ensure consistency, and enable future extensibility.
+
+### When to Use Abstract Classes
+
+Use abstract base classes when:
+
+1. **Multiple implementations share common logic:**
+   - Two or more classes implement the same interface
+   - They share helper methods, error handling, or parsing logic
+   - They follow a similar execution pattern
+
+2. **Template method pattern applies:**
+   - Classes follow the same workflow but differ in specific steps
+   - Common error handling wrapper around different implementations
+   - Shared validation or transformation logic
+
+3. **Future extensibility is expected:**
+   - More implementations are planned (e.g., multiple executor backends)
+   - Plugin/extensibility architecture is being built
+   - Similar patterns will be repeated
+
+### Implementation Pattern
+
+```typescript
+// ✅ GOOD: Abstract base class with shared functionality
+abstract class BaseAgentExecutor implements AgentExecutor {
+  // Template method with shared error handling
+  async executeAction(context: DispatchContext): Promise<ActionResult> {
+    try {
+      const prompt = this.buildPrompt(context);
+      const output = await this.executeCommand(prompt, context);
+      const result = this.parseResponse(output, context);
+      return this.enrichResult(result, context);
+    } catch (error) {
+      return this.handleError(error, context);
+    }
+  }
+
+  // Abstract methods — each implementation provides its own
+  protected abstract buildPrompt(context: DispatchContext): string;
+  protected abstract executeCommand(prompt: string, context: DispatchContext): Promise<string>;
+  protected abstract parseResponse(output: string, context: DispatchContext): Partial<ActionResult>;
+
+  // Shared helper methods — reused by all implementations
+  protected extractModifiedFiles(text: string): string[] { /* ... */ }
+  protected extractIssueNumbers(text: string): number[] { /* ... */ }
+  protected generateActionSummary(context: DispatchContext, ...): string { /* ... */ }
+}
+
+// Concrete implementations extend the base
+class ClawdbotAgentExecutor extends BaseAgentExecutor {
+  protected buildPrompt(context: DispatchContext): string { /* Clawdbot-specific */ }
+  protected executeCommand(prompt: string, context: DispatchContext): Promise<string> { /* ... */ }
+  protected parseResponse(output: string, context: DispatchContext): Partial<ActionResult> { /* ... */ }
+}
+
+class ClaudeCodeAgentExecutor extends BaseAgentExecutor {
+  protected buildPrompt(context: DispatchContext): string { /* Claude Code-specific */ }
+  protected executeCommand(prompt: string, context: DispatchContext): Promise<string> { /* ... */ }
+  protected parseResponse(output: string, context: DispatchContext): Partial<ActionResult> { /* ... */ }
+}
+```
+
+### Anti-Patterns to Avoid
+
+```typescript
+// ❌ BAD: Duplicated code across implementations
+class ClawdbotAgentExecutor implements AgentExecutor {
+  async executeAction(context: DispatchContext): Promise<ActionResult> {
+    // ... 50 lines of shared logic ...
+    // ... 10 lines of Clawdbot-specific logic ...
+  }
+  private extractModifiedFiles(text: string): string[] {
+    /* duplicated */
+  }
+  private extractIssueNumbers(text: string): number[] {
+    /* duplicated */
+  }
+}
+
+class ClaudeCodeAgentExecutor implements AgentExecutor {
+  async executeAction(context: DispatchContext): Promise<ActionResult> {
+    // ... 50 lines of shared logic (duplicated!) ...
+    // ... 10 lines of Claude Code-specific logic ...
+  }
+  private extractModifiedFiles(text: string): string[] {
+    /* duplicated */
+  }
+  private extractIssueNumbers(text: string): number[] {
+    /* duplicated */
+  }
+}
+```
+
+### Best Practices
+
+1. **Extract shared functionality first:**
+   - Identify common patterns before implementing multiple classes
+   - Refactor existing duplicated code into base class
+   - Use protected methods for shared helpers
+
+2. **Keep abstract methods focused:**
+   - Each abstract method should represent one clear responsibility
+   - Avoid abstract methods that are too broad or too narrow
+   - Document expected behavior in JSDoc comments
+
+3. **Preserve type safety:**
+   - Use TypeScript's abstract class features
+   - Ensure all abstract methods are properly typed
+   - Use generic types when appropriate for flexibility
+
+4. **Test shared functionality once:**
+   - Test the base class helpers in the base class tests
+   - Test implementation-specific logic in concrete class tests
+   - Avoid duplicating tests for shared behavior
+
+### Examples in Codebase
+
+- **Agent Executors:** `BaseAgentExecutor` → `ClawdbotAgentExecutor`, `ClaudeCodeAgentExecutor` (Issue #64)
+- **Future:** Backend providers, notification channels, memory stores can follow the same pattern
+
+### Why This Rule Matters
+
+**Code duplication creates maintenance debt:**
+
+- **Bug multiplication:** Fix a bug in one place, miss it in duplicates
+- **Inconsistent behavior:** Shared logic drifts apart over time
+- **Testing overhead:** Same logic tested multiple times
+- **Extension friction:** Adding new implementations requires copying code
+
+**Abstract classes provide:**
+
+- **Single source of truth:** Shared logic lives in one place
+- **Consistent behavior:** All implementations inherit the same patterns
+- **Easy extensibility:** New implementations extend base, implement 3-4 methods
+- **Better testability:** Test shared logic once, test differences separately
+
+**Related Issues:** #64 (Claude Code Integration), future executor integrations
 
 ---
 
