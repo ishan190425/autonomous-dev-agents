@@ -613,9 +613,158 @@ Execute ONE meaningful action from your playbook now. Focus on high-impact work 
 }
 
 /**
+ * Codex-based agent executor (OpenAI Codex CLI).
+ *
+ * Executes agent actions via OpenAI Codex CLI, leveraging OpenAI's
+ * code generation capabilities while maintaining ADA's coordination layer.
+ *
+ * @see Future executor integration — follows same pattern as Claude Code
+ */
+export class CodexAgentExecutor extends BaseAgentExecutor {
+  /**
+   * Build the prompt/context for Codex.
+   * Formats ADA context in a way Codex understands.
+   *
+   * @param context - Dispatch context
+   * @returns Formatted prompt for Codex
+   */
+  protected buildPrompt(context: DispatchContext): string {
+    const { role, state, memoryBank, paths } = context;
+
+    return `You are ${role.emoji} ${role.name} (${role.title}) for ADA (Autonomous Dev Agents).
+
+You are executing Phase 3 of the dispatch protocol. Your task is to:
+
+1. Read agents/playbooks/${role.id}.md for your available actions
+2. Read agents/memory/bank.md for current project state
+3. Check GitHub: gh issue list and gh pr list
+4. Pick ONE action from your playbook based on current state
+5. Execute it via GitHub (create issue, write code + PR, add docs, comment)
+6. All work branches from main, PRs target main
+7. Follow conventional commits format
+
+CURRENT STATE:
+- Cycle: ${state.cycle_count + 1}
+- Role: ${role.id}
+- Focus: ${role.focus.join(', ')}
+- Available actions: ${role.actions.join(', ')}
+
+WORKING DIRECTORY: ${paths.root}
+
+MEMORY BANK SUMMARY:
+${this.extractMemoryBankSummary(memoryBank)}
+
+RULES:
+- Follow ALL rules in agents/rules/RULES.md
+- Pick exactly ONE action this cycle
+- Create meaningful work, no placeholders
+- Update memory bank after acting (handled by dispatch cycle)
+- Use conventional commit format: <type>(<scope>): <description>
+
+Execute ONE meaningful action from your playbook now. Focus on high-impact work that moves the project forward.`;
+  }
+
+  /**
+   * Execute Codex command via CLI.
+   *
+   * @param prompt - Task prompt for the agent
+   * @param context - Dispatch context for working directory
+   * @returns Raw output from Codex
+   */
+  protected async executeCommand(
+    prompt: string,
+    context: DispatchContext
+  ): Promise<string> {
+    try {
+      // Escape the prompt for shell execution
+      const escapedPrompt = prompt.replace(/'/g, "'\\''");
+
+      // Build the Codex command
+      // Codex CLI typically uses: codex <command> [options]
+      // Session ID for tracking
+      const sessionId = `ada:${context.role.id}:${context.state.cycle_count + 1}`;
+      const command = `codex execute --prompt '${escapedPrompt}' --session '${sessionId}' --timeout 600`;
+
+      // Execute in the project root directory
+      const { stdout, stderr } = await exec(command, {
+        cwd: context.paths.root,
+        maxBuffer: 10 * 1024 * 1024, // 10MB buffer for large outputs
+        env: {
+          ...process.env,
+          // Ensure we're in the right directory context
+          PWD: context.paths.root,
+        },
+      });
+
+      // Return combined output (stdout + stderr if present)
+      return stderr ? `${stdout}\n${stderr}` : stdout;
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      // Check if Codex is not installed
+      if (
+        errorMessage.includes('command not found') ||
+        errorMessage.includes('codex: not found')
+      ) {
+        throw new Error(
+          `Codex CLI not found. Please install it with: npm install -g @openai/codex-cli or follow OpenAI Codex CLI installation instructions.`
+        );
+      }
+      throw new Error(
+        `Codex execution failed: ${errorMessage}. Make sure Codex CLI is installed and configured with API keys.`
+      );
+    }
+  }
+
+  /**
+   * Parse Codex's output format.
+   * Codex may return structured output or plain text.
+   *
+   * @param output - Raw output from Codex
+   * @param _context - Dispatch context (unused but required by interface)
+   * @returns Partial action result
+   */
+  protected parseResponse(
+    output: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _context: DispatchContext
+  ): Partial<ActionResult> {
+    // Codex may output JSON or plain text
+    // Try to parse as JSON first
+    try {
+      const jsonMatch = output.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        const parsed = JSON.parse(jsonMatch[0]) as {
+          response?: string;
+          message?: string;
+          error?: string;
+          success?: boolean;
+          result?: string;
+        };
+        const result: Partial<ActionResult> = {
+          success: parsed.success ?? !parsed.error,
+          details: parsed.response || parsed.message || parsed.result || output,
+        };
+        if (parsed.error) {
+          result.error = parsed.error;
+        }
+        return result;
+      }
+    } catch {
+      // Not JSON, continue with plain text parsing
+    }
+
+    // Plain text response
+    return {
+      success: true,
+      details: output.trim() || 'Codex execution completed',
+    };
+  }
+}
+
+/**
  * Executor type identifier.
  */
-export type ExecutorType = 'clawdbot' | 'claude-code';
+export type ExecutorType = 'clawdbot' | 'claude-code' | 'codex';
 
 /**
  * Get the appropriate executor instance based on configuration.
@@ -629,6 +778,8 @@ export function getExecutor(executorType?: string): AgentExecutor {
   switch (type) {
     case 'claude-code':
       return new ClaudeCodeAgentExecutor();
+    case 'codex':
+      return new CodexAgentExecutor();
     case 'clawdbot':
     default:
       return new ClawdbotAgentExecutor();

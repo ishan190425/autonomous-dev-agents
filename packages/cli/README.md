@@ -76,6 +76,7 @@ ADA supports multiple executor backends for agent execution. The executor determ
 
 - **clawdbot** (default) — Uses Clawdbot for agent execution
 - **claude-code** — Uses Claude Code CLI for agent execution (Issue #64)
+- **codex** — Uses OpenAI Codex CLI for agent execution
 
 ### Selecting an Executor
 
@@ -84,11 +85,13 @@ You can select an executor in several ways:
 1. **CLI flag** (per-cycle):
    ```bash
    ada dispatch start --executor claude-code
+   ada dispatch start --executor codex
    ```
 
 2. **Environment variable** (persistent):
    ```bash
    export ADA_EXECUTOR=claude-code
+   export ADA_EXECUTOR=codex
    ada dispatch start
    ```
 
@@ -115,7 +118,25 @@ To use Claude Code as the executor:
    export ADA_EXECUTOR=claude-code
    ```
 
-**Note**: Claude Code integration is optional. ADA's rotation, memory bank, and coordination layer work with any executor backend.
+**Note**: Executor integrations are optional. ADA's rotation, memory bank, and coordination layer work with any executor backend.
+
+### Codex Integration
+
+To use Codex as the executor:
+
+1. **Install Codex CLI** (follow OpenAI Codex CLI installation instructions)
+
+2. **Configure Codex** with your API keys
+
+3. **Use Codex executor**:
+   ```bash
+   ada dispatch start --executor codex
+   ```
+
+   Or set it as default:
+   ```bash
+   export ADA_EXECUTOR=codex
+   ```
 
 ## License
 
