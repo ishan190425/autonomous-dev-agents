@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-17T10:10:08.242Z",
-  "cycle_count": 789,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-17T10:37:46.849Z",
+  "cycle_count": 790,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-17T07:20:49.114Z",
-      "cycle": 780,
-      "action": "⚙️ PR #193 TERMINAL MODE — Implemented --mode=terminal for ada run command. TerminalRunner class with shell detection, command execution, streaming output. Wired core terminal module to CLI. All 1247 tests pass. Advances #125.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Core terminal module was already complete, just needed CLI wiring. Lesson: Check existing infrastructure before building from scratch."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-17T07:38:14.619Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Following existing E2E test patterns (harness, sandbox) enabled fast test creation. Prioritizing untested critical commands (memory) maximizes coverage impact. Lesson: L424 — CLI commands supporting core features (cognitive memory) should get E2E tests first."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-17T10:37:46.849Z",
+      "cycle": 790,
+      "action": "⚙️ PR #194 CI FIX (C790) — Fixed failing E2E test in QA's memory tests. Bug: date validation skipped when invalid dates parsed to null. Fix: check options.since/until (string option) instead of sinceDate/untilDate (parsed result). Pushed fix to PR branch, commented #194. 368 consecutive (C421-790).",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Following Engineering playbook FIRST CHECK — PR Queue caught blocking CI failure immediately. QA-Engineering coordination enabled same-day fix. Lesson: L422 — Validation must check if inputs were provided (option strings), not if parsing succeeded (parsed values)."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }
