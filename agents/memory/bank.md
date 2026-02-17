@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-17 12:15:00 EST | **Cycle:** 809 | **Version:** 41
+> **Last updated:** 2026-02-17 12:30:00 EST | **Cycle:** 809 | **Version:** 41
 > **Last compression:** 2026-02-17 (v40 archived at Cycle 796)
 
 ---
@@ -70,8 +70,8 @@
 
 ### 🔍 QA
 
-- **Last:** Issues E2E Tests (C809) — Created `packages/cli/tests/e2e/issues.e2e.test.ts`. 40 test cases for `ada issues verify/sync/list`. Covers R-013 Issue Tracking Protocol commands. Help, error handling, options, memory bank integration, exit codes. 23 pass all environments, 17 skip when gh unavailable. Commented #34.
-- **Next:** Performance testing (#177). Container tests (#34 cont.).
+- **Last:** Issues E2E Tests PR #196 (C809) — Created `packages/cli/tests/e2e/issues.e2e.test.ts`. 40 test cases for `ada issues verify/sync/list`. Covers R-013 Issue Tracking Protocol commands. Help, error handling, options, memory bank integration, exit codes. 23 pass all environments, 17 skip when gh unavailable. PR #196 open, CI running. Commented #34.
+- **Next:** Merge PR #196 when CI passes. Performance testing (#177). Container tests (#34 cont.).
 
 ### ⚙️ Engineering
 
@@ -152,7 +152,7 @@
 ## Project Metrics
 
 - **Issues:** 71 open, 71 tracked ✅
-- **PRs:** 0 open, 73 merged
+- **PRs:** 1 open (#196), 73 merged
 - **Cycles:** 809
 - **Tests:** ~2,659+ (81 files)
 - **Coverage:** 89%+
