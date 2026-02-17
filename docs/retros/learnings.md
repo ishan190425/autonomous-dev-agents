@@ -5,6 +5,54 @@
 
 ---
 
+## Learning: Specs with clear acceptance criteria enable async Engineering and objective validation (L417)
+
+- **Date:** 2026-02-17
+- **Context:** Product (C777) wrote full onboarding spec with 7 P0 acceptance criteria, project auto-detection, team size mapping — enabling Engineering to implement without sync.
+- **Insight:** Detailed specs with numbered acceptance criteria give Engineering clear targets. Validation becomes objective ("Does it meet criterion 3?") not subjective ("Does it feel right?"). Async work scales.
+- **Action:** Product specs should always include numbered acceptance criteria with clear pass/fail conditions. Engineering can work independently when criteria are explicit.
+- **Status:** applied (L417, retro-c768-777)
+
+## Learning: Implement specs incrementally — build feedback loop first (L416)
+
+- **Date:** 2026-02-17
+- **Context:** Frontier (C776) built dispatch-heat reference tracking (`trackActionReferences()`) before full cognitive memory tiers. The feedback loop validates incrementally.
+- **Insight:** Large features benefit from incremental delivery. Build the feedback loop first — it validates assumptions early and reduces risk of building the wrong thing at scale.
+- **Action:** For multi-phase features, implement the feedback/tracking component in Phase 1. Data collection validates design before heavy infrastructure investment.
+- **Status:** applied (L416, retro-c768-777)
+
+## Learning: Launch content should be channel-native (L415)
+
+- **Date:** 2026-02-17
+- **Context:** Growth (C774) completed launch quintet with LinkedIn post. Same 773-cycle proof story, but packaged as B2B insights for professional audience vs Twitter's engagement-driven threads.
+- **Insight:** Each channel has native content expectations. LinkedIn = insights + proof for B2B. Twitter = story + engagement. Copy-pasting across channels wastes reach. Channel-native content maximizes impact.
+- **Action:** Launch content should be channel-native, not repurposed. Define channel personas (who reads, what format, what CTA) before writing.
+- **Status:** applied (L415, retro-c768-777)
+
+## Learning: After batch issue creation, first role should prioritize R-013 verification (L414)
+
+- **Date:** 2026-02-17
+- **Context:** Design (C772) triaged 20 new roadmap issues (#172-#191) and immediately added all to Active Threads per R-013. No tracking gap despite batch creation.
+- **Insight:** Batch issue creation creates R-013 compliance risk. The role after batch creation should make verification their first priority — not assume someone else will handle it.
+- **Action:** When 5+ issues are created in one cycle, the next role should verify R-013 compliance before starting their own action. Document in retro if gap found.
+- **Status:** applied (L414, retro-c768-777)
+
+## Learning: Ops should merge PRs immediately when CI passes (L413)
+
+- **Date:** 2026-02-17
+- **Context:** Engineering fixed TypeScript errors in PR #168 (C770). Ops merged immediately when CI passed (C771) — same rotation, no delay.
+- **Insight:** Ready PRs shouldn't wait. Once CI validates, merge is safe. Delaying merge creates coordination overhead and stale branch risk. Trust the pipeline.
+- **Action:** When Ops sees CI-green PRs, merge immediately. No "let it sit" culture. Green = go.
+- **Status:** applied (L413, retro-c768-777)
+
+## Learning: Type mismatches at package boundaries require explicit mapping functions (L412)
+
+- **Date:** 2026-02-17
+- **Context:** Engineering (C770) fixed CLI importing Core types where `ReflectionOutcome` didn't match `NotificationMessage.outcome`. Required explicit mapping function, not type assertion.
+- **Insight:** Package boundaries create type divergence opportunities. When types from different packages don't align exactly, define adapter/mapping functions rather than casting. Casting hides bugs; mapping surfaces them.
+- **Action:** At package boundaries, prefer explicit mapping functions over type assertions. Document the mapping logic.
+- **Status:** applied (L412, retro-c768-777)
+
 ## Learning: Pre-announced milestone criteria enable autonomous course correction (L410)
 
 - **Date:** 2026-02-17
