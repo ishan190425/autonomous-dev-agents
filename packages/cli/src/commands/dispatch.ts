@@ -1141,6 +1141,11 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
     if (commitSha) {
       try {
         const configPath = path.join(agentsDir, 'config.json');
+        // Map ReflectionOutcome to NotificationMessage outcome type
+        const notificationOutcome: 'success' | 'blocked' | 'error' = 
+          outcome === 'blocked' ? 'blocked' : 
+          outcome === 'unknown' ? 'error' : 
+          'success'; // 'success' and 'partial' both map to 'success'
         const notificationMessage: NotificationMessage = {
           subject: commitSubject,
           body: options.action,
@@ -1150,8 +1155,8 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
             emoji: currentRole.emoji,
             name: currentRole.name,
           },
-          commitSha: commitSha,
-          outcome: outcome,
+          commitSha,
+          outcome: notificationOutcome,
         };
 
         const notificationResults = await sendCycleNotifications(configPath, notificationMessage);

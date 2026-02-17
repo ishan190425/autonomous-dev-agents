@@ -107,7 +107,7 @@ export const configCommand = new Command('config')
               // Slack
               if (channels.slack?.enabled) {
                 const url = channels.slack.webhookUrl || '';
-                const maskedUrl = url ? (url.substring(0, 30) + '...') : 'not set';
+                const maskedUrl = url ? (`${url.substring(0, 30)  }...`) : 'not set';
                 console.log(`  ${chalk.green('✓')} Slack: ${chalk.green('enabled')}`);
                 console.log(`    Webhook: ${maskedUrl}\n`);
               } else {
@@ -118,7 +118,7 @@ export const configCommand = new Command('config')
               if (channels.telegram?.enabled) {
                 const token = channels.telegram.botToken || '';
                 const chatId = channels.telegram.chatId || '';
-                const maskedToken = token ? (token.substring(0, 10) + '...') : 'not set';
+                const maskedToken = token ? (`${token.substring(0, 10)  }...`) : 'not set';
                 console.log(`  ${chalk.green('✓')} Telegram: ${chalk.green('enabled')}`);
                 console.log(`    Bot Token: ${maskedToken}`);
                 console.log(`    Chat ID: ${chatId || 'not set'}\n`);
@@ -129,7 +129,7 @@ export const configCommand = new Command('config')
               // Discord
               if (channels.discord?.enabled) {
                 const url = channels.discord.webhookUrl || '';
-                const maskedUrl = url ? (url.substring(0, 30) + '...') : 'not set';
+                const maskedUrl = url ? (`${url.substring(0, 30)  }...`) : 'not set';
                 console.log(`  ${chalk.green('✓')} Discord: ${chalk.green('enabled')}`);
                 console.log(`    Webhook: ${maskedUrl}\n`);
               } else {
@@ -178,10 +178,10 @@ export const configCommand = new Command('config')
                   console.error(`   Usage: ada config notifications set ${normalizedChannel} <webhook-url>`);
                   process.exit(1);
                 }
-                const webhookUrl = values[0];
+                const webhookUrl = values[0]!;
                 config.notifications.channels[normalizedChannel] = {
                   enabled: true,
-                  webhookUrl: webhookUrl,
+                  webhookUrl,
                 };
                 console.log(chalk.green(`✓ ${normalizedChannel} webhook configured and enabled`));
               } else if (normalizedChannel === 'telegram') {
@@ -190,11 +190,12 @@ export const configCommand = new Command('config')
                   console.error('   Usage: ada config notifications set telegram <bot-token> <chat-id>');
                   process.exit(1);
                 }
-                const [botToken, chatId] = values;
+                const botToken = values[0]!;
+                const chatId = values[1]!;
                 config.notifications.channels.telegram = {
                   enabled: true,
-                  botToken: botToken,
-                  chatId: chatId,
+                  botToken,
+                  chatId,
                 };
                 console.log(chalk.green('✓ Telegram bot configured and enabled'));
               }
