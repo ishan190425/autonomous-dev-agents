@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-17 05:03:00 EST | **Cycle:** 789 | **Version:** 40
+> **Last updated:** 2026-02-17 06:20:00 EST | **Cycle:** 791 | **Version:** 40
 > **Last compression:** 2026-02-17 (v39 archived at Cycle 783)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎉 789 CYCLES!** 367 consecutive (C421-789). Feature freeze active (C666).
+- **🎉 791 CYCLES!** 369 consecutive (C421-791). Feature freeze active (C666).
 - **📝 #131 ARXIV OUTLINE (C785)** — Full paper outline created ahead of schedule. Mar 7 first draft.
 - **📦 #155 PHASE 2 DAY 3** — 10 cycles since CEO Day 2 check (C773-783). All green. ✅
 - **📋 20 NEW ISSUES (C772)** — Roadmap issues #172-#191 added.
-- **✅ MERGED:** PR #168 (notifications), #169 (Claude Code), #170 (Codex), #192 (dispatch-heat), #193 (terminal mode). 3 executors + reference tracking + terminal complete.
+- **✅ MERGED:** PR #168 (notifications), #169 (Claude Code), #170 (Codex), #192 (dispatch-heat), #193 (terminal mode), #194 (memory E2E tests). 3 executors + reference tracking + terminal + memory tests complete.
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31).
 - **📅 MILESTONES:** Feb 21 Day 5 → Feb 26 Go/No-Go → Mar 1 Sprint 3 → Mar 7 arXiv.
 - **🏷️ Founder Priority:** #155, #158, #7 (✅ #8 closed).
@@ -69,17 +69,17 @@
 ### 🔍 QA
 
 - **Last:** MEMORY E2E TESTS (C789) — Created `packages/cli/tests/e2e/memory.e2e.test.ts`. 28 test cases covering all memory subcommands: list, search, stats, export, embed, lifecycle. Supports #34 E2E infrastructure and #113 cognitive memory. Lint clean.
-- **Next:** Run full test suite verification. Container tests (#34). Performance testing (#177).
+- **Next:** Container tests (#34). Performance testing (#177).
 
 ### ⚙️ Engineering
 
-- **Last:** PR #193 TERMINAL MODE (C780) — Implemented `--mode=terminal` for `ada run`. TerminalRunner class, shell detection, command execution, streaming output. Advances #125.
-- **Next:** Terminal mode tests. E2E integration (#34).
+- **Last:** PR #194 CI FIX (C790) — Fixed failing E2E test in QA's memory tests. Bug: date validation skipped when invalid dates parsed to null. Fix: check options.since/until (string option) instead of sinceDate/untilDate (parsed result). Pushed fix to PR branch, commented #194.
+- **Next:** Terminal mode tests. Error pattern implementation (#185).
 
 ### 🛡️ Ops
 
-- **Last:** PR #193 MERGED (C781) — Terminal mode for `ada run`. All 7 CI checks green. #125 advanced. 0 open PRs. 359 consecutive.
-- **Next:** Day 2+ monitoring. #89 Dev-to-Prod.
+- **Last:** PR #194 MERGED (C791) — Memory E2E tests. QA C789 created, Engineering C790 fixed CI, Ops C791 merged when all 7 CI checks passed. Zero-wait pipeline. #34 E2E testing advances. 0 open PRs. 369 consecutive.
+- **Next:** Day 5 monitoring (Feb 21). #89 Dev-to-Prod.
 
 ### 🎨 Design
 
@@ -179,12 +179,12 @@
 
 ## Project Metrics
 
-- **Issues:** 71 open, 71 tracked ✅
-- **PRs:** 0 open, 71 merged
-- **Cycles:** 788
-- **Tests:** ~2,563+ (79 files, +33 reference tracker)
+- **Issues:** 70 open, 70 tracked ✅
+- **PRs:** 0 open, 72 merged
+- **Cycles:** 791
+- **Tests:** ~2,619+ (80 files, +28 memory E2E)
 - **Coverage:** 89%+
-- **Consecutive:** 366 (C421-788)
+- **Consecutive:** 369 (C421-791)
 - **Compressions:** 40
 
 ---
