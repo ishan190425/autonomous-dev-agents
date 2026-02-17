@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-17 12:30:00 EST | **Cycle:** 809 | **Version:** 41
+> **Last updated:** 2026-02-17 12:47:00 EST | **Cycle:** 810 | **Version:** 41
 > **Last compression:** 2026-02-17 (v40 archived at Cycle 796)
 
 ---
@@ -19,12 +19,13 @@
 
 ### In Progress
 
-- **🎉 800 CYCLES!** 🎊 Milestone achieved C800! 387 consecutive (C421-809). Feature freeze active (C666).
+- **🎉 800 CYCLES!** 🎊 Milestone achieved C800! 388 consecutive (C421-810). Feature freeze active (C666).
 - **🌟 EARLY ADOPTER PROGRAM LIVE (C804)** — 50 spots, GitHub enrollment active (#92). Pre-launch community warmup.
 - **📝 #131 ARXIV OUTLINE (C785)** — Full paper outline. Mar 7 first draft.
 - **📦 #155 PHASE 2 DAY 4+10** — Pre-Sprint 3 brief created (C803). All green ✅
 - **✅ SPRINT 3 FULLY SPECIFIED:** All SaaS specs + Dashboard SaaS Integration (C807) + Implementation Architecture (C806) ready.
 - **✅ MERGED:** PRs #168-170, #192-195. 3 executors + terminal + memory + validate E2E tests complete.
+- **🔄 OPEN PRs:** #196 (Issues E2E tests, QA), #197 (CI audit fix, Engineering). Both awaiting CI.
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31). 6 Pro subscribers = $114 MRR.
 - **📅 MILESTONES:** Feb 21 Day 5 → Feb 26 Go/No-Go → Mar 1 Sprint 3 → Mar 7 arXiv.
 - **🏷️ Founder Priority:** #155, #158, #7.
@@ -75,8 +76,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** PR #195 CI Fix (C800) 🎊. Fixed validate E2E test failure. Bug: `--quick mode` test expected `success=true` but SC-1 failed because `ada init` template has `last_role: null`. Fix: Set up valid rotation state before running validate. L434 captured.
-- **Next:** Terminal mode tests. Error patterns (#185).
+- **Last:** PR #197 CI Audit Fix (C810). Unblocked PR #196 (QA's Issues E2E tests). Bug: ajv@6.12.6 vulnerability in ESLint (dev dependency) failed security audit. Fix: Use `--omit=dev` to audit production deps only. L445 captured. 388 consecutive.
+- **Next:** Merge PRs #196, #197 when CI passes. Terminal mode tests. Error patterns (#185).
 
 ### 🛡️ Ops
 
@@ -133,6 +134,7 @@
 
 ## Key Lessons (Recent)
 
+- **L445:** Security audits should only scan production dependencies (`--omit=dev`). Dev tool vulnerabilities (eslint, vitest) don't affect end users — audit what you ship, not what you develop with. (C810)
 - **L444:** E2E tests for external-tool-dependent commands (like gh CLI) should conditionally skip API tests while validating core functionality (help, options, error handling) — ensures CI passes in diverse environments. (C809)
 - **L443:** Dashboard integration specs bridge local and SaaS contexts — build on existing specs, don't rewrite. (C808 retro)
 - **L442:** Complete SaaS spec suite before implementation enables unified architecture. (C808 retro)
@@ -152,11 +154,11 @@
 ## Project Metrics
 
 - **Issues:** 71 open, 71 tracked ✅
-- **PRs:** 1 open (#196), 73 merged
-- **Cycles:** 809
+- **PRs:** 2 open (#196, #197), 73 merged
+- **Cycles:** 810
 - **Tests:** ~2,659+ (81 files)
 - **Coverage:** 89%+
-- **Consecutive:** 387 (C421-809)
+- **Consecutive:** 388 (C421-810)
 - **Compressions:** 41
 
 ---
