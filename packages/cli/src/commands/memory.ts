@@ -426,18 +426,20 @@ async function executeList(options: MemoryListOptions): Promise<void> {
   const sinceDate = options.since ? parseDate(options.since) : null;
   const untilDate = options.until ? parseDate(options.until) : null;
 
-  if (sinceDate || untilDate) {
-    if (options.since && !sinceDate) {
-      console.error(chalk.red(`❌ Invalid --since date: ${options.since}`));
-      console.error(chalk.gray('   Use format: YYYY-MM-DD, today, or yesterday'));
-      process.exit(1);
-    }
-    if (options.until && !untilDate) {
-      console.error(chalk.red(`❌ Invalid --until date: ${options.until}`));
-      console.error(chalk.gray('   Use format: YYYY-MM-DD, today, or yesterday'));
-      process.exit(1);
-    }
+  // Validate dates if options were provided (must check options, not parsed results)
+  if (options.since && !sinceDate) {
+    console.error(chalk.red(`❌ Invalid --since date: ${options.since}`));
+    console.error(chalk.gray('   Use format: YYYY-MM-DD, today, or yesterday'));
+    process.exit(1);
+  }
+  if (options.until && !untilDate) {
+    console.error(chalk.red(`❌ Invalid --until date: ${options.until}`));
+    console.error(chalk.gray('   Use format: YYYY-MM-DD, today, or yesterday'));
+    process.exit(1);
+  }
 
+  // Filter by date range if either date was provided and valid
+  if (sinceDate || untilDate) {
     entries = entries.filter((e) => isInDateRange(e, sinceDate, untilDate));
   }
 
