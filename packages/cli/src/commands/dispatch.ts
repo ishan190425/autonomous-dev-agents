@@ -38,8 +38,11 @@ import {
   selectModel,
   type ClaudeModel,
   type ModelRoleId,
+  // Notifications (Issue #8)
+  sendCycleNotifications,
+  type NotificationMessage,
 } from '@ada-ai/core';
-import type { Role, Roster, RotationState, Reflection, CodeChangeResult } from '@ada-ai/core';
+import type { Role, Roster, RotationState, Reflection, ReflectionOutcome, CodeChangeResult } from '@ada-ai/core';
 
 // Heat Scoring (Issue #118 — Dispatch Integration)
 import {
@@ -182,7 +185,7 @@ interface DispatchStartOptions {
 interface DispatchCompleteOptions {
   dir: string;
   action: string;
-  outcome?: 'success' | 'partial' | 'blocked';
+  outcome?: ReflectionOutcome;
   reflection?: string;
   skipPush?: boolean;
   json?: boolean;
@@ -421,7 +424,8 @@ async function detectCodeChanges(cwd: string): Promise<CodeChangeResult> {
     // git status --porcelain format: XY filename
     const filePath = line.substring(3).trim();
     // Handle renamed files (old -> new)
-    const actualPath = filePath.includes(' -> ') ? filePath.split(' -> ')[1]! : filePath;
+    const splitPath = filePath.includes(' -> ') ? filePath.split(' -> ') : null;
+    const actualPath = splitPath && splitPath[1] ? splitPath[1] : filePath;
     allFiles.push(actualPath);
 
     const classification = classifyFile(actualPath);
@@ -599,7 +603,7 @@ async function executePRWorkflow(
     prUrl = stdout.trim();
     // Extract PR number from URL
     const prMatch = prUrl.match(/\/pull\/(\d+)/);
-    prNumber = prMatch ? parseInt(prMatch[1]!, 10) : undefined;
+    prNumber = prMatch && prMatch[1] ? parseInt(prMatch[1], 10) : undefined;
 
     if (!quiet && !json) {
       console.log(`  ${chalk.gray('Title:')}  ${prTitle}`);
@@ -1139,6 +1143,50 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
     const { stdout: commitOut } = await gitExec(cwd, `commit -m "${escapedSubject}" -m "${escapedBody}"`);
     const shaMatch = commitOut.match(/\[[\w-]+\s+([a-f0-9]+)\]/);
     commitSha = shaMatch?.[1] ?? '';
+
+    // Send notifications (Issue #8 — Notification System)
+    if (commitSha) {
+      try {
+        const configPath = path.join(agentsDir, 'config.json');
+        // Map ReflectionOutcome to NotificationMessage outcome type
+        const notificationOutcome: 'success' | 'blocked' | 'error' = 
+          outcome === 'blocked' ? 'blocked' : 
+          outcome === 'unknown' ? 'error' : 
+          'success'; // 'success' and 'partial' both map to 'success'
+        const notificationMessage: NotificationMessage = {
+          subject: commitSubject,
+          body: options.action,
+          cycle: newState.cycle_count,
+          role: {
+            id: currentRole.id,
+            emoji: currentRole.emoji,
+            name: currentRole.name,
+          },
+          commitSha,
+          outcome: notificationOutcome,
+        };
+
+        const notificationResults = await sendCycleNotifications(configPath, notificationMessage);
+        
+        // Log notification results in verbose mode or if there are failures
+        if (process.env.ADA_DEBUG || notificationResults.some((r: { success: boolean }) => !r.success)) {
+          for (const result of notificationResults) {
+            if (result.success) {
+              if (process.env.ADA_DEBUG) {
+                console.log(chalk.gray(`  ✓ Notification sent to ${result.channel}`));
+              }
+            } else {
+              console.warn(chalk.yellow(`  ⚠ Notification to ${result.channel} failed: ${result.error}`));
+            }
+          }
+        }
+      } catch (notificationError) {
+        // Don't fail dispatch if notifications fail
+        if (process.env.ADA_DEBUG) {
+          console.warn(chalk.yellow('  ⚠ Notification error (non-fatal):'), notificationError);
+        }
+      }
+    }
 
     // Push (unless skip-push)
     if (!options.skipPush) {
