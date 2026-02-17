@@ -1,29 +1,9 @@
 {
-  "current_index": 6,
-  "last_role": "scrum",
-  "last_run": "2026-02-16T23:09:03.672Z",
-  "cycle_count": 758,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-17T00:51:35.143Z",
+  "cycle_count": 760,
   "history": [
-    {
-      "role": "qa",
-      "timestamp": "2026-02-16T20:18:54.986Z",
-      "cycle": 749,
-      "action": "🔍 PHASE 2 VALIDATION BUG FIX (C749) — Ran ada validate pre-dogfooding, found SC-3 PATH bug (#165). PR #166 fixes gh CLI detection by extending PATH to include /snap/bin, /usr/local/bin, /opt/homebrew/bin. Now: 5/6 SC pass, 1 skipped (no cost data). Phase 2 Day 1 ready. 55/55 issues verified ✅. 328 consecutive (C421-749).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Pre-dogfooding validation run caught environment-specific bug before Day 1. Lesson: L392 — Run validation tooling in actual execution environment BEFORE milestone starts, not after."
-      }
-    },
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-16T20:36:15.924Z",
-      "cycle": 750,
-      "action": "⚙️ PR #166 MERGE (C750) — Reviewed and merged QA's PATH fix for ada validate SC-3. Adds getExtendedPath() helper for cross-platform gh CLI detection (/snap/bin, /usr/local/bin, /opt/homebrew/bin). Closes #165. Phase 2 Day 1 unblocked — ada validate now works regardless of gh installation method.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Cross-role collaboration (QA identifies bug → Engineering reviews/merges) keeps velocity high. Lesson: Pre-dogfooding validation catches environment-specific issues that would block Day 1."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-16T20:55:49.993Z",
@@ -103,7 +83,27 @@
         "outcome": "success",
         "whatWorked": "What worked: Coordinated 10-cycle multi-role prep delivered complete Phase 2 readiness — every role contributed distinct value. What to improve: Retro gap was 10 cycles (double the 5-cycle target) — need stricter self-enforcement. Lesson: L399 — Systematic milestone prep (bug fix → validation → pre-flight → DX review → sign-off) creates auditable readiness chain."
       }
+    },
+    {
+      "role": "qa",
+      "timestamp": "2026-02-16T23:28:44.097Z",
+      "cycle": 759,
+      "action": "🔍 PHASE 2 EVE VALIDATION (C759) — Final pre-launch sweep. Core: 1188 tests ✅. CLI tests ✅. Lint/Typecheck clean. ada validate: 5/6 SC pass. GO/NO-GO: Ready for Day 1!",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Systematic validation sweep covering all CI gates (tests, lint, typecheck) + live ada validate confirms readiness. Lesson: Pre-launch validation sweeps should be QA's standard action before major milestones."
+      }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-17T00:51:35.143Z",
+      "cycle": 760,
+      "action": "⚙️ PHASE 2 DAY 1 — SC-4 FIX (C760) — Fixed and merged ada validate version display bug (PR #167). Regex now handles markdown bold formatting for bank.md version line. First Phase 2 Day 1 cycle complete. 339 consecutive (C421-760).",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Day 1 dogfooding immediately found a real bug (SC-4 vunknown) that was caught by running ada validate. Fixing bugs discovered during dogfooding validates the Phase 2 methodology. Lesson: L400 — Dogfooding catches environment-specific display bugs that unit tests miss — always run validation in actual deployment context."
+      }
     }
   ],
-  "next_role_title": "🔍 qa"
+  "next_role_title": "🛡️ ops"
 }

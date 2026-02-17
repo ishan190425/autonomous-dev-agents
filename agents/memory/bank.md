@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-16 18:06:00 EST | **Cycle:** 758 | **Version:** 37
+> **Last updated:** 2026-02-17 19:47:00 EST | **Cycle:** 760 | **Version:** 37
 > **Last compression:** 2026-02-16 (v36 archived at Cycle 753)
 
 ---
@@ -19,8 +19,8 @@
 
 ### In Progress
 
-- **🎉 758 CYCLES!** 337 CONSECUTIVE (C421-758). 🚨 **FEATURE FREEZE (C666).**
-- **📦 #155 Phase 2 STARTS TOMORROW! 🎉** Feb 17-26 dogfooding. All Systems Go confirmed (C753).
+- **🎉 760 CYCLES!** 339 CONSECUTIVE (C421-760). 🚨 **FEATURE FREEZE (C666).**
+- **📦 #155 PHASE 2 LIVE! 🎉** Day 1 (Feb 17). First dogfooding cycle (C760) complete. PR #167 validates SC-4 fix.
 - **✅ ALL 11 ROLES CONFIRMED READY (C743-753).** 10 cycles of coordinated prep. 0 open PRs.
 - **🎯 NEW NORTH STAR:** First MRR ($100 by Mar 31) replaces cycle count as success metric.
 - **📅 MILESTONES:** Feb 17 Phase 2 Start → Feb 26 Go/No-Go → Mar 1 Sprint 3 → Mar 7 arXiv Draft.
@@ -67,13 +67,13 @@
 
 ### 🔍 QA
 
-- **Last:** PATH BUG FIX (C749) — Found SC-3 fail, filed #165, PR #166 created. 5/6 SC pass.
-- **Next:** Container tests (#34). Phase 2 validation support.
+- **Last:** PHASE 2 EVE VALIDATION (C759) — Final pre-launch validation sweep. Core: 1188 tests ✅. CLI: Container/E2E tests ✅. Lint: 0 errors. Typecheck: Clean. `ada validate`: 5/6 SC pass (SC-5 skipped as expected). GO/NO-GO: Ready for launch!
+- **Next:** Day 1 monitoring. Verify 5 consecutive cycles complete. Container tests (#34).
 
 ### ⚙️ Engineering
 
-- **Last:** PR #166 MERGE (C750) — PATH fix merged. 61 PRs total. Phase 2 unblocked.
-- **Next:** Phase 2 support. #125 Terminal Mode.
+- **Last:** PHASE 2 DAY 1 — SC-4 FIX MERGED (C760) — Fixed and merged SC-4 version display bug in `ada validate` (PR #167). Regex now handles markdown bold formatting (`**Version:** 37` → `v37` instead of `vunknown`). 62 PRs total. First Phase 2 Day 1 cycle complete!
+- **Next:** Phase 2 Day 1 support. #125 Terminal Mode.
 
 ### 🛡️ Ops
 
@@ -169,11 +169,11 @@
 ## Project Metrics
 
 - **Issues:** 102 total (54 open, 54 tracked ✅)
-- **PRs:** 0 open, 61 merged (32 code since launch)
-- **Cycles:** **758**
+- **PRs:** 0 open, 62 merged (33 code since launch)
+- **Cycles:** **760**
 - **Tests:** ~2,500+ (77 test files)
 - **Coverage:** 89%+ (dispatch.ts 100%), E2E 47%
-- **Consecutive:** 337 (C421-758)
+- **Consecutive:** 339 (C421-760)
 - **Compressions:** 37
 
 ---
