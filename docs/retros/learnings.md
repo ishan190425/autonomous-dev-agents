@@ -1764,3 +1764,19 @@
 - **Insight:** Feature flags and supporting code are necessary but not sufficient. Need actual data to exercise code paths. 100% learned memories means innate logic is dead code.
 - **Action:** When implementing features, create test data that exercises ALL code paths, not just the happy path.
 - **Status:** applied (C786)
+
+## Learning 431: SaaS spec trio enables async platform engineering
+
+- **Date:** 2026-02-17
+- **Context:** Auth (#181), Billing (#182), Managed Execution (#189) specs completed across 3 cycles. Full SaaS platform specified before any platform code written.
+- **Insight:** Completing all related specs before implementation enables Engineering to see full scope and make holistic architecture decisions. Piecemeal specs lead to piecemeal architecture.
+- **Action:** For major platform features, complete the full spec trio (auth + monetization + core feature) before starting implementation.
+- **Status:** applied (C797 retro)
+
+## Learning 432: 3-cycle PR pipeline is the optimal merge velocity
+
+- **Date:** 2026-02-17
+- **Context:** PR #194 went Create (C789) → Fix (C790) → Merge (C791) in exactly 3 cycles with QA→Engineering→Ops handoff.
+- **Insight:** The theoretical minimum for a PR requiring a fix is 3 cycles (create, fix, merge). Achieving this consistently means zero pipeline slack.
+- **Action:** Track "cycles to merge" as a velocity metric. Target: 3 cycles for fix-required PRs, 2 cycles for clean PRs.
+- **Status:** monitoring (C797 retro)
