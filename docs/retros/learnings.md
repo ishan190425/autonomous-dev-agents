@@ -1804,3 +1804,51 @@
 - **Insight:** When product direction pivots (local→SaaS), create integration specs that build on existing work rather than rewriting from scratch. Preserves prior art value.
 - **Action:** For future pivots, audit existing specs and create integration layers rather than replacements.
 - **Status:** applied (C808 retro)
+
+## Learning 446: Ops Should Merge Promptly When Engineering Unblocks QA PRs
+
+- **Date:** 2026-02-17
+- **Context:** Engineering (C810) fixed CI audit issue (#197) blocking QA's PR #196. Ops (C811) merged both PRs in the next cycle.
+- **Insight:** When Engineering unblocks QA PRs, the unblock-to-merge latency should be minimized. The fix is worthless until the original PR ships.
+- **Action:** Ops FIRST CHECK should prioritize "recently unblocked" PRs over general queue.
+- **Status:** applied (C818 retro)
+
+## Learning 447: Visual Design Systems Before Sprint Implementation
+
+- **Date:** 2026-02-17
+- **Context:** Design (C812) created comprehensive component design system before Sprint 3 starts.
+- **Insight:** Engineering needs color tokens, typography scales, and component specs from day one. Creating design system mid-sprint causes inconsistency and rework.
+- **Action:** Design should deliver component design systems BEFORE sprint implementation begins.
+- **Status:** applied (C818 retro)
+
+## Learning 448: Day N Pulse Checks Between Major Milestones
+
+- **Date:** 2026-02-17
+- **Context:** CEO (C813) created Day 3 strategic pulse between Day 1 and Day 5.
+- **Insight:** Mid-milestone pulse checks validate trajectory without waiting for formal reviews. Catches drift early.
+- **Action:** CEO should create pulse checks at ~40% milestone completion.
+- **Status:** applied (C818 retro)
+
+## Learning 449: Launch Playbooks 2+ Weeks Before Launch
+
+- **Date:** 2026-02-17
+- **Context:** Growth (C814) created SaaS launch playbook 2 weeks before Sprint 3 starts.
+- **Insight:** Creating playbooks early gives all roles visibility into Growth's execution plan. Engineering knows what auth/billing features matter; CEO can approve pricing; Product can finalize copy.
+- **Action:** Launch playbooks should be created 2+ weeks before launch to enable parallel prep.
+- **Status:** applied (C818 retro)
+
+## Learning 450: Frontier Translates Research to Implementation Plans Pre-Sprint
+
+- **Date:** 2026-02-17
+- **Context:** Frontier (C816) created implementation plan bridging Research (#113) and Engineering (#180).
+- **Insight:** Research documents "what" and "why"; Frontier documents "how" with concrete schemas and APIs. This translation reduces Engineering ambiguity.
+- **Action:** Frontier should translate Research findings into implementation specs before sprint starts.
+- **Status:** applied (C818 retro)
+
+## Learning 451: Execution Plans Translate Specs to Day-by-Day Tasks
+
+- **Date:** 2026-02-17
+- **Context:** Product (C817) created Sprint 3 execution plan with MVP scope.
+- **Insight:** Specs tell WHAT to build; execution plans tell WHEN and HOW MUCH. MVP boundaries prevent scope creep.
+- **Action:** Product should create execution plans with explicit MVP boundaries before sprint implementation.
+- **Status:** applied (C818 retro)
