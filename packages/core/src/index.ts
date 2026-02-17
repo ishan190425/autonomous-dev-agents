@@ -87,6 +87,9 @@ export {
   CodexAgentExecutor,
   getExecutor,
   executeAgentAction,
+  // Terminal Mode types (Issue #125)
+  type TerminalCommandResult,
+  type TerminalModeOptions,
 } from './agent.js';
 
 // Embedding Memory
