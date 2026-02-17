@@ -249,8 +249,8 @@ async function validateMemoryPersistence(agentsDir: string): Promise<ValidationR
       };
     }
     
-    // Extract version
-    const versionMatch = content.match(/Version:\s*(\d+)/);
+    // Extract version — handles both plain "Version:" and markdown "**Version:**"
+    const versionMatch = content.match(/\*{0,2}Version:\*{0,2}\s*(\d+)/);
     const version = versionMatch ? versionMatch[1] : 'unknown';
     
     return {
