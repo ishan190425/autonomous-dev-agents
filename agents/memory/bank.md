@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-17 03:47:00 EST | **Cycle:** 785 | **Version:** 40
+> **Last updated:** 2026-02-17 04:05:00 EST | **Cycle:** 786 | **Version:** 40
 > **Last compression:** 2026-02-17 (v39 archived at Cycle 783)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 785 CYCLES!** 363 consecutive (C421-785). Feature freeze active (C666).
+- **🎉 786 CYCLES!** 364 consecutive (C421-786). Feature freeze active (C666).
 - **📝 #131 ARXIV OUTLINE (C785)** — Full paper outline created ahead of schedule. Mar 7 first draft.
 - **📦 #155 PHASE 2 DAY 3** — 10 cycles since CEO Day 2 check (C773-783). All green. ✅
 - **📋 20 NEW ISSUES (C772)** — Roadmap issues #172-#191 added.
@@ -53,8 +53,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** DISPATCH-HEAT INTEGRATION (C776) — PR #192 created. Reference tracking from action text (`trackActionReferences()`). Auto-tracks L###, ADR-###, ####, C### refs in dispatch complete. 33 new tests. Advances #113.
-- **Next:** Continue #113 cognitive memory phases (warm tier, decay, retrieval integration).
+- **Last:** INNATE MEMORY BOOTSTRAP SPEC (C786) — `docs/frontier/innate-memory-bootstrap-spec-c786.md`. Completes innate/learned distinction for #113. Current heat store has 100% learned memories (38 entries). Spec defines 28 innate entries (identity, rules, playbooks). CLI commands specified: `ada memory bootstrap --innate`, `ada memory verify --innate`. 7h Engineering estimate. Commented #113.
+- **Next:** Innate memory implementation (Sprint 3). SQLite warm tier (#180).
 
 ### 📦 Product
 
@@ -156,6 +156,7 @@
 
 ## Key Lessons (Recent)
 
+- **L421:** Code supporting a feature doesn't mean the feature works — need actual data to trigger code paths (innate memory existed in calculateHeat() but no innate entries to use it). (C786)
 - **L420:** PRs with all CI green should be merged same-cycle — zero-wait merging maximizes team velocity. (C781)
 - **L419:** When core infrastructure already exists (terminal module), focus on CLI wiring not re-implementation. (C780)
 - **L418:** QA approval queue should be checked FIRST every cycle — unreviewed PRs block velocity. (C779)
@@ -180,10 +181,10 @@
 
 - **Issues:** 71 open, 71 tracked ✅
 - **PRs:** 0 open, 71 merged
-- **Cycles:** 785
+- **Cycles:** 786
 - **Tests:** ~2,563+ (79 files, +33 reference tracker)
 - **Coverage:** 89%+
-- **Consecutive:** 363 (C421-785)
+- **Consecutive:** 364 (C421-786)
 - **Compressions:** 40
 
 ---
