@@ -78,12 +78,13 @@ export {
   completeDispatch,
 } from './dispatch.js';
 
-// Agent Execution (Issue #64 — Claude Code Integration)
+// Agent Execution (Issue #64 — Claude Code Integration, Codex Integration)
 export type { ActionResult, AgentExecutor, ExecutorType } from './agent.js';
 export {
   BaseAgentExecutor,
   ClawdbotAgentExecutor,
   ClaudeCodeAgentExecutor,
+  CodexAgentExecutor,
   getExecutor,
   executeAgentAction,
 } from './agent.js';

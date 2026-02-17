@@ -9,6 +9,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
   ClawdbotAgentExecutor,
   ClaudeCodeAgentExecutor,
+  CodexAgentExecutor,
   BaseAgentExecutor,
   executeAgentAction,
   getExecutor,
@@ -878,6 +879,18 @@ describe('getExecutor', () => {
     expect(executor2).toBeInstanceOf(ClaudeCodeAgentExecutor);
   });
 
+  it('returns CodexAgentExecutor for "codex"', () => {
+    const executor = getExecutor('codex');
+    expect(executor).toBeInstanceOf(CodexAgentExecutor);
+  });
+
+  it('handles case-insensitive input for Codex', () => {
+    const executor1 = getExecutor('CODEX');
+    const executor2 = getExecutor('Codex');
+    expect(executor1).toBeInstanceOf(CodexAgentExecutor);
+    expect(executor2).toBeInstanceOf(CodexAgentExecutor);
+  });
+
   it('falls back to Clawdbot for unknown executor', () => {
     const executor = getExecutor('unknown-executor');
     expect(executor).toBeInstanceOf(ClawdbotAgentExecutor);
@@ -907,5 +920,75 @@ describe('executeAgentAction with executor selection', () => {
 
     expect(spy).toHaveBeenCalled();
     spy.mockRestore();
+  });
+
+  it('uses Codex when specified', async () => {
+    const context = createMockContext();
+    const spy = vi.spyOn(CodexAgentExecutor.prototype as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
+    spy.mockResolvedValue('{"response": "test"}');
+
+    await executeAgentAction(context, 'codex');
+
+    expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
+  });
+});
+
+// ─── CodexAgentExecutor Tests ──────────────────────────────────────────────────────
+
+describe('CodexAgentExecutor', () => {
+  let executor: CodexAgentExecutor;
+
+  beforeEach(() => {
+    executor = new CodexAgentExecutor();
+  });
+
+  describe('buildPrompt', () => {
+    it('includes role information in prompt', () => {
+      const context = createMockContext({
+        role: createMockRole({ emoji: '⚙️', name: 'The Builder', id: 'engineering' }),
+      });
+      const prompt = (executor as unknown as { buildPrompt: (context: DispatchContext) => string }).buildPrompt(context);
+      expect(prompt).toContain('⚙️');
+      expect(prompt).toContain('The Builder');
+      expect(prompt).toContain('engineering');
+    });
+
+    it('includes cycle count', () => {
+      const context = createMockContext({
+        state: createMockState({ cycle_count: 42 }),
+      });
+      const prompt = (executor as unknown as { buildPrompt: (context: DispatchContext) => string }).buildPrompt(context);
+      expect(prompt).toContain('Cycle: 43');
+    });
+  });
+
+  describe('parseResponse', () => {
+    it('parses JSON response', () => {
+      const output = 'Some text\n{"response": "Success", "success": true}\nMore text';
+      const context = createMockContext();
+      const parseMethod = (executor as unknown as { parseResponse: (output: string, context: DispatchContext) => Partial<ActionResult> }).parseResponse;
+      const result = parseMethod(output, context);
+      expect(result.success).toBe(true);
+      expect(result.details).toBe('Success');
+    });
+
+    it('handles plain text response', () => {
+      const output = 'Plain text output from Codex';
+      const context = createMockContext();
+      const parseMethod = (executor as unknown as { parseResponse: (output: string, context: DispatchContext) => Partial<ActionResult> }).parseResponse;
+      const result = parseMethod(output, context);
+      expect(result.success).toBe(true);
+      expect(result.details).toBe('Plain text output from Codex');
+    });
+
+    it('handles error in JSON response', () => {
+      const output = '{"error": "Command failed", "success": false}';
+      const context = createMockContext();
+      const parseMethod = (executor as unknown as { parseResponse: (output: string, context: DispatchContext) => Partial<ActionResult> }).parseResponse;
+      const result = parseMethod(output, context);
+      expect(result.success).toBe(false);
+      expect(result.error).toBe('Command failed');
+    });
   });
 });
