@@ -71,3 +71,18 @@ export type { EntryType } from './calculate.js';
 export { HeatStore, createHeatStore } from './store.js';
 
 export type { HeatEntry, DecayResult, DecayOptions } from './store.js';
+
+// ─── Reference Tracking (Issue #113 — Cognitive Memory) ─────────────────────
+
+export type {
+  ReferenceType,
+  ParsedReference,
+  TrackingResult,
+} from './reference-tracker.js';
+
+export {
+  extractReferences,
+  trackActionReferences,
+  trackMultipleReferences,
+  formatTrackingResult,
+} from './reference-tracker.js';
