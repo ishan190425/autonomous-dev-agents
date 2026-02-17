@@ -260,10 +260,24 @@ Just some notes.
 
   describe('--quick mode', () => {
     it('skips network-dependent checks (SC-3, SC-5)', async () => {
+      // Set up valid local state so local checks (SC-1, SC-2, SC-4, SC-6) pass
+      // Without this, SC-1 fails because ada init template has last_role: null
+      const rotationPath = join(sandbox.path, 'agents/state/rotation.json');
+      writeFileSync(rotationPath, JSON.stringify({
+        current_index: 3,
+        cycle_count: 50,
+        last_role: 'engineering',
+        last_run: new Date().toISOString(),
+        history: [
+          { role: 'ceo', timestamp: new Date().toISOString(), cycle: 49, action: 'test', reflection: { outcome: 'success' } },
+          { role: 'engineering', timestamp: new Date().toISOString(), cycle: 50, action: 'test', reflection: { outcome: 'success' } }
+        ]
+      }));
+
       const result = await sandbox.ada(['validate', '--quick']);
 
       // With --quick, should NOT attempt SC-3 (GitHub) or SC-5 (Cost Savings)
-      // These checks require network access
+      // These checks require network access — they should be skipped, not failed
       expect(result.success).toBe(true);
       // Should complete quickly without network calls
     });
