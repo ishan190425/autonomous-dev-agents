@@ -1,0 +1,12 @@
+#!/bin/sh
+# Auto-rebuild CLI after commits so global `ada` stays current
+
+cd "$(dirname "$0")/.." || exit
+
+# Only rebuild if CLI source changed
+if git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -qE "^packages/cli/|^packages/core/"; then
+  echo "🔄 Rebuilding ada CLI..."
+  npm run build -w packages/core -w packages/cli --silent 2>/dev/null
+  cd packages/cli && npm link --silent 2>/dev/null
+  echo "✅ ada CLI updated"
+fi
