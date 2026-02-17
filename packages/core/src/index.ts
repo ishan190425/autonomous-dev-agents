@@ -78,9 +78,15 @@ export {
   completeDispatch,
 } from './dispatch.js';
 
-// Agent Execution
-export type { ActionResult, AgentExecutor } from './agent.js';
-export { ClawdbotAgentExecutor, executeAgentAction } from './agent.js';
+// Agent Execution (Issue #64 — Claude Code Integration)
+export type { ActionResult, AgentExecutor, ExecutorType } from './agent.js';
+export {
+  BaseAgentExecutor,
+  ClawdbotAgentExecutor,
+  ClaudeCodeAgentExecutor,
+  getExecutor,
+  executeAgentAction,
+} from './agent.js';
 
 // Embedding Memory
 export type {

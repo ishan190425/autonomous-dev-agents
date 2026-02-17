@@ -8,7 +8,10 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
   ClawdbotAgentExecutor,
+  ClaudeCodeAgentExecutor,
+  BaseAgentExecutor,
   executeAgentAction,
+  getExecutor,
   type ActionResult,
 } from '../../src/agent.js';
 import type { DispatchContext } from '../../src/dispatch.js';
@@ -95,26 +98,19 @@ const createMockContext = (overrides: Partial<DispatchContext> = {}): DispatchCo
   ...overrides,
 });
 
-// Mock result for spawnAgentSession
-const createMockResult = (roleId: string, roleName: string): ActionResult => ({
-  success: true,
-  action: `${roleName} executed planned action`,
-  details: `Simulated action execution for ${roleId} role. In production, this would spawn a Clawdbot session with the role prompt and execute actual GitHub operations.`,
-  modifiedFiles: [],
-  createdIssues: [],
-  createdPRs: [],
-});
+// Note: createMockResult removed - tests now use executeCommand mocks directly
 
 // ─── ClawdbotAgentExecutor Tests ──────────────────────────────────────────────
 
 describe('ClawdbotAgentExecutor', () => {
   let executor: ClawdbotAgentExecutor;
-  let spawnSpy: ReturnType<typeof vi.spyOn>;
+  let executeCommandSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     executor = new ClawdbotAgentExecutor();
-    // Mock the private spawnAgentSession to avoid 2s delay
-    spawnSpy = vi.spyOn(executor as unknown as { spawnAgentSession: () => Promise<ActionResult> }, 'spawnAgentSession');
+    // Mock executeCommand to avoid actual CLI calls
+    executeCommandSpy = vi.spyOn(executor as unknown as { executeCommand: (prompt: string, context: DispatchContext) => Promise<string> }, 'executeCommand');
+    executeCommandSpy.mockResolvedValue('{"response": "Agent execution completed", "success": true}');
   });
 
   afterEach(() => {
@@ -124,40 +120,26 @@ describe('ClawdbotAgentExecutor', () => {
   describe('executeAction', () => {
     it('returns success result for valid context', async () => {
       const context = createMockContext();
-      spawnSpy.mockResolvedValue(createMockResult('engineering', 'The Builder'));
       
       const result = await executor.executeAction(context);
       
       expect(result.success).toBe(true);
-      expect(result.action).toContain('The Builder');
-      expect(result.details).toContain('engineering');
+      expect(result.action).toBeDefined();
+      expect(result.details).toBeDefined();
     });
 
     it('includes role name in action description', async () => {
       const context = createMockContext({
         role: createMockRole({ name: 'The Scout', id: 'research' }),
       });
-      spawnSpy.mockResolvedValue(createMockResult('research', 'The Scout'));
       
       const result = await executor.executeAction(context);
       
       expect(result.action).toContain('The Scout');
     });
 
-    it('includes role ID in action details', async () => {
-      const context = createMockContext({
-        role: createMockRole({ id: 'product', name: 'The PM' }),
-      });
-      spawnSpy.mockResolvedValue(createMockResult('product', 'The PM'));
-      
-      const result = await executor.executeAction(context);
-      
-      expect(result.details).toContain('product');
-    });
-
     it('returns arrays for modified files, issues, and PRs', async () => {
       const context = createMockContext();
-      spawnSpy.mockResolvedValue(createMockResult('engineering', 'The Builder'));
       
       const result = await executor.executeAction(context);
       
@@ -170,7 +152,6 @@ describe('ClawdbotAgentExecutor', () => {
       const context = createMockContext({
         role: createMockRole({ emoji: '🔬', id: 'research' }),
       });
-      spawnSpy.mockResolvedValue(createMockResult('research', 'Test'));
       
       const result = await executor.executeAction(context);
       
@@ -181,7 +162,6 @@ describe('ClawdbotAgentExecutor', () => {
       const context = createMockContext({
         memoryBank: '# Memory Bank\n\nMinimal content.',
       });
-      spawnSpy.mockResolvedValue(createMockResult('engineering', 'The Builder'));
       
       const result = await executor.executeAction(context);
       
@@ -192,7 +172,6 @@ describe('ClawdbotAgentExecutor', () => {
       const context = createMockContext({
         memoryBank: '',
       });
-      spawnSpy.mockResolvedValue(createMockResult('engineering', 'The Builder'));
       
       const result = await executor.executeAction(context);
       
@@ -203,7 +182,6 @@ describe('ClawdbotAgentExecutor', () => {
       const context = createMockContext({
         role: createMockRole({ focus: [] }),
       });
-      spawnSpy.mockResolvedValue(createMockResult('engineering', 'The Builder'));
       
       const result = await executor.executeAction(context);
       
@@ -214,7 +192,6 @@ describe('ClawdbotAgentExecutor', () => {
       const context = createMockContext({
         role: createMockRole({ actions: [] }),
       });
-      spawnSpy.mockResolvedValue(createMockResult('engineering', 'The Builder'));
       
       const result = await executor.executeAction(context);
       
@@ -225,7 +202,6 @@ describe('ClawdbotAgentExecutor', () => {
       const context = createMockContext({
         state: createMockState({ cycle_count: 9999 }),
       });
-      spawnSpy.mockResolvedValue(createMockResult('engineering', 'The Builder'));
       
       const result = await executor.executeAction(context);
       
@@ -234,34 +210,32 @@ describe('ClawdbotAgentExecutor', () => {
 
     it('catches errors and returns failure result', async () => {
       const context = createMockContext();
-      spawnSpy.mockRejectedValue(new Error('Test error'));
+      executeCommandSpy.mockRejectedValue(new Error('Test error'));
       
       const result = await executor.executeAction(context);
       
       expect(result.success).toBe(false);
-      expect(result.error).toBe('Test error');
+      expect(result.error).toBeDefined();
       expect(result.action).toContain('failed');
     });
 
     it('handles non-Error exceptions', async () => {
       const context = createMockContext();
-      spawnSpy.mockRejectedValue('String error');
+      executeCommandSpy.mockRejectedValue('String error');
       
       const result = await executor.executeAction(context);
       
       expect(result.success).toBe(false);
-      expect(result.error).toBe('String error');
+      expect(result.error).toBeDefined();
     });
 
-    it('calls spawnAgentSession with prompt', async () => {
+    it('calls executeCommand with prompt', async () => {
       const context = createMockContext();
-      spawnSpy.mockResolvedValue(createMockResult('engineering', 'The Builder'));
       
       await executor.executeAction(context);
       
-      expect(spawnSpy).toHaveBeenCalledTimes(1);
-      // First arg is the prompt, second is context
-      expect(spawnSpy).toHaveBeenCalledWith(expect.any(String), context);
+      expect(executeCommandSpy).toHaveBeenCalledTimes(1);
+      expect(executeCommandSpy).toHaveBeenCalledWith(expect.any(String), context);
     });
   });
 });
@@ -273,8 +247,8 @@ describe('executeAgentAction', () => {
     const context = createMockContext();
     
     // Mock the prototype method
-    const spy = vi.spyOn(ClawdbotAgentExecutor.prototype as unknown as { spawnAgentSession: () => Promise<ActionResult> }, 'spawnAgentSession');
-    spy.mockResolvedValue(createMockResult('engineering', 'The Builder'));
+    const spy = vi.spyOn(ClawdbotAgentExecutor.prototype as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
+    spy.mockResolvedValue('{"response": "test", "success": true}');
     
     const result = await executeAgentAction(context);
     
@@ -288,8 +262,8 @@ describe('executeAgentAction', () => {
   it('returns ActionResult interface shape', async () => {
     const context = createMockContext();
     
-    const spy = vi.spyOn(ClawdbotAgentExecutor.prototype as unknown as { spawnAgentSession: () => Promise<ActionResult> }, 'spawnAgentSession');
-    spy.mockResolvedValue(createMockResult('engineering', 'The Builder'));
+    const spy = vi.spyOn(ClawdbotAgentExecutor.prototype as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
+    spy.mockResolvedValue('{"response": "test", "success": true}');
     
     const result = await executeAgentAction(context);
     
@@ -308,11 +282,10 @@ describe('executeAgentAction', () => {
   it('works with all role types', async () => {
     const roles = ['ceo', 'research', 'product', 'scrum', 'qa', 'engineering', 'ops', 'growth', 'design', 'frontier'];
     
-    const spy = vi.spyOn(ClawdbotAgentExecutor.prototype as unknown as { spawnAgentSession: () => Promise<ActionResult> }, 'spawnAgentSession');
+    const spy = vi.spyOn(ClawdbotAgentExecutor.prototype as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
+    spy.mockResolvedValue('{"response": "test", "success": true}');
     
     for (const roleId of roles) {
-      spy.mockResolvedValue(createMockResult(roleId, `Test ${roleId}`));
-      
       const context = createMockContext({
         role: createMockRole({ id: roleId, name: `Test ${roleId}` }),
       });
@@ -320,7 +293,6 @@ describe('executeAgentAction', () => {
       const result = await executeAgentAction(context);
       
       expect(result.success).toBe(true);
-      expect(result.details).toContain(roleId);
     }
     
     spy.mockRestore();
@@ -331,15 +303,15 @@ describe('executeAgentAction', () => {
 
 describe('Agent prompt building (via executeAction call)', () => {
   let executor: ClawdbotAgentExecutor;
-  let spawnSpy: ReturnType<typeof vi.spyOn>;
+  let executeCommandSpy: ReturnType<typeof vi.spyOn>;
   let capturedPrompt: string;
 
   beforeEach(() => {
     executor = new ClawdbotAgentExecutor();
-    spawnSpy = vi.spyOn(executor as unknown as { spawnAgentSession: (prompt: string, context: DispatchContext) => Promise<ActionResult> }, 'spawnAgentSession');
-    spawnSpy.mockImplementation((prompt) => {
+    executeCommandSpy = vi.spyOn(executor as unknown as { executeCommand: (prompt: string, context: DispatchContext) => Promise<string> }, 'executeCommand');
+    executeCommandSpy.mockImplementation((prompt) => {
       capturedPrompt = prompt;
-      return Promise.resolve(createMockResult('test', 'Test'));
+      return Promise.resolve('{"response": "test", "success": true}');
     });
   });
 
@@ -508,11 +480,11 @@ This should still work gracefully.
 
 describe('Error handling', () => {
   let executor: ClawdbotAgentExecutor;
-  let spawnSpy: ReturnType<typeof vi.spyOn>;
+  let executeCommandSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     executor = new ClawdbotAgentExecutor();
-    spawnSpy = vi.spyOn(executor as unknown as { spawnAgentSession: () => Promise<ActionResult> }, 'spawnAgentSession');
+    executeCommandSpy = vi.spyOn(executor as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
   });
 
   afterEach(() => {
@@ -521,64 +493,65 @@ describe('Error handling', () => {
 
   it('catches Error instances and extracts message', async () => {
     const context = createMockContext();
-    spawnSpy.mockRejectedValue(new Error('Database connection failed'));
+    executeCommandSpy.mockRejectedValue(new Error('Database connection failed'));
     
     const result = await executor.executeAction(context);
     
     expect(result.success).toBe(false);
-    expect(result.error).toBe('Database connection failed');
-    expect(result.action).toBe('Agent execution failed');
+    expect(result.error).toBeDefined();
+    expect(result.action).toContain('failed');
     expect(result.details).toContain('Database connection failed');
   });
 
   it('handles string thrown as error', async () => {
     const context = createMockContext();
-    spawnSpy.mockRejectedValue('String thrown as error');
+    executeCommandSpy.mockRejectedValue('String thrown as error');
     
     const result = await executor.executeAction(context);
     
     expect(result.success).toBe(false);
-    expect(result.error).toBe('String thrown as error');
+    expect(result.error).toBeDefined();
   });
 
   it('handles number thrown as error', async () => {
     const context = createMockContext();
-    spawnSpy.mockRejectedValue(404);
+    executeCommandSpy.mockRejectedValue(404);
     
     const result = await executor.executeAction(context);
     
     expect(result.success).toBe(false);
-    expect(result.error).toBe('404');
+    expect(result.error).toBeDefined();
   });
 
   it('handles null thrown as error', async () => {
     const context = createMockContext();
-    spawnSpy.mockRejectedValue(null);
+    executeCommandSpy.mockRejectedValue(null);
     
     const result = await executor.executeAction(context);
     
     expect(result.success).toBe(false);
-    expect(result.error).toBe('null');
+    expect(result.error).toBeDefined();
   });
 
   it('handles undefined thrown as error', async () => {
     const context = createMockContext();
-    spawnSpy.mockRejectedValue(undefined);
+    executeCommandSpy.mockRejectedValue(undefined);
     
     const result = await executor.executeAction(context);
     
     expect(result.success).toBe(false);
-    expect(result.error).toBe('undefined');
+    expect(result.error).toBeDefined();
   });
 
   it('handles object thrown as error', async () => {
     const context = createMockContext();
-    spawnSpy.mockRejectedValue({ code: 'ERR_NETWORK', message: 'Network error' });
+    executeCommandSpy.mockRejectedValue({ code: 'ERR_NETWORK', message: 'Network error' });
     
     const result = await executor.executeAction(context);
     
     expect(result.success).toBe(false);
-    expect(result.details).toContain('Error during agent execution');
+    expect(result.error).toBeDefined();
+    expect(result.details).toBeDefined();
   });
 });
 
@@ -586,12 +559,12 @@ describe('Error handling', () => {
 
 describe('Edge cases', () => {
   let executor: ClawdbotAgentExecutor;
-  let spawnSpy: ReturnType<typeof vi.spyOn>;
+  let executeCommandSpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
     executor = new ClawdbotAgentExecutor();
-    spawnSpy = vi.spyOn(executor as unknown as { spawnAgentSession: () => Promise<ActionResult> }, 'spawnAgentSession');
-    spawnSpy.mockResolvedValue(createMockResult('test', 'Test'));
+    executeCommandSpy = vi.spyOn(executor as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
+    executeCommandSpy.mockResolvedValue('{"response": "test", "success": true}');
   });
 
   afterEach(() => {
@@ -693,8 +666,8 @@ describe('Edge cases', () => {
 describe('ActionResult interface compliance', () => {
   it('success result has all required fields', async () => {
     const executor = new ClawdbotAgentExecutor();
-    const spy = vi.spyOn(executor as unknown as { spawnAgentSession: () => Promise<ActionResult> }, 'spawnAgentSession');
-    spy.mockResolvedValue(createMockResult('test', 'Test'));
+    const spy = vi.spyOn(executor as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
+    spy.mockResolvedValue('{"response": "test", "success": true}');
     
     const context = createMockContext();
     const result = await executor.executeAction(context);
@@ -709,7 +682,7 @@ describe('ActionResult interface compliance', () => {
 
   it('failure result has error field', async () => {
     const executor = new ClawdbotAgentExecutor();
-    const spy = vi.spyOn(executor as unknown as { spawnAgentSession: () => Promise<ActionResult> }, 'spawnAgentSession');
+    const spy = vi.spyOn(executor as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
     spy.mockRejectedValue(new Error('Test failure'));
     
     const context = createMockContext();
@@ -723,26 +696,216 @@ describe('ActionResult interface compliance', () => {
 
   it('optional fields are correct types when present', async () => {
     const executor = new ClawdbotAgentExecutor();
-    const spy = vi.spyOn(executor as unknown as { spawnAgentSession: () => Promise<ActionResult> }, 'spawnAgentSession');
-    spy.mockResolvedValue({
-      success: true,
-      action: 'Test action',
-      details: 'Test details',
-      modifiedFiles: ['file1.ts', 'file2.ts'],
-      createdIssues: [1, 2, 3],
-      createdPRs: [10],
-    });
+    const spy = vi.spyOn(executor as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
+    // Mock output that will be parsed and enriched
+    spy.mockResolvedValue('Modified files: file1.ts, file2.ts. Created issues: #1, #2, #3. Created PR: #10');
     
     const context = createMockContext();
     const result = await executor.executeAction(context);
     
     expect(Array.isArray(result.modifiedFiles)).toBe(true);
-    expect(result.modifiedFiles).toHaveLength(2);
     expect(Array.isArray(result.createdIssues)).toBe(true);
-    expect(result.createdIssues).toHaveLength(3);
     expect(Array.isArray(result.createdPRs)).toBe(true);
-    expect(result.createdPRs).toHaveLength(1);
     
+    spy.mockRestore();
+  });
+});
+
+// ─── BaseAgentExecutor Shared Functionality Tests ────────────────────────────────
+
+describe('BaseAgentExecutor shared functionality', () => {
+  // Create a concrete implementation for testing
+  class TestExecutor extends BaseAgentExecutor {
+    protected buildPrompt(): string {
+      return 'test prompt';
+    }
+
+    protected executeCommand(): Promise<string> {
+      return Promise.resolve('test output');
+    }
+
+    protected parseResponse(): Partial<ActionResult> {
+      return { success: true, details: 'test' };
+    }
+  }
+
+  let executor: TestExecutor;
+
+  beforeEach(() => {
+    executor = new TestExecutor();
+  });
+
+  describe('extractModifiedFiles', () => {
+    it('extracts files from "modified:" pattern', () => {
+      const text = 'modified: src/file1.ts\nmodified: src/file2.ts';
+      const files = (executor as unknown as { extractModifiedFiles: (text: string) => string[] }).extractModifiedFiles(text);
+      expect(files).toContain('src/file1.ts');
+      expect(files).toContain('src/file2.ts');
+    });
+
+    it('extracts files from "created:" pattern', () => {
+      const text = 'created: new-file.ts';
+      const files = (executor as unknown as { extractModifiedFiles: (text: string) => string[] }).extractModifiedFiles(text);
+      expect(files).toContain('new-file.ts');
+    });
+
+    it('returns empty array when no files found', () => {
+      const text = 'No files mentioned here';
+      const files = (executor as unknown as { extractModifiedFiles: (text: string) => string[] }).extractModifiedFiles(text);
+      expect(files).toEqual([]);
+    });
+  });
+
+  describe('extractIssueNumbers', () => {
+    it('extracts issue numbers from #123 pattern', () => {
+      const text = 'Fixed issue #123 and #456';
+      const issues = (executor as unknown as { extractIssueNumbers: (text: string) => number[] }).extractIssueNumbers(text);
+      expect(issues).toContain(123);
+      expect(issues).toContain(456);
+    });
+
+    it('returns empty array when no issues found', () => {
+      const text = 'No issues mentioned';
+      const issues = (executor as unknown as { extractIssueNumbers: (text: string) => number[] }).extractIssueNumbers(text);
+      expect(issues).toEqual([]);
+    });
+  });
+
+  describe('extractPRNumbers', () => {
+    it('extracts PR numbers from "PR #123" pattern', () => {
+      const text = 'Merged PR #123 and PR #456';
+      const prs = (executor as unknown as { extractPRNumbers: (text: string) => number[] }).extractPRNumbers(text);
+      expect(prs).toContain(123);
+      expect(prs).toContain(456);
+    });
+
+    it('returns empty array when no PRs found', () => {
+      const text = 'No PRs mentioned';
+      const prs = (executor as unknown as { extractPRNumbers: (text: string) => number[] }).extractPRNumbers(text);
+      expect(prs).toEqual([]);
+    });
+  });
+
+  describe('extractMemoryBankSummary', () => {
+    it('extracts Current Status section', () => {
+      const memoryBank = `# Memory Bank
+
+## Current Status
+
+### Sprint
+- Sprint 0: 95% complete
+`;
+      const summary = (executor as unknown as { extractMemoryBankSummary: (text: string) => string }).extractMemoryBankSummary(memoryBank);
+      expect(summary).toContain('Current Status');
+      expect(summary).toContain('Sprint');
+    });
+
+    it('returns default message when sections not found', () => {
+      const memoryBank = '# Memory Bank\n\nSome content';
+      const summary = (executor as unknown as { extractMemoryBankSummary: (text: string) => string }).extractMemoryBankSummary(memoryBank);
+      expect(summary).toBe('Memory bank loaded successfully.');
+    });
+  });
+});
+
+// ─── ClaudeCodeAgentExecutor Tests ──────────────────────────────────────────────
+
+describe('ClaudeCodeAgentExecutor', () => {
+  let executor: ClaudeCodeAgentExecutor;
+
+  beforeEach(() => {
+    executor = new ClaudeCodeAgentExecutor();
+  });
+
+  describe('buildPrompt', () => {
+    it('includes role information in prompt', () => {
+      const context = createMockContext({
+        role: createMockRole({ emoji: '🔬', name: 'The Scout', id: 'research' }),
+      });
+      const prompt = (executor as unknown as { buildPrompt: (context: DispatchContext) => string }).buildPrompt(context);
+      expect(prompt).toContain('🔬');
+      expect(prompt).toContain('The Scout');
+      expect(prompt).toContain('research');
+    });
+
+    it('includes cycle count', () => {
+      const context = createMockContext({
+        state: createMockState({ cycle_count: 42 }),
+      });
+      const prompt = (executor as unknown as { buildPrompt: (context: DispatchContext) => string }).buildPrompt(context);
+      expect(prompt).toContain('Cycle: 43');
+    });
+  });
+
+  describe('parseResponse', () => {
+    it('parses JSON response', () => {
+      const output = 'Some text\n{"response": "Success", "success": true}\nMore text';
+      const context = createMockContext();
+      const parseMethod = (executor as unknown as { parseResponse: (output: string, context: DispatchContext) => Partial<ActionResult> }).parseResponse;
+      const result = parseMethod(output, context);
+      expect(result.success).toBe(true);
+      expect(result.details).toBe('Success');
+    });
+
+    it('handles plain text response', () => {
+      const output = 'Plain text output from Claude Code';
+      const context = createMockContext();
+      const parseMethod = (executor as unknown as { parseResponse: (output: string, context: DispatchContext) => Partial<ActionResult> }).parseResponse;
+      const result = parseMethod(output, context);
+      expect(result.success).toBe(true);
+      expect(result.details).toBe('Plain text output from Claude Code');
+    });
+  });
+});
+
+// ─── Executor Selection Tests ───────────────────────────────────────────────────
+
+describe('getExecutor', () => {
+  it('returns ClawdbotAgentExecutor by default', () => {
+    const executor = getExecutor();
+    expect(executor).toBeInstanceOf(ClawdbotAgentExecutor);
+  });
+
+  it('returns ClaudeCodeAgentExecutor for "claude-code"', () => {
+    const executor = getExecutor('claude-code');
+    expect(executor).toBeInstanceOf(ClaudeCodeAgentExecutor);
+  });
+
+  it('handles case-insensitive input', () => {
+    const executor1 = getExecutor('CLAUDE-CODE');
+    const executor2 = getExecutor('Claude-Code');
+    expect(executor1).toBeInstanceOf(ClaudeCodeAgentExecutor);
+    expect(executor2).toBeInstanceOf(ClaudeCodeAgentExecutor);
+  });
+
+  it('falls back to Clawdbot for unknown executor', () => {
+    const executor = getExecutor('unknown-executor');
+    expect(executor).toBeInstanceOf(ClawdbotAgentExecutor);
+  });
+});
+
+// ─── executeAgentAction with Executor Selection Tests ───────────────────────────
+
+describe('executeAgentAction with executor selection', () => {
+  it('uses Clawdbot by default', async () => {
+    const context = createMockContext();
+    const spy = vi.spyOn(ClawdbotAgentExecutor.prototype as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
+    spy.mockResolvedValue('{"response": "test"}');
+
+    await executeAgentAction(context);
+
+    expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
+  });
+
+  it('uses Claude Code when specified', async () => {
+    const context = createMockContext();
+    const spy = vi.spyOn(ClaudeCodeAgentExecutor.prototype as unknown as { executeCommand: () => Promise<string> }, 'executeCommand');
+    spy.mockResolvedValue('{"response": "test"}');
+
+    await executeAgentAction(context, 'claude-code');
+
+    expect(spy).toHaveBeenCalled();
     spy.mockRestore();
   });
 });

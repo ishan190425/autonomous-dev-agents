@@ -151,6 +151,8 @@ interface DispatchLock {
   model?: ClaudeModel;
   /** Reason for model selection */
   modelReason?: string;
+  /** Executor backend (Issue #64 — Claude Code Integration) */
+  executor?: string;
 }
 
 /** Exit codes per UX spec */
@@ -169,6 +171,7 @@ interface DispatchStartOptions {
   dir: string;
   role?: string;
   model?: string;
+  executor?: string;
   dryRun?: boolean;
   json?: boolean;
   quiet?: boolean;
@@ -728,6 +731,9 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
   // Select model for this cycle (C728 — Model Router Integration)
   const modelSelection = getModelForCycle(currentRole.id as ModelRoleId, options.model);
 
+  // Select executor (Issue #64 — Claude Code Integration)
+  const executorType = options.executor || process.env.ADA_EXECUTOR || 'clawdbot';
+
   // Create lock (unless dry-run)
   if (!options.dryRun) {
     const lock: DispatchLock = {
@@ -736,6 +742,7 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
       startedAt: new Date().toISOString(),
       model: modelSelection.model,
       modelReason: modelSelection.reason,
+      executor: executorType,
     };
     await createLock(agentsDir, lock);
   }
@@ -1458,6 +1465,7 @@ export const dispatchCommand = new Command('dispatch')
       .option('-d, --dir <path>', 'Project root directory', '.')
       .option('-r, --role <id>', 'Force a specific role (for debugging)')
       .option('-m, --model <name>', 'Force model: haiku, sonnet, opus (overrides auto-selection)')
+      .option('-e, --executor <type>', 'Executor backend: clawdbot (default), claude-code (Issue #64)')
       .option('-n, --dry-run', 'Validate without starting')
       .option('-j, --json', 'Output as JSON for programmatic use')
       .option('-q, --quiet', 'Minimal output')
