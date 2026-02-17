@@ -42,7 +42,7 @@ import {
   sendCycleNotifications,
   type NotificationMessage,
 } from '@ada-ai/core';
-import type { Role, Roster, RotationState, Reflection, CodeChangeResult } from '@ada-ai/core';
+import type { Role, Roster, RotationState, Reflection, ReflectionOutcome, CodeChangeResult } from '@ada-ai/core';
 
 // Heat Scoring (Issue #118 — Dispatch Integration)
 import {
@@ -182,7 +182,7 @@ interface DispatchStartOptions {
 interface DispatchCompleteOptions {
   dir: string;
   action: string;
-  outcome?: 'success' | 'partial' | 'blocked';
+  outcome?: ReflectionOutcome;
   reflection?: string;
   skipPush?: boolean;
   json?: boolean;

@@ -16,7 +16,8 @@ export const configCommand = new Command('config')
       .action(async () => {
         const options = configCommand.opts() as { dir: string };
         const cwd = process.cwd();
-        const rosterPath = path.resolve(cwd, options.dir, 'roster.json');
+        const dir = options.dir ?? 'agents';
+        const rosterPath = path.resolve(cwd, dir, 'roster.json');
 
         try {
           const roster = await readRoster(rosterPath);
@@ -47,7 +48,8 @@ export const configCommand = new Command('config')
       .action(async () => {
         const options = configCommand.opts() as { dir: string };
         const cwd = process.cwd();
-        const rosterPath = path.resolve(cwd, options.dir, 'roster.json');
+        const dir = options.dir ?? 'agents';
+        const rosterPath = path.resolve(cwd, dir, 'roster.json');
 
         const editor = process.env['EDITOR'] || process.env['VISUAL'] || 'vim';
         console.log(`Opening ${rosterPath} in ${editor}...`);
@@ -70,7 +72,8 @@ export const configCommand = new Command('config')
       .action(() => {
         const options = configCommand.opts() as { dir: string };
         const cwd = process.cwd();
-        console.log(path.resolve(cwd, options.dir));
+        const dir = options.dir ?? 'agents';
+        console.log(path.resolve(cwd, dir));
       })
   )
   .addCommand(
