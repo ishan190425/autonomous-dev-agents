@@ -68,6 +68,55 @@ ada config edit             # Open roster.json in $EDITOR
 ada config path             # Print agents directory path
 ```
 
+## Executor Backends
+
+ADA supports multiple executor backends for agent execution. The executor determines which CLI tool is used to execute agent actions.
+
+### Available Executors
+
+- **clawdbot** (default) — Uses Clawdbot for agent execution
+- **claude-code** — Uses Claude Code CLI for agent execution (Issue #64)
+
+### Selecting an Executor
+
+You can select an executor in several ways:
+
+1. **CLI flag** (per-cycle):
+   ```bash
+   ada dispatch start --executor claude-code
+   ```
+
+2. **Environment variable** (persistent):
+   ```bash
+   export ADA_EXECUTOR=claude-code
+   ada dispatch start
+   ```
+
+3. **Default**: If not specified, ADA uses `clawdbot`.
+
+### Claude Code Integration
+
+To use Claude Code as the executor:
+
+1. **Install Claude Code CLI**:
+   ```bash
+   npm install -g @anthropic-ai/claude-code
+   ```
+
+2. **Configure Claude Code** with your API keys (follow Claude Code documentation)
+
+3. **Use Claude Code executor**:
+   ```bash
+   ada dispatch start --executor claude-code
+   ```
+
+   Or set it as default:
+   ```bash
+   export ADA_EXECUTOR=claude-code
+   ```
+
+**Note**: Claude Code integration is optional. ADA's rotation, memory bank, and coordination layer work with any executor backend.
+
 ## License
 
 MIT

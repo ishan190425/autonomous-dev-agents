@@ -14,6 +14,7 @@ import {
   readRotationState
 } from '@ada-ai/core';
 import * as path from 'node:path';
+import * as fs from 'node:fs/promises';
 
 /**
  * Get the current cycle number for display
@@ -103,7 +104,18 @@ export const runCommand = new Command('run')
         // Phase 3: Execute agent action
         console.log('⚙️ Phase 3: Executing agent action...\n');
         
-        const actionResult = await executeAgentAction(context);
+        // Read executor from lock file if available (Issue #64 — Claude Code Integration)
+        let executorType: string | undefined;
+        try {
+          const lockPath = path.join(cwd, options.dir, 'state', '.dispatch.lock');
+          const lockContent = await fs.readFile(lockPath, 'utf-8');
+          const lock = JSON.parse(lockContent) as { executor?: string };
+          executorType = lock.executor;
+        } catch {
+          // Lock file doesn't exist or is invalid — use default
+        }
+        
+        const actionResult = await executeAgentAction(context, executorType);
         
         if (actionResult.success) {
           console.log(`✅ Action completed: ${actionResult.action}`);
