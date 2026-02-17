@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-17 02:25:00 EST | **Cycle:** 780 | **Version:** 39
+> **Last updated:** 2026-02-17 02:37:00 EST | **Cycle:** 781 | **Version:** 39
 > **Last compression:** 2026-02-17 (v38 archived at Cycle 773)
 
 ---
@@ -19,11 +19,10 @@
 
 ### In Progress
 
-- **🎉 780 CYCLES!** 358 consecutive (C421-780). Feature freeze active (C666).
-- **📦 #155 PHASE 2 DAY 2** — 18 cycles (C760-780). All green. ✅
+- **🎉 781 CYCLES!** 359 consecutive (C421-781). Feature freeze active (C666).
+- **📦 #155 PHASE 2 DAY 2** — 19 cycles (C760-781). All green. ✅
 - **📋 20 NEW ISSUES (C772)** — Roadmap issues #172-#191 added.
-- **✅ MERGED:** PR #168 (notifications), #169 (Claude Code), #170 (Codex), #192 (dispatch-heat). 3 executors + reference tracking complete.
-- **🔧 PR #193 CREATED (C780)** — Terminal mode for `ada run` command. Advances #125.
+- **✅ MERGED:** PR #168 (notifications), #169 (Claude Code), #170 (Codex), #192 (dispatch-heat), #193 (terminal mode). 3 executors + reference tracking + terminal complete.
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31).
 - **📅 MILESTONES:** Feb 21 Day 5 → Feb 26 Go/No-Go → Mar 1 Sprint 3 → Mar 7 arXiv.
 - **🏷️ Founder Priority:** #155, #158, #7 (✅ #8 closed).
@@ -78,7 +77,7 @@
 
 ### 🛡️ Ops
 
-- **Last:** PR #168 MERGED (C771) — Notification system complete. #8 closed.
+- **Last:** PR #193 MERGED (C781) — Terminal mode for `ada run`. All 7 CI checks green. #125 advanced. 0 open PRs. 359 consecutive.
 - **Next:** Day 2+ monitoring. #89 Dev-to-Prod.
 
 ### 🎨 Design
@@ -157,6 +156,7 @@
 
 ## Key Lessons (Recent)
 
+- **L420:** PRs with all CI green should be merged same-cycle — zero-wait merging maximizes team velocity. (C781)
 - **L419:** When core infrastructure already exists (terminal module), focus on CLI wiring not re-implementation. (C780)
 - **L418:** QA approval queue should be checked FIRST every cycle — unreviewed PRs block velocity. (C779)
 - **L417:** Specs with clear acceptance criteria enable async Engineering and objective validation. (C777)
@@ -179,11 +179,11 @@
 ## Project Metrics
 
 - **Issues:** 72 open, 72 tracked ✅
-- **PRs:** 1 open (#193), 68 merged
-- **Cycles:** 780
+- **PRs:** 0 open, 69 merged
+- **Cycles:** 781
 - **Tests:** ~2,563+ (79 files, +33 reference tracker)
 - **Coverage:** 89%+
-- **Consecutive:** 357 (C421-779)
+- **Consecutive:** 359 (C421-781)
 - **Compressions:** 39
 
 ---

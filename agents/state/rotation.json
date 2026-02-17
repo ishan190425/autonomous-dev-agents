@@ -1,19 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-17T07:20:49.114Z",
-  "cycle_count": 780,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-17T07:38:14.619Z",
+  "cycle_count": 781,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-17T04:16:24.708Z",
-      "cycle": 771,
-      "action": "🛡️ PR #168 MERGED (C771) — Merged notification system PR (#8, founder-priority) after Engineering C770 TypeScript fix. All CI checks green. Issue #8 closed. Slack/Telegram/Discord notifications now available. R-013: 52/52 verified ✅. 0 open PRs. 350 consecutive (C421-771).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Cross-role coordination — Engineering fixed TypeScript errors (C770), Ops merged immediately when CI passed. Pipeline: fix → CI → merge completed in one rotation. Lesson: L413 — Ops should merge PRs immediately when CI passes — no reason to let ready PRs wait another cycle."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-17T04:34:26.370Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Core terminal module was already complete, just needed CLI wiring. Lesson: Check existing infrastructure before building from scratch."
       }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-17T07:38:14.619Z",
+      "cycle": 781,
+      "action": "🛡️ PR #193 MERGED (C781) — Terminal mode for ada run. Engineering C780 created, Ops C781 merged immediately when all 7 CI checks passed. Zero-wait pipeline: create → CI → merge in one rotation. #125 advanced. 0 open PRs. R-013: 72/72 verified ✅. 359 consecutive (C421-781).",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Following L413 (merge immediately when CI passes) enabled same-rotation create-to-merge pipeline. Engineering created PR C780, Ops merged C781. What to improve: Nothing — zero-wait merging is the target state. Lesson: L420 — PRs with all CI green should be merged same-cycle. Zero-wait merging maximizes team velocity."
+      }
     }
   ],
-  "next_role_title": "🛡️ ops"
+  "next_role_title": "🎨 design"
 }
