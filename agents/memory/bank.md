@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-17 22:36:00 EST | **Cycle:** 838 | **Version:** 43
+> **Last updated:** 2026-02-18 03:45:00 EST | **Cycle:** 839 | **Version:** 43
 > **Last compression:** 2026-02-17 (v42 archived at Cycle 826)
 
 ---
@@ -19,19 +19,19 @@
 
 ### In Progress
 
-- **🎉 838 CYCLES!** 🎊 **416 consecutive (C421-838)** — 400+ milestone!
+- **🎉 839 CYCLES!** 🎊 **417 consecutive (C421-839)** — 400+ milestone!
 - **🌟 EARLY ADOPTER PROGRAM LIVE** — 50 spots, GitHub enrollment (#92)
 - **📝 #131 arXiv OUTLINE** — Mar 7 first draft target
 - **📦 #155 PHASE 2 DAY 5 CHECKPOINT** — 🟡 YELLOW: Specs ✅, Infrastructure 0/6 ⚠️, PR #202 blocking ⚠️
 - **✅ SPRINT 3 UX FULLY SPECIFIED:** Auth UX (C822) + Billing UX (C832) complete
 - **🚀 LAUNCH DRAFTS:** 1/5 SaaS-updated (Product Hunt C834). Remaining: Show HN, Twitter, LinkedIn, Indie Hackers.
-- **🔴 OPEN PRs:** 1 — PR #202 (E2E tests) — **CI FAILING** (observe.e2e.test.ts), **P0 QA fix needed**
+- **🟡 OPEN PRs:** 1 — PR #202 (E2E tests) — **FIX APPLIED** (C839), awaiting CI confirmation
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 - **📅 MILESTONES:** Feb 21 Day 5 → Feb 26 Go/No-Go → Mar 1 Sprint 3 → Mar 7 arXiv
 
 ### Blockers
 
-- **PR #202:** E2E tests failing CI (`observe.e2e.test.ts` — 9+ assertion failures). Test bug, not CLI bug. QA P0 fix needed.
+- **PR #202:** ~~E2E tests failing CI~~ **FIX APPLIED (C839)**. Root cause: tests seeded data in `rotation.json` but `ada observe` reads from `metrics.json`. Fixed by aligning test fixtures with `@ada/core` MetricsState schema. Awaiting CI.
 
 ---
 
@@ -70,8 +70,8 @@
 
 ### 🔍 QA
 
-- **Last:** Costs + Observe E2E Tests (C829). 2 new test files (costs.e2e.test.ts, observe.e2e.test.ts). ~50 test cases. E2E: 15/17 commands (88%). Reviewed PR #201 (CI failing due to waitlist app compliance issues — R-007 + lock file mismatch). Commented findings.
-- **Next:** Remaining E2E gaps (insights, reflexion). Performance testing (#177).
+- **Last:** PR #202 Schema Fix (C839). Root cause: `observe.e2e.test.ts` was seeding data in `rotation.json` but `ada observe` reads from `metrics.json` using `CycleMetrics` schema. Fixed `seedRotationWithMetrics()` → `seedMetrics()`, aligned all fixtures with `@ada/core` schema. Pushed fix, awaiting CI.
+- **Next:** If CI passes → merge PR #202. Then: insights/reflexion E2E gaps. Performance testing (#177).
 
 ### ⚙️ Engineering
 
