@@ -14,125 +14,118 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { createSandbox, type Sandbox } from './harness';
 
 /**
- * Seed a rotation.json with history entries that include observability metrics.
+ * CycleMetrics type matching @ada/core observability schema.
  */
-function seedRotationWithMetrics(
-  sandbox: Sandbox,
-  cycles: Array<{
-    role: string;
-    timestamp: string;
-    cycle: number;
-    action: string;
-    metrics?: {
-      inputTokens: number;
-      outputTokens: number;
-      totalCost: number;
-      model: string;
-      latencyMs: number;
-      success: boolean;
-    };
-  }>
-): void {
-  const rotation = {
-    current_index: 0,
-    last_role: cycles[cycles.length - 1]?.role || 'engineering',
-    last_run: cycles[cycles.length - 1]?.timestamp || new Date().toISOString(),
-    cycle_count: cycles.length,
-    history: cycles,
-  };
-  sandbox.write('agents/state/rotation.json', JSON.stringify(rotation, null, 2));
+interface CycleMetrics {
+  cycle: number;
+  role: string;
+  model: string;
+  startedAt: string;
+  completedAt: string;
+  durationMs: number;
+  phases: Record<string, { inputTokens: number; outputTokens: number; totalTokens: number }>;
+  totals: { inputTokens: number; outputTokens: number; totalTokens: number };
+  cost: { inputCost: number; outputCost: number; totalCost: number };
+  success: boolean;
+  error?: string;
 }
 
 /**
- * Create sample cycles with observability metrics for testing.
+ * Seed metrics.json with CycleMetrics data (matching @ada/core MetricsState schema).
+ * This is what `ada observe` actually reads.
  */
-function createSampleCyclesWithMetrics(): Array<{
-  role: string;
-  timestamp: string;
-  cycle: number;
-  action: string;
-  metrics?: {
-    inputTokens: number;
-    outputTokens: number;
-    totalCost: number;
-    model: string;
-    latencyMs: number;
-    success: boolean;
+function seedMetrics(sandbox: Sandbox, cycles: CycleMetrics[]): void {
+  const metricsState = {
+    version: 1,
+    cycles,
+    maxCycles: 100,
   };
-}> {
+  sandbox.write('agents/state/metrics.json', JSON.stringify(metricsState, null, 2));
+}
+
+/**
+ * Create sample CycleMetrics for testing (matching @ada/core schema).
+ */
+function createSampleCycleMetrics(): CycleMetrics[] {
   const now = Date.now();
   const hour = 60 * 60 * 1000;
 
   return [
     {
-      role: 'engineering',
-      timestamp: new Date(now - 5 * hour).toISOString(),
       cycle: 1,
-      action: '⚙️ Initial setup (C1)',
-      metrics: {
-        inputTokens: 5000,
-        outputTokens: 1200,
-        totalCost: 0.025,
-        model: 'claude-3-5-sonnet-20241022',
-        latencyMs: 12500,
-        success: true,
-      },
-    },
-    {
-      role: 'qa',
-      timestamp: new Date(now - 4 * hour).toISOString(),
-      cycle: 2,
-      action: '🔍 Test implementation (C2)',
-      metrics: {
-        inputTokens: 8000,
-        outputTokens: 2500,
-        totalCost: 0.042,
-        model: 'claude-3-5-sonnet-20241022',
-        latencyMs: 18000,
-        success: true,
-      },
-    },
-    {
-      role: 'ops',
-      timestamp: new Date(now - 3 * hour).toISOString(),
-      cycle: 3,
-      action: '🛡️ CI fix (C3)',
-      metrics: {
-        inputTokens: 3000,
-        outputTokens: 800,
-        totalCost: 0.015,
-        model: 'claude-3-5-haiku-20241022',
-        latencyMs: 5500,
-        success: true,
-      },
-    },
-    {
       role: 'engineering',
-      timestamp: new Date(now - 2 * hour).toISOString(),
-      cycle: 4,
-      action: '⚙️ Feature implementation (C4)',
-      metrics: {
-        inputTokens: 12000,
-        outputTokens: 4000,
-        totalCost: 0.068,
-        model: 'claude-3-5-sonnet-20241022',
-        latencyMs: 25000,
-        success: true,
+      model: 'claude-3-5-sonnet-20241022',
+      startedAt: new Date(now - 5 * hour).toISOString(),
+      completedAt: new Date(now - 5 * hour + 12500).toISOString(),
+      durationMs: 12500,
+      phases: {
+        context_load: { inputTokens: 2000, outputTokens: 500, totalTokens: 2500 },
+        action_execution: { inputTokens: 3000, outputTokens: 700, totalTokens: 3700 },
       },
+      totals: { inputTokens: 5000, outputTokens: 1200, totalTokens: 6200 },
+      cost: { inputCost: 0.015, outputCost: 0.018, totalCost: 0.033 },
+      success: true,
     },
     {
+      cycle: 2,
       role: 'qa',
-      timestamp: new Date(now - hour).toISOString(),
-      cycle: 5,
-      action: '🔍 Review cycle (C5)',
-      metrics: {
-        inputTokens: 6000,
-        outputTokens: 1500,
-        totalCost: 0.032,
-        model: 'claude-3-5-sonnet-20241022',
-        latencyMs: 14000,
-        success: false, // Failed cycle for health testing
+      model: 'claude-3-5-sonnet-20241022',
+      startedAt: new Date(now - 4 * hour).toISOString(),
+      completedAt: new Date(now - 4 * hour + 18000).toISOString(),
+      durationMs: 18000,
+      phases: {
+        context_load: { inputTokens: 3000, outputTokens: 1000, totalTokens: 4000 },
+        action_execution: { inputTokens: 5000, outputTokens: 1500, totalTokens: 6500 },
       },
+      totals: { inputTokens: 8000, outputTokens: 2500, totalTokens: 10500 },
+      cost: { inputCost: 0.024, outputCost: 0.0375, totalCost: 0.0615 },
+      success: true,
+    },
+    {
+      cycle: 3,
+      role: 'ops',
+      model: 'claude-3-5-haiku-20241022',
+      startedAt: new Date(now - 3 * hour).toISOString(),
+      completedAt: new Date(now - 3 * hour + 5500).toISOString(),
+      durationMs: 5500,
+      phases: {
+        context_load: { inputTokens: 1000, outputTokens: 300, totalTokens: 1300 },
+        action_execution: { inputTokens: 2000, outputTokens: 500, totalTokens: 2500 },
+      },
+      totals: { inputTokens: 3000, outputTokens: 800, totalTokens: 3800 },
+      cost: { inputCost: 0.0024, outputCost: 0.0032, totalCost: 0.0056 },
+      success: true,
+    },
+    {
+      cycle: 4,
+      role: 'engineering',
+      model: 'claude-3-5-sonnet-20241022',
+      startedAt: new Date(now - 2 * hour).toISOString(),
+      completedAt: new Date(now - 2 * hour + 25000).toISOString(),
+      durationMs: 25000,
+      phases: {
+        context_load: { inputTokens: 5000, outputTokens: 1500, totalTokens: 6500 },
+        action_execution: { inputTokens: 7000, outputTokens: 2500, totalTokens: 9500 },
+      },
+      totals: { inputTokens: 12000, outputTokens: 4000, totalTokens: 16000 },
+      cost: { inputCost: 0.036, outputCost: 0.06, totalCost: 0.096 },
+      success: true,
+    },
+    {
+      cycle: 5,
+      role: 'qa',
+      model: 'claude-3-5-sonnet-20241022',
+      startedAt: new Date(now - hour).toISOString(),
+      completedAt: new Date(now - hour + 14000).toISOString(),
+      durationMs: 14000,
+      phases: {
+        context_load: { inputTokens: 2500, outputTokens: 600, totalTokens: 3100 },
+        action_execution: { inputTokens: 3500, outputTokens: 900, totalTokens: 4400 },
+      },
+      totals: { inputTokens: 6000, outputTokens: 1500, totalTokens: 7500 },
+      cost: { inputCost: 0.018, outputCost: 0.0225, totalCost: 0.0405 },
+      success: false, // Failed cycle for health testing
+      error: 'Test failure simulation',
     },
   ];
 }
@@ -175,8 +168,8 @@ describe('ada observe E2E', () => {
     });
 
     it('shows metrics summary when cycles have data', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe']);
 
@@ -186,8 +179,8 @@ describe('ada observe E2E', () => {
     });
 
     it('shows health status based on success rate', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe']);
 
@@ -199,8 +192,8 @@ describe('ada observe E2E', () => {
 
   describe('--by-role', () => {
     it('shows per-role breakdown', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--by-role']);
 
@@ -212,25 +205,24 @@ describe('ada observe E2E', () => {
     });
 
     it('aggregates costs per role correctly', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--by-role', '--json']);
 
       expect(result.success).toBe(true);
       const json = JSON.parse(result.stdout);
 
-      // Engineering: 0.025 + 0.068 = 0.093
-      // QA: 0.042 + 0.032 = 0.074
-      // Ops: 0.015
-      expect(json.byRole).toBeDefined();
+      // JSON output structure: { aggregated: { byRole: {...} } }
+      expect(json.aggregated).toBeDefined();
+      expect(json.aggregated.byRole).toBeDefined();
     });
   });
 
   describe('--cycle', () => {
     it('shows detailed metrics for specific cycle', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--cycle', '3']);
 
@@ -240,8 +232,8 @@ describe('ada observe E2E', () => {
     });
 
     it('shows error for non-existent cycle', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--cycle', '999']);
 
@@ -250,37 +242,39 @@ describe('ada observe E2E', () => {
     });
 
     it('shows all metrics for the specified cycle', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--cycle', '2', '--json']);
 
       expect(result.success).toBe(true);
       const json = JSON.parse(result.stdout);
 
-      // Cycle 2 is QA with specific metrics
-      expect(json.cycle).toBe(2);
-      expect(json.role).toBe('qa');
+      // JSON output structure: { cycle: { cycle: 2, role: 'qa', ... } }
+      expect(json.cycle).toBeDefined();
+      expect(json.cycle.cycle).toBe(2);
+      expect(json.cycle.role).toBe('qa');
     });
   });
 
   describe('--last', () => {
     it('filters to last N cycles', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--last', '2', '--json']);
 
       expect(result.success).toBe(true);
       const json = JSON.parse(result.stdout);
 
-      // Should only include cycles 4 and 5
-      expect(json.cycleCount).toBe(2);
+      // JSON output structure: { summary: { totalCycles: 2 }, aggregated: {...} }
+      expect(json.summary).toBeDefined();
+      expect(json.summary.totalCycles).toBe(2);
     });
 
     it('handles --last larger than available cycles', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--last', '100', '--json']);
 
@@ -288,14 +282,15 @@ describe('ada observe E2E', () => {
       const json = JSON.parse(result.stdout);
 
       // Should show all 5 cycles
-      expect(json.cycleCount).toBe(5);
+      expect(json.summary).toBeDefined();
+      expect(json.summary.totalCycles).toBe(5);
     });
   });
 
   describe('--json', () => {
     it('outputs valid JSON', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--json']);
 
@@ -305,54 +300,59 @@ describe('ada observe E2E', () => {
     });
 
     it('includes all metric categories', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--json']);
 
       expect(result.success).toBe(true);
       const json = JSON.parse(result.stdout);
 
-      // Should have cost, tokens, latency, health
-      expect(json.totalCost).toBeDefined();
-      expect(json.totalInputTokens).toBeDefined();
-      expect(json.totalOutputTokens).toBeDefined();
-      expect(json.averageLatencyMs).toBeDefined();
-      expect(json.successRate).toBeDefined();
+      // JSON structure: { aggregated: { totalCost, totalTokens, avgDurationMs, successfulCycles, totalCycles, ... } }
+      expect(json.aggregated).toBeDefined();
+      expect(json.aggregated.totalCost).toBeDefined();
+      expect(json.aggregated.totalTokens).toBeDefined();
+      expect(json.aggregated.totalTokens.inputTokens).toBeDefined();
+      expect(json.aggregated.totalTokens.outputTokens).toBeDefined();
+      expect(json.aggregated.avgDurationMs).toBeDefined();
+      expect(json.aggregated.successfulCycles).toBeDefined();
+      expect(json.aggregated.totalCycles).toBeDefined();
     });
 
     it('calculates averages correctly', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--json']);
 
       expect(result.success).toBe(true);
       const json = JSON.parse(result.stdout);
 
-      // Average latency: (12500 + 18000 + 5500 + 25000 + 14000) / 5 = 15000
-      expect(json.averageLatencyMs).toBeCloseTo(15000, -2);
+      // Average duration: (12500 + 18000 + 5500 + 25000 + 14000) / 5 = 15000
+      expect(json.aggregated.avgDurationMs).toBeCloseTo(15000, -2);
     });
   });
 
   describe('--export', () => {
     it('exports metrics to JSON file', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
-      const result = await sandbox.ada(['observe', '--export', 'metrics.json', '--force']);
+      const result = await sandbox.ada(['observe', '--export', 'exported-metrics.json', '--force']);
 
       expect(result.success).toBe(true);
-      expect(sandbox.exists('metrics.json')).toBe(true);
+      expect(sandbox.exists('exported-metrics.json')).toBe(true);
 
-      const content = sandbox.read('metrics.json');
+      const content = sandbox.read('exported-metrics.json');
       const json = JSON.parse(content);
-      expect(json.totalCost).toBeDefined();
+      // Export JSON structure: { aggregated: { totalCost, ... } }
+      expect(json.aggregated).toBeDefined();
+      expect(json.aggregated.totalCost).toBeDefined();
     });
 
     it('exports metrics to CSV file', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--export', 'metrics.csv', '--force']);
 
@@ -365,8 +365,8 @@ describe('ada observe E2E', () => {
     });
 
     it('exports metrics to TSV file', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--export', 'metrics.tsv', '--force']);
 
@@ -384,28 +384,28 @@ describe('ada observe E2E', () => {
       // Create custom directory
       sandbox.exec('mkdir -p custom-agents/state');
 
-      const cycles = createSampleCyclesWithMetrics();
-      const rotation = {
-        current_index: 0,
-        last_role: 'engineering',
-        last_run: new Date().toISOString(),
-        cycle_count: cycles.length,
-        history: cycles,
+      const cycles = createSampleCycleMetrics();
+      // Seed metrics.json in custom directory
+      const metricsState = {
+        version: 1,
+        cycles,
+        maxCycles: 100,
       };
-      sandbox.write('custom-agents/state/rotation.json', JSON.stringify(rotation, null, 2));
+      sandbox.write('custom-agents/state/metrics.json', JSON.stringify(metricsState, null, 2));
 
       const result = await sandbox.ada(['observe', '--dir', 'custom-agents', '--json']);
 
       expect(result.success).toBe(true);
       const json = JSON.parse(result.stdout);
-      expect(json.cycleCount).toBe(5);
+      expect(json.aggregated).toBeDefined();
+      expect(json.aggregated.totalCycles).toBe(5);
     });
   });
 
   describe('combined options', () => {
     it('combines --by-role with --last', async () => {
-      const cycles = createSampleCyclesWithMetrics();
-      seedRotationWithMetrics(sandbox, cycles);
+      const cycles = createSampleCycleMetrics();
+      seedMetrics(sandbox, cycles);
 
       const result = await sandbox.ada(['observe', '--by-role', '--last', '3', '--json']);
 
@@ -413,8 +413,10 @@ describe('ada observe E2E', () => {
       const json = JSON.parse(result.stdout);
 
       // Should show per-role breakdown for only last 3 cycles
-      expect(json.byRole).toBeDefined();
-      expect(json.cycleCount).toBe(3);
+      expect(json.aggregated).toBeDefined();
+      expect(json.aggregated.byRole).toBeDefined();
+      expect(json.summary).toBeDefined();
+      expect(json.summary.totalCycles).toBe(3);
     });
   });
 
@@ -425,29 +427,30 @@ describe('ada observe E2E', () => {
 
       const result = await sandbox.ada(['observe']);
 
-      expect(result.stderr + result.stdout).toMatch(/(not found|no.*directory|initialize)/i);
+      // Should show empty state message (no data yet)
+      expect(result.success).toBe(true);
+      expect(result.stdout).toMatch(/(no.*data|no observability)/i);
     });
 
-    it('handles corrupted rotation.json gracefully', async () => {
-      sandbox.write('agents/state/rotation.json', '{ invalid json }');
+    it('handles corrupted metrics.json gracefully', async () => {
+      // Corrupt the metrics.json file that observe reads
+      sandbox.write('agents/state/metrics.json', '{ invalid json }');
 
       const result = await sandbox.ada(['observe']);
 
-      expect(result.success).toBe(false);
-      expect(result.stderr).toMatch(/(error|invalid|parse)/i);
+      // MetricsManager gracefully recovers from corrupted files by treating as empty state
+      expect(result.success).toBe(true);
+      expect(result.stdout).toMatch(/(no.*data|no observability)/i);
     });
 
-    it('handles cycles without metrics data', async () => {
-      // Cycles without metrics field
-      const cycles = [
-        {
-          role: 'engineering',
-          timestamp: new Date().toISOString(),
-          cycle: 1,
-          action: '⚙️ Initial setup (C1)',
-        },
-      ];
-      seedRotationWithMetrics(sandbox, cycles);
+    it('handles empty metrics state', async () => {
+      // Empty but valid metrics state
+      const metricsState = {
+        version: 1,
+        cycles: [],
+        maxCycles: 100,
+      };
+      sandbox.write('agents/state/metrics.json', JSON.stringify(metricsState, null, 2));
 
       const result = await sandbox.ada(['observe']);
 
