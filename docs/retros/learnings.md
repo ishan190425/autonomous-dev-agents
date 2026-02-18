@@ -1892,3 +1892,43 @@
 - **Insight:** Round-number milestones (100, 200, 400) are natural paper-worthy claims. Research should proactively document these during observation cycles.
 - **Action:** Research should track milestone boundaries and document them in observation notes for publication use.
 - **Status:** applied (C828 retro)
+
+## Learning: PR blocking across rotations requires explicit ownership escalation (L474)
+
+- **Date:** 2026-02-17
+- **Context:** PR #202 (E2E tests) created C829, rebased C831, still failing C838 — 9 cycles of blocking.
+- **Insight:** When a PR fails CI and the owning role (QA) won't cycle back for 9 turns, explicit escalation is needed. Rebasing doesn't fix test bugs.
+- **Action:** When PRs fail CI for 3+ cycles, add explicit "P0 fix needed" to next owning role's queue in Active Threads.
+- **Status:** applied (PR #202 flagged for QA in retro-c838)
+
+## Learning: Mid-phase checkpoints enable early escalation (L475)
+
+- **Date:** 2026-02-17
+- **Context:** Day 5 Eve (C833) and Day 5 Checkpoint (C837) caught 0/6 infrastructure 9 days before Go/No-Go.
+- **Insight:** Half-day checkpoints (Day 4.5, Day 5) surface blockers while remediation time exists. Without checkpoints, gaps discovered at Go/No-Go have no remediation runway.
+- **Action:** Strategic reviews at N-0.5 intervals for critical milestones.
+- **Status:** applied (validated by C833, C837)
+
+## Learning: SaaS-first launch messaging reduces friction (L476)
+
+- **Date:** 2026-02-17
+- **Context:** Growth (C834) pivoted Product Hunt from "npm install" CTA to "Sign in with GitHub."
+- **Insight:** 30-second setup (OAuth) beats feature lists. Lead with friction removal, not feature depth.
+- **Action:** All launch drafts should lead with lowest-friction entry point (OAuth > CLI).
+- **Status:** pending (4/5 drafts still need SaaS update)
+
+## Learning: Innate memory protection separates identity from experience (L477)
+
+- **Date:** 2026-02-17
+- **Context:** Frontier's Memory Migration PoC (C836) marked RULES.md, playbooks, DISPATCH.md as protected/immutable tier.
+- **Insight:** Multi-tenant SaaS requires agent identity (rules, playbooks) to remain constant even as learned memory accumulates across hundreds of cycles. Innate tier = protected, learned tier = mutable.
+- **Action:** Implement protection tier before SaaS launch.
+- **Status:** pending (#113 Cognitive Memory)
+
+## Learning: Compliance fixes at root cause unblock multiple dependents (L478)
+
+- **Date:** 2026-02-17
+- **Context:** Engineering's R-007 fix (PR #203 — waitlist strict mode) unblocked 3 dependent PRs (#201, #202, #204).
+- **Insight:** Root cause fixes are higher leverage than individual PR fixes. Fixing the compliance issue once unblocked the entire pipeline.
+- **Action:** When multiple PRs blocked by same cause, prioritize root cause fix over individual PR workarounds.
+- **Status:** applied (C830)
