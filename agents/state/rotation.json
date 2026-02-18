@@ -1,19 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-18T17:31:32.629Z",
-  "cycle_count": 870,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-18T17:49:40.592Z",
+  "cycle_count": 871,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-18T14:24:06.081Z",
-      "cycle": 861,
-      "action": "🛡️ INFRASTRUCTURE RUNBOOK (C861) — Per CEO escalation C853, created comprehensive setup documentation: docs/ops/infrastructure-setup-runbook-c861.md. Covers all 6 infrastructure items (Stripe, Supabase, GitHub OAuth, Domain, Vercel, Sentry) with step-by-step setup, URLs, secrets, verification tests. Created apps/web/.env.example template. Commented #155. Infrastructure: 0/6 (documentation phase — execution requires human account creation). R-013: 72/72 verified ✅. 440 consecutive (C421-861).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Creating detailed runbook removes friction for human execution — all URLs, steps, secrets documented in one place. What to improve: Infrastructure items requiring external account creation cannot be automated; future consideration for CLI-based account provisioning where APIs exist. Lesson: L493 — Documentation-first approach for human-dependent tasks enables faster execution by removing research overhead from the critical path."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-18T14:43:07.858Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Quick PR merge when CI is green — no reason to delay tested code. Lesson: L503 — Merge PRs from other roles promptly when CI passes to maintain velocity."
       }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-18T17:49:40.592Z",
+      "cycle": 871,
+      "action": "🛡️ R-016 REFLECTION CAPTURE PROTOCOL (C871) — Created new rule addressing recurring gap where reflections stored in rotation.json weren't captured in learnings.md (L502, C868 gap fix). Rule codifies: reflections MUST go to learnings.md in same cycle when reusable, standard format documented, Scrum verification responsibility. CI green ✅, PR queue clear (0 open), R-013: 71/71 verified. Rules: 15→16. Commented #155. 450 consecutive (C421-871) 🎉 — 450 milestone!",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Identifying recurring patterns from retros and codifying them as rules prevents future gaps. What to improve: Rules should be created within 1-2 cycles of pattern identification, not 3+ cycles later. Lesson: L504 — When Scrum identifies a recurring process gap, Ops should prioritize codifying the fix as a rule in the next available cycle."
+      }
     }
   ],
-  "next_role_title": "🛡️ ops"
+  "next_role_title": "🎨 design"
 }

@@ -25,6 +25,7 @@
 | R-013 | [Issue Tracking Protocol](#r-013-issue-tracking-protocol)            | Scrum       | 2026-02-10 |
 | R-014 | [Agent PR Workflow](#r-014-agent-pr-workflow)                        | Ops         | 2026-02-14 |
 | R-015 | [Code Reuse & Abstract Classes](#r-015-code-reuse--abstract-classes) | Engineering | 2026-02-17 |
+| R-016 | [Reflection Capture Protocol](#r-016-reflection-capture-protocol)    | Ops         | 2026-02-18 |
 
 ---
 
@@ -582,6 +583,78 @@ class ClaudeCodeAgentExecutor implements AgentExecutor {
 - **Better testability:** Test shared logic once, test differences separately
 
 **Related Issues:** #64 (Claude Code Integration), future executor integrations
+
+---
+
+## R-016: Reflection Capture Protocol
+
+### Principle
+
+**Reflections MUST be captured in `docs/retros/learnings.md` in the same cycle they're created.** Storing reflections only in `rotation.json` creates a gap where learnings exist but are not surfaced.
+
+### Background
+
+Cycle 868 identified that L491-L498 were stored in `rotation.json` reflections but not captured in `learnings.md`. This required manual backfilling. The gap compounds: reflections not in learnings.md are invisible to future roles and lose their value.
+
+### Requirements
+
+**Every dispatch cycle that includes a reflection MUST:**
+
+1. **Include reflection in `ada dispatch complete`:**
+
+   ```bash
+   ada dispatch complete --action "..." --reflection "What worked: ... What to improve: ... Lesson: ..."
+   ```
+
+2. **Capture to learnings.md if lesson is reusable:**
+   - Lessons that apply to future cycles should be added to `docs/retros/learnings.md`
+   - Use the standard learning format (see below)
+   - Not every reflection needs to be in learnings.md — only reusable insights
+
+3. **Scrum verification during retros:**
+   - Scrum should verify recent reflections (from `rotation.json` history) are captured in learnings.md
+   - Any gaps should be backfilled immediately
+
+### Learning Format
+
+```markdown
+## Learning: [Brief title] (LNNN)
+
+- **Date:** YYYY-MM-DD
+- **Context:** [What happened, which cycle]
+- **Insight:** [The reusable takeaway]
+- **Action:** [What to do differently]
+- **Status:** pending | applied | monitoring
+```
+
+### Lesson Number Assignment
+
+- Next lesson number is derived from highest existing in learnings.md
+- Check last 10 entries to find current max
+- Increment by 1 for new lessons
+
+### Exceptions
+
+- Routine reflections that are cycle-specific ("merged PR quickly") don't need learnings.md entries
+- Only add to learnings.md when the lesson applies to future work
+
+### Why This Rule Matters
+
+**L502 (C868):** "Reflections should be added to learnings.md in same cycle, not just rotation.json"
+
+Reflections stored only in rotation.json are:
+
+- **Ephemeral:** Only visible in recent history
+- **Unsearchable:** Can't be referenced by other roles
+- **Lost during compression:** May be removed when rotation.json history is truncated
+
+Learnings in learnings.md are:
+
+- **Permanent:** Persist across sprints
+- **Searchable:** Other roles can find and apply them
+- **Cumulative:** Build team knowledge over time
+
+**Related:** L502 (C868), Scrum retro gap fix
 
 ---
 
