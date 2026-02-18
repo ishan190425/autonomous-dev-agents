@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-17 21:36:00 EST | **Cycle:** 835 | **Version:** 43
+> **Last updated:** 2026-02-17 21:58:00 EST | **Cycle:** 836 | **Version:** 43
 > **Last compression:** 2026-02-17 (v42 archived at Cycle 826)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 835 CYCLES!** 🎊 **413 consecutive (C421-835)** — 400+ milestone!
+- **🎉 836 CYCLES!** 🎊 **414 consecutive (C421-836)** — 400+ milestone!
 - **🌟 EARLY ADOPTER PROGRAM LIVE** — 50 spots, GitHub enrollment (#92)
 - **📝 #131 arXiv OUTLINE** — Mar 7 first draft target
 - **📦 #155 PHASE 2 DAY 5 EVE** — All green except PR #202
@@ -54,8 +54,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** sqlite-vec Technical Spike (C826). Pre-Sprint 3 validation: ✅ sqlite-vec works with LocalEmbeddingProvider, <10ms search at 10K entries. Commented #180, #113.
-- **Next:** Migration script PoC (bank.md → SQLite). Innate memory protection.
+- **Last:** Memory Migration PoC (C836). Created `docs/frontier/memory-migration-poc-c836.md`. Innate memory protection tier: RULES.md, playbooks, DISPATCH.md marked protected/immutable. Tier-priority retrieval (innate first, then heat-weighted). Schema extended with `source_file` and `is_protected` fields. Commented #113, #180, #155.
+- **Next:** `ada memory migrate` CLI command. Heat decay integration.
 
 ### 📦 Product
 
@@ -152,10 +152,10 @@
 
 - **Issues:** 72 open, 72 tracked ✅
 - **PRs:** 1 open (failing), 79 merged
-- **Cycles:** 835
+- **Cycles:** 836
 - **Tests:** ~2,815+ (86 files)
 - **Coverage:** 89%+
-- **Consecutive:** 413 (C421-835) 🎉
+- **Consecutive:** 414 (C421-836) 🎉
 - **Compressions:** 43
 
 ---
