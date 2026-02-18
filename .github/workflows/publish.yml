@@ -232,12 +232,74 @@ jobs:
           npm publish --workspace=packages/cli --access public --dry-run
 
   # =============================================================================
+  # Publish to GitHub Packages (alongside npm)
+  # =============================================================================
+  publish-github-packages:
+    name: Publish to GitHub Packages
+    runs-on: ubuntu-latest
+    needs: [publish-core, publish-cli]
+    if: |
+      always() &&
+      (needs.publish-core.result == 'success' || needs.publish-cli.result == 'success')
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js for GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@ada-ai'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏗️ Build packages
+        run: |
+          npm run build --workspace=packages/core
+          npm run build --workspace=packages/cli
+
+      - name: 🚀 Publish @ada-ai/core to GitHub Packages
+        run: npm publish --workspace=packages/core --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true # Don't fail if version already exists
+
+      - name: 🚀 Publish @ada-ai/cli to GitHub Packages
+        run: npm publish --workspace=packages/cli --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true # Don't fail if version already exists
+
+      - name: 📊 GitHub Packages Summary
+        run: |
+          echo "## 📦 GitHub Packages" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          core_version=$(jq -r '.version' packages/core/package.json)
+          cli_version=$(jq -r '.version' packages/cli/package.json)
+          echo "| Package | Version | Registry |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|---------|----------|" >> $GITHUB_STEP_SUMMARY
+          echo "| @ada-ai/core | $core_version | npm.pkg.github.com |" >> $GITHUB_STEP_SUMMARY
+          echo "| @ada-ai/cli | $cli_version | npm.pkg.github.com |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Install from GitHub Packages" >> $GITHUB_STEP_SUMMARY
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo "npm install @ada-ai/cli@$cli_version --registry=https://npm.pkg.github.com" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+  # =============================================================================
   # Post-publish verification
   # =============================================================================
   verify-publish:
     name: Verify Publication
     runs-on: ubuntu-latest
-    needs: [publish-core, publish-cli]
+    needs: [publish-core, publish-cli, publish-github-packages]
     if: |
       always() &&
       (needs.publish-core.result == 'success' || needs.publish-cli.result == 'success')
