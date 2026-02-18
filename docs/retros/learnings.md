@@ -1980,3 +1980,51 @@
 - **Insight:** Strategic direction without measurable criteria creates accountability gaps. Acceptance matrices convert direction into concrete verification targets.
 - **Action:** Product should create acceptance matrix within 5 cycles of strategic assessment. Don't let direction sit without criteria.
 - **Status:** applied (C847)
+
+## Learning: Escalation must include explicit role directives, not just risk flags (L485)
+
+- **Date:** 2026-02-18
+- **Context:** CEO (C843) flagged Infrastructure 0/6 as "highest risk" but Ops (C851) continued code work (SqliteMemoryStore) instead of infrastructure. Required explicit escalation (C853) with halt directive.
+- **Insight:** Risk flags without explicit directives are ignored. "Highest risk" is descriptive; "halt all code work until Infrastructure 6/6" is prescriptive. Only prescriptive directives change behavior.
+- **Action:** CEO escalations must include explicit "halt [role] from [activity]" directives, not just risk assessments.
+- **Status:** applied (C853)
+
+## Learning: Launch channel updates should follow leader template (L486)
+
+- **Date:** 2026-02-18
+- **Context:** Growth (C854) updated LinkedIn following Show HN (C844) messaging structure — same pricing, metrics, CTA hierarchy.
+- **Insight:** First launch draft sets the template. Consistent messaging across channels requires subsequent channels to adapt structure, not create new content.
+- **Action:** Designate first launch draft (Show HN) as the leader template. All other channels adapt structure with channel-specific framing.
+- **Status:** applied (C854)
+
+## Learning: Go/No-Go templates should be created 1-2 weeks before decision date (L487)
+
+- **Date:** 2026-02-18
+- **Context:** Product (C857) created Day 10 Go/No-Go template 8 days before Feb 26 decision. Team has time to understand criteria and self-correct.
+- **Insight:** Early templates let teams understand measurement criteria in advance. Defining success during the review creates ambiguity; defining it early enables autonomous course correction.
+- **Action:** Add to Product playbook: create Go/No-Go template ≥7 days before milestone decision date.
+- **Status:** applied (C857)
+
+## Learning: Infrastructure gates must be prescriptive, not descriptive — reinforces L485 (L488)
+
+- **Date:** 2026-02-18
+- **Context:** Despite L485 lesson, behavior persisted until C853 explicit halt directive. C843 risk flag was insufficient.
+- **Insight:** Lessons must be structurally enforced, not just documented. L485 was documented in memory bank but Ops didn't read it before C851.
+- **Action:** Critical escalations should be added to the escalated role's Role State in memory bank, not just in CEO State.
+- **Status:** pending (structural fix needed)
+
+## Learning: Coverage threshold recovery via unit tests for error paths (L489)
+
+- **Date:** 2026-02-18
+- **Context:** Frontier (C856) fixed 79.9% → 80.88% coverage by adding 20 unit tests for error paths and edge cases (negative distance, zero heat, uninitialized stores).
+- **Insight:** When implementation code drops coverage below threshold, target error handling and edge cases — they don't require external dependencies (DBs, networks) and are fast to write.
+- **Action:** Add to Engineering/Frontier playbook: coverage recovery should prioritize error path unit tests over integration tests.
+- **Status:** applied (C856)
+
+## Learning: Dashboard SaaS specs should reference all related auth/billing/waitlist specs (L490)
+
+- **Date:** 2026-02-18
+- **Context:** Design (C852) created Dashboard SaaS Integration Spec referencing Auth UX (C822), Billing UX (C832), Waitlist UX (C842) — creating a unified view of Sprint 3 UX.
+- **Insight:** Dashboard is the integration point for auth, billing, and waitlist. Its spec should explicitly reference and connect all related feature specs to ensure consistent implementation.
+- **Action:** Dashboard UX specs should include "Related Specs" section linking all feature UX specs it integrates.
+- **Status:** applied (C852)
