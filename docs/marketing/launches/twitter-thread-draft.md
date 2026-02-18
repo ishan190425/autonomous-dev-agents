@@ -1,18 +1,41 @@
 # Twitter/X Launch Thread Draft
 
-> **Status:** DRAFT — Post when coordinating with Show HN/PH/IH launch
-> **Created:** Cycle 764 (2026-02-16) | **Owner:** Growth
+> **Status:** DRAFT — Updated for SaaS Dashboard Launch
+> **Created:** Cycle 764 (2026-02-16) | **Updated:** Cycle 854 (2026-02-18)
+> **Owner:** Growth | **SaaS Pivot:** Reflects #158
 > **Target:** 8:00 AM PT on launch day (after PH midnight, before Show HN 9 AM)
-> **Format:** Thread (12-15 tweets)
+> **Format:** Thread (14-16 tweets)
 
 ---
 
 ## Thread Strategy
 
 **Goal:** Social amplification layer for coordinated launch (PH + HN + IH)
-**Audience:** Developer Twitter, AI/ML community, indie hackers
-**Tone:** Technical credibility + founder authenticity
-**Hook:** The audacious claim with proof
+**Audience:** Developer Twitter, AI/ML community, indie hackers, solo builders
+**Tone:** Technical credibility + founder authenticity + SaaS accessibility
+**Hook:** The audacious claim with proof + easy on-ramp
+
+---
+
+## SaaS-First Messaging Notes (C854)
+
+**Key differences from C764 draft:**
+
+- Lead with dashboard signup, CLI as power-user option
+- Include pricing (Free tier → Pro → Team)
+- "Sign in with GitHub" messaging for low friction
+- Updated metrics (850+ cycles, 430+ consecutive, ~2,830 tests)
+- Two CTAs: Dashboard URL first, then CLI command
+- Emphasize accessibility — no setup required for dashboard
+
+**Why both options:**
+
+Twitter audience spans technical (prefer CLI) and business-focused (prefer dashboard). Leading with dashboard:
+
+- Shows it's a real product, not just OSS project
+- Reduces friction — curious devs can try it in 30 seconds
+- Demonstrates SaaS business model
+- CLI option signals we serve serious developers too
 
 ---
 
@@ -21,21 +44,23 @@
 ### Tweet 1 — Hook (must stand alone)
 
 ```
-I let AI agents run my codebase autonomously for 30 days.
+I let AI agents run my codebase autonomously for 30+ days.
 
-763 cycles. 340+ consecutive. Zero human intervention.
+850 cycles. 430+ consecutive. Zero human intervention.
 
-Here's what I learned building ADA — autonomous dev teams that actually work. 🧵
+Now you can try it in 30 seconds — sign in with GitHub and watch agents work on YOUR repo.
+
+Here's what we built. 🧵
 ```
 
-**Alt Hook:**
+**Alt Hook (dashboard-forward):**
 
 ```
-What if you could deploy a team of AI agents to your repo and walk away?
+What if you could deploy an AI dev team to your repo in 30 seconds?
 
-We tested it. 763 cycles. 340 consecutive. No human needed.
+Sign in with GitHub. Connect your repo. Watch agents ship.
 
-Here's how we built ADA — and what went wrong (and right). 🧵
+We tested it for 850 cycles. Here's how ADA works. 🧵
 ```
 
 ---
@@ -100,13 +125,13 @@ Different perspectives = better outcomes.
 ### Tweet 5 — The Numbers (Proof)
 
 ```
-The numbers after 30 days:
+The numbers after 850+ cycles:
 
-📈 763 dispatch cycles
-🔥 340+ consecutive (no failures)
-🧪 2,500+ tests maintained
+📈 850 dispatch cycles
+🔥 430+ consecutive (no failures)
+🧪 2,830+ tests maintained
 ✅ 89%+ code coverage
-📝 60+ PRs merged autonomously
+📝 80+ PRs merged autonomously
 💰 $0.12/cycle average cost
 
 The agents build themselves now.
@@ -195,43 +220,78 @@ Every failure became a rule in the system.
 
 ---
 
-### Tweet 11 — Current State
+### Tweet 11 — Two Ways to Use It (NEW — SaaS focus)
+
+```
+Two ways to use ADA:
+
+1️⃣ Dashboard (easiest):
+→ Sign in with GitHub
+→ Connect your repo
+→ Watch agents work in real-time
+
+2️⃣ Self-hosted CLI:
+→ npm install -g @ada-ai/cli
+→ Full control, your machine
+
+Dashboard for quick start. CLI for power users.
+```
+
+---
+
+### Tweet 12 — Pricing (NEW)
+
+```
+Pricing that makes sense:
+
+🆓 Free Tier: $20 credits to start
+👤 Pro: $19/month (solo builders)
+👥 Team: $49/month (shared workspaces)
+
+CLI is MIT-licensed — free forever if you self-host.
+
+We want you to try it before you pay.
+```
+
+---
+
+### Tweet 13 — Current State
 
 ```
 Where we are now:
 
 ✅ v1.0.0-alpha live on npm
-✅ Works on any repo (init → dispatch → go)
-✅ 11 specialized agent roles
+✅ Dashboard in beta (sign up today)
+✅ Works on any repo
+✅ 10 specialized agent roles
 ✅ Self-correcting memory system
 ✅ Cost-optimized model routing
 
-SaaS version coming soon (50 free cycles/month).
+Ready for early adopters.
 ```
 
 ---
 
-### Tweet 12 — How to Get Started
+### Tweet 14 — How to Get Started (Dashboard-first CTA)
 
 ```
 Want to try it?
 
+Dashboard (30 seconds):
+🔗 https://ada.dev
+→ Sign in with GitHub → Connect repo → Go
+
+Self-hosted CLI:
 npm install -g @ada-ai/cli
 ada init
-ada dispatch start
 
-That's it. Your agents start working.
-
-Repo: github.com/ada-ai/ada
 Docs: docs.ada.dev
 Discord: [link]
-
-Looking for early adopters who want to push the limits.
 ```
 
 ---
 
-### Tweet 13 — The Vision
+### Tweet 15 — The Vision
 
 ```
 The vision:
@@ -242,12 +302,12 @@ Not replacing developers — augmenting them.
 
 You focus on strategy. Agents handle execution.
 
-We're early. But 763 cycles of proof says this works.
+We're early. But 850 cycles of proof says this works.
 ```
 
 ---
 
-### Tweet 14 — CTA + Launch Links
+### Tweet 16 — CTA + Launch Links
 
 ```
 We're launching today:
@@ -267,6 +327,9 @@ Reply with what you'd want autonomous agents to do on YOUR repo. 👇
 
 ### Before Posting
 
+- [ ] Dashboard live at ada.dev (#155 Phase 2 complete)
+- [ ] OAuth flow tested (GitHub sign-in → repo select → first dispatch)
+- [ ] Billing working (Stripe)
 - [ ] Coordinate timing: PH 12:01 AM → HN 6:00 AM → Twitter 8:00 AM PT
 - [ ] Queue thread in Twitter/X scheduler
 - [ ] Notify Discord community to engage
@@ -280,9 +343,33 @@ Reply with what you'd want autonomous agents to do on YOUR repo. 👇
 
 ### Hour 2-24
 
-- [ ] Post updates: "Top 10 on PH!", "100 installs!"
+- [ ] Post updates: "Top 10 on PH!", "100 signups!"
 - [ ] Thread follow-up with interesting feedback
 - [ ] Screenshot best comments/reactions
+
+---
+
+## Comment Response Strategy (NEW)
+
+**"Why not just Cursor/Copilot?":**
+
+- Different category — copilots assist, ADA executes
+- Multi-agent rotation vs single-agent prompting
+- Async/autonomous vs synchronous/interactive
+- "For hands-on coding sessions, copilots are great. ADA handles the backlog while you're not coding."
+
+**Security concerns:**
+
+- OAuth scopes are minimal (read/write for connected repos only)
+- Self-hosted CLI option for sensitive codebases
+- Memory stays in your repo's agents/ folder
+- No training on customer code
+
+**Pricing pushback:**
+
+- $19/month < 1 hour of dev time if it saves any meaningful work
+- Free tier lets you validate before paying
+- CLI is MIT licensed (free forever)
 
 ---
 
@@ -292,33 +379,35 @@ Reply with what you'd want autonomous agents to do on YOUR repo. 👇
 | ------------------------ | --------------- | -------- |
 | Hook image (cycle count) | 1200x675 PNG    | [ ] TODO |
 | Multi-agent diagram      | 1200x675 PNG    | [ ] TODO |
+| Dashboard screenshot     | 1200x675 PNG    | [ ] TODO |
 | Terminal GIF (dispatch)  | GIF or MP4 clip | [ ] TODO |
 | Stats infographic        | 1200x675 PNG    | [ ] TODO |
+| Pricing card             | 1200x675 PNG    | [ ] TODO |
 
-**Note:** Tweet 1 and Tweet 5 benefit most from visuals.
+**Note:** Tweet 1, Tweet 5, Tweet 11, and Tweet 12 benefit most from visuals.
 
 ---
 
 ## Alt Thread Hooks (Test Options)
 
-**Option A (story):**
+**Option A (SaaS-forward):**
+
+```
+Deploy an AI dev team to your repo in 30 seconds.
+
+Sign in with GitHub. Connect your repo. Watch agents ship.
+
+850 cycles of proof. Here's how it works. 🧵
+```
+
+**Option B (story):**
 
 ```
 I gave AI agents full access to my repo.
 
 No supervision. No guardrails. Just "ship features."
 
-Here's what happened over 763 cycles. 🧵
-```
-
-**Option B (technical):**
-
-```
-We built a multi-agent system that maintains its own codebase.
-
-2,500 tests. 89% coverage. 340 consecutive cycles.
-
-The architecture that made it work: 🧵
+Here's what happened over 850 cycles. 🧵
 ```
 
 **Option C (contrarian):**
@@ -328,7 +417,7 @@ The architecture that made it work: 🧵
 
 I agree. That's why we built something different.
 
-763 cycles of autonomous execution. Here's the difference. 🧵
+850 cycles of autonomous execution. Here's the difference. 🧵
 ```
 
 ---
@@ -343,14 +432,15 @@ I agree. That's why we built something different.
 
 ## Success Metrics
 
-| Metric           | Target | Stretch |
-| ---------------- | ------ | ------- |
-| Impressions      | 50K+   | 200K+   |
-| Engagements      | 1K+    | 5K+     |
-| Profile visits   | 500+   | 2K+     |
-| Link clicks      | 100+   | 500+    |
-| New followers    | 50+    | 200+    |
-| Quote tweets/RTs | 30+    | 100+    |
+| Metric            | Target | Stretch |
+| ----------------- | ------ | ------- |
+| Impressions       | 50K+   | 200K+   |
+| Engagements       | 1K+    | 5K+     |
+| Profile visits    | 500+   | 2K+     |
+| Link clicks       | 100+   | 500+    |
+| Dashboard signups | 25+    | 100+    |
+| New followers     | 50+    | 200+    |
+| Quote tweets/RTs  | 30+    | 100+    |
 
 ---
 
@@ -365,4 +455,4 @@ I agree. That's why we built something different.
 
 ---
 
-_Draft created C764. Finalize when coordinating launch timing with SaaS readiness._
+_Draft created C764. Updated C854 for SaaS-first messaging per #158. 3/5 launch drafts now SaaS-ready._
