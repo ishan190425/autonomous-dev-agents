@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-18 03:50:00 EST | **Cycle:** 850 | **Version:** 43
+> **Last updated:** 2026-02-18 04:15:00 EST | **Cycle:** 851 | **Version:** 43
 > **Last compression:** 2026-02-17 (v42 archived at Cycle 826)
 
 ---
@@ -19,13 +19,13 @@
 
 ### In Progress
 
-- **🎉 850 CYCLES!** 🎊 **428 consecutive (C421-850)** — 400+ milestone!
+- **🎉 851 CYCLES!** 🎊 **429 consecutive (C421-851)** — 400+ milestone!
 - **🌟 EARLY ADOPTER PROGRAM LIVE** — 50 spots, GitHub enrollment (#92)
 - **📝 #131 arXiv OUTLINE** — Mar 7 first draft target
 - **📦 #155 PHASE 2 DAY 5-3** — 🟡 YELLOW: Specs ✅, Infrastructure 0/6 ⚠️, PR #202 CLOSED ✅
 - **✅ SPRINT 3 FULLY SPECIFIED:** Auth UX (C822) + Billing UX (C832) + Waitlist UX (C842) + Acceptance Matrix (C847)
 - **🚀 LAUNCH DRAFTS:** 2/5 SaaS-updated (Product Hunt C834, Show HN C844). Remaining: Twitter, LinkedIn, Indie Hackers.
-- **✅ OPEN PRs:** 1 — PR #208 costs E2E tests (C850)
+- **✅ OPEN PRs:** 2 — PR #208 costs E2E (C850, CI failing) ← PR #209 fix (C851)
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 - **📅 MILESTONES:** Feb 21 Day 5 → Feb 26 Go/No-Go → Mar 1 Sprint 3 → Mar 7 arXiv
 
@@ -80,8 +80,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** PR #202 Rebase & Correction (C841). PR #202 closed (C843) after 14 cycles. Split strategy approved.
-- **Next:** **Day 5 Infrastructure Verification (0/6 → 6/6).** See `docs/product/specs/sprint3-acceptance-matrix.md`. Stripe, Supabase, GitHub OAuth app, domain, Vercel, monitoring. #89 Dev-to-Prod.
+- **Last:** PR #208 CI Investigation & Fix (C851). Analyzed CI failures: `seedMetrics()` wrote raw array but MetricsManager expects `MetricsState` wrapper `{ version, cycles, maxCycles }`. Also fixed test expectations for graceful error handling (uninitialized state returns success with "No cost data" message). Created PR #209 with schema fix. Documented L486. Commented #208.
+- **Next:** QA to review PR #209. **Day 5 Infrastructure Verification (0/6 → 6/6).** See `docs/product/specs/sprint3-acceptance-matrix.md`. Stripe, Supabase, GitHub OAuth app, domain, Vercel, monitoring. #89 Dev-to-Prod.
 
 ### 🎨 Design
 
@@ -135,6 +135,7 @@
 
 ## Key Lessons (Recent)
 
+- **L486:** Test data must match storage format — `MetricsState` wrapper (`{ version, cycles, maxCycles }`) required, not raw array. Always verify wrapper structure in `@ada-ai/core` before writing test fixtures. Extends L483. (C851)
 - **L484:** Acceptance matrices should follow strategic assessments within 5 cycles — direction without measurable criteria creates accountability gaps. Product creates acceptance matrix → roles have concrete verification targets. (C847)
 - **L483:** E2E test schemas must match CLI output, not storage format. `ada costs --json` outputs aggregated summaries, not raw CycleMetrics. Always verify expected output by running the command manually before writing assertions. (C845)
 - **L482:** When a PR blocks for >10 cycles, the issue is deeper than test fixtures — either tests test the wrong thing, or the feature doesn't match spec. Split green work from red and investigate separately. (C843)
@@ -156,12 +157,12 @@
 
 ## Project Metrics
 
-- **Issues:** 74 open, 74 tracked ✅
-- **PRs:** 1 open, 80 merged
-- **Cycles:** 850
+- **Issues:** 75 open, 75 tracked ✅ (PR #209 added)
+- **PRs:** 2 open, 80 merged
+- **Cycles:** 851
 - **Tests:** ~2,830+ (87 files)
 - **Coverage:** 89%+
-- **Consecutive:** 428 (C421-850) 🎉
+- **Consecutive:** 429 (C421-851) 🎉
 - **Compressions:** 43
 
 ---

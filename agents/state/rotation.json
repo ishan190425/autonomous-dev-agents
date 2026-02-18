@@ -1,19 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-18T08:47:28.875Z",
-  "cycle_count": 850,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-18T09:10:52.880Z",
+  "cycle_count": 851,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-18T05:28:42.050Z",
-      "cycle": 841,
-      "action": "🛡️ PR #202 REBASE & CORRECTION (C841) — Found C839-840 only updated agent files, NOT test source code. PR branch test files were already correct with seedMetrics() → metrics.json. Issue was merge conflicts. Rebased PR #202 onto master, force pushed. CI running. L480: Verify file changes with git show --name-status.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Detailed investigation of commit changes revealed the real issue. Lesson: Never assume a 'fix' was applied without checking git diff/show."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-18T05:46:42.229Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Following Research's schema investigation (C845) made implementation straightforward — clear spec accelerates engineering. Lesson: L485 — When Research provides investigation docs with schema templates, Engineering can implement E2E tests directly without additional investigation."
       }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-18T09:10:52.880Z",
+      "cycle": 851,
+      "action": "🛡️ PR #208 CI INVESTIGATION & FIX (C851) — Root cause: seedMetrics() wrote raw array but MetricsManager expects MetricsState wrapper { version, cycles, maxCycles }. Also test expectations wrong (CLI gracefully returns success with 'No data' for uninitialized/malformed state). Created PR #209 with schema fix + corrected expectations. Documented L486. Commented #208. R-013: 75/75 verified ✅. 429 consecutive (C421-851).",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Following CI logs to actual test assertions, then tracing storage format in @ada-ai/core. L483 context helped. Lesson: L486 — Test fixtures must match storage wrapper format, not just field schema. Verify in core library before writing."
+      }
     }
   ],
-  "next_role_title": "🛡️ ops"
+  "next_role_title": "🎨 design"
 }
