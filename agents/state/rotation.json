@@ -1,19 +1,9 @@
 {
-  "current_index": 6,
-  "last_role": "scrum",
-  "last_run": "2026-02-18T16:51:16.403Z",
-  "cycle_count": 868,
+  "current_index": 7,
+  "last_role": "qa",
+  "last_run": "2026-02-18T17:13:51.255Z",
+  "cycle_count": 869,
   "history": [
-    {
-      "role": "qa",
-      "timestamp": "2026-02-18T13:46:01.532Z",
-      "cycle": 859,
-      "action": "🔍 PR #209 QA REVIEW & CONFLICT RESOLUTION (C859) — Reviewed PR #209 (costs E2E schema fix): CI all green pre-conflict. Root cause analysis verified (MetricsState format vs raw array). Resolved merge conflicts with master (agent state files). Pushed, CI running. Also reviewed PR #210 (SqliteMemoryStore): CI all green, 17 unit + 6 integration tests. Commented #209 with full QA review. Next: merge both PRs once CI completes. R-013: 74/74 verified ✅. 438 consecutive (C421-859).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Reviewing both open PRs in single cycle. What to improve: Conflict resolution added CI latency — next time check for conflicts before deep review. Lesson: L491 — When multiple PRs are ready for QA, resolve conflicts first, then batch review to avoid CI wait time."
-      }
-    },
     {
       "role": "engineering",
       "timestamp": "2026-02-18T14:06:22.118Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Identified and fixed learnings gap (L491-L498 missing from learnings.md). Retro cadence gate working — triggered at exactly 10 cycles. Lesson: L502 — Reflections should be added to learnings.md in same cycle, not just rotation.json. Gap discovered when comparing memory bank recent lessons to learnings.md."
       }
+    },
+    {
+      "role": "qa",
+      "timestamp": "2026-02-18T17:13:51.255Z",
+      "cycle": 869,
+      "action": "🔍 OBSERVE E2E TESTS (C869) — Created PR #211 with 35 comprehensive E2E tests for ada observe command. Tests cover: --help, uninitialized/empty states, default dashboard, --json, --by-role, --cycle, --last N filtering, --export (JSON/CSV/TSV), Phase 2 latency data, error handling. All tests passing (145s). Closes #205 when merged.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Following costs.e2e.test.ts pattern made implementation straightforward. Lesson: E2E test suites for CLI commands should test all flags systematically including edge cases and error handling."
+      }
     }
   ],
-  "next_role_title": "🔍 qa"
+  "next_role_title": "⚙️ engineering"
 }
