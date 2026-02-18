@@ -651,3 +651,28 @@ export {
   writeAgentConfig,
   resolveEnvVars,
 } from './notifications/config-loader.js';
+
+// Cognitive Memory Store (Issue #113 — SQLite + sqlite-vec, C836 PoC, C846 Scaffold)
+// Production memory store with innate memory protection and heat-based retrieval.
+// Implements cognitive memory architecture: innate vs learned separation.
+export type {
+  MemoryEntry as CognitiveMemoryEntry,
+  MemoryEntryType as CognitiveMemoryEntryType,
+  MemorySource as CognitiveMemorySource,
+  MemoryTier,
+  MemorySearchResult as CognitiveSearchResult,
+  MemorySearchOptions as CognitiveSearchOptions,
+  MemoryStoreOptions,
+  MemoryStats as CognitiveMemoryStats,
+  MemoryStore,
+  EmbeddingProvider as CognitiveEmbeddingProvider,
+  InnateLoaderConfig,
+  InnateFileConfig,
+} from './memory/index.js';
+export {
+  SqliteMemoryStore,
+  createMemoryStore,
+  InnateLoader,
+  createInnateLoader,
+  DEFAULT_INNATE_FILES,
+} from './memory/index.js';
