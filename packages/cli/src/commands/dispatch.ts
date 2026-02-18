@@ -168,6 +168,7 @@ const EXIT_CODES = {
   GIT_FAILED: 3,
   MISSING_REQUIRED_FLAG: 4,
   STATE_CORRUPTION: 5,
+  PAUSED: 7,
 } as const;
 
 // ─── Options Interfaces ──────────────────────────────────────────────────────
@@ -664,6 +665,31 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
       console.error(chalk.gray("   Run 'ada init' to set up an agent team.\n"));
     }
     process.exit(EXIT_CODES.STATE_CORRUPTION);
+  }
+
+  // Check if ADA is paused (Issue #212 — dispatch start must respect paused flag)
+  if (state.paused && !options.force) {
+    if (options.json) {
+      console.log(JSON.stringify({
+        error: 'paused',
+        message: 'ADA is paused. Run `ada resume` to resume dispatch.',
+        paused_at: state.paused_at ?? null,
+        pause_reason: state.pause_reason ?? null,
+      }));
+    } else {
+      console.log(chalk.yellow('\n⏸️  ADA is Paused\n'));
+      console.log('  Cannot start a new cycle while ADA is paused.\n');
+      if (state.paused_at) {
+        console.log(`  ${chalk.gray('Paused at:')} ${state.paused_at}`);
+      }
+      if (state.pause_reason) {
+        console.log(`  ${chalk.gray('Reason:')}    ${state.pause_reason}`);
+      }
+      console.log();
+      console.log(`  Run ${chalk.cyan('ada resume')} to resume dispatch.`);
+      console.log(`  Or use ${chalk.red('--force')} to override (not recommended).\n`);
+    }
+    process.exit(EXIT_CODES.PAUSED);
   }
 
   // Check for active lock
