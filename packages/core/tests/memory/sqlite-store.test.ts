@@ -171,6 +171,120 @@ describe('generateEntryId', () => {
   });
 });
 
+// ==== Additional Utility Function Tests ====
+
+describe('calculateEffectiveScore edge cases', () => {
+  it('should handle negative distance gracefully', () => {
+    // Although distances should be 0-2, ensure robustness
+    const score = calculateEffectiveScore(-0.1, 0.5, false);
+    expect(score).toBeGreaterThan(0.5); // 1 - (-0.1) = 1.1, * 0.5 = 0.55
+  });
+
+  it('should handle zero heat', () => {
+    const score = calculateEffectiveScore(0.3, 0, false);
+    expect(score).toBe(0);
+  });
+
+  it('should handle max distance (2.0)', () => {
+    const score = calculateEffectiveScore(2, 1, false);
+    expect(score).toBeCloseTo(-1); // 1 - 2 = -1
+  });
+});
+
+describe('calculateHeatFromEntry edge cases', () => {
+  const baseEntry: MemoryEntry = {
+    id: 'test-1',
+    content: 'test content',
+    entryType: 'observation',
+    source: 'dispatch',
+    heatScore: 0.5,
+    baseImportance: 0.5,
+    referenceCount: 0,
+    tier: 'warm',
+    isProtected: false,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+
+  it('should handle zero base importance', () => {
+    const heat = calculateHeatFromEntry({ ...baseEntry, baseImportance: 0 });
+    expect(heat).toBe(0);
+  });
+
+  it('should handle custom alpha parameter', () => {
+    // Use low base importance so results don't get capped at 1.0
+    const lowBase = { ...baseEntry, baseImportance: 0.2, referenceCount: 10 };
+    const defaultAlpha = calculateHeatFromEntry(lowBase);
+    const customAlpha = calculateHeatFromEntry(lowBase, 0.5);
+    // With higher alpha, reference count has more impact
+    expect(customAlpha).not.toEqual(defaultAlpha);
+  });
+
+  it('should handle very old references', () => {
+    const veryOld = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000); // 1 year ago
+    const heat = calculateHeatFromEntry({
+      ...baseEntry,
+      lastReferencedAt: veryOld.toISOString(),
+    });
+    expect(heat).toBeLessThan(baseEntry.baseImportance);
+  });
+
+  it('should handle entry with no lastReferencedAt', () => {
+    const heat = calculateHeatFromEntry({
+      ...baseEntry,
+      lastReferencedAt: undefined,
+    });
+    // No recency decay, just base * ref factor
+    expect(heat).toBeGreaterThan(0);
+  });
+});
+
+describe('getTierFromHeat edge cases', () => {
+  const thresholds = { hot: 0.8, cold: 0.3 };
+
+  it('should handle boundary values exactly at threshold', () => {
+    expect(getTierFromHeat(0.8, 'warm', thresholds)).toBe('hot'); // exactly at hot
+    expect(getTierFromHeat(0.3, 'warm', thresholds)).toBe('warm'); // exactly at cold, stays warm
+    expect(getTierFromHeat(0.29, 'warm', thresholds)).toBe('cold'); // just below cold
+  });
+
+  it('should handle heat score of exactly 0', () => {
+    expect(getTierFromHeat(0, 'warm', thresholds)).toBe('cold');
+  });
+
+  it('should handle heat score above 1.0', () => {
+    expect(getTierFromHeat(1.5, 'warm', thresholds)).toBe('hot');
+  });
+});
+
+describe('generateEntryId edge cases', () => {
+  it('should handle innate entry without sourceFile', () => {
+    const id = generateEntryId({ tier: 'innate', sourceFile: undefined });
+    expect(id).toMatch(/^[0-9a-f-]{36}$/); // Falls back to UUID
+  });
+
+  it('should handle empty sourceFile', () => {
+    const id = generateEntryId({ tier: 'innate', sourceFile: '' });
+    // Empty string is falsy after split('/').pop() returns '', falls back to UUID
+    expect(id).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
+  it('should handle file without extension', () => {
+    const id = generateEntryId({ tier: 'innate', sourceFile: '/path/to/README' });
+    expect(id).toBe('innate-readme');
+  });
+
+  it('should handle cold tier entries', () => {
+    const id = generateEntryId({ tier: 'cold' });
+    expect(id).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
+  it('should handle hot tier entries', () => {
+    const id = generateEntryId({ tier: 'hot' });
+    expect(id).toMatch(/^[0-9a-f-]{36}$/);
+  });
+});
+
 // ==== SqliteMemoryStore Class Tests ====
 
 describe('SqliteMemoryStore', () => {
@@ -213,6 +327,24 @@ describe('SqliteMemoryStore', () => {
       expect(store.options.enableHeatDecay).toBe(false);
       expect(store.options.coldTierThreshold).toBe(0.2);
     });
+
+    it('should store embedding provider reference', () => {
+      const store = new SqliteMemoryStore(
+        { dbPath: ':memory:' },
+        mockEmbeddingProvider
+      );
+
+      expect(store.embeddingProvider).toBe(mockEmbeddingProvider);
+    });
+
+    it('should set heatDecayIntervalMs default', () => {
+      const store = new SqliteMemoryStore(
+        { dbPath: ':memory:' },
+        mockEmbeddingProvider
+      );
+
+      expect(store.options.heatDecayIntervalMs).toBe(60 * 60 * 1000); // 1 hour
+    });
   });
 
   describe('isInitialized', () => {
@@ -235,6 +367,70 @@ describe('SqliteMemoryStore', () => {
 
       // Access any method that requires initialization (throws synchronously)
       expect(() => store.get('test')).toThrow('not initialized');
+    });
+  });
+
+  describe('methods before initialization', () => {
+    let store: SqliteMemoryStore;
+
+    beforeEach(() => {
+      store = new SqliteMemoryStore(
+        { dbPath: ':memory:' },
+        mockEmbeddingProvider
+      );
+    });
+
+    it('get should throw when not initialized', () => {
+      expect(() => store.get('test-id')).toThrow('not initialized');
+    });
+
+    it('delete should throw when not initialized', () => {
+      expect(() => store.delete('test-id')).toThrow('not initialized');
+    });
+
+    it('search should throw when not initialized', async () => {
+      await expect(store.search('query')).rejects.toThrow('not initialized');
+    });
+
+    it('recordReference should throw when not initialized', () => {
+      expect(() => store.recordReference('test-id')).toThrow('not initialized');
+    });
+
+    it('getStats should throw when not initialized', () => {
+      expect(() => store.getStats()).toThrow('not initialized');
+    });
+
+    it('decayHeat should throw when not initialized', () => {
+      expect(() => store.decayHeat()).toThrow('not initialized');
+    });
+
+    it('archiveCold should throw when not initialized', () => {
+      expect(() => store.archiveCold()).toThrow('not initialized');
+    });
+
+    it('upsert should throw when not initialized', async () => {
+      await expect(store.upsert({
+        content: 'test',
+        entryType: 'observation',
+        source: 'dispatch',
+        heatScore: 0.5,
+        baseImportance: 0.5,
+        referenceCount: 0,
+        tier: 'warm',
+        isProtected: false,
+      })).rejects.toThrow('not initialized');
+    });
+  });
+
+  describe('refreshInnate', () => {
+    it('should return 0 (no-op stub)', async () => {
+      const store = new SqliteMemoryStore(
+        { dbPath: ':memory:' },
+        mockEmbeddingProvider
+      );
+
+      const result = await store.refreshInnate();
+      expect(result).toBe(0);
     });
   });
 });
