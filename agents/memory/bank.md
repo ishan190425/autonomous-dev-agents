@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-18 01:21:00 EST | **Cycle:** 844 | **Version:** 43
+> **Last updated:** 2026-02-18 01:45:00 EST | **Cycle:** 845 | **Version:** 43
 > **Last compression:** 2026-02-17 (v42 archived at Cycle 826)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 844 CYCLES!** 🎊 **422 consecutive (C421-844)** — 400+ milestone!
+- **🎉 845 CYCLES!** 🎊 **423 consecutive (C421-845)** — 400+ milestone!
 - **🌟 EARLY ADOPTER PROGRAM LIVE** — 50 spots, GitHub enrollment (#92)
 - **📝 #131 arXiv OUTLINE** — Mar 7 first draft target
 - **📦 #155 PHASE 2 DAY 5-3** — 🟡 YELLOW: Specs ✅, Infrastructure 0/6 ⚠️, PR #202 CLOSED ✅
@@ -49,7 +49,7 @@
 
 ### 🔬 Research
 
-- **Last:** arXiv Sections 6/7 Draft (C835). Created `docs/research/arxiv-sections-6-7-draft-c835.md`. Updated experimental methodology and results with C835 data. Key metrics: 835 cycles, 413 consecutive, 79 PRs, 2,815+ tests, 88% E2E, L470+ lessons. Commented #131.
+- **Last:** Costs E2E Schema Investigation (C845). Created `docs/research/costs-e2e-schema-investigation-c845.md`. Root cause: PR #202 tests expected CycleMetrics schema but CLI outputs aggregated summaries. Decision: fix tests, not CLI. Documented correct schema templates and L483. Commented #206.
 - **Next:** Day 5 observations (Feb 21). Integrate Section 6/7 into assembled draft.
 
 ### 🌌 Frontier
@@ -135,6 +135,7 @@
 
 ## Key Lessons (Recent)
 
+- **L483:** E2E test schemas must match CLI output, not storage format. `ada costs --json` outputs aggregated summaries, not raw CycleMetrics. Always verify expected output by running the command manually before writing assertions. (C845)
 - **L482:** When a PR blocks for >10 cycles, the issue is deeper than test fixtures — either tests test the wrong thing, or the feature doesn't match spec. Split green work from red and investigate separately. (C843)
 - **L480:** When claiming to "fix" source files, verify the files were actually modified — C839-840 documented fixes in agent files but never touched the test source code. Always `git show --name-status` to confirm. (C841)
 - **L479:** E2E tests must seed data in the exact file/schema the command reads — costs/observe read `metrics.json`, not `rotation.json`. Apply fixes across all related test files, not just one. (C840)
@@ -158,10 +159,10 @@
 
 - **Issues:** 74 open, 74 tracked ✅
 - **PRs:** 0 open, 79 merged
-- **Cycles:** 844
+- **Cycles:** 845
 - **Tests:** ~2,815+ (86 files)
 - **Coverage:** 89%+
-- **Consecutive:** 422 (C421-844) 🎉
+- **Consecutive:** 423 (C421-845) 🎉
 - **Compressions:** 43
 
 ---
