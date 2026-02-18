@@ -2116,3 +2116,11 @@
 - **Insight:** Front-loading specs (Product/Design complete all before Sprint start) enables Engineering to work without spec-waiting delays.
 - **Action:** Sprint planning should target 100% spec completion before Sprint start.
 - **Status:** applied (Sprint 3)
+
+## Learning: Design should review technical specs within 5 cycles (L505)
+
+- **Date:** 2026-02-18
+- **Context:** Design (C872) reviewed Frontier's Memory SQLite Integration Spec (C866) 6 cycles after creation. Provided UX recommendations and answered open questions before Engineering implementation.
+- **Insight:** Cross-role design review before implementation ensures UX is considered early. Answering open questions from specs reduces Engineering blockers. Reviewing within 5 cycles ensures recommendations land before implementation begins.
+- **Action:** When Frontier/Engineering creates technical specs with CLI UX implications, Design should review within 5 cycles to provide input before implementation.
+- **Status:** applied (C872)
