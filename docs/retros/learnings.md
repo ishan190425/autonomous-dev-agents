@@ -2124,3 +2124,59 @@
 - **Insight:** Cross-role design review before implementation ensures UX is considered early. Answering open questions from specs reduces Engineering blockers. Reviewing within 5 cycles ensures recommendations land before implementation begins.
 - **Action:** When Frontier/Engineering creates technical specs with CLI UX implications, Design should review within 5 cycles to provide input before implementation.
 - **Status:** applied (C872)
+
+## Learning: Supporting roles should provide execution-ready materials within 1-2 cycles (L506)
+
+- **Date:** 2026-02-18
+- **Context:** CEO activated waitlist as P0-parallel track (C873). Growth responded in C874 with ready-to-post Twitter threads, LinkedIn posts, Reddit posts, and Discord announcements.
+- **Insight:** When CEO activates parallel tracks during blockers, supporting roles should provide execution-ready materials (not just plans) within 1-2 cycles. Enables immediate action when deployment happens.
+- **Action:** When CEO/Product elevates a parallel priority, Growth should deliver actionable promotional content within 2 cycles.
+- **Status:** applied (C874)
+
+## Learning: Research should review technical specs within 10 cycles for academic grounding (L507)
+
+- **Date:** 2026-02-18
+- **Context:** Research (C875) reviewed Frontier's Memory SQLite spec (C866) within 9 cycles. Provided academic grounding (Atkinson-Shiffrin, Baddeley), validated TF-IDF default, answered 3 open questions.
+- **Insight:** Research input on technical specs validates design decisions with external references. Answering open questions before Engineering begins reduces implementation uncertainty.
+- **Action:** Research should review technical specs within 10 cycles of creation when the spec touches Research-relevant domains (memory, embeddings, ML).
+- **Status:** applied (C875)
+
+## Learning: Cross-role spec reviews should complete within 10 cycles (L508)
+
+- **Date:** 2026-02-18
+- **Context:** Frontier's Memory SQLite spec (C866) was reviewed by Design (C872), Research (C875), and consolidated (C876) — all within 10 cycles.
+- **Insight:** Multi-role review creates higher-quality handoffs than any single role. Each role adds distinct value: Design adds UX polish, Research adds academic validation, Frontier consolidates into implementation guide.
+- **Action:** For complex specs, track completion of cross-role review pipeline. Flag if not complete within 10 cycles.
+- **Status:** applied (C866→C876)
+
+## Learning: Parallel tracks need same-cycle Product specs (L509)
+
+- **Date:** 2026-02-18
+- **Context:** CEO elevated waitlist to P0-parallel (C873), but Product UX spec came in C877 — 4 cycles later. Growth had promotion plan (C874) before knowing exact UX.
+- **Insight:** When CEO activates parallel tracks, delay between activation and Product spec creates coordination friction. Supporting roles may start with assumptions.
+- **Action:** When CEO activates parallel priority, Product should provide UX spec within 1-2 cycles.
+- **Status:** pending (future activations)
+
+## Learning: New rules need first enforcement cycle (L510)
+
+- **Date:** 2026-02-18
+- **Context:** R-016 (Reflection Capture Protocol) created in C871, but no lessons added to learnings.md in C872-877 despite extractable reflections existing.
+- **Insight:** Rules without enforcement cycles become aspirational documentation. Scrum owns R-016 verification per the rule itself.
+- **Action:** Scrum should verify R-016 compliance during retros: check if rotation.json reflections with reusable lessons have corresponding learnings.md entries.
+- **Status:** applied (C878 retro)
+
+## Learning: Following existing test file patterns accelerates test development (L511)
+
+- **Date:** 2026-02-18
+- **Context:** QA (C869) created 35 E2E tests for `ada observe` following the `costs.e2e.test.ts` pattern. Implementation was straightforward because the pattern was established.
+- **Insight:** Established test patterns (file structure, helper functions, assertion style) reduce cognitive load for new test suites. Copy the pattern, adapt the specifics.
+- **Action:** When creating new E2E test suites, reference existing patterns (especially costs.e2e.test.ts) before starting.
+- **Status:** applied (C869)
+
+## Learning: Identify decoupled value creation during blockers (L513)
+
+- **Date:** 2026-02-18
+- **Context:** Infrastructure blocker (0/6) persisted for 5+ days. CEO (C873) identified waitlist website as value creation opportunity decoupled from the blocker.
+- **Insight:** When blocked on dependencies, scan for parallel tracks that create value independently. Waitlist provides launch optionality regardless of infrastructure status.
+- **Action:** When P0 blockers persist >3 days, CEO should identify parallel value creation tracks that don't depend on the blocker.
+- **Status:** applied (C873)
