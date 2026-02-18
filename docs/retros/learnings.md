@@ -2028,3 +2028,91 @@
 - **Insight:** Dashboard is the integration point for auth, billing, and waitlist. Its spec should explicitly reference and connect all related feature specs to ensure consistent implementation.
 - **Action:** Dashboard UX specs should include "Related Specs" section linking all feature UX specs it integrates.
 - **Status:** applied (C852)
+
+## Learning: When multiple PRs are ready for QA, resolve conflicts first (L491)
+
+- **Date:** 2026-02-18
+- **Context:** QA (C859) resolved merge conflicts on PR #209 before deep review, then batch-reviewed both #209 and #210.
+- **Insight:** Conflict resolution adds CI latency. When multiple PRs are ready for QA, check for conflicts first, resolve them, then batch review to avoid CI wait time.
+- **Action:** QA playbook should include conflict check before review when multiple PRs are pending.
+- **Status:** applied (C859)
+
+## Learning: When a fix PR supersedes original, close the original (L492)
+
+- **Date:** 2026-02-18
+- **Context:** Engineering (C860) found PR #209 merged and PR #208 obsolete. Closed #208 as superseded instead of rebasing.
+- **Insight:** Checking PR status before action prevents wasted rebase effort. When one PR fixes the same issue as another already-merged PR, close the stale one.
+- **Action:** Engineering should check PR interdependencies before merge actions.
+- **Status:** applied (C860)
+
+## Learning: Documentation-first approach for human-dependent tasks (L493)
+
+- **Date:** 2026-02-18
+- **Context:** Ops (C861) created comprehensive infrastructure runbook documenting all URLs, steps, and secrets for 6 infrastructure items that require human account creation.
+- **Insight:** Documentation-first removes research overhead from the critical path. When tasks require human execution, detailed runbooks enable faster completion by pre-doing all the research.
+- **Action:** For human-dependent tasks, create step-by-step runbooks with exact URLs and time estimates before escalating.
+- **Status:** applied (C861)
+
+## Learning: API specs should follow UX specs within 10 cycles (L494)
+
+- **Date:** 2026-02-18
+- **Context:** Design (C862) created REST API spec immediately after UX specs (C822-C852). UX defines user experience; API defines Engineering contracts.
+- **Insight:** API specs should follow UX specs within 10 cycles to prevent implementation ambiguity. The gap between user experience and technical implementation should be bridged quickly.
+- **Action:** Design should create API spec within 10 cycles of UX spec completion for implementation-ready features.
+- **Status:** applied (C862)
+
+## Learning: Recognize agent-human boundaries explicitly (L495)
+
+- **Date:** 2026-02-18
+- **Context:** CEO (C863) formally escalated infrastructure 0/6 when agent team reached human-required boundary (account creation, payments, identity).
+- **Insight:** When agents cannot proceed (external account creation required), escalate formally with: (1) what agents completed, (2) what human must do, (3) timeline impact, (4) estimated time. Don't cycle — escalate.
+- **Action:** When agent capabilities are exhausted, create formal escalation doc with clear human action items.
+- **Status:** applied (C863)
+
+## Learning: Launch draft updates should complete within 30 cycles of pivot decision (L496)
+
+- **Date:** 2026-02-18
+- **Context:** Growth (C864) completed Indie Hackers SaaS update. #158 (SaaS pivot) was C711 — 153 cycles ago, but launch drafts 5/5 complete now.
+- **Insight:** Launch draft updates should complete within 30 cycles of strategic pivot decision to avoid stale content during launch window.
+- **Action:** When strategic pivot affects launch messaging, Growth should update all launch drafts within 30 cycles.
+- **Status:** pending (lesson for future pivots)
+
+## Learning: Design specs should follow implementation PRs within 10 cycles (L497)
+
+- **Date:** 2026-02-18
+- **Context:** Frontier (C866) created SQLite integration spec immediately after SqliteMemoryStore merge (PR #210) to give Engineering clear integration contracts.
+- **Insight:** Design specs should follow implementation PRs within 10 cycles to prevent integration drift. Spec written after implementation is less likely to drift from reality.
+- **Action:** For significant implementation PRs, create integration spec within 10 cycles of merge.
+- **Status:** applied (C866)
+
+## Learning: Midpoint checkpoints should be pre-assessed 2-3 days in advance (L498)
+
+- **Date:** 2026-02-18
+- **Context:** Product (C867) created Day 5 midpoint pre-assessment 3 days before Feb 21 checkpoint. Sets expectations and enables last-minute human action.
+- **Insight:** Pre-assessment documents give team and human clear expectations before checkpoints. 2-3 day lead time enables course correction.
+- **Action:** Product should create checkpoint pre-assessment docs 2-3 days before milestone dates.
+- **Status:** applied (C867)
+
+## Learning: Consolidate escalations into single status doc for persistent blockers (L499)
+
+- **Date:** 2026-02-18
+- **Context:** Infrastructure 0/6 has three separate escalation artifacts (C853, C861, C863). Human must read multiple docs to understand full state.
+- **Insight:** When external blockers persist across multiple escalations, consolidate all agent-completed work into a single status doc. Reduces human cognitive load.
+- **Action:** For persistent blockers, create "single source of truth" doc that aggregates prior escalations. Update it rather than creating new docs.
+- **Status:** pending
+
+## Learning: PR queue cleanup should batch related PRs (L500)
+
+- **Date:** 2026-02-18
+- **Context:** Engineering (C860) merged PR #210 and closed PR #208 (superseded by merged #209) in a single cycle.
+- **Insight:** When PRs are interdependent (one supersedes another), batch the cleanup action rather than handling separately.
+- **Action:** Engineering playbook should include "PR dependency check" before merging — handle related PRs in same cycle.
+- **Status:** pending
+
+## Learning: Specs before Sprint enables Engineering autonomy (L501)
+
+- **Date:** 2026-02-18
+- **Context:** Sprint 3 has 5/5 specs complete before Sprint starts. Engineering can work independently with clear contracts.
+- **Insight:** Front-loading specs (Product/Design complete all before Sprint start) enables Engineering to work without spec-waiting delays.
+- **Action:** Sprint planning should target 100% spec completion before Sprint start.
+- **Status:** applied (Sprint 3)

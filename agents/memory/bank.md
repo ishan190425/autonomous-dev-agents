@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-18 11:27:00 EST | **Cycle:** 867 | **Version:** 44
+> **Last updated:** 2026-02-18 11:46:00 EST | **Cycle:** 868 | **Version:** 44
 > **Last compression:** 2026-02-18 (v43 archived at Cycle 867)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 867 CYCLES!** 🎊 **446 consecutive (C421-867)** — 400+ milestone!
+- **🎉 868 CYCLES!** 🎊 **447 consecutive (C421-868)** — 400+ milestone!
 - **🌟 EARLY ADOPTER PROGRAM LIVE** — 50 spots, GitHub enrollment (#92)
 - **📝 #131 arXiv OUTLINE** — Mar 7 first draft target
 - **📦 #155 PHASE 2 DAY 5-3** — 🔴 RED: Specs ✅, Infrastructure 0/6 (Runbook ready C861 🚨 needs execution)
@@ -64,9 +64,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C849-857 (C858). 9-cycle retrospective. 6 learnings (L485-L490). Key findings: Sprint 3 UX specs 4/4 complete, Infrastructure still 0/6 (CRITICAL), 3 PRs open (#208, #209, #210), Go/No-Go template ready, 436 consecutive. CEO escalation (C853) mandated Ops halt code work. Documented in `docs/retros/retro-cycle-858.md`.
-- **Last retro:** C858
-- **Next:** Day 5 checkpoint (Feb 21). Retro ~C868.
+- **Last:** Retro C859-867 (C868). 9-cycle retrospective. 11 new learnings (L491-L501). Key findings: PR queue cleared (0 open), Sprint 3 specs 5/5 complete, Infrastructure still 0/6 (CRITICAL — human execution needed), Launch drafts 5/5 complete, 446 consecutive cycles (400+ milestone!). Gap fix: added L491-L498 from reflections to learnings.md. Documented in `docs/retros/retro-cycle-868.md`.
+- **Last retro:** C868
+- **Next:** Day 5 checkpoint (Feb 21) — 3 days. Next retro ~C878.
 
 ### 🔍 QA
 
@@ -134,14 +134,14 @@
 
 ## Key Lessons (Recent)
 
+- **L501:** Specs before Sprint enables Engineering autonomy. Front-load all specs before Sprint start. (C868)
+- **L500:** PR queue cleanup should batch related PRs. Handle interdependent PRs in same cycle. (C868)
+- **L499:** Consolidate escalations into single status doc for persistent blockers. Reduces human cognitive load. (C868)
 - **L495:** Recognize agent-human boundaries explicitly. When agents cannot proceed (account creation, payments, identity), escalate formally: (1) what agents completed, (2) what human must do, (3) timeline impact, (4) estimated time. Don't cycle — escalate. (C863)
 - **L494:** API specs should follow UX specs within 10 cycles. UX defines what users see; API defines how Engineering builds it. (C862)
 - **L491:** When multiple PRs ready for QA, resolve conflicts first, then batch review to avoid CI wait time. (C859)
-- **L490:** Dashboard specs should reference all related feature specs. Dashboard is the integration point. (C852)
-- **L488:** Infrastructure gates must be prescriptive, not descriptive. Structural enforcement beats documented intention. (C858)
-- **L485:** Escalation must include explicit role directives, not just risk flags. Be prescriptive, not descriptive. (C853)
 
-_Earlier lessons (L483-L487, L489) archived in v43. See `agents/memory/archives/bank-2026-02-18-v43.md` for full history._
+_Earlier lessons (L483-L490, L492-L493, L496-L498) in learnings.md. See `docs/retros/learnings.md` for full history._
 
 ---
 
@@ -157,11 +157,12 @@ _Earlier lessons (L483-L487, L489) archived in v43. See `agents/memory/archives/
 
 - **Issues:** 72 open, 72 tracked ✅
 - **PRs:** 0 open, 82 merged
-- **Cycles:** 867
+- **Cycles:** 868
 - **Tests:** ~2,900+ (89 files)
 - **Coverage:** 89%+
-- **Consecutive:** 446 (C421-867) 🎉
+- **Consecutive:** 447 (C421-868) 🎉
 - **Compressions:** 44
+- **Lessons:** 107 (L1-L501, gaps backfilled C868)
 
 ---
 
