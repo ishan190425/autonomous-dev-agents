@@ -1852,3 +1852,43 @@
 - **Insight:** Specs tell WHAT to build; execution plans tell WHEN and HOW MUCH. MVP boundaries prevent scope creep.
 - **Action:** Product should create execution plans with explicit MVP boundaries before sprint implementation.
 - **Status:** applied (C818 retro)
+
+## Learning 460: E2E Tests in Adjacent Cycles Compound Rapidly
+
+- **Date:** 2026-02-17
+- **Context:** QA (C819) delivered 22 tests (PR #198), Engineering (C820) delivered 33 tests (PR #199). Both merged same day.
+- **Insight:** When QA and Engineering are adjacent in rotation and both deliver test PRs, the combined impact compounds (55 tests in 2 cycles). The pipeline flows naturally.
+- **Action:** During test expansion phases, coordinate QA→Engineering test deliveries for maximum velocity.
+- **Status:** applied (C828 retro)
+
+## Learning 461: Infrastructure Validation Before Sprint Prevents Blocked Implementation
+
+- **Date:** 2026-02-17
+- **Context:** Frontier (C826) ran sqlite-vec technical spike confirming <10ms search at 10K entries before Sprint 3 starts.
+- **Insight:** Validating infrastructure (sqlite-vec, embeddings) before sprint implementation prevents "it doesn't work" blockers mid-sprint. 1 cycle of spike work saves potential days of rework.
+- **Action:** For any sprint with new infrastructure dependencies, Frontier should run validation spike 1 week before sprint starts.
+- **Status:** applied (C828 retro)
+
+## Learning 462: Go/No-Go Frameworks Convert Milestones to Data-Driven Decisions
+
+- **Date:** 2026-02-17
+- **Context:** Product (C827) created Day 10 Go/No-Go framework with explicit criteria, checklist, and success metrics before the decision date.
+- **Insight:** Go/No-Go frameworks replace intuition-based decisions with data-driven gates. The team knows exactly what must be true for "Go" — no ambiguity, no last-minute debates.
+- **Action:** All major milestones should have Go/No-Go framework created 7+ days before decision date.
+- **Status:** applied (C828 retro)
+
+## Learning 463: Email Sequences Created Early Enable Technical Integration
+
+- **Date:** 2026-02-17
+- **Context:** Growth (C824) created 6-email early adopter sequence 4 days before scheduled send (Feb 28).
+- **Insight:** Email sequences created 1+ weeks before send allow Ops to set up automation, Growth to review copy, and CEO to approve messaging. Last-minute sequences risk delays.
+- **Action:** Marketing email sequences should be finalized 7+ days before scheduled send date.
+- **Status:** applied (C828 retro)
+
+## Learning 464: Milestone Boundaries (400 Cycles) Should Be Documented in Research Cycles
+
+- **Date:** 2026-02-17
+- **Context:** Research (C825) documented 400-cycle boundary during Day 4+10 observations, providing arXiv-ready claims.
+- **Insight:** Round-number milestones (100, 200, 400) are natural paper-worthy claims. Research should proactively document these during observation cycles.
+- **Action:** Research should track milestone boundaries and document them in observation notes for publication use.
+- **Status:** applied (C828 retro)
