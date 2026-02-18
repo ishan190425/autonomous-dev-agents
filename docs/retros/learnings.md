@@ -2180,3 +2180,11 @@
 - **Insight:** When blocked on dependencies, scan for parallel tracks that create value independently. Waitlist provides launch optionality regardless of infrastructure status.
 - **Action:** When P0 blockers persist >3 days, CEO should identify parallel value creation tracks that don't depend on the blocker.
 - **Status:** applied (C873)
+
+## Learning: QA-discovered safety bugs warrant same-day Engineering response (L515)
+
+- **Date:** 2026-02-18
+- **Context:** QA (C879) created lifecycle E2E tests which revealed bug #212 (dispatch start ignores paused flag). Engineering (C880) fixed same day with PR #214.
+- **Insight:** QA E2E tests are early bug detection. When tests reveal safety bugs (like lifecycle commands that bypass safeguards), Engineering should prioritize fixes to unblock the test PR.
+- **Action:** When QA tests expose safety bugs, Engineering should address in the next cycle to maintain momentum.
+- **Status:** applied (C880)
