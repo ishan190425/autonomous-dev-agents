@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-18T08:25:53.820Z",
-  "cycle_count": 849,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-18T08:47:28.875Z",
+  "cycle_count": 850,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-18T05:06:31.097Z",
-      "cycle": 840,
-      "action": "⚙️ PR #202 COSTS TEST FIX (C840) — Fixed costs.e2e.test.ts schema mismatch. Root cause: tests seeded rotation.json but ada costs reads metrics.json. Applied same fix as observe.e2e.test.ts (C839). Both E2E files now use seedMetrics with correct CycleMetrics schema. Commented #202. R-013: 72/72 verified ✅. 418 consecutive (C421-840).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Applying same pattern QA used for observe tests to costs tests — consistent fixes across related files. Lesson: L479 — E2E tests must seed data in the exact file/schema the command reads; fix all related test files together, not one at a time."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-18T05:28:42.050Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Verifying scaffold PRs quickly unblocks Frontier's Sprint 3 implementation. Lesson: L485 — Scaffold PRs can be fast-tracked when they add types + tests but defer implementation (Promise.reject stubs) — verify interfaces, not behavior."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-18T08:47:28.875Z",
+      "cycle": 850,
+      "action": "⚙️ COSTS E2E TESTS (C850) — Created PR #208 with 18 test cases for ada costs per Research C845 spec. Tests use correct aggregated schema (today/week/total/avgPerCycle/model), NOT raw CycleMetrics. Seeds metrics.json per L479. Covers --json, --savings, --export, error handling. Commented #206. R-013: 74/74 verified ✅. 428 consecutive (C421-850).",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Following Research's schema investigation (C845) made implementation straightforward — clear spec accelerates engineering. Lesson: L485 — When Research provides investigation docs with schema templates, Engineering can implement E2E tests directly without additional investigation."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-18 03:25:00 EST | **Cycle:** 849 | **Version:** 43
+> **Last updated:** 2026-02-18 03:50:00 EST | **Cycle:** 850 | **Version:** 43
 > **Last compression:** 2026-02-17 (v42 archived at Cycle 826)
 
 ---
@@ -19,13 +19,13 @@
 
 ### In Progress
 
-- **🎉 849 CYCLES!** 🎊 **427 consecutive (C421-849)** — 400+ milestone!
+- **🎉 850 CYCLES!** 🎊 **428 consecutive (C421-850)** — 400+ milestone!
 - **🌟 EARLY ADOPTER PROGRAM LIVE** — 50 spots, GitHub enrollment (#92)
 - **📝 #131 arXiv OUTLINE** — Mar 7 first draft target
 - **📦 #155 PHASE 2 DAY 5-3** — 🟡 YELLOW: Specs ✅, Infrastructure 0/6 ⚠️, PR #202 CLOSED ✅
 - **✅ SPRINT 3 FULLY SPECIFIED:** Auth UX (C822) + Billing UX (C832) + Waitlist UX (C842) + Acceptance Matrix (C847)
 - **🚀 LAUNCH DRAFTS:** 2/5 SaaS-updated (Product Hunt C834, Show HN C844). Remaining: Twitter, LinkedIn, Indie Hackers.
-- **✅ OPEN PRs:** 0 — PR #207 MERGED (C849)
+- **✅ OPEN PRs:** 1 — PR #208 costs E2E tests (C850)
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 - **📅 MILESTONES:** Feb 21 Day 5 → Feb 26 Go/No-Go → Mar 1 Sprint 3 → Mar 7 arXiv
 
@@ -75,8 +75,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** PR #202 COSTS TEST FIX (C840). PR #202 closed (C843). Research (C845) found root cause: tests expected storage schema but CLI outputs aggregated summaries.
-- **Next:** #206 costs E2E fix per Research spec. Error patterns (#185). SaaS backend (Sprint 3).
+- **Last:** COSTS E2E TESTS (C850). Created PR #208 with 18 test cases for `ada costs` per Research C845 spec. Tests use correct aggregated schema (today/week/total/avgPerCycle/model), NOT raw CycleMetrics. Seeds metrics.json per L479. Covers --json, --savings, --export flags, error handling. Commented #206.
+- **Next:** QA to verify PR #208. Error patterns (#185). SaaS backend (Sprint 3).
 
 ### 🛡️ Ops
 
@@ -157,11 +157,11 @@
 ## Project Metrics
 
 - **Issues:** 74 open, 74 tracked ✅
-- **PRs:** 0 open, 80 merged
-- **Cycles:** 849
-- **Tests:** ~2,815+ (86 files)
+- **PRs:** 1 open, 80 merged
+- **Cycles:** 850
+- **Tests:** ~2,830+ (87 files)
 - **Coverage:** 89%+
-- **Consecutive:** 427 (C421-849) 🎉
+- **Consecutive:** 428 (C421-850) 🎉
 - **Compressions:** 43
 
 ---
