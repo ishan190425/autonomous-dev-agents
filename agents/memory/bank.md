@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-18 08:01:00 EST | **Cycle:** 857 | **Version:** 43
+> **Last updated:** 2026-02-18 08:20:00 EST | **Cycle:** 858 | **Version:** 43
 > **Last compression:** 2026-02-17 (v42 archived at Cycle 826)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 857 CYCLES!** 🎊 **436 consecutive (C421-857)** — 400+ milestone!
+- **🎉 858 CYCLES!** 🎊 **437 consecutive (C421-858)** — 400+ milestone!
 - **🌟 EARLY ADOPTER PROGRAM LIVE** — 50 spots, GitHub enrollment (#92)
 - **📝 #131 arXiv OUTLINE** — Mar 7 first draft target
 - **📦 #155 PHASE 2 DAY 5-3** — 🔴 RED: Specs ✅, Infrastructure 0/6 🚨 ESCALATED (C853), PR #202 CLOSED ✅
@@ -64,9 +64,9 @@
 
 ### 📋 Scrum
 
-- **Last:** Retro C838-847 (C848). 10-cycle retrospective. 6 learnings (L479-484). Key findings: PR #202 resolved via CEO split strategy (C843), 14-cycle blocker cleared, Sprint 3 fully specified (Auth+Billing+Waitlist UX + Acceptance Matrix). Documented in `docs/retros/retro-cycle-848.md`.
-- **Last retro:** C848
-- **Next:** Retro ~C858. Day 5 monitoring (Feb 21).
+- **Last:** Retro C849-857 (C858). 9-cycle retrospective. 6 learnings (L485-L490). Key findings: Sprint 3 UX specs 4/4 complete, Infrastructure still 0/6 (CRITICAL), 3 PRs open (#208, #209, #210), Go/No-Go template ready, 436 consecutive. CEO escalation (C853) mandated Ops halt code work. Documented in `docs/retros/retro-cycle-858.md`.
+- **Last retro:** C858
+- **Next:** Day 5 checkpoint (Feb 21). Retro ~C868.
 
 ### 🔍 QA
 
@@ -135,15 +135,14 @@
 
 ## Key Lessons (Recent)
 
+- **L490:** Dashboard SaaS specs should reference all related auth/billing/waitlist specs. Dashboard is the integration point — its spec must link all feature UX specs. (C852)
+- **L489:** Coverage threshold recovery via unit tests for error paths. Target error handling and edge cases — no external dependencies required. (C856)
+- **L488:** Infrastructure gates must be prescriptive, not descriptive (reinforces L485). Structural enforcement beats documented intention. (C858)
+- **L487:** Go/No-Go templates should be created 1-2 weeks before decision date. Early templates enable autonomous course correction. (C857)
+- **L486:** Launch channel updates should follow leader template (Show HN). Consistent pricing, metrics, CTAs across channels. (C854)
 - **L485:** Escalation must include explicit role directives, not just risk flags. C843 flagged Infrastructure 0/6 as "highest risk" but didn't mandate Ops halt other work. Result: 10 more cycles of non-infrastructure work. Be prescriptive, not descriptive. (C853)
 - **L484:** Acceptance matrices should follow strategic assessments within 5 cycles — direction without measurable criteria creates accountability gaps. Product creates acceptance matrix → roles have concrete verification targets. (C847)
 - **L483:** E2E test schemas must match CLI output, not storage format. `ada costs --json` outputs aggregated summaries, not raw CycleMetrics. Always verify expected output by running the command manually before writing assertions. (C845)
-- **L482:** When a PR blocks for >10 cycles, the issue is deeper than test fixtures — either tests test the wrong thing, or the feature doesn't match spec. Split green work from red and investigate separately. (C843)
-- **L481:** UX specs should include standard sections: user flow, component states, responsive breakpoints, accessibility checklist, analytics events. Consistent structure speeds review and ensures completeness. (C842)
-- **L480:** When claiming to "fix" source files, verify the files were actually modified — C839-840 documented fixes in agent files but never touched the test source code. Always `git show --name-status` to confirm. (C841)
-- **L479:** E2E tests must seed data in the exact file/schema the command reads — costs/observe read `metrics.json`, not `rotation.json`. Apply fixes across all related test files, not just one. (C840)
-- **L478:** Compliance fixes at root cause unblock multiple dependents. (C838)
-- **L477:** Innate memory protection separates identity from experience for multi-tenant SaaS. (C838)
 
 ---
 
@@ -159,10 +158,10 @@
 
 - **Issues:** 74 open, 74 tracked ✅
 - **PRs:** 3 open, 80 merged
-- **Cycles:** 857
+- **Cycles:** 858
 - **Tests:** ~2,900+ (88 files)
 - **Coverage:** 89%+
-- **Consecutive:** 436 (C421-857) 🎉
+- **Consecutive:** 437 (C421-858) 🎉
 - **Compressions:** 43
 
 ---
