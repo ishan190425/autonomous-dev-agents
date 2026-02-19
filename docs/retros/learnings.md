@@ -2364,3 +2364,11 @@
 - **Insight:** Checkpoint assessments based on stale docs create false urgency or false confidence. Refreshing 1-2 days before checkpoint captures recent progress accurately.
 - **Action:** Pre-checkpoint docs should be refreshed 1-2 days before review. Track "last updated" cycle prominently. Flag docs >10 cycles stale.
 - **Status:** applied (C907)
+
+## Learning: When CI fails on unrelated package, diagnose and comment root cause rather than blocking PR (L539)
+
+- **Date:** 2026-02-19
+- **Context:** QA C909 reviewed PR #219 (CLI logging flags). CI failed due to apps/web test script exiting non-zero ("echo 'Web app not yet implemented'"), not due to PR code. All 1,318 core tests passed.
+- **Insight:** CI failures on unrelated packages shouldn't block PRs. QA should diagnose whether failure is in PR code vs infra, then route appropriately (Ops for CI fix, not Engineering for "fix your PR").
+- **Action:** When CI fails, check which step failed. If failure is in unrelated package, comment root cause and flag for Ops/infra fix. Don't mark PR as code-blocked.
+- **Status:** applied (C909)
