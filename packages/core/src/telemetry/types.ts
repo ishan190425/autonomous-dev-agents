@@ -186,3 +186,197 @@ export interface LoggerConfig {
   /** Include stack traces for errors (default: true in debug/trace) */
   readonly stackTraces?: boolean;
 }
+
+// ─── Metrics Types ───────────────────────────────────────────────────────────
+
+/**
+ * Metric type for categorization.
+ */
+export type MetricType = 'counter' | 'histogram' | 'gauge';
+
+/**
+ * Labels for metric data points.
+ * Used for filtering and aggregation.
+ */
+export type MetricLabels = Record<string, string>;
+
+/**
+ * A counter metric that only goes up.
+ * Used for counting events (cycles, errors, operations).
+ */
+export interface CounterMetric {
+  readonly type: 'counter';
+  readonly name: string;
+  readonly description: string;
+  /** Total count value */
+  value: number;
+  /** Count per label combination */
+  readonly labeled: Map<string, number>;
+}
+
+/**
+ * A histogram metric for measuring distributions.
+ * Used for durations, sizes, and other measurable values.
+ */
+export interface HistogramMetric {
+  readonly type: 'histogram';
+  readonly name: string;
+  readonly description: string;
+  /** All recorded values */
+  readonly values: number[];
+  /** Values per label combination */
+  readonly labeled: Map<string, number[]>;
+  /** Bucket boundaries for histogram */
+  readonly buckets: readonly number[];
+}
+
+/**
+ * A gauge metric that can go up or down.
+ * Used for current values (memory usage, active sessions).
+ */
+export interface GaugeMetric {
+  readonly type: 'gauge';
+  readonly name: string;
+  readonly description: string;
+  /** Current value */
+  value: number;
+  /** Value per label combination */
+  readonly labeled: Map<string, number>;
+}
+
+/**
+ * Union type for all metric types.
+ */
+export type Metric = CounterMetric | HistogramMetric | GaugeMetric;
+
+/**
+ * Histogram statistics computed from recorded values.
+ */
+export interface HistogramStats {
+  readonly count: number;
+  readonly sum: number;
+  readonly min: number;
+  readonly max: number;
+  readonly mean: number;
+  readonly p50: number;
+  readonly p90: number;
+  readonly p99: number;
+}
+
+/**
+ * Exported metric data for serialization.
+ */
+export interface MetricExport {
+  readonly timestamp: string;
+  readonly counters: Record<string, { value: number; labeled: Record<string, number> }>;
+  readonly histograms: Record<string, { stats: HistogramStats; labeled: Record<string, HistogramStats> }>;
+  readonly gauges: Record<string, { value: number; labeled: Record<string, number> }>;
+}
+
+/**
+ * Metrics collector interface.
+ * Collects counters, histograms, and gauges for observability.
+ *
+ * @example
+ * ```typescript
+ * const metrics = createMetrics();
+ *
+ * // Count cycles
+ * metrics.incrementCounter('ada_cycles_total', { role: 'frontier', outcome: 'success' });
+ *
+ * // Record cycle duration
+ * metrics.recordHistogram('ada_cycle_duration_seconds', 12.5, { role: 'frontier' });
+ *
+ * // Set current memory version
+ * metrics.setGauge('ada_memory_version', 46);
+ *
+ * // Export all metrics
+ * const snapshot = metrics.export();
+ * ```
+ */
+export interface Metrics {
+  /**
+   * Increment a counter metric.
+   * Counters only go up (or stay the same).
+   *
+   * @param name - Metric name (e.g., 'ada_cycles_total')
+   * @param labels - Optional labels for filtering
+   * @param value - Increment amount (default: 1)
+   */
+  incrementCounter(name: string, labels?: MetricLabels, value?: number): void;
+
+  /**
+   * Record a value in a histogram metric.
+   * Used for measuring distributions (durations, sizes).
+   *
+   * @param name - Metric name (e.g., 'ada_cycle_duration_seconds')
+   * @param value - Value to record
+   * @param labels - Optional labels for filtering
+   */
+  recordHistogram(name: string, value: number, labels?: MetricLabels): void;
+
+  /**
+   * Set a gauge metric to a specific value.
+   * Gauges can go up or down.
+   *
+   * @param name - Metric name (e.g., 'ada_memory_version')
+   * @param value - Current value
+   * @param labels - Optional labels for filtering
+   */
+  setGauge(name: string, value: number, labels?: MetricLabels): void;
+
+  /**
+   * Get the current value of a counter.
+   * Returns 0 if counter doesn't exist.
+   */
+  getCounter(name: string, labels?: MetricLabels): number;
+
+  /**
+   * Get histogram statistics.
+   * Returns null if histogram doesn't exist or has no values.
+   */
+  getHistogramStats(name: string, labels?: MetricLabels): HistogramStats | null;
+
+  /**
+   * Get the current value of a gauge.
+   * Returns null if gauge doesn't exist.
+   */
+  getGauge(name: string, labels?: MetricLabels): number | null;
+
+  /**
+   * Export all metrics as a snapshot.
+   * Used for persistence and external reporting.
+   */
+  export(): MetricExport;
+
+  /**
+   * Import metrics from a snapshot.
+   * Used for loading persisted metrics on startup.
+   */
+  import(data: MetricExport): void;
+
+  /**
+   * Reset all metrics to initial state.
+   * Counters go to 0, histograms clear values, gauges go to 0.
+   */
+  reset(): void;
+
+  /**
+   * List all registered metric names.
+   */
+  listMetrics(): string[];
+}
+
+/**
+ * Metrics configuration options.
+ */
+export interface MetricsConfig {
+  /** File path to persist metrics (optional) */
+  readonly persistPath?: string;
+  /** Auto-save interval in milliseconds (default: 60000 = 1 minute) */
+  readonly autoSaveInterval?: number;
+  /** Load persisted metrics on creation (default: true) */
+  readonly loadOnCreate?: boolean;
+  /** Default histogram buckets (for durations in seconds) */
+  readonly defaultBuckets?: readonly number[];
+}
