@@ -1,9 +1,10 @@
 /**
  * @ada/core — Telemetry Module
  *
- * Structured logging, tracing, and unified observability.
+ * Structured logging, metrics, tracing, and unified observability.
  * Phase 1: Structured Logging (C896)
- * Phase 2: Distributed Tracing (planned)
+ * Phase 2: Basic Metrics (C906)
+ * Phase 3: Distributed Tracing (planned)
  *
  * Part of SaaS Observability & Telemetry Specification (C886).
  *
@@ -11,4 +12,5 @@
  */
 
 export * from './logger.js';
+export * from './metrics.js';
 export * from './types.js';
