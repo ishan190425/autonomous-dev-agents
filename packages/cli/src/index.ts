@@ -10,6 +10,12 @@
  *   ada run        Execute one dispatch cycle
  *   ada status     Show rotation state and last actions
  *   ada config     View/edit agent configuration
+ *
+ * Output Modes (per Design Spec C892):
+ *   (default)      Clean output for developers
+ *   --verbose      Detailed output with timestamps and debug info
+ *   --json         JSON Lines output for machine parsing
+ *   --quiet        Minimal output (warnings/errors only)
  */
 
 import { Command } from 'commander';
@@ -32,6 +38,7 @@ import { terminalCommand } from './commands/terminal.js';
 import { playbookCommand } from './commands/playbook.js';
 import { validateCommand } from './commands/validate.js';
 import { showBanner } from './lib/banner.js';
+import { initCliLogger } from './lib/logger.js';
 
 const VERSION = '1.0.0-alpha';
 
@@ -42,9 +49,21 @@ program
   .description('🤖 Autonomous Dev Agents — AI agent teams for any repo')
   .version(VERSION, '-v, --version', 'Output the current version')
   .option('--banner', 'Show the ADA banner')
+  .option('--verbose', 'Enable verbose output with timestamps and debug info')
+  .option('--json', 'Output in JSON Lines format (machine-readable)')
+  .option('--quiet', 'Minimal output (warnings and errors only)')
   .hook('preAction', (thisCommand) => {
-    // Show banner if --banner flag is passed
-    if (thisCommand.opts().banner) {
+    const opts = thisCommand.opts();
+
+    // Initialize logger with output mode flags
+    initCliLogger({
+      verbose: opts.verbose,
+      json: opts.json,
+      quiet: opts.quiet,
+    });
+
+    // Show banner if --banner flag is passed (unless JSON mode)
+    if (opts.banner && !opts.json) {
       showBanner({ force: true });
     }
   });
