@@ -380,3 +380,291 @@ export interface MetricsConfig {
   /** Default histogram buckets (for durations in seconds) */
   readonly defaultBuckets?: readonly number[];
 }
+
+// ─── Tracing Types (Phase 3) ─────────────────────────────────────────────────
+
+/**
+ * Status of a span indicating success or failure.
+ */
+export type SpanStatus = 'unset' | 'ok' | 'error';
+
+/**
+ * Valid attribute value types for spans.
+ */
+export type SpanAttributeValue = string | number | boolean | string[] | number[] | boolean[];
+
+/**
+ * Attributes attached to a span.
+ */
+export type SpanAttributes = Record<string, SpanAttributeValue>;
+
+/**
+ * Span kind indicates the type of span.
+ * - internal: Default, internal operation
+ * - client: Client-side of an RPC call
+ * - server: Server-side of an RPC call
+ * - producer: Message producer
+ * - consumer: Message consumer
+ */
+export type SpanKind = 'internal' | 'client' | 'server' | 'producer' | 'consumer';
+
+/**
+ * An event attached to a span.
+ */
+export interface SpanEvent {
+  /** Event name */
+  readonly name: string;
+  /** Timestamp when the event occurred */
+  readonly timestamp: string;
+  /** Event attributes */
+  readonly attributes?: SpanAttributes;
+}
+
+/**
+ * A link to another span (for cross-trace relationships).
+ */
+export interface SpanLink {
+  /** Trace ID of the linked span */
+  readonly traceId: string;
+  /** Span ID of the linked span */
+  readonly spanId: string;
+  /** Attributes describing the link */
+  readonly attributes?: SpanAttributes;
+}
+
+/**
+ * Serializable representation of a span for export.
+ */
+export interface SpanData {
+  /** Unique span identifier (16 hex chars) */
+  readonly spanId: string;
+  /** Trace identifier (32 hex chars) */
+  readonly traceId: string;
+  /** Parent span ID if nested */
+  readonly parentSpanId?: string;
+  /** Human-readable span name */
+  readonly name: string;
+  /** Span kind */
+  readonly kind: SpanKind;
+  /** Start timestamp (ISO 8601) */
+  readonly startTime: string;
+  /** End timestamp (ISO 8601) */
+  readonly endTime?: string;
+  /** Duration in milliseconds */
+  readonly duration?: number;
+  /** Span status */
+  readonly status: SpanStatus;
+  /** Status description (for errors) */
+  readonly statusMessage?: string;
+  /** Span attributes */
+  readonly attributes: SpanAttributes;
+  /** Events within this span */
+  readonly events: SpanEvent[];
+  /** Links to other spans */
+  readonly links: SpanLink[];
+}
+
+/**
+ * A span represents a single operation within a trace.
+ * Spans can be nested to represent call hierarchies.
+ *
+ * @example
+ * ```typescript
+ * const span = tracer.startSpan('dispatch_start');
+ * span.setAttribute('cycle_id', 906);
+ * span.setAttribute('role', 'frontier');
+ * try {
+ *   await doWork();
+ *   span.setStatus('ok');
+ * } catch (error) {
+ *   span.recordException(error);
+ *   span.setStatus('error', error.message);
+ * } finally {
+ *   span.end();
+ * }
+ * ```
+ */
+export interface Span {
+  /**
+   * Get the span's unique identifier.
+   */
+  getSpanId(): string;
+
+  /**
+   * Get the trace identifier this span belongs to.
+   */
+  getTraceId(): string;
+
+  /**
+   * Set a single attribute on the span.
+   * @returns this for chaining
+   */
+  setAttribute(key: string, value: SpanAttributeValue): this;
+
+  /**
+   * Set multiple attributes at once.
+   * @returns this for chaining
+   */
+  setAttributes(attributes: SpanAttributes): this;
+
+  /**
+   * Add an event to the span timeline.
+   * Events represent discrete occurrences within the span.
+   * @returns this for chaining
+   */
+  addEvent(name: string, attributes?: SpanAttributes): this;
+
+  /**
+   * Add a link to another span.
+   * Links represent causal relationships across traces.
+   * @returns this for chaining
+   */
+  addLink(traceId: string, spanId: string, attributes?: SpanAttributes): this;
+
+  /**
+   * Record an exception that occurred during the span.
+   * Automatically sets status to error.
+   * @returns this for chaining
+   */
+  recordException(error: Error | string, attributes?: SpanAttributes): this;
+
+  /**
+   * Set the span's status.
+   * @param status - 'unset', 'ok', or 'error'
+   * @param message - Optional description (for errors)
+   * @returns this for chaining
+   */
+  setStatus(status: SpanStatus, message?: string): this;
+
+  /**
+   * Update the span's name.
+   * Useful when the final name is determined during execution.
+   * @returns this for chaining
+   */
+  updateName(name: string): this;
+
+  /**
+   * Check if the span is still recording.
+   */
+  isRecording(): boolean;
+
+  /**
+   * End the span. Must be called to finalize timing.
+   * After end(), the span is no longer recording.
+   */
+  end(): void;
+
+  /**
+   * Get the span data for export.
+   */
+  toData(): SpanData;
+}
+
+/**
+ * Options for starting a new span.
+ */
+export interface StartSpanOptions {
+  /** Span kind (default: 'internal') */
+  readonly kind?: SpanKind;
+  /** Initial attributes */
+  readonly attributes?: SpanAttributes;
+  /** Links to other spans */
+  readonly links?: SpanLink[];
+  /** Custom start time (default: now) */
+  readonly startTime?: Date;
+  /** Parent span (for nesting) */
+  readonly parent?: Span;
+}
+
+/**
+ * A tracer creates and manages spans for distributed tracing.
+ *
+ * @example
+ * ```typescript
+ * const tracer = createTracer({ serviceName: 'ada-cli' });
+ *
+ * // Start a trace
+ * const rootSpan = tracer.startSpan('dispatch_cycle');
+ *
+ * // Create nested span (automatically linked to parent)
+ * tracer.withSpan(rootSpan, () => {
+ *   const childSpan = tracer.startSpan('load_context');
+ *   childSpan.setAttribute('memory_version', 46);
+ *   childSpan.end();
+ * });
+ *
+ * rootSpan.end();
+ * ```
+ */
+export interface Tracer {
+  /**
+   * Start a new span.
+   * @param name - Human-readable span name
+   * @param options - Optional configuration
+   */
+  startSpan(name: string, options?: StartSpanOptions): Span;
+
+  /**
+   * Get the currently active span, if any.
+   */
+  getActiveSpan(): Span | undefined;
+
+  /**
+   * Execute a function with a span as the active span.
+   * The span becomes the parent for any child spans created inside.
+   */
+  withSpan<T>(span: Span, fn: () => T): T;
+
+  /**
+   * Create a new trace context from W3C traceparent header.
+   * Returns undefined if the header is invalid.
+   */
+  extractContext(traceparent: string): TraceContext | undefined;
+
+  /**
+   * Format a span's context as a W3C traceparent header.
+   */
+  injectContext(span: Span): string;
+
+  /**
+   * Get all completed spans (for export/testing).
+   */
+  getCompletedSpans(): SpanData[];
+
+  /**
+   * Clear completed spans (after export).
+   */
+  clearCompletedSpans(): void;
+
+  /**
+   * Get the tracer's service name.
+   */
+  getServiceName(): string;
+}
+
+/**
+ * W3C Trace Context for distributed tracing.
+ * See: https://www.w3.org/TR/trace-context/
+ */
+export interface TraceContext {
+  /** Trace identifier (32 hex chars) */
+  readonly traceId: string;
+  /** Parent span identifier (16 hex chars) */
+  readonly spanId: string;
+  /** Trace flags (sampled, etc.) */
+  readonly traceFlags: number;
+}
+
+/**
+ * Tracer configuration options.
+ */
+export interface TracerConfig {
+  /** Service name for identification */
+  readonly serviceName: string;
+  /** Sample rate (0.0 to 1.0, default: 1.0) */
+  readonly sampleRate?: number;
+  /** Export completed spans (default: true) */
+  readonly exportSpans?: boolean;
+  /** Max spans to keep in memory (default: 1000) */
+  readonly maxSpans?: number;
+}

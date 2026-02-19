@@ -33,8 +33,8 @@ export async function sendDiscordNotification(
   // Format message for Discord (embed)
   const embed = {
     title: message.subject,
-    description: message.body.length > 4096 ? message.body.substring(0, 4093) + '...' : message.body,
-    color: color,
+    description: message.body.length > 4096 ? `${message.body.substring(0, 4093)  }...` : message.body,
+    color,
     footer: {
       text: `Cycle ${message.cycle} • ${message.role.emoji} ${message.role.name} • ${message.commitSha}`,
     },

@@ -39,7 +39,7 @@ export async function sendTelegramNotification(
 
   const payload = {
     chat_id: chatId,
-    text: text,
+    text,
     parse_mode: 'Markdown',
     disable_web_page_preview: true,
   };
