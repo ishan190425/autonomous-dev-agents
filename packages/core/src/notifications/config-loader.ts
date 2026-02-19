@@ -72,7 +72,7 @@ export function writeAgentConfig(configPath: string, config: AgentConfig): void 
     const existing = loadAgentConfig(configPath) || {};
     const merged = deepMerge(existing, config);
 
-    fs.writeFileSync(configPath, JSON.stringify(merged, null, 2) + '\n', 'utf-8');
+    fs.writeFileSync(configPath, `${JSON.stringify(merged, null, 2)  }\n`, 'utf-8');
   } catch (error) {
     throw new Error(`Failed to write agent config: ${error instanceof Error ? error.message : String(error)}`);
   }
