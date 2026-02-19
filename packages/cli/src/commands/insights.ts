@@ -369,7 +369,16 @@ export const insightsCommand = new Command('insights')
       )
       .option('-j, --json', 'Output as JSON')
       .option('-v, --verbose', 'Show detailed source reflections')
-      .action(listInsights)
+      .action(async function(this: Command, opts: InsightsListOptions) {
+        // Merge global options (--json, --verbose from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOpts: InsightsListOptions = {
+          ...opts,
+          json: opts.json || globalOpts.json,
+          verbose: opts.verbose || globalOpts.verbose,
+        };
+        await listInsights(mergedOpts);
+      })
   )
   .addCommand(
     new Command('retro')
@@ -380,7 +389,15 @@ export const insightsCommand = new Command('insights')
         process.cwd()
       )
       .option('-j, --json', 'Output as JSON with markdown')
-      .action(showInsightsForRetro)
+      .action(async function(this: Command, opts: InsightsShowOptions) {
+        // Merge global options (--json from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOpts: InsightsShowOptions = {
+          ...opts,
+          json: opts.json || globalOpts.json,
+        };
+        await showInsightsForRetro(mergedOpts);
+      })
   )
   .addCommand(
     new Command('issue')
@@ -392,14 +409,24 @@ export const insightsCommand = new Command('insights')
         process.cwd()
       )
       .option('-j, --json', 'Output as JSON for gh CLI')
-      .action(generateIssue)
+      .action(async function(this: Command, id: string, opts: InsightsShowOptions) {
+        // Merge global options (--json from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOpts: InsightsShowOptions = {
+          ...opts,
+          json: opts.json || globalOpts.json,
+        };
+        await generateIssue(id, mergedOpts);
+      })
   );
 
 // Default action: list insights
-insightsCommand.action((opts) => {
-  listInsights({
-    dir: opts.dir ?? process.cwd(),
-    json: opts.json,
-    verbose: opts.verbose,
+insightsCommand.action(async function(this: Command, opts: Record<string, unknown>) {
+  // Merge global options (--json, --verbose from parent)
+  const globalOpts = this.optsWithGlobals();
+  await listInsights({
+    dir: (opts.dir as string) ?? process.cwd(),
+    json: (opts.json as boolean) || globalOpts.json,
+    verbose: (opts.verbose as boolean) || globalOpts.verbose,
   });
 });

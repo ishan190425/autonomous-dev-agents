@@ -1584,12 +1584,19 @@ export const dispatchCommand = new Command('dispatch')
       .option('-q, --quiet', 'Minimal output')
       .option('--no-banner', 'Skip rotation visualization')
       .option('--force', 'Override active cycle (dangerous)')
-      .action(async (options: DispatchStartOptions) => {
+      .action(async function(this: Command, options: DispatchStartOptions) {
+        // Merge global options (--json, --verbose, --quiet from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOptions: DispatchStartOptions = {
+          ...options,
+          json: options.json || globalOpts.json,
+          quiet: options.quiet || globalOpts.quiet,
+        };
         try {
-          await executeStart(options);
+          await executeStart(mergedOptions);
         } catch (err) {
           const error = err as Error;
-          if ((options as DispatchStartOptions).json) {
+          if (mergedOptions.json) {
             console.log(JSON.stringify({ error: error.message }));
           } else {
             console.error(chalk.red(`\n❌ Error: ${error.message}`));
@@ -1615,12 +1622,19 @@ export const dispatchCommand = new Command('dispatch')
       .option('--tokens-in <number>', 'Input tokens consumed (for observability)', parseIntOption)
       .option('--tokens-out <number>', 'Output tokens generated (for observability)', parseIntOption)
       .option('--model <name>', 'Model used for cost calculation (default: claude-4-sonnet)')
-      .action(async (options: DispatchCompleteOptions) => {
+      .action(async function(this: Command, options: DispatchCompleteOptions) {
+        // Merge global options (--json, --verbose, --quiet from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOptions: DispatchCompleteOptions = {
+          ...options,
+          json: options.json || globalOpts.json,
+          quiet: options.quiet || globalOpts.quiet,
+        };
         try {
-          await executeComplete(options);
+          await executeComplete(mergedOptions);
         } catch (err) {
           const error = err as Error;
-          if ((options as DispatchCompleteOptions).json) {
+          if (mergedOptions.json) {
             console.log(JSON.stringify({ error: error.message }));
           } else {
             console.error(chalk.red(`\n❌ Error: ${error.message}`));
@@ -1636,12 +1650,20 @@ export const dispatchCommand = new Command('dispatch')
       .option('-j, --json', 'Output as JSON')
       .option('-v, --verbose', 'Show full history (10 entries)')
       .option('-q, --quiet', 'State only, no history')
-      .action(async (options: DispatchStatusOptions) => {
+      .action(async function(this: Command, options: DispatchStatusOptions) {
+        // Merge global options (--json, --verbose, --quiet from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOptions: DispatchStatusOptions = {
+          ...options,
+          json: options.json || globalOpts.json,
+          verbose: options.verbose || globalOpts.verbose,
+          quiet: options.quiet || globalOpts.quiet,
+        };
         try {
-          await executeStatus(options);
+          await executeStatus(mergedOptions);
         } catch (err) {
           const error = err as Error;
-          if ((options as DispatchStatusOptions).json) {
+          if (mergedOptions.json) {
             console.log(JSON.stringify({ error: error.message }));
           } else {
             console.error(chalk.red(`\n❌ Error: ${error.message}`));

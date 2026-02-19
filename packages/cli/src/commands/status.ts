@@ -561,28 +561,36 @@ export const statusCommand = new Command('status')
   .option('--json', 'Output as JSON (for piping to other tools)')
   .option('-v, --verbose', 'Include full role state details, active threads, and blockers')
   .option('--history <n>', 'Show last n cycles (default: 5)', '5')
-  .action(async (options: StatusOptions) => {
+  .action(async function(this: Command, options: StatusOptions) {
+    // Merge global options (--json, --verbose from parent)
+    const globalOpts = this.optsWithGlobals();
+    const mergedOptions: StatusOptions = {
+      ...options,
+      json: options.json || globalOpts.json,
+      verbose: options.verbose || globalOpts.verbose,
+    };
+
     const cwd = process.cwd();
-    const agentsDir = path.resolve(cwd, options.dir);
+    const agentsDir = path.resolve(cwd, mergedOptions.dir);
 
     // Verbose mode defaults to 10 history entries if --history wasn't explicitly set
     const explicitHistory = process.argv.includes('--history') || process.argv.some(arg => arg.startsWith('--history='));
     const historyCount = explicitHistory
-      ? parseInt(options.history ?? '5', 10)
-      : (options.verbose ? 10 : 5);
+      ? parseInt(mergedOptions.history ?? '5', 10)
+      : (mergedOptions.verbose ? 10 : 5);
 
     try {
       const data = await loadStatusData(agentsDir);
 
-      if (options.json) {
+      if (mergedOptions.json) {
         printJsonStatus(data, historyCount);
-      } else if (options.verbose) {
+      } else if (mergedOptions.verbose) {
         printVerboseStatus(data, historyCount);
       } else {
         printDefaultStatus(data, historyCount);
       }
     } catch (err) {
-      if (options.json) {
+      if (mergedOptions.json) {
         console.error(JSON.stringify({ error: (err as Error).message }));
       } else {
         console.error(chalk.red('❌ Could not read agent state:'), (err as Error).message);
