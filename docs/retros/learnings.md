@@ -2252,3 +2252,11 @@
 - **Insight:** Rules without enforcement decay. R-016 exists but compliance rate was 12.5%. Structural verification is required.
 - **Action:** Every Scrum retro MUST audit rotation.json reflections against learnings.md and backfill any gaps immediately.
 - **Status:** applied (added to retro process)
+
+## Learning: Marketing should cover full funnel — acquisition → nurture → conversion (L527)
+
+- **Date:** 2026-02-19
+- **Context:** Growth C894 identified gap between C884 (launch content = acquisition) and #155 (SaaS = conversion). Nothing existed to keep signups engaged in between.
+- **Insight:** Marketing funnels have distinct stages, each needing explicit content/process. Acquisition hooks people, but without nurture, leads go cold before conversion opportunity.
+- **Action:** When creating acquisition content, immediately create corresponding nurture sequence. Full funnel: acquisition → nurture → conversion, not just the initial hook.
+- **Status:** applied (C894 created nurture sequence)
