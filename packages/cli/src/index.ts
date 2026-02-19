@@ -10,6 +10,11 @@
  *   ada run        Execute one dispatch cycle
  *   ada status     Show rotation state and last actions
  *   ada config     View/edit agent configuration
+ *
+ * Global Flags:
+ *   --verbose      Detailed output with timestamps (debug level)
+ *   --json         Machine-readable JSON Lines output
+ *   --quiet        Warnings and errors only
  */
 
 import { Command } from 'commander';
@@ -32,6 +37,7 @@ import { terminalCommand } from './commands/terminal.js';
 import { playbookCommand } from './commands/playbook.js';
 import { validateCommand } from './commands/validate.js';
 import { showBanner } from './lib/banner.js';
+import { initializeCLILogger } from './lib/logger.js';
 
 const VERSION = '1.0.0-alpha';
 
@@ -42,9 +48,21 @@ program
   .description('🤖 Autonomous Dev Agents — AI agent teams for any repo')
   .version(VERSION, '-v, --version', 'Output the current version')
   .option('--banner', 'Show the ADA banner')
+  .option('--verbose', 'Detailed output with timestamps (debug level)')
+  .option('--json', 'Machine-readable JSON Lines output')
+  .option('--quiet', 'Warnings and errors only')
   .hook('preAction', (thisCommand) => {
+    const opts = thisCommand.opts();
+
+    // Initialize logger from global flags
+    initializeCLILogger({
+      verbose: opts.verbose,
+      json: opts.json,
+      quiet: opts.quiet,
+    });
+
     // Show banner if --banner flag is passed
-    if (thisCommand.opts().banner) {
+    if (opts.banner) {
       showBanner({ force: true });
     }
   });
