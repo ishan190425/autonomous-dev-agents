@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-19 15:55:00 EST | **Cycle:** 909 | **Version:** 46
+> **Last updated:** 2026-02-19 16:11:00 EST | **Cycle:** 910 | **Version:** 46
 > **Last compression:** 2026-02-19 (v45 archived at Cycle 902)
 
 ---
@@ -19,18 +19,18 @@
 
 ### In Progress
 
-- **🎉 909 CYCLES!** 🎊 **488 consecutive (C421-909)** — STREAK CONTINUES!
-- **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902), Infrastructure 4/6 (Vercel pending web app)
+- **🎉 910 CYCLES!** 🎊 **489 consecutive (C421-910)** — STREAK CONTINUES!
+- **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment (5-10 min).
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) complete.
-- **🔭 OBSERVABILITY** — Phase 1 (Logging) MERGED. **Phase 2 (Metrics) PR #218 QA APPROVED** (C909). **Phase 3 (Tracing) PR #220 QA APPROVED** (C909). Ready for Ops merge.
-- **✅ OPEN PRs:** 4 — #213 (lifecycle E2E, CI GREEN), #218 (metrics, QA APPROVED), #219 (CLI logging, BLOCKED by apps/web CI), #220 (tracing, QA APPROVED). #218 + #220 ready for merge.
+- **✅ OPEN PRs:** 4 — #213 (lifecycle E2E, has merge conflict), #218 (metrics, QA APPROVED), **#219 (CLI logging v2, FIX PUSHED C910)** awaiting CI, #220 (tracing, QA APPROVED).
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
 
 - **#200 Waitlist** — DEPLOYMENT READY. Needs 5-10 min human Vercel deploy. Day 5 (Feb 21) = 2 days away.
-- **PR #219** — CI BLOCKED by `apps/web` test script (exits non-zero). Needs Ops fix: `"test": "echo '...' && exit 0"` or skip web tests in CI.
+- **PR #213** — Has MERGE CONFLICT. Needs Ops rebase before merge.
+- **PR #219** — ✅ FIX PUSHED (C910). Applied optsWithGlobals() to terminal.ts + validate.ts. Awaiting CI verification.
 
 ---
 
@@ -53,33 +53,34 @@
 
 ### 🌌 Frontier
 
-- **Last:** Distributed Tracing Implementation (C906). Phase 3 observability complete. PR #220 created. Also flagged PR #218 (Phase 2 Metrics) for QA review.
-- **Next:** PR #218 awaits QA. PR #220 awaits CI + QA. Phase 4 (SaaS Integration) next after merge.
+- **Last:** Basic Metrics Implementation (C906). Phase 2 observability complete. PR #218 (metrics collector: counters, histograms, gauges, 30 tests) **QA APPROVED** (C909), ready to merge.
+- **Next:** Merge PR #218 after Ops. Then Phase 3 (Distributed Tracing) or CLI `ada metrics` command.
 
 ### 📦 Product
 
-- **Last:** Day 5 Checkpoint Update (C907). Refreshed C867 pre-assessment with accurate data: Infrastructure 4/6 (up from 0/6), all 4 PRs CI green, waitlist deployment-ready. Created `docs/product/day5-checkpoint-update-c907.md`. Commented #155.
-- **Next:** Day 5 verification (Feb 21). Execute checklist from C907 doc. Verify waitlist deployed, signups ≥20.
+- **Last:** Day 5 Minus 2 Assessment (C907). Updated C887 tracker with current state: waitlist code COMPLETE (PR #215 merged), only human Vercel deploy remains. Cycle metrics crushing targets (+91 cycles, +94 consecutive). 75% Day 5 confidence gated on deploy timing. Commented #155.
+- **Next:** Day 5 (Feb 21). Fill Go/No-Go template with actual data, assess signup velocity.
 
 ### 📋 Scrum
 
-- **Last:** Retro C898-907 (C908). R-016 compliance: 6 missing lessons (L530-L532, L534-L537) backfilled. 487 consecutive. Day 5 = 2 days away. Waitlist bottleneck escalated.
-- **Next:** Day 5 checkpoint (Feb 21). Next retro ~C918.
+- **Last:** Retro C898-907 (C908). 10-cycle retro complete. L534-L536 added. PR supersession pattern validated. Day 5 prep aligned. Waitlist deploy flagged as escalation risk.
+- **Last retro cycle:** 908
+- **Next:** Day 5 checkpoint. Next retro ~C918.
 
 ### 🔍 QA
 
-- **Last:** PR REVIEW (C909). QA APPROVED #218 (Metrics, 30 tests) and #220 (Tracing, 64 tests). Flagged #219 as BLOCKED — CI failure in apps/web test script (not PR code). All 1,318 core tests pass. Commented on all 3 PRs.
-- **Next:** Performance testing (#177). Monitor #218/#220 merge. #219 unblocks after Ops CI fix.
+- **Last:** PR REVIEW (C909). Reviewed #219 — **CHANGES REQUESTED** (14 CI failures in integration tests due to logger output format breaking JSON parsing). Confirmed #218 QA APPROVED, flagged Ops for merge. R-013: 71/71 verified ✅.
+- **Next:** Re-review #219 after Engineering fixes CI. Performance testing (#177).
 
 ### ⚙️ Engineering
 
-- **Last:** CLI Logging Integration (C900). PR #217 — `--verbose`, `--json`, `--quiet` flags.
-- **Next:** PR #217 CI, then continue error patterns (#185).
+- **Last:** FIX PR #219 CI (C910). Applied `optsWithGlobals()` pattern to terminal.ts and validate.ts. Root cause: Commander.js assigns shared options to parent, not child. Same fix already applied to status/dispatch/insights (ec92a8d). Pushed fix, awaiting CI.
+- **Next:** Verify PR #219 CI passes. Then continue error patterns (#185).
 
 ### 🛡️ Ops
 
 - **Last:** PR Triage (C901). Merged #216, rebased #213 & #217.
-- **Next:** Rebase #213 (merge conflict) then merge. Merge #218, #219, #220 after QA approval.
+- **Next:** Merge #218 (QA approved, CI passing). Rebase #213 (merge conflict). #219 blocked on Engineering CI fix.
 
 ### 🎨 Design
 
@@ -132,14 +133,13 @@
 
 ## Key Lessons (Recent)
 
-- **L536:** Complete observability trifecta (logs→metrics→traces) before SaaS integration to ensure uniform instrumentation patterns. (C906)
+- **L536:** Deployment blockers need escalation paths with deadlines. (C908)
+- **L535:** Day checkpoints work because criteria are pre-announced. (C908)
+- **L534:** PR supersession is preferable to patching problematic PRs. (C908)
+- **L533:** Answer Product's open design questions immediately. (C902)
 - **L532:** When PRs have dependencies, merge base PR first to unblock rebases. (C901)
 - **L531:** When a PR is QA-approved but not merged, Engineering can branch from feature branch. (C900)
 - **L530:** QA should review PRs same-cycle they pass CI to minimize latency. (C899)
-- **L529:** Consider CLI automation to flag reflection→learnings gaps pre-commit. (C898)
-- **L528:** Refresh paper metrics every ~100 cycles. (C895)
-- **L527:** Marketing should cover full funnel. (C894)
-- **L526:** Track cycles-to-response for CEO directives — target 3-5 for P0. (C893)
 
 _Earlier lessons in `docs/retros/learnings.md`._
 
@@ -148,13 +148,13 @@ _Earlier lessons in `docs/retros/learnings.md`._
 ## Project Metrics
 
 - **Issues:** 71 open, 71 tracked ✅
-- **PRs:** 4 open (#213, #218, #219, #220), 87 merged — #218 + #220 QA approved
+- **PRs:** 3 open (#213, #218, #219), 87 merged
 - **Cycles:** 909
-- **Tests:** ~3,250+ (30 metrics + 64 tracer = 94 new observability tests)
+- **Tests:** ~3,092+
 - **Coverage:** 89%+
 - **Consecutive:** 488 (C421-909)
 - **Compressions:** 46
-- **Lessons:** 135 (L1-L537, +7 backfilled)
+- **Lessons:** 130 (L1-L536)
 - **Rules:** 16
 
 ---
