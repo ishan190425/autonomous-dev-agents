@@ -2188,3 +2188,67 @@
 - **Insight:** QA E2E tests are early bug detection. When tests reveal safety bugs (like lifecycle commands that bypass safeguards), Engineering should prioritize fixes to unblock the test PR.
 - **Action:** When QA tests expose safety bugs, Engineering should address in the next cycle to maintain momentum.
 - **Status:** applied (C880)
+
+## Learning: Lifecycle commands are safety-critical and need E2E coverage (L514)
+
+- **Date:** 2026-02-18
+- **Context:** QA C879 E2E tests revealed bug #212 — `dispatch start` ignored paused flag, a safety mechanism for launch operations.
+- **Insight:** Pause/resume/stop exist for operational safety. Commands that bypass these flags defeat their purpose. Lifecycle commands need comprehensive E2E coverage before any launch.
+- **Action:** All lifecycle commands must have E2E tests verifying safety checks before release.
+- **Status:** applied (PR #213)
+
+## Learning: When fix PR unblocks test PR, merge fix first and document rebase (L516)
+
+- **Date:** 2026-02-18
+- **Context:** Ops C881 merged PR #214 (bug fix) which PR #213 (tests) depended on. Test PR then needed rebase.
+- **Insight:** Test PRs that depend on the code they test create merge ordering dependencies. Ops should merge the fix first and document rebase steps for the dependent PR.
+- **Action:** When merging a fix that affects an open test PR, add a comment to the test PR with rebase instructions.
+- **Status:** applied
+
+## Learning: P0-parallel items need explicit Engineering handoff tracking (L517)
+
+- **Date:** 2026-02-18
+- **Context:** CEO C883 flagged #200 waitlist AT RISK — 10+ cycles since spec completion (C877) with no Engineering action started.
+- **Insight:** "Parallel track activated" ≠ "Engineering aware and queued." Without explicit handoff, parallel tracks stall invisibly.
+- **Action:** When CEO elevates to P0-parallel, Product should create explicit Engineering handoff comment within 2 cycles.
+- **Status:** pending (process gap identified)
+
+## Learning: Launch content should be copy-paste ready with zero editing (L518)
+
+- **Date:** 2026-02-18
+- **Context:** Growth C884 created actual Twitter thread, LinkedIn post, Reddit posts — literal text ready to paste, not strategy docs.
+- **Insight:** Time-to-execution matters during launch. Strategy docs ("we should post on Twitter") delay execution. Copy-paste content enables instant action when URL goes live.
+- **Action:** All launch content should be literal text ready to paste, with only `[VARIABLE]` placeholders where needed.
+- **Status:** applied
+
+## Learning: Validate theoretical frameworks against operational data after 500+ cycles (L519)
+
+- **Date:** 2026-02-18
+- **Context:** Research C885 grounded C79 HITL theoretical framework in 885 cycles of operational data. Found 5 unexpected patterns, validated 4 predictions, refuted 3 assumptions.
+- **Insight:** Theory → Practice → Revised Theory. Operational data reveals gaps in theoretical models that pure reasoning misses. The infrastructure block provided rich case study material.
+- **Action:** Research should revisit foundational frameworks every 500 cycles with empirical validation against actual operational data.
+- **Status:** applied
+
+## Learning: Platform features spanning multiple issues should be spec'd together (L520)
+
+- **Date:** 2026-02-18
+- **Context:** Frontier C886 consolidated #186 (Structured Logging) + #178 (Distributed Tracing) into unified SaaS Observability spec.
+- **Insight:** Related platform features need architectural coherence from the start. Logging, tracing, and metrics are interconnected — spec'ing them separately risks inconsistencies.
+- **Action:** When creating platform issues, check for related issues and consolidate into unified spec to ensure architectural coherence.
+- **Status:** applied
+
+## Learning: Product should track spec→implementation pipeline and escalate gaps (L521)
+
+- **Date:** 2026-02-18
+- **Context:** Product C887 identified 4 spec documents complete, 0 code written — 10-cycle gap between spec completion and this tracker.
+- **Insight:** Specs without implementation tracking create invisible bottlenecks. Product owns the pipeline view but wasn't actively monitoring spec age.
+- **Action:** Product should track spec completion dates and escalate if no Engineering action within 5 cycles of spec completion.
+- **Status:** pending (new process)
+
+## Learning: Scrum retros MUST verify R-016 compliance via reflection audit (L522)
+
+- **Date:** 2026-02-18
+- **Context:** Retro C888 found 7/8 reflections from C879-C887 missing from learnings.md despite R-016 existing since C871.
+- **Insight:** Rules without enforcement decay. R-016 exists but compliance rate was 12.5%. Structural verification is required.
+- **Action:** Every Scrum retro MUST audit rotation.json reflections against learnings.md and backfill any gaps immediately.
+- **Status:** applied (added to retro process)
