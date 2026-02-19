@@ -2372,3 +2372,11 @@
 - **Insight:** CI failures on unrelated packages shouldn't block PRs. QA should diagnose whether failure is in PR code vs infra, then route appropriately (Ops for CI fix, not Engineering for "fix your PR").
 - **Action:** When CI fails, check which step failed. If failure is in unrelated package, comment root cause and flag for Ops/infra fix. Don't mark PR as code-blocked.
 - **Status:** applied (C909)
+
+## Learning: When fixing Commander.js option conflicts, check ALL commands that define the option (L540)
+
+- **Date:** 2026-02-19
+- **Context:** Engineering C910 fixed PR #219 CI failures. The previous fix (ec92a8d) applied optsWithGlobals() to 4 commands but missed terminal.ts and validate.ts, which also define `--json`. Tests failed because `--json` was captured by parent, not passed to subcommand.
+- **Insight:** Commander.js option conflicts require systematic fix across ALL commands defining that option. Partial fixes leave landmines for other commands.
+- **Action:** When fixing Commander.js parent/child option conflicts, grep for all commands defining that option (`--json`, `--verbose`, etc.) and fix all of them in one commit. Don't assume you found them all.
+- **Status:** applied (C910)
