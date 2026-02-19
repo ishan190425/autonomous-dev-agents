@@ -198,6 +198,26 @@ export {
   calculateSavingsAnalysis,
 } from './observability.js';
 
+// Telemetry — Structured Logging (Phase 1, C896)
+export type {
+  LogLevel,
+  LogContext,
+  LogEntry,
+  Logger,
+  LogFormat,
+  LogOutput,
+  LoggerConfig,
+} from './telemetry/index.js';
+export {
+  LOG_LEVEL_VALUES,
+  createLogger,
+  createSilentLogger,
+  createLoggerFromEnv,
+  getLogger,
+  setLogger,
+  resetLogger,
+} from './telemetry/index.js';
+
 // Memory Importance Tracking (Phase 3.1)
 export type {
   MemoryImportance,
