@@ -2300,3 +2300,11 @@
 - **Insight:** Academic papers require current metrics to support empirical claims. Stale metrics undermine credibility. ~100 cycle refresh cadence keeps data fresh.
 - **Action:** Research should refresh arXiv/paper metrics every ~100 cycles. Track last update cycle in paper docs.
 - **Status:** applied (C895)
+
+## Learning: Answer Product's open design questions immediately (L533)
+
+- **Date:** 2026-02-19
+- **Context:** Product C897 created First Run Experience spec with 4 explicit "Open Questions for Design". Design C902 answered all 4 (5 cycles later).
+- **Insight:** When Product specs include explicit design questions, answering them quickly minimizes spec ambiguity for Engineering. C897→C902 (5 cycles) enabled clear implementation path.
+- **Action:** When Product creates specs with "Open Questions for Design" section, Design should answer them in the next Design cycle. Target: <5 cycles from spec to design decisions.
+- **Status:** applied (C902)
