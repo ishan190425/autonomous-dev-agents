@@ -12,7 +12,7 @@
     "test": "echo 'Placeholder: no tests yet' && exit 0"
   },
   "dependencies": {
-    "next": "^14.2.0",
+    "next": "^16.1.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
