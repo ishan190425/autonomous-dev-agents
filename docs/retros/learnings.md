@@ -2428,3 +2428,23 @@
 - **Insight:** Decision frameworks created during the review are influenced by current state. Creating frameworks before checkpoints enables objective evaluation: criteria are set when outcome is uncertain.
 - **Action:** Major decision points (go/no-go, launch, pivot) should have frameworks published 5+ days in advance. Never define success criteria during the review.
 - **Status:** applied (C917)
+
+## L550 — Enumerate ALL commands with visual output when adding global flags (C921)
+
+**Context:** PR #219 added , , flags to CLI commands. Engineering fixed heat.ts, observe.ts, playbook.ts in C920 after QA root cause analysis.
+
+**Issue:** CI still failing because was NOT included in fix scope. Tests expect `ada costs --json` to output pure JSON but it outputs emoji characters (`💰 ADA Age...`).
+
+**Lesson:** When adding global flags that affect output format, enumerate ALL commands with visual output — not just ones mentioned in the initial PR. Commands with emoji, ASCII art, or formatted tables need JSON mode support.
+
+**Apply when:** Adding global CLI flags, reviewing PR scope for output formatting changes.
+
+## L550 — Enumerate ALL commands with visual output when adding global flags (C921)
+
+**Context:** PR #219 added --json, --verbose, --quiet flags to CLI commands. Engineering fixed heat.ts, observe.ts, playbook.ts in C920 after QA root cause analysis.
+
+**Issue:** CI still failing because costs.ts was NOT included in fix scope. Tests expect `ada costs --json` to output pure JSON but it outputs emoji characters.
+
+**Lesson:** When adding global flags that affect output format, enumerate ALL commands with visual output — not just ones mentioned in the initial PR. Commands with emoji, ASCII art, or formatted tables need JSON mode support.
+
+**Apply when:** Adding global CLI flags, reviewing PR scope for output formatting changes.

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-19 19:38:00 EST | **Cycle:** 920 | **Version:** 47
+> **Last updated:** 2026-02-19 20:06:00 EST | **Cycle:** 921 | **Version:** 47
 > **Last compression:** 2026-02-19 (v46 archived at Cycle 912)
 
 ---
@@ -19,16 +19,16 @@
 
 ### In Progress
 
-- **🎉 920 CYCLES!** 🎊 **499 consecutive (C421-920)** — STREAK CONTINUES!
+- **🎉 921 CYCLES!** 🎊 **🏆 500 consecutive (C421-921)** — MILESTONE REACHED! 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
-- **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment (5-10 min).
+- **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment (5-10 min). **NEW: #222** — Supabase config fix required (founder-priority).
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
-- **✅ OPEN PRs:** 2 — #213 (lifecycle E2E, **CI GREEN ✅**, READY FOR OPS MERGE), #219 (CLI logging v2, **FIX PUSHED C920**, awaiting CI). **MERGED C911:** #218 (metrics), #220 (tracing).
+- **✅ OPEN PRs:** 2 — #219 (CLI logging v2, **CI FAILING — costs.ts missing**, see L550), #221 (dependabot, failing). **MERGED C921:** #213 (lifecycle E2E).
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
 
-- **#200 Waitlist** — DEPLOYMENT READY. Needs 5-10 min human Vercel deploy. Day 5 (Feb 21) = 2 days away.
+- **#200 Waitlist** — DEPLOYMENT READY. Needs Supabase config (#222) + Vercel deploy. Day 5 (Feb 21) = 2 days away.
 
 ---
 
@@ -77,8 +77,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** PR TRIAGE + MERGE (C911). **MERGED #218** (Metrics Phase 2) + **MERGED #220** (Tracing Phase 3) — resolved conflicts during rebase. Rebased #213 (lifecycle E2E) and #219 (CLI logging v2) onto latest master. All 4 PRs CI now running.
-- **Next:** Monitor CI for #213 and #219. Merge when green.
+- **Last:** PR TRIAGE + ROOT CAUSE (C921). **MERGED #213** (lifecycle E2E) — all code quality CI passing, Vercel failures were infra-only (L542 applied). Posted root cause analysis on PR #219: `costs.ts` missing from fix scope (not included in C920 changes). Tests fail because `ada costs --json` outputs emoji. Added L550. New issue #222 (founder-priority) — Supabase config for waitlist.
+- **Next:** Monitor PR #219 fix. Check #221 (dependabot) once code PRs clear.
 
 ### 🎨 Design
 
@@ -93,11 +93,12 @@
 
 ## Active Threads
 
-### P0-P1 (22 Issues)
+### P0-P1 (23 Issues)
 
 - **#155** (P0, CEO, L) — SaaS Container — **THE PRIORITY**
 - **#158** (P0, CEO, M) — Strategic Pivot: Bootstrap via SaaS
 - **#200** (P0-parallel, Engineering, S) — Waitlist Website — **DEPLOYMENT READY**
+- **#222** (P0, Engineering, S) — **NEW** Waitlist Supabase Config — Unblocks #200 deploy
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE
 - **#34** (P1, QA, L) — E2E Testing
 - **#74** (P1, Growth, M) — Accelerator Strategy
@@ -131,6 +132,7 @@
 
 ## Key Lessons (Recent)
 
+- **L550:** When adding global flags (`--json`, `--verbose`) to CLI commands, enumerate ALL commands with visual output — not just ones mentioned in initial PR. Costs command outputs emoji that needs JSON mode. (C921)
 - **L549:** When fixing Commander.js global option inheritance, enumerate ALL command files that define the same option — partial fixes create additional CI cycles. (C920)
 - **L546:** Create decision frameworks BEFORE checkpoints arrive. (C917)
 - **L545:** When closing issues, document done vs moved scope. (C916)
@@ -146,14 +148,14 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 ## Project Metrics
 
-- **Issues:** 70 open, 70 tracked ✅
-- **PRs:** 2 open (#213 CI GREEN ✅, #219 CI blocked), 89 merged
-- **Cycles:** 920
+- **Issues:** 71 open, 71 tracked ✅
+- **PRs:** 2 open (#219 CI blocked, #221 dependabot), 90 merged
+- **Cycles:** 921
 - **Tests:** ~1,990+ (it() count from core+cli)
 - **Coverage:** 89%+
-- **Consecutive:** 499 (C421-920)
+- **Consecutive:** 500 (C421-921) 🏆
 - **Compressions:** 47
-- **Lessons:** 136 (L1-L546)
+- **Lessons:** 137 (L1-L550)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 
