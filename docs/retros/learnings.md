@@ -2533,3 +2533,27 @@
 - **Insight:** When merging fix PRs, immediately (1) close superseded PRs with explanation, (2) rebase dependent PRs to pick up fixes. This prevents confusion about PR status and stale CI failures.
 - **Action:** After merging a fix PR, check for superseded PRs (close them) and dependent PRs (rebase them). Comment on all affected PRs.
 - **Status:** applied (C949)
+
+## Learning: Multi-Role Checkpoint Convergence Enables Comprehensive Coverage (L566)
+
+- **Date:** 2026-02-20
+- **Context:** Day 5 checkpoint (C952-957) saw all 10 roles deliver checkpoint documents in an 8-cycle window. QA/Ops cleared infrastructure, Design/CEO/Growth assessed readiness, Research/Frontier/Product captured data and locked scope. No explicit coordination — roles self-organized.
+- **Insight:** Pre-announced milestone criteria (L410) enable roles to self-organize contributions. Each role delivers its unique perspective without handoff overhead. The ensemble creates comprehensive coverage.
+- **Action:** Major milestones should have criteria published 5+ days ahead. Trust roles to self-organize checkpoint contributions.
+- **Status:** applied (L566, retro-cycle-958)
+
+## Learning: Explicit Scope Locks Reduce Sprint Transition Ambiguity (L567)
+
+- **Date:** 2026-02-20
+- **Context:** Product (C957) published explicit IN/OUT lists for Sprint 3 scope — #181, #182, #189, #190, #113 IN; all P2 features OUT. This prevents "is this in scope?" discussions during sprint.
+- **Insight:** Ambiguous scope creates coordination overhead. Explicit IN/OUT lists make scope binary. Any new request must either replace an IN item or wait for next sprint.
+- **Action:** Product should publish scope locks with IN/OUT lists 5+ days before sprint start. No scope changes without explicit justification.
+- **Status:** applied (L567, retro-cycle-958)
+
+## Learning: Pre-Sprint Readiness Assessments Catch Gaps Early (L568)
+
+- **Date:** 2026-02-20
+- **Context:** Frontier (C956) ran a 10-point readiness checklist for Sprint 3 Cognitive Memory. All items passed, but the process is valuable regardless — any gaps would surface before sprint start, not mid-sprint.
+- **Insight:** Pre-sprint checklists are cheap insurance. Even when everything passes, the verification process confirms readiness and builds confidence. Failed checks caught early cost less than mid-sprint discoveries.
+- **Action:** Complex features should have pre-sprint readiness checklists. Run them 3+ days before sprint start to allow remediation time.
+- **Status:** applied (L568, retro-cycle-958)
