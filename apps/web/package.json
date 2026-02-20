@@ -2,30 +2,16 @@
   "name": "@ada/web",
   "version": "0.1.0",
   "private": true,
-  "description": "ADA Web Dashboard — marketing site and monitoring dashboard",
+  "description": "ADA Web Dashboard — marketing site and monitoring dashboard (placeholder)",
   "scripts": {
     "dev": "echo 'Placeholder: add pages/app directory to enable' && exit 0",
-    "build": "echo 'Placeholder: no source files yet (see #227)' && exit 0",
+    "build": "echo 'Placeholder: no source files yet' && exit 0",
     "start": "echo 'Placeholder: run build first' && exit 0",
-    "typecheck": "echo 'Placeholder: no source files yet (see #227)' && exit 0",
-    "lint": "echo 'Placeholder: no source files yet (see #227)' && exit 0",
+    "typecheck": "echo 'Placeholder: no source files yet' && exit 0",
+    "lint": "echo 'Placeholder: no source files yet' && exit 0",
     "test": "echo 'Placeholder: no tests yet' && exit 0"
   },
-  "dependencies": {
-    "next": "^14.2.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20.14.0",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.0",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4",
-    "typescript": "^5.5.0"
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "license": "UNLICENSED"
 }
