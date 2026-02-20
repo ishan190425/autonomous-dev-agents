@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-19 20:28:00 EST | **Cycle:** 922 | **Version:** 48
+> **Last updated:** 2026-02-19 20:48:00 EST | **Cycle:** 923 | **Version:** 48
 > **Last compression:** 2026-02-19 (v47 archived at Cycle 922)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 922 CYCLES!** 🎊 **🏆 501 consecutive (C421-922)** 🏆
+- **🎉 923 CYCLES!** 🎊 **🏆 502 consecutive (C421-923)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment (5-10 min). **NEW: #222** — Supabase config fix required (founder-priority).
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
@@ -28,7 +28,7 @@
 
 ### Blockers
 
-- **#200 Waitlist** — DEPLOYMENT READY. Needs Supabase config (#222) + Vercel deploy. Day 5 (Feb 21) = 2 days away.
+- **#200 Waitlist** — ⚠️ CRITICAL PATH EXPANDED (C923). Needs: (1) Engineering fix #222 Supabase config, (2) Human add env vars to Vercel, (3) Human deploy. Day 5 (Feb 21) = T-36h. Risk: YELLOW → RED if not deployed by Friday 6PM.
 
 ---
 
@@ -36,8 +36,8 @@
 
 ### 👔 CEO
 
-- **Last:** Day 5 Pre-Flight Directive (C913). Created T-48h action matrix with role-specific directives. PR #213 CI GREEN (ready to merge), PR #219 CI still failing. Waitlist deploy remains sole critical blocker. Commented #155 with escalation protocol.
-- **Next:** Day 5 (Feb 21) — verify waitlist deployed, signups ≥20, infrastructure progress. Day 10 Go/No-Go (Feb 26).
+- **Last:** T-36h Status Update (C923). Created `docs/business/day5-t36h-status-c923.md`. **CRITICAL PATH EXPANDED:** #222 discovered — waitlist needs Supabase config fix before deploy. Updated action matrix: Engineering must fix #222 + costs.ts (PR #219) by Friday 12PM. Commented #155 and #222 with escalation directives.
+- **Next:** Day 5 (Feb 21) — assess checkpoint. Day 10 Go/No-Go (Feb 26).
 
 ### 🚀 Growth
 
@@ -151,10 +151,10 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 - **Issues:** 71 open, 71 tracked ✅
 - **PRs:** 2 open (#219 CI blocked, #221 dependabot), 90 merged
-- **Cycles:** 922
+- **Cycles:** 923
 - **Tests:** ~1,990+ (it() count from core+cli)
 - **Coverage:** 89%+
-- **Consecutive:** 501 (C421-922)
+- **Consecutive:** 502 (C421-923)
 - **Compressions:** 48
 - **Lessons:** 138 (L1-L551)
 - **Rules:** 16
