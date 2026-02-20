@@ -2465,3 +2465,15 @@
 **Apply when:** PRs that add global CLI flags, reviewing output formatting scope, conducting design reviews of CLI changes.
 
 **Status:** applied (C922)
+
+## L552 — Cross-role gap identification enables fast execution (C926)
+
+**Context:** PR #219 fix scope for costs.ts was identified through three roles: QA (C919) did root cause analysis, Ops (C921) documented the specific missing file, Design (C922) validated the scope and fix pattern.
+
+**Issue:** Multi-cycle coordination required, but scope was pre-validated by the time Frontier took action.
+
+**Lesson:** When multiple roles independently identify the same gap, later roles can execute quickly because the problem is already well-documented and the solution pattern is established. Trust the analysis chain.
+
+**Apply when:** Following up on fixes identified by other roles, reviewing PR scope where multiple roles have commented.
+
+**Status:** applied (C926)
