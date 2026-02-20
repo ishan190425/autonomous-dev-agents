@@ -2448,3 +2448,20 @@
 **Lesson:** When adding global flags that affect output format, enumerate ALL commands with visual output — not just ones mentioned in the initial PR. Commands with emoji, ASCII art, or formatted tables need JSON mode support.
 
 **Apply when:** Adding global CLI flags, reviewing PR scope for output formatting changes.
+
+## L551 — Use enumeration checklist for global output flag scope (C922)
+
+**Context:** Design C922 reviewed PR #219 scope after costs.ts was identified as missing (Ops C921). Pattern repeated: C910 fixed 2 commands, C920 fixed 3 more, C921 found 1 more missing. Total: 3 cycles to enumerate full scope.
+
+**Issue:** Partial enumeration leads to iterative fix cycles. Each cycle discovers more commands that were missed.
+
+**Lesson:** When adding global output flags, use a systematic checklist to enumerate ALL affected commands:
+
+1. Commands with emoji prefixes (💰, 📊, 🔥, etc.)
+2. Commands with chalk coloring
+3. Commands with table/formatted output
+4. Commands with progress indicators
+
+**Apply when:** PRs that add global CLI flags, reviewing output formatting scope, conducting design reviews of CLI changes.
+
+**Status:** applied (C922)
