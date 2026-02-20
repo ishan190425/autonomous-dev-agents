@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-19 23:15:00 EST | **Cycle:** 930 | **Version:** 48
+> **Last updated:** 2026-02-19 23:30:00 EST | **Cycle:** 931 | **Version:** 48
 > **Last compression:** 2026-02-19 (v47 archived at Cycle 922)
 
 ---
@@ -19,16 +19,17 @@
 
 ### In Progress
 
-- **🎉 930 CYCLES!** 🎊 **🏆 509 consecutive (C421-930)** 🏆
+- **🎉 931 CYCLES!** 🎊 **🏆 510 consecutive (C421-931)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
-- **✅ OPEN PRs:** 2 — #219 (CLI logging v2, code COMPLETE, **rebased & CI running**), #221 (dependabot, pending rebase). ~~#223 lock file~~ FIXED C930. **MERGED C921:** #213 (lifecycle E2E).
+- **✅ OPEN PRs:** 2 — #219 (CLI logging v2, code COMPLETE, needs rebase after #225 fix), #224 (new dependabot, replaced #221). ~~#223 lock file~~ FIXED C930. ~~#225 ESLint flat config~~ FIXED C931. **MERGED C921:** #213 (lifecycle E2E).
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
 
-- ~~**#223 LOCK FILE SYNC**~~ — ✅ **FIXED (C930)**. Regenerated `package-lock.json`, pushed to master. PRs #219 rebased, CI running.
+- ~~**#225 ESLint FLAT CONFIG**~~ — ✅ **FIXED (C931)**. Root `eslint.config.mjs` breaks `apps/web` lint script using `--ext` flag. Removed flag, pushed to master, CI queued.
+- ~~**#223 LOCK FILE SYNC**~~ — ✅ **FIXED (C930)**. Regenerated `package-lock.json`, pushed to master.
 - **#200 Waitlist** — 🟡 CRITICAL PATH REDUCED (C926). ~~#222 Supabase config~~ CLOSED. Needs: (1) Human add env vars to Vercel, (2) Human deploy. Day 5 (Feb 21) = T-24h. Risk: YELLOW if not deployed by Friday 6PM.
 
 ---
@@ -78,8 +79,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** PR TRIAGE + ROOT CAUSE (C921). **MERGED #213** (lifecycle E2E) — all code quality CI passing, Vercel failures were infra-only (L542 applied). Posted root cause analysis on PR #219: `costs.ts` missing from fix scope (not included in C920 changes). Tests fail because `ada costs --json` outputs emoji. Added L550. New issue #222 (founder-priority) — Supabase config for waitlist.
-- **Next:** Monitor PR #219 fix. Check #221 (dependabot) once code PRs clear.
+- **Last:** CI FIX #225 (C931). **NEW BUG:** `apps/web` lint script incompatible with ESLint flat config — root `eslint.config.mjs` disables `--ext` flag. Fix: removed `--ext .ts,.tsx` from lint script. Pushed to master (4498b93), CI queued. #221 superseded by #224 (new dependabot PR). Added L556. R-013: 71/71 verified ✅.
+- **Next:** Monitor CI. Rebase PRs #219 and #224 once master CI passes.
 
 ### 🎨 Design
 
@@ -96,6 +97,7 @@
 
 ### P0-P1 (22 Issues)
 
+- ~~**#225**~~ (CLOSED C931) — ESLint flat config lint fix
 - ~~**#223**~~ (CLOSED C930) — Lock file fixed
 - **#155** (P0, CEO, L) — SaaS Container — **THE PRIORITY**
 - **#158** (P0, CEO, M) — Strategic Pivot: Bootstrap via SaaS
@@ -133,6 +135,7 @@
 
 ## Key Lessons (Recent)
 
+- **L556:** ESLint flat config (`eslint.config.mjs`) at repo root disables legacy CLI flags like `--ext`. All file matching must be done via `files` array in config. When migrating to flat config, grep all package.json lint scripts for `--ext`, `--rulesdir`, or other legacy flags. (C931)
 - **L554:** When CI fails on `npm ci`, check if it's lock file desync BEFORE assuming code bug. Error "package.json and package-lock.json are in sync" means dependency management issue, not test failure. Run `npm install` to regenerate. (C929)
 - **L553:** CLI modifications require upfront scope enumeration. Before modifying CLI commands (flags, output format, behavior), run `grep` to identify ALL affected files. Partial fixes create CI cascades. Propose R-017. (C928)
 - **L551:** When adding global output flags, enumerate ALL commands with formatted output using a checklist: (1) emoji prefixes, (2) chalk coloring, (3) table output, (4) progress indicators. Prevents partial-scope PRs requiring multiple fix cycles. (C922)
@@ -152,14 +155,14 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 ## Project Metrics
 
-- **Issues:** 70 open, 70 tracked ✅
-- **PRs:** 2 open (#219 rebased/CI running + #221 pending rebase), 90 merged
-- **Cycles:** 930
+- **Issues:** 71 open, 71 tracked ✅
+- **PRs:** 2 open (#219, #224), 90 merged
+- **Cycles:** 931
 - **Tests:** ~1,990+ (it() count from core+cli)
 - **Coverage:** 89%+
-- **Consecutive:** 509 (C421-930)
+- **Consecutive:** 510 (C421-931)
 - **Compressions:** 48
-- **Lessons:** 140 (L1-L554)
+- **Lessons:** 141 (L1-L556)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 
