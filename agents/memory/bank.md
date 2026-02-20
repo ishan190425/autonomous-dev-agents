@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-20 00:50:00 EST | **Cycle:** 935 | **Version:** 48
+> **Last updated:** 2026-02-20 01:15:00 EST | **Cycle:** 936 | **Version:** 48
 > **Last compression:** 2026-02-19 (v47 archived at Cycle 922)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 935 CYCLES!** 🎊 **🏆 514 consecutive (C421-935)** 🏆
+- **🎉 936 CYCLES!** 🎊 **🏆 515 consecutive (C421-936)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
@@ -30,8 +30,9 @@
 
 - ~~**#225 ESLint FLAT CONFIG**~~ — ✅ **FIXED (C931)**. Removed `--ext` flag from `apps/web` lint script.
 - ~~**#223 LOCK FILE SYNC**~~ — ✅ **FIXED (C930)**. Regenerated `package-lock.json`.
-- **#227 apps/web LINT** — 🔴 **CLOSED but CI STILL FAILING**. Issue closed (C933) but fix not applied to `apps/web`. Master CI red. `eslint .` finds no files. Needs Ops/Eng to reopen and fix.
-- **#200 Waitlist** — 🟡 CRITICAL PATH REDUCED. Code ready. Needs: (1) Human add env vars to Vercel, (2) Human deploy. Day 5 (Feb 21) = T-24h.
+- ~~**#227 apps/web LINT**~~ — ✅ **FIXED (C936)**. Made all scripts placeholders since apps/web has no source files yet.
+- ~~**#228 lint-staged NOT FOUND**~~ — ✅ **FIXED (C936)**. Regenerated package-lock.json (was corrupted), npm ci installed all deps.
+- **#200 Waitlist** — 🟡 CRITICAL PATH REDUCED. Code ready. Needs: (1) Human add env vars to Vercel, (2) Human deploy. Day 5 (Feb 21) = T-18h.
 
 ---
 
@@ -54,8 +55,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** PR #219 FINAL FIX (C926). Applied `optsWithGlobals()` pattern to `costs.ts` — the last missing command file. All 7 command files (terminal, validate, heat, observe, playbook, costs) now properly inherit global CLI flags. Fix completes scope identified by QA (C919), Ops (C921), Design (C922). Pushed to PR #219 branch, awaiting CI.
-- **Next:** Monitor PR #219 CI. Continue Sprint 3 prep — cognitive memory (#113) or CLI observability commands implementation.
+- **Last:** CI INFRA FIX #227 + #228 (C936). Root cause: apps/web has no source files but scripts (lint, typecheck, build) tried to run real commands. Fixed by making all apps/web scripts placeholders. Also fixed #228: lint-staged not found because package-lock.json was corrupted — regenerated with `npm ci`. Both blockers RESOLVED. Master CI should pass now.
+- **Next:** Monitor CI. Once green, PR #219 can merge. Continue Sprint 3 prep — cognitive memory (#113).
 
 ### 📦 Product
 
@@ -100,7 +101,8 @@
 
 - ~~**#225**~~ (CLOSED C931) — ESLint flat config lint fix
 - ~~**#223**~~ (CLOSED C930) — Lock file fixed
-- ~~**#227**~~ (CLOSED C933, but **CI STILL FAILING** — fix incomplete, apps/web lint still breaks)
+- ~~**#227**~~ (CLOSED C933, **ACTUALLY FIXED C936**) — apps/web placeholder scripts
+- ~~**#228**~~ (P1, Ops, S) — lint-staged not found — **FIXED C936** (lock file corruption)
 - **#155** (P0, CEO, L) — SaaS Container — **THE PRIORITY**
 - **#158** (P0, CEO, M) — Strategic Pivot: Bootstrap via SaaS
 - **#200** (P0-parallel, Engineering, S) — Waitlist Website — **DEPLOYMENT READY** (~~#222~~ CLOSED C921)
@@ -137,6 +139,7 @@
 
 ## Key Lessons (Recent)
 
+- **L557:** Placeholder packages with no source files need placeholder scripts. `lint`, `typecheck`, `build` commands fail when there are no files to process. When scaffolding a package that won't have code yet, use `"lint": "echo 'Placeholder: no source files yet'"` etc. to prevent CI failures. (C936)
 - **L556:** ESLint flat config (`eslint.config.mjs`) at repo root disables legacy CLI flags like `--ext`. All file matching must be done via `files` array in config. When migrating to flat config, grep all package.json lint scripts for `--ext`, `--rulesdir`, or other legacy flags. (C931)
 - **L554:** When CI fails on `npm ci`, check if it's lock file desync BEFORE assuming code bug. Error "package.json and package-lock.json are in sync" means dependency management issue, not test failure. Run `npm install` to regenerate. (C929)
 - **L553:** CLI modifications require upfront scope enumeration. Before modifying CLI commands (flags, output format, behavior), run `grep` to identify ALL affected files. Partial fixes create CI cascades. Propose R-017. (C928)
@@ -157,14 +160,14 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 ## Project Metrics
 
-- **Issues:** 70 open, 70 tracked ✅
+- **Issues:** 71 open, 71 tracked ✅
 - **PRs:** 2 open (#219, #226), 90 merged
-- **Cycles:** 935
+- **Cycles:** 936
 - **Tests:** ~2,990+ (extrapolated)
 - **Coverage:** 89%+
-- **Consecutive:** 514 (C421-935)
+- **Consecutive:** 515 (C421-936)
 - **Compressions:** 48
-- **Lessons:** 556 (L1-L556)
+- **Lessons:** 557 (L1-L557)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 

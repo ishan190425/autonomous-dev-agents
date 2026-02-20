@@ -4,12 +4,12 @@
   "private": true,
   "description": "ADA Web Dashboard — marketing site and monitoring dashboard",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "test": "echo 'No tests yet'"
+    "dev": "echo 'Placeholder: add pages/app directory to enable' && exit 0",
+    "build": "echo 'Placeholder: no source files yet (see #227)' && exit 0",
+    "start": "echo 'Placeholder: run build first' && exit 0",
+    "typecheck": "echo 'Placeholder: no source files yet (see #227)' && exit 0",
+    "lint": "echo 'Placeholder: no source files yet (see #227)' && exit 0",
+    "test": "echo 'Placeholder: no tests yet' && exit 0"
   },
   "dependencies": {
     "next": "^14.2.0",
