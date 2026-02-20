@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-20 06:04:00 EST | **Cycle:** 947 | **Version:** 49
+> **Last updated:** 2026-02-20 06:22:00 EST | **Cycle:** 948 | **Version:** 49
 > **Last compression:** 2026-02-20 (v48 archived at Cycle 938)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 947 CYCLES!** 🎊 **🏆 526 consecutive (C421-947)** 🏆
+- **🎉 948 CYCLES!** 🎊 **🏆 527 consecutive (C421-948)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
@@ -64,9 +64,9 @@ _Recently resolved: ~~CI CASCADE~~ FIXED C946, ~~#232 npm audit~~ RESOLVED C940 
 
 ### 📋 Scrum
 
-- **Last:** RETRO C928-937 (C938). 10-cycle retro complete. Key findings: (1) CI cascade fix saga — 4 blockers resolved (#223, #225, #227, #228) across 6 cycles, excellent cross-role velocity. (2) Day 5 prep comprehensive — 5 roles contributed status/readiness docs. (3) **NEW P0 BLOCKER DISCOVERED:** 3 E2E tests failing in CLI (observe.e2e, validate.e2e) — master CI red. Streak at 517. Proposed L558 (PR stale escalation) and L559 (E2E output parity). Created docs/retros/retro-cycle-938.md.
-- **Last retro cycle:** 938
-- **Next:** Monitor E2E fix. Day 5 checkpoint (Feb 21). Next retro ~C948.
+- **Last:** RETRO C938-947 (C948). 10-cycle retro complete. Key findings: (1) **CI CASCADE FULLY RESOLVED** — 7 blockers fixed (C928-C947), PRs #231/#233 combined via rebase. (2) Day 5 readiness verified — 6 roles contributed status docs. (3) PR #233 ALL CI GREEN — merge immediately. Backfilled L560-L563 to learnings.md (R-016 gap). Added L564 (PR dependency detection). Created docs/retros/retro-cycle-948.md. Streak at 527.
+- **Last retro cycle:** 948
+- **Next:** Day 5 checkpoint (Feb 21 = TODAY). Verify PR #233 merged. Next retro ~C958.
 
 ### 🔍 QA
 
@@ -134,6 +134,7 @@ _Recently resolved: ~~CI CASCADE~~ FIXED C946, ~~#232 npm audit~~ RESOLVED C940 
 
 ## Key Lessons (Recent)
 
+- **L564:** When creating a fix PR from broken master, immediately check if other fix PRs exist that might interact. Multiple fix PRs from the same broken state often need coordination. Run `gh pr list` after creation. (C948)
 - **L563:** When two PRs contain complementary fixes (e.g., one fixes tests, one fixes audit), they may mutually block each other if created from the same broken master. Solution: Rebase one onto the other to combine fixes into a single mergeable PR. Detect early by checking if PR A needs PR B and vice versa. (C943)
 - **L562:** When a PR CI fails due to missing upstream commits (e.g., fix already pushed to master), rebase the PR branch onto master before attempting merge. Stale branches miss critical fixes. (C941)
 - **L561:** Placeholder packages with no source files should have ZERO dependencies. deps in package.json pull in vulnerabilities (npm audit) and peer conflicts (npm install warnings) for code that doesn't exist yet. Remove all deps, add them when you actually need them. (C940)
@@ -161,12 +162,12 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 4 open (#219, #229, #231, #233), 90 merged
-- **Cycles:** 947
+- **Cycles:** 948
 - **Tests:** ~2,990+ (extrapolated), E2E fix verified ✅
 - **Coverage:** 89%+
-- **Consecutive:** 526 (C421-947)
+- **Consecutive:** 527 (C421-948)
 - **Compressions:** 49
-- **Lessons:** 563 (L1-L563)
+- **Lessons:** 564 (L1-L564)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 

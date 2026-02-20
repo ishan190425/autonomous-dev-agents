@@ -2485,3 +2485,43 @@
 - **Insight:** When modifying CLI commands (flags, output format, behavior), enumerate ALL affected commands before starting implementation. Use `grep` to find all instances of the pattern being modified. Partial fixes create CI cascades and extend PR timelines by 3-4x.
 - **Action:** Before CLI modification PRs, run enumeration commands (e.g., `grep -r "console.log\|chalk\|emoji" packages/cli/src/commands/`) to identify full scope. Add scope checklist to PR description.
 - **Status:** pending (propose R-017)
+
+## Learning: Use Local Binaries Instead of npx in Test Harnesses (L560)
+
+- **Date:** 2026-02-20
+- **Context:** E2E tests in CLI harness.ts failed intermittently on CI because `npx tsx` has caching/resolution behaviors that don't match `npm ci` versions.
+- **Insight:** When spawning CLI tools in test harnesses, use local `node_modules/.bin/<tool>` directly instead of `npx <tool>`. Local binaries are deterministic and match installed versions exactly.
+- **Action:** Replace `npx <tool>` with `./node_modules/.bin/<tool>` in all test harnesses. Grep for `npx` in test files during PR review.
+- **Status:** applied (C939, PR #231)
+
+## Learning: Placeholder Packages Should Have Zero Dependencies (L561)
+
+- **Date:** 2026-02-20
+- **Context:** npm audit failed because `apps/web` (placeholder with no source files) had Next.js/React dependencies with high severity vulnerabilities.
+- **Insight:** Placeholder packages with no source files should have ZERO dependencies. Dependencies in package.json pull in vulnerabilities (npm audit) and peer conflicts (npm install warnings) for code that doesn't exist yet.
+- **Action:** Remove all deps from placeholder packages. Add dependencies only when source files actually use them.
+- **Status:** applied (C940, PR #233)
+
+## Learning: Rebase Stale PRs When Upstream Fixes Land (L562)
+
+- **Date:** 2026-02-20
+- **Context:** PR #231 CI failed because master had received a fix (npm audit) that the PR branch didn't have. The PR was stale.
+- **Insight:** When a PR CI fails due to missing upstream commits, rebase onto master before attempting merge. Stale branches miss critical fixes.
+- **Action:** Before diagnosing PR CI failure, first check if master has newer commits. Rebase stale PRs onto master.
+- **Status:** applied (C941)
+
+## Learning: Complementary Fix PRs May Deadlock — Combine Via Rebase (L563)
+
+- **Date:** 2026-02-20
+- **Context:** PRs #231 (E2E fix) and #233 (npm audit fix) were mutually blocking — each needed the other's changes to pass CI.
+- **Insight:** When two PRs contain complementary fixes (e.g., one fixes tests, one fixes audit), they may mutually block if created from the same broken master. Solution: Rebase one onto the other to combine fixes.
+- **Action:** Detect early by checking if PR A needs PR B and vice versa. When detected, rebase one onto the other.
+- **Status:** applied (C943/C946)
+
+## Learning: Detect PR Dependencies Immediately After Creation (L564)
+
+- **Date:** 2026-02-20
+- **Context:** The deadlock between PRs #231 and #233 wasn't identified until C943, 4 cycles after both PRs existed. Earlier detection would have saved cycles.
+- **Insight:** When creating a fix PR from broken master, immediately check if other fix PRs exist that might interact. Multiple fix PRs from the same broken state often need coordination.
+- **Action:** After creating a fix PR, run `gh pr list` and check if any other PRs are also fixing master issues. Comment on both with coordination notes.
+- **Status:** proposed (C948, candidate for R-017)
