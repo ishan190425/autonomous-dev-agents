@@ -468,25 +468,33 @@ export const validateCommand = new Command('validate')
   .option('--json', 'Output results as JSON')
   .option('-v, --verbose', 'Show detailed information')
   .option('--quick', 'Skip network-dependent checks (GitHub, cost savings)')
-  .action(async (options: ValidateOptions) => {
-    if (!options.json) {
+  .action(async function(this: Command, options: ValidateOptions) {
+    // Merge global options (--json, --verbose from parent program)
+    const globalOpts = this.optsWithGlobals();
+    const mergedOptions: ValidateOptions = {
+      ...options,
+      json: options.json || globalOpts.json,
+      verbose: options.verbose || globalOpts.verbose,
+    };
+
+    if (!mergedOptions.json) {
       console.log();
       console.log(bold('🔍 Phase 2 Dogfooding Validation'));
       console.log(dim('   Checking all 6 success criteria (SC-1 through SC-6)'));
       console.log();
     }
     
-    const results = await runValidation(options);
+    const results = await runValidation(mergedOptions);
     const overall = calculateOverallStatus(results);
     
-    if (options.json) {
+    if (mergedOptions.json) {
       console.log(JSON.stringify({ overall, results }, null, 2));
       return;
     }
     
     // Display results
     for (const result of results) {
-      console.log(formatResult(result, options.verbose ?? false));
+      console.log(formatResult(result, mergedOptions.verbose ?? false));
     }
     
     console.log();

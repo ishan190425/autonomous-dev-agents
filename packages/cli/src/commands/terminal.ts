@@ -382,16 +382,29 @@ export const terminalCommand = new Command('terminal')
   .option('--json', 'Output as JSON')
   .option('--color', 'Force color output')
   .option('--no-color', 'Disable color output')
-  .action(terminalStatus);
+  .action(async function(this: Command, options: TerminalOptions) {
+    // Merge global options (--json from parent program)
+    const globalOpts = this.optsWithGlobals();
+    const mergedOptions: TerminalOptions = {
+      ...options,
+      json: options.json || globalOpts.json,
+    };
+    await terminalStatus(mergedOptions);
+  });
 
 terminalCommand
   .command('detect')
   .description('Detect and display current shell environment')
   .option('-s, --shell <path>', 'Override shell path')
   .option('--json', 'Output as JSON')
-  .action(async (cmdOptions) => {
-    const parentOptions = terminalCommand.opts();
-    await terminalDetect({ ...parentOptions, ...cmdOptions });
+  .action(async function(this: Command, cmdOptions: TerminalOptions & { shell?: string }) {
+    // Merge global options (--json from parent program)
+    const globalOpts = this.optsWithGlobals();
+    const mergedOptions = {
+      ...cmdOptions,
+      json: cmdOptions.json || globalOpts.json,
+    };
+    await terminalDetect(mergedOptions);
   });
 
 terminalCommand
@@ -402,9 +415,14 @@ terminalCommand
   .option('--max-lines <n>', 'Maximum output lines before truncation', '200')
   .option('-r, --role <role>', 'Role executing the command (for formatting)', 'engineering')
   .option('--json', 'Output as JSON')
-  .action(async (command, cmdOptions) => {
-    const parentOptions = terminalCommand.opts();
-    await terminalExec(command, { ...parentOptions, ...cmdOptions });
+  .action(async function(this: Command, command: string, cmdOptions: TerminalExecOptions) {
+    // Merge global options (--json from parent program)
+    const globalOpts = this.optsWithGlobals();
+    const mergedOptions: TerminalExecOptions = {
+      ...cmdOptions,
+      json: cmdOptions.json || globalOpts.json,
+    };
+    await terminalExec(command, mergedOptions);
   });
 
 terminalCommand
@@ -413,16 +431,26 @@ terminalCommand
   .option('-l, --limit <n>', 'Maximum entries to show', '20')
   .option('-c, --cycle <n>', 'Cycle number (defaults to current/last)')
   .option('--json', 'Output as JSON')
-  .action(async (cmdOptions) => {
-    const parentOptions = terminalCommand.opts();
-    await terminalHistory({ ...parentOptions, ...cmdOptions });
+  .action(async function(this: Command, cmdOptions: TerminalHistoryOptions) {
+    // Merge global options (--json from parent program)
+    const globalOpts = this.optsWithGlobals();
+    const mergedOptions: TerminalHistoryOptions = {
+      ...cmdOptions,
+      json: cmdOptions.json || globalOpts.json,
+    };
+    await terminalHistory(mergedOptions);
   });
 
 terminalCommand
   .command('demo')
   .description('Demonstrate terminal mode formatting (no real commands executed)')
   .option('--json', 'Output as JSON')
-  .action(async (cmdOptions) => {
-    const parentOptions = terminalCommand.opts();
-    await terminalDemo({ ...parentOptions, ...cmdOptions });
+  .action(async function(this: Command, cmdOptions: TerminalOptions) {
+    // Merge global options (--json from parent program)
+    const globalOpts = this.optsWithGlobals();
+    const mergedOptions: TerminalOptions = {
+      ...cmdOptions,
+      json: cmdOptions.json || globalOpts.json,
+    };
+    await terminalDemo(mergedOptions);
   });

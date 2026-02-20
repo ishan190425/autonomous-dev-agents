@@ -1017,9 +1017,16 @@ export const memoryCommand = new Command('memory')
       .option('-r, --role <role>', 'Filter by role (e.g., engineering)')
       .option('--json', 'Output as JSON')
       .option('-v, --verbose', 'Show full entry details')
-      .action(async (query: string, options: MemorySearchOptions) => {
+      .action(async function(this: Command, query: string, options: MemorySearchOptions) {
+        // Merge global options (--json, --verbose from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOptions: MemorySearchOptions = {
+          ...options,
+          json: options.json || globalOpts.json,
+          verbose: options.verbose || globalOpts.verbose,
+        };
         try {
-          await executeSearch(query, options);
+          await executeSearch(query, mergedOptions);
         } catch (err) {
           const error = err as Error;
           console.error(chalk.red(`\n❌ Error: ${error.message}`));
@@ -1037,9 +1044,15 @@ export const memoryCommand = new Command('memory')
       .option('--since <date>', 'Filter entries from this date (YYYY-MM-DD, today, yesterday)')
       .option('--until <date>', 'Filter entries up to this date (YYYY-MM-DD, today, yesterday)')
       .option('--json', 'Output as JSON')
-      .action(async (options: MemoryListOptions) => {
+      .action(async function(this: Command, options: MemoryListOptions) {
+        // Merge global options (--json from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOptions: MemoryListOptions = {
+          ...options,
+          json: options.json || globalOpts.json,
+        };
         try {
-          await executeList(options);
+          await executeList(mergedOptions);
         } catch (err) {
           const error = err as Error;
           console.error(chalk.red(`\n❌ Error: ${error.message}`));
@@ -1054,9 +1067,16 @@ export const memoryCommand = new Command('memory')
       .option('--json', 'Output as JSON')
       .option('--no-color', 'Disable colored output')
       .option('-v, --verbose', 'Include archive history')
-      .action(async (options: MemoryStatsOptions) => {
+      .action(async function(this: Command, options: MemoryStatsOptions) {
+        // Merge global options (--json, --verbose from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOptions: MemoryStatsOptions = {
+          ...options,
+          json: options.json || globalOpts.json,
+          verbose: options.verbose || globalOpts.verbose,
+        };
         try {
-          await executeStats(options);
+          await executeStats(mergedOptions);
         } catch (err) {
           const error = err as Error;
           console.error(chalk.red(`\n❌ Error: ${error.message}`));
@@ -1087,9 +1107,16 @@ export const memoryCommand = new Command('memory')
       .option('-f, --force', 'Force reindex even if store exists')
       .option('--json', 'Output as JSON')
       .option('-v, --verbose', 'Show detailed output')
-      .action(async (options: MemoryEmbedOptions) => {
+      .action(async function(this: Command, options: MemoryEmbedOptions) {
+        // Merge global options (--json, --verbose from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOptions: MemoryEmbedOptions = {
+          ...options,
+          json: options.json || globalOpts.json,
+          verbose: options.verbose || globalOpts.verbose,
+        };
         try {
-          await executeEmbed(options);
+          await executeEmbed(mergedOptions);
         } catch (err) {
           const error = err as Error;
           console.error(chalk.red(`\n❌ Error: ${error.message}`));
@@ -1104,9 +1131,16 @@ export const memoryCommand = new Command('memory')
       .option('--json', 'Output as JSON')
       .option('--no-color', 'Disable colored output')
       .option('-v, --verbose', 'Show store details')
-      .action(async (options: MemoryLifecycleOptions) => {
+      .action(async function(this: Command, options: MemoryLifecycleOptions) {
+        // Merge global options (--json, --verbose from parent)
+        const globalOpts = this.optsWithGlobals();
+        const mergedOptions: MemoryLifecycleOptions = {
+          ...options,
+          json: options.json || globalOpts.json,
+          verbose: options.verbose || globalOpts.verbose,
+        };
         try {
-          await executeLifecycle(options);
+          await executeLifecycle(mergedOptions);
         } catch (err) {
           const error = err as Error;
           console.error(chalk.red(`\n❌ Error: ${error.message}`));

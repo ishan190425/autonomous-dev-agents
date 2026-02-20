@@ -916,23 +916,29 @@ export const observeCommand = new Command('observe')
   .option('--json', 'Output as JSON for scripting')
   .option('-e, --export <file>', 'Export metrics to file (auto-detects format from extension: .csv, .json, .tsv)')
   .option('-f, --force', 'Overwrite existing file without confirmation')
-  .action(async (options: ObserveOptions) => {
+  .action(async function(this: Command, options: ObserveOptions) {
+    // Merge global options (--json from parent ada command)
+    const globalOpts = this.optsWithGlobals();
+    const mergedOptions: ObserveOptions = {
+      ...options,
+      json: options.json || globalOpts.json,
+    };
     const cwd = process.cwd();
-    const agentsDir = path.resolve(cwd, options.dir);
+    const agentsDir = path.resolve(cwd, mergedOptions.dir);
     const rosterPath = path.join(agentsDir, 'roster.json');
 
     // Validate export format if --export is used
     let exportFormat: ExportFormat | null = null;
-    if (options.export) {
-      exportFormat = detectFormat(options.export);
+    if (mergedOptions.export) {
+      exportFormat = detectFormat(mergedOptions.export);
       if (!exportFormat) {
         console.error(chalk.red(`❌ Unsupported file extension. Supported formats: ${getSupportedExtensions().join(', ')}`));
         process.exit(1);
       }
 
       // Check for file overwrite
-      if (fileExists(options.export) && !options.force) {
-        const confirmed = await confirmOverwrite(options.export);
+      if (fileExists(mergedOptions.export) && !mergedOptions.force) {
+        const confirmed = await confirmOverwrite(mergedOptions.export);
         if (!confirmed) {
           console.log(chalk.gray('Export cancelled.'));
           return;
@@ -943,10 +949,10 @@ export const observeCommand = new Command('observe')
     try {
       // Validate --last option
       let lastN: number | undefined;
-      if (options.last !== undefined) {
-        lastN = parseInt(options.last, 10);
+      if (mergedOptions.last !== undefined) {
+        lastN = parseInt(mergedOptions.last, 10);
         if (isNaN(lastN) || lastN < 1) {
-          if (options.json) {
+          if (mergedOptions.json) {
             console.log(JSON.stringify({ error: 'Invalid value for --last: must be at least 1' }));
           } else {
             console.error(chalk.red('❌ Invalid value for --last: must be at least 1'));
@@ -964,17 +970,17 @@ export const observeCommand = new Command('observe')
       }
 
       // Create metrics manager and load data
-      const metricsManager = createMetricsManager(cwd, options.dir);
+      const metricsManager = createMetricsManager(cwd, mergedOptions.dir);
       const allCycles = await metricsManager.getRecent(100);
       const unfilteredTotal = allCycles.length;
 
       // Handle empty state
       if (allCycles.length === 0) {
-        if (options.export || options.json) {
-          if (options.export && exportFormat) {
+        if (mergedOptions.export || mergedOptions.json) {
+          if (mergedOptions.export && exportFormat) {
             // Export empty file with headers
-            exportToFile(options.export, exportFormat, { cycles: [], metrics: null, byRole: options.byRole });
-            console.log(chalk.green(`✅ Exported empty dataset to ${options.export}`));
+            exportToFile(mergedOptions.export, exportFormat, { cycles: [], metrics: null, byRole: mergedOptions.byRole });
+            console.log(chalk.green(`✅ Exported empty dataset to ${mergedOptions.export}`));
           } else {
             console.log(JSON.stringify({ error: 'No observability data collected yet.' }));
           }
@@ -1015,10 +1021,10 @@ export const observeCommand = new Command('observe')
         : await metricsManager.aggregate();
 
       if (!aggregated) {
-        if (options.export || options.json) {
-          if (options.export && exportFormat) {
-            exportToFile(options.export, exportFormat, { cycles: [], metrics: null, byRole: options.byRole });
-            console.log(chalk.green(`✅ Exported empty dataset to ${options.export}`));
+        if (mergedOptions.export || mergedOptions.json) {
+          if (mergedOptions.export && exportFormat) {
+            exportToFile(mergedOptions.export, exportFormat, { cycles: [], metrics: null, byRole: mergedOptions.byRole });
+            console.log(chalk.green(`✅ Exported empty dataset to ${mergedOptions.export}`));
           } else {
             console.log(JSON.stringify({ error: 'No observability data collected yet.' }));
           }
@@ -1029,12 +1035,12 @@ export const observeCommand = new Command('observe')
       }
 
       // Specific cycle view
-      if (options.cycle) {
-        const cycleNumber = parseInt(options.cycle, 10);
+      if (mergedOptions.cycle) {
+        const cycleNumber = parseInt(mergedOptions.cycle, 10);
         const cycle = await metricsManager.getCycle(cycleNumber);
 
         if (!cycle) {
-          if (options.export || options.json) {
+          if (mergedOptions.export || mergedOptions.json) {
             console.error(JSON.stringify({ error: `Cycle ${cycleNumber} not found in tracked metrics.` }));
           } else {
             console.error(chalk.red(`❌ Cycle ${cycleNumber} not found in tracked metrics.`));
@@ -1043,13 +1049,13 @@ export const observeCommand = new Command('observe')
           process.exit(1);
         }
 
-        if (options.export && exportFormat) {
-          exportToFile(options.export, exportFormat, { cycleDetail: cycle });
-          console.log(chalk.green(`✅ Exported cycle ${cycleNumber} to ${options.export}`));
+        if (mergedOptions.export && exportFormat) {
+          exportToFile(mergedOptions.export, exportFormat, { cycleDetail: cycle });
+          console.log(chalk.green(`✅ Exported cycle ${cycleNumber} to ${mergedOptions.export}`));
           return;
         }
 
-        if (options.json) {
+        if (mergedOptions.json) {
           printJson(null, cycles, cycle, filter);
         } else {
           printCycleDetails(cycle, roster, aggregated.firstCycle, filter);
@@ -1058,25 +1064,25 @@ export const observeCommand = new Command('observe')
       }
 
       // Export mode
-      if (options.export && exportFormat) {
-        exportToFile(options.export, exportFormat, {
+      if (mergedOptions.export && exportFormat) {
+        exportToFile(mergedOptions.export, exportFormat, {
           cycles,
           metrics: aggregated,
-          byRole: options.byRole,
+          byRole: mergedOptions.byRole,
         });
-        const recordCount = options.byRole ? Object.keys(aggregated.byRole).length : cycles.length;
-        console.log(chalk.green(`✅ Exported ${recordCount} records to ${options.export}`));
+        const recordCount = mergedOptions.byRole ? Object.keys(aggregated.byRole).length : cycles.length;
+        console.log(chalk.green(`✅ Exported ${recordCount} records to ${mergedOptions.export}`));
         return;
       }
 
       // JSON output
-      if (options.json) {
+      if (mergedOptions.json) {
         printJson(aggregated, cycles, null, filter);
         return;
       }
 
       // By-role view
-      if (options.byRole) {
+      if (mergedOptions.byRole) {
         printByRole(aggregated, cycles, roster, filter);
         return;
       }
@@ -1085,7 +1091,7 @@ export const observeCommand = new Command('observe')
       const projectName = roster?.product ?? 'ADA Project';
       printDashboard(aggregated, cycles, projectName, filter);
     } catch (err) {
-      if (options.export || options.json) {
+      if (mergedOptions.export || mergedOptions.json) {
         console.error(JSON.stringify({ error: (err as Error).message }));
       } else {
         console.error(chalk.red('❌ Could not load observability data:'), (err as Error).message);

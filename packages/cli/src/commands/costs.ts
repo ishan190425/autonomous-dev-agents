@@ -208,7 +208,9 @@ export const costsCommand = new Command('costs')
   .option('-e, --export <file>', 'Export costs to file (auto-detects format from extension: .csv, .json, .tsv)')
   .option('-f, --force', 'Overwrite existing file without confirmation')
   .option('-s, --savings', 'Show model routing savings analysis (Phase 2 dogfooding)')
-  .action(async (options: CostsOptions) => {
+  .action(async function(this: Command, options: CostsOptions) {
+    const globalOpts = this.optsWithGlobals();
+    const useJson = options.json || globalOpts.json;
     const cwd = process.cwd();
 
     // Validate export format if --export is used
@@ -247,7 +249,7 @@ export const costsCommand = new Command('costs')
             model: 'unknown',
           });
           console.log(chalk.green(`✅ Exported empty cost data to ${options.export}`));
-        } else if (options.json) {
+        } else if (useJson) {
           console.log(JSON.stringify({ error: 'No cost data collected yet.' }));
         } else {
           console.log(chalk.yellow('💰 No cost data collected yet.'));
@@ -278,11 +280,11 @@ export const costsCommand = new Command('costs')
       // Savings analysis mode (Phase 2 dogfooding)
       if (options.savings) {
         const analysis = calculateSavingsAnalysis(cycles);
-        displaySavingsAnalysis(analysis, !!options.json);
+        displaySavingsAnalysis(analysis, !!useJson);
         return;
       }
 
-      if (options.json) {
+      if (useJson) {
         console.log(JSON.stringify({
           today: { cost: today.cost, cycles: today.count },
           week: { cost: week.cost, cycles: week.count },
@@ -305,7 +307,7 @@ export const costsCommand = new Command('costs')
       console.log();
       console.log(chalk.gray("Use 'ada observe' for full breakdown"));
     } catch (err) {
-      if (options.export || options.json) {
+      if (options.export || useJson) {
         console.error(JSON.stringify({ error: (err as Error).message }));
       } else {
         console.error(chalk.red('❌ Could not load cost data:'), (err as Error).message);
