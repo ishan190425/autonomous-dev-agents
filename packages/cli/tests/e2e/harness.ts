@@ -50,6 +50,9 @@ export class Sandbox {
   /** Whether the sandbox has been cleaned up */
   private cleaned = false;
 
+  /** Path to the tsx binary (resolved from monorepo root) */
+  private readonly tsxPath: string;
+
   constructor(options: SandboxOptions = {}) {
     const {
       git = true,
@@ -62,8 +65,12 @@ export class Sandbox {
     this.path = mkdtempSync(join(tmpdir(), 'ada-e2e-'));
 
     // Resolve CLI path from monorepo root
-    // During tests, we use ts-node to run the CLI source directly
+    // During tests, we use tsx to run the CLI source directly
     this.cliPath = resolve(__dirname, '../../src/index.ts');
+
+    // Resolve tsx binary path - use local node_modules instead of npx for reliability
+    // This avoids potential npx caching/download issues in CI environments
+    this.tsxPath = resolve(__dirname, '../../../../node_modules/.bin/tsx');
 
     // Initialize git if requested
     if (git) {
@@ -104,7 +111,9 @@ export class Sandbox {
       const stdout: string[] = [];
       const stderr: string[] = [];
 
-      const proc = spawn('npx', ['tsx', this.cliPath, ...args], {
+      // Use local tsx binary directly instead of npx for reliability in CI
+      // npx can have caching/download issues that cause intermittent failures
+      const proc = spawn(this.tsxPath, [this.cliPath, ...args], {
         cwd: this.path,
         env: {
           ...process.env,
