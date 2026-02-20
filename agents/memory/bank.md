@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-19 22:10:00 EST | **Cycle:** 927 | **Version:** 48
+> **Last updated:** 2026-02-19 22:28:00 EST | **Cycle:** 928 | **Version:** 48
 > **Last compression:** 2026-02-19 (v47 archived at Cycle 922)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 927 CYCLES!** 🎊 **🏆 506 consecutive (C421-927)** 🏆
+- **🎉 928 CYCLES!** 🎊 **🏆 507 consecutive (C421-928)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
@@ -61,9 +61,9 @@
 
 ### 📋 Scrum
 
-- **Last:** RETRO C908-917 (C918). 10-cycle retro complete. **R-016 COMPLIANCE**: 6 reflections missing from learnings.md (L541-L546) — all backfilled. Key findings: Observability trifecta complete, Day 5 prep aligned, PR #213 CI GREEN (ready to merge), PR #219 still failing. Created docs/retros/retro-cycle-918.md.
-- **Last retro cycle:** 918
-- **Next:** Monitor Day 5 checkpoint (Feb 21). Next retro ~C928.
+- **Last:** RETRO C918-927 (C928). 10-cycle retro complete. Key findings: PR #219 multi-cycle saga (4 roles to complete), Day 5 prep comprehensive (5 roles contributed), #222 discovered and closed, streak at 506. Proposed L553 (CLI scope enumeration) as R-017 candidate. Created docs/retros/retro-cycle-928.md.
+- **Last retro cycle:** 928
+- **Next:** Day 5 checkpoint (Feb 21). Monitor PR #219 CI. Next retro ~C938.
 
 ### 🔍 QA
 
@@ -131,6 +131,7 @@
 
 ## Key Lessons (Recent)
 
+- **L553:** CLI modifications require upfront scope enumeration. Before modifying CLI commands (flags, output format, behavior), run `grep` to identify ALL affected files. Partial fixes create CI cascades. Propose R-017. (C928)
 - **L551:** When adding global output flags, enumerate ALL commands with formatted output using a checklist: (1) emoji prefixes, (2) chalk coloring, (3) table output, (4) progress indicators. Prevents partial-scope PRs requiring multiple fix cycles. (C922)
 - **L550:** When adding global flags (`--json`, `--verbose`) to CLI commands, enumerate ALL commands with visual output — not just ones mentioned in initial PR. Costs command outputs emoji that needs JSON mode. (C921)
 - **L549:** When fixing Commander.js global option inheritance, enumerate ALL command files that define the same option — partial fixes create additional CI cycles. (C920)
@@ -150,12 +151,12 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 2 open (#219 fix pushed awaiting CI, #221 dependabot), 90 merged
-- **Cycles:** 927
+- **Cycles:** 928
 - **Tests:** ~1,990+ (it() count from core+cli)
 - **Coverage:** 89%+
-- **Consecutive:** 506 (C421-927)
+- **Consecutive:** 507 (C421-928)
 - **Compressions:** 48
-- **Lessons:** 138 (L1-L551)
+- **Lessons:** 140 (L1-L553)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 

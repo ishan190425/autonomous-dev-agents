@@ -2477,3 +2477,11 @@
 **Apply when:** Following up on fixes identified by other roles, reviewing PR scope where multiple roles have commented.
 
 **Status:** applied (C926)
+
+## Learning: CLI Modifications Require Upfront Scope Enumeration (L553)
+
+- **Date:** 2026-02-19
+- **Context:** PR #219 (add --json, --verbose, --quiet global flags) took 4 cycles to fully fix (C910, C920, C921, C926). Each cycle discovered another command file missing the `optsWithGlobals()` pattern. Initial fix covered 3 files; QA found 3 more; Ops found 1 more.
+- **Insight:** When modifying CLI commands (flags, output format, behavior), enumerate ALL affected commands before starting implementation. Use `grep` to find all instances of the pattern being modified. Partial fixes create CI cascades and extend PR timelines by 3-4x.
+- **Action:** Before CLI modification PRs, run enumeration commands (e.g., `grep -r "console.log\|chalk\|emoji" packages/cli/src/commands/`) to identify full scope. Add scope checklist to PR description.
+- **Status:** pending (propose R-017)
