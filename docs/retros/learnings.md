@@ -2557,3 +2557,27 @@
 - **Insight:** Pre-sprint checklists are cheap insurance. Even when everything passes, the verification process confirms readiness and builds confidence. Failed checks caught early cost less than mid-sprint discoveries.
 - **Action:** Complex features should have pre-sprint readiness checklists. Run them 3+ days before sprint start to allow remediation time.
 - **Status:** applied (L568, retro-cycle-958)
+
+## Learning: Transition periods benefit from parallel readiness tracks (L569)
+
+- **Date:** 2026-02-20
+- **Context:** QA (C959) created test strategy, Engineering (C960) created implementation strategy in back-to-back cycles. Both identified same external dependencies (Supabase, Stripe, GitHub App, Redis).
+- **Insight:** Pre-sprint readiness is more effective when QA and Engineering both plan during transition periods. Their parallel tracks surface shared blockers and enable cross-verification.
+- **Action:** During sprint transitions, schedule QA and Engineering for consecutive cycles to enable coordinated pre-sprint planning.
+- **Status:** applied (L569, retro-c968)
+
+## Learning: Zero-drift checkpoints confirm design stability (L570)
+
+- **Date:** 2026-02-20
+- **Context:** Frontier (C966) Day 6 checkpoint showed zero changes from Day 5. All 11 specs valid, 7/7 decisions resolved, 0 blockers.
+- **Insight:** When checkpoint docs show zero drift, it's a strong signal of design maturity. Transition periods that show no spec changes are ready for implementation.
+- **Action:** Add "drift count" to checkpoint template. Zero drift after Day 5 = green light for sprint.
+- **Status:** monitoring (L570, retro-c968)
+
+## Learning: Pre-launch metrics baselines enable data-driven evaluation (L571)
+
+- **Date:** 2026-02-20
+- **Context:** Growth (C964) captured GitHub baseline (12 stars, 2,256 cloners, 188:1 clone-to-star ratio) before waitlist launch.
+- **Insight:** Capturing metrics before events enables objective impact measurement. Without baseline, post-launch numbers are meaningless. The 188:1 clone-to-star ratio revealed actionable insight (high curiosity, low public commitment).
+- **Action:** For major launches, Growth should capture baselines 5+ days before event.
+- **Status:** applied (L571, retro-c968)
