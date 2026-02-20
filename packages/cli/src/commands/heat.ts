@@ -169,12 +169,14 @@ function formatDecayResults(result: DecayResult, dryRun: boolean): string {
 /**
  * ada heat — Show heat score summary
  */
-async function heatSummary(options: HeatOptions): Promise<void> {
+async function heatSummary(options: HeatOptions, globalOpts?: { json?: boolean }): Promise<void> {
+  // Merge global options (--json from parent ada command)
+  const mergedJson = options.json || globalOpts?.json;
   try {
     const store = await initStore(options.dir);
     const stats = store.stats();
 
-    if (options.json) {
+    if (mergedJson) {
       console.log(JSON.stringify(stats, null, 2));
       return;
     }
@@ -198,7 +200,9 @@ async function heatSummary(options: HeatOptions): Promise<void> {
 /**
  * ada heat list — List entries by tier
  */
-async function heatList(options: HeatListOptions): Promise<void> {
+async function heatList(options: HeatListOptions, globalOpts?: { json?: boolean }): Promise<void> {
+  // Merge global options (--json from parent ada command)
+  const mergedJson = options.json || globalOpts?.json;
   try {
     const store = await initStore(options.dir);
     const limit = options.limit ? parseInt(options.limit, 10) : 20;
@@ -214,7 +218,7 @@ async function heatList(options: HeatListOptions): Promise<void> {
     // Apply limit
     const displayed = entries.slice(0, limit);
 
-    if (options.json) {
+    if (mergedJson) {
       console.log(JSON.stringify(displayed, null, 2));
       return;
     }
@@ -250,7 +254,9 @@ async function heatList(options: HeatListOptions): Promise<void> {
 /**
  * ada heat decay — Apply decay to all entries
  */
-async function heatDecay(options: HeatDecayOptions): Promise<void> {
+async function heatDecay(options: HeatDecayOptions, globalOpts?: { json?: boolean }): Promise<void> {
+  // Merge global options (--json from parent ada command)
+  const mergedJson = options.json || globalOpts?.json;
   try {
     const store = await initStore(options.dir);
 
@@ -258,7 +264,7 @@ async function heatDecay(options: HeatDecayOptions): Promise<void> {
       dryRun: options.dryRun ?? true, // Default to dry-run for safety
     });
 
-    if (options.json) {
+    if (mergedJson) {
       console.log(JSON.stringify(result, null, 2));
       return;
     }
@@ -283,8 +289,11 @@ async function heatDecay(options: HeatDecayOptions): Promise<void> {
  */
 async function heatBoost(
   entityId: string,
-  options: HeatBoostOptions
+  options: HeatBoostOptions,
+  globalOpts?: { json?: boolean }
 ): Promise<void> {
+  // Merge global options (--json from parent ada command)
+  const mergedJson = options.json || globalOpts?.json;
   try {
     const store = await initStore(options.dir);
     const times = options.amount ? parseInt(options.amount, 10) : 1;
@@ -308,7 +317,7 @@ async function heatBoost(
     const allWithScores = store.getAllWithScores();
     const withScore = allWithScores.find((e) => e.id === entityId);
 
-    if (options.json) {
+    if (mergedJson) {
       console.log(JSON.stringify({ before: entry, after: withScore }, null, 2));
       return;
     }
@@ -334,8 +343,11 @@ async function heatBoost(
  */
 async function heatGet(
   entityId: string,
-  options: HeatOptions
+  options: HeatOptions,
+  globalOpts?: { json?: boolean }
 ): Promise<void> {
+  // Merge global options (--json from parent ada command)
+  const mergedJson = options.json || globalOpts?.json;
   try {
     const store = await initStore(options.dir);
     const entry = store.get(entityId);
@@ -349,7 +361,7 @@ async function heatGet(
     const allWithScores = store.getAllWithScores();
     const withScore = allWithScores.find((e) => e.id === entityId);
 
-    if (options.json) {
+    if (mergedJson) {
       console.log(JSON.stringify(withScore ?? entry, null, 2));
       return;
     }
@@ -378,7 +390,10 @@ export const heatCommand = new Command('heat')
   .description('Heat scoring for cognitive memory — hot/warm/cold memory tiers')
   .option('-d, --dir <path>', 'Project directory', process.cwd())
   .option('--json', 'Output as JSON')
-  .action(heatSummary);
+  .action(async function(this: Command, options: HeatOptions) {
+    const globalOpts = this.optsWithGlobals();
+    await heatSummary(options, globalOpts);
+  });
 
 heatCommand
   .command('list')
@@ -386,9 +401,10 @@ heatCommand
   .option('-t, --tier <tier>', 'Filter by tier (hot, warm, cold)')
   .option('-l, --limit <n>', 'Maximum entries to show', '20')
   .option('--json', 'Output as JSON')
-  .action(async (cmdOptions) => {
+  .action(async function(this: Command, cmdOptions: HeatListOptions) {
+    const globalOpts = this.optsWithGlobals();
     const parentOptions = heatCommand.opts();
-    await heatList({ ...parentOptions, ...cmdOptions });
+    await heatList({ ...parentOptions, ...cmdOptions }, globalOpts);
   });
 
 heatCommand
@@ -397,9 +413,10 @@ heatCommand
   .option('--dry-run', 'Preview changes without applying (default)', true)
   .option('--no-dry-run', 'Apply decay changes')
   .option('--json', 'Output as JSON')
-  .action(async (cmdOptions) => {
+  .action(async function(this: Command, cmdOptions: HeatDecayOptions) {
+    const globalOpts = this.optsWithGlobals();
     const parentOptions = heatCommand.opts();
-    await heatDecay({ ...parentOptions, ...cmdOptions });
+    await heatDecay({ ...parentOptions, ...cmdOptions }, globalOpts);
   });
 
 heatCommand
@@ -407,16 +424,18 @@ heatCommand
   .description('Boost an entry\'s heat by incrementing references')
   .option('-n, --amount <n>', 'Number of reference increments (default: 1)', '1')
   .option('--json', 'Output as JSON')
-  .action(async (entityId, cmdOptions) => {
+  .action(async function(this: Command, entityId: string, cmdOptions: HeatBoostOptions) {
+    const globalOpts = this.optsWithGlobals();
     const parentOptions = heatCommand.opts();
-    await heatBoost(entityId, { ...parentOptions, ...cmdOptions });
+    await heatBoost(entityId, { ...parentOptions, ...cmdOptions }, globalOpts);
   });
 
 heatCommand
   .command('get <entityId>')
   .description('Get heat score for a specific entry')
   .option('--json', 'Output as JSON')
-  .action(async (entityId, cmdOptions) => {
+  .action(async function(this: Command, entityId: string, cmdOptions: HeatOptions) {
+    const globalOpts = this.optsWithGlobals();
     const parentOptions = heatCommand.opts();
-    await heatGet(entityId, { ...parentOptions, ...cmdOptions });
+    await heatGet(entityId, { ...parentOptions, ...cmdOptions }, globalOpts);
   });

@@ -141,13 +141,15 @@ function progressBar(value: number, max: number, width: number = 16): string {
 /**
  * ada playbook suggest — List pending suggestions or show details.
  */
-async function playbookSuggest(options: SuggestOptions): Promise<void> {
+async function playbookSuggest(options: SuggestOptions, globalOpts?: { json?: boolean }): Promise<void> {
+  // Merge global options (--json from parent ada command)
+  const mergedJson = options.json || globalOpts?.json;
   try {
     const store = await initStore(options.dir);
 
     // If --id is provided, show detail view
     if (options.id) {
-      await showSuggestionDetail(store, options.id, options);
+      await showSuggestionDetail(store, options.id, options, globalOpts);
       return;
     }
 
@@ -155,7 +157,7 @@ async function playbookSuggest(options: SuggestOptions): Promise<void> {
     const pending = await store.list({ status: 'pending' });
     const stats = await store.stats();
 
-    if (options.json) {
+    if (mergedJson) {
       console.log(
         JSON.stringify(
           {
@@ -308,8 +310,11 @@ async function playbookSuggest(options: SuggestOptions): Promise<void> {
 async function showSuggestionDetail(
   store: SuggestionStore,
   id: string,
-  options: PlaybookOptions
+  options: PlaybookOptions,
+  globalOpts?: { json?: boolean }
 ): Promise<void> {
+  // Merge global options (--json from parent ada command)
+  const mergedJson = options.json || globalOpts?.json;
   const suggestion = await store.get(id);
 
   if (!suggestion) {
@@ -332,7 +337,7 @@ async function showSuggestionDetail(
     process.exit(1);
   }
 
-  if (options.json) {
+  if (mergedJson) {
     console.log(JSON.stringify(suggestion, null, 2));
     return;
   }
@@ -391,8 +396,11 @@ async function showSuggestionDetail(
  */
 async function playbookApply(
   id: string,
-  options: PlaybookOptions
+  options: PlaybookOptions,
+  globalOpts?: { json?: boolean }
 ): Promise<void> {
+  // Merge global options (--json from parent ada command)
+  const mergedJson = options.json || globalOpts?.json;
   console.log(chalk.dim(`⠋ Applying suggestion ${id}...`));
 
   const store = await initStore(options.dir);
@@ -418,7 +426,7 @@ async function playbookApply(
 
   const result = await store.apply(id, appliedBy, cycle);
 
-  if (options.json) {
+  if (mergedJson) {
     console.log(JSON.stringify(result, null, 2));
     return;
   }
@@ -507,8 +515,11 @@ async function playbookApply(
  */
 async function playbookReject(
   id: string,
-  options: RejectOptions
+  options: RejectOptions,
+  globalOpts?: { json?: boolean }
 ): Promise<void> {
+  // Merge global options (--json from parent ada command)
+  const mergedJson = options.json || globalOpts?.json;
   if (!options.reason || options.reason.trim().length === 0) {
     console.log(chalk.red('❌ Rejection reason required'));
     console.log('');
@@ -553,7 +564,7 @@ async function playbookReject(
 
   const result = await store.reject(id, rejectedBy, options.reason);
 
-  if (options.json) {
+  if (mergedJson) {
     console.log(JSON.stringify(result, null, 2));
     return;
   }
@@ -587,12 +598,14 @@ async function playbookReject(
 /**
  * ada playbook stats — Show suggestion statistics.
  */
-async function playbookStats(options: PlaybookOptions): Promise<void> {
+async function playbookStats(options: PlaybookOptions, globalOpts?: { json?: boolean }): Promise<void> {
+  // Merge global options (--json from parent ada command)
+  const mergedJson = options.json || globalOpts?.json;
   try {
     const store = await initStore(options.dir);
     const stats = await store.stats();
 
-    if (options.json) {
+    if (mergedJson) {
       console.log(JSON.stringify(stats, null, 2));
       return;
     }
@@ -690,18 +703,20 @@ playbookCommand
   .description('List pending playbook suggestions')
   .option('--id <id>', 'Show details for a specific suggestion')
   .option('--json', 'Output as JSON')
-  .action(async (cmdOptions) => {
+  .action(async function(this: Command, cmdOptions: SuggestOptions) {
+    const globalOpts = this.optsWithGlobals();
     const parentOptions = playbookCommand.opts();
-    await playbookSuggest({ ...parentOptions, ...cmdOptions });
+    await playbookSuggest({ ...parentOptions, ...cmdOptions }, globalOpts);
   });
 
 playbookCommand
   .command('apply <id>')
   .description('Apply a suggestion to its target playbook')
   .option('--json', 'Output as JSON')
-  .action(async (id, cmdOptions) => {
+  .action(async function(this: Command, id: string, cmdOptions: PlaybookOptions) {
+    const globalOpts = this.optsWithGlobals();
     const parentOptions = playbookCommand.opts();
-    await playbookApply(id, { ...parentOptions, ...cmdOptions });
+    await playbookApply(id, { ...parentOptions, ...cmdOptions }, globalOpts);
   });
 
 playbookCommand
@@ -709,21 +724,24 @@ playbookCommand
   .description('Reject a suggestion with a reason')
   .requiredOption('-r, --reason <reason>', 'Reason for rejection')
   .option('--json', 'Output as JSON')
-  .action(async (id, cmdOptions) => {
+  .action(async function(this: Command, id: string, cmdOptions: RejectOptions) {
+    const globalOpts = this.optsWithGlobals();
     const parentOptions = playbookCommand.opts();
-    await playbookReject(id, { ...parentOptions, ...cmdOptions });
+    await playbookReject(id, { ...parentOptions, ...cmdOptions }, globalOpts);
   });
 
 playbookCommand
   .command('stats')
   .description('Show suggestion statistics')
   .option('--json', 'Output as JSON')
-  .action(async (cmdOptions) => {
+  .action(async function(this: Command, cmdOptions: PlaybookOptions) {
+    const globalOpts = this.optsWithGlobals();
     const parentOptions = playbookCommand.opts();
-    await playbookStats({ ...parentOptions, ...cmdOptions });
+    await playbookStats({ ...parentOptions, ...cmdOptions }, globalOpts);
   });
 
 // Default action: show suggest list
-playbookCommand.action(async (options) => {
-  await playbookSuggest(options);
+playbookCommand.action(async function(this: Command, options: SuggestOptions) {
+  const globalOpts = this.optsWithGlobals();
+  await playbookSuggest(options, globalOpts);
 });
