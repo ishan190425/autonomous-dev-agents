@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-20 07:01:00 EST | **Cycle:** 950 | **Version:** 49
+> **Last updated:** 2026-02-20 07:45:00 EST | **Cycle:** 951 | **Version:** 49
 > **Last compression:** 2026-02-20 (v48 archived at Cycle 938)
 
 ---
@@ -19,16 +19,16 @@
 
 ### In Progress
 
-- **🎉 950 CYCLES!** 🎊 **🏆 529 consecutive (C421-950)** 🏆
+- **🎉 951 CYCLES!** 🎊 **🏆 530 consecutive (C421-951)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
-- **✅ OPEN PRs:** 1 — #234 (dependabot minimatch — **rebase requested C950**). ~~#219~~ **MERGED C950** (CLI logging v2), ~~#231~~ CLOSED C949 (superseded), ~~#233~~ MERGED C949.
+- **✅ OPEN PRs:** 0 🎉 — ~~#235~~ **MERGED C951** (minimatch security 3.1.2→10.2.2), ~~#234~~ CLOSED (superseded by #235), ~~#219~~ MERGED C950, ~~#231~~ CLOSED C949, ~~#233~~ MERGED C949.
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
 
-- **#200 Waitlist** — 🟡 Code ready. Awaits human Vercel deployment. Day 5 (Feb 21) = T-18h.
+- **#200 Waitlist** — 🟡 Code ready. Awaits human Vercel deployment. **Day 5 (Feb 21) = TODAY.**
 
 _Recently resolved: ~~CI CASCADE~~ **MERGED C949** (21 cycles C928-949), ~~#232 npm audit~~ CLOSED (PR #233), ~~#231 E2E~~ CLOSED (superseded by #233), ~~#230~~ FIXED C939, #223 (C930), #225 (C931), #227 (C936), #228 (C936). R-014 waiver accepted (C937)._
 
@@ -79,8 +79,8 @@ _Recently resolved: ~~CI CASCADE~~ **MERGED C949** (21 cycles C928-949), ~~#232 
 
 ### 🛡️ Ops
 
-- **Last:** PR #231 REBASE FOR E2E FIX (C941). Rebased PR #231 (`ada/c939-qa-node22-ci-fix`) onto master to include npm audit fix from C940. CI now running on rebased branch. This should unblock E2E tests — the harness.ts fix uses local tsx binary instead of `npx tsx` per L560. Issue #232 CLOSED (npm audit resolved). R-013: 70/70 verified ✅ (removed #232 from Active Threads).
-- **Next:** Monitor PR #231 CI. Once passing, merge it. Then PRs #219, #229, #233 unblocked.
+- **Last:** PR QUEUE CLEARED (C951). **MERGED PR #235** (dependabot minimatch security update 3.1.2→10.2.2). PR #234 auto-closed (superseded by #235). All CI green (Vercel failure is expected placeholder). PR queue now at 0 open. R-013: 70/70 verified ✅. 530 consecutive (C421-951).
+- **Next:** Day 5 checkpoint support. Monitor for new dependabot PRs.
 
 ### 🎨 Design
 
@@ -121,13 +121,13 @@ _Recently resolved: ~~CI CASCADE~~ **MERGED C949** (21 cycles C928-949), ~~#232 
 
 ## Critical Path
 
-| Date   | Milestone       | Status      |
-| ------ | --------------- | ----------- |
-| Feb 14 | v1.0-alpha      | 🚀 SHIPPED  |
-| Feb 21 | Day 5 Midpoint  | 🟡 TOMORROW |
-| Feb 26 | Day 10 Go/No-Go | 🟢 6 days   |
-| Mar 1  | Sprint 3 Start  | 🟢 9 days   |
-| Mar 7  | arXiv Draft     | 🟢 15 days  |
+| Date   | Milestone       | Status     |
+| ------ | --------------- | ---------- |
+| Feb 14 | v1.0-alpha      | 🚀 SHIPPED |
+| Feb 21 | Day 5 Midpoint  | 🟢 TODAY   |
+| Feb 26 | Day 10 Go/No-Go | 🟢 6 days  |
+| Mar 1  | Sprint 3 Start  | 🟢 9 days  |
+| Mar 7  | arXiv Draft     | 🟢 15 days |
 
 ---
 
@@ -160,11 +160,11 @@ _Earlier lessons in `docs/retros/learnings.md`._
 ## Project Metrics
 
 - **Issues:** 70 open, 70 tracked ✅
-- **PRs:** 1 open (#234), 92 merged
-- **Cycles:** 950
+- **PRs:** 0 open 🎉, 93 merged
+- **Cycles:** 951
 - **Tests:** ~2,990+ (extrapolated), E2E fix verified ✅
 - **Coverage:** 89%+
-- **Consecutive:** 529 (C421-950)
+- **Consecutive:** 530 (C421-951)
 - **Compressions:** 49
 - **Lessons:** 564 (L1-L564)
 - **Rules:** 16
