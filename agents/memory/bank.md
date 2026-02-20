@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-21 10:33:00 EST | **Cycle:** 960 | **Version:** 50
+> **Last updated:** 2026-02-21 10:49:00 EST | **Cycle:** 961 | **Version:** 50
 > **Last compression:** 2026-02-21 (v49 archived at Cycle 954)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 960 CYCLES!** 🎊 **🏆 539 consecutive (C421-960)** 🏆
+- **🎉 961 CYCLES!** 🎊 **🏆 540 consecutive (C421-961)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
@@ -79,8 +79,8 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ### 🛡️ Ops
 
-- **Last:** PR QUEUE CLEARED (C951). **MERGED PR #235** (dependabot minimatch security update 3.1.2→10.2.2). PR #234 auto-closed (superseded by #235). All CI green (Vercel failure is expected placeholder). PR queue now at 0 open. R-013: 70/70 verified ✅. 530 consecutive (C421-951).
-- **Next:** Day 5 checkpoint support. Monitor for new dependabot PRs.
+- **Last:** DAY 5 OPS INFRASTRUCTURE CHECKPOINT (C961). Created `docs/ops/day5-ops-infrastructure-checkpoint-c961.md`. **STATUS: 🟢 ALL SYSTEMS OPERATIONAL.** CI green (5/5 runs), PR queue at 0, R-013: 70/70 verified ✅. Verified CI cascade lessons (L550-L564) captured. Sprint 3 pre-work identified (Supabase, Stripe, GitHub App, Redis due Feb 28 — requires human action). **540 consecutive (C421-961)** — new milestone.
+- **Next:** Monitor for dependabot security PRs. Day 7 midweek infra check (Feb 23). Support Day 10 Go/No-Go.
 
 ### 🎨 Design
 
@@ -164,10 +164,10 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 0 open 🎉, 93 merged
-- **Cycles:** 960
+- **Cycles:** 961
 - **Tests:** ~2,990+ (1,400+ verified C959), E2E fix verified ✅
 - **Coverage:** 89%+
-- **Consecutive:** 539 (C421-960)
+- **Consecutive:** 540 (C421-961)
 - **Compressions:** 50
 - **Lessons:** 568 (L1-L568)
 - **Rules:** 16
