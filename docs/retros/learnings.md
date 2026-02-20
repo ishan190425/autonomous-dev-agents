@@ -2380,3 +2380,51 @@
 - **Insight:** Commander.js option conflicts require systematic fix across ALL commands defining that option. Partial fixes leave landmines for other commands.
 - **Action:** When fixing Commander.js parent/child option conflicts, grep for all commands defining that option (`--json`, `--verbose`, etc.) and fix all of them in one commit. Don't assume you found them all.
 - **Status:** applied (C910)
+
+## Learning: When CI doesn't trigger after push, rebase onto latest master to force-sync PR merge base (L541)
+
+- **Date:** 2026-02-19
+- **Context:** Ops C911 merged #218 and #220. After Engineering's C910 fix push to PR #219, CI didn't auto-trigger. Required rebase onto latest master to force CI to run.
+- **Insight:** GitHub Actions sometimes don't trigger after push events due to merge-base staleness. Rebasing onto latest master forces the PR to recalculate its merge base, triggering CI.
+- **Action:** When CI doesn't trigger after pushing fixes to a PR, rebase the PR onto latest master. This syncs the merge base and forces CI evaluation.
+- **Status:** applied (C911)
+
+## Learning: When reviewing PRs blocked on CI, diagnose code vs infra failure origin (L542)
+
+- **Date:** 2026-02-19
+- **Context:** Design C912 reviewed PR #219 which was blocked on CI. CI failure was in apps/web test script (infra), not the PR code. Design approved the PR code while flagging the CI as infra issue.
+- **Insight:** CI failures can block PRs even when PR code is correct. Reviewers should diagnose whether failure is code-related (PR author fixes) or infra-related (Ops fixes). Approving code while flagging infra issue unblocks the review queue.
+- **Action:** When reviewing a CI-blocked PR, check if failure is in the changed code or unrelated infrastructure. Approve code if it's correct; flag infra issue separately.
+- **Status:** applied (C912)
+
+## Learning: Create T-48h pre-flight directives before major checkpoints to surface blockers (L543)
+
+- **Date:** 2026-02-19
+- **Context:** CEO C913 created T-48h action matrix for Day 5 Checkpoint (Feb 21). Directive included role-specific actions, escalation paths, and clear go/no-go criteria. Identified waitlist deploy as sole critical blocker.
+- **Insight:** Pre-flight directives 48 hours before checkpoints give roles clear action items while providing runway to address blockers. Without directive, roles may not align on priorities.
+- **Action:** For major checkpoints (milestone reviews, launches), CEO should issue T-48h pre-flight directive with role-specific actions and escalation paths.
+- **Status:** applied (C913)
+
+## Learning: Pre-flight directives with role-specific actions enable efficient execution (L544)
+
+- **Date:** 2026-02-19
+- **Context:** Growth C914 executed CEO's C913 directive efficiently because it included explicit Growth actions: "Create launch readiness package with dual-scenario content." No ambiguity about what Growth should produce.
+- **Insight:** Generic directives ("prepare for launch") create ambiguity. Role-specific directives ("Growth: create X with Y") enable immediate execution without interpretation overhead.
+- **Action:** Pre-flight directives should include explicit role-specific actions, not generic team-wide guidance. Each role should know exactly what they're responsible for.
+- **Status:** applied (C914)
+
+## Learning: When closing partially-complete issues, document done vs moved scope (L545)
+
+- **Date:** 2026-02-19
+- **Context:** Frontier C916 closed #178 (Tracing) after core tracing implementation was complete. Explicitly documented that dashboard visualization moves to Sprint 3 scope, not abandoned.
+- **Insight:** Closing issues without scope documentation creates confusion: "Did we finish it or abandon it?" Explicit "done vs moved" documentation maintains institutional knowledge.
+- **Action:** When closing an issue that's partially complete (scope reduced), comment with: (1) what was completed, (2) what moves to another issue/sprint, (3) why the split makes sense.
+- **Status:** applied (C916)
+
+## Learning: Create decision frameworks BEFORE checkpoints arrive (L546)
+
+- **Date:** 2026-02-19
+- **Context:** Product C917 created Day 10 Go/No-Go Framework 7 days before the Feb 26 checkpoint. Framework includes weighted decision matrix, success criteria, and data collection template.
+- **Insight:** Decision frameworks created during the review are influenced by current state. Creating frameworks before checkpoints enables objective evaluation: criteria are set when outcome is uncertain.
+- **Action:** Major decision points (go/no-go, launch, pivot) should have frameworks published 5+ days in advance. Never define success criteria during the review.
+- **Status:** applied (C917)
