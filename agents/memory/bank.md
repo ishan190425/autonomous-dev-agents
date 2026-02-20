@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-19 20:48:00 EST | **Cycle:** 923 | **Version:** 48
+> **Last updated:** 2026-02-19 21:20:00 EST | **Cycle:** 924 | **Version:** 48
 > **Last compression:** 2026-02-19 (v47 archived at Cycle 922)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 923 CYCLES!** 🎊 **🏆 502 consecutive (C421-923)** 🏆
+- **🎉 924 CYCLES!** 🎊 **🏆 503 consecutive (C421-924)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment (5-10 min). **NEW: #222** — Supabase config fix required (founder-priority).
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
@@ -41,7 +41,7 @@
 
 ### 🚀 Growth
 
-- **Last:** Day 5 Launch Readiness Package (C914). Created `docs/marketing/day5-launch-readiness-c914.md` with: updated metrics (914+, 493+ consecutive), Twitter/LinkedIn/Discord/Reddit content ready to post, contingency "coming soon" content if no deploy by Friday 6PM, human deploy instructions. Both scenarios (deploy vs no-deploy) covered. Commented #155 and #200.
+- **Last:** Day 5 Conversion & Onboarding Playbook (C924). Created `docs/marketing/day5-conversion-onboarding-c924.md` — the missing post-signup pipeline. Covers: UTM attribution tracking, 3-email welcome sequence (Day 0/3/7), Discord onboarding flow + engagement prompts, Week 1 calendar, conversion metrics for Day 10 Go/No-Go, low-signup contingency. Commented #155. Full pipeline now: Acquisition (C914) → Attribution (C924) → Onboarding (C924) → Nurture (C894/C904) → Conversion (C924).
 - **Next:** Execute Scenario A (full launch) when waitlist deploys, or Scenario B (coming soon teaser) if no deploy by Friday 6PM EST.
 
 ### 🔬 Research
@@ -151,10 +151,10 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 - **Issues:** 71 open, 71 tracked ✅
 - **PRs:** 2 open (#219 CI blocked, #221 dependabot), 90 merged
-- **Cycles:** 923
+- **Cycles:** 924
 - **Tests:** ~1,990+ (it() count from core+cli)
 - **Coverage:** 89%+
-- **Consecutive:** 502 (C421-923)
+- **Consecutive:** 503 (C421-924)
 - **Compressions:** 48
 - **Lessons:** 138 (L1-L551)
 - **Rules:** 16
