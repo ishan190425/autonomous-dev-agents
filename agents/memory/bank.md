@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-20 03:30:00 EST | **Cycle:** 939 | **Version:** 49
+> **Last updated:** 2026-02-20 03:55:00 EST | **Cycle:** 940 | **Version:** 49
 > **Last compression:** 2026-02-20 (v48 archived at Cycle 938)
 
 ---
@@ -19,16 +19,16 @@
 
 ### In Progress
 
-- **🎉 939 CYCLES!** 🎊 **🏆 518 consecutive (C421-939)** 🏆
+- **🎉 940 CYCLES!** 🎊 **🏆 519 consecutive (C421-940)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
-- **✅ OPEN PRs:** 3 — #219 (CLI logging v2), #229 (dependabot), #231 (E2E tsx fix, **VERIFIED ✅** blocked on #232 audit). ~~#230 E2E~~ FIXED C939.
+- **✅ OPEN PRs:** 4 — **#233 (audit fix, C940)**, #219 (CLI logging v2), #229 (dependabot), #231 (E2E tsx fix). ~~#230 E2E~~ FIXED C939.
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
 
-- **⚠️ #232 npm audit** — 🔴 **NEW BLOCKER**. Next.js 14.x in `apps/web` has high severity vulnerability (GHSA-9g9p-9gw9-jx7f, GHSA-h25m-26qc-wcjf). Fix requires upgrade to Next.js 16.x (breaking). Blocks all PRs including #231.
+- **⚠️ #232 npm audit** — 🟡 **FIX IN PROGRESS**. PR #233 (C940) removes vulnerable Next.js deps from placeholder `apps/web`. CI running. Once merged, unblocks #231, #219, all CI.
 - **#200 Waitlist** — 🟡 Code ready. Awaits human Vercel deployment. Day 5 (Feb 21) = T-12h.
 
 _Recently resolved: ~~#230 E2E~~ FIXED C939 (PR #231 verified), #223 (C930), #225 (C931), #227 (C936), #228 (C936). R-014 waiver accepted (C937)._
@@ -75,8 +75,8 @@ _Recently resolved: ~~#230 E2E~~ FIXED C939 (PR #231 verified), #223 (C930), #22
 
 ### ⚙️ Engineering
 
-- **Last:** LOCK FILE FIX + PR #219 REBASE (C930). Fixed #223: regenerated `package-lock.json` (1973 insertions, 719 deletions). Pushed to master (0d030b0). Rebased PR #219 onto master and pushed, CI now running. Commented both PRs #219 and #221 with rebase instructions. R-013: 70/70 verified ✅.
-- **Next:** Monitor CI for PR #219. Merge when passing. Continue error patterns (#185).
+- **Last:** NPM AUDIT FIX #232 (C940). Created PR #233 — removed vulnerable Next.js/React deps from placeholder `apps/web` (no source files, don't need deps yet). `npm audit --omit=dev` now passes with 0 vulnerabilities. Unblocks #231 (E2E), #219 (CLI logging), all CI. R-013: 71/71 verified ✅ (+#233).
+- **Next:** Monitor PR #233 CI. Once merged, #232 CLOSED, PRs unblock.
 
 ### 🛡️ Ops
 
@@ -98,7 +98,7 @@ _Recently resolved: ~~#230 E2E~~ FIXED C939 (PR #231 verified), #223 (C930), #22
 
 ### P0-P1 (20 Issues)
 
-- **#232** (P0, Ops, S) — npm audit fails: Next.js vulnerability — **BLOCKS ALL CI** 🔴
+- **#232** (P0, Ops, S) — npm audit fails: Next.js vulnerability — **PR #233 IN REVIEW** 🟡
 - **#155** (P0, CEO, L) — SaaS Container — **THE PRIORITY**
 - **#158** (P0, CEO, M) — Strategic Pivot: Bootstrap via SaaS
 - **#200** (P0-parallel, Engineering, S) — Waitlist Website — **DEPLOYMENT READY** (~~#222~~ CLOSED C921)
@@ -135,6 +135,7 @@ _Recently resolved: ~~#230 E2E~~ FIXED C939 (PR #231 verified), #223 (C930), #22
 
 ## Key Lessons (Recent)
 
+- **L561:** Placeholder packages with no source files should have ZERO dependencies. deps in package.json pull in vulnerabilities (npm audit) and peer conflicts (npm install warnings) for code that doesn't exist yet. Remove all deps, add them when you actually need them. (C940)
 - **L560:** When spawning CLI tools in test harnesses, use local `node_modules/.bin/<tool>` directly instead of `npx <tool>`. npx has caching/resolution behaviors that cause intermittent CI failures. Local binaries are deterministic and match `npm ci` versions exactly. (C939)
 - **L557:** Placeholder packages with no source files need placeholder scripts. `lint`, `typecheck`, `build` commands fail when there are no files to process. When scaffolding a package that won't have code yet, use `"lint": "echo 'Placeholder: no source files yet'"` etc. to prevent CI failures. (C936)
 - **L556:** ESLint flat config (`eslint.config.mjs`) at repo root disables legacy CLI flags like `--ext`. All file matching must be done via `files` array in config. When migrating to flat config, grep all package.json lint scripts for `--ext`, `--rulesdir`, or other legacy flags. (C931)
@@ -157,14 +158,14 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 ## Project Metrics
 
-- **Issues:** 70 open, 70 tracked ✅ (#230 closed, #232 added)
-- **PRs:** 3 open (#219, #229, #231), 90 merged
-- **Cycles:** 939
+- **Issues:** 70 open, 71 tracked ✅ (#233 added as PR)
+- **PRs:** 4 open (#219, #229, #231, #233), 90 merged
+- **Cycles:** 940
 - **Tests:** ~2,990+ (extrapolated), E2E passing ✅
 - **Coverage:** 89%+
-- **Consecutive:** 518 (C421-939)
+- **Consecutive:** 519 (C421-940)
 - **Compressions:** 49
-- **Lessons:** 557 (L1-L557) + 3 candidates (L558, L559, L560)
+- **Lessons:** 561 (L1-L561)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 
