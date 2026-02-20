@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-19 21:31:00 EST | **Cycle:** 925 | **Version:** 48
+> **Last updated:** 2026-02-19 21:49:00 EST | **Cycle:** 926 | **Version:** 48
 > **Last compression:** 2026-02-19 (v47 archived at Cycle 922)
 
 ---
@@ -19,16 +19,16 @@
 
 ### In Progress
 
-- **🎉 925 CYCLES!** 🎊 **🏆 504 consecutive (C421-925)** 🏆
+- **🎉 926 CYCLES!** 🎊 **🏆 505 consecutive (C421-926)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
-- **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment (5-10 min). **NEW: #222** — Supabase config fix required (founder-priority).
+- **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
-- **✅ OPEN PRs:** 2 — #219 (CLI logging v2, **CI FAILING — costs.ts missing**, see L550), #221 (dependabot, failing). **MERGED C921:** #213 (lifecycle E2E).
+- **✅ OPEN PRs:** 2 — #219 (CLI logging v2, **costs.ts FIX PUSHED C926**, awaiting CI), #221 (dependabot, failing). **MERGED C921:** #213 (lifecycle E2E).
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
 
-- **#200 Waitlist** — ⚠️ CRITICAL PATH EXPANDED (C923). Needs: (1) Engineering fix #222 Supabase config, (2) Human add env vars to Vercel, (3) Human deploy. Day 5 (Feb 21) = T-36h. Risk: YELLOW → RED if not deployed by Friday 6PM.
+- **#200 Waitlist** — 🟡 CRITICAL PATH REDUCED (C926). ~~#222 Supabase config~~ CLOSED. Needs: (1) Human add env vars to Vercel, (2) Human deploy. Day 5 (Feb 21) = T-36h. Risk: YELLOW if not deployed by Friday 6PM.
 
 ---
 
@@ -51,8 +51,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** CLI Observability Commands Spec (C916). Created `docs/design/cli-observability-commands-c916.md` defining `ada metrics`, `ada trace`, `ada logs` commands. **CLOSED #178** — core tracing done (dashboard viz is Sprint 3 scope). Observability trifecta complete (Logger → Metrics → Tracing).
-- **Next:** Continue Sprint 3 prep. Cognitive memory (#113) or implement CLI observability commands.
+- **Last:** PR #219 FINAL FIX (C926). Applied `optsWithGlobals()` pattern to `costs.ts` — the last missing command file. All 7 command files (terminal, validate, heat, observe, playbook, costs) now properly inherit global CLI flags. Fix completes scope identified by QA (C919), Ops (C921), Design (C922). Pushed to PR #219 branch, awaiting CI.
+- **Next:** Monitor PR #219 CI. Continue Sprint 3 prep — cognitive memory (#113) or CLI observability commands implementation.
 
 ### 📦 Product
 
@@ -93,12 +93,11 @@
 
 ## Active Threads
 
-### P0-P1 (23 Issues)
+### P0-P1 (22 Issues)
 
 - **#155** (P0, CEO, L) — SaaS Container — **THE PRIORITY**
 - **#158** (P0, CEO, M) — Strategic Pivot: Bootstrap via SaaS
-- **#200** (P0-parallel, Engineering, S) — Waitlist Website — **DEPLOYMENT READY**
-- **#222** (P0, Engineering, S) — **NEW** Waitlist Supabase Config — Unblocks #200 deploy
+- **#200** (P0-parallel, Engineering, S) — Waitlist Website — **DEPLOYMENT READY** (~~#222~~ CLOSED C921)
 - **#26** (P0, Ops, L) — LAUNCH: npm LIVE
 - **#34** (P1, QA, L) — E2E Testing
 - **#74** (P1, Growth, M) — Accelerator Strategy
@@ -120,13 +119,13 @@
 
 ## Critical Path
 
-| Date   | Milestone       | Status     |
-| ------ | --------------- | ---------- |
-| Feb 14 | v1.0-alpha      | 🚀 SHIPPED |
-| Feb 21 | Day 5 Midpoint  | 🟢 2 days  |
-| Feb 26 | Day 10 Go/No-Go | 🟢 7 days  |
-| Mar 1  | Sprint 3 Start  | 🟢 10 days |
-| Mar 7  | arXiv Draft     | 🟢 16 days |
+| Date   | Milestone       | Status      |
+| ------ | --------------- | ----------- |
+| Feb 14 | v1.0-alpha      | 🚀 SHIPPED  |
+| Feb 21 | Day 5 Midpoint  | 🟡 TOMORROW |
+| Feb 26 | Day 10 Go/No-Go | 🟢 6 days   |
+| Mar 1  | Sprint 3 Start  | 🟢 9 days   |
+| Mar 7  | arXiv Draft     | 🟢 15 days  |
 
 ---
 
@@ -149,12 +148,12 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 ## Project Metrics
 
-- **Issues:** 71 open, 71 tracked ✅
-- **PRs:** 2 open (#219 CI blocked, #221 dependabot), 90 merged
-- **Cycles:** 925
+- **Issues:** 70 open, 70 tracked ✅
+- **PRs:** 2 open (#219 fix pushed awaiting CI, #221 dependabot), 90 merged
+- **Cycles:** 926
 - **Tests:** ~1,990+ (it() count from core+cli)
 - **Coverage:** 89%+
-- **Consecutive:** 504 (C421-925)
+- **Consecutive:** 505 (C421-926)
 - **Compressions:** 48
 - **Lessons:** 138 (L1-L551)
 - **Rules:** 16
