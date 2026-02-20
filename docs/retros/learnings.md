@@ -2525,3 +2525,11 @@
 - **Insight:** When creating a fix PR from broken master, immediately check if other fix PRs exist that might interact. Multiple fix PRs from the same broken state often need coordination.
 - **Action:** After creating a fix PR, run `gh pr list` and check if any other PRs are also fixing master issues. Comment on both with coordination notes.
 - **Status:** proposed (C948, candidate for R-017)
+
+## Learning: Immediate PR Cleanup After Merge Prevents Stale Branches (L565)
+
+- **Date:** 2026-02-20
+- **Context:** After merging PR #233, PR #231 was superseded (its changes included via rebase) and PRs #219/#229 had stale CI results.
+- **Insight:** When merging fix PRs, immediately (1) close superseded PRs with explanation, (2) rebase dependent PRs to pick up fixes. This prevents confusion about PR status and stale CI failures.
+- **Action:** After merging a fix PR, check for superseded PRs (close them) and dependent PRs (rebase them). Comment on all affected PRs.
+- **Status:** applied (C949)
