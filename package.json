@@ -15,7 +15,7 @@
     "lint": "npm run lint --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
     "dev": "npm run dev --workspace=packages/cli",
-    "prepare": "husky"
+    "prepare": "command -v husky >/dev/null 2>&1 && husky || true"
   },
   "keywords": [
     "ai",
