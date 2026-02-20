@@ -4,10 +4,28 @@
   "private": true,
   "description": "ADA Web Dashboard — marketing site and monitoring dashboard",
   "scripts": {
-    "build": "echo 'Web app not yet implemented'",
-    "typecheck": "echo 'Web app not yet implemented'",
-    "test": "echo 'Web app not yet implemented'",
-    "lint": "echo 'Web app not yet implemented'"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "echo 'No tests yet'"
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.0"
   },
   "license": "UNLICENSED"
 }
