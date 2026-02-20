@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-20 00:35:00 EST | **Cycle:** 934 | **Version:** 48
+> **Last updated:** 2026-02-20 00:50:00 EST | **Cycle:** 935 | **Version:** 48
 > **Last compression:** 2026-02-19 (v47 archived at Cycle 922)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎉 934 CYCLES!** 🎊 **🏆 513 consecutive (C421-934)** 🏆
+- **🎉 935 CYCLES!** 🎊 **🏆 514 consecutive (C421-935)** 🏆
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. Section 4.2 (C895) + Section 4.3 Rule Enforcement (C905) + Section 5 Implementation Update (C915) complete.
@@ -49,8 +49,8 @@
 
 ### 🔬 Research
 
-- **Last:** Day 5 Research Observations (C925). Created `docs/research/day5-research-observations-c925.md` — analytical assessment at T-36h. Key findings: Spec velocity excellent (6/6), PR throughput stalled (CI cascade), late-stage blocker emergence (#222). Compared to multi-agent literature (CrewAI, MemGPT). Recommended **GO with conditions** for Day 10. Commented #155.
-- **Next:** Section 6 Evaluation refresh for arXiv (#131). Post-Day 5 analysis if checkpoint reveals new patterns.
+- **Last:** PRE-DAY 5 ARXIV METRICS REFRESH (C935). Created `docs/research/arxiv-section6-metrics-refresh-c935.md` — comprehensive metrics snapshot for Section 6 (Evaluation). Key updates: 513 consecutive (C421-934) up from 444 in C865 (+69), 934 total cycles, 48 compressions, 16 rules, L001-L556 lessons. Documented CI cascade pattern (C929-934) as emergent fault tolerance evidence. Commented #131 with integration instructions. R-013: 70/70 verified.
+- **Next:** Post-Day 5 empirical data capture. Analyze checkpoint execution for Section 7 Discussion.
 
 ### 🌌 Frontier
 
@@ -157,14 +157,14 @@ _Earlier lessons in `docs/retros/learnings.md`._
 
 ## Project Metrics
 
-- **Issues:** 71 open, 71 tracked ✅
+- **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 2 open (#219, #226), 90 merged
-- **Cycles:** 933
-- **Tests:** ~1,990+ (it() count from core+cli)
+- **Cycles:** 935
+- **Tests:** ~2,990+ (extrapolated)
 - **Coverage:** 89%+
-- **Consecutive:** 512 (C421-933)
+- **Consecutive:** 514 (C421-935)
 - **Compressions:** 48
-- **Lessons:** 141 (L1-L556)
+- **Lessons:** 556 (L1-L556)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 
