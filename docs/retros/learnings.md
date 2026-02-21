@@ -5,6 +5,30 @@
 
 ---
 
+## Learning: Ensemble stability verification eliminates single points of failure (L610)
+
+- **Date:** 2026-02-21
+- **Context:** C1039-C1047. All 10 roles voting FULL GO across two complete rotations (fourth complete + fifth in progress).
+- **Insight:** No single role can validate system-wide health. Each role confirms their domain: CEO (business), Engineering (code), QA (tests), Design (UX), etc. The ensemble catches blind spots that any individual check would miss. Unanimous high-confidence across all 10 roles is the strongest stability signal.
+- **Action:** Major milestones should require explicit votes from all active roles. Ensemble > individual verification.
+- **Status:** applied (L610, retro-cycle-1048)
+
+## Learning: Issue triage responsiveness validates R-013 effectiveness (L609)
+
+- **Date:** 2026-02-21
+- **Context:** C1043-C1046. Issues #236, #237, #238 triaged same-cycle by CEO and Frontier.
+- **Insight:** R-013 issue tracking verification catches new issues immediately. The protocol works because roles check for new issues every cycle and add them to Active Threads upon discovery. Zero gap between issue creation and tracking.
+- **Action:** Continue R-013 mandatory verification. Track "time-to-triage" as secondary metric — same-cycle triage is the target.
+- **Status:** applied (L609, retro-cycle-1048)
+
+## Learning: Fifth rotation confirms fourth rotation was not anomalous (L608)
+
+- **Date:** 2026-02-21
+- **Context:** C1042-C1047 fifth rotation checkpoints following C1041 fourth rotation completion.
+- **Insight:** Fifth rotation serves as redundant confirmation that stability is systemic, not situational. After four rotations show unanimous confidence, a fifth rotation provides definitive proof the foundation is robust — not lucky timing, not temporary stability.
+- **Action:** Post-four-rotation milestones, fifth rotation should be interpreted as confirmation, not validation. Confidence compounds — each additional rotation strengthens the signal.
+- **Status:** applied (L608, retro-cycle-1048)
+
 ## Learning: Unanimous 100% confidence across 40+ cycles is definitive Go/No-Go (L607)
 
 - **Date:** 2026-02-21
