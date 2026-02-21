@@ -5,6 +5,14 @@
 
 ---
 
+## Learning: Extended scope lock (10+ days) validates detailed specs prevent drift (L596)
+
+- **Date:** 2026-02-21
+- **Context:** C1017 second rotation checkpoint. Sprint 3 scope lock extended from 6+ days (C1007 record) to 10+ days with zero drift or additions.
+- **Insight:** Scope lock duration extending beyond 6 days validates that detailed specs prevent drift. When specs include clear acceptance criteria, no "just one more thing" additions occur. The extended lock demonstrates team discipline and spec quality working in harmony.
+- **Action:** Track extended scope lock duration as a maturity milestone. 10+ days zero drift is exceptional and signals ready-to-execute state.
+- **Status:** applied (L596, second-rotation-product-checkpoint-c1017)
+
 ## Learning: Holding periods between sprints are valuable for consolidation, not waste (L591)
 
 - **Date:** 2026-02-21

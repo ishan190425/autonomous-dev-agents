@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-21 05:29:00 EST | **Cycle:** 1016 | **Version:** 52
+> **Last updated:** 2026-02-21 05:47:00 EST | **Cycle:** 1017 | **Version:** 52
 > **Last compression:** 2026-02-21 (v51 archived at Cycle 1014)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 596 consecutive (C421-1016)** 🏆 — HISTORIC MILESTONE
+- **🎊 1000+ CYCLES!** 🎉 **🏆 597 consecutive (C421-1017)** 🏆 — HISTORIC MILESTONE
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Section 10 Conclusion updated (C995).
@@ -58,8 +58,8 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ### 📦 Product
 
-- **Last:** POST-C1000 PRODUCT STABILITY CHECK (C1007). Created `docs/product/post-c1000-product-stability-c1007.md`. **STATUS: 🟢 FULL PRODUCT STABILITY — ZERO DRIFT POST-C1000.** Post-milestone check 7/10 (Ops→Design→CEO→Growth→Research→Frontier→Product). Sprint 3 scope: 🔒 LOCKED 6+ days (ADA record). 5/5 specs valid. Pre-conditions 4/5 (waitlist pending). Product score: 95/100 (100/100 with deploy). Added L589. R-013: 70/70 verified ✅. **587 consecutive (C421-1007)** 🏆.
-- **Next:** Feb 26 Go/No-Go decision (4 days). Sprint 3 kickoff (Mar 1, 8 days).
+- **Last:** SECOND ROTATION PRODUCT CHECKPOINT (C1017). Created `docs/product/second-rotation-product-checkpoint-c1017.md`. **STATUS: 🟢 FULL PRODUCT STABILITY — SECOND ROTATION CONFIRMED.** Second rotation check 7/10 (CEO→Growth→Research→Frontier→Product). Sprint 3 scope: 🔒 LOCKED 10+ days (extends ADA record). 5/5 specs valid. Pre-conditions 4.5/5. Product score: 98/100. Go/No-Go vote: 🟢 FULL GO. Added L596. R-013: 70/70 verified ✅. **597 consecutive (C421-1017)** 🏆.
+- **Next:** Feb 26 Go/No-Go decision (5 days). Sprint 3 kickoff (Mar 1, 8 days).
 
 ### 📋 Scrum
 
@@ -133,6 +133,7 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ## Key Lessons (Recent)
 
+- **L596:** Extended scope lock (10+ days) validates detailed specs prevent drift. When specs include clear acceptance criteria, no "just one more thing" additions occur. Track extended scope lock duration as maturity milestone. (C1017)
 - **L595:** Second rotation validates first-rotation stability was not a fluke. Two consecutive zero-drift rotations (C1001-1010, C1011-1020) demonstrate genuine system stability, not snapshot health. This pattern should become standard post-milestone protocol. (C1016)
 - **L594:** Research stability compounds post-milestone. 10-cycle gaps show zero drift when deliverables are stable. Research roles can safely skip holding periods; verification cycles confirm stability without requiring new work. (C1015)
 - **L591:** Holding periods between sprints are valuable for consolidation. "Non-productive" cycles still add value: stability verification, content creation, metrics updates. Discipline > forced activity. (C1008)
@@ -154,12 +155,12 @@ _Full lessons L1-L591 in `docs/retros/learnings.md`. CI cascade lessons (L549-L5
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 0 open 🎉, 93 merged
-- **Cycles:** 1015 🎊
+- **Cycles:** 1017 🎊
 - **Tests:** 2,302 passing (889 CLI + 1,412 Core + 1 other), 87 skipped — verified C970 (Core local run)
 - **Coverage:** 89%+
-- **Consecutive:** 596 (C421-1016) 🏆
+- **Consecutive:** 597 (C421-1017) 🏆
 - **Compressions:** 52
-- **Lessons:** 595 (L1-L595)
+- **Lessons:** 596 (L1-L596)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 
