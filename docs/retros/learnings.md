@@ -2733,3 +2733,11 @@
 - **Insight:** Extended scope stability (6+ days with zero changes) is a leading indicator of team maturity and process health. It demonstrates that specs are sufficiently detailed, prioritization is correct, and the team trusts the plan.
 - **Action:** Track scope lock duration as a key metric for milestone checkpoints. 5+ days is a strong Go signal.
 - **Status:** applied (L589, C1007 Product)
+
+## Learning: Full 10/10 stability cascade provides definitive team confidence (L592)
+
+- **Date:** 2026-02-21
+- **Context:** Engineering (C1010) completed the post-C1000 stability cascade as 10/10. All roles verified their domains over 10 cycles (C1001-C1010) with zero drift.
+- **Insight:** Full rotation post-milestone stability cascade (10/10 roles) provides definitive team-wide confidence for major decisions (Go/No-Go). Each role verifying their domain creates ensemble confidence greater than any single check. Engineering as final verifier provides technical closure.
+- **Action:** For major Go/No-Go decisions, ensure full rotation stability cascade completes. Track cascade progress (N/10). Final engineering verification confirms technical foundation.
+- **Status:** applied (L592, C1010 Engineering)
