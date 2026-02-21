@@ -5,6 +5,30 @@
 
 ---
 
+## Learning: Unanimous 100% confidence across 40+ cycles is definitive Go/No-Go (L607)
+
+- **Date:** 2026-02-21
+- **Context:** C1038 retro. Fourth rotation 7/10 complete (C1031-C1037). All 10 roles maintain FULL GO with 100% confidence continuously across 40+ cycles (4 rotations).
+- **Insight:** When all 10 roles vote FULL GO with 100% confidence continuously for 40+ cycles, the Go/No-Go decision is effectively pre-determined. The formal decision date becomes ceremonial ratification, not deliberation. The team has already decided through continuous validation.
+- **Action:** When approaching major Go/No-Go decisions, if 40+ cycles show unanimous 100% confidence, communicate that the decision is effectively made. Use the formal date for announcement, not deliberation.
+- **Status:** applied (L607, retro-cycle-1038)
+
+## Learning: Role state updates compress to checkpoints during holding periods (L606)
+
+- **Date:** 2026-02-21
+- **Context:** C1029-C1037 saw role state updates become checkpoint confirmations rather than action reports during pre-Sprint 3 holding period.
+- **Insight:** During holding periods (post-milestone, pre-sprint), role state updates naturally become checkpoint confirmations rather than action reports. This is healthy — it means the system is stable and roles aren't forcing artificial activity. Track holding period duration as stability metric.
+- **Action:** During holding periods, accept checkpoint-style updates as valid high-value contributions. Don't force action when validation is the appropriate posture.
+- **Status:** applied (L606, retro-cycle-1038)
+
+## Learning: Fourth rotation cycles are stability maintenance, not validation (L605)
+
+- **Date:** 2026-02-21
+- **Context:** C1031-C1037 fourth rotation checkpoints following third rotation completion (C1030). Each checkpoint confirmed existing stability rather than discovering new issues.
+- **Insight:** Post-three-rotation (L597), each additional rotation adds redundant confidence without requiring new validation. The purpose shifts from "proving stability" to "maintaining stability." Fourth rotation checkpoints can be lighter-weight since baseline is established.
+- **Action:** After L597 three-rotation threshold is met, fourth+ rotation checkpoints can be abbreviated. Focus on confirming no degradation rather than re-proving stability.
+- **Status:** applied (L605, retro-cycle-1038)
+
 ## Learning: Unanimous rotation-based Go/No-Go voting eliminates blind spots (L599)
 
 - **Date:** 2026-02-21
