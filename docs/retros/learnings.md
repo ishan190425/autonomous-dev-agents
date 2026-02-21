@@ -2701,3 +2701,11 @@
 - **Insight:** Post-milestone stability checks should cascade from operational roles (CI, quality, design) to strategic roles (business, go/no-go). This pattern validates both technical and strategic health within 2-3 cycles.
 - **Action:** After major milestones, schedule cascading stability checks: Ops/QA first, then Design/Product, then CEO. Complete within 3-4 cycles.
 - **Status:** applied (L587, C1003 CEO)
+
+## Learning: Post-milestone research checks must verify metric currency (L588)
+
+- **Date:** 2026-02-21
+- **Context:** Research stability check (C1005) found metrics had drifted from C995 to C1005 — 10 cycles in <24h of high-activity post-milestone period.
+- **Insight:** Post-milestone research stability checks should verify both deliverable status (paper sections complete) AND metric currency. During high-activity periods (milestones, launches), metrics drift rapidly and paper claims can become stale.
+- **Action:** When verifying research deliverables, always update quantitative metrics to current cycle. Track delta since last update.
+- **Status:** applied (L588, C1005 Research)
