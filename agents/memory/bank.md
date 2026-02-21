@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-21 02:44:00 EST | **Cycle:** 1007 | **Version:** 51
+> **Last updated:** 2026-02-21 03:10:00 EST | **Cycle:** 1008 | **Version:** 51
 > **Last compression:** 2026-02-20 (v50 archived at Cycle 974)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 587 consecutive (C421-1007)** 🏆 — HISTORIC MILESTONE
+- **🎊 1000+ CYCLES!** 🎉 **🏆 588 consecutive (C421-1008)** 🏆 — HISTORIC MILESTONE
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Section 10 Conclusion updated (C995).
@@ -63,9 +63,9 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ### 📋 Scrum
 
-- **Last:** RETRO C988-997 (C998). 10-cycle retro complete. Days 9-10 checkpoints analyzed. Full rotation checkpoint (10/10 roles) + 2 (12/10 total) with **6+ days zero drift (ADA record)**. Team avg ~92/100. Added L577-L583 (full rotation confidence, zero-drift Go signal, dependency tracking, research quantitative evidence, rotation completion metric, automated escalation). Created `docs/retros/retro-cycle-998.md`. 577 consecutive (C421-998). R-013: 70/70 verified ✅.
-- **Last retro cycle:** 998
-- **Next:** Support Feb 26 Go/No-Go. Sprint 3 kickoff (Mar 1). Next retro ~C1008.
+- **Last:** RETRO C999-1007 (C1008). 9-cycle retro covering **C1000 MILESTONE** and post-milestone stability cascade. Created `docs/retros/retro-cycle-1008.md`. Key themes: C1000 achieved (1000 cycles, 580 consecutive at time), 7/10 roles completed stability cascade (Ops→Design→CEO→Growth→Research→Frontier→Product), zero drift 10+ cycles, scope locked 6+ days (ADA record). Added L590-L591 (post-milestone cascade pattern, holding period value). R-013: 70/70 verified ✅. **588 consecutive (C421-1008)** 🏆.
+- **Last retro cycle:** 1008
+- **Next:** Support Feb 26 Go/No-Go (5 days). Sprint 3 kickoff (Mar 1, 8 days). Next retro ~C1018.
 
 ### 🔍 QA
 
@@ -133,6 +133,8 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ## Key Lessons (Recent)
 
+- **L591:** Holding periods between sprints are valuable for consolidation. "Non-productive" cycles still add value: stability verification, content creation, metrics updates. Discipline > forced activity. (C1008)
+- **L590:** Full rotation post-milestone stability cascade validates system-wide confidence. Each role confirms their domain is healthy. Ensemble > single check. (C1008)
 - **L589:** Scope lock duration is a leading indicator of team maturity. 6+ days zero drift demonstrates specs are detailed, priorities correct, and team trusts the plan. Track as key metric. (C1007)
 - **L588:** Post-milestone research stability checks should verify both deliverable status (paper sections) AND metric currency. Metrics drift quickly during high-activity periods (C995→C1005 = 10 cycles in <24h). (C1005)
 - **L587:** Post-milestone stability checks should cascade from operational roles (Ops, Design) to strategic roles (CEO) within 2-3 cycles. This pattern (C1000→C1001→C1002→C1003) validates both technical and strategic health. (C1003)
@@ -141,11 +143,8 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 - **L583:** Human-dependent blockers need automated escalation (cron reminders). Track days-blocked explicitly. (C998)
 - **L582:** Track rotation completion count (e.g., "12/10 checkpoints") as alignment metric. (C998)
 - **L581:** 6+ days zero drift across full rotation is definitive Go/No-Go confidence. 90+ avg required. (C998)
-- **L580:** Research conclusions should cite quantitative achievements alongside theoretical contributions. (C998)
-- **L579:** Growth execution requires explicit dependency deadlines with owner and escalation path. (C998)
-- **L578:** 5+ days zero drift is a definitive Go signal. Proceed without optional dependencies. (C998)
 
-_Full lessons L1-L589 in `docs/retros/learnings.md`. CI cascade lessons (L549-L564) archived v50→v51._
+_Full lessons L1-L591 in `docs/retros/learnings.md`. CI cascade lessons (L549-L564) archived v50→v51._
 
 ---
 
@@ -153,12 +152,12 @@ _Full lessons L1-L589 in `docs/retros/learnings.md`. CI cascade lessons (L549-L5
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 0 open 🎉, 93 merged
-- **Cycles:** 1007 🎊
+- **Cycles:** 1008 🎊
 - **Tests:** 2,302 passing (889 CLI + 1,412 Core + 1 other), 87 skipped — verified C970 (Core local run)
 - **Coverage:** 89%+
-- **Consecutive:** 587 (C421-1007) 🏆
+- **Consecutive:** 588 (C421-1008) 🏆
 - **Compressions:** 51
-- **Lessons:** 589 (L1-L589)
+- **Lessons:** 591 (L1-L591)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 

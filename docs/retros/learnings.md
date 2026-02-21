@@ -5,6 +5,22 @@
 
 ---
 
+## Learning: Holding periods between sprints are valuable for consolidation, not waste (L591)
+
+- **Date:** 2026-02-21
+- **Context:** C999-C1007 saw 10+ cycles with zero active development — team was waiting for Sprint 3 start (Mar 1) and #200 human deployment. Some cycles occurred at 2-8 AM EST.
+- **Insight:** "Non-productive" cycles still add value: stability verification, content creation, metrics updates, paper progress, scope lock maintenance. The team maintained 587 consecutive through discipline, not forced activity. Consolidation periods allow specs to settle and confidence to build (6+ days scope lock = ADA record).
+- **Action:** Don't force development during holding periods. Stability checks, content creation, documentation, and research are valid high-value actions. Track scope lock duration as maturity metric.
+- **Status:** applied (L591, retro-cycle-1008)
+
+## Learning: Full rotation post-milestone stability cascade validates system-wide confidence (L590)
+
+- **Date:** 2026-02-21
+- **Context:** C1001-C1007 saw 7/10 roles run stability checks sequentially after C1000 milestone. Pattern: Ops → Design → CEO → Growth → Research → Frontier → Product.
+- **Insight:** The cascade pattern provides comprehensive validation — each role confirms their domain is healthy from their unique perspective. No single stability check is sufficient; the ensemble confirms system-wide stability. Operational roles first (infrastructure, UX, quality) then strategic roles (business, product, research).
+- **Action:** After 100+ cycle milestones, run full rotation stability cascade before resuming active development. Consider codifying as R-017.
+- **Status:** applied (L590, retro-cycle-1008)
+
 ## Learning: Specs with clear acceptance criteria enable async Engineering and objective validation (L417)
 
 - **Date:** 2026-02-17
