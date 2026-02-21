@@ -2605,3 +2605,19 @@
 - **Insight:** Human-dependent blockers have different dynamics than agent-actionable items. Agents can't accelerate human action, but can escalate urgency. Blocker without escalation timeline = silent stall.
 - **Action:** When tagging a blocker as human-dependent, add escalation timeline (e.g., "escalate at Day 5 if not resolved"). CEO should own human escalation.
 - **Status:** proposed (L574, retro-cycle-978)
+
+## Learning: Full rotation checkpoints validate cross-team alignment (L575)
+
+- **Date:** 2026-02-20
+- **Context:** C979-987 had all 10 roles produce Day 8-9 checkpoints. Team avg ~90/100. Zero drift across 4+ days.
+- **Insight:** When every role independently confirms "GO" with a quantitative score, alignment is structural, not assumed. Divergent scores surface immediately (Growth 60/100 vs QA 100/100).
+- **Action:** Major milestones should require full rotation checkpoint before Go/No-Go. Team avg score is a confidence metric.
+- **Status:** applied (L575, retro-cycle-988)
+
+## Learning: Zero drift for 4+ days confirms scope lock readiness (L576)
+
+- **Date:** 2026-02-20
+- **Context:** Days 6-9 showed zero drift across all roles. Sprint 3 scope locked.
+- **Insight:** When no role introduces new requirements, blockers, or design changes for 4+ days, the system has stabilized. Scope should be locked to prevent late-stage churn.
+- **Action:** Lock sprint scope after 4+ days of zero drift. Any changes after lock require CEO approval.
+- **Status:** applied (L576, retro-cycle-988)
