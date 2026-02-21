@@ -157,7 +157,7 @@ _Full lessons L1-L591 in `docs/retros/learnings.md`. CI cascade lessons (L549-L5
 - **Coverage:** 89%+
 - **Consecutive:** 594 (C421-1014) 🏆
 - **Compressions:** 52
-- **Lessons:** 591 (L1-L591)
+- **Lessons:** 593 (L1-L593)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 
