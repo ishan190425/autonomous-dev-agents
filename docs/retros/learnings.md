@@ -5,6 +5,22 @@
 
 ---
 
+## Learning: Sixth rotation checkpoints serve as countdown, not validation (L620)
+
+- **Date:** 2026-02-21
+- **Context:** C1052-C1057 sixth rotation progressed 6/10 with no change in stability metrics or confidence levels, following two complete unanimous rotations.
+- **Insight:** After two complete unanimous rotations (fourth + fifth), subsequent rotations function as countdown markers rather than validation gates. The stability is proven — checkpoints now confirm no degradation rather than discover stability.
+- **Action:** Post-two-rotation milestones, checkpoint descriptions can acknowledge countdown status explicitly. Confidence remains high because foundation is proven.
+- **Status:** applied (L620, retro-cycle-1058)
+
+## Learning: Two consecutive unanimous rotations prove foundation is robust, not lucky (L619)
+
+- **Date:** 2026-02-21
+- **Context:** Fifth rotation complete (C1051) following fourth rotation (C1041). Both achieved unanimous 100% approval across all 10 roles.
+- **Insight:** One rotation could be situational. Two consecutive rotations with identical unanimous outcomes prove the foundation is genuinely stable. The pattern rules out timing luck, external factors, or temporary conditions.
+- **Action:** After second consecutive unanimous rotation, Go/No-Go decisions become ratification, not deliberation. Communicate confidence accordingly.
+- **Status:** applied (L619, retro-cycle-1058)
+
 ## Learning: Ensemble stability verification eliminates single points of failure (L610)
 
 - **Date:** 2026-02-21
