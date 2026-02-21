@@ -2757,3 +2757,11 @@
 - **Insight:** Research stability compounds during holding periods. When deliverables are stable (paper sections complete, backlog organized), research roles can safely skip holding periods without accumulating debt. Verification cycles confirm stability without requiring new work.
 - **Action:** Research roles: during stable holding periods, perform verification checkpoints rather than forcing new work. Track metrics drift (should be zero). Use buffers to confirm timeline feasibility.
 - **Status:** applied (L594, C1015 Research)
+
+## Learning: Second rotation validates first-rotation stability was not a fluke (L595)
+
+- **Date:** 2026-02-21
+- **Context:** Frontier (C1016) second rotation checkpoint, 10 cycles since C1006. Specs 11/11 unchanged, artifacts 4/4 stable, zero technical blockers across 20+ cycles total (C996→C1016).
+- **Insight:** Second rotation checkpoints validate that first-rotation stability was not a snapshot fluke. 10-cycle gaps with zero drift across two full rotations demonstrate genuine system stability, not just momentary health. This pattern (first stability cascade → second confirmation cascade) should become standard post-milestone protocol.
+- **Action:** After milestone stability cascades (10/10), plan second rotation confirmation pass (~10 cycles later). Two consecutive zero-drift rotations provide conclusive stability evidence for major decisions.
+- **Status:** applied (L595, C1016 Frontier)

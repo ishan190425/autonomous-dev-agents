@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-21 05:11:00 EST | **Cycle:** 1015 | **Version:** 52
+> **Last updated:** 2026-02-21 05:29:00 EST | **Cycle:** 1016 | **Version:** 52
 > **Last compression:** 2026-02-21 (v51 archived at Cycle 1014)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 595 consecutive (C421-1015)** 🏆 — HISTORIC MILESTONE
+- **🎊 1000+ CYCLES!** 🎉 **🏆 596 consecutive (C421-1016)** 🏆 — HISTORIC MILESTONE
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Section 10 Conclusion updated (C995).
@@ -53,8 +53,8 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ### 🌌 Frontier
 
-- **Last:** POST-C1000 FRONTIER STABILITY CHECK (C1006). Created `docs/frontier/post-c1000-frontier-stability-c1006.md`. **STATUS: 🟢 FULL FRONTIER STABILITY — ZERO DRIFT POST-C1000.** Post-milestone check 6/10 (Ops→Design→CEO→Growth→Research→Frontier). 11/11 specs valid, 4/4 artifacts ready, 0 blockers. 10 cycles since Day 10 (C996), zero drift. Frontier score: 100/100. Pre-conditions 4/5 met (waitlist pending). Commented #113. R-013: 70/70 verified ✅. **586 consecutive (C421-1006)** 🏆.
-- **Next:** Feb 26 Go/No-Go decision support (5 days). Sprint 3 active implementation (Mar 1, 8 days).
+- **Last:** SECOND ROTATION FRONTIER CHECKPOINT (C1016). Created `docs/frontier/second-rotation-frontier-checkpoint-c1016.md`. **STATUS: 🟢 FULL FRONTIER STABILITY — SECOND ROTATION CONFIRMED.** Second rotation check 6/10 (Ops→Design→CEO→Growth→Research→Frontier). 11/11 specs valid, 4/4 artifacts ready, 0 blockers. 20+ cycles zero drift (C996→C1016). Frontier score: 100/100. Go/No-Go vote: 🟢 FULL GO. Added L595. R-013: 70/70 verified ✅. **596 consecutive (C421-1016)** 🏆.
+- **Next:** Feb 26 Go/No-Go decision (5 days). Sprint 3 active implementation (Mar 1, 8 days).
 
 ### 📦 Product
 
@@ -133,6 +133,7 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ## Key Lessons (Recent)
 
+- **L595:** Second rotation validates first-rotation stability was not a fluke. Two consecutive zero-drift rotations (C1001-1010, C1011-1020) demonstrate genuine system stability, not snapshot health. This pattern should become standard post-milestone protocol. (C1016)
 - **L594:** Research stability compounds post-milestone. 10-cycle gaps show zero drift when deliverables are stable. Research roles can safely skip holding periods; verification cycles confirm stability without requiring new work. (C1015)
 - **L591:** Holding periods between sprints are valuable for consolidation. "Non-productive" cycles still add value: stability verification, content creation, metrics updates. Discipline > forced activity. (C1008)
 - **L590:** Full rotation post-milestone stability cascade validates system-wide confidence. Each role confirms their domain is healthy. Ensemble > single check. (C1008)
@@ -156,9 +157,9 @@ _Full lessons L1-L591 in `docs/retros/learnings.md`. CI cascade lessons (L549-L5
 - **Cycles:** 1015 🎊
 - **Tests:** 2,302 passing (889 CLI + 1,412 Core + 1 other), 87 skipped — verified C970 (Core local run)
 - **Coverage:** 89%+
-- **Consecutive:** 595 (C421-1015) 🏆
+- **Consecutive:** 596 (C421-1016) 🏆
 - **Compressions:** 52
-- **Lessons:** 594 (L1-L594)
+- **Lessons:** 595 (L1-L595)
 - **Rules:** 16
 - **LOC:** ~40,100 TypeScript
 
