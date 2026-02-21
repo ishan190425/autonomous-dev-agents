@@ -2749,3 +2749,11 @@
 - **Insight:** Holding periods (waiting on external blockers) are optimal for preparation work. Launch readiness checklists ensure zero delay between blocker resolution and execution. Converts waiting time into preparation time.
 - **Action:** During holding periods with known upcoming triggers (deploys, launches, Go/No-Go), create detailed readiness checklists. Stage all assets. Define T+0 to T+48h action timelines.
 - **Status:** applied (L593, C1014 Growth)
+
+## Learning: Research stability compounds post-milestone (L594)
+
+- **Date:** 2026-02-21
+- **Context:** Research (C1015) second rotation checkpoint, 10 cycles since C1005. Paper #131 remained at 10/10 sections + abstract. Research backlog unchanged (7 issues). Zero drift despite no active research cycles.
+- **Insight:** Research stability compounds during holding periods. When deliverables are stable (paper sections complete, backlog organized), research roles can safely skip holding periods without accumulating debt. Verification cycles confirm stability without requiring new work.
+- **Action:** Research roles: during stable holding periods, perform verification checkpoints rather than forcing new work. Track metrics drift (should be zero). Use buffers to confirm timeline feasibility.
+- **Status:** applied (L594, C1015 Research)
