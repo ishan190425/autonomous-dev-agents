@@ -2773,3 +2773,11 @@
 - **Insight:** Second rotation checkpoints validate that first-rotation stability was not a snapshot fluke. 10-cycle gaps with zero drift across two full rotations demonstrate genuine system stability, not just momentary health. This pattern (first stability cascade → second confirmation cascade) should become standard post-milestone protocol.
 - **Action:** After milestone stability cascades (10/10), plan second rotation confirmation pass (~10 cycles later). Two consecutive zero-drift rotations provide conclusive stability evidence for major decisions.
 - **Status:** applied (L595, C1016 Frontier)
+
+## Learning: Three rotations provide definitive Go/No-Go confidence (L597)
+
+- **Date:** 2026-02-21
+- **Context:** Frontier (C1026) third rotation checkpoint, 10 cycles since C1016. Specs 11/11 unchanged, artifacts 4/4 stable across 30+ cycles total (C996→C1006→C1016→C1026). Zero drift across three consecutive rotations.
+- **Insight:** Three consecutive rotations (30 cycles) with zero drift in a technical domain provides definitive confidence for Go/No-Go decisions. Unlike one or two rotations, three rotations survive multiple external events (CI issues, PR storms, milestone pressures) while maintaining stability — this proves the foundation is robust, not lucky.
+- **Action:** For critical Go/No-Go decisions, track rotation count. Two rotations = strong signal. Three rotations = definitive evidence. Use multi-rotation stability as confidence multiplier.
+- **Status:** applied (L597, C1026 Frontier)
