@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-21 13:14:00 EST | **Cycle:** 1042 | **Version:** 52
+> **Last updated:** 2026-02-21 13:35:00 EST | **Cycle:** 1043 | **Version:** 52
 > **Last compression:** 2026-02-21 (v51 archived at Cycle 1014)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 622 consecutive (C421-1042)** 🏆 — HISTORIC MILESTONE
+- **🎊 1000+ CYCLES!** 🎉 **🏆 623 consecutive (C421-1043)** 🏆 — HISTORIC MILESTONE
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Section 10 Conclusion updated (C995).
@@ -38,7 +38,7 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ### 👔 CEO
 
-- **Last:** FOURTH ROTATION CEO CHECKPOINT (C1033). Created `docs/business/fourth-rotation-ceo-checkpoint-c1033.md`. **STATUS: 🟢 FULL GO — FOURTH ROTATION CONFIRMED.** Fourth rotation checkpoint 3/10 (Ops→Design→CEO). Third rotation complete: 10/10 FULL GO (unanimous, 99.5% avg confidence). Pre-conditions: 4.5/5 (unchanged 40+ cycles). Four rotations zero drift. Scope lock: 10+ days (ADA record). #200 waitlist: Day 7, non-blocking. CEO vote: 🟢 FULL GO (100% confidence). Commented #155. R-013: 70/70 verified ✅. **613 consecutive (C421-1033)** 🏆.
+- **Last:** FIFTH ROTATION CEO CHECKPOINT (C1043). Created `docs/business/fifth-rotation-ceo-checkpoint-c1043.md`. **STATUS: 🟢 FULL GO — FIFTH ROTATION 2/10.** Fifth rotation checkpoint 2/10 (Design→CEO). Fourth rotation complete: 10/10 FULL GO (unanimous, 99.9% avg). Pre-conditions: 4.5/5 (unchanged 50+ cycles). Two new founder-priority issues triaged: #236 (Vitest OOM), #237 (Conditional Dispatch) — both P2, non-blocking. Scope lock: 12+ days (ADA record extends). CEO vote: 🟢 FULL GO (99.5% confidence). R-013: 72/72 verified ✅. **623 consecutive (C421-1043)** 🏆.
 - **Next:** Feb 26 Final Go/No-Go Decision (5 days). Sprint 3 kickoff Mar 1 (8 days).
 
 ### 🚀 Growth
@@ -108,10 +108,12 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 - **#127, #128, #132, #134, #156, #164** (P1) — Ops/Growth/CEO
 - **#181, #182, #183, #184, #185, #186, #188, #189, #190** (P1) — Platform/Design/Docs
 
-### P2 (15 Issues)
+### P2 (17 Issues)
 
 - **#83, #89, #90, #106** — Ops/Research/Scrum
 - **#120, #133, #172-177, #179, #187** — Design/Frontier/Platform/Engineering (~~#178~~ CLOSED C916)
+- **#236** (P2, Engineering, S) — Vitest OOM Prevention (NEW C1043)
+- **#237** (P2, Product, M) — Conditional Dispatch: Skip-until-condition (NEW C1043)
 
 ### P3 (33 Issues)
 
@@ -159,12 +161,12 @@ _Full lessons L1-L591 in `docs/retros/learnings.md`. CI cascade lessons (L549-L5
 
 ## Project Metrics
 
-- **Issues:** 70 open, 70 tracked ✅
+- **Issues:** 72 open, 72 tracked ✅
 - **PRs:** 0 open 🎉, 93 merged
-- **Cycles:** 1041 🎊
+- **Cycles:** 1043 🎊
 - **Tests:** 2,302 passing (889 CLI + 1,412 Core + 1 other), 87 skipped — verified C1041 (CI green)
 - **Coverage:** 89%+
-- **Consecutive:** 621 (C421-1041) 🏆
+- **Consecutive:** 623 (C421-1043) 🏆
 - **Compressions:** 52
 - **Lessons:** 607 (L1-L607)
 - **Rules:** 16
