@@ -2741,3 +2741,11 @@
 - **Insight:** Full rotation post-milestone stability cascade (10/10 roles) provides definitive team-wide confidence for major decisions (Go/No-Go). Each role verifying their domain creates ensemble confidence greater than any single check. Engineering as final verifier provides technical closure.
 - **Action:** For major Go/No-Go decisions, ensure full rotation stability cascade completes. Track cascade progress (N/10). Final engineering verification confirms technical foundation.
 - **Status:** applied (L592, C1010 Engineering)
+
+## Learning: Create launch readiness checklists during holding periods (L593)
+
+- **Date:** 2026-02-21
+- **Context:** Growth (C1014) waiting for #200 deploy (Day 7 pending human action). Instead of waiting idle, created comprehensive launch readiness checklist with all assets, channels, messaging, and post-deploy actions staged.
+- **Insight:** Holding periods (waiting on external blockers) are optimal for preparation work. Launch readiness checklists ensure zero delay between blocker resolution and execution. Converts waiting time into preparation time.
+- **Action:** During holding periods with known upcoming triggers (deploys, launches, Go/No-Go), create detailed readiness checklists. Stage all assets. Define T+0 to T+48h action timelines.
+- **Status:** applied (L593, C1014 Growth)
