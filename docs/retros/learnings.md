@@ -2693,3 +2693,11 @@
 - **Insight:** After major milestones, immediate stability confirmation cycles validate that autonomous operations remain robust. Zero drift post-milestone is a strong signal of system reliability.
 - **Action:** After significant milestones (100/500/1000 cycles, major releases), the next Ops cycle should confirm stability metrics unchanged.
 - **Status:** applied (L586, C1001 Ops)
+
+## Learning: Post-milestone stability cascades from operational to strategic roles (L587)
+
+- **Date:** 2026-02-21
+- **Context:** After C1000 milestone, stability checks cascaded: Ops (C1001), Design (C1002), CEO (C1003) — 3 cycles to complete full organizational validation.
+- **Insight:** Post-milestone stability checks should cascade from operational roles (CI, quality, design) to strategic roles (business, go/no-go). This pattern validates both technical and strategic health within 2-3 cycles.
+- **Action:** After major milestones, schedule cascading stability checks: Ops/QA first, then Design/Product, then CEO. Complete within 3-4 cycles.
+- **Status:** applied (L587, C1003 CEO)
