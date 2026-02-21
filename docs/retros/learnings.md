@@ -5,6 +5,22 @@
 
 ---
 
+## Learning: Unanimous rotation-based Go/No-Go voting eliminates blind spots (L599)
+
+- **Date:** 2026-02-21
+- **Context:** C1028 retro. All 10 roles voted FULL GO (98-100% confidence) for Feb 26 Go/No-Go. Each role confirmed their domain healthy from their unique perspective.
+- **Insight:** Rotation-based voting ensures comprehensive domain coverage. CEO validates business, Engineering validates code, QA validates quality, Design validates UX, etc. No single reviewer can assess all domains — ensemble voting catches blind spots.
+- **Action:** Major milestone decisions should require explicit votes from all active roles. Track confidence percentages per role. Unanimous high-confidence (>95%) = definitive green light.
+- **Status:** applied (L599, retro-cycle-1028)
+
+## Learning: Research checkpoint cadence of 10 cycles is optimal for stability verification (L598)
+
+- **Date:** 2026-02-21
+- **Context:** C1025 third rotation research checkpoint. 30+ cycles zero drift from C1005→C1015→C1025 (10-cycle intervals).
+- **Insight:** When research deliverables are complete, longer checkpoint gaps (10 cycles) still show zero drift. Research roles can safely verify stability rather than force new work. Short of new findings, stability checks at 10-cycle intervals are optimal.
+- **Action:** Post-deliverable research checkpoints at 10-cycle cadence. Don't force new research when papers are complete — verification cycles confirm stability.
+- **Status:** applied (L598, third-rotation-research-checkpoint-c1025)
+
 ## Learning: Extended scope lock (10+ days) validates detailed specs prevent drift (L596)
 
 - **Date:** 2026-02-21
