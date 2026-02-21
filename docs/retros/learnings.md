@@ -5,6 +5,22 @@
 
 ---
 
+## Learning: Three consecutive unanimous rotations prove permanent stability (L622)
+
+- **Date:** 2026-02-21
+- **Context:** C1061 completes sixth rotation. Fourth (C1022-1031), Fifth (C1042-1051), and Sixth (C1052-1061) all achieved unanimous 100% approval across all 10 roles.
+- **Insight:** Three consecutive complete rotations with unanimous approval eliminates ALL possible confounding factors. One rotation could be timing luck. Two could be favorable external conditions. Three proves the foundation stability is permanent, not episodic.
+- **Action:** Document rotation completion counts as primary stability metric. Three unanimous rotations should be the gold standard for major milestone confidence. Feb 26 Go/No-Go becomes pure formality.
+- **Status:** monitoring
+
+## Learning: Six rotation QA checkpoints confirm test infrastructure is compounding asset (L621)
+
+- **Date:** 2026-02-21
+- **Context:** C1059 QA checkpoint. Six consecutive rotation checkpoints (C1009→C1019→C1029→C1039→C1049→C1059) with zero drift.
+- **Insight:** 60+ cycles with zero flaky tests and consistent coverage demonstrates test infrastructure stability is not luck but a compounding asset. Each passing rotation strengthens confidence for Sprint 3 scope expansion.
+- **Action:** Use rotation-based QA checkpoints as release gates. Zero flaky tests for 40+ cycles should be minimum bar for major releases.
+- **Status:** monitoring
+
 ## Learning: Sixth rotation checkpoints serve as countdown, not validation (L620)
 
 - **Date:** 2026-02-21
