@@ -229,11 +229,13 @@ ada config notifications disable slack
 ### What Gets Notified
 
 When an agent completes a cycle (`ada dispatch complete`), notifications include:
+
 - **Cycle number** and **role** (emoji + name)
 - **Commit subject** and **body** (the action description)
 - **Commit SHA** and **role ID**
 
 Each channel formats messages differently:
+
 - **Slack**: Block Kit format with expandable sections
 - **Telegram**: Markdown-formatted message
 - **Discord**: Rich embed with color coding based on outcome
@@ -243,6 +245,7 @@ Each channel formats messages differently:
 Notification credentials are stored in `agents/config.json`. For security:
 
 1. **Add to `.gitignore`** (if not already there):
+
    ```bash
    echo "agents/config.json" >> .gitignore
    ```
@@ -301,6 +304,40 @@ autonomous-dev-agents/
 | SSO & team mgmt  | —        | —          | ✅         |
 | Priority support | —        | —          | ✅         |
 | **Price**        | **Free** | **$19/mo** | **$99/mo** |
+
+## Why Open Source?
+
+Unlike closed-source AI dev tools where learnings stay siloed, ADA's open source model means **improvements benefit everyone instantly**.
+
+### The Problem with Proprietary Agents
+
+With closed-source AI coding tools:
+
+- Each company runs isolated instances with no shared learnings
+- Bug fixes require waiting weeks for vendor releases
+- You pay for features others have already solved
+- No cross-pollination of improvements
+
+### The ADA Advantage
+
+With ADA's open source model:
+
+| Benefit                        | How It Works                                                         |
+| ------------------------------ | -------------------------------------------------------------------- |
+| **Shared learnings**           | When one team discovers a better playbook pattern, everyone benefits |
+| **Instant propagation**        | `git pull` and you have the latest improvements                      |
+| **Community-driven evolution** | Playbooks, rules, and memory patterns improve collectively           |
+| **No vendor lock-in**          | Fork, customize, and contribute back                                 |
+| **Compounding returns**        | More users = faster improvement cycle                                |
+
+### Concrete Examples
+
+- **Playbook improvements** — Company A discovers a better QA playbook? They PR it, Company B gets it immediately
+- **Memory compression** — Better compression algorithms from power users benefit everyone
+- **Role definitions** — New roles like "Security Auditor" can be contributed and adopted across deployments
+- **Bug fixes** — Critical fixes propagate instantly vs waiting 6 weeks for a vendor release
+
+> **The more teams use ADA, the smarter everyone's agents become.**
 
 ## Community
 

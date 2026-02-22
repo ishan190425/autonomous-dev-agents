@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-21 19:25:00 EST | **Cycle:** 1063 | **Version:** 52
+> **Last updated:** 2026-02-21 19:45:00 EST | **Cycle:** 1064 | **Version:** 52
 > **Last compression:** 2026-02-21 (v51 archived at Cycle 1014)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 642 consecutive (C421-1062)** 🏆 — HISTORIC MILESTONE
+- **🎊 1000+ CYCLES!** 🎉 **🏆 644 consecutive (C421-1064)** 🏆 — HISTORIC MILESTONE
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Section 10 Conclusion updated (C995).
@@ -43,8 +43,8 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ### 🚀 Growth
 
-- **Last:** SIXTH ROTATION GROWTH CHECKPOINT (C1054). Created `docs/marketing/sixth-rotation-growth-checkpoint-c1054.md`. **STATUS: 🟢 FULL GROWTH STABILITY — SIXTH ROTATION 3/10.** Sixth rotation check 3/10 (Design→CEO→Growth). Content assets: 2/2 ready (60+ cycles stable). Launch sequence: T+0/T+1/T+2 defined. Distribution: All channels configured. Waitlist #200: DEPLOYMENT READY (Day 7). Zero drift across 60+ cycles (C994→C1054). Two consecutive unanimous rotations (4th + 5th) = definitive confidence. Go/No-Go vote: 🟢 FULL GO (100% confidence). Commented #155. R-013: 73/73 verified ✅. **634 consecutive (C421-1054)** 🏆.
-- **Next:** Feb 26 Go/No-Go ratification (5 days). Sprint 3 (Mar 1, 8 days): Execute T+0 launch sequence upon activation.
+- **Last:** README "WHY OPEN SOURCE?" (C1064). Added marketing section to README.md per #134. **Per #239, SHIPPED actual work instead of checkpoint.** Section covers: proprietary agent problems (silos, slow fixes, lock-in) vs ADA advantage (shared learnings, instant propagation, community-driven, compounding returns). Concrete examples included. Commented #134 with progress. **R-013: #239 added (74/74) ✅.** **644 consecutive (C421-1064)** 🏆.
+- **Next:** Continue #134 (improvement propagation docs, contribution guidelines). Sprint 3 execution (Mar 1, 8 days).
 
 ### 🔬 Research
 
@@ -95,8 +95,9 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ## Active Threads
 
-### P0-P1 (24 Issues)
+### P0-P1 (25 Issues)
 
+- **#239** (P0, CEO, M) — **NEW** Stop verification cycles — only CEO verifies, all other roles must ship (founder-priority)
 - **#155** (P0, CEO, L) — SaaS Container — **THE PRIORITY**
 - **#158** (P0, CEO, M) — Strategic Pivot: Bootstrap via SaaS
 - **#200** (P0-parallel, Engineering, S) — Waitlist Website — **DEPLOYMENT READY** (~~#222~~ CLOSED C921)
@@ -168,12 +169,12 @@ _Full lessons L1-L591 in `docs/retros/learnings.md`. CI cascade lessons (L549-L5
 
 ## Project Metrics
 
-- **Issues:** 73 open, 73 tracked ✅
+- **Issues:** 74 open, 74 tracked ✅ (+1: #239)
 - **PRs:** 0 open 🎉, 93 merged
-- **Cycles:** 1063 🎊
+- **Cycles:** 1064 🎊
 - **Tests:** 2,302 passing (889 CLI + 1,412 Core + 1 other), 87 skipped — verified C1063 (CI green)
 - **Coverage:** 89%+
-- **Consecutive:** 643 (C421-1063) 🏆
+- **Consecutive:** 644 (C421-1064) 🏆
 - **Compressions:** 52
 - **Lessons:** 614 (L1-L622)
 - **Rules:** 16
