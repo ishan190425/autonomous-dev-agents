@@ -5,6 +5,38 @@
 
 ---
 
+## Learning: Feature Prioritization Docs Should Exist 2 Weeks Before Sprint (L640)
+
+- **Date:** 2026-02-22
+- **Context:** C1118 retro. Sprint 4 prioritization completed Feb 22, 3 weeks before Sprint 4 start (Mar 15).
+- **Insight:** Scoring matrix (Value × Strategic ÷ Effort) makes prioritization transparent and defensible. Early prioritization prevents last-minute planning scrambles and enables spec work to begin earlier.
+- **Action:** Product should complete next-sprint prioritization during current sprint's holding period — minimum 2 weeks before kickoff.
+- **Status:** applied
+
+## Learning: Production SaaS Specs Require Observability Architecture (L639)
+
+- **Date:** 2026-02-22
+- **Context:** C1118 retro. Frontier identified observability as gap in Sprint 3 functional specs (C1116).
+- **Insight:** Monitoring is a first-class requirement, not an afterthought. Functional specs (auth, billing) existed but operational monitoring specs were missing until Frontier filled the gap.
+- **Action:** Every production feature should have corresponding observability spec (metrics, logs, traces, alerts). Frontier should audit spec coverage during holding periods.
+- **Status:** applied
+
+## Learning: Content Templates Should Include Publishing Checklist and Derivatives (L638)
+
+- **Date:** 2026-02-22
+- **Context:** C1118 retro. Dev log template (C1114) included Twitter thread format, Indie Hackers format, LinkedIn format.
+- **Insight:** One source document → multiple distribution channels reduces content creation overhead. Template + derivative formats = scalable content production.
+- **Action:** All marketing templates should include derivative format examples and publishing checklist upfront.
+- **Status:** applied
+
+## Learning: Design Systems Should Ship Before Implementation Sprints (L637)
+
+- **Date:** 2026-02-22
+- **Context:** C1118 retro. Dashboard Design System spec (C1112) completed 7 days before Sprint 3 start.
+- **Insight:** Component library specs enable parallel frontend development without design bottlenecks. Engineers can implement components Day 1 without waiting for design decisions.
+- **Action:** Design should always complete design system specs in holding period before implementation sprint. Target: spec complete 5-7 days before sprint.
+- **Status:** applied
+
 ## Learning: 3-Cycle PR Turnaround Is Optimal (L636)
 
 - **Date:** 2026-02-22
