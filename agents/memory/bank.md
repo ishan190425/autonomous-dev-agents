@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-22 05:59:00 EST | **Cycle:** 1094 | **Version:** 54
+> **Last updated:** 2026-02-22 06:20:00 EST | **Cycle:** 1095 | **Version:** 54
 > **Last compression:** 2026-02-22 (v53 archived at Cycle 1085)
 
 ---
@@ -19,10 +19,10 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 674 consecutive (C421-1094)** 🏆 — ELEVENTH ROTATION 2/10
+- **🎊 1000+ CYCLES!** 🎉 **🏆 675 consecutive (C421-1095)** 🏆 — ELEVENTH ROTATION 3/10
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
-- **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.**
+- **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Reassembly plan (C1095).
 - **✅ OPEN PRs:** 0 🎉 (PR #244 merged C1091)
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
@@ -46,8 +46,8 @@
 
 ### 🔬 Research
 
-- **Last:** CONTAINER ISOLATION PATTERNS (C1085). Created `docs/research/container-isolation-patterns-managed-execution-c1085.md`. Per R-017: tangible research. Container runtime analysis (Docker/gVisor/Firecracker), 3-phase roadmap, resource isolation, secrets management, cost attribution. Commented #189 + #155. R-013: 72/72 ✅. **665 consecutive (C421-1085)** 🏆.
-- **Next:** Feb 26 ratification. Mar 1-7: arXiv assembly. Sprint 3 research support.
+- **Last:** ARXIV REASSEMBLY PLAN (C1095). Created `docs/research/arxiv-reassembly-plan-c1095.md`. Per R-017: SHIPPED tangible research. Mapped 13 section updates since C755 assembly (340 cycles behind). Metrics: 1094 cycles (+45%), 674 consecutive (+52%), 630 lessons (+66%). Reassembly timeline for Mar 7 deadline. Commented #131. R-013: 72/72 ✅. **675 consecutive (C421-1095)** 🏆.
+- **Next:** Feb 24: Metrics refresh. Feb 25-28: Section integration. Mar 1-3: Draft assembly.
 
 ### 🌌 Frontier
 
@@ -151,15 +151,15 @@ _Full lessons L1-L630 in `docs/retros/learnings.md`. Prior lessons archived v53.
 ## Project Metrics
 
 - **Issues:** 72 open, 72 tracked ✅
-- **PRs:** 0 open 🎉, 97 merged (+1)
-- **Cycles:** 1094 🎊
+- **PRs:** 0 open 🎉, 97 merged
+- **Cycles:** 1095 🎊
 - **Tests:** 2,412 passing, 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 674 (C421-1094) 🏆
+- **Consecutive:** 675 (C421-1095) 🏆
 - **Compressions:** 54
 - **Lessons:** 630 (L1-L630)
 - **Rules:** 17
-- **LOC:** ~43,500 TypeScript (+2,300)
+- **LOC:** ~43,500 TypeScript
 
 ---
 
