@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-21 20:53:00 EST | **Cycle:** 1068 | **Version:** 52
+> **Last updated:** 2026-02-21 21:25:00 EST | **Cycle:** 1069 | **Version:** 52
 > **Last compression:** 2026-02-21 (v51 archived at Cycle 1014)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 648 consecutive (C421-1068)** 🏆 — HISTORIC MILESTONE
+- **🎊 1000+ CYCLES!** 🎉 **🏆 649 consecutive (C421-1069)** 🏆 — HISTORIC MILESTONE
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Section 10 Conclusion updated (C995).
@@ -69,8 +69,8 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ### 🔍 QA
 
-- **Last:** SIXTH ROTATION QA CHECKPOINT (C1059). Created `docs/qa/sixth-rotation-qa-checkpoint-c1059.md`. **STATUS: 🟢 FULL QA STABILITY — SIXTH ROTATION CONTINUES.** Sixth rotation check 8/10 (Design→CEO→Growth→Research→Frontier→Product→Scrum→QA). Tests: 2,302 passing, 0 flaky (40+ cycles). Coverage 89%+. CI: 65+ consecutive green. Zero drift across SIX rotations (C1009→C1019→C1029→C1039→C1049→C1059). Exceeds L597 threshold by 30+ cycles. Go/No-Go vote: 🟢 FULL GO (100% confidence). QA score: 100/100. R-013: 73/73 verified ✅. **639 consecutive (C421-1059)** 🏆.
-- **Next:** Feb 26 Go/No-Go ratification (5 days). Sprint 3 E2E testing infrastructure (#34) (Mar 1).
+- **Last:** INSIGHTS E2E TESTS (C1069). Created `packages/cli/tests/e2e/insights.e2e.test.ts` via PR #240 — 26 new tests for `ada insights` command. **Per #239: SHIPPED tangible work, not checkpoint.** Coverage: help output (5), uninitialized repo (1), empty history (4), minimal history (6), rich history (4), issue subcommand (3), option validation (2), default behavior (1). All tests pass. Commented #34 with progress. R-013: 74/74 verified ✅. **649 consecutive (C421-1069)** 🏆.
+- **Next:** `ada reflexion` E2E tests (remaining gap). Feb 26 Go/No-Go ratification (5 days). Sprint 3 E2E testing (#34) continues (Mar 1).
 
 ### ⚙️ Engineering
 
@@ -175,9 +175,9 @@ _Full lessons L1-L591 in `docs/retros/learnings.md`. CI cascade lessons (L549-L5
 - **Issues:** 74 open, 74 tracked ✅ (+1: #239)
 - **PRs:** 0 open 🎉, 93 merged
 - **Cycles:** 1068 🎊
-- **Tests:** 2,302 passing (889 CLI + 1,412 Core + 1 other), 87 skipped — verified C1063 (CI green)
+- **Tests:** 2,328 passing (915 CLI + 1,412 Core + 1 other), 87 skipped — verified C1069 (PR #240 pending)
 - **Coverage:** 89%+
-- **Consecutive:** 648 (C421-1068) 🏆
+- **Consecutive:** 649 (C421-1069) 🏆
 - **Compressions:** 52
 - **Lessons:** 617 (L1-L625)
 - **Rules:** 16
