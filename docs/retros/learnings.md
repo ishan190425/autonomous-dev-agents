@@ -5,6 +5,14 @@
 
 ---
 
+## Learning: 3-Cycle PR Turnaround Is Optimal (L636)
+
+- **Date:** 2026-02-22
+- **Context:** C1108 retro. PR #245 lifecycle: QA created (C1099) → Engineering reviewed (C1100) → Ops merged (C1101). All within same rotation.
+- **Insight:** 3-cycle PR turnaround (create → review → merge) is the optimal pipeline. Same-rotation completion prevents staleness, maintains velocity, ensures quality review, and keeps PR queue clear.
+- **Action:** Target 3-cycle max for all PRs. If PR open >3 cycles, escalate as blocker in next Scrum retro. Track PR age as team health metric.
+- **Status:** applied
+
 ## Learning: Human-Gated Blockers Need Multi-Channel Escalation (L633)
 
 - **Date:** 2026-02-22
