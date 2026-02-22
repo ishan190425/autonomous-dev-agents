@@ -1,40 +1,89 @@
-# ADA Web Dashboard
+# @ada-ai/web — ADA Dashboard
 
-> Marketing site + monitoring dashboard for Autonomous Dev Agents.
+> Monitor and manage autonomous dev agent teams in real-time.
 
-## Planned Features
+## Overview
 
-### Marketing Site
+The ADA Dashboard provides a web interface for:
 
-- Hero page explaining ADA
-- Feature showcase (CLI, templates, dashboard)
-- Pricing page (Free, Pro, Enterprise)
-- Documentation / getting started guide
+- **Real-time Monitoring**: Watch cycles execute, see rotation state
+- **Memory Visualization**: Browse team memory with heat scoring
+- **Team Management**: Configure roles, rotation order, notifications
+- **Billing & API Keys**: Manage subscriptions and programmatic access
 
-### Dashboard (authenticated)
+## Tech Stack
 
-- **Cycle Timeline** — Visual timeline of what each role did and when
-- **Memory Bank Viewer** — Browse and search the shared memory bank with markdown rendering
-- **Role Configuration** — Edit roster, rotation order, and playbooks through the UI
-- **Metrics & Analytics** — Actions/day, issues created, PRs merged, cycle velocity
-- **Team Health** — Blockers, stale PRs, role coverage gaps
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS + Design System (C1112)
+- **Components**: shadcn/ui-compatible patterns
+- **Core**: @ada-ai/core for shared types and logic
 
-## Tech Stack (planned)
+## Structure
 
-- **Framework:** Next.js 14+ with App Router
-- **Styling:** Tailwind CSS
-- **Auth:** NextAuth.js or Clerk
-- **Data:** @ada/core for reading agent state
-- **Real-time:** WebSocket or Server-Sent Events for live cycle updates
+```
+apps/web/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── (auth)/             # Auth pages (login)
+│   │   ├── (dashboard)/        # Protected dashboard routes
+│   │   │   ├── dashboard/      # Overview page
+│   │   │   ├── cycles/         # Cycle history
+│   │   │   ├── memory/         # Memory viewer
+│   │   │   └── settings/       # Config & billing
+│   │   ├── layout.tsx          # Root layout
+│   │   ├── page.tsx            # Landing page
+│   │   └── globals.css         # Design system CSS
+│   ├── components/
+│   │   ├── dashboard/          # Dashboard-specific components
+│   │   ├── layout/             # Layout components (sidebar, header)
+│   │   └── ui/                 # Reusable UI primitives
+│   └── lib/                    # Utilities
+├── tailwind.config.ts          # Design system colors/fonts
+├── next.config.js              # Next.js config
+└── package.json
+```
 
-## Status
+## Sprint 3 Implementation Plan
 
-🚧 **Not yet implemented.** This is a placeholder for future development.
+Per C1110 (Implementation Sequence):
 
-The CLI (`@ada/cli`) and core library (`@ada/core`) are the current focus.
+| Days  | Feature             | Status            |
+| ----- | ------------------- | ----------------- |
+| 1-2   | Auth (GitHub OAuth) | 🟡 Scaffold ready |
+| 3-4   | API Gateway         | 🟡 Pending        |
+| 5-7   | Billing (Stripe)    | 🟡 Pending        |
+| 8-10  | Managed Exec        | 🟡 Pending        |
+| 11-14 | Dashboard Polish    | 🟡 Pending        |
 
-## License
+## Development
 
-**Commercial License** — This component (ADA Web Dashboard) is not part of the open source AGPLv3 release. It is available under a separate commercial license as part of ADA Pro and Enterprise plans.
+```bash
+# From monorepo root
+npm install
 
-For licensing inquiries, contact: **ishan@rathicapitalventures.com**
+# Start dev server
+npm run dev --workspace=@ada-ai/web
+
+# Type check
+npm run typecheck --workspace=@ada-ai/web
+
+# Build
+npm run build --workspace=@ada-ai/web
+```
+
+## Design System
+
+Per C1112 Dashboard Design System Spec:
+
+- **Primary**: ADA Purple (#7c3aed)
+- **Success**: Developer Green (#10b981)
+- **Active**: Agent Orange (#f59e0b)
+- **Fonts**: Inter (sans), JetBrains Mono (code)
+- **Dark Mode**: Supported via CSS variables
+
+See `tailwind.config.ts` for full color palette including role-specific colors.
+
+---
+
+**Cycle:** 1120 | **Sprint:** 3 Prep | **Status:** Scaffold Complete ✅
