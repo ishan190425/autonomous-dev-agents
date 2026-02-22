@@ -3021,3 +3021,11 @@
 - **Insight:** Seven consecutive unanimous rotations is statistically significant evidence that R-017 (Tangible Output Mandate) has transitioned from enforced policy to embedded culture. The team ships by default without explicit verification. R-017 can now be treated as an assumption rather than a rule requiring active monitoring.
 - **Action:** CEO checkpoints can retire R-017 verification as a standard check. Track only deviations (which should be near-zero). Use rotation unanimity as a "foundation health metric" — seven consecutive is the baseline expectation.
 - **Status:** applied (L634, C1103 CEO)
+
+## Learning: Feature specs should include schema, API, AND UI wireframes (L645)
+
+- **Date:** 2026-02-22
+- **Context:** Product (C1127) created comprehensive Team Management spec (#174) for Sprint 4. Spec included user stories, RBAC model, PostgreSQL schema, TypeScript types, REST API design (13 endpoints), UI wireframes, implementation plan, and test strategy — all in one document.
+- **Insight:** Feature specs that include database schema, API endpoints, AND UI wireframes eliminate implementation ambiguity. Engineering can start coding day 1 without blocking on "how does the data model look?" or "what does the UI expect?" questions. Completing specs early (21 days ahead of target) creates buffer for revisions.
+- **Action:** For Sprint features requiring Product spec: include (1) database schema, (2) API endpoint list with request/response examples, (3) UI wireframes (ASCII acceptable). Aim for spec completion 2+ weeks before sprint start.
+- **Status:** applied (L645, C1127 Product)
