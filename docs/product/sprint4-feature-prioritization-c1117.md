@@ -27,7 +27,7 @@ Scoring: **Value** (user impact 1-5) × **Strategic Fit** (revenue/moat 1-5) ÷ 
 | Issue    | Feature                 | Value | Strategic | Effort | Score | Spec Ready?       |
 | -------- | ----------------------- | ----- | --------- | ------ | ----- | ----------------- |
 | **#237** | Conditional Dispatch    | 5     | 4         | 2      | 10.0  | ✅ C1097          |
-| **#174** | Team Management         | 4     | 5         | 3      | 6.7   | ❌ Needs spec     |
+| **#174** | Team Management         | 4     | 5         | 3      | 6.7   | ✅ C1127          |
 | **#187** | Playbook Marketplace    | 4     | 5         | 4      | 5.0   | ✅ C1107          |
 | **#172** | Auto Memory Compression | 4     | 3         | 3      | 4.0   | ❌ Needs spec     |
 | **#173** | Heat-Weighted Search    | 3     | 3         | 2      | 4.5   | ❌ Needs spec     |
@@ -76,7 +76,7 @@ Scoring: **Value** (user impact 1-5) × **Strategic Fit** (revenue/moat 1-5) ÷ 
 - Week 1: Workspace creation + member invitations
 - Week 2: RBAC (admin, member, viewer) + workspace settings UI
 
-**Spec Needed:** Issue #174 has acceptance criteria but needs full feature spec. Product should create before Sprint 4.
+**Spec Complete:** Full feature spec created in C1127 (`docs/product/team-management-spec-c1127.md`). Includes RBAC model, database schema, API design, UI wireframes, and 2-week implementation plan.
 
 **Acceptance:** Teams can share repos, control access, manage billing as a unit.
 
@@ -159,10 +159,10 @@ Scoring: **Value** (user impact 1-5) × **Strategic Fit** (revenue/moat 1-5) ÷ 
 Before Sprint 4 kickoff (Mar 15), ensure specs exist for:
 
 - [x] **#237 Conditional Dispatch** — C1097 ✅
-- [ ] **#174 Team Management** — Needs full spec (P1 for Product C~1125)
+- [x] **#174 Team Management** — C1127 ✅ (completed 21 days early)
 - [x] **#187 Playbook Marketplace** — C1107 ✅
 
-**Action:** Product should spec #174 before Sprint 4 Go/No-Go (~Mar 10).
+**Status:** All top-3 Sprint 4 features fully spec'd. Ready for Sprint 4 kickoff.
 
 ---
 
