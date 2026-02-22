@@ -15,9 +15,9 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
+    "test": "NODE_OPTIONS='--max-old-space-size=4096' vitest run --passWithNoTests",
+    "test:watch": "NODE_OPTIONS='--max-old-space-size=4096' vitest",
+    "test:coverage": "NODE_OPTIONS='--max-old-space-size=4096' vitest run --coverage",
     "lint": "eslint src/",
     "clean": "rm -rf dist",
     "dev": "tsx src/index.ts"

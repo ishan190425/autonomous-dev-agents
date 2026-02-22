@@ -11,6 +11,17 @@ export default defineConfig({
     // Global setup ensures @ada/core is built before E2E tests run.
     // Fixes Issue #121: stale build artifacts causing cryptic E2E failures.
     globalSetup: ['tests/e2e/setup.ts'],
+    // OOM Prevention (Issue #236): Limit parallelism and memory
+    // CLI tests are I/O heavy (subprocess spawning), limiting threads prevents RAM spikes
+    pool: 'threads',
+    poolOptions: {
+      threads: {
+        maxThreads: 2, // Down from 8-12 default, prevents 13GB+ RAM usage
+        minThreads: 1,
+      },
+    },
+    isolate: true, // Ensure test isolation between files
+    clearMocks: true, // Clear mocks after each test
     coverage: {
       provider: 'v8',
       include: ['src/**/*.ts'],
