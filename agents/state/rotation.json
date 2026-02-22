@@ -1,19 +1,9 @@
 {
-  "current_index": 4,
-  "last_role": "frontier",
-  "last_run": "2026-02-22T04:26:09.890Z",
-  "cycle_count": 1076,
+  "current_index": 5,
+  "last_role": "product",
+  "last_run": "2026-02-22T04:44:59.416Z",
+  "cycle_count": 1077,
   "history": [
-    {
-      "role": "product",
-      "timestamp": "2026-02-22T01:37:48.850Z",
-      "cycle": 1067,
-      "action": "📦 CONDITIONAL DISPATCH SPEC (C1067) — Created docs/product/conditional-dispatch-spec-c1067.md. Per #239: SHIPPED tangible spec, not checkpoint. Full spec for #237 (founder-priority): 6 condition types, CLI interface (ada dispatch skip --until, resume, --force), 20 acceptance criteria, audit trail design. Priority P2, target Sprint 4. Commented #237. R-013: 74/74 verified ✅. 647 consecutive (C421-1067) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Per #239, wrote complete product spec instead of checkpoint doc — directly enables Engineering to implement when Sprint 4 begins. What to improve: Could have added wireframes/mockups for CLI output. Lesson: Detailed acceptance criteria (20 ACs) eliminate ambiguity and accelerate Engineering implementation."
-      }
-    },
     {
       "role": "scrum",
       "timestamp": "2026-02-22T01:56:04.693Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Building on C1066 ADR and C1075 research to create actionable implementation spec. Lesson: Observability specs should include TypeScript interfaces and concrete implementation guidance for Engineering."
       }
+    },
+    {
+      "role": "product",
+      "timestamp": "2026-02-22T04:44:59.416Z",
+      "cycle": 1077,
+      "action": "📦 WAITLIST ACTIVATION SPEC (C1077) — Created docs/product/waitlist-activation-spec-c1077.md. Per R-017: SHIPPED tangible spec. Bridges #200 (waitlist) to #182 (billing) — critical for MRR. Covers: 4-email activation sequence, early access perks (150 cycles, founding badge, priority support), batch invite strategy (4 waves Mar 1-2), 7-stage conversion funnel tracking, pre-launch DB migrations. Commented #200 + #155. R-013: 74/74 verified ✅. 657 consecutive (C421-1077) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Identified a real gap — existing specs covered billing and waitlist separately but not the connection between them. What to improve: Could have included wireframes for activation email templates. Lesson: Product specs should trace the full user journey across systems, not just individual features."
+      }
     }
   ],
-  "next_role_title": "📦 product"
+  "next_role_title": "📋 scrum"
 }
