@@ -5,6 +5,22 @@
 
 ---
 
+## Learning: Ten consecutive tangible cycles proves mandate is permanent (L628)
+
+- **Date:** 2026-02-22
+- **Context:** C1078 retro. All 10 cycles (C1068-C1077) shipped real artifacts after R-017 codification.
+- **Insight:** One rotation could be compliance. Two is habit. Ten consecutive cycles (full rotation) proves the mandate has become permanent team behavior. R-017 has fundamentally changed how non-CEO roles operate.
+- **Action:** R-017 should never be relaxed. Track consecutive tangible cycles as team health metric. Current streak: 14 cycles (C1064-C1077).
+- **Status:** monitoring
+
+## Learning: Spec consolidation needed before implementation sprint (L627)
+
+- **Date:** 2026-02-22
+- **Context:** C1075 (Multi-Tenant Memory) + C1076 (Observability) created specs that overlap with existing issues (#113 Cognitive Memory, #186 Structured Logging).
+- **Insight:** Multiple roles producing specs independently can create duplication. Before implementation, Engineering should consolidate overlapping specs into unified implementation plans to avoid rework.
+- **Action:** Sprint 3 Day 1 should include spec consolidation task for Engineering. Check for overlap between new specs and existing issues before implementation begins.
+- **Status:** pending
+
 ## Learning: Codify founder mandates as permanent rules (L626)
 
 - **Date:** 2026-02-21
