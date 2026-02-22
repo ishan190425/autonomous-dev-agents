@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-21 21:35:00 EST | **Cycle:** 1070 | **Version:** 52
+> **Last updated:** 2026-02-21 21:51:00 EST | **Cycle:** 1071 | **Version:** 52
 > **Last compression:** 2026-02-21 (v51 archived at Cycle 1014)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 650 consecutive (C421-1070)** 🏆 — HISTORIC MILESTONE
+- **🎊 1000+ CYCLES!** 🎉 **🏆 651 consecutive (C421-1071)** 🏆 — HISTORIC MILESTONE
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Section 10 Conclusion updated (C995).
@@ -79,8 +79,8 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ### 🛡️ Ops
 
-- **Last:** SIXTH ROTATION COMPLETE (C1061). Created `docs/ops/sixth-rotation-complete-c1061.md`. **STATUS: 🟢 SIXTH ROTATION COMPLETE — ALL 10 ROLES VOTED FULL GO.** Sixth rotation 10/10 (C1052-C1061). THREE consecutive unanimous rotations (4th + 5th + 6th) = unprecedented. 65+ cycles zero drift (C996-C1061). CI 70+ consecutive green, PRs 0 🎉, R-013 73/73 ✅, tests 2,302 passing, 0 flaky. L622 added. Ops vote: 🟢 FULL GO (100%). Commented #155. **641 consecutive (C421-1061)** 🏆.
-- **Next:** Go/No-Go ratification (Feb 26, 5 days). Sprint 3 kickoff (Mar 1, 8 days).
+- **Last:** R-017 TANGIBLE OUTPUT MANDATE (C1071). **Per #239: SHIPPED tangible work — codified founder mandate as permanent rule.** Created R-017 in RULES.md: non-CEO roles MUST ship tangible output every cycle (no verification checkpoints). L626 added to learnings.md. Rules: 17 (+1). CI 75+ consecutive green, PRs 0 🎉, tests 2,328 passing. **651 consecutive (C421-1071)** 🏆.
+- **Next:** Go/No-Go ratification (Feb 26, 4 days). Sprint 3 kickoff (Mar 1, 7 days).
 
 ### 🎨 Design
 
@@ -110,7 +110,7 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 - **#181, #182, #183, #184, #185, #186, #188, #189, #190** (P1) — Platform/Design/Docs
 - **#238** (P1, Docs, S) — README update for Claude Code/Codex executor support (NEW C1046)
 
-### P2 (16 Issues)
+### P2 (15 Issues)
 
 - **#83, #89, #90, #106** — Ops/Research/Scrum
 - **#120, #133, #172-177, #179, #187** — Design/Frontier/Platform/Engineering (~~#178~~ CLOSED C916)
@@ -174,13 +174,13 @@ _Full lessons L1-L591 in `docs/retros/learnings.md`. CI cascade lessons (L549-L5
 
 - **Issues:** 74 open, 74 tracked ✅
 - **PRs:** 0 open 🎉, 94 merged (+1: #240)
-- **Cycles:** 1070 🎊
-- **Tests:** 2,328 passing (915 CLI + 1,412 Core + 1 other), 87 skipped — verified C1070 (PR #240 merged)
+- **Cycles:** 1071 🎊
+- **Tests:** 2,328 passing (915 CLI + 1,412 Core + 1 other), 87 skipped — verified C1070
 - **Coverage:** 89%+
-- **Consecutive:** 650 (C421-1070) 🏆
+- **Consecutive:** 651 (C421-1071) 🏆
 - **Compressions:** 52
-- **Lessons:** 617 (L1-L625)
-- **Rules:** 16
+- **Lessons:** 618 (L1-L626)
+- **Rules:** 17
 - **LOC:** ~40,100 TypeScript
 
 ---

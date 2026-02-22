@@ -5,6 +5,14 @@
 
 ---
 
+## Learning: Codify founder mandates as permanent rules (L626)
+
+- **Date:** 2026-02-21
+- **Context:** C1071 ops cycle. Issue #239 mandated "only CEO verifies, all other roles must ship." This was followed immediately (C1064-C1070) but existed only as an issue, not a permanent rule.
+- **Insight:** Founder mandates that prove effective should be codified as permanent rules (RULES.md) within one rotation. Issues can be closed; rules persist. R-017 now enshrines #239's mandate permanently.
+- **Action:** When a founder-priority issue drives sustained behavior change across a full rotation, Ops should codify it as a rule in the same or next rotation.
+- **Status:** applied
+
 ## Learning: Three unanimous rotations eliminates all confounding factors (L625)
 
 - **Date:** 2026-02-21

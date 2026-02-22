@@ -26,6 +26,7 @@
 | R-014 | [Agent PR Workflow](#r-014-agent-pr-workflow)                        | Ops         | 2026-02-14 |
 | R-015 | [Code Reuse & Abstract Classes](#r-015-code-reuse--abstract-classes) | Engineering | 2026-02-17 |
 | R-016 | [Reflection Capture Protocol](#r-016-reflection-capture-protocol)    | Ops         | 2026-02-18 |
+| R-017 | [Tangible Output Mandate](#r-017-tangible-output-mandate)            | Ops         | 2026-02-21 |
 
 ---
 
@@ -655,6 +656,107 @@ Learnings in learnings.md are:
 - **Cumulative:** Build team knowledge over time
 
 **Related:** L502 (C868), Scrum retro gap fix
+
+---
+
+## R-017: Tangible Output Mandate
+
+### Principle
+
+**Non-CEO roles MUST produce tangible output every cycle.** No verification checkpoints, no stability reports, no status documents — ship actual work.
+
+### Background
+
+Issue #239 (founder-priority) identified that cycles 1050-1063 were ALL checkpoint/verification cycles. The team entered a holding pattern where every role wrote status reports instead of shipping features. This violated the core principle of autonomous development: continuous forward progress.
+
+### Role Responsibilities
+
+**CEO/Founder Role ONLY:**
+
+- ✅ Can run verification checkpoints
+- ✅ Can vote Go/No-Go
+- ✅ Can assess stability
+- ✅ Can write strategic status documents
+
+**ALL OTHER ROLES (Engineering, QA, Ops, Design, Research, Frontier, Product, Scrum, Growth):**
+
+- ❌ NO verification cycles
+- ❌ NO stability checkpoints
+- ❌ NO "rotation checkpoint" docs
+- ❌ NO status reports as sole output
+- ✅ MUST ship tangible work every cycle
+
+### What Counts as Tangible Output
+
+| Role        | Tangible Output Examples                                        |
+| ----------- | --------------------------------------------------------------- |
+| Engineering | Code PRs, bug fixes, feature implementations, refactors         |
+| QA          | Test additions, test fixes, coverage improvements, E2E tests    |
+| Ops         | CI improvements, rule additions, infrastructure changes         |
+| Design      | UX specs, wireframes, component designs, design system updates  |
+| Research    | Analysis docs, competitive research, technical investigations   |
+| Frontier    | ADRs, architecture designs, technical specifications            |
+| Product     | Feature specs, acceptance criteria, PRDs, issue creation        |
+| Scrum       | Retros with lessons learned, sprint planning, backlog grooming  |
+| Growth      | Marketing content, README improvements, documentation, outreach |
+
+### When Blocked
+
+If your primary task is blocked:
+
+1. ❌ Do NOT write a checkpoint doc
+2. ✅ Pick a DIFFERENT task from Active Threads
+3. ✅ Look at P2/P3 backlog for work
+4. ✅ Create work: identify tech debt, write tests, improve docs
+5. ✅ Close a small issue
+
+**There is always work.** If you truly cannot find work, that is a Product/Scrum failure to maintain the backlog — flag it as an issue.
+
+### Enforcement
+
+- **Dispatch completion:** Non-CEO actions that are "checkpoint" or "verification" should be rejected or flagged
+- **Scrum retros:** Track "tangible vs checkpoint" ratio per role
+- **Memory bank:** Action descriptions should reference artifacts (PR #X, commit, doc created, issue closed)
+
+### Metrics
+
+Track per rotation:
+
+- **Tangible output rate:** % of non-CEO cycles with tangible artifacts
+- **Checkpoint escape:** Zero checkpoint actions from non-CEO roles
+- **Issue velocity:** Issues closed per rotation
+
+### Exceptions
+
+- **Sprint 0 / Bootstrap phases:** When establishing infrastructure, some planning docs are necessary
+- **Major milestone retros:** Scrum can write retro docs (but must include lessons, not just status)
+- **True zero-work situations:** If backlog is empty AND all tasks blocked, flag as issue immediately
+
+### Why This Rule Matters
+
+**L623-L625 demonstrated the fix works:**
+
+- C1064 (Growth): README marketing section — tangible
+- C1065 (Research): Competitive analysis doc — tangible
+- C1066 (Frontier): ADR for Sprint 3 — tangible
+- C1067 (Product): Feature spec — tangible
+- C1068 (Scrum): Retro with new lessons — tangible
+- C1069 (QA): 26 new E2E tests — tangible
+- C1070 (Engineering): PR merged — tangible
+
+**Checkpoint mode creates:**
+
+- **Cycle waste:** 10+ cycles with no progress
+- **False stability:** "All green" but nothing shipped
+- **Compounding delay:** Each checkpoint cycle delays actual work
+
+**Tangible mode creates:**
+
+- **Continuous progress:** Every cycle moves the product forward
+- **Real stability:** Stability proven by working features, not status reports
+- **Compounding value:** Each cycle adds artifacts that persist
+
+**Related Issues:** #239 (founder-priority)
 
 ---
 
