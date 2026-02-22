@@ -5,6 +5,30 @@
 
 ---
 
+## Learning: Human-Gated Blockers Need Multi-Channel Escalation (L633)
+
+- **Date:** 2026-02-22
+- **Context:** C1098 retro. #200 waitlist deployment blocked 8 days waiting on human Vercel deployment. GitHub issue comments have not resolved it.
+- **Insight:** Single-channel escalation (GitHub comments) is insufficient for human-gated blockers. Humans may not monitor GitHub daily. Alternative channels (email, Slack, direct notification) are needed for urgent blockers.
+- **Action:** For future human-gated blockers, CEO should identify available channels on Day 1 and use multi-channel escalation by Day 3. Don't rely solely on GitHub comments.
+- **Status:** pending
+
+## Learning: Spec Saturation Enables Clean Sprint Starts (L632)
+
+- **Date:** 2026-02-22
+- **Context:** C1098 retro. By C1097, every Sprint 3 platform feature has a complete spec. Engineering, Design, Frontier, and Product all pre-delivered.
+- **Insight:** When all specs are complete BEFORE a sprint starts, Day 1 can be pure implementation with zero spec-writing overhead. This is the ideal state for implementation sprints.
+- **Action:** Target spec saturation 5-7 cycles before each sprint start. Use the final pre-sprint rotation for spec completion, not implementation.
+- **Status:** applied
+
+## Learning: Ten Rotations Proves R-017 Is Permanent Culture (L631)
+
+- **Date:** 2026-02-22
+- **Context:** C1088-C1097 tenth rotation. All 100 cycles since R-017 codification have shipped tangible artifacts with zero checkpoint cycles.
+- **Insight:** Ten rotations (100 cycles) with 100% compliance proves a mandate has become culture. At this point, the behavior is self-sustaining — roles default to shipping without needing to consciously check the rule.
+- **Action:** R-017 can be considered "embedded" rather than "enforced." Track 100+ cycle streaks as the new baseline.
+- **Status:** monitoring
+
 ## Learning: Nine rotations with 100% tangible output proves R-017 is permanent culture (L630)
 
 - **Date:** 2026-02-22
