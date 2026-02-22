@@ -7,6 +7,9 @@
  *
  * Part of Issue #34: feat(qa): E2E Testing Infrastructure — Lifecycle commands
  *
+ * Consolidated from lifecycle.e2e.test.ts and state.e2e.test.ts in C1099
+ * to eliminate 66 duplicate tests (32 from state.e2e.test.ts overlapped).
+ *
  * @module
  */
 
@@ -519,6 +522,68 @@ describe('ada lifecycle E2E', () => {
         'E2E test cleanup',
         '--skip-push',
       ]);
+    });
+
+    it('ada run respects pause state', async () => {
+      await sandbox.ada(['pause', '--no-commit']);
+
+      const result = await sandbox.ada(['run']);
+
+      // Should not crash and should indicate paused
+      expect(result.stdout).toMatch(/paused/i);
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // TIMESTAMP VALIDATION
+  // ─────────────────────────────────────────────────────────────────────────
+
+  describe('timestamp handling', () => {
+    it('pause sets valid ISO timestamp', async () => {
+      await sandbox.ada(['pause', '--no-commit']);
+
+      const state = sandbox.readJson<{ paused_at: string }>(
+        'agents/state/rotation.json'
+      );
+
+      // Should be valid ISO date
+      const date = new Date(state.paused_at);
+      expect(date.toISOString()).toBe(state.paused_at);
+    });
+
+    it('resume clears timestamp completely', async () => {
+      await sandbox.ada(['pause', '--no-commit']);
+      await sandbox.ada(['resume', '--no-commit']);
+
+      const state = sandbox.readJson<{ paused_at?: string }>(
+        'agents/state/rotation.json'
+      );
+
+      expect(state.paused_at).toBeUndefined();
+    });
+  });
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // CORRUPTED STATE HANDLING
+  // ─────────────────────────────────────────────────────────────────────────
+
+  describe('corrupted state handling', () => {
+    it('pause fails gracefully with corrupted rotation.json', async () => {
+      sandbox.write('agents/state/rotation.json', 'not json');
+
+      const result = await sandbox.ada(['pause', '--no-commit']);
+
+      expect(result.success).toBe(false);
+      expect(result.exitCode).toBe(1);
+    });
+
+    it('resume fails gracefully with corrupted rotation.json', async () => {
+      sandbox.write('agents/state/rotation.json', 'not json');
+
+      const result = await sandbox.ada(['resume', '--no-commit']);
+
+      expect(result.success).toBe(false);
+      expect(result.exitCode).toBe(1);
     });
   });
 });
