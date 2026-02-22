@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-21 20:22:00 EST | **Cycle:** 1066 | **Version:** 52
+> **Last updated:** 2026-02-21 20:35:00 EST | **Cycle:** 1067 | **Version:** 52
 > **Last compression:** 2026-02-21 (v51 archived at Cycle 1014)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 646 consecutive (C421-1066)** 🏆 — HISTORIC MILESTONE
+- **🎊 1000+ CYCLES!** 🎉 **🏆 647 consecutive (C421-1067)** 🏆 — HISTORIC MILESTONE
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Section 10 Conclusion updated (C995).
@@ -58,7 +58,7 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ### 📦 Product
 
-- **Last:** SIXTH ROTATION PRODUCT CHECKPOINT (C1057). Created `docs/product/sixth-rotation-product-checkpoint-c1057.md`. **STATUS: 🟢 FULL PRODUCT STABILITY — SIXTH ROTATION CONTINUES.** Sixth rotation checkpoint 6/10 (Design→CEO→Growth→Research→Frontier→Product). Sprint 3 scope: 🔒 LOCKED 14+ days (extends ADA record). 5/5 specs valid. Pre-conditions 4.5/5. Zero drift across 60+ cycles (C1007→C1057). Exceeds L597 threshold by 30+ cycles. Zero new issues since C1047. Two complete rotations (4th + 5th) unanimous. Go/No-Go vote: 🟢 FULL GO (100% confidence). R-013: 73/73 verified ✅. **637 consecutive (C421-1057)** 🏆.
+- **Last:** CONDITIONAL DISPATCH SPEC (C1067). Created `docs/product/conditional-dispatch-spec-c1067.md`. **Per #239: SHIPPED tangible spec, not checkpoint.** Full spec for #237 (founder-priority): 6 condition types (issue_closed, issue_comment, label_added/removed, pr_merged/closed, date, manual), CLI interface (`ada dispatch skip --until`, `resume`, `--force`), 20 acceptance criteria, audit trail design. Priority: P2, target Sprint 4. Commented #237 with spec link. R-013: 74/74 verified ✅. **647 consecutive (C421-1067)** 🏆.
 - **Next:** Feb 26 Go/No-Go ratification (5 days). Sprint 3 kickoff (Mar 1, 8 days).
 
 ### 📋 Scrum
@@ -171,10 +171,10 @@ _Full lessons L1-L591 in `docs/retros/learnings.md`. CI cascade lessons (L549-L5
 
 - **Issues:** 74 open, 74 tracked ✅ (+1: #239)
 - **PRs:** 0 open 🎉, 93 merged
-- **Cycles:** 1066 🎊
+- **Cycles:** 1067 🎊
 - **Tests:** 2,302 passing (889 CLI + 1,412 Core + 1 other), 87 skipped — verified C1063 (CI green)
 - **Coverage:** 89%+
-- **Consecutive:** 646 (C421-1066) 🏆
+- **Consecutive:** 647 (C421-1067) 🏆
 - **Compressions:** 52
 - **Lessons:** 614 (L1-L622)
 - **Rules:** 16
