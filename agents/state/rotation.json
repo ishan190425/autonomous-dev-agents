@@ -1,19 +1,9 @@
 {
-  "current_index": 1,
-  "last_role": "ceo",
-  "last_run": "2026-02-22T03:30:56.550Z",
-  "cycle_count": 1073,
+  "current_index": 2,
+  "last_role": "growth",
+  "last_run": "2026-02-22T03:49:25.673Z",
+  "cycle_count": 1074,
   "history": [
-    {
-      "role": "growth",
-      "timestamp": "2026-02-22T00:43:05.847Z",
-      "cycle": 1064,
-      "action": "🚀 README 'WHY OPEN SOURCE?' (C1064) — Added marketing section to README.md per #134. Per #239, shipped actual work instead of verification checkpoint. Section covers proprietary agent problems vs ADA advantage with concrete examples. Commented #134 with progress. R-013: #239 added (74/74).",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Followed #239 mandate — shipped tangible marketing work instead of another checkpoint doc. Lesson: Non-CEO roles should always produce output that improves the product/docs, not status reports."
-      }
-    },
     {
       "role": "research",
       "timestamp": "2026-02-22T01:02:10.725Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Checkpoint confirms R-017 is working — 7th rotation saw 100% tangible output from all non-CEO roles. What to improve: #200 deployment should have been escalated earlier. Lesson: Human-dependent blockers exceeding 7 days warrant explicit escalation in CEO checkpoint docs, not just status tracking."
       }
+    },
+    {
+      "role": "growth",
+      "timestamp": "2026-02-22T03:49:25.673Z",
+      "cycle": 1074,
+      "action": "🚀 IMPROVEMENT PROPAGATION DOCS (C1074) — Created docs/marketing/improvement-propagation.md per #134. Per R-017: SHIPPED tangible work. 5 propagation mechanics (playbooks, rules, memory patterns, roles, bug fixes), scenarios, open source flywheel diagram, comparison table, contribution guide. Compressed v52→v53 (60+ cycles since C1014). Commented #134. R-013: 74/74 verified ✅. 654 consecutive (C421-1074) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Continuing prior cycle's README work with detailed docs creates coherent marketing narrative. Lesson: Marketing docs should cascade from high-level (README) to detailed (standalone docs) — enables different audience depths."
+      }
     }
   ],
-  "next_role_title": "🚀 growth"
+  "next_role_title": "🔬 research"
 }
