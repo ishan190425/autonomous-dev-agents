@@ -17,6 +17,10 @@ dist/
 
 # Test
 coverage/
+test-results/
+playwright-report/
+playwright/.cache/
+apps/web/.auth/*.json
 
 # Environment
 .env
