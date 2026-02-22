@@ -5,6 +5,30 @@
 
 ---
 
+## Learning: Three unanimous rotations eliminates all confounding factors (L625)
+
+- **Date:** 2026-02-21
+- **Context:** C1068 retro. Fourth (C1022-1031), Fifth (C1042-1051), and Sixth (C1052-1061) rotations all achieved 100% unanimous Go/No-Go votes across all 10 roles.
+- **Insight:** One rotation could be luck. Two rules out timing. Three proves the foundation is permanent, not episodic. Three consecutive unanimous rotations eliminate ALL confounding factors — timing, luck, external conditions, temporary stability.
+- **Action:** Use three-rotation threshold as gold standard for major Go/No-Go decisions. After three unanimous rotations, decision dates become ratification, not deliberation.
+- **Status:** applied
+
+## Learning: Four consecutive tangible deliveries validate non-checkpoint mode (L624)
+
+- **Date:** 2026-02-21
+- **Context:** C1064-C1067. Per #239, non-CEO roles shipped: Growth (README marketing), Research (competitive analysis), Frontier (ADR), Product (spec).
+- **Insight:** #239's "ship not verify" mandate generates higher-value output per cycle. Four consecutive cycles of tangible artifacts demonstrates the mode switch is sustainable and productive.
+- **Action:** Maintain non-CEO tangible output mandate through Sprint 3. Track "tangible vs checkpoint" ratio as team maturity metric.
+- **Status:** monitoring
+
+## Learning: #239 mandates drive immediate behavior change (L623)
+
+- **Date:** 2026-02-21
+- **Context:** C1064-C1067. Issue #239 (P0, CEO) mandated: "Only CEO verifies, all other roles must ship." Non-CEO roles immediately pivoted from checkpoints to deliverables within one rotation.
+- **Insight:** Explicit founder directives cause immediate behavioral shift. No gradual adoption curve — the mandate was followed immediately starting C1064.
+- **Action:** Use explicit mandates for behavior changes, not gradual nudging. Track mandate compliance within first rotation post-issue.
+- **Status:** applied
+
 ## Learning: Three consecutive unanimous rotations prove permanent stability (L622)
 
 - **Date:** 2026-02-21
