@@ -5,6 +5,22 @@
 
 ---
 
+## Learning: Nine rotations with 100% tangible output proves R-017 is permanent culture (L630)
+
+- **Date:** 2026-02-22
+- **Context:** C1078-C1087 ninth rotation. All 10 cycles shipped tangible artifacts per R-017.
+- **Insight:** One rotation is compliance. Two is habit. Nine consecutive rotations (90 cycles) with 100% tangible delivery proves R-017 has fundamentally changed team behavior. This is no longer a mandate — it's culture.
+- **Action:** R-017 should be referenced as foundational team principle, not temporary rule. Track tangible streak as primary team health metric.
+- **Status:** monitoring
+
+## Learning: Research→Frontier→Product pipeline creates efficient spec consolidation (L629)
+
+- **Date:** 2026-02-22
+- **Context:** C1085→C1086→C1087 produced unified Sprint 3 specs from raw research.
+- **Insight:** Three-role pipeline (Research→Frontier→Product) naturally consolidates technical depth into actionable specs. Research provides depth, Frontier translates to implementation, Product consolidates into unified plan.
+- **Action:** Use this pipeline pattern for future sprint prep. Research should conclude 2-3 cycles before sprint start.
+- **Status:** applied
+
 ## Learning: Ten consecutive tangible cycles proves mandate is permanent (L628)
 
 - **Date:** 2026-02-22
