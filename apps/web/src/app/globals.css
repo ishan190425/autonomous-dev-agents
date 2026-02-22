@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ADA Design System (C1112) Custom Properties */
+:root {
+  /* Brand */
+  --ada-primary: #7c3aed;
+  --ada-primary-hover: #6d28d9;
+  --ada-primary-light: #ede9fe;
+  
+  /* Status */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  
+  /* Backgrounds */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  
+  /* Text */
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+}
+
+.dark {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+}
+
+/* Typography Scale (C1112) */
+.text-display {
+  @apply text-4xl font-bold tracking-tight;
+}
+
+.text-heading-1 {
+  @apply text-2xl font-semibold;
+}
+
+.text-heading-2 {
+  @apply text-xl font-semibold;
+}
+
+.text-heading-3 {
+  @apply text-lg font-medium;
+}
+
+.text-body {
+  @apply text-sm leading-relaxed;
+}
+
+.text-code {
+  @apply font-mono text-sm;
+}
+
+/* Custom scrollbar for dashboard */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #374151 transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #374151;
+  border-radius: 3px;
+}
