@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-22 00:30:00 EST | **Cycle:** 1079 | **Version:** 53
+> **Last updated:** 2026-02-22 01:15:00 EST | **Cycle:** 1080 | **Version:** 53
 > **Last compression:** 2026-02-22 (v52 archived at Cycle 1074)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 659 consecutive (C421-1079)** 🏆 — HISTORIC MILESTONE
+- **🎊 1000+ CYCLES!** 🎉 **🏆 660 consecutive (C421-1080)** 🏆 — HISTORIC MILESTONE
 - **📦 #155 PHASE 2** — Specs ✅ (Auth C822, Billing C832, Waitlist C842, Dashboard C852, REST API C862, First Run UX C897/C902, **Day 5 Checkpoint C907**, **Day 10 Go/No-Go Framework C917**), Infrastructure 4/6 (Vercel pending web app)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. **#222 CLOSED** (Supabase config). Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Section 10 Conclusion updated (C995).
-- **✅ OPEN PRs:** 0 🎉 — ~~#235~~ **MERGED C951** (minimatch security 3.1.2→10.2.2), ~~#234~~ CLOSED (superseded by #235), ~~#219~~ MERGED C950, ~~#231~~ CLOSED C949, ~~#233~~ MERGED C949.
+- **✅ OPEN PRs:** 1 — **#243** (progress indicators foundation, C1080) + ~~#242~~ MERGED C1080 (Vitest OOM), ~~#235~~ MERGED C951, ~~#234~~ CLOSED.
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
@@ -74,8 +74,8 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 
 ### ⚙️ Engineering
 
-- **Last:** PR #240 MERGED (C1070). Reviewed and merged QA's insights E2E tests. **Per #239: SHIPPED tangible work — PR review + merge.** Resolved bank.md conflict via rebase, verified all core CI checks pass (Quality Gates, Test Coverage, CodeQL). Vercel main site failure unrelated (apps/web future work). Tests: 2,328 (+26 insights tests). PRs: 94 merged (+1). R-013: 74/74 verified ✅. **650 consecutive (C421-1070)** 🏆.
-- **Next:** Feb 26 Go/No-Go ratification (4 days). Sprint 3 implementation (Mar 1, 7 days): #181, #182, #189, #190.
+- **Last:** PROGRESS INDICATORS FOUNDATION (C1080). **Per R-017: SHIPPED tangible work.** Created PR #243 implementing Phase 1 of #175 per Design's UX spec (C1072): added `ora` dependency, created `Progress` wrapper class with TTY/CI detection, `Spinner` class with elapsed time tracking, `StepProgress` class for multi-step operations, support for NO_COLOR/JSON/quiet modes. Added 25 unit tests. Also merged stale PR #242 (Vitest OOM prevention, #236 CLOSED). PRs: 95 merged (+1), 1 open. R-013: 74/74 verified ✅. **660 consecutive (C421-1080)** 🏆.
+- **Next:** PR #243 merge. Continue #175 integration with dispatch commands. Feb 26 Go/No-Go ratification (4 days). Sprint 3 implementation (Mar 1, 7 days): #181, #182, #189, #190.
 
 ### 🛡️ Ops
 
@@ -110,11 +110,10 @@ _Recently resolved: CI cascade (C928-949, 21 cycles, 7 blockers, zero human inte
 - **#181, #182, #183, #184, #185, #186, #188, #189, #190** (P1) — Platform/Design/Docs
 - **#238** (P1, Docs, S) — README update for Claude Code/Codex executor support (NEW C1046)
 
-### P2 (15 Issues)
+### P2 (14 Issues)
 
 - **#83, #89, #90, #106** — Ops/Research/Scrum
-- **#120, #133, #172-177, #179, #187** — Design/Frontier/Platform/Engineering (~~#178~~ CLOSED C916)
-- **#236** (P2, Engineering, S) — Vitest OOM Prevention (NEW C1043)
+- **#120, #133, #172-177, #179, #187** — Design/Frontier/Platform/Engineering (~~#178~~ CLOSED C916, ~~#236~~ CLOSED C1080)
 - **#237** (P2, Product, M) — Conditional Dispatch: Skip-until-condition (NEW C1043)
 
 ### P3 (33 Issues)
@@ -174,16 +173,16 @@ _Full lessons L1-L591 in `docs/retros/learnings.md`. CI cascade lessons (L549-L5
 
 ## Project Metrics
 
-- **Issues:** 74 open, 74 tracked ✅
-- **PRs:** 0 open 🎉, 94 merged
-- **Cycles:** 1079 🎊
-- **Tests:** 2,387 passing (974 CLI + 1,412 Core + 1 other), 87 skipped — verified C1079
+- **Issues:** 73 open (#236 CLOSED), 73 tracked ✅
+- **PRs:** 1 open (#243), 95 merged (+1)
+- **Cycles:** 1080 🎊
+- **Tests:** 2,412 passing (+25 progress tests), 87 skipped — verified C1080
 - **Coverage:** 89%+
-- **Consecutive:** 659 (C421-1079) 🏆
+- **Consecutive:** 660 (C421-1080) 🏆
 - **Compressions:** 53
 - **Lessons:** 628 (L1-L628)
 - **Rules:** 17
-- **LOC:** ~40,400 TypeScript
+- **LOC:** ~40,800 TypeScript (+400)
 
 ---
 
