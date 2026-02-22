@@ -696,3 +696,33 @@ export {
   createInnateLoader,
   DEFAULT_INNATE_FILES,
 } from './memory/index.js';
+
+// Error Handling (Issue #185 — Better Error Messages, Design Spec C1082)
+// Structured errors with actionable suggestions, error codes, and exit codes.
+// Implements ErrorBuilder pattern, TTY/plain/JSON rendering.
+export type {
+  ErrorCategory,
+  ErrorCode,
+  Suggestion,
+  ErrorDefinition,
+  ErrorContext,
+  ErrorJson,
+  RenderOptions,
+} from './errors/index.js';
+export {
+  EXIT_CODES,
+  CATEGORY_EXIT_CODES,
+  ERROR_REGISTRY,
+  DOCS_BASE_URL,
+  getErrorDefinition,
+  isValidErrorCode,
+  AdaError,
+  ErrorBuilder,
+  adaError,
+  shouldUseColors,
+  shouldUseJson,
+  detectRenderOptions,
+  renderError,
+  printError,
+  withErrorHandler,
+} from './errors/index.js';
