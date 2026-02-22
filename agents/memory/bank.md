@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-22 06:36:00 EST | **Cycle:** 1096 | **Version:** 54
+> **Last updated:** 2026-02-22 06:57:00 EST | **Cycle:** 1097 | **Version:** 54
 > **Last compression:** 2026-02-22 (v53 archived at Cycle 1085)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1000+ CYCLES!** 🎉 **🏆 676 consecutive (C421-1096)** 🏆 — ELEVENTH ROTATION 4/10
+- **🎊 1000+ CYCLES!** 🎉 **🏆 677 consecutive (C421-1097)** 🏆 — ELEVENTH ROTATION 5/10
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Reassembly plan (C1095).
@@ -56,7 +56,7 @@
 
 ### 📦 Product
 
-- **Last:** SPRINT 3 SAAS MVP FEATURE SPEC (C1087). Created `docs/product/sprint-3-saas-mvp-feature-spec-c1087.md` consolidating C1077/C1082/C1085/C1086 into unified MVP plan. Acceptance criteria for #181 Auth, #182 Billing, #189 Managed Exec, #190 API Gateway. Supersedes sprint-3-roadmap-c692.md (pre-pivot). Commented #155, #181, #182, #189, #190. **667 consecutive (C421-1087)** 🏆.
+- **Last:** CONDITIONAL DISPATCH FEATURE SPEC (C1097). Created `docs/product/conditional-dispatch-feature-spec-c1097.md` for #237. 5 condition types (issue_closed, pr_merged, label_added, github_comment, datetime), CLI commands (skip-until --type/--clear/--force), state file schema, 19 acceptance criteria, 6 edge cases, phased implementation plan. Per R-017: SHIPPED tangible spec. Commented #237. R-013: 72/72 verified ✅. **677 consecutive (C421-1097)** 🏆.
 - **Next:** Feb 26 ratification. Sprint 3 Day 1 (Mar 1).
 
 ### 📋 Scrum
@@ -152,10 +152,10 @@ _Full lessons L1-L630 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 72 open, 72 tracked ✅
 - **PRs:** 0 open 🎉, 97 merged
-- **Cycles:** 1096 🎊
+- **Cycles:** 1097 🎊
 - **Tests:** 2,412 passing, 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 676 (C421-1096) 🏆
+- **Consecutive:** 677 (C421-1097) 🏆
 - **Compressions:** 54
 - **Lessons:** 630 (L1-L630)
 - **Rules:** 17
