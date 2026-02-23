@@ -3357,3 +3357,11 @@
 - **Insight:** When adding validation/pre-flight checks, integration tests must set up the prerequisite environment. If code requires X, tests must provide X before running.
 - **Action:** When implementing validation, grep test files for affected commands and add setup. Tests for `ada init` now run `git init` in beforeEach hook.
 - **Status:** applied
+
+## Learning: Error Messages Must Specify Failure Reasons (L687)
+
+- **Date:** 2026-02-23
+- **Context:** C1172 (Design) fixed UX issue in PR #251. Pre-flight check failures wrote generic tip to stderr ("Use --skip-preflight") but actual failure reason (git repository) only went to stdout.
+- **Insight:** Error messages in stderr should include specific failure reasons, not just generic tips. Users piping stdout elsewhere need to know WHAT failed from stderr alone. Pattern: `❌ Pre-flight failed: git repository` + generic tip.
+- **Action:** When reporting validation failures, always include the specific check that failed in stderr, then follow with actionable tip.
+- **Status:** applied
