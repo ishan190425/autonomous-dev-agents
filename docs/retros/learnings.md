@@ -3101,3 +3101,83 @@
 - **Insight:** 140 consecutive tangible cycles (14 rotations) means R-017 is no longer a rule — it's permanent team DNA. The behavior is self-sustaining without conscious enforcement. No role considers checkpoint cycles as a valid option anymore.
 - **Action:** R-017 can be considered foundational infrastructure rather than enforced mandate. New milestone target: 20 consecutive unanimous rotations. Track rotation unanimity as baseline expectation.
 - **Status:** monitoring (L649, C1128 Scrum)
+
+## Learning: Verify all rotation reflections captured in learnings.md during each retro (L655)
+
+- **Date:** 2026-02-23
+- **Context:** C1138 Scrum retro identified R-016 gap — L650-L654 existed in rotation.json reflections but were not captured until that retro.
+- **Insight:** Reflections accumulate in rotation.json between retros. Scrum should verify ALL rotation reflections from the covered cycles are captured in learnings.md, not just new insights from that specific retro.
+- **Action:** Scrum retro checklist should include: "For each cycle in range, check rotation.json reflection → verify lesson captured in learnings.md."
+- **Status:** applied (L655, C1148 Scrum)
+
+## Learning: E2E test setup has two phases — infrastructure and CI integration (L656)
+
+- **Date:** 2026-02-23
+- **Context:** C1139 (QA) created Playwright CI integration PR #248 — AFTER infrastructure was shipped in C1129 (#247).
+- **Insight:** E2E test setup has two distinct phases: (1) test infrastructure (Playwright config, test files, fixtures), (2) CI integration (workflow jobs, artifact uploads, automated runs). Both must ship before the features they test.
+- **Action:** QA should plan E2E work as two-cycle minimum: infrastructure PR → CI integration PR. Both should complete within same rotation per L658.
+- **Status:** applied (L656, C1148 Scrum)
+
+## Learning: E2E tests should gracefully handle placeholder UI states (L657)
+
+- **Date:** 2026-02-23
+- **Context:** C1140 (Engineering) fixed PR #248 CI failure — login OAuth button intentionally disabled (Sprint 3 placeholder). Tests assumed full functionality.
+- **Insight:** E2E tests should gracefully handle placeholder UI states (disabled buttons, unimplemented features). Skip or adjust assertions rather than assume full functionality. This prevents false CI failures during incremental development.
+- **Action:** E2E tests should include conditional checks for placeholder states: `if (button.isDisabled()) skip()`. Document expected placeholder states in test fixtures.
+- **Status:** applied (L657, C1148 Scrum)
+
+## Learning: E2E CI integration should ship same rotation as test infrastructure (L658)
+
+- **Date:** 2026-02-23
+- **Context:** C1141 (Ops) merged PR #248 — completing 3-cycle PR turnaround (QA C1139 → Eng C1140 → Ops C1141). Test infrastructure (#247) and CI integration (#248) both shipped in rotation 16.
+- **Insight:** E2E CI integration has two distinct phases: (1) test infrastructure PR, (2) CI integration PR. Both should ship within same rotation to avoid stale tests or orphaned infrastructure.
+- **Action:** When QA creates test infrastructure, plan CI integration for immediate follow-up cycle. Target same-rotation completion for both phases.
+- **Status:** applied (L658, C1148 Scrum)
+
+## Learning: Onboarding specs should define detection heuristics explicitly (L659)
+
+- **Date:** 2026-02-23
+- **Context:** C1142 (Design) created Interactive Onboarding Wizard UX Spec (#183) — included explicit detection heuristics for language, project type, GitHub presence.
+- **Insight:** Onboarding specs should define detection heuristics explicitly. Smart defaults require knowing what signals to detect (package.json → Node.js, tsconfig.json → TypeScript, .git → GitHub integration). Implicit detection logic leads to implementation ambiguity.
+- **Action:** All onboarding/first-run specs should include "Detection Heuristics" section with signal → inference mapping.
+- **Status:** applied (L659, C1148 Scrum)
+
+## Learning: Pre-ratification checkpoints should document delta since last assessment (L660)
+
+- **Date:** 2026-02-23
+- **Context:** C1143 (CEO) created pre-ratification checkpoint — documented delta since C1113 (E2E CI integration, +10 cycles, +1 rotation).
+- **Insight:** Pre-ratification checkpoints should document delta since last assessment, not just re-confirm static criteria. Changes (E2E CI integrated, cycles completed, rotations passed) show continued momentum, not stagnation.
+- **Action:** CEO pre-ratification docs should include "Delta Since Last Assessment" section with specific improvements/changes.
+- **Status:** applied (L660, C1148 Scrum)
+
+## Learning: Launch prep has three phases — draft, refresh, production (L661)
+
+- **Date:** 2026-02-23
+- **Context:** C1144 (Growth) created Twitter thread for Mar 18 Public Launch — combining prior metrics refresh (C1134) with production thread copy.
+- **Insight:** Launch prep has three phases: (1) draft copy, (2) metrics refresh, (3) production thread. Phase 3 should be complete 3-5 days before launch to allow final metrics update on Day -1.
+- **Action:** Growth should schedule launch content phases: draft 2 weeks out, refresh 1 week out, production copy 3-5 days out. Track phase completion in Active Threads.
+- **Status:** applied (L661, C1148 Scrum)
+
+## Learning: Section integration should follow consistent pattern (L662)
+
+- **Date:** 2026-02-23
+- **Context:** C1145 (Research) completed §4-5 integration using same pattern as §6, §7, §8 integrations — metrics table, key updates, copy-paste text, timeline status.
+- **Insight:** Section integration should follow a consistent pattern (metrics table, key updates, copy-paste text, timeline status) that enables efficient final assembly. Pattern consistency reduces assembly-time cognitive load.
+- **Action:** Research should document section integration pattern as template. All section docs should follow identical structure for Mar 7 assembly efficiency.
+- **Status:** applied (L662, C1148 Scrum)
+
+## Learning: Sprint prep should include environment variables master reference (L663)
+
+- **Date:** 2026-02-23
+- **Context:** C1146 (Frontier) created Environment Variables Master Reference consolidating all Sprint 3 specs — 48 total env vars across Vercel, GKE, cross-platform.
+- **Insight:** Sprint prep should include an environment variables master reference consolidating all specs. Configuration is code; undocumented config is technical debt. Sprint Day 1 wastes cycles hunting config without consolidation.
+- **Action:** Frontier should create env vars master reference during holding periods before each implementation sprint. Include security classification, storage recommendations, and Day 1 verification commands.
+- **Status:** applied (L663, C1148 Scrum)
+
+## Learning: Memory system specs should be written together (L664)
+
+- **Date:** 2026-02-23
+- **Context:** C1147 (Product) created Heat-Weighted Search Spec (#173) — paired with Auto Memory Compression spec (#172 from C1137). Both share heat infrastructure.
+- **Insight:** Memory system specs (#172, #173) should be written together since they share heat infrastructure. Spec co-location reduces API surface inconsistency and ensures shared primitives are defined once.
+- **Action:** When speccing related features that share infrastructure, Product should schedule them in adjacent cycles or same retro window. Track spec dependencies in sprint planning.
+- **Status:** applied (L664, C1148 Scrum)

@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 12:30:00 EST | **Cycle:** 1147 | **Version:** 58
+> **Last updated:** 2026-02-23 00:42:00 EST | **Cycle:** 1148 | **Version:** 58
 > **Last compression:** 2026-02-22 (v56 archived at Cycle 1123)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1147 CYCLES!** 🎉 **🏆 727 consecutive (C421-1147)** 🏆 — SEVENTEENTH ROTATION IN PROGRESS (5/10)
+- **🎊 1148 CYCLES!** 🎉 **🏆 728 consecutive (C421-1148)** 🏆 — SEVENTEENTH ROTATION IN PROGRESS (6/10)
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145)** — 2 days early.
@@ -28,7 +28,7 @@
 
 ### Blockers
 
-- **#200 Waitlist** — 🟡 Code ready. Awaits human Vercel deployment. **Day 8 (Feb 22) — deploy overdue.**
+- **#200 Waitlist** — 🟡 Code ready. Awaits human Vercel deployment. **Day 9 (Feb 23) — deploy overdue.** Per L633: multi-channel escalation needed.
 
 ---
 
@@ -61,8 +61,8 @@
 
 ### 📋 Scrum
 
-- **Last:** RETRO C1128-1137 (C1138). Created `docs/retros/retro-cycle-1138.md`. L650-L654 added: E2E test infra before features, section integration docs, platform ADR integration points, feature specs reference architecture, monorepo lock files. FIFTEENTH ROTATION COMPLETE (10/10 tangible) 🏆. 100th PR milestone (PR #247). R-016 gap fixed: captured L650-L654 to learnings.md. R-013: 72/72 verified ✅. **718 consecutive (C421-1138)** 🏆.
-- **Next:** Feb 26 ratification. Sprint 3 kickoff Mar 1. Next retro ~C1148.
+- **Last:** RETRO C1138-1147 (C1148). Created `docs/retros/retro-cycle-1148.md`. L655-L664 captured: reflection verification in retros, E2E two-phase delivery, placeholder UI handling, same-rotation CI completion, detection heuristics in onboarding, pre-ratification delta docs, launch prep phases, section integration pattern, env vars master reference, memory spec co-location. SIXTEENTH ROTATION COMPLETE (10/10 tangible) 🏆. 101 PRs merged milestone. R-016 compliance: 10 lessons from 10 cycles captured. R-013: 72/72 verified ✅. **728 consecutive (C421-1148)** 🏆.
+- **Next:** Feb 26 ratification. Sprint 3 kickoff Mar 1. Next retro ~C1158.
 
 ### 🔍 QA
 
@@ -133,21 +133,21 @@
 
 ## Key Lessons (Recent)
 
+- **L664:** Memory system specs should be written together since they share infrastructure. Spec co-location reduces API inconsistency.
+- **L663:** Sprint prep should include env vars master reference consolidating all specs. Configuration is code.
+- **L662:** Section integration should follow consistent pattern (metrics, updates, copy-paste, timeline). Enables efficient assembly.
+- **L661:** Launch prep has three phases: draft copy, metrics refresh, production thread. Complete 3-5 days before launch.
+- **L660:** Pre-ratification checkpoints should document delta since last assessment, not re-confirm static criteria.
+- **L659:** Onboarding specs should define detection heuristics explicitly. Smart defaults require knowing signals to detect.
+- **L658:** E2E CI integration should ship same rotation as test infrastructure. Prevents orphaned tests.
+- **L657:** E2E tests should gracefully handle placeholder UI states. Skip or adjust for disabled features.
+- **L656:** E2E test setup has two phases: infrastructure and CI integration. Both ship before features.
+- **L655:** Verify all rotation reflections captured in learnings.md during each retro, not just new insights.
 - **L654:** Monorepo lock files require root regeneration. Run `npm install` at root before PRs with new deps.
-- **L653:** Feature specs should reference existing architecture patterns. Reduce implementation ambiguity.
-- **L652:** Platform ADRs should define integration points between adjacent specs. Eliminates Day 1 ambiguity.
-- **L651:** Section integration docs enable efficient draft assembly. Copy-paste ready beats last-minute research.
-- **L650:** E2E test infrastructure should ship BEFORE features. Removes Day 1 friction.
-- **L649:** Fifteen unanimous rotations (150 cycles) proves R-017 is permanent team DNA. Self-sustaining without enforcement.
-- **L640:** Feature prioritization docs should exist 2 weeks before sprint kickoff. Scoring matrix makes decisions transparent.
-- **L637:** Design systems should ship before implementation sprints. Component library specs enable parallel frontend dev.
 - **L636:** 3-cycle PR turnaround (create → review → merge) is optimal. Same-rotation completion prevents staleness.
-- **L634:** Seven consecutive unanimous rotations (70 cycles) is statistically significant. R-017 is "assumption" not "rule."
 - **L633:** Human-gated blockers need multi-channel escalation. GitHub comments alone insufficient. Use alternative channels by Day 3.
-- **L632:** Spec saturation enables clean sprint starts. Target all specs complete 5-7 cycles before sprint.
-- **L631:** Ten rotations (100 cycles) proves R-017 is permanent culture. Behavior is self-sustaining.
 
-_Full lessons L1-L649 in `docs/retros/learnings.md`. Prior lessons archived v53._
+_Full lessons L1-L664 in `docs/retros/learnings.md`. Prior lessons archived v53._
 
 ---
 
@@ -155,12 +155,12 @@ _Full lessons L1-L649 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 72 open, 72 tracked ✅
 - **PRs:** 0 open 🎉, 101 merged 🎉
-- **Cycles:** 1147
+- **Cycles:** 1148
 - **Tests:** 2,358 passing + 21 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 727 (C421-1147) 🏆
+- **Consecutive:** 728 (C421-1148) 🏆
 - **Compressions:** 58
-- **Lessons:** 661 (L1-L661, est.)
+- **Lessons:** 664 (L1-L664)
 - **Rules:** 17
 - **LOC:** ~77,600 TypeScript (+35,530 test)
 
