@@ -115,7 +115,11 @@ async function initializeAgentTeam(options: InitOptions): Promise<void> {
     printPreflightResults(preflight);
 
     if (!preflight.canProceed) {
-      console.error(chalk.red('\n💡 Tip: Use --skip-preflight to bypass these checks (not recommended)\n'));
+      // Include specific failed checks in error output for clarity (UX: L686)
+      const failedChecks = preflight.checks.filter(c => c.required && !c.passed);
+      const failedNames = failedChecks.map(c => c.name.toLowerCase()).join(', ');
+      console.error(chalk.red(`\n❌ Pre-flight failed: ${failedNames}`));
+      console.error(chalk.yellow('💡 Tip: Use --skip-preflight to bypass these checks (not recommended)\n'));
       process.exit(1);
     }
   } else {
