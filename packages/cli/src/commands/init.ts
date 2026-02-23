@@ -11,6 +11,7 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import chalk from 'chalk';
 import { showBanner } from '../lib/banner.js';
+import { runPreflightChecks, printPreflightResults } from '../lib/preflight.js';
 
 /**
  * ESM-compatible __dirname equivalent.
@@ -34,6 +35,7 @@ interface InitOptions {
     | undefined;
   overwrite: boolean;
   dir: string;
+  skipPreflight: boolean;
 }
 
 interface TeamSizeConfig {
@@ -87,6 +89,7 @@ export const initCommand = new Command('init')
     'Target directory for agents (default: "agents/")',
     'agents'
   )
+  .option('--skip-preflight', 'Skip pre-flight environment checks', false)
   .action(async (options: InitOptions) => {
     try {
       await initializeAgentTeam(options);
@@ -105,6 +108,23 @@ async function initializeAgentTeam(options: InitOptions): Promise<void> {
 
   // Show the full banner with role panel on first init
   showBanner({ showRolePanel: true });
+
+  // Run pre-flight checks unless skipped
+  if (!options.skipPreflight) {
+    const preflight = await runPreflightChecks(cwd);
+    printPreflightResults(preflight);
+
+    if (!preflight.canProceed) {
+      // Include specific failed checks in error output for clarity (UX: L686)
+      const failedChecks = preflight.checks.filter(c => c.required && !c.passed);
+      const failedNames = failedChecks.map(c => c.name.toLowerCase()).join(', ');
+      console.error(chalk.red(`\n❌ Pre-flight failed: ${failedNames}`));
+      console.error(chalk.yellow('💡 Tip: Use --skip-preflight to bypass these checks (not recommended)\n'));
+      process.exit(1);
+    }
+  } else {
+    console.log(chalk.yellow('⚠️  Skipping pre-flight checks (--skip-preflight)\n'));
+  }
 
   // Check if agents directory exists
   const agentsExists = await directoryExists(agentsDir);
