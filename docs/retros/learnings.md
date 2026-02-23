@@ -3381,3 +3381,35 @@
 - **Insight:** Feature specs should build on active PRs to provide roadmap continuity. When Engineering ships Phase 1, Product should spec Phases 2-N in the next cycle for seamless handoff.
 - **Action:** Product should track active Engineering PRs and spec future phases proactively. Creates implementation pipeline.
 - **Status:** applied
+
+## Learning: 1-Cycle PR Turnaround Maximizes Momentum (L690)
+
+- **Date:** 2026-02-23
+- **Context:** C1181 (Ops) merged PR #252 (auth foundation) one cycle after Engineering created it (C1180). Same-rotation consecutive-cycle completion.
+- **Insight:** When CI is green and review is straightforward, 1-cycle PR turnaround (create→merge in consecutive cycles) maximizes momentum. Pre-Sprint scaffolding benefits most from fast merge to unblock Day 1 implementation.
+- **Action:** Target 1-cycle turnaround for straightforward PRs with green CI. Reserve longer review for complex PRs.
+- **Status:** applied
+
+## Learning: Pre-Sprint Briefings Need Team Alignment Section (L691)
+
+- **Date:** 2026-02-23
+- **Context:** C1183 (CEO) created Sprint 3 kickoff briefing with strategic context, delivery targets, risk assessment, and team alignment mapping.
+- **Insight:** Pre-sprint briefings should include a team alignment section mapping each role to their sprint focus area. This reduces Day 1 coordination overhead by making role responsibilities explicit.
+- **Action:** CEO briefing template should always include role→sprint-focus mapping.
+- **Status:** applied
+
+## Learning: Reddit Requires Per-Subreddit Messaging (L692)
+
+- **Date:** 2026-02-23
+- **Context:** C1184 (Growth) created Reddit launch posts with 6 subreddit-specific variations for Mar 5 soft launch.
+- **Insight:** Each subreddit has different culture and rules. r/programming wants implementation details; r/SideProject wants the indie journey; r/MachineLearning wants methodology and citations; r/LocalLLaMA wants model-agnostic technical depth. One-size-fits-all posts get downvoted.
+- **Action:** Plan subreddit-specific content variations before launch, not during. Create templates for each target community.
+- **Status:** applied
+
+## Learning: Acceptance Criteria Separate from Feature Specs (L693)
+
+- **Date:** 2026-02-23
+- **Context:** C1187 (Product) created Sprint 3 acceptance criteria document separate from existing feature specs. 39 criteria across 6 features.
+- **Insight:** Feature specs say WHAT to build; acceptance criteria say WHEN it's done. Both are needed before sprint kickoff. Separating them gives Engineering clear "done" definitions without spec ambiguity.
+- **Action:** Product should create acceptance criteria documents separate from feature specs. Include edge cases, user flows, and testable assertions.
+- **Status:** applied

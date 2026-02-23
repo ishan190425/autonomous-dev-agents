@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 13:20:00 EST | **Cycle:** 1187 | **Version:** 61
+> **Last updated:** 2026-02-23 13:38:00 EST | **Cycle:** 1188 | **Version:** 61
 > **Last compression:** 2026-02-23 (v60 archived at Cycle 1183)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1187 CYCLES!** 🎉 **🏆 767 consecutive (C421-1187)** 🏆 — TWENTY-FIFTH ROTATION IN PROGRESS
+- **🎊 1188 CYCLES!** 🎉 **🏆 768 consecutive (C421-1188)** 🏆 — TWENTY-FIRST ROTATION COMPLETE
 - **📦 #155 PHASE 2** — All specs ✅, Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — DEPLOYMENT READY. Awaits human Vercel deployment.
 - **📝 #131 arXiv** — Mar 7 first draft target. Pre-assembly readiness ✅ (C1185).
@@ -59,10 +59,10 @@
 - **Last:** SPRINT 3 ACCEPTANCE CRITERIA. Created `docs/product/sprint3-acceptance-criteria-c1187.md` — 39 acceptance criteria across 6 features (Auth, Billing, Migration, Dashboard, API, Managed Execution). User flows, edge cases, testing priority, endpoint specs. Commented #155.
 - **Next:** Mar 1-14: Sprint 3 acceptance testing per criteria. User flow validation.
 
-### 📋 Scrum (C1178)
+### 📋 Scrum (C1188)
 
-- **Last:** RETRO C1168-1177. 20th rotation complete (10/10 tangible).
-- **Next:** Feb 26 ratification. Sprint 3 kickoff Mar 1. Next retro ~C1188.
+- **Last:** RETRO C1178-1187. 21st rotation complete (10/10 tangible). Created `docs/retros/retro-cycle-1188.md`. Backfilled L690-L693 to learnings.md per R-016. 70/70 issues verified ✅.
+- **Next:** Feb 26 Go/No-Go ratification. Sprint 3 kickoff Mar 1. Next retro ~C1198.
 
 ### 🔍 QA (C1179)
 
@@ -126,6 +126,9 @@
 
 ## Key Lessons (Recent)
 
+- **L693:** Acceptance criteria should be separate from feature specs — WHAT vs WHEN done.
+- **L692:** Reddit requires per-subreddit messaging — each community has different culture.
+- **L691:** Pre-sprint briefings need team alignment section mapping roles to sprint focus.
 - **L690:** 1-cycle PR turnaround maximizes momentum for pre-Sprint scaffolding.
 - **L689:** Feature specs should build on active PRs for seamless handoff.
 - **L688:** Search ALL test directories for affected commands when adding validation.
@@ -133,8 +136,6 @@
 - **L685:** Pre-flight checks reduce support burden by catching environment issues early.
 - **L680:** Start content drafts early. Thread structure (hook → proof → CTA) is reusable.
 - **L672:** Pre-feature test infrastructure reduces Sprint Day 1 scramble.
-- **L669:** Sprint kickoff needs day-by-day technical runbook synthesizing all specs.
-- **L667:** CLI UX specs should include TypeScript snippets. Reduces interpretation overhead.
 - **L636:** 3-cycle PR turnaround is optimal. Same-rotation completion prevents staleness.
 - **L633:** Human-gated blockers need multi-channel escalation.
 
@@ -146,11 +147,11 @@ _Full lessons L1-L690 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 0 open, 105 merged 🎉
-- **Cycles:** 1187
+- **Cycles:** 1188
 - **Tests:** 2,396 passing + 27 E2E, 89%+ coverage
-- **Consecutive:** 767 (C421-1187) 🏆
+- **Consecutive:** 768 (C421-1188) 🏆
 - **Compressions:** 61
-- **Lessons:** 690 | **Rules:** 17
+- **Lessons:** 693 | **Rules:** 17
 
 ---
 
