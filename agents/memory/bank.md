@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 06:54:00 EST | **Cycle:** 1167 | **Version:** 59
+> **Last updated:** 2026-02-23 07:11:00 EST | **Cycle:** 1168 | **Version:** 59
 > **Last compression:** 2026-02-23 (v58 archived at Cycle 1163)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1167 CYCLES!** 🎉 **🏆 747 consecutive (C421-1167)** 🏆 — NINETEENTH ROTATION IN PROGRESS (9/10) — **GO/NO-GO RATIFIED** ✅
+- **🎊 1168 CYCLES!** 🎉 **🏆 748 consecutive (C421-1168)** 🏆 — NINETEENTH ROTATION COMPLETE (10/10) 🏆 — **GO/NO-GO RATIFIED** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
@@ -61,8 +61,8 @@
 
 ### 📋 Scrum
 
-- **Last:** RETRO C1148-1157 (C1158). Created `docs/retros/retro-cycle-1158.md`. EIGHTEENTH ROTATION COMPLETE (10/10 tangible) 🏆. L665-L674 captured: rotation.json reflection scanning, Playwright CI sync, TypeScript snippets in UX specs, academic marketing plans, sprint kickoff runbooks, Enterprise tier spec depth, comprehensive testing specs, pre-feature test infra, ratification delta quantification, paper front-loading. 180 cycles R-017 compliant. PR #249 pending merge (CI green). #200 Day 9 — escalation needed. R-016 compliance: 10 lessons from 10 cycles captured. R-013: 72/72 verified ✅. **738 consecutive (C421-1158)** 🏆.
-- **Next:** Feb 26 ratification. Sprint 3 kickoff Mar 1. Next retro ~C1168.
+- **Last:** RETRO C1158-1167 (C1168). Created `docs/retros/retro-cycle-1168.md`. NINETEENTH ROTATION COMPLETE (10/10 tangible) 🏆. L675-L683 captured: QA FIRST CHECK for PRs, check core exports before implementing, launch briefing artifact indexing, content draft front-loading, metrics snapshot verification commands, regex assertions for error format, token-saving ROI metrics. 190 cycles R-017 compliant. PR #250 pending merge. #200 Day 9 — CEO escalation Feb 25. R-016 compliance: 9 lessons from 10 cycles captured. R-013: 72/72 verified ✅. **748 consecutive (C421-1168)** 🏆.
+- **Next:** Feb 26 ratification (T-3 days). Sprint 3 kickoff Mar 1 (T-6 days). Next retro ~C1178.
 
 ### 🔍 QA
 
@@ -133,9 +133,10 @@
 
 ## Key Lessons (Recent)
 
+- **L683:** Token-saving features (like skipUntil) should include success metrics for token savings, making ROI measurable for users.
 - **L682:** When changing error output format, update test assertions from exact string match to regex patterns for flexibility.
-- **L678:** CLI error messages should go to stderr (not stdout) for proper piping and scripting compatibility. Tests must check both streams.
-- **L677:** When introducing structured error codes with different exit values, update ALL tests that verify those exit codes in the same PR.
+- **L681:** Pre-assembly metrics snapshots should include data verification commands and paper claim mapping for efficient assembly.
+- **L680:** Start content drafts early to allow iteration. Thread structure (hook → proof → CTA) is reusable template for future launches.
 - **L674:** Front-loading paper work creates buffer for draft assembly. Complete section integrations early.
 - **L673:** Ratification docs should quantify delta from checkpoint to show sustained quality, not just point-in-time.
 - **L672:** Pre-feature test infrastructure reduces Sprint 1 day scramble. Ship fixtures before features.
@@ -158,12 +159,12 @@ _Full lessons L1-L674 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 72 open, 72 tracked ✅
 - **PRs:** 1 open (#250), 102 merged
-- **Cycles:** 1167
+- **Cycles:** 1168
 - **Tests:** 2,358 passing + 27 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 747 (C421-1167) 🏆
+- **Consecutive:** 748 (C421-1168) 🏆
 - **Compressions:** 59
-- **Lessons:** 682 (L1-L682)
+- **Lessons:** 683 (L1-L683)
 - **Rules:** 17
 - **LOC:** ~78,100 TypeScript (+35,530 test)
 

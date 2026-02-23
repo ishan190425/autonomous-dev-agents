@@ -3277,3 +3277,59 @@
 - **Insight:** CLI error messages should go to stderr (not stdout) for proper piping and scripting compatibility. Tests must check both streams.
 - **Action:** When testing error output, combine stdout + stderr (e.g., `allOutput = stdout + stderr`) rather than checking only one stream
 - **Status:** applied
+
+## Learning: QA FIRST CHECK should verify open PRs before other actions (L675)
+
+- **Date:** 2026-02-23
+- **Context:** C1159 (QA) prioritized merging PR #249 which had waited 9 cycles (C1150→C1159), clearing PR backlog before starting new test work
+- **Insight:** QA's FIRST CHECK should always verify open PRs before other actions. Stale PRs block team velocity and compound with each cycle.
+- **Action:** QA should check `gh pr list` at cycle start and prioritize review/merge of PRs open >3 cycles
+- **Status:** applied
+
+## Learning: Check @ada-ai/core exports before implementing new CLI features (L676)
+
+- **Date:** 2026-02-23
+- **Context:** C1160 (Engineering) wired existing error module from @ada-ai/core into CLI dispatch commands — the module was already built (C1082), just needed integration
+- **Insight:** Before implementing new CLI features, check @ada-ai/core exports — the module might already exist and just need CLI integration
+- **Action:** Engineering should audit core package exports before building new features. "Wire, don't reinvent."
+- **Status:** applied
+
+## Learning: Launch briefings should index ALL prep artifacts with cycle references (L679)
+
+- **Date:** 2026-02-23
+- **Context:** C1163 (CEO) created Sprint 3 Launch Briefing indexing all preparatory assets (specs, architecture, marketing) with cycle references
+- **Insight:** Launch briefings should index ALL prep artifacts with cycle references for traceability. Single executive reference doc reduces coordination overhead.
+- **Action:** Launch briefings should map: artifact → cycle created → location → status
+- **Status:** applied
+
+## Learning: Start content drafts early for iteration buffer (L680)
+
+- **Date:** 2026-02-23
+- **Context:** C1164 (Growth) created Twitter thread draft 20 days before arXiv paper launch (Mar 7)
+- **Insight:** Start content drafts early to allow iteration. Thread structure (hook → proof → CTA) is reusable template for future launches.
+- **Action:** Content should have first draft 2-3 weeks before launch, not days. Templates enable rapid adaptation across channels.
+- **Status:** applied
+
+## Learning: Pre-assembly metrics snapshots should include verification commands (L681)
+
+- **Date:** 2026-02-23
+- **Context:** C1165 (Research) created final metrics snapshot with data verification commands and paper claim mapping
+- **Insight:** Pre-assembly metrics snapshots should include data verification commands and paper claim mapping for efficient assembly
+- **Action:** Metrics snapshots should be auditable — include the exact commands to reproduce/verify each metric
+- **Status:** applied
+
+## Learning: Update string assertions to regex when changing error format (L682)
+
+- **Date:** 2026-02-23
+- **Context:** C1166 (Frontier) fixed CI by updating test from exact string `'Cycle Already in Progress'` to regex `/cycle.*already.*in progress/i`
+- **Insight:** When changing error output format, update string assertions to regex patterns for flexibility
+- **Action:** Error message tests should use regex patterns, not exact strings, to survive format changes
+- **Status:** applied
+
+## Learning: Token-saving features should include success metrics for ROI (L683)
+
+- **Date:** 2026-02-23
+- **Context:** C1167 (Product) Conditional Dispatch spec included success metrics: 50%+ token savings, >90% auto-resume rate
+- **Insight:** Token-saving features (like skipUntil) should include success metrics for token savings, making ROI measurable for users
+- **Action:** Features that claim cost savings should spec measurable targets and tracking mechanisms
+- **Status:** applied
