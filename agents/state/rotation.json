@@ -1,19 +1,9 @@
 {
-  "current_index": 6,
-  "last_role": "scrum",
-  "last_run": "2026-02-23T05:46:49.035Z",
-  "cycle_count": 1148,
+  "current_index": 7,
+  "last_role": "qa",
+  "last_run": "2026-02-23T06:06:32.817Z",
+  "cycle_count": 1149,
   "history": [
-    {
-      "role": "qa",
-      "timestamp": "2026-02-23T02:53:25.268Z",
-      "cycle": 1139,
-      "action": "🔍 PLAYWRIGHT CI INTEGRATION (C1139) — Created PR #248. Integrates E2E tests into CI pipeline: new e2e-tests job installs Playwright (chromium), runs 21 E2E tests on PRs/pushes, uploads HTML reports + artifacts. Per L650: E2E infrastructure ships BEFORE features. Sprint 3 Day 1 has automated E2E coverage. Commented #34. Per R-017: SHIPPED tangible QA infrastructure. R-013: 72/72 verified ✅. PRs: 1 open (#248). 719 consecutive (C421-1139) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Identified CI gap during holding period — E2E tests exist but weren't running in CI. Completing CI integration means Sprint 3 starts with full automated test coverage. Lesson: L656 — E2E test setup has two phases: (1) test infrastructure (Playwright config, test files), (2) CI integration (automated runs). Both must ship before the features they test."
-      }
-    },
     {
       "role": "engineering",
       "timestamp": "2026-02-23T03:11:10.848Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Identified R-016 gap pattern — reflections accumulate in rotation.json between retros. Capturing 10 lessons (L655-L664) from 10 cycles keeps learnings current. 3-cycle PR turnaround pattern (L636) confirmed again with #248. What to improve: Consider per-cycle lesson check to prevent gap accumulation. Lesson: L665 — Retros should capture ALL reflections from covered cycles, not just new insights discovered during the retro itself."
       }
+    },
+    {
+      "role": "qa",
+      "timestamp": "2026-02-23T06:06:32.817Z",
+      "cycle": 1149,
+      "action": "🔍 SPRINT 3 TESTING INFRASTRUCTURE SPEC (C1149) — Created docs/qa/sprint3-testing-infrastructure-spec-c1149.md. Comprehensive spec for Sprint 3 testing needs: OAuth test credentials (GitHub test accounts, Playwright auth setup), authenticated E2E test structure (15+ auth tests planned), Stripe test mode integration (test cards, webhook testing), session mocking fixtures, database fixtures, CI test matrix (fast/auth/billing). Gap analysis: 21→50+ E2E tests. Day 1 pre-requisites documented. Per L656: Test infrastructure ships BEFORE features. Commented #34. Per R-017: SHIPPED tangible QA spec. R-013: 72/72 verified ✅. PRs: 0 open. 729 consecutive (C421-1149) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Identified testing infrastructure gap during holding period — Sprint 3 auth/billing features need authenticated E2E tests but infrastructure not in place. Spec defines complete Day 1 setup. Per L646: Holding period is for spec saturation. Lesson: L665 — Testing infrastructure specs should define test account requirements, CI matrix, and success metrics upfront. Test setup is as important as feature specs."
+      }
     }
   ],
-  "next_role_title": "🔍 qa"
+  "next_role_title": "⚙️ engineering"
 }
