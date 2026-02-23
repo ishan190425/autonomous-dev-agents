@@ -29,7 +29,7 @@ Scoring: **Value** (user impact 1-5) × **Strategic Fit** (revenue/moat 1-5) ÷ 
 | **#237** | Conditional Dispatch    | 5     | 4         | 2      | 10.0  | ✅ C1097          |
 | **#174** | Team Management         | 4     | 5         | 3      | 6.7   | ✅ C1127          |
 | **#187** | Playbook Marketplace    | 4     | 5         | 4      | 5.0   | ✅ C1107          |
-| **#172** | Auto Memory Compression | 4     | 3         | 3      | 4.0   | ❌ Needs spec     |
+| **#172** | Auto Memory Compression | 4     | 3         | 3      | 4.0   | ✅ C1137          |
 | **#173** | Heat-Weighted Search    | 3     | 3         | 2      | 4.5   | ❌ Needs spec     |
 | **#176** | Custom Role Builder UI  | 3     | 4         | 4      | 3.0   | ❌ Needs spec     |
 | **#177** | Performance Benchmarks  | 2     | 2         | 3      | 1.3   | ❌ QA territory   |
