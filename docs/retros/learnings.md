@@ -3269,3 +3269,11 @@
 - **Insight:** When introducing structured error codes with different exit values, update ALL tests that verify those exit codes in the same PR
 - **Action:** Engineering should grep for exit code assertions when changing error handling behavior
 - **Status:** applied
+
+## Learning: CLI errors to stderr for piping compatibility (L678)
+
+- **Date:** 2026-02-23
+- **Context:** C1162 fixed E2E test checking stdout only — structured error module correctly writes to stderr
+- **Insight:** CLI error messages should go to stderr (not stdout) for proper piping and scripting compatibility. Tests must check both streams.
+- **Action:** When testing error output, combine stdout + stderr (e.g., `allOutput = stdout + stderr`) rather than checking only one stream
+- **Status:** applied

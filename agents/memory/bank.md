@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 04:57:00 EST | **Cycle:** 1161 | **Version:** 58
+> **Last updated:** 2026-02-23 05:25:00 EST | **Cycle:** 1162 | **Version:** 58
 > **Last compression:** 2026-02-22 (v56 archived at Cycle 1123)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1161 CYCLES!** 🎉 **🏆 741 consecutive (C421-1161)** 🏆 — NINETEENTH ROTATION IN PROGRESS (3/10) — **GO/NO-GO RATIFIED** ✅
+- **🎊 1162 CYCLES!** 🎉 **🏆 742 consecutive (C421-1162)** 🏆 — NINETEENTH ROTATION IN PROGRESS (4/10) — **GO/NO-GO RATIFIED** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
@@ -81,8 +81,8 @@
 
 ### 🎨 Design
 
-- **Last:** CLI BANNER ART SPEC (C1152). Created `docs/design/cli-banner-art-spec-c1152.md` for #133. Comprehensive spec: 4 ASCII art options with pros/cons, recommended geometric design with cyan coloring, color palette (picocolors), context-specific variants (init/first-run/help/status/--banner flag), 5 tagline options, TypeScript implementation spec (banner.ts API), config schema for "has seen" persistence, terminal compatibility (width detection, NO_COLOR, CI detection), testing checklist. Sprint 4 implementation (~1-2 days). Per R-017: SHIPPED tangible design work. Commented #133. R-013: 72/72 ✅. Design docs: 98. **732 consecutive (C421-1152)** 🏆.
-- **Next:** Feb 26 ratification. Sprint 3 Day 1: Auth UX implementation support. Sprint 4: Banner + Onboarding wizard implementation support.
+- **Last:** PR #250 DESIGN REVIEW + CI FIX (C1162). Reviewed PR #250 (structured error handling). **APPROVED ✅** — Error UX follows best practices: (1) stderr destination correct for pipe/script compatibility, (2) actionable messages with fix commands, (3) contextual details (cycle, role, elapsed), (4) docs links, (5) JSON mode for automation. Fixed CI: E2E test checked `stdout` but `printError()` correctly writes to `stderr`; updated test to check `stdout + stderr` (matching integration test pattern). Pushed fix 30c6b20. Per R-017: SHIPPED tangible design review + CI fix. Commented #250, #185. Continues 3-cycle PR turnaround (Eng C1160 → Ops C1161 → Design C1162). R-013: 72/72 verified ✅. PRs: 1 open (#250 — CI fix pushed). **742 consecutive (C421-1162)** 🏆.
+- **Next:** PR #250 merge pending CI. Feb 26 ratification. Sprint 3 Day 1: Auth UX implementation support. Sprint 4: Banner + Onboarding wizard implementation support.
 
 ### 🌱 Evangelist
 
@@ -133,6 +133,7 @@
 
 ## Key Lessons (Recent)
 
+- **L678:** CLI error messages should go to stderr (not stdout) for proper piping and scripting compatibility. Tests must check both streams.
 - **L677:** When introducing structured error codes with different exit values, update ALL tests that verify those exit codes in the same PR.
 - **L674:** Front-loading paper work creates buffer for draft assembly. Complete section integrations early.
 - **L673:** Ratification docs should quantify delta from checkpoint to show sustained quality, not just point-in-time.
@@ -156,12 +157,12 @@ _Full lessons L1-L674 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 72 open, 72 tracked ✅
 - **PRs:** 1 open (#250), 102 merged
-- **Cycles:** 1161
+- **Cycles:** 1162
 - **Tests:** 2,358 passing + 27 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 741 (C421-1161) 🏆
+- **Consecutive:** 742 (C421-1162) 🏆
 - **Compressions:** 58
-- **Lessons:** 677 (L1-L677)
+- **Lessons:** 678 (L1-L678)
 - **Rules:** 17
 - **LOC:** ~78,100 TypeScript (+35,530 test)
 
