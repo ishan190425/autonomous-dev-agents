@@ -41,6 +41,9 @@ import {
   // Notifications (Issue #8)
   sendCycleNotifications,
   type NotificationMessage,
+  // Structured Error Handling (Issue #185)
+  adaError,
+  printError,
 } from '@ada-ai/core';
 import type { Role, Roster, RotationState, Reflection, ReflectionOutcome, CodeChangeResult } from '@ada-ai/core';
 
@@ -658,13 +661,14 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
       readRoster(rosterPath),
     ]);
   } catch (err) {
-    if (options.json) {
-      console.log(JSON.stringify({ error: (err as Error).message }));
-    } else {
-      console.error(chalk.red('❌ Could not read agent state:'), (err as Error).message);
-      console.error(chalk.gray("   Run 'ada init' to set up an agent team.\n"));
-    }
-    process.exit(EXIT_CODES.STATE_CORRUPTION);
+    // Issue #185: Use structured error with actionable suggestions
+    const error = adaError('ADA_NOT_INITIALIZED')
+      .detail('directory', cwd)
+      .detail('cause', (err as Error).message)
+      .context('dispatch start')
+      .build();
+    const exitCode = printError(error, { json: options.json ?? false });
+    process.exit(exitCode);
   }
 
   // Check if ADA is paused (Issue #212 — dispatch start must respect paused flag)
@@ -696,29 +700,17 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
   const activeLock = await getActiveLock(agentsDir);
   if (activeLock && !options.force) {
     const activeRole = roster.roles.find((r) => r.id === activeLock.role);
-    const expectedRole = getCurrentRole(state, roster);
     const elapsed = formatDuration(activeLock.startedAt);
 
-    if (options.json) {
-      console.log(JSON.stringify({
-        error: 'cycle_in_progress',
-        activeCycle: activeLock.cycle,
-        activeRole: activeLock.role,
-        elapsed,
-        expectedRole: expectedRole?.id ?? null,
-      }));
-    } else {
-      console.log(chalk.yellow('\n⚠️  Cycle Already in Progress\n'));
-      console.log(`  ${chalk.gray('Active:')}    Cycle ${activeLock.cycle} (${activeRole?.emoji ?? '❓'} ${activeRole?.name ?? activeLock.role}) — started ${elapsed} ago`);
-      console.log(`  ${chalk.gray('Expected:')}  Cycle ${state.cycle_count + 1} (${expectedRole ? formatRole(expectedRole) : '(none)'})`);
-      console.log();
-      console.log('  A cycle is already running. Options:\n');
-      console.log(`${chalk.cyan('    ada dispatch complete --action "..."')}   # Complete current cycle`);
-      console.log(`${chalk.red('    ada dispatch start --force')}             # Override (dangerous)`);
-      console.log();
-      console.log(chalk.gray('  Concurrent cycles corrupt rotation state.'));
-    }
-    process.exit(EXIT_CODES.CYCLE_IN_PROGRESS);
+    // Issue #185: Use structured error with actionable suggestions
+    const error = adaError('ADA_CYCLE_IN_PROGRESS')
+      .detail('activeCycle', activeLock.cycle)
+      .detail('activeRole', `${activeRole?.emoji ?? '❓'} ${activeRole?.name ?? activeLock.role}`)
+      .detail('elapsed', elapsed)
+      .context('dispatch start')
+      .build();
+    const exitCode = printError(error, { json: options.json ?? false });
+    process.exit(exitCode);
   }
 
   // Determine current role
@@ -860,18 +852,12 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
 
   // Validate action flag
   if (!options.action) {
-    if (options.json) {
-      console.log(JSON.stringify({ error: 'missing_action' }));
-    } else {
-      console.log(chalk.red('\n❌ Missing --action flag\n'));
-      console.log('  The --action flag describes what you did this cycle.\n');
-      console.log('  Usage:');
-      console.log(chalk.cyan('    ada dispatch complete --action "Reviewed PR #110 — approved"'));
-      console.log(chalk.cyan('    ada dispatch complete -a "Wrote docs for memory API"'));
-      console.log();
-      console.log(chalk.gray('  This text appears in commit history and rotation logs.'));
-    }
-    process.exit(EXIT_CODES.MISSING_REQUIRED_FLAG);
+    // Issue #185: Use structured error with actionable suggestions
+    const error = adaError('ADA_MISSING_ACTION')
+      .context('dispatch complete')
+      .build();
+    const exitCode = printError(error, { json: options.json ?? false });
+    process.exit(exitCode);
   }
 
   // Load state
@@ -884,12 +870,14 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
       readRoster(rosterPath),
     ]);
   } catch (err) {
-    if (options.json) {
-      console.log(JSON.stringify({ error: (err as Error).message }));
-    } else {
-      console.error(chalk.red('❌ Could not read agent state:'), (err as Error).message);
-    }
-    process.exit(EXIT_CODES.STATE_CORRUPTION);
+    // Issue #185: Use structured error with actionable suggestions
+    const error = adaError('ADA_NOT_INITIALIZED')
+      .detail('directory', cwd)
+      .detail('cause', (err as Error).message)
+      .context('dispatch complete')
+      .build();
+    const exitCode = printError(error, { json: options.json ?? false });
+    process.exit(exitCode);
   }
 
   // Check for active lock
@@ -1384,13 +1372,14 @@ async function executeStatus(options: DispatchStatusOptions): Promise<void> {
       readRoster(rosterPath),
     ]);
   } catch (err) {
-    if (options.json) {
-      console.log(JSON.stringify({ error: (err as Error).message }));
-    } else {
-      console.error(chalk.red('❌ Could not read agent state:'), (err as Error).message);
-      console.error(chalk.gray("   Run 'ada init' to set up an agent team.\n"));
-    }
-    process.exit(EXIT_CODES.STATE_CORRUPTION);
+    // Issue #185: Use structured error with actionable suggestions
+    const error = adaError('ADA_NOT_INITIALIZED')
+      .detail('directory', cwd)
+      .detail('cause', (err as Error).message)
+      .context('dispatch status')
+      .build();
+    const exitCode = printError(error, { json: options.json ?? false });
+    process.exit(exitCode);
   }
 
   // Check for active lock
