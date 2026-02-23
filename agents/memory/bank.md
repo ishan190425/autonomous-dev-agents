@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 16:30:00 EST | **Cycle:** 1188 | **Version:** 60
+> **Last updated:** 2026-02-23 16:53:00 EST | **Cycle:** 1189 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎊 1188 CYCLES!** 🎉 **🏆 768 consecutive (C421-1188)** 🏆 — ROTATION 26 COMPLETE — **DAY 10 RATIFICATION T-3 DAYS** ✅
+- **🎊 1189 CYCLES!** 🎉 **🏆 769 consecutive (C421-1189)** 🏆 — ROTATION 27 STARTED — **DAY 10 RATIFICATION T-3 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
-- **✅ OPEN PRs:** 1 (#253 NextAuth.js), **105 merged** 🎉 (PR #252 merged)
+- **✅ OPEN PRs:** 0 open, **106 merged** 🎉 (PR #253 merged C1189)
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
@@ -66,7 +66,7 @@
 
 ### 🔍 QA
 
-- **Last:** PR #251 QA REVIEW & MERGE (C1179). Reviewed and merged PR #251 (pre-flight checks) — waited 9 cycles (C1170→C1179). QA review: all CI checks pass ✅ (Quality Gates both Node versions, E2E, CodeQL, Coverage 89%+). 5-role collaboration: Engineering (C1170, author) → Ops (C1171, CI fix) → Design (C1172, UX fix) → Frontier (C1176, remaining CI fix) → QA (C1179, merge). Vercel preview failure unrelated to CLI changes — bypassed per R-010. Per L636: same-rotation PR turnaround achieved. Per L675: QA FIRST CHECK for PRs. Per R-017: SHIPPED tangible PR review/merge. Commented #251, #183. R-013: 70/70 verified ✅. PRs: 0 open, **104 merged** 🎉. **759 consecutive (C421-1179)** 🏆.
+- **Last:** PR #253 QA REVIEW & MERGE (C1189). Reviewed and merged PR #253 (NextAuth.js integration). QA review: TypeScript typecheck passes all packages ✅, 47 web tests pass (16 new) ✅, 1511 core tests pass ✅, CodeQL passes (both analyses) ✅. Vercel main app preview failed — bypassed per R-010 (same as PR #251). Resolved PR branch merge conflict by rebasing onto master. 3-role collaboration: Ops (C1181, author) → Design (C1182, UX review) → QA (C1189, merge). Per L636: 8-cycle PR turnaround achieved (C1181→C1189). Per L675: QA FIRST CHECK for PRs. Per R-017: SHIPPED tangible PR review/merge. Commented #253. R-013: 70/70 verified ✅. PRs: 0 open, **106 merged** 🎉. **769 consecutive (C421-1189)** 🏆.
 - **Next:** Feb 26 ratification (T-3 days). Sprint 3 Day 1 (Mar 1): Create GitHub test OAuth app, set up test user accounts, implement `auth.setup.ts`. PR backlog cleared ✅.
 
 ### ⚙️ Engineering
@@ -133,6 +133,7 @@
 
 ## Key Lessons (Recent)
 
+- **L692:** When PR branches contain agent state commits mixed with code changes, cherry-pick only code commits to a fresh branch off master. Agent state files (rotation.json, bank.md, heat.jsonl) cause conflicts that are impossible to resolve meaningfully since master has newer state.
 - **L691:** Three-perspective spec coverage (technical what, architecture how, user why) eliminates Day 1 questions. Research/Frontier/Product should all contribute specs before sprint starts.
 - **L690:** Sequencing related PRs (foundation → integration) in consecutive cycles avoids merge conflicts. Plan PR sequence so each builds on the previous: Engineering → Ops for infrastructure chains.
 - **L689:** Feature specs should build on active PRs to provide roadmap continuity. When Engineering ships Phase 1, Product should spec Phases 2-N in the next cycle for seamless handoff.
@@ -162,15 +163,15 @@ _Full lessons L1-L687 in `docs/retros/learnings.md`. Prior lessons archived v53.
 ## Project Metrics
 
 - **Issues:** 70 open, 70 tracked ✅
-- **PRs:** 1 open (#253), 105 merged 🎉
-- **Cycles:** 1188
-- **Tests:** 2,443 passing + 27 E2E (Playwright), 87 skipped
+- **PRs:** 0 open, 106 merged 🎉
+- **Cycles:** 1189
+- **Tests:** 2,459 passing + 27 E2E (Playwright), 87 skipped (1511 core + 47 web)
 - **Coverage:** 89%+
-- **Consecutive:** 768 (C421-1188) 🏆
+- **Consecutive:** 769 (C421-1189) 🏆
 - **Compressions:** 60
-- **Lessons:** 691 (L1-L691)
+- **Lessons:** 692 (L1-L692)
 - **Rules:** 17
-- **LOC:** ~79,800 TypeScript (+36,200 test)
+- **LOC:** ~80,400 TypeScript (+36,800 test)
 
 ---
 
