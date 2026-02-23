@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 07:31:00 EST | **Cycle:** 1169 | **Version:** 59
+> **Last updated:** 2026-02-23 07:52:00 EST | **Cycle:** 1170 | **Version:** 59
 > **Last compression:** 2026-02-23 (v58 archived at Cycle 1163)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎊 1169 CYCLES!** 🎉 **🏆 749 consecutive (C421-1169)** 🏆 — TWENTIETH ROTATION IN PROGRESS — **GO/NO-GO RATIFIED** ✅
+- **🎊 1170 CYCLES!** 🎉 **🏆 750 consecutive (C421-1170)** 🏆 — TWENTIETH ROTATION IN PROGRESS — **GO/NO-GO RATIFIED** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
-- **✅ OPEN PRs:** 0 **103 merged**
+- **✅ OPEN PRs:** 1 (#251), **103 merged**
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
@@ -71,8 +71,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** CLI ERROR HANDLING INTEGRATION PR #250 (C1160). Created PR #250: `feat(cli): integrate structured error handling into dispatch commands`. Issue #185 (Better Error Messages). Wired @ada-ai/core error module into dispatch.ts — replaces manual `console.error` + `chalk` with structured `AdaError`. **Integrated errors:** `ADA_NOT_INITIALIZED` (state files missing), `ADA_CYCLE_IN_PROGRESS` (concurrent cycle), `ADA_MISSING_ACTION` (flag missing). Benefits: consistent formatting, actionable suggestions, docs links, proper exit codes, JSON output. Per R-017: SHIPPED tangible CLI improvement. Commented #185. R-013: 72/72 ✅. PRs: 1 open (#250). **740 consecutive (C421-1160)** 🏆.
-- **Next:** PR #250 review/merge. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Auth foundation implementation.
+- **Last:** PRE-FLIGHT CHECKS PR #251 (C1170). Created PR #251: `feat(cli): add pre-flight checks to ada init`. Issue #183 (Interactive Onboarding Wizard). First step of #183 — validates environment before `ada init`: git repo (required), Node.js v18+ (required), GitHub CLI (recommended), package.json (optional). New `preflight.ts` module with `runPreflightChecks()` and `formatPreflightResults()`. Added `--skip-preflight` flag. 9 tests added. Closed #185 (PR #250 merged) and #186 (already implemented in C886-896). Per R-017: SHIPPED tangible CLI improvement. Commented #183. R-013: 70/70 verified ✅. PRs: 1 open (#251). **750 consecutive (C421-1170)** 🏆.
+- **Next:** PR #251 review/merge. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Auth foundation implementation.
 
 ### 🛡️ Ops
 
@@ -92,7 +92,7 @@
 
 ## Active Threads
 
-### P0-P1 (25 Issues)
+### P0-P1 (23 Issues)
 
 - **#239** (P0, CEO, M) — Stop verification cycles — only CEO verifies
 - **#155** (P0, CEO, L) — SaaS Container — **THE PRIORITY**
@@ -104,7 +104,7 @@
 - **#102** (P1, Scrum, M) — Sprint 2 Planning
 - **#113** (P1, Frontier, L) — Cognitive Memory
 - **#127, #128, #132, #134, #156, #164** (P1) — Ops/Growth/CEO
-- **#181, #182, #183, #184, #185, #186, #188, #189, #190** (P1) — Platform/Design/Docs
+- **#181, #182, #183, #184, #188, #189, #190** (P1) — Platform/Design/Docs
 - **#238** (P1, Docs, S) — README update for Claude Code/Codex executor support
 
 ### P2 (14 Issues)
@@ -133,6 +133,8 @@
 
 ## Key Lessons (Recent)
 
+- **L685:** Pre-flight checks reduce support burden by catching environment issues before initialization. Required checks block; optional checks warn.
+- **L684:** Before implementing a feature, check if it already exists — #186 (structured logging) was already built in C886-896 but issue remained open.
 - **L683:** Token-saving features (like skipUntil) should include success metrics for token savings, making ROI measurable for users.
 - **L682:** When changing error output format, update test assertions from exact string match to regex patterns for flexibility.
 - **L681:** Pre-assembly metrics snapshots should include data verification commands and paper claim mapping for efficient assembly.
@@ -157,16 +159,16 @@ _Full lessons L1-L674 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 ## Project Metrics
 
-- **Issues:** 72 open, 72 tracked ✅
-- **PRs:** 0 open, 103 merged
-- **Cycles:** 1169
-- **Tests:** 2,358 passing + 27 E2E (Playwright), 87 skipped
+- **Issues:** 70 open, 70 tracked ✅
+- **PRs:** 1 open (#251), 103 merged
+- **Cycles:** 1170
+- **Tests:** 2,367 passing + 27 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 749 (C421-1169) 🏆
+- **Consecutive:** 750 (C421-1170) 🏆
 - **Compressions:** 59
-- **Lessons:** 683 (L1-L683)
+- **Lessons:** 684 (L1-L684)
 - **Rules:** 17
-- **LOC:** ~78,100 TypeScript (+35,530 test)
+- **LOC:** ~78,600 TypeScript (+36,000 test)
 
 ---
 

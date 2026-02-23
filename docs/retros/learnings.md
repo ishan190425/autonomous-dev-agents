@@ -3333,3 +3333,19 @@
 - **Insight:** Token-saving features (like skipUntil) should include success metrics for token savings, making ROI measurable for users
 - **Action:** Features that claim cost savings should spec measurable targets and tracking mechanisms
 - **Status:** applied
+
+## Learning: Pre-flight Checks Pattern (L685)
+
+- **Date:** 2026-02-23
+- **Context:** C1170 Engineering cycle implementing pre-flight checks for `ada init`
+- **Insight:** Pre-flight environment validation reduces support burden by catching issues (git repo, Node version, dependencies) before initialization begins. Pattern: required checks block execution with actionable fix suggestions; optional checks warn but allow continuation.
+- **Action:** Apply pre-flight pattern to other CLI commands that depend on environment state.
+- **Status:** applied
+
+## Learning: Check Existing Implementation (L684)
+
+- **Date:** 2026-02-23
+- **Context:** C1170 — Issue #186 (Structured Logging) was already implemented in C886-896 but remained open
+- **Insight:** Before implementing a feature, grep the codebase for existing implementations. Open issues don't always reflect actual state. The telemetry/logger.ts module already had full JSON logging support.
+- **Action:** Always search codebase before starting feature work. Close issues that were implemented but not tracked.
+- **Status:** applied

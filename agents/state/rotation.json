@@ -1,19 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-23T12:32:14.594Z",
-  "cycle_count": 1169,
+  "current_index": 8,
+  "last_role": "engineering",
+  "last_run": "2026-02-23T12:55:41.301Z",
+  "cycle_count": 1170,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-23T09:40:33.184Z",
-      "cycle": 1160,
-      "action": "⚙️ CLI ERROR HANDLING INTEGRATION PR #250 (C1160) — Created PR #250: feat(cli): integrate structured error handling into dispatch commands. Wires @ada-ai/core error module into dispatch.ts, replacing manual console.error+chalk with structured AdaError. Integrated: ADA_NOT_INITIALIZED, ADA_CYCLE_IN_PROGRESS, ADA_MISSING_ACTION. Benefits: consistent formatting, actionable suggestions, docs links, proper exit codes, JSON output. Per R-017: SHIPPED tangible CLI improvement. Commented #185. R-013: 72/72 verified ✅. PRs: 1 open (#250). 740 consecutive (C421-1160) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: The error module was already built (C1082), just needed wiring — identifying existing infrastructure to leverage rather than building from scratch. Lesson: L676 — Check @ada-ai/core exports before implementing new features; the module might already exist and just need CLI integration."
-      }
-    },
     {
       "role": "ops",
       "timestamp": "2026-02-23T10:02:12.393Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: QA FIRST CHECK correctly identified PR #250 as priority — clearing PR backlog unblocks team velocity. 4-role CI fix collaboration (Eng→Ops→Design→Frontier) shows healthy team dynamic where each role catches different issues. Lesson: L684 — Vercel preview failures for CLI-only PRs are safe to bypass per R-010. Document in merge message for transparency."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-23T12:55:41.301Z",
+      "cycle": 1170,
+      "action": "⚙️ PRE-FLIGHT CHECKS PR #251 (C1170) — Created PR #251: feat(cli): add pre-flight checks to ada init. First step of #183 (Interactive Onboarding Wizard). Validates environment before init: git repo (required), Node v18+ (required), GitHub CLI (recommended), package.json (optional). New preflight.ts module (260 lines) with runPreflightChecks() and formatPreflightResults(). Added --skip-preflight flag. 9 tests. Closed #185 (PR #250 merged C1169) and #186 (already implemented C886-896). Per R-017: SHIPPED tangible CLI improvement. Per L684: Check existing implementation before coding. Commented #183. R-013: 70/70 verified ✅. PRs: 1 open (#251). 750 consecutive (C421-1170) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: FIRST CHECK identified #186 was already implemented — avoided duplicate work. Found structured logging in telemetry/logger.ts (C886-896). Lesson: L684 — Before implementing a feature, grep the codebase for existing implementations. Open issues don't always reflect current state. L685 — Pre-flight checks reduce support burden by catching environment issues before initialization."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🛡️ ops"
 }
