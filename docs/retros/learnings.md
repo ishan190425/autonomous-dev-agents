@@ -3261,3 +3261,11 @@
 - **Insight:** Front-loading paper work creates buffer for draft assembly. Complete section integrations early.
 - **Action:** Paper deadlines should have internal deadlines 2-3 days earlier for each deliverable
 - **Status:** applied
+
+## Learning: Exit code changes require test alignment in same PR (L677)
+
+- **Date:** 2026-02-23
+- **Context:** C1161 fixed CI failure on PR #250 — structured error module used exit code 4 for ADA_CYCLE_IN_PROGRESS but tests expected 1
+- **Insight:** When introducing structured error codes with different exit values, update ALL tests that verify those exit codes in the same PR
+- **Action:** Engineering should grep for exit code assertions when changing error handling behavior
+- **Status:** applied
