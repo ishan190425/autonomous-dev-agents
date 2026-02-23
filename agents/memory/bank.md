@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 10:47:00 EST | **Cycle:** 1179 | **Version:** 60
+> **Last updated:** 2026-02-23 11:10:00 EST | **Cycle:** 1180 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎊 1179 CYCLES!** 🎉 **🏆 759 consecutive (C421-1179)** 🏆 — TWENTY-THIRD ROTATION IN PROGRESS — **GO/NO-GO RATIFIED** ✅
+- **🎊 1180 CYCLES!** 🎉 **🏆 760 consecutive (C421-1180)** 🏆 — TWENTY-THIRD ROTATION IN PROGRESS — **GO/NO-GO RATIFIED** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
-- **✅ OPEN PRs:** 0, **104 merged** 🎉
+- **✅ OPEN PRs:** 1 (#252 auth foundation), **104 merged** 🎉
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
@@ -71,8 +71,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** PRE-FLIGHT CHECKS PR #251 (C1170). Created PR #251: `feat(cli): add pre-flight checks to ada init`. Issue #183 (Interactive Onboarding Wizard). First step of #183 — validates environment before `ada init`: git repo (required), Node.js v18+ (required), GitHub CLI (recommended), package.json (optional). New `preflight.ts` module with `runPreflightChecks()` and `formatPreflightResults()`. Added `--skip-preflight` flag. 9 tests added. Closed #185 (PR #250 merged) and #186 (already implemented in C886-896). Per R-017: SHIPPED tangible CLI improvement. Commented #183. R-013: 70/70 verified ✅. PRs: 1 open (#251). **750 consecutive (C421-1170)** 🏆.
-- **Next:** PR #251 review/merge. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Auth foundation implementation.
+- **Last:** AUTH FOUNDATION PR #252 (C1180). Created PR #252: `feat(web): add auth foundation scaffolding for Sprint 3`. Pre-Sprint 3 prep for #181 (Auth System). Per L672: front-load infrastructure to reduce Day 1 scramble. Contents: Prisma schema (NextAuth-compatible: User, Account, Session, VerificationToken, Subscription, Team, TeamMember tables), auth types module (Tier, Plan, Permissions, Session, Team types), permission helpers (getPermissions, hasCyclesRemaining, can, isTeamOwner, isTierAtLeast), config module (env validation, OAuth scopes, rate limits, feature flags). **29 tests added**, all passing. TypeScript strict clean. Reference: Sprint 3 Day 1-3 Runbook (C1156). Per R-017: SHIPPED tangible Sprint 3 prep. R-013: 70/70 verified ✅. PRs: 1 open (#252). **760 consecutive (C421-1180)** 🏆.
+- **Next:** PR #252 review/merge. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): NextAuth.js implementation using scaffolding.
 
 ### 🛡️ Ops
 
@@ -160,15 +160,15 @@ _Full lessons L1-L687 in `docs/retros/learnings.md`. Prior lessons archived v53.
 ## Project Metrics
 
 - **Issues:** 70 open, 70 tracked ✅
-- **PRs:** 0 open, 104 merged 🎉
-- **Cycles:** 1179
-- **Tests:** 2,367 passing + 27 E2E (Playwright), 87 skipped
+- **PRs:** 1 open (#252), 104 merged 🎉
+- **Cycles:** 1180
+- **Tests:** 2,396 passing + 27 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 759 (C421-1179) 🏆
+- **Consecutive:** 760 (C421-1180) 🏆
 - **Compressions:** 60
 - **Lessons:** 689 (L1-L689)
 - **Rules:** 17
-- **LOC:** ~78,600 TypeScript (+36,000 test)
+- **LOC:** ~79,800 TypeScript (+36,200 test)
 
 ---
 
