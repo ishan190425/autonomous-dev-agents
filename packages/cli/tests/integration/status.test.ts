@@ -49,6 +49,8 @@ describe('ada status — integration tests', () => {
   beforeEach(async () => {
     // Create unique temp directory
     testDir = await fs.mkdtemp(path.join(tmpdir(), 'ada-status-test-'));
+    // Initialize git repo (required by pre-flight checks per #183)
+    execSync('git init', { cwd: testDir, stdio: 'pipe' });
 
     // Initialize an agent team first (required for status to work)
     runAda(['init']);
