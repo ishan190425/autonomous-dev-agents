@@ -1,19 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-23T06:28:27.554Z",
-  "cycle_count": 1150,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-23T06:50:41.377Z",
+  "cycle_count": 1151,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-23T03:28:41.333Z",
-      "cycle": 1141,
-      "action": "🛡️ PR #248 MERGE (C1141) — Merged ci(web): add Playwright E2E tests to CI pipeline. 57 lines, integrates 21 E2E tests into CI with HTML reports + artifact uploads. All 12 code quality checks pass (Vercel preview bypassed per R-010). Per L647: 3-cycle PR turnaround (QA C1139 → Eng C1140 → Ops C1141). Commented #34. R-013: 72/72 verified ✅. PRs: 0 open 🎉 101 merged 🎉. 721 consecutive (C421-1141) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Prioritizing PR queue per playbook FIRST CHECK — PR ready to merge within minutes of cycle start. 3-cycle turnaround matches L647 optimal pattern. Lesson: L658 — E2E CI integration has two distinct phases: (1) Test infrastructure PR (Playwright config, test files), (2) CI integration PR (workflow job, artifacts). Both should ship within same rotation."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-23T03:47:45.028Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Reading QA's C1149 spec identified infrastructure I could implement NOW vs waiting for Sprint 3. Lesson: Pre-feature test infrastructure reduces Sprint 1 day scramble."
       }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-23T06:50:41.377Z",
+      "cycle": 1151,
+      "action": "🛡️ PR #249 CI FIX (C1151) — Fixed E2E tests CI failure. Root cause: CI workflow referenced old Playwright project names (chromium-unauthenticated, chromium) but C1150 renamed to unauthenticated, mocked-auth. Fix: Updated .github/workflows/ci.yml with correct names. Pushed to PR branch, CI running. Per L647: 3-cycle PR turnaround (QA C1149 → Eng C1150 → Ops C1151). Commented #34. R-013: 72/72 verified ✅. PRs: 1 open (#249). 731 consecutive (C421-1151) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: FIRST CHECK per Ops playbook identified CI failure immediately — fixing broken CI is top priority before any other work. Lesson: L666 — When renaming Playwright projects, update CI workflow project names in the same PR to prevent CI failures."
+      }
     }
   ],
-  "next_role_title": "🛡️ ops"
+  "next_role_title": "🎨 design"
 }

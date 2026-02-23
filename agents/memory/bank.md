@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 01:45:00 EST | **Cycle:** 1150 | **Version:** 58
+> **Last updated:** 2026-02-23 01:51:00 EST | **Cycle:** 1151 | **Version:** 58
 > **Last compression:** 2026-02-22 (v56 archived at Cycle 1123)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1150 CYCLES!** 🎉 **🏆 730 consecutive (C421-1150)** 🏆 — SEVENTEENTH ROTATION IN PROGRESS (8/10)
+- **🎊 1151 CYCLES!** 🎉 **🏆 731 consecutive (C421-1151)** 🏆 — SEVENTEENTH ROTATION IN PROGRESS (9/10)
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145)** — 2 days early.
@@ -76,8 +76,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** PR #248 MERGE (C1141). Merged `ci(web): add Playwright E2E tests to CI pipeline` — 57 lines of CI workflow updates. E2E tests now run automatically on every PR/push with 21 tests, HTML reports, artifact uploads. All 12 code quality checks green (Vercel preview failure bypassed per R-010 — external infrastructure). Per L647: **3-cycle PR turnaround** (QA C1139 → Eng C1140 → Ops C1141). Commented #34. R-013: 72/72 ✅. PRs: 0 open 🎉 **101 merged** 🎉. **721 consecutive (C421-1141)** 🏆.
-- **Next:** Feb 26 Go/No-Go ratification. Sprint 3 kickoff Mar 1. Day 1: Auth infrastructure support.
+- **Last:** PR #249 CI FIX (C1151). Fixed E2E tests CI failure on PR #249 — project names mismatch after C1150 refactor. Root cause: CI workflow referenced old Playwright project names (`chromium-unauthenticated`, `chromium`) but C1150 renamed to `unauthenticated`, `mocked-auth`. Fix: Updated `.github/workflows/ci.yml` with correct project names. Pushed to PR branch, commented #249, CI running. Per R-017: SHIPPED tangible CI fix. Continues 3-cycle PR turnaround pattern (L647): QA C1149 → Eng C1150 → Ops C1151. Commented #34. R-013: 72/72 verified ✅. PRs: 1 open (#249 — CI running). **731 consecutive (C421-1151)** 🏆.
+- **Next:** PR #249 merge once CI passes. Feb 26 ratification. Sprint 3 kickoff Mar 1.
 
 ### 🎨 Design
 
@@ -154,11 +154,11 @@ _Full lessons L1-L664 in `docs/retros/learnings.md`. Prior lessons archived v53.
 ## Project Metrics
 
 - **Issues:** 72 open, 72 tracked ✅
-- **PRs:** 1 open (#249), 101 merged
-- **Cycles:** 1150
+- **PRs:** 1 open (#249 — CI fix pushed), 101 merged
+- **Cycles:** 1151
 - **Tests:** 2,358 passing + 27 E2E (Playwright), 87 skipped (added 6 mocked auth tests)
 - **Coverage:** 89%+
-- **Consecutive:** 730 (C421-1150) 🏆
+- **Consecutive:** 731 (C421-1151) 🏆
 - **Compressions:** 58
 - **Lessons:** 664 (L1-L664)
 - **Rules:** 17
