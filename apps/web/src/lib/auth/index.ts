@@ -4,18 +4,25 @@
  * Authentication and authorization for the ADA SaaS platform.
  * Sprint 3 foundation for GitHub OAuth + Stripe billing.
  *
- * @author ⚙️ Engineering (Cycle 1180)
+ * @author ⚙️ Engineering (Cycle 1180, 1190)
  * @module @ada-ai/web/lib/auth
  *
  * @example
  * ```typescript
  * import {
- *   type SessionUser,
- *   type AuthContext,
+ *   auth,
+ *   getSession,
+ *   getRequiredSession,
+ *   signIn,
+ *   signOut,
  *   getPermissions,
  *   can,
  *   hasCyclesRemaining,
  * } from '@/lib/auth';
+ *
+ * // Get session in server component
+ * const session = await getSession();
+ * if (!session) redirect('/auth/signin');
  *
  * // Check permissions
  * const permissions = getPermissions(user, team);
@@ -89,3 +96,15 @@ export {
   AUTH_URLS,
   AUTH_FEATURES,
 } from './config';
+
+// NextAuth.js handlers and utilities (Cycle 1190)
+export {
+  auth,
+  signIn,
+  signOut,
+  handlers,
+  getSession,
+  getRequiredSession,
+} from './auth';
+
+export { authConfig } from './auth.config';
