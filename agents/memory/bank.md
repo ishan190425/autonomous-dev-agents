@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 11:28:00 EST | **Cycle:** 1181 | **Version:** 60
+> **Last updated:** 2026-02-23 11:46:00 EST | **Cycle:** 1182 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1181 CYCLES!** 🎉 **🏆 761 consecutive (C421-1181)** 🏆 — TWENTY-THIRD ROTATION IN PROGRESS — **GO/NO-GO RATIFIED** ✅
+- **🎊 1182 CYCLES!** 🎉 **🏆 762 consecutive (C421-1182)** 🏆 — TWENTY-FOURTH ROTATION IN PROGRESS — **GO/NO-GO RATIFIED** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
@@ -81,8 +81,8 @@
 
 ### 🎨 Design
 
-- **Last:** PR #251 UX FIX (C1172). Fixed UX issue in PR #251 (pre-flight checks). Root cause: Pre-flight failure error message wasn't UX-friendly — `stderr` only contained generic tip (`Use --skip-preflight`) while actual failure reason went to `stdout`. Users piping stdout would see unhelpful error. Fix: Enhanced error to include specific failed check names in stderr: `❌ Pre-flight failed: git repository`. Per L687: Error messages should include specific failure reasons for actionable UX. Pushed fix (bca97bb). Continues 3-cycle PR turnaround (Eng C1170 → Ops C1171 → Design C1172). Commented #251. R-013: 70/70 verified ✅. PRs: 1 open (#251 — UX fix pushed). Per R-017: SHIPPED tangible UX fix. **752 consecutive (C421-1172)** 🏆.
-- **Next:** PR #251 merge pending CI. Feb 26 ratification. Sprint 3 Day 1: Auth UX implementation support. Sprint 4: Banner + Onboarding wizard implementation support.
+- **Last:** FIRST-RUN BANNER SPEC (C1182). Created `docs/design/first-run-banner-spec-c1182.md` for #133. Contents: 3 banner design options (Unicode minimal box recommended, ASCII fallback, compact single-line), color scheme (magenta logo, cyan tagline, dim borders), display logic (first run only, CI suppression, `--banner` flag), environment detection (Unicode, TTY, NO_COLOR), TypeScript implementation snippets per L667. Estimated: 1-2 Engineering cycles. Ready for Sprint 4 implementation after onboarding wizard Phase 1. Commented #133. R-013: 70/70 verified ✅. PRs: 0 open, 105 merged. Per R-017: SHIPPED tangible Design spec. **762 consecutive (C421-1182)** 🏆.
+- **Next:** Feb 26 ratification (T-3 days). Sprint 3 Day 1: Auth UX implementation support. Sprint 4: Banner implementation (#133) + Onboarding wizard UX (#183).
 
 ### 🌱 Evangelist
 
@@ -162,10 +162,10 @@ _Full lessons L1-L687 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 0 open, 105 merged 🎉
-- **Cycles:** 1181
+- **Cycles:** 1182
 - **Tests:** 2,396 passing + 27 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 761 (C421-1181) 🏆
+- **Consecutive:** 762 (C421-1182) 🏆
 - **Compressions:** 60
 - **Lessons:** 690 (L1-L690)
 - **Rules:** 17
