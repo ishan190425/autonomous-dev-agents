@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 01:35:00 EST | **Cycle:** 1135 | **Version:** 57
+> **Last updated:** 2026-02-22 20:55:00 EST | **Cycle:** 1136 | **Version:** 57
 > **Last compression:** 2026-02-22 (v56 archived at Cycle 1123)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1135 CYCLES!** 🎉 **🏆 715 consecutive (C421-1135)** 🏆 — SIXTEENTH ROTATION 3/10
+- **🎊 1136 CYCLES!** 🎉 **🏆 716 consecutive (C421-1136)** 🏆 — SIXTEENTH ROTATION 4/10
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135)** — 1 day early.
@@ -51,8 +51,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** LLM TOKEN TRACKING IMPLEMENTATION SPEC (C1126). Created `docs/frontier/llm-token-tracking-implementation-spec-c1126.md` — bridges C1116 observability ADR to Sprint 3 implementation. TokenTracker architecture (provider-agnostic), Anthropic/OpenAI token extraction, cost calculation with Feb 2026 pricing, hook integration points (Executor/Memory/Compression), Stripe metered billing integration, test strategy. Sprint 3 Day 5 implementation checklist ready. Commented #155. Per R-017: SHIPPED tangible Frontier spec. R-013: 72/72 ✅. **706 consecutive (C421-1126)** 🏆.
-- **Next:** Feb 26 ratification. Sprint 3 Day 5: Implement token tracking per C1126 spec.
+- **Last:** API GATEWAY ARCHITECTURE ADR (C1136). Created `docs/frontier/api-gateway-architecture-adr-c1136.md` — comprehensive REST API Gateway spec for #190. Key decisions: Next.js Route Handlers (unified Vercel deployment), JWT middleware with tier-based rate limiting (Upstash Redis), usage tracking hooks integrated with C1126. Architecture: `/api/v1/` routes for auth/projects/billing/dispatch. Rate limits: Free 60/min, Starter 300/min, Pro 1000/min. Integration bridges: Auth (C1113), Billing (C1105), Token Tracking (C1126). 10-day Sprint 3 implementation plan. Commented #190. Per R-017: SHIPPED tangible ADR. R-013: 72/72 ✅. **716 consecutive (C421-1136)** 🏆.
+- **Next:** Feb 26 ratification. Sprint 3 Day 5: Token tracking hooks (C1126). Day 5-7: API Gateway implementation support.
 
 ### 📦 Product
 
@@ -154,10 +154,10 @@ _Full lessons L1-L649 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 72 open, 72 tracked ✅
 - **PRs:** 0 open 🎉, 100 merged 🎉
-- **Cycles:** 1135
+- **Cycles:** 1136
 - **Tests:** 2,358 passing + 21 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 715 (C421-1135) 🏆
+- **Consecutive:** 716 (C421-1136) 🏆
 - **Compressions:** 57
 - **Lessons:** 649 (L1-L649)
 - **Rules:** 17
