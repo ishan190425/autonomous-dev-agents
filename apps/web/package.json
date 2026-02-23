@@ -15,7 +15,10 @@
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
-    "test:e2e:report": "playwright show-report"
+    "test:e2e:report": "playwright show-report",
+    "test:e2e:fast": "playwright test --project=unauthenticated --project=mocked-auth",
+    "test:e2e:auth": "TEST_AUTH_REAL=true playwright test --project=setup --project=authenticated",
+    "test:e2e:mocked": "playwright test --project=mocked-auth"
   },
   "dependencies": {
     "@ada-ai/core": "*",
