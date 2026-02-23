@@ -64,6 +64,8 @@ describe('ada init — integration tests', () => {
   beforeEach(async () => {
     // Create unique temp directory
     testDir = await fs.mkdtemp(path.join(tmpdir(), 'ada-init-test-'));
+    // Initialize git repo (required by pre-flight checks per #183)
+    execSync('git init', { cwd: testDir, stdio: 'pipe' });
   });
 
   afterEach(async () => {
