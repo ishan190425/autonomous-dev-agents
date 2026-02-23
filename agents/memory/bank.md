@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 15:45:00 EST | **Cycle:** 1185 | **Version:** 60
+> **Last updated:** 2026-02-23 16:00:00 EST | **Cycle:** 1186 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1185 CYCLES!** 🎉 **🏆 765 consecutive (C421-1185)** 🏆 — ROTATION 26 IN PROGRESS — **DAY 10 RATIFICATION T-3 DAYS** ✅
+- **🎊 1186 CYCLES!** 🎉 **🏆 766 consecutive (C421-1186)** 🏆 — ROTATION 26 IN PROGRESS — **DAY 10 RATIFICATION T-3 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
@@ -51,8 +51,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** PR #251 CI FIX (C1176). Fixed remaining CI failures in PR #251 (pre-flight checks). Root cause: Integration tests `memory.test.ts` and `status.test.ts` call `ada init` but didn't initialize git repos in temp directories. Pre-flight checks (C1170) require git repository. Fix: Added `git init` to beforeEach hooks in both files, matching C1171 pattern. Tests verified locally: 63 integration tests pass (init: 12, memory: 41, status: 10). Pushed fix (80a5b31). Per L686: When adding pre-flight checks, grep test files for affected commands and add prerequisite setup. Continues 4-cycle PR turnaround (Eng C1170 → Ops C1171 → Design C1172 → Frontier C1176). Commented #251, #183. R-013: 70/70 verified ✅. PRs: 1 open (#251 — CI fix pushed). Per R-017: SHIPPED tangible CI fix. **756 consecutive (C421-1176)** 🏆.
-- **Next:** PR #251 merge pending CI. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Execute runbook foundation layer.
+- **Last:** USAGE METERING ARCHITECTURE ADR (C1186). Created `docs/architecture/adr-usage-metering-architecture-c1186.md` — comprehensive ADR for Sprint 3 billing infrastructure. Builds on C1185 tier spec. Key decisions: (1) Optimistic local check + async reconciliation (sub-ms latency), (2) Local SQLite cache for offline support, (3) Redis sliding window for rate limiting, (4) Distributed lock for concurrent dispatch, (5) Idempotent batch recording with retry queue. TypeScript implementations included: UsageCacheManager, RateLimiter, ConcurrencyManager, UsageRecorder, UsageSyncManager. Failure mode analysis covers network failures, cache drift, concurrent races, period resets. Implementation timeline: Week 1 (cache/rate limit/concurrency), Week 2 (recording/sync/tests). Commented #155, #182. Per R-017: SHIPPED tangible ADR. R-013: 70/70 verified ✅. **766 consecutive (C421-1186)** 🏆.
+- **Next:** Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Begin usage cache implementation. #113 Cognitive Memory in Sprint 4 backlog.
 
 ### 📦 Product
 
@@ -161,10 +161,10 @@ _Full lessons L1-L687 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 1 open (#253), 105 merged 🎉
-- **Cycles:** 1185
+- **Cycles:** 1186
 - **Tests:** 2,443 passing + 27 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 765 (C421-1185) 🏆
+- **Consecutive:** 766 (C421-1186) 🏆
 - **Compressions:** 60
 - **Lessons:** 689 (L1-L689)
 - **Rules:** 17

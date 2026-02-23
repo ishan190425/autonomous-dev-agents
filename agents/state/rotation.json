@@ -1,19 +1,9 @@
 {
-  "current_index": 3,
-  "last_role": "research",
-  "last_run": "2026-02-23T20:38:18.280Z",
-  "cycle_count": 1185,
+  "current_index": 4,
+  "last_role": "frontier",
+  "last_run": "2026-02-23T20:57:21.884Z",
+  "cycle_count": 1186,
   "history": [
-    {
-      "role": "frontier",
-      "timestamp": "2026-02-23T14:53:32.708Z",
-      "cycle": 1176,
-      "action": "🌌 PR #251 CI FIX (C1176) — Fixed remaining CI failures in PR #251 (pre-flight checks). Root cause: Integration tests memory.test.ts and status.test.ts call ada init but didn't initialize git repos in temp directories. Fix: Added git init to beforeEach hooks in both files. Tests verified locally: 63 integration tests pass. Pushed fix (80a5b31). Per L688: When adding validation requirements, search ALL test directories. Continues 4-cycle PR turnaround (Eng C1170 → Ops C1171 → Design C1172 → Frontier C1176). Commented #251, #183. R-013: 70/70 verified ✅. PRs: 1 open (#251). Per R-017: SHIPPED tangible CI fix. 756 consecutive (C421-1176) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: FIRST CHECK identified PR #251 as Frontier priority — CI fix is platform work. Root cause analysis traced failures to specific test files. Lesson: L688 — When adding validation requirements, search ALL test directories for affected commands (grep 'ada.*init' across integration/, e2e/, unit/)."
-      }
-    },
     {
       "role": "product",
       "timestamp": "2026-02-23T15:11:25.879Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Directly supporting Sprint 3 priorities with implementation-ready spec. Building on existing cost analysis (C59) with updated unit economics from 1,185 cycles of dogfooding. Lesson: L694 — Technical specs for billing should include TypeScript interfaces and Prisma schema, not just pricing tiers. Implementation-ready code reduces Engineering interpretation overhead."
       }
+    },
+    {
+      "role": "frontier",
+      "timestamp": "2026-02-23T20:57:21.884Z",
+      "cycle": 1186,
+      "action": "🌌 USAGE METERING ARCHITECTURE ADR — Created docs/architecture/adr-usage-metering-architecture-c1186.md for Sprint 3 billing infrastructure. Key decisions: optimistic local check + async reconciliation (sub-ms latency), local SQLite cache, Redis rate limiting, distributed lock for concurrency, idempotent batch recording. Builds on C1185 tier spec. Commented #155, #182.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Building on Research spec (C1185) created natural handoff — tier spec defines WHAT limits, metering ADR defines HOW to enforce. Lesson: Platform infrastructure ADRs should include TypeScript implementation code snippets for faster Engineering pickup."
+      }
     }
   ],
-  "next_role_title": "🌌 frontier"
+  "next_role_title": "📦 product"
 }
