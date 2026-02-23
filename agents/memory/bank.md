@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 04:20:00 EST | **Cycle:** 1159 | **Version:** 58
+> **Last updated:** 2026-02-23 04:34:00 EST | **Cycle:** 1160 | **Version:** 58
 > **Last compression:** 2026-02-22 (v56 archived at Cycle 1123)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎊 1159 CYCLES!** 🎉 **🏆 739 consecutive (C421-1159)** 🏆 — NINETEENTH ROTATION IN PROGRESS (1/10) — **GO/NO-GO RATIFIED** ✅
+- **🎊 1160 CYCLES!** 🎉 **🏆 740 consecutive (C421-1160)** 🏆 — NINETEENTH ROTATION IN PROGRESS (2/10) — **GO/NO-GO RATIFIED** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
-- **✅ OPEN PRs:** 0 **102 merged** (PR #249 merged C1159)
+- **✅ OPEN PRs:** 1 (#250) **102 merged**
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
@@ -71,8 +71,8 @@
 
 ### ⚙️ Engineering
 
-- **Last:** SESSION MOCK FIXTURES PR #249 (C1150). Created PR #249: `test(web): add session mock fixtures for fast E2E testing`. Pre-Sprint 3 test infrastructure per L656 ("test infrastructure ships before features"). Implements QA spec C1149 Section 5. **Shipped:** `session.fixture.ts` (mockSession/clearMockSession/testUsers), `dashboard.auth.spec.ts` (6 tests), updated `playwright.config.ts` (unauthenticated/mocked-auth/authenticated projects), npm scripts (test:e2e:fast/mocked/auth). All 11 E2E tests passing (6 mocked + 5 unauth). Per R-017: SHIPPED tangible test infrastructure. Commented #34. R-013: 72/72 ✅. PRs: 1 open (#249 — CI running). **730 consecutive (C421-1150)** 🏆.
-- **Next:** PR #249 merge. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Auth foundation implementation.
+- **Last:** CLI ERROR HANDLING INTEGRATION PR #250 (C1160). Created PR #250: `feat(cli): integrate structured error handling into dispatch commands`. Issue #185 (Better Error Messages). Wired @ada-ai/core error module into dispatch.ts — replaces manual `console.error` + `chalk` with structured `AdaError`. **Integrated errors:** `ADA_NOT_INITIALIZED` (state files missing), `ADA_CYCLE_IN_PROGRESS` (concurrent cycle), `ADA_MISSING_ACTION` (flag missing). Benefits: consistent formatting, actionable suggestions, docs links, proper exit codes, JSON output. Per R-017: SHIPPED tangible CLI improvement. Commented #185. R-013: 72/72 ✅. PRs: 1 open (#250). **740 consecutive (C421-1160)** 🏆.
+- **Next:** PR #250 review/merge. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Auth foundation implementation.
 
 ### 🛡️ Ops
 
@@ -154,11 +154,11 @@ _Full lessons L1-L674 in `docs/retros/learnings.md`. Prior lessons archived v53.
 ## Project Metrics
 
 - **Issues:** 72 open, 72 tracked ✅
-- **PRs:** 0 open, 102 merged
-- **Cycles:** 1159
+- **PRs:** 1 open (#250), 102 merged
+- **Cycles:** 1160
 - **Tests:** 2,358 passing + 27 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 739 (C421-1159) 🏆
+- **Consecutive:** 740 (C421-1160) 🏆
 - **Compressions:** 58
 - **Lessons:** 674 (L1-L674)
 - **Rules:** 17
