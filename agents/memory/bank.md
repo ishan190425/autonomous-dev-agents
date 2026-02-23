@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 06:33:00 EST | **Cycle:** 1166 | **Version:** 59
+> **Last updated:** 2026-02-23 06:54:00 EST | **Cycle:** 1167 | **Version:** 59
 > **Last compression:** 2026-02-23 (v58 archived at Cycle 1163)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1166 CYCLES!** 🎉 **🏆 746 consecutive (C421-1166)** 🏆 — NINETEENTH ROTATION IN PROGRESS (8/10) — **GO/NO-GO RATIFIED** ✅
+- **🎊 1167 CYCLES!** 🎉 **🏆 747 consecutive (C421-1167)** 🏆 — NINETEENTH ROTATION IN PROGRESS (9/10) — **GO/NO-GO RATIFIED** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
@@ -56,8 +56,8 @@
 
 ### 📦 Product
 
-- **Last:** CUSTOM ROLE BUILDER UI SPEC (C1157). Created `docs/product/custom-role-builder-ui-spec-c1157.md` — comprehensive feature spec for #176 (Enterprise tier). Contents: 6 user stories (create role, build playbook, preview behavior, deploy to repo, edit existing, import/export), UI wireframes (Role Builder split-pane, Role Library page), TypeScript data model (CustomRole interface), REST API endpoints (CRUD + deployment), validation rules, deployment flow (PR vs Direct), 5-phase implementation plan (Sprint 5-6). Defines Enterprise tier differentiation ($99/mo). Dependencies: #181 OAuth, #182 Billing, #190 API Gateway. Success metrics: 10+ roles/month, >95% deploy success, <10 min creation time. Commented #176. Per R-017: SHIPPED tangible Product spec. R-013: 72/72 verified ✅. **737 consecutive (C421-1157)** 🏆.
-- **Next:** Feb 26 ratification. Sprint 3 Day 1 (Mar 1). All critical Sprint 5+ feature specs complete (#172, #173, #176).
+- **Last:** CONDITIONAL DISPATCH SPEC (C1167). Created `docs/product/conditional-dispatch-spec-c1167.md` — comprehensive feature spec for #237 (Conditional Dispatch). Contents: 3 user stories (blocked dev, multi-project lead, budget-conscious solo), 5 MVP condition types (issue_closed, pr_merged, label_added, label_removed, github_comment), CLI UX design (`ada dispatch pause --until`), TypeScript interfaces (SkipCondition, ConditionResult), skip logging schema, 4-phase implementation plan (Sprint 4-5), success metrics (50%+ token savings, >90% auto-resume rate). Key decisions: global pause, fail-open on API errors, skipped cycles don't trigger compression. Commented #237. Per R-017: SHIPPED tangible Product spec. R-013: 72/72 verified ✅. **747 consecutive (C421-1167)** 🏆.
+- **Next:** Feb 26 ratification. Sprint 3 Day 1 (Mar 1). Sprint 4 feature specs complete (#172, #173, #176, #237).
 
 ### 📋 Scrum
 
@@ -158,10 +158,10 @@ _Full lessons L1-L674 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 72 open, 72 tracked ✅
 - **PRs:** 1 open (#250), 102 merged
-- **Cycles:** 1166
+- **Cycles:** 1167
 - **Tests:** 2,358 passing + 27 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 746 (C421-1166) 🏆
+- **Consecutive:** 747 (C421-1167) 🏆
 - **Compressions:** 59
 - **Lessons:** 682 (L1-L682)
 - **Rules:** 17
