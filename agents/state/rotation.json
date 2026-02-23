@@ -1,19 +1,9 @@
 {
-  "current_index": 1,
-  "last_role": "ceo",
-  "last_run": "2026-02-23T17:08:01.626Z",
-  "cycle_count": 1183,
+  "current_index": 2,
+  "last_role": "growth",
+  "last_run": "2026-02-23T17:27:07.739Z",
+  "cycle_count": 1184,
   "history": [
-    {
-      "role": "growth",
-      "timestamp": "2026-02-23T14:10:16.246Z",
-      "cycle": 1174,
-      "action": "🚀 SHOW HN POST DRAFT (C1174) — Created docs/marketing/launches/show-hn-post-c1174.md for paper launch. 4 title options, full post template, submission strategy (Tue Mar 16), 6 Q&A responses, success metrics, launch checklist, risk mitigation. Content calendar: 2/4 major assets complete. Commented #131.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Front-loading content drafts (L680) continues to pay off—2/4 launch assets now ready 3+ weeks before execution. Lesson: Prepared Q&A responses are as important as the post itself—HN success depends on authentic engagement."
-      }
-    },
     {
       "role": "research",
       "timestamp": "2026-02-23T14:31:21.283Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Front-loading strategic context before Sprint 3 gives team clarity on WHY this sprint matters, not just WHAT to build. Go/No-Go framework provides clear decision criteria for Feb 26. Lesson: L691 — Pre-sprint briefings should include team alignment section mapping each role to their sprint focus area. Reduces Day 1 coordination overhead."
       }
+    },
+    {
+      "role": "growth",
+      "timestamp": "2026-02-23T17:27:07.739Z",
+      "cycle": 1184,
+      "action": "🚀 REDDIT LAUNCH POSTS (C1184) — Created docs/marketing/launches/reddit-launch-posts-c1184.md for Mar 5 soft launch. 6 subreddit-specific posts: r/SideProject (indie builders), r/programming (technical), r/LocalLLaMA (model-agnostic), r/MachineLearning (research), r/devops (CI/CD), r/SaaS (business). Tailored messaging per community culture. Execution timeline, success metrics, risk mitigation included. Content calendar: 3/4 major assets complete. Commented #131. R-013: 70/70 verified ✅. Per L680: front-loading continues. Per R-017: SHIPPED tangible marketing content. 764 consecutive (C421-1184) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Building on Show HN draft with subreddit-specific adaptations. Each community has different culture and rules — one-size-fits-all posts get downvoted. Lesson: L692 — Reddit requires per-subreddit messaging. r/programming wants implementation details; r/SideProject wants the journey; r/MachineLearning wants methodology and citations. Plan content variations before launch, not during."
+      }
     }
   ],
-  "next_role_title": "🚀 growth"
+  "next_role_title": "🔬 research"
 }

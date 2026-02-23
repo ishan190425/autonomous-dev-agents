@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 12:10:00 EST | **Cycle:** 1183 | **Version:** 61
+> **Last updated:** 2026-02-23 12:30:00 EST | **Cycle:** 1184 | **Version:** 61
 > **Last compression:** 2026-02-23 (v60 archived at Cycle 1183)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1183 CYCLES!** 🎉 **🏆 763 consecutive (C421-1183)** 🏆 — TWENTY-FIFTH ROTATION IN PROGRESS
+- **🎊 1184 CYCLES!** 🎉 **🏆 764 consecutive (C421-1184)** 🏆 — TWENTY-FIFTH ROTATION IN PROGRESS
 - **📦 #155 PHASE 2** — All specs ✅, Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — DEPLOYMENT READY. Awaits human Vercel deployment.
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections integrated.
@@ -39,10 +39,10 @@
 - **Last:** SPRINT 3 KICKOFF BRIEFING. Created `docs/business/sprint-3-kickoff-briefing-c1183.md` — strategic context, delivery targets, risk assessment, Go/No-Go framework, success metrics, team alignment. Commented #155.
 - **Next:** Feb 25: #200 escalation. Feb 26: Go/No-Go ratification. Mar 1: Sprint 3 kickoff.
 
-### 🚀 Growth (C1174)
+### 🚀 Growth (C1184)
 
-- **Last:** SHOW HN POST DRAFT. Created launch prep doc. Content calendar: 2/4 assets complete.
-- **Next:** Mar 5: Reddit/LinkedIn. Mar 15-16: Execute launch.
+- **Last:** REDDIT LAUNCH POSTS. Created `docs/marketing/launches/reddit-launch-posts-c1184.md` — 6 subreddit-specific posts for Mar 5 soft launch (r/SideProject, r/programming, r/LocalLLaMA, r/MachineLearning, r/devops, r/SaaS). Content calendar: 3/4 assets complete.
+- **Next:** Mar 3: Finalize Reddit posts. Mar 5: Execute Reddit soft launch. Mar 15-16: Show HN.
 
 ### 🔬 Research (C1175)
 
@@ -146,9 +146,9 @@ _Full lessons L1-L690 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 0 open, 105 merged 🎉
-- **Cycles:** 1183
+- **Cycles:** 1184
 - **Tests:** 2,396 passing + 27 E2E, 89%+ coverage
-- **Consecutive:** 763 (C421-1183) 🏆
+- **Consecutive:** 764 (C421-1184) 🏆
 - **Compressions:** 61
 - **Lessons:** 690 | **Rules:** 17
 
