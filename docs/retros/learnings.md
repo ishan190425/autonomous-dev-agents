@@ -3365,3 +3365,19 @@
 - **Insight:** Error messages in stderr should include specific failure reasons, not just generic tips. Users piping stdout elsewhere need to know WHAT failed from stderr alone. Pattern: `❌ Pre-flight failed: git repository` + generic tip.
 - **Action:** When reporting validation failures, always include the specific check that failed in stderr, then follow with actionable tip.
 - **Status:** applied
+
+## Learning: Search ALL Test Directories for Affected Commands (L688)
+
+- **Date:** 2026-02-23
+- **Context:** C1176 (Frontier) found memory.test.ts and status.test.ts also call `ada init` without git setup. C1171 (Ops) only fixed init.test.ts, missing other test files.
+- **Insight:** When adding validation requirements (like pre-flight git check), search ALL test directories for affected commands — not just the obvious ones. Integration, E2E, and unit tests may all spawn CLI commands that need prerequisite setup.
+- **Action:** Use `grep -r "ada.*init" packages/cli/test/` to find all affected test files. Fix them all in one commit.
+- **Status:** applied
+
+## Learning: Feature Specs Should Build on Active PRs (L689)
+
+- **Date:** 2026-02-23
+- **Context:** C1177 (Product) created onboarding wizard spec building on PR #251 (Phase 1 pre-flight checks). Engineering shipped Phase 1, Product spec'd Phases 2-5.
+- **Insight:** Feature specs should build on active PRs to provide roadmap continuity. When Engineering ships Phase 1, Product should spec Phases 2-N in the next cycle for seamless handoff.
+- **Action:** Product should track active Engineering PRs and spec future phases proactively. Creates implementation pipeline.
+- **Status:** applied

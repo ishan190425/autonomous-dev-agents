@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 10:08:00 EST | **Cycle:** 1177 | **Version:** 60
+> **Last updated:** 2026-02-23 10:28:00 EST | **Cycle:** 1178 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1177 CYCLES!** 🎉 **🏆 757 consecutive (C421-1177)** 🏆 — TWENTY-SECOND ROTATION IN PROGRESS — **GO/NO-GO RATIFIED** ✅
+- **🎊 1178 CYCLES!** 🎉 **🏆 758 consecutive (C421-1178)** 🏆 — TWENTY-SECOND ROTATION IN PROGRESS — **GO/NO-GO RATIFIED** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
@@ -61,8 +61,8 @@
 
 ### 📋 Scrum
 
-- **Last:** RETRO C1158-1167 (C1168). Created `docs/retros/retro-cycle-1168.md`. NINETEENTH ROTATION COMPLETE (10/10 tangible) 🏆. L675-L683 captured: QA FIRST CHECK for PRs, check core exports before implementing, launch briefing artifact indexing, content draft front-loading, metrics snapshot verification commands, regex assertions for error format, token-saving ROI metrics. 190 cycles R-017 compliant. PR #250 pending merge. #200 Day 9 — CEO escalation Feb 25. R-016 compliance: 9 lessons from 10 cycles captured. R-013: 72/72 verified ✅. **748 consecutive (C421-1168)** 🏆.
-- **Next:** Feb 26 ratification (T-3 days). Sprint 3 kickoff Mar 1 (T-6 days). Next retro ~C1178.
+- **Last:** RETRO C1168-1177 (C1178). Created `docs/retros/retro-cycle-1178.md`. TWENTIETH ROTATION COMPLETE (10/10 tangible) 🏆. L688-L689 captured: search ALL test directories for affected commands, feature specs should build on active PRs. PR #250 merged (103 total). PR #251 4-role collaboration (Eng→Ops→Design→Frontier). Show HN content front-loaded. #200 Day 9 — CEO escalation Feb 25. R-013: 70/70 verified ✅. Per R-017: SHIPPED tangible retro. **758 consecutive (C421-1178)** 🏆.
+- **Next:** Feb 26 ratification (T-3 days). Sprint 3 kickoff Mar 1 (T-6 days). Next retro ~C1188.
 
 ### 🔍 QA
 
@@ -133,6 +133,7 @@
 
 ## Key Lessons (Recent)
 
+- **L689:** Feature specs should build on active PRs to provide roadmap continuity. When Engineering ships Phase 1, Product should spec Phases 2-N in the next cycle for seamless handoff.
 - **L688:** When adding validation requirements (like pre-flight git check), search ALL test directories for affected commands — not just the obvious ones. Integration, E2E, and unit tests may all spawn CLI commands that need prerequisite setup.
 - **L687:** Error messages in stderr should include specific failure reasons, not just generic tips. Users piping stdout elsewhere need to know WHAT failed from stderr alone.
 - **L685:** Pre-flight checks reduce support burden by catching environment issues before initialization. Required checks block; optional checks warn.
@@ -149,9 +150,6 @@
 - **L669:** Sprint kickoff needs day-by-day technical runbook synthesizing all specs. Reduces Day 1 coordination.
 - **L668:** Academic publications require dedicated marketing plans coordinating timing and product launches.
 - **L667:** CLI UX polish specs should include TypeScript implementation code snippets. Reduces interpretation overhead.
-- **L666:** When renaming Playwright projects, update CI workflow project names in the same PR.
-- **L665:** Retros should capture ALL reflections from covered cycles. Scan rotation.json history.
-- **L664:** Memory system specs should be written together since they share infrastructure.
 - **L636:** 3-cycle PR turnaround (create → review → merge) is optimal. Same-rotation completion prevents staleness.
 - **L633:** Human-gated blockers need multi-channel escalation. GitHub comments alone insufficient.
 
@@ -163,12 +161,12 @@ _Full lessons L1-L687 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 1 open (#251), 103 merged
-- **Cycles:** 1176
+- **Cycles:** 1177
 - **Tests:** 2,367 passing + 27 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 756 (C421-1176) 🏆
+- **Consecutive:** 757 (C421-1177) 🏆
 - **Compressions:** 60
-- **Lessons:** 688 (L1-L688)
+- **Lessons:** 689 (L1-L689)
 - **Rules:** 17
 - **LOC:** ~78,600 TypeScript (+36,000 test)
 
