@@ -123,6 +123,9 @@ jobs:
       - name: 🔍 Lint all packages
         run: npm run lint --workspaces
 
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate --schema=apps/web/prisma/schema.prisma
+
       - name: 🏗️ Build packages (ordered — core before cli for project references)
         run: |
           npm run build --workspace=packages/core
@@ -159,6 +162,9 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm ci
+
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate --schema=apps/web/prisma/schema.prisma
 
       - name: 🏗️ Build packages
         run: |
@@ -331,6 +337,9 @@ jobs:
       - name: 📦 Install dependencies
         run: npm ci
 
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate --schema=apps/web/prisma/schema.prisma
+
       - name: 🏗️ Build packages
         run: |
           npm run build --workspace=packages/core
@@ -382,6 +391,9 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm ci
+
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate --schema=apps/web/prisma/schema.prisma
 
       - name: 🏗️ Build packages
         run: |
@@ -473,6 +485,9 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm ci
+
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate --schema=apps/web/prisma/schema.prisma
 
       - name: 🏗️ Build packages
         run: |
