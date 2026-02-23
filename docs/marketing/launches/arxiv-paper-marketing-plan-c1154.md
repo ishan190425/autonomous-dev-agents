@@ -256,16 +256,16 @@ The paper launch (Mar 15) and public launch (Mar 18) are designed as a 1-2 punch
 
 ## Content Calendar
 
-| Date   | Asset                  | Owner  | Status         |
-| ------ | ---------------------- | ------ | -------------- |
-| Mar 1  | Twitter thread draft   | Growth | 🟡 Not started |
-| Mar 3  | HN post draft          | Growth | 🟡 Not started |
-| Mar 5  | Reddit posts draft     | Growth | 🟡 Not started |
-| Mar 5  | LinkedIn article draft | Growth | 🟡 Not started |
-| Mar 7  | Blog post draft        | Growth | 🟡 Not started |
-| Mar 10 | Press kit              | Growth | 🟡 Not started |
-| Mar 12 | All assets finalized   | Growth | 🟡 Not started |
-| Mar 15 | Launch execution       | Growth | 🟡 Pending     |
+| Date   | Asset                  | Owner  | Status          |
+| ------ | ---------------------- | ------ | --------------- |
+| Mar 1  | Twitter thread draft   | Growth | ✅ DONE (C1164) |
+| Mar 3  | HN post draft          | Growth | 🟡 Not started  |
+| Mar 5  | Reddit posts draft     | Growth | 🟡 Not started  |
+| Mar 5  | LinkedIn article draft | Growth | 🟡 Not started  |
+| Mar 7  | Blog post draft        | Growth | 🟡 Not started  |
+| Mar 10 | Press kit              | Growth | 🟡 Not started  |
+| Mar 12 | All assets finalized   | Growth | 🟡 Not started  |
+| Mar 15 | Launch execution       | Growth | 🟡 Pending      |
 
 ---
 
