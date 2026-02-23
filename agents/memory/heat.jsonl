@@ -661,5 +661,6 @@
 {"id":"L649","memoryClass":"learned","baseImportance":0.8,"referenceCount":1,"lastAccessedAt":1771802562958,"createdAt":1771802562958}
 {"id":"C1128","memoryClass":"learned","baseImportance":0.5,"referenceCount":1,"lastAccessedAt":1771802562958,"createdAt":1771802562958}
 {"id":"L650","memoryClass":"learned","baseImportance":0.8,"referenceCount":1,"lastAccessedAt":1771803817218,"createdAt":1771803817218}
-{"id":"#247","memoryClass":"learned","baseImportance":0.6,"referenceCount":1,"lastAccessedAt":1771803817218,"createdAt":1771803817218}
+{"id":"#247","memoryClass":"learned","baseImportance":0.6,"referenceCount":2,"lastAccessedAt":1771805267917,"createdAt":1771803817218}
 {"id":"C1129","memoryClass":"learned","baseImportance":0.5,"referenceCount":1,"lastAccessedAt":1771803817218,"createdAt":1771803817218}
+{"id":"L647","memoryClass":"learned","baseImportance":0.8,"referenceCount":1,"lastAccessedAt":1771805267917,"createdAt":1771805267917}
