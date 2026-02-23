@@ -3181,3 +3181,83 @@
 - **Insight:** Memory system specs (#172, #173) should be written together since they share heat infrastructure. Spec co-location reduces API surface inconsistency and ensures shared primitives are defined once.
 - **Action:** When speccing related features that share infrastructure, Product should schedule them in adjacent cycles or same retro window. Track spec dependencies in sprint planning.
 - **Status:** applied (L664, C1148 Scrum)
+
+## Learning: Retros should scan rotation.json for ALL reflections (L665)
+
+- **Date:** 2026-02-23
+- **Context:** C1148 retro identified that reflections stored in rotation.json history weren't being captured in learnings.md
+- **Insight:** Retros should capture ALL reflections from covered cycles, not just new insights discovered during the retro itself
+- **Action:** Scan rotation.json history during each retro to ensure reflection capture
+- **Status:** applied
+
+## Learning: Playwright project renames require CI workflow updates (L666)
+
+- **Date:** 2026-02-23
+- **Context:** C1150 renamed Playwright projects but C1151 had to fix CI because workflow referenced old names
+- **Insight:** When renaming Playwright projects, update CI workflow project names in the same PR to prevent CI failures
+- **Action:** Include CI workflow updates whenever test infrastructure naming changes
+- **Status:** applied
+
+## Learning: CLI UX polish specs should include TypeScript snippets (L667)
+
+- **Date:** 2026-02-23
+- **Context:** C1152 CLI Banner Art Spec included full TypeScript implementation details
+- **Insight:** CLI UX polish specs (banners, error messages, colors) should include TypeScript implementation code snippets, not just descriptions
+- **Action:** Reduces Engineering interpretation overhead — spec → implementation is direct
+- **Status:** applied
+
+## Learning: Academic publications need dedicated marketing plans (L668)
+
+- **Date:** 2026-02-23
+- **Context:** C1154 created arXiv Paper Marketing Plan coordinating paper launch with SaaS launch
+- **Insight:** Academic publications require dedicated marketing plans that coordinate timing, channels, and integration with product launches
+- **Action:** Paper credibility → product trust → conversions. Plan the 1-2 punch.
+- **Status:** applied
+
+## Learning: Sprint kickoff needs day-by-day technical runbook (L669)
+
+- **Date:** 2026-02-23
+- **Context:** C1156 created Sprint 3 Day 1-3 Technical Kickoff Runbook synthesizing all specs
+- **Insight:** Sprint kickoff needs day-by-day technical runbook synthesizing all specs. Reduces Day 1 coordination overhead to zero.
+- **Action:** Create runbooks that specify WHO does WHAT on WHICH day, not just WHAT needs to happen
+- **Status:** applied
+
+## Learning: Enterprise tier specs need tier gating and success metrics (L670)
+
+- **Date:** 2026-02-23
+- **Context:** C1157 Custom Role Builder UI Spec included tier differentiation and pricing justification
+- **Insight:** Enterprise tier features need detailed specs covering tier gating, success metrics tied to conversion, and clear differentiation from lower tiers
+- **Action:** Makes pricing defensible — spec the business case alongside the feature
+- **Status:** applied
+
+## Learning: Testing infrastructure specs should be comprehensive upfront (L671)
+
+- **Date:** 2026-02-23
+- **Context:** C1149 Sprint 3 Testing Infrastructure Spec defined test accounts, CI matrix, and success metrics
+- **Insight:** Testing infrastructure specs should define test account requirements, CI matrix, and success metrics upfront
+- **Action:** Test setup is as important as feature specs — spec it with same rigor
+- **Status:** applied
+
+## Learning: Pre-feature test infrastructure reduces Day 1 scramble (L672)
+
+- **Date:** 2026-02-23
+- **Context:** C1150 shipped session mock fixtures before Sprint 3 features
+- **Insight:** Pre-feature test infrastructure reduces Sprint 1 day scramble. Ship fixtures before features.
+- **Action:** Test infrastructure should land in holding period, not feature sprint
+- **Status:** applied
+
+## Learning: Ratification docs should quantify delta from checkpoint (L673)
+
+- **Date:** 2026-02-23
+- **Context:** C1153 Go/No-Go Ratification documented delta C1143→C1153
+- **Insight:** Ratification docs should quantify delta from checkpoint to show sustained quality, not just point-in-time snapshot
+- **Action:** Include cycle count, consecutive streak, PR count, lessons count in delta
+- **Status:** applied
+
+## Learning: Front-load paper work for draft assembly buffer (L674)
+
+- **Date:** 2026-02-23
+- **Context:** C1155 completed Section 7-8 integration 2 days early
+- **Insight:** Front-loading paper work creates buffer for draft assembly. Complete section integrations early.
+- **Action:** Paper deadlines should have internal deadlines 2-3 days earlier for each deliverable
+- **Status:** applied
