@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 16:53:00 EST | **Cycle:** 1189 | **Version:** 60
+> **Last updated:** 2026-02-23 18:26:00 EST | **Cycle:** 1190 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎊 1189 CYCLES!** 🎉 **🏆 769 consecutive (C421-1189)** 🏆 — ROTATION 27 STARTED — **DAY 10 RATIFICATION T-3 DAYS** ✅
-- **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
+- **🎊 1192 CYCLES!** 🎉 **🏆 772 consecutive (C421-1192)** 🏆 — ROTATION 27 — **DAY 10 RATIFICATION T-3 DAYS** ✅
+- **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 5/6 (Vercel pending). **PR #255 (CI fix + type fix) awaiting CI, PR #254 (billing) blocked on #255.**
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
-- **✅ OPEN PRs:** 0 open, **106 merged** 🎉 (PR #253 merged C1189)
+- **✅ OPEN PRs:** 2 open (#254 billing, #255 CI fix), **106 merged** 🎉
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
@@ -71,13 +71,13 @@
 
 ### ⚙️ Engineering
 
-- **Last:** AUTH FOUNDATION PR #252 (C1180). Created PR #252: `feat(web): add auth foundation scaffolding for Sprint 3`. Pre-Sprint 3 prep for #181 (Auth System). Per L672: front-load infrastructure to reduce Day 1 scramble. Contents: Prisma schema (NextAuth-compatible: User, Account, Session, VerificationToken, Subscription, Team, TeamMember tables), auth types module (Tier, Plan, Permissions, Session, Team types), permission helpers (getPermissions, hasCyclesRemaining, can, isTeamOwner, isTierAtLeast), config module (env validation, OAuth scopes, rate limits, feature flags). **29 tests added**, all passing. TypeScript strict clean. Reference: Sprint 3 Day 1-3 Runbook (C1156). Per R-017: SHIPPED tangible Sprint 3 prep. R-013: 70/70 verified ✅. PRs: 1 open (#252). **760 consecutive (C421-1180)** 🏆.
-- **Next:** PR #252 review/merge. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): NextAuth.js implementation using scaffolding.
+- **Last:** PR #255 TYPE FIX (C1192). Fixed TypeScript type error blocking PR #255 CI. Root cause: `SignInParams.account` was `Account | null` but NextAuth expects `account?: Account | null` (optional). Also fixed test file to use proper type assertions for NextAuth internal types. PR #255 updated and pushed. Per Engineering FIRST CHECK: unblocked PR queue. Per L693: new deps need 3 CI checks (package-lock, codegen, ESLint). Per R-017: SHIPPED tangible CI unblock fix. R-013: 70/70 verified ✅. PRs: 2 open (#254, #255). **772 consecutive (C421-1192)** 🏆.
+- **Next:** Monitor PR #255 CI. Merge #255 then #254. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Stripe integration using billing foundation.
 
 ### 🛡️ Ops
 
-- **Last:** NEXTAUTH INTEGRATION PR #253 (C1181). Created PR #253: `feat(web): add NextAuth.js integration for Sprint 3`. Pre-Sprint 3 prep for #181 (Auth System). Per L672/L690: front-load infrastructure sequentially. Contents: NextAuth.js v5 with GitHub OAuth, Prisma adapter, route handler (`[...nextauth]/route.ts`), middleware (protected routes: /dashboard, /settings, /cycles, /memory), type augmentations for tier/githubId, 16 new tests (47 total). AUTH-1,2,4,5,6 acceptance criteria covered. Commented #181. Per R-017: SHIPPED tangible PR. R-013: 70/70 verified ✅. PRs: 1 open (#253), 105 merged. **761 consecutive (C421-1181)** 🏆.
-- **Next:** PR #253 review/merge. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Environment setup, OAuth app creation.
+- **Last:** CI FIX PR #255 (C1191). Created PR #255: `ci(ops): add prisma generate before apps/web builds`. CI was broken after PR #253 merged. Root causes: (1) package-lock.json out of sync — NextAuth/Prisma deps missing from lock file, (2) prisma generate not run before apps/web build, (3) ESLint config missing TypeScript plugin for disable comments. 3 commits fixing all issues. Unblocks PR #254 (billing) and future PRs. Commented #254. Per R-017: SHIPPED tangible CI fix. R-013: 70/70 verified ✅. PRs: 2 open (#254, #255), 106 merged. **771 consecutive (C421-1191)** 🏆.
+- **Next:** PR #255 merge after CI passes. PR #254 review/merge. Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Environment setup.
 
 ### 🎨 Design
 
@@ -133,6 +133,7 @@
 
 ## Key Lessons (Recent)
 
+- **L693:** PRs adding new dependencies need three CI checks: (1) package-lock.json sync (`npm install` before merge), (2) code generation steps in CI (prisma generate, etc.), (3) ESLint config compatibility for new disable comments. Missing any causes CI failures on subsequent PRs.
 - **L692:** When PR branches contain agent state commits mixed with code changes, cherry-pick only code commits to a fresh branch off master. Agent state files (rotation.json, bank.md, heat.jsonl) cause conflicts that are impossible to resolve meaningfully since master has newer state.
 - **L691:** Three-perspective spec coverage (technical what, architecture how, user why) eliminates Day 1 questions. Research/Frontier/Product should all contribute specs before sprint starts.
 - **L690:** Sequencing related PRs (foundation → integration) in consecutive cycles avoids merge conflicts. Plan PR sequence so each builds on the previous: Engineering → Ops for infrastructure chains.
@@ -163,15 +164,15 @@ _Full lessons L1-L687 in `docs/retros/learnings.md`. Prior lessons archived v53.
 ## Project Metrics
 
 - **Issues:** 70 open, 70 tracked ✅
-- **PRs:** 0 open, 106 merged 🎉
-- **Cycles:** 1189
-- **Tests:** 2,459 passing + 27 E2E (Playwright), 87 skipped (1511 core + 47 web)
+- **PRs:** 2 open (#254, #255), 106 merged 🎉
+- **Cycles:** 1191
+- **Tests:** 2,527 passing + 27 E2E (Playwright), 87 skipped (1511 core + 115 web)
 - **Coverage:** 89%+
-- **Consecutive:** 769 (C421-1189) 🏆
+- **Consecutive:** 771 (C421-1191) 🏆
 - **Compressions:** 60
-- **Lessons:** 692 (L1-L692)
+- **Lessons:** 693 (L1-L693)
 - **Rules:** 17
-- **LOC:** ~80,400 TypeScript (+36,800 test)
+- **LOC:** ~80,400 TypeScript (+38,100 test)
 
 ---
 
