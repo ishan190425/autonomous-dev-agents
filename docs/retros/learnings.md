@@ -5,6 +5,46 @@
 
 ---
 
+## Learning: Monorepo Lock Files Require Root Regeneration (L654)
+
+- **Date:** 2026-02-22
+- **Context:** C1130 (Engineering) fixed PR #247 CI failure caused by missing Playwright deps in package-lock.json.
+- **Insight:** When adding workspace dependencies in a monorepo, `npm install` must be run at the root to properly sync package-lock.json. Running install only in the workspace subdirectory leaves the root lock file out of sync, causing CI failures.
+- **Action:** QA/Engineering should always run `npm install` at monorepo root before creating PRs that add new dependencies to any workspace.
+- **Status:** applied
+
+## Learning: Feature Specs Should Reference Existing Architecture (L653)
+
+- **Date:** 2026-02-22
+- **Context:** C1137 (Product) Auto Memory Compression spec built on existing heat-scoring infrastructure from prior cycles.
+- **Insight:** New feature specs should explicitly reference and extend established patterns (heat tiers, JSONL persistence, archive structure) rather than inventing new paradigms. This reduces implementation ambiguity and ensures consistency.
+- **Action:** Product should audit existing architecture docs (memory/, design/, frontier/) before speccing new features. Reference prior cycle numbers where patterns were established.
+- **Status:** applied
+
+## Learning: Platform ADRs Should Define Integration Points (L652)
+
+- **Date:** 2026-02-22
+- **Context:** C1136 (Frontier) created API Gateway ADR bridging Auth (C1113), Billing (C1105), and Token Tracking (C1126) specs.
+- **Insight:** Individual feature specs can miss how they integrate with each other. Platform ADRs that explicitly define integration points between adjacent specs eliminate Sprint Day 1 ambiguity about route ownership and data flow.
+- **Action:** Frontier should audit spec coverage for integration gaps during holding periods and create bridging ADRs where needed.
+- **Status:** applied
+
+## Learning: Section Integration Docs Enable Efficient Draft Assembly (L651)
+
+- **Date:** 2026-02-22
+- **Context:** C1115 (Section 6), C1125 (Section 8), C1135 (Section 7) all created integration docs for arXiv paper.
+- **Insight:** Each section integration doc reduces final Mar 7 assembly time by ~1 hour. Copy-paste ready sections with updated metrics beat last-minute research. Integration docs created 1-3 days early compound buffer for final deadline.
+- **Action:** Research should create integration docs for each arXiv section as they're completed, not wait until final assembly.
+- **Status:** applied
+
+## Learning: E2E Test Infrastructure Should Ship Before Features (L650)
+
+- **Date:** 2026-02-22
+- **Context:** C1129 (QA) created Playwright E2E setup during holding period, before Sprint 3 implementation starts.
+- **Insight:** Testing infrastructure prepared BEFORE implementation sprints removes Day 1 friction. Engineers can start implementing features immediately without waiting for test setup. Pre-configured test setups accelerate feature development.
+- **Action:** QA should complete test infrastructure (frameworks, configs, base fixtures) in holding periods, not during implementation sprints.
+- **Status:** applied
+
 ## Learning: Feature Prioritization Docs Should Exist 2 Weeks Before Sprint (L640)
 
 - **Date:** 2026-02-22
