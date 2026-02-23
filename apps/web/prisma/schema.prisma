@@ -1,0 +1,193 @@
+// ADA SaaS Platform Database Schema
+// Sprint 3 Foundation — NextAuth.js + Prisma Adapter
+// Reference: docs/frontier/sprint3-day1-3-technical-kickoff-runbook-c1156.md
+// Author: ⚙️ Engineering (Cycle 1180)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL") // For migrations (non-pooled connection)
+}
+
+// ============================================================================
+// NextAuth.js Required Tables (Prisma Adapter Compatible)
+// ============================================================================
+
+/// User account — core identity table
+/// Linked to GitHub OAuth via Account table
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  
+  // ADA-specific fields
+  githubId      String?   @unique
+  tier          Tier      @default(FREE)
+  cyclesUsed    Int       @default(0)
+  cyclesLimit   Int       @default(100) // -1 = unlimited
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  accounts      Account[]
+  sessions      Session[]
+  subscription  Subscription?
+  teams         TeamMember[]
+  ownedTeams    Team[]        @relation("TeamOwner")
+  
+  @@map("users")
+}
+
+/// OAuth account linking (GitHub, future providers)
+/// Standard NextAuth.js schema
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+/// Active sessions — managed by NextAuth.js
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("sessions")
+}
+
+/// Email verification tokens (if needed for future providers)
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ============================================================================
+// ADA Platform Tables
+// ============================================================================
+
+/// Subscription state — Stripe integration
+/// Sprint 3 Day 3: Billing scaffold
+model Subscription {
+  id                   String             @id @default(cuid())
+  userId               String             @unique
+  stripeCustomerId     String?            @unique
+  stripeSubscriptionId String?            @unique
+  stripePriceId        String?
+  status               SubscriptionStatus @default(TRIALING)
+  plan                 Plan               @default(FREE)
+  
+  // Billing cycle
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean            @default(false)
+  
+  // Usage tracking
+  cyclesUsedThisPeriod Int                @default(0)
+  
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("subscriptions")
+}
+
+/// Team workspace — Sprint 4+
+model Team {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  ownerId     String
+  plan        Plan     @default(TEAM)
+  memberLimit Int      @default(5)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  owner   User         @relation("TeamOwner", fields: [ownerId], references: [id])
+  members TeamMember[]
+  
+  @@map("teams")
+}
+
+/// Team membership — many-to-many with roles
+model TeamMember {
+  id       String   @id @default(cuid())
+  teamId   String
+  userId   String
+  role     TeamRole @default(MEMBER)
+  joinedAt DateTime @default(now())
+  
+  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([teamId, userId])
+  @@map("team_members")
+}
+
+// ============================================================================
+// Enums
+// ============================================================================
+
+/// User subscription tier
+enum Tier {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+/// Billing plan (product-level)
+enum Plan {
+  FREE
+  PRO        // $49/month
+  TEAM       // $199/month (5 seats)
+  ENTERPRISE // Custom pricing
+}
+
+/// Stripe subscription status
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  CANCELED
+  INCOMPLETE
+  INCOMPLETE_EXPIRED
+  PAST_DUE
+  UNPAID
+  PAUSED
+}
+
+/// Team member role
+enum TeamRole {
+  OWNER
+  ADMIN
+  MEMBER
+  VIEWER
+}
