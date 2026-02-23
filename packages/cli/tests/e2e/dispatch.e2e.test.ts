@@ -104,8 +104,11 @@ describe('ada dispatch E2E', () => {
       const second = await sandbox.ada(['dispatch', 'start']);
 
       expect(second.success).toBe(false);
-      expect(second.exitCode).toBe(1); // CYCLE_IN_PROGRESS
-      expect(second.stdout).toContain('Cycle Already in Progress');
+      expect(second.exitCode).toBe(4); // CYCLE_IN_PROGRESS → RUNTIME_ERROR exit code
+      // Structured errors go to stderr (correct behavior per UX guidelines)
+      const allOutput = second.stdout + second.stderr;
+      // New structured error format: "A dispatch cycle is already in progress"
+      expect(allOutput).toMatch(/cycle.*already.*in progress/i);
     });
 
     it('allows override with --force flag', async () => {

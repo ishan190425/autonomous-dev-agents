@@ -233,14 +233,14 @@ describe('ada dispatch', () => {
       expect(lockContent).toHaveProperty('startedAt');
     });
 
-    it('fails when cycle already in progress (exit code 1)', () => {
+    it('fails when cycle already in progress (exit code 4 — RUNTIME_ERROR)', () => {
       // Start first cycle
       const first = runCli(['dispatch', 'start']);
       expect(first.exitCode).toBe(0);
 
       // Try to start another
       const second = runCli(['dispatch', 'start']);
-      expect(second.exitCode).toBe(1);
+      expect(second.exitCode).toBe(4); // ADA_CYCLE_IN_PROGRESS → RUNTIME_ERROR
       const allOutput = second.stdout + second.stderr;
       expect(allOutput.toLowerCase()).toMatch(/already|in progress|active/);
     });
