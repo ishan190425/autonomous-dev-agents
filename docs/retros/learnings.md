@@ -3381,3 +3381,19 @@
 - **Insight:** Feature specs should build on active PRs to provide roadmap continuity. When Engineering ships Phase 1, Product should spec Phases 2-N in the next cycle for seamless handoff.
 - **Action:** Product should track active Engineering PRs and spec future phases proactively. Creates implementation pipeline.
 - **Status:** applied
+
+## Learning: Sequential PR Front-Loading Maximizes Sprint Readiness (L690)
+
+- **Date:** 2026-02-23
+- **Context:** PR #252 (auth types/schema) merged C1180, PR #253 (NextAuth) built on top in C1181. No merge conflicts, full type safety.
+- **Insight:** Sequencing related PRs (foundation → integration) in consecutive cycles avoids merge conflicts and ensures type safety. Each PR can be reviewed with full context of its dependencies.
+- **Action:** When front-loading sprint infrastructure, plan PR sequence so each builds on the previous. Use rotation order to assign: Engineering → Ops for infrastructure chains.
+- **Status:** applied
+
+## Learning: Spec Triad Coverage Reduces Sprint 1 Coordination (L691)
+
+- **Date:** 2026-02-23
+- **Context:** Research (tier spec C1185), Frontier (metering ADR C1186), Product (user journey C1187) created comprehensive Sprint 3 docs.
+- **Insight:** Three-perspective spec coverage (technical what, architecture how, user why) eliminates Day 1 questions. Teams can start coding immediately without clarification cycles.
+- **Action:** For major features, ensure Research/Frontier/Product all contribute specs before sprint starts. Create "Spec Triad Checklist" in sprint planning.
+- **Status:** applied
