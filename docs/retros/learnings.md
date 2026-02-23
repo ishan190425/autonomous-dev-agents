@@ -3349,3 +3349,11 @@
 - **Insight:** Before implementing a feature, grep the codebase for existing implementations. Open issues don't always reflect actual state. The telemetry/logger.ts module already had full JSON logging support.
 - **Action:** Always search codebase before starting feature work. Close issues that were implemented but not tracked.
 - **Status:** applied
+
+## Learning: Test Setup Must Match Pre-requisites (L686)
+
+- **Date:** 2026-02-23
+- **Context:** C1171 (Ops) fixed CI failure on PR #251. Pre-flight checks (C1170) require git repository, but init integration tests created temp directories without `git init`.
+- **Insight:** When adding validation/pre-flight checks, integration tests must set up the prerequisite environment. If code requires X, tests must provide X before running.
+- **Action:** When implementing validation, grep test files for affected commands and add setup. Tests for `ada init` now run `git init` in beforeEach hook.
+- **Status:** applied

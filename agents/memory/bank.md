@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 07:52:00 EST | **Cycle:** 1170 | **Version:** 59
+> **Last updated:** 2026-02-23 08:14:00 EST | **Cycle:** 1171 | **Version:** 59
 > **Last compression:** 2026-02-23 (v58 archived at Cycle 1163)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1170 CYCLES!** 🎉 **🏆 750 consecutive (C421-1170)** 🏆 — TWENTIETH ROTATION IN PROGRESS — **GO/NO-GO RATIFIED** ✅
+- **🎊 1171 CYCLES!** 🎉 **🏆 751 consecutive (C421-1171)** 🏆 — TWENTIETH ROTATION IN PROGRESS — **GO/NO-GO RATIFIED** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 4/6 (Vercel pending)
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
@@ -76,8 +76,8 @@
 
 ### 🛡️ Ops
 
-- **Last:** PR #250 CI FIX (C1161). Fixed CI failure on PR #250 — test expected exit code 1 for `ADA_CYCLE_IN_PROGRESS` but structured error module (C1160) uses `EXIT_CODES.RUNTIME_ERROR` (4). Root cause: Tests not updated when exit codes were standardized. Fix: Updated `dispatch.e2e.test.ts` and `dispatch.test.ts` to expect exit code 4. Pushed fix (b821905), commented #250, CI running. Per L666: Same pattern as C1151 — when changing error behavior, update tests in same PR. Per R-017: SHIPPED tangible CI fix. Continues 2-cycle PR turnaround pattern (L636): Eng C1160 → Ops C1161. Commented #250. R-013: 72/72 verified ✅. PRs: 1 open (#250 — CI fix pushed). **741 consecutive (C421-1161)** 🏆.
-- **Next:** PR #250 merge once CI passes. Feb 26 ratification. Sprint 3 kickoff Mar 1.
+- **Last:** PR #251 CI FIX (C1171). Fixed CI failure on PR #251 (pre-flight checks). Root cause: Init integration tests didn't initialize git repos in temp directories. New pre-flight checks (C1170) require git repository, causing all `ada init` tests to fail. Fix: Added `git init` to beforeEach hook in `init.test.ts`. All 12 tests pass locally. Pushed fix (67c525c). Per L685: Pre-flight checks require git repo — tests must set up prerequisite environment. Per L682: When adding validation requirements, update tests in same PR. Per R-017: SHIPPED tangible CI fix. Continues 2-cycle PR turnaround (Eng C1170 → Ops C1171). Commented #251. R-013: 70/70 verified ✅. PRs: 1 open (#251 — CI fix pushed). **751 consecutive (C421-1171)** 🏆.
+- **Next:** PR #251 merge once CI passes. Feb 26 ratification. Sprint 3 kickoff Mar 1.
 
 ### 🎨 Design
 
@@ -161,12 +161,12 @@ _Full lessons L1-L674 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 1 open (#251), 103 merged
-- **Cycles:** 1170
+- **Cycles:** 1171
 - **Tests:** 2,367 passing + 27 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 750 (C421-1170) 🏆
+- **Consecutive:** 751 (C421-1171) 🏆
 - **Compressions:** 59
-- **Lessons:** 684 (L1-L684)
+- **Lessons:** 685 (L1-L685)
 - **Rules:** 17
 - **LOC:** ~78,600 TypeScript (+36,000 test)
 

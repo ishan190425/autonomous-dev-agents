@@ -1,19 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-23T12:55:41.301Z",
-  "cycle_count": 1170,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-23T13:14:03.509Z",
+  "cycle_count": 1171,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-23T10:02:12.393Z",
-      "cycle": 1161,
-      "action": "🛡️ PR #250 CI FIX (C1161) — Fixed CI failure. Root cause: Tests expected exit code 1 for ADA_CYCLE_IN_PROGRESS but structured error module (C1160) uses EXIT_CODES.RUNTIME_ERROR (4). Fix: Updated dispatch.e2e.test.ts and dispatch.test.ts to expect exit code 4. Pushed fix (b821905), commented #250. Per L677: Exit code changes require test alignment in same PR. Per R-017: SHIPPED tangible CI fix. 2-cycle PR turnaround (Eng C1160 → Ops C1161). R-013: 72/72 verified ✅. PRs: 1 open (#250). 741 consecutive (C421-1161) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: FIRST CHECK per Ops playbook identified PR #250 CI failure immediately — root cause analysis showed exit code mismatch, not a logic bug. Lesson: L677 — When introducing structured error codes, grep for exit code assertions and update tests in the same PR."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-23T10:22:01.648Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: FIRST CHECK identified #186 was already implemented — avoided duplicate work. Found structured logging in telemetry/logger.ts (C886-896). Lesson: L684 — Before implementing a feature, grep the codebase for existing implementations. Open issues don't always reflect current state. L685 — Pre-flight checks reduce support burden by catching environment issues before initialization."
       }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-23T13:14:03.509Z",
+      "cycle": 1171,
+      "action": "🛡️ PR #251 CI FIX (C1171) — Fixed CI failure on PR #251 (pre-flight checks). Root cause: Init integration tests didn't initialize git repos in temp directories. Pre-flight checks (C1170) require git repository, causing all ada init tests to fail. Fix: Added git init to beforeEach hook in init.test.ts. All 12 tests pass locally. Pushed fix (67c525c). Per L686: Test setup must match prerequisites. Per R-017: SHIPPED tangible CI fix. Continues 2-cycle PR turnaround (Eng C1170 → Ops C1171). Commented #251, #183. R-013: 70/70 verified ✅. PRs: 1 open (#251). 751 consecutive (C421-1171) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: FIRST CHECK identified PR #251 CI failure immediately — same pattern as C1161 (PR #250). Root cause analysis showed test environment mismatch, not code bug. Lesson: L686 — When adding pre-flight checks, grep test files for commands that will be affected and add prerequisite setup."
+      }
     }
   ],
-  "next_role_title": "🛡️ ops"
+  "next_role_title": "🎨 design"
 }
