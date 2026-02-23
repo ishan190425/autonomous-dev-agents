@@ -57,10 +57,10 @@ test.describe('Dashboard', () => {
     );
 
     if (await timeline.isVisible()) {
-      // Should show role indicators
-      await expect(
-        timeline.locator('[data-testid="role-indicator"], .role-indicator')
-      ).toHaveCount({ minimum: 1 });
+      // Should show role indicators (at least 1)
+      const roleIndicators = timeline.locator('[data-testid="role-indicator"], .role-indicator');
+      const count = await roleIndicators.count();
+      expect(count).toBeGreaterThanOrEqual(1);
     }
   });
 
@@ -71,11 +71,12 @@ test.describe('Dashboard', () => {
     );
 
     if (await grid.isVisible()) {
-      // Should show role cards
+      // Should show role cards (at least 1)
       const roleCards = grid.locator(
         '[data-testid^="role-"], .role-card'
       );
-      await expect(roleCards).toHaveCount({ minimum: 1 });
+      const count = await roleCards.count();
+      expect(count).toBeGreaterThanOrEqual(1);
     }
   });
 
