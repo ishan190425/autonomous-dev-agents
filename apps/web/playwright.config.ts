@@ -5,7 +5,14 @@ import { defineConfig, devices } from '@playwright/test';
  *
  * @see https://playwright.dev/docs/test-configuration
  *
- * Sprint 3 setup (C1129) — Pre-configured for authentication and dashboard testing.
+ * Test Projects:
+ * - unauthenticated: Tests that don't require auth (login page, public pages)
+ * - mocked-auth: Fast tests using session fixtures (no real OAuth)
+ * - setup: Real OAuth authentication setup
+ * - authenticated: Tests requiring real OAuth (nightly only)
+ *
+ * Sprint 3 setup (C1129, C1149, C1150)
+ * @see docs/qa/sprint3-testing-infrastructure-spec-c1149.md
  */
 export default defineConfig({
   testDir: './e2e',
@@ -38,69 +45,127 @@ export default defineConfig({
     video: 'on-first-retry',
   },
 
-  /* Configure projects for major browsers */
+  /* Configure projects for different test scenarios */
   projects: [
-    /* Setup project for authentication state */
+    // ============================================
+    // FAST TESTS (Every PR) — No real OAuth needed
+    // ============================================
+
+    /**
+     * Unauthenticated Tests
+     * - Login page UI
+     * - Public pages
+     * - Pre-auth flows
+     *
+     * Run: npm run test:e2e:fast
+     */
+    {
+      name: 'unauthenticated',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: [
+        '**/*.unauthenticated.spec.ts',
+        '**/login.*.spec.ts',
+      ],
+      testIgnore: [
+        '**/authenticated/**',
+        '**/fixtures/**',
+      ],
+    },
+
+    /**
+     * Mocked Auth Tests
+     * - Dashboard flows with mocked sessions
+     * - Fast, no external OAuth
+     * - Uses session.fixture.ts
+     *
+     * Run: npm run test:e2e:mocked
+     */
+    {
+      name: 'mocked-auth',
+      use: { ...devices['Desktop Chrome'] },
+      testDir: './e2e/authenticated',
+      testMatch: '**/*.auth.spec.ts',
+    },
+
+    // ============================================
+    // AUTHENTICATED TESTS (Nightly) — Real OAuth
+    // ============================================
+
+    /**
+     * Auth Setup Project
+     * - Runs real GitHub OAuth flow
+     * - Saves auth state for dependent tests
+     * - Requires TEST_AUTH_REAL=true and GitHub test credentials
+     */
     {
       name: 'setup',
       testMatch: /.*\.setup\.ts/,
+      use: { ...devices['Desktop Chrome'] },
     },
 
-    /* Authenticated tests */
+    /**
+     * Real Authenticated Tests
+     * - Requires setup to run first
+     * - Uses real OAuth session state
+     * - For nightly CI only (slower, flakier)
+     */
     {
-      name: 'chromium',
+      name: 'authenticated',
       use: {
         ...devices['Desktop Chrome'],
         storageState: '.auth/user.json',
       },
       dependencies: ['setup'],
+      testDir: './e2e/authenticated',
+      testMatch: '**/*.real-auth.spec.ts', // Future: tests requiring real auth
     },
 
-    /* Unauthenticated/login tests */
-    {
-      name: 'chromium-unauthenticated',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: /.*\.unauthenticated\.spec\.ts/,
-    },
+    // ============================================
+    // CROSS-BROWSER (Secondary priority)
+    // ============================================
 
-    /* Firefox (secondary) */
+    /**
+     * Firefox (mocked auth)
+     */
     {
       name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: '.auth/user.json',
-      },
-      dependencies: ['setup'],
+      use: { ...devices['Desktop Firefox'] },
+      testDir: './e2e/authenticated',
+      testMatch: '**/*.auth.spec.ts',
     },
 
-    /* WebKit/Safari (secondary) */
+    /**
+     * WebKit/Safari (mocked auth)
+     */
     {
       name: 'webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        storageState: '.auth/user.json',
-      },
-      dependencies: ['setup'],
+      use: { ...devices['Desktop Safari'] },
+      testDir: './e2e/authenticated',
+      testMatch: '**/*.auth.spec.ts',
     },
 
-    /* Mobile Chrome */
+    // ============================================
+    // MOBILE (mocked auth)
+    // ============================================
+
+    /**
+     * Mobile Chrome
+     */
     {
       name: 'mobile-chrome',
-      use: {
-        ...devices['Pixel 5'],
-        storageState: '.auth/user.json',
-      },
-      dependencies: ['setup'],
+      use: { ...devices['Pixel 5'] },
+      testDir: './e2e/authenticated',
+      testMatch: '**/*.auth.spec.ts',
     },
 
-    /* Mobile Safari */
+    /**
+     * Mobile Safari
+     */
     {
       name: 'mobile-safari',
-      use: {
-        ...devices['iPhone 12'],
-        storageState: '.auth/user.json',
-      },
-      dependencies: ['setup'],
+      use: { ...devices['iPhone 12'] },
+      testDir: './e2e/authenticated',
+      testMatch: '**/*.auth.spec.ts',
     },
   ],
 

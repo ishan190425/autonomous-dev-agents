@@ -343,7 +343,7 @@ jobs:
 
       - name: 🧪 Run E2E tests
         working-directory: apps/web
-        run: npx playwright test --project=chromium-unauthenticated --project=chromium
+        run: npx playwright test --project=unauthenticated --project=mocked-auth
         env:
           CI: true
 
