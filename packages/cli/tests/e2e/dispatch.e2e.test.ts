@@ -104,7 +104,7 @@ describe('ada dispatch E2E', () => {
       const second = await sandbox.ada(['dispatch', 'start']);
 
       expect(second.success).toBe(false);
-      expect(second.exitCode).toBe(1); // CYCLE_IN_PROGRESS
+      expect(second.exitCode).toBe(4); // CYCLE_IN_PROGRESS → RUNTIME_ERROR exit code
       expect(second.stdout).toContain('Cycle Already in Progress');
     });
 
