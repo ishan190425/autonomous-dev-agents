@@ -123,6 +123,9 @@ jobs:
       - name: 🔍 Lint all packages
         run: npm run lint --workspaces
 
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate --schema=apps/web/prisma/schema.prisma
+
       - name: 🏗️ Build packages (ordered — core before cli for project references)
         run: |
           npm run build --workspace=packages/core
@@ -159,6 +162,9 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm ci
+
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate --schema=apps/web/prisma/schema.prisma
 
       - name: 🏗️ Build packages
         run: |
@@ -331,6 +337,9 @@ jobs:
       - name: 📦 Install dependencies
         run: npm ci
 
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate --schema=apps/web/prisma/schema.prisma
+
       - name: 🏗️ Build packages
         run: |
           npm run build --workspace=packages/core
@@ -346,6 +355,15 @@ jobs:
         run: npx playwright test --project=unauthenticated --project=mocked-auth
         env:
           CI: true
+          # Auth environment variables required for NextAuth to boot
+          # Using dummy values since E2E tests mock authentication
+          AUTH_SECRET: ci-test-secret-at-least-32-characters-long
+          NEXTAUTH_SECRET: ci-test-secret-at-least-32-characters-long
+          NEXTAUTH_URL: http://localhost:3000
+          GITHUB_CLIENT_ID: ci-test-client-id
+          GITHUB_CLIENT_SECRET: ci-test-client-secret
+          # SQLite for test database (no external DB needed)
+          DATABASE_URL: file:./test.db
 
       - name: 📊 Upload Playwright report
         uses: actions/upload-artifact@v4
@@ -382,6 +400,9 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm ci
+
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate --schema=apps/web/prisma/schema.prisma
 
       - name: 🏗️ Build packages
         run: |
@@ -473,6 +494,9 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm ci
+
+      - name: 🔧 Generate Prisma client
+        run: npx prisma generate --schema=apps/web/prisma/schema.prisma
 
       - name: 🏗️ Build packages
         run: |

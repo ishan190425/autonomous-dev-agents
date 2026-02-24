@@ -6,7 +6,7 @@
  * @author ⚙️ Engineering (Cycle 1190)
  */
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { authConfig } from '../auth.config';
 
 describe('authConfig', () => {
@@ -85,16 +85,19 @@ describe('authConfig', () => {
 
     it('should add user id to session', async () => {
       if (!sessionCallback) return;
+      // Use type assertion to bypass strict NextAuth internal types
+      // We're testing our callback logic, not NextAuth's type system
       const session = {
-        user: { name: 'Test', email: 'test@example.com' },
+        user: { id: 'session-user', name: 'Test', email: 'test@example.com' },
         expires: new Date().toISOString(),
-      };
+      } as Parameters<typeof sessionCallback>[0]['session'];
       const user = {
         id: 'user-123',
         email: 'test@example.com',
+        emailVerified: null,
         tier: 'PRO' as const,
         githubId: 'gh-456',
-      };
+      } as Parameters<typeof sessionCallback>[0]['user'];
 
       const result = await sessionCallback({
         session,
@@ -104,7 +107,7 @@ describe('authConfig', () => {
         newSession: undefined,
       });
 
-      expect(result.user.id).toBe('user-123');
+      expect(result.user?.id).toBe('user-123');
     });
   });
 

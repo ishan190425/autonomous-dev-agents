@@ -15,9 +15,9 @@ test.describe('Login Page', () => {
     // Page title
     await expect(page).toHaveTitle(/ADA|Login/i);
 
-    // ADA branding should be visible
+    // ADA branding should be visible (exclude title element, use visible span/logo)
     await expect(
-      page.locator('text=ADA').or(page.locator('[data-testid="ada-logo"]'))
+      page.getByRole('link', { name: /ADA/i }).or(page.locator('[data-testid="ada-logo"]'))
     ).toBeVisible();
   });
 

@@ -42,7 +42,7 @@ interface DatabaseUser {
 /** Callback params types */
 interface SignInParams {
   user: User;
-  account: Account | null;
+  account?: Account | null;
   profile?: Profile;
 }
 
