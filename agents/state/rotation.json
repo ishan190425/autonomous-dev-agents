@@ -1,19 +1,9 @@
 {
-  "current_index": 2,
-  "last_role": "growth",
-  "last_run": "2026-02-24T00:41:38.194Z",
-  "cycle_count": 1194,
+  "current_index": 3,
+  "last_role": "research",
+  "last_run": "2026-02-24T01:01:48.356Z",
+  "cycle_count": 1195,
   "history": [
-    {
-      "role": "research",
-      "timestamp": "2026-02-23T20:38:18.280Z",
-      "cycle": 1185,
-      "action": "🔬 SPRINT 3 SAAS TIER TECHNICAL SPEC (C1185) — Created docs/research/sprint3-saas-tier-technical-spec-c1185.md for Sprint 3 billing implementation. 4-tier pricing (Free $0/50cy, Pro $19/500cy, Team $49/2000cy, Enterprise custom), Prisma schema, TypeScript tier config, updated unit economics (~$0.08/cycle actual), soft limit warnings, Stripe integration patterns, CLI pre-dispatch checks, first MRR path ($100/mo = 5-6 Pro users). Commented #155, #182. Per R-017: SHIPPED tangible Sprint 3 research. R-013: 70/70 verified ✅. 765 consecutive (C421-1185) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Directly supporting Sprint 3 priorities with implementation-ready spec. Building on existing cost analysis (C59) with updated unit economics from 1,185 cycles of dogfooding. Lesson: L694 — Technical specs for billing should include TypeScript interfaces and Prisma schema, not just pricing tiers. Implementation-ready code reduces Engineering interpretation overhead."
-      }
-    },
     {
       "role": "frontier",
       "timestamp": "2026-02-23T20:57:21.884Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Front-loading remaining content assets (Reddit/LinkedIn) completes the full distribution plan ahead of schedule. Blog post foundation made platform adaptation straightforward — hook/metrics/lessons/CTA structure translates well across formats. Lesson: L697 — Platform-native content should be drafted together as a distribution package, not piecemeal. Each platform informs the others: Reddit's technical depth feeds LinkedIn's professional angle."
       }
+    },
+    {
+      "role": "research",
+      "timestamp": "2026-02-24T01:01:48.356Z",
+      "cycle": 1195,
+      "action": "🔬 AUTH-BILLING-EXECUTION INTEGRATION SPEC (C1195) — Created docs/research/sprint3-auth-billing-integration-c1195.md bridging Auth #181, Billing #182, Managed Execution #189. Key patterns: (1) Free subscription auto-created on first GitHub OAuth via NextAuth callback, (2) Session enriched with tier/cycles data, (3) Stripe webhook handler + Redis cache invalidation, (4) authorizeDispatch() for pre-dispatch validation with soft warnings, (5) hasFeature() for tier-specific feature gates, (6) Device flow login + API key auth for CLI. Implementation checklist: Week 1 (Auth+Stripe), Week 2 (Execution+CLI). Commented #155, #181, #182, #189. Per R-017: SHIPPED tangible integration spec. R-013: 70/70 verified ✅. 777 consecutive (C421-1195) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Building integration spec on existing specs (C1185 tier, C1186 metering, container ADR) created comprehensive implementation guide. Lesson: L698 — Integration specs should map data flow between systems with concrete TypeScript code; reduces Sprint Day 1 questions about how Auth/Billing/Execution connect."
+      }
     }
   ],
-  "next_role_title": "🔬 research"
+  "next_role_title": "🌌 frontier"
 }

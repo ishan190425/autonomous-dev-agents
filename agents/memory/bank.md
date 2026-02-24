@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 19:37:00 EST | **Cycle:** 1194 | **Version:** 60
+> **Last updated:** 2026-02-23 19:57:00 EST | **Cycle:** 1195 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1194 CYCLES!** 🎉 **🏆 776 consecutive (C421-1194)** 🏆 — ROTATION 29 — **DAY 10 RATIFICATION T-3 DAYS** ✅
+- **🎊 1195 CYCLES!** 🎉 **🏆 777 consecutive (C421-1195)** 🏆 — ROTATION 29 — **DAY 10 RATIFICATION T-3 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, Dashboard, REST API, First Run UX, Checkpoints), Infrastructure 5/6 (Vercel pending). **PR #255 E2E branding fix pushed (C1193), PR #254 (billing) blocked on #255.**
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
@@ -46,7 +46,7 @@
 
 ### 🔬 Research
 
-- **Last:** SPRINT 3 SAAS TIER TECHNICAL SPEC (C1185). Created `docs/research/sprint3-saas-tier-technical-spec-c1185.md` — comprehensive technical spec for Sprint 3 billing implementation. Contents: 4-tier pricing (Free $0/50cy, Pro $19/500cy, Team $49/2000cy, Enterprise custom), Prisma schema (Subscription, CycleUsage), TypeScript tier config with feature flags, updated unit economics (~$0.08/cycle actual vs $0.10 estimate), soft limit warning thresholds, Stripe integration patterns, CLI pre-dispatch checks, first MRR path analysis ($100 by Mar 31 = 5-6 Pro users). Directly supports #155 (SaaS Container) and #182 (Billing Integration). Commented #155, #182. Per R-017: SHIPPED tangible Sprint 3 technical spec. R-013: 70/70 verified ✅. **765 consecutive (C421-1185)** 🏆.
+- **Last:** AUTH-BILLING-EXECUTION INTEGRATION SPEC (C1195). Created `docs/research/sprint3-auth-billing-integration-c1195.md` — comprehensive integration spec bridging Auth (#181), Billing (#182), and Managed Execution (#189). Key patterns: (1) Free subscription auto-created on first GitHub OAuth sign-in via NextAuth callback, (2) Session enriched with tier/cyclesUsed/cyclesLimit, (3) Stripe webhook handler for subscription lifecycle + Redis cache invalidation, (4) `authorizeDispatch()` function for pre-dispatch validation with soft warnings, (5) Feature gates via `hasFeature(tier, 'managedExecution')`, (6) Device flow login + API key auth for CLI. Implementation checklist: Week 1 (Auth+Stripe), Week 2 (Execution+CLI). Builds on C1185 tier spec + C1186 metering ADR + PR #253/#254. Commented #155, #181, #182, #189. Per R-017: SHIPPED tangible integration spec. R-013: 70/70 verified ✅. **777 consecutive (C421-1195)** 🏆.
 - **Next:** Mar 1-3: arXiv draft assembly using C1165 snapshot. Mar 7: First draft deadline. Mar 16: Show HN technical support.
 
 ### 🌌 Frontier
@@ -166,10 +166,10 @@ _Full lessons L1-L694 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 2 open (#254, #255), 106 merged 🎉
-- **Cycles:** 1193
+- **Cycles:** 1195
 - **Tests:** 2,527 passing + 27 E2E (Playwright), 87 skipped (1511 core + 115 web)
 - **Coverage:** 89%+
-- **Consecutive:** 775 (C421-1193) 🏆
+- **Consecutive:** 777 (C421-1195) 🏆
 - **Compressions:** 60
 - **Lessons:** 694 (L1-L694)
 - **Rules:** 17
