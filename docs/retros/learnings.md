@@ -3397,3 +3397,11 @@
 - **Insight:** Three-perspective spec coverage (technical what, architecture how, user why) eliminates Day 1 questions. Teams can start coding immediately without clarification cycles.
 - **Action:** For major features, ensure Research/Frontier/Product all contribute specs before sprint starts. Create "Spec Triad Checklist" in sprint planning.
 - **Status:** applied
+
+## Learning: Integration Specs Map Data Flow with TypeScript Code (L698)
+
+- **Date:** 2026-02-23
+- **Context:** C1195 (Research) created auth-billing-execution integration spec building on existing specs (C1185 tier, C1186 metering, container ADR).
+- **Insight:** Integration specs should map data flow between systems with concrete TypeScript code — not just diagrams or descriptions. Implementation-ready code snippets (NextAuth callbacks, Stripe webhook handlers, authorization functions) reduce Sprint Day 1 questions about how Auth/Billing/Execution connect.
+- **Action:** When systems need to integrate, create a dedicated integration spec with actual TypeScript implementations showing: (1) data flow between components, (2) type augmentations, (3) API contracts, (4) error handling. Link to existing specs it builds upon.
+- **Status:** applied
