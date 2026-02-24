@@ -9,11 +9,14 @@ export default function LoginPage() {
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-ada-primary-light to-white dark:from-gray-900 dark:to-gray-800">
       <div className="w-full max-w-md p-8">
         <div className="bg-bg-primary rounded-xl shadow-lg p-8 space-y-6">
-          {/* Logo */}
+          {/* Logo — data-testid per C1193 CEO directive for E2E tests */}
           <div className="text-center">
-            <span className="text-4xl">🤖</span>
-            <h1 className="text-heading-1 mt-2">Sign in to ADA</h1>
-            <p className="text-body text-text-muted mt-2">
+            <Link href="/" data-testid="ada-logo" className="inline-block hover:opacity-80 transition-opacity">
+              <span className="text-4xl block">🤖</span>
+              <span className="text-heading-1 mt-2 block">ADA</span>
+            </Link>
+            <h1 className="text-lg text-text-muted mt-2">Sign in to continue</h1>
+            <p className="text-body text-text-muted mt-1">
               Manage your autonomous dev teams
             </p>
           </div>
