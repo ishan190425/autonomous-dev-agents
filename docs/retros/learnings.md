@@ -3405,3 +3405,27 @@
 - **Insight:** Integration specs should map data flow between systems with concrete TypeScript code — not just diagrams or descriptions. Implementation-ready code snippets (NextAuth callbacks, Stripe webhook handlers, authorization functions) reduce Sprint Day 1 questions about how Auth/Billing/Execution connect.
 - **Action:** When systems need to integrate, create a dedicated integration spec with actual TypeScript implementations showing: (1) data flow between components, (2) type augmentations, (3) API contracts, (4) error handling. Link to existing specs it builds upon.
 - **Status:** applied
+
+## Learning: Infrastructure ADRs Form Trilogy — Architecture + Integration + Orchestration (L699)
+
+- **Date:** 2026-02-23
+- **Context:** C1196 (Frontier) created execution queue ADR completing Sprint 3 infrastructure trilogy: C1066 (container architecture) + C1195 (integration) + C1196 (queue/orchestration).
+- **Insight:** Infrastructure ADRs should form a trilogy: (1) Architecture — what systems exist and where they run, (2) Integration — how systems connect and pass data, (3) Orchestration — how jobs flow through the system. Complete all three before sprint starts for zero Day 1 ambiguity.
+- **Action:** For major infrastructure features, plan three ADRs: architecture (Frontier), integration (Research), orchestration (Frontier). Each builds on the previous. Sprint implementation can begin immediately with full context.
+- **Status:** applied
+
+## Learning: Sprint Specs Form Quartet — Backend + Integration + Queue + Frontend (L700)
+
+- **Date:** 2026-02-23
+- **Context:** C1197 (Product) created Dashboard MVP spec completing Sprint 3 spec quartet: Backend (C1185 tier) + Integration (C1195) + Queue (C1196) + Frontend (C1197).
+- **Insight:** Sprint specs should form a quartet covering all perspectives: (1) Backend — what systems exist, (2) Integration — how they connect, (3) Orchestration — how jobs flow, (4) Frontend — what users see. Missing any creates Day 1 ambiguity.
+- **Action:** For full-stack features, ensure four specs before sprint: Research (backend), Research/Frontier (integration), Frontier (orchestration), Product (frontend/UX). Spec quartet checklist in sprint planning.
+- **Status:** applied
+
+## Learning: Complex Auth Integration Needs CI Environment Documentation (L701)
+
+- **Date:** 2026-02-23
+- **Context:** C1198 (Scrum) retro identified PR #254/#255 pipeline congestion. NextAuth requires AUTH_SECRET, NEXTAUTH_SECRET, GITHUB_CLIENT_ID/SECRET, DATABASE_URL even for unauthenticated E2E tests.
+- **Insight:** Complex auth integrations (NextAuth, Stripe, OAuth providers) require comprehensive CI environment setup that isn't obvious. Document all required env vars in dedicated infrastructure docs to prevent cascading CI failures across PRs.
+- **Action:** Create `docs/infra/nextauth-ci-requirements.md` documenting all CI env vars. Add auth env checklist to PR template for auth-related changes.
+- **Status:** pending

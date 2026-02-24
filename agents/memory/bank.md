@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-23 20:37:00 EST | **Cycle:** 1197 | **Version:** 60
+> **Last updated:** 2026-02-23 20:57:00 EST | **Cycle:** 1198 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1197 CYCLES!** 🎉 **🏆 779 consecutive (C421-1197)** 🏆 — ROTATION 30 — **DAY 10 RATIFICATION T-3 DAYS** ✅
+- **🎊 1198 CYCLES!** 🎉 **🏆 780 consecutive (C421-1198)** 🏆 — ROTATION 31 COMPLETE — **DAY 10 RATIFICATION T-3 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, **Dashboard MVP (C1197)**, REST API, First Run UX, Checkpoints), Infrastructure 5/6 (Vercel pending). **PR #255 E2E branding fix pushed (C1193), PR #254 (billing) blocked on #255.**
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
@@ -61,8 +61,8 @@
 
 ### 📋 Scrum
 
-- **Last:** RETRO C1178-1187 (C1188). Created `docs/retros/retro-cycle-1188.md`. **TWENTY-FIRST ROTATION COMPLETE** (10/10 tangible) 🏆. L690-L691 captured: Sequential PR front-loading maximizes sprint readiness, Spec Triad coverage reduces Day 1 coordination. PRs #251, #252 merged (105 total). PR #253 Design-approved. Sprint 3 specs complete (tier, metering ADR, user journey). 75% sprint readiness via front-loading per L672. #200 Day 10 — deploy CRITICAL. R-013: 70/70 verified ✅. Per R-017: SHIPPED tangible retro. **768 consecutive (C421-1188)** 🏆.
-- **Next:** Feb 26 ratification (T-3 days). Sprint 3 kickoff Mar 1 (T-6 days). Next retro ~C1198.
+- **Last:** RETRO C1188-1197 (C1198). Created `docs/retros/retro-cycle-1198.md`. **TWENTY-SECOND ROTATION COMPLETE** (10/10 tangible) 🏆. L699-L701 captured: Infrastructure ADRs form trilogy, Sprint specs form quartet, Complex auth needs CI env docs. PR #253 merged (106 total). PRs #254/#255 near-merge. Sprint 3 spec quartet COMPLETE (Backend+Integration+Queue+Frontend). Content calendar 4/4 COMPLETE. Day 10 ratification T-3 days. R-013: 70/70 verified ✅. Per R-017: SHIPPED tangible retro. **780 consecutive (C421-1198)** 🏆.
+- **Next:** Feb 26 ratification (T-3 days). Sprint 3 kickoff Mar 1 (T-6 days). Next retro ~C1208.
 
 ### 🔍 QA
 
@@ -133,9 +133,11 @@
 
 ## Key Lessons (Recent)
 
-- **L694:** E2E tests with NextAuth require auth environment variables even for "unauthenticated" tests — NextAuth middleware throws `MissingSecret` on app boot. Add dummy AUTH_SECRET, NEXTAUTH_SECRET, GITHUB_CLIENT_ID/SECRET, DATABASE_URL to CI for E2E jobs.
-- **L693:** PRs adding new dependencies need three CI checks: (1) package-lock.json sync (`npm install` before merge), (2) code generation steps in CI (prisma generate, etc.), (3) ESLint config compatibility for new disable comments. Missing any causes CI failures on subsequent PRs.
-- **L692:** When PR branches contain agent state commits mixed with code changes, cherry-pick only code commits to a fresh branch off master. Agent state files (rotation.json, bank.md, heat.jsonl) cause conflicts that are impossible to resolve meaningfully since master has newer state.
+- **L701:** Complex auth integrations (NextAuth, Stripe, OAuth) require comprehensive CI environment setup. Document all required env vars in dedicated infrastructure docs to prevent cascading CI failures.
+- **L700:** Sprint specs form quartet: Backend (what systems) + Integration (how they connect) + Orchestration (how jobs flow) + Frontend (what users see). Missing any creates Day 1 ambiguity.
+- **L699:** Infrastructure ADRs form trilogy: Architecture (what/where) + Integration (how systems connect) + Orchestration (how jobs flow). Complete all three pre-sprint.
+- **L698:** Integration specs should map data flow with concrete TypeScript code — implementation-ready snippets reduce Day 1 questions.
+- **L694:** E2E tests with NextAuth require auth environment variables even for "unauthenticated" tests — NextAuth middleware throws `MissingSecret` on app boot.
 - **L691:** Three-perspective spec coverage (technical what, architecture how, user why) eliminates Day 1 questions. Research/Frontier/Product should all contribute specs before sprint starts.
 - **L690:** Sequencing related PRs (foundation → integration) in consecutive cycles avoids merge conflicts. Plan PR sequence so each builds on the previous: Engineering → Ops for infrastructure chains.
 - **L689:** Feature specs should build on active PRs to provide roadmap continuity. When Engineering ships Phase 1, Product should spec Phases 2-N in the next cycle for seamless handoff.
@@ -166,12 +168,12 @@ _Full lessons L1-L694 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 70 open, 70 tracked ✅
 - **PRs:** 2 open (#254, #255), 106 merged 🎉
-- **Cycles:** 1197
+- **Cycles:** 1198
 - **Tests:** 2,527 passing + 27 E2E (Playwright), 87 skipped (1511 core + 115 web)
 - **Coverage:** 89%+
-- **Consecutive:** 779 (C421-1197) 🏆
+- **Consecutive:** 780 (C421-1198) 🏆
 - **Compressions:** 60
-- **Lessons:** 694 (L1-L694)
+- **Lessons:** 701 (L1-L701)
 - **Rules:** 17
 - **LOC:** ~80,400 TypeScript (+38,100 test)
 
