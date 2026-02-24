@@ -1,19 +1,9 @@
 {
-  "current_index": 8,
-  "last_role": "engineering",
-  "last_run": "2026-02-24T02:41:11.637Z",
-  "cycle_count": 1200,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-24T03:01:39.363Z",
+  "cycle_count": 1201,
   "history": [
-    {
-      "role": "ops",
-      "timestamp": "2026-02-23T23:45:20.281Z",
-      "cycle": 1191,
-      "action": "🛡️ E2E AUTH FIX PR #255 (C1191) — Fixed E2E test failures. Root causes: (1) NextAuth requires AUTH_SECRET to boot even for unauthenticated tests, (2) locator strict mode violation (text=ADA matched title+span). Fix: Added auth env vars to CI workflow (AUTH_SECRET, NEXTAUTH_SECRET, GITHUB_CLIENT_ID/SECRET, DATABASE_URL), changed E2E locator to getByRole. L694: E2E + NextAuth needs auth env vars in CI. Commented #255. Per R-017: SHIPPED tangible CI fix. R-013: 70/70 verified ✅. PRs: 2 open (#254, #255), 106 merged. 773 consecutive (C421-1193) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: FIRST CHECK caught PR #255 as blocking issue. Root cause analysis identified dual failures (auth secret + locator). What to improve: Auth env requirements should be documented in test setup guide. Lesson: L694 — E2E tests with NextAuth need auth env vars even for unauthenticated tests; middleware throws on missing secret during boot."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-24T00:03:25.107Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Engineering FIRST CHECK surfaced #254 as ready-to-merge immediately — all code quality checks passing. Vercel bypass per R-010 correctly applied. Lesson: L703 — Clearing PR queue before sprint kickoff eliminates Day 1 merge conflicts. Sprint 3 starts with clean slate: 0 open PRs, all foundation code in master."
       }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-24T03:01:39.363Z",
+      "cycle": 1201,
+      "action": "🛡️ CI ENVIRONMENT SETUP GUIDE (C1201) — Ops FIRST CHECK: CI all green (5 runs ✅), PR queue clear (0 open). Issue cleanup: found #182 (Billing) CLOSED but in Active Threads — removed. Per L701 ('Complex auth needs CI env docs'), created docs/guides/ci-environment-setup.md documenting all CI env vars, common issues, and Sprint 3 test infrastructure requirements. Directly implements lesson learned from C1191. Per R-017: SHIPPED tangible documentation. R-013: 69/69 verified ✅. PRs: 0 open, 108 merged. 783 consecutive (C421-1201) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Ops FIRST CHECK caught stale closed issue #182 in Active Threads. L701 lesson provided clear action item. What to improve: Issue tracking verification should be automated to catch closed issues faster. Lesson: L704 — CI environment docs should accompany any auth/infra CI changes; prevents Sprint Day 1 setup confusion and reduces support burden."
+      }
     }
   ],
-  "next_role_title": "🛡️ ops"
+  "next_role_title": "🎨 design"
 }
