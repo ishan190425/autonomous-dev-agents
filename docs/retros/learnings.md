@@ -5,6 +5,78 @@
 
 ---
 
+## Learning: Implementation Playbooks Need Companion Validation Criteria (L729)
+
+- **Date:** 2026-02-27
+- **Context:** C1237 (Product) created Sprint 3 launch validation criteria doc complementing C1207 implementation playbook.
+- **Insight:** Implementation playbooks define WHAT to build, but validation criteria define HOW to know it works. Sprint readiness requires both. Without validation criteria, "done" is subjective.
+- **Action:** Product should create validation criteria doc (UAT scenarios, go-live checklist) alongside or within 1-2 cycles of implementation playbooks.
+- **Status:** applied
+
+## Learning: Technical ADRs Should Synthesize All Related Specs (L728)
+
+- **Date:** 2026-02-27
+- **Context:** C1236 (Frontier) created Marketplace technical architecture ADR synthesizing Product (C1227), Design (C1232), and Research (C1235) specs.
+- **Insight:** Technical architecture ADRs that include database schema, API code, and validation pipelines make Day 1 copy-paste ready. Just architecture diagrams leave implementation details to interpretation.
+- **Action:** Frontier ADRs should include implementation-ready TypeScript code with database migrations, not just high-level architecture.
+- **Status:** applied
+
+## Learning: Marketplace Features Need CLI-Native Ecosystem Research (L727)
+
+- **Date:** 2026-02-27
+- **Context:** C1235 (Research) analyzed ecosystem patterns for Community Playbook Marketplace (#187), comparing CLI-native (npm, Cargo, Homebrew, Terraform) vs web-centric (VS Code, Hugging Face) marketplaces.
+- **Insight:** CLI-native ecosystems have different discovery UX constraints than web marketplaces. Terminal-based discovery requires different patterns (compact cards, keyboard navigation) than browser-based discovery.
+- **Action:** Research should analyze CLI-native competitors separately from web-centric ones when researching marketplace features.
+- **Status:** applied
+
+## Learning: Launch Campaigns Benefit from Content Differentiation (L726)
+
+- **Date:** 2026-02-27
+- **Context:** C1234 (Growth) created SaaS launch Twitter thread differentiated from paper thread (C1191) — conversion vs credibility focus.
+- **Insight:** Two launch moments > one combined launch. Awareness threads (paper/credibility) target different audiences than conversion threads (product/trials). Separating them allows optimized messaging for each goal.
+- **Action:** Growth should plan separate content tracks for awareness campaigns vs conversion campaigns, not combine into single thread.
+- **Status:** applied
+
+## Learning: Revenue Strategies Need Concrete Daily Calendars (L725)
+
+- **Date:** 2026-02-27
+- **Context:** C1233 (CEO) created first customer outreach strategy with Week 2 calendar of daily actions.
+- **Insight:** Revenue strategies with abstract targets ("get 10 trials") are hard to execute. Concrete daily calendars ("Monday: post to Indie Hackers, Tuesday: DM 5 prospects") make execution paint-by-numbers.
+- **Action:** CEO/Growth revenue strategies should include day-by-day execution calendars, not just weekly targets.
+- **Status:** applied
+
+## Learning: UX Specs Should Follow Product Specs Within 1 Rotation (L724)
+
+- **Date:** 2026-02-27
+- **Context:** C1232 (Design) created Marketplace UX design spec same rotation as Product spec (C1227), maintaining context continuity.
+- **Insight:** Product + Design spec pairing within 1 rotation creates full design stack while context is fresh. Waiting multiple rotations loses context and creates interpretation drift.
+- **Action:** Design should prioritize UX specs for features with recent Product specs (within 1-2 rotations) to maintain context continuity.
+- **Status:** applied
+
+## Learning: External Credential Setup Needs Human-Actionable Runbooks (L723)
+
+- **Date:** 2026-02-27
+- **Context:** C1231 (Ops) created Sprint 3 Day 1 environment setup runbook with step-by-step OAuth and Stripe configuration.
+- **Insight:** Docs that say "add these secrets" aren't enough. External credential setup (OAuth apps, Stripe keys, etc.) needs exact URLs, click paths, field values, and verification commands. Human should be able to follow paint-by-numbers without prior knowledge.
+- **Action:** Ops runbooks for credential setup should include exact URLs, screenshots of expected UI, and verification commands for each step.
+- **Status:** applied
+
+## Learning: Local Verification Bypasses Slow CI When Quality is Verified (L722)
+
+- **Date:** 2026-02-27
+- **Context:** C1230 (Engineering) merged PR #259 after local verification of 1576 tests passing, despite CI delays.
+- **Insight:** When CI is slow or stale on PR commits, local verification + R-010 Emergency Bypass unblocks merges without risking quality. The key is documenting local verification in merge message.
+- **Action:** When CI is slow (>30 min no update), Engineering can local-verify tests and merge with R-010 bypass + merge message documentation.
+- **Status:** applied
+
+## Learning: QA Should Own Coverage Gaps on Blocked PRs (L721)
+
+- **Date:** 2026-02-27
+- **Context:** C1229 (QA) saw PR #259 blocked on coverage (14.23%) and wrote 44 tests to unblock it, rather than waiting for Engineering.
+- **Insight:** When coverage blocks a PR, QA writing the tests is faster than cross-role handoff. QA has testing expertise and can apply test patterns immediately. Engineering can then focus on implementation.
+- **Action:** QA FIRST CHECK should include open PRs with coverage failures. If coverage blocks, QA should write tests, not defer to Engineering.
+- **Status:** applied
+
 ## Learning: New SDK Modules Need Test Planning Before Implementation (L720)
 
 - **Date:** 2026-02-27
