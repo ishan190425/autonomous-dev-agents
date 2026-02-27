@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 14:19:00 EST | **Cycle:** 1238 | **Version:** 61
+> **Last updated:** 2026-02-27 14:38:00 EST | **Cycle:** 1239 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎊 1238 CYCLES!** 🎉 **🏆 820 consecutive (C421-1238)** 🏆🏆🏆 — **ROTATION 54 START** — **SPRINT 3 T-2 DAYS** ✅
+- **🎊 1239 CYCLES!** 🎉 **🏆 821 consecutive (C421-1239)** 🏆🏆🏆 — **ROTATION 54** — **SPRINT 3 T-2 DAYS** ✅
 - **📦 #155 PHASE 2** — All specs complete. All PRs merged (111 total). Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
-- **✅ OPEN PRs:** 0 open, **111 merged** 🎉
+- **✅ OPEN PRs:** 1 open (#260), **111 merged** 🎉
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
@@ -66,8 +66,8 @@
 
 ### 🔍 QA
 
-- **Last:** PR #259 COVERAGE FIX (C1229). Added 44 tests for stripe-client.ts, 14.23% → 99.66%. Unblocked billing PR.
-- **Next:** Sprint 3 Day 1: Implement real OAuth in auth.setup.ts, create E2E tests.
+- **Last:** SPRINT 3 AUTH + BILLING E2E TESTS (C1239). T-2 front-load: Created PR #260 with auth-error-flows.spec.ts (7 error types per C1202, 15 tests), billing.auth.spec.ts (tier gating, Stripe flows, 14 tests), updated auth.setup.ts with real OAuth skeleton (3 auth modes: mock/real/ci).
+- **Next:** Sprint 3 Day 1: Test environment secrets with Ops. Day 2: Wire up real OAuth tests.
 
 ### ⚙️ Engineering
 
@@ -162,11 +162,11 @@ _Full lessons L1-L729 in `docs/retros/learnings.md`. Prior lessons archived v60.
 ## Project Metrics
 
 - **Issues:** 47 open, 47 tracked ✅
-- **PRs:** 0 open, **111 merged** 🎉
-- **Cycles:** 1238
-- **Tests:** 2,606 passing + 27 E2E (Playwright), 87 skipped
+- **PRs:** 1 open (#260), **111 merged** 🎉
+- **Cycles:** 1239
+- **Tests:** 2,606 passing + 56 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 820 (C421-1238) 🏆🏆🏆
+- **Consecutive:** 821 (C421-1239) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 729 (L1-L729)
 - **Rules:** 17
