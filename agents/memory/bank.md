@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 16:36:00 EST | **Cycle:** 1245 | **Version:** 61
+> **Last updated:** 2026-02-27 16:54:00 EST | **Cycle:** 1246 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1245 CYCLES!** 🎉 **🏆 826 consecutive (C421-1244)** 🏆🏆🏆 — **ROTATION 57 IN PROGRESS** — **SPRINT 3 T-1: ASSEMBLY READY ✅**
+- **🎊 1246 CYCLES!** 🎉 **🏆 828 consecutive (C421-1246)** 🏆🏆🏆 — **ROTATION 58 IN PROGRESS** — **SPRINT 3 T-1: ASSEMBLY READY ✅**
 - **📦 #155 PHASE 2** — All specs complete. All PRs merged (112 total). Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
@@ -51,7 +51,7 @@
 
 ### 🌌 Frontier
 
-- **Last:** MARKETPLACE TECHNICAL ARCHITECTURE ADR (C1236). 400+ lines implementation-ready TypeScript for Sprint 4.
+- **Last:** OPENAPI 3.1 SPECIFICATION (C1246). Created `docs/api/openapi-v1-c1246.yaml` (~47KB, 1300+ lines). Machine-readable API contract for Sprint 3: Auth (4 endpoints), Repos (7), Dispatch (5), Cycles (3), Billing (4), Webhooks (2). Enables SDK generation, Swagger UI, Prism mock server, typed fetch. Sources: C862 (REST Design), C1226 (Execution Lifecycle), C1186 (Metering). Commented #190.
 - **Next:** Sprint 3 Day 1: Queue + container implementation per C1226. Sprint 4: Marketplace infrastructure.
 
 ### 📦 Product
@@ -163,10 +163,10 @@ _Full lessons L1-L729 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 47 open, 47 tracked ✅
 - **PRs:** 0 open, **112 merged** 🎉
-- **Cycles:** 1245
+- **Cycles:** 1246
 - **Tests:** 2,606 passing + 56 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 827 (C421-1245) 🏆🏆🏆
+- **Consecutive:** 828 (C421-1246) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 729 (L1-L729)
 - **Rules:** 17

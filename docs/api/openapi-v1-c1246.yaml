@@ -1,0 +1,1702 @@
+# ADA SaaS Platform API - OpenAPI 3.1 Specification
+# Author: 🌌 The Frontier (C1246)
+# Date: 2026-02-27
+# Status: Sprint 3 Implementation Ready
+# Related: #155 (SaaS Container), #181 (Auth), #189 (Execution), #190 (API Gateway)
+# Sources: C862 (REST Design), C1226 (Execution Lifecycle), C1186 (Metering)
+
+openapi: 3.1.0
+info:
+  title: ADA SaaS Platform API
+  description: |
+    REST API for the ADA (Autonomous Dev Agents) SaaS platform.
+
+    ## Overview
+    This API enables programmatic access to managed agent execution, repository management,
+    billing, and dispatch scheduling. All endpoints require authentication via GitHub OAuth
+    or API key.
+
+    ## Authentication
+    - **Browser sessions**: GitHub OAuth 2.0 via NextAuth.js
+    - **API access**: API key in `X-API-Key` header
+    - **Rate limiting**: Tier-based (Starter: 100/hour, Pro: 1000/hour, Team: 10000/hour)
+
+    ## Error Handling
+    All errors follow RFC 7807 Problem Details format with ADA-specific extensions.
+
+  version: 1.0.0
+  contact:
+    name: ADA Team
+    url: https://ada.dev
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.ada.dev/v1
+    description: Production API
+  - url: https://api.staging.ada.dev/v1
+    description: Staging API
+  - url: http://localhost:3000/api/v1
+    description: Local development
+
+tags:
+  - name: Authentication
+    description: OAuth flow and session management
+  - name: Repositories
+    description: GitHub repository discovery and configuration
+  - name: Dispatch
+    description: Agent dispatch cycle management and execution
+  - name: Billing
+    description: Subscription and usage metering
+  - name: Cycles
+    description: Execution cycle history and logs
+
+paths:
+  # ============================================================================
+  # AUTHENTICATION
+  # ============================================================================
+  /auth/github:
+    get:
+      tags: [Authentication]
+      summary: Initiate GitHub OAuth flow
+      description: Redirects to GitHub OAuth authorization page
+      operationId: initiateGitHubOAuth
+      parameters:
+        - name: redirect_uri
+          in: query
+          description: 'Post-auth redirect URL (default: /dashboard)'
+          schema:
+            type: string
+            format: uri
+      responses:
+        '302':
+          description: Redirect to GitHub OAuth
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+
+  /auth/github/callback:
+    get:
+      tags: [Authentication]
+      summary: GitHub OAuth callback
+      description: Handles OAuth callback, creates/updates user session
+      operationId: handleGitHubCallback
+      parameters:
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+          description: OAuth authorization code
+        - name: state
+          in: query
+          required: true
+          schema:
+            type: string
+          description: CSRF state token
+      responses:
+        '302':
+          description: Redirect to dashboard on success
+        '400':
+          $ref: '#/components/responses/OAuthError'
+
+  /auth/session:
+    get:
+      tags: [Authentication]
+      summary: Get current session
+      description: Returns current user session details
+      operationId: getSession
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Session details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /auth/logout:
+    post:
+      tags: [Authentication]
+      summary: End session
+      description: Invalidates current session
+      operationId: logout
+      security:
+        - sessionCookie: []
+      responses:
+        '204':
+          description: Session ended successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  # ============================================================================
+  # REPOSITORIES
+  # ============================================================================
+  /repos:
+    get:
+      tags: [Repositories]
+      summary: List connected repositories
+      description: Returns all repositories connected to the user's account
+      operationId: listRepos
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PerPageParam'
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, paused, setup]
+          description: Filter by repository status
+      responses:
+        '200':
+          description: List of repositories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepoListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /repos/discover:
+    get:
+      tags: [Repositories]
+      summary: Discover available repositories
+      description: |
+        Lists GitHub repositories available for connection. Only returns repos
+        where the user has admin access and ADA is not already configured.
+      operationId: discoverRepos
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PerPageParam'
+        - name: search
+          in: query
+          schema:
+            type: string
+          description: Filter by repository name
+      responses:
+        '200':
+          description: Discoverable repositories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoverReposResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /repos/{repoId}:
+    get:
+      tags: [Repositories]
+      summary: Get repository details
+      description: Returns detailed information about a connected repository
+      operationId: getRepo
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/RepoIdParam'
+      responses:
+        '200':
+          description: Repository details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepoResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    patch:
+      tags: [Repositories]
+      summary: Update repository settings
+      description: Updates dispatch settings, schedule, or pause state
+      operationId: updateRepo
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/RepoIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepoUpdateRequest'
+      responses:
+        '200':
+          description: Updated repository
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepoResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+    delete:
+      tags: [Repositories]
+      summary: Disconnect repository
+      description: Removes ADA configuration from repository (does not delete repo)
+      operationId: disconnectRepo
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/RepoIdParam'
+      responses:
+        '204':
+          description: Repository disconnected
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /repos/{repoId}/sync:
+    post:
+      tags: [Repositories]
+      summary: Sync repository state
+      description: |
+        Pulls latest state from GitHub (issues, PRs, team config).
+        Useful after manual changes in GitHub.
+      operationId: syncRepo
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/RepoIdParam'
+      responses:
+        '202':
+          description: Sync initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyncResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /repos/select:
+    post:
+      tags: [Repositories]
+      summary: Connect a new repository
+      description: |
+        Initializes ADA on a discovered repository. Creates agents/ folder,
+        initial roster, and schedules first dispatch.
+      operationId: selectRepo
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SelectRepoRequest'
+      responses:
+        '201':
+          description: Repository connected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepoResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Repository already connected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  # ============================================================================
+  # DISPATCH
+  # ============================================================================
+  /dispatch:
+    post:
+      tags: [Dispatch]
+      summary: Start a dispatch cycle
+      description: |
+        Triggers an immediate dispatch cycle for the specified repository.
+        Validates billing limits and enqueues the job.
+      operationId: startDispatch
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DispatchRequest'
+      responses:
+        '202':
+          description: Dispatch queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '402':
+          $ref: '#/components/responses/BillingRequired'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /dispatch/{dispatchId}:
+    get:
+      tags: [Dispatch]
+      summary: Get dispatch status
+      description: Returns current status and progress of a dispatch cycle
+      operationId: getDispatchStatus
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - name: dispatchId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Dispatch cycle ID
+      responses:
+        '200':
+          description: Dispatch status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchStatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      tags: [Dispatch]
+      summary: Cancel dispatch
+      description: Cancels a queued or running dispatch (if possible)
+      operationId: cancelDispatch
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - name: dispatchId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Dispatch cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DispatchStatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          description: Dispatch cannot be cancelled (already completed/failed)
+
+  /dispatch/schedule:
+    get:
+      tags: [Dispatch]
+      summary: List scheduled dispatches
+      description: Returns upcoming scheduled dispatches for user's repositories
+      operationId: listScheduledDispatches
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - name: repoId
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Filter by repository
+      responses:
+        '200':
+          description: Scheduled dispatches
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+    post:
+      tags: [Dispatch]
+      summary: Create dispatch schedule
+      description: Creates a recurring dispatch schedule for a repository
+      operationId: createDispatchSchedule
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleRequest'
+      responses:
+        '201':
+          description: Schedule created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '402':
+          $ref: '#/components/responses/BillingRequired'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /dispatch/schedule/{scheduleId}:
+    patch:
+      tags: [Dispatch]
+      summary: Update dispatch schedule
+      description: Modifies an existing dispatch schedule
+      operationId: updateDispatchSchedule
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleUpdateRequest'
+      responses:
+        '200':
+          description: Schedule updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      tags: [Dispatch]
+      summary: Delete dispatch schedule
+      description: Removes a dispatch schedule
+      operationId: deleteDispatchSchedule
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - name: scheduleId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Schedule deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ============================================================================
+  # CYCLES
+  # ============================================================================
+  /cycles:
+    get:
+      tags: [Cycles]
+      summary: List dispatch cycles
+      description: Returns history of dispatch cycles with filtering options
+      operationId: listCycles
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/PerPageParam'
+        - name: repoId
+          in: query
+          schema:
+            type: string
+            format: uuid
+          description: Filter by repository
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [queued, running, success, failed, timeout, cancelled]
+          description: Filter by status
+        - name: role
+          in: query
+          schema:
+            type: string
+          description: Filter by agent role (e.g., engineering, product)
+        - name: since
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter cycles after this timestamp
+        - name: until
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter cycles before this timestamp
+      responses:
+        '200':
+          description: Cycle history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CycleListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /cycles/{cycleId}:
+    get:
+      tags: [Cycles]
+      summary: Get cycle details
+      description: Returns detailed information about a specific cycle including logs
+      operationId: getCycle
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - name: cycleId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Cycle details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CycleResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /cycles/{cycleId}/logs:
+    get:
+      tags: [Cycles]
+      summary: Get cycle logs
+      description: |
+        Returns execution logs for a cycle. Supports streaming via SSE
+        for in-progress cycles.
+      operationId: getCycleLogs
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - name: cycleId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: stream
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Enable SSE streaming for live logs
+        - name: level
+          in: query
+          schema:
+            type: string
+            enum: [debug, info, warn, error]
+            default: info
+          description: Minimum log level to return
+      responses:
+        '200':
+          description: Cycle logs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogsResponse'
+            text/event-stream:
+              schema:
+                type: string
+                description: SSE stream of log events
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # ============================================================================
+  # BILLING
+  # ============================================================================
+  /billing/subscription:
+    get:
+      tags: [Billing]
+      summary: Get subscription details
+      description: Returns current subscription tier, limits, and Stripe customer info
+      operationId: getSubscription
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Subscription details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /billing/usage:
+    get:
+      tags: [Billing]
+      summary: Get usage metrics
+      description: Returns current billing period usage (cycles, tokens, repos)
+      operationId: getUsage
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      parameters:
+        - name: period
+          in: query
+          schema:
+            type: string
+            enum: [current, previous, all]
+            default: current
+          description: Billing period to query
+      responses:
+        '200':
+          description: Usage metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /billing/checkout:
+    post:
+      tags: [Billing]
+      summary: Create checkout session
+      description: Creates a Stripe Checkout session for subscription upgrade
+      operationId: createCheckout
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutRequest'
+      responses:
+        '200':
+          description: Checkout session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /billing/portal:
+    post:
+      tags: [Billing]
+      summary: Create billing portal session
+      description: Creates a Stripe Billing Portal session for subscription management
+      operationId: createPortalSession
+      security:
+        - sessionCookie: []
+        - apiKey: []
+      responses:
+        '200':
+          description: Portal session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortalResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  # ============================================================================
+  # WEBHOOKS (Internal - documented for completeness)
+  # ============================================================================
+  /webhooks/github:
+    post:
+      tags: [Webhooks]
+      summary: GitHub webhook handler
+      description: |
+        Handles GitHub webhook events (push, issue, PR events).
+        Authenticated via webhook signature.
+      operationId: handleGitHubWebhook
+      security:
+        - githubWebhookSignature: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: GitHub webhook payload (varies by event type)
+      responses:
+        '200':
+          description: Webhook processed
+        '400':
+          description: Invalid payload
+        '401':
+          description: Invalid signature
+
+  /webhooks/stripe:
+    post:
+      tags: [Webhooks]
+      summary: Stripe webhook handler
+      description: |
+        Handles Stripe webhook events (subscription changes, payment events).
+        Authenticated via webhook signature.
+      operationId: handleStripeWebhook
+      security:
+        - stripeWebhookSignature: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Stripe webhook payload
+      responses:
+        '200':
+          description: Webhook processed
+        '400':
+          description: Invalid payload
+
+# ==============================================================================
+# COMPONENTS
+# ==============================================================================
+components:
+  # ============================================================================
+  # SECURITY SCHEMES
+  # ============================================================================
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: next-auth.session-token
+      description: NextAuth.js session cookie (browser sessions)
+
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for programmatic access
+
+    githubWebhookSignature:
+      type: apiKey
+      in: header
+      name: X-Hub-Signature-256
+      description: GitHub webhook HMAC signature
+
+    stripeWebhookSignature:
+      type: apiKey
+      in: header
+      name: Stripe-Signature
+      description: Stripe webhook signature
+
+  # ============================================================================
+  # PARAMETERS
+  # ============================================================================
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: Page number for pagination
+
+    PerPageParam:
+      name: perPage
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+      description: Items per page
+
+    RepoIdParam:
+      name: repoId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Repository UUID
+
+  # ============================================================================
+  # RESPONSES
+  # ============================================================================
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: UNAUTHORIZED
+              message: Authentication required
+            meta:
+              requestId: req_abc123
+              timestamp: '2026-02-27T12:00:00Z'
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: NOT_FOUND
+              message: The requested resource was not found
+            meta:
+              requestId: req_abc123
+              timestamp: '2026-02-27T12:00:00Z'
+
+    ValidationError:
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationErrorResponse'
+
+    RateLimited:
+      description: Rate limit exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds until rate limit resets
+        X-RateLimit-Limit:
+          schema:
+            type: integer
+          description: Request limit per hour
+        X-RateLimit-Remaining:
+          schema:
+            type: integer
+          description: Remaining requests in window
+        X-RateLimit-Reset:
+          schema:
+            type: integer
+          description: Unix timestamp of rate limit reset
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: RATE_LIMIT_EXCEEDED
+              message: Rate limit exceeded. Retry after 60 seconds.
+              details:
+                retryAfter: 60
+                limit: 100
+                remaining: 0
+            meta:
+              requestId: req_abc123
+              timestamp: '2026-02-27T12:00:00Z'
+
+    BillingRequired:
+      description: Payment required (cycle limit exceeded)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: BILLING_REQUIRED
+              message: Cycle limit exceeded. Upgrade your subscription to continue.
+              details:
+                usage: 500
+                limit: 500
+                tier: starter
+            meta:
+              requestId: req_abc123
+              timestamp: '2026-02-27T12:00:00Z'
+
+    OAuthError:
+      description: OAuth error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error:
+              code: OAUTH_ERROR
+              message: Failed to complete OAuth flow
+              details:
+                oauthError: access_denied
+            meta:
+              requestId: req_abc123
+              timestamp: '2026-02-27T12:00:00Z'
+
+  # ============================================================================
+  # SCHEMAS
+  # ============================================================================
+  schemas:
+    # --------------------------------------------------------------------------
+    # Common
+    # --------------------------------------------------------------------------
+    ErrorResponse:
+      type: object
+      required: [error, meta]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+            message:
+              type: string
+              description: Human-readable error message
+            details:
+              type: object
+              additionalProperties: true
+              description: Additional error context
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    ValidationErrorResponse:
+      type: object
+      required: [error, meta]
+      properties:
+        error:
+          type: object
+          required: [code, message, fields]
+          properties:
+            code:
+              type: string
+              enum: [VALIDATION_ERROR]
+            message:
+              type: string
+            fields:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+                  code:
+                    type: string
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    ResponseMeta:
+      type: object
+      required: [requestId, timestamp]
+      properties:
+        requestId:
+          type: string
+          description: Unique request identifier for debugging
+        timestamp:
+          type: string
+          format: date-time
+          description: Response timestamp
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        perPage:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+
+    # --------------------------------------------------------------------------
+    # Auth
+    # --------------------------------------------------------------------------
+    SessionResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+            expires:
+              type: string
+              format: date-time
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        githubId:
+          type: integer
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        avatarUrl:
+          type: string
+          format: uri
+        tier:
+          type: string
+          enum: [free, starter, pro, team]
+        createdAt:
+          type: string
+          format: date-time
+
+    # --------------------------------------------------------------------------
+    # Repositories
+    # --------------------------------------------------------------------------
+    RepoListResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Repo'
+        meta:
+          allOf:
+            - $ref: '#/components/schemas/ResponseMeta'
+            - type: object
+              properties:
+                pagination:
+                  $ref: '#/components/schemas/Pagination'
+
+    DiscoverReposResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DiscoverableRepo'
+        meta:
+          allOf:
+            - $ref: '#/components/schemas/ResponseMeta'
+            - type: object
+              properties:
+                pagination:
+                  $ref: '#/components/schemas/Pagination'
+
+    RepoResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          $ref: '#/components/schemas/Repo'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    Repo:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        githubId:
+          type: integer
+        owner:
+          type: string
+        name:
+          type: string
+        fullName:
+          type: string
+          description: '{owner}/{name}'
+        status:
+          type: string
+          enum: [active, paused, setup]
+        settings:
+          $ref: '#/components/schemas/RepoSettings'
+        stats:
+          $ref: '#/components/schemas/RepoStats'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    DiscoverableRepo:
+      type: object
+      properties:
+        githubId:
+          type: integer
+        owner:
+          type: string
+        name:
+          type: string
+        fullName:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+        starCount:
+          type: integer
+        hasAgentsFolder:
+          type: boolean
+          description: Whether agents/ folder already exists
+
+    RepoSettings:
+      type: object
+      properties:
+        dispatchEnabled:
+          type: boolean
+        scheduleInterval:
+          type: string
+          description: Cron expression or interval (e.g., "*/15 * * * *")
+        executor:
+          type: string
+          enum: [openclaw, claude-code]
+          description: Agent executor backend
+        autoMerge:
+          type: boolean
+          description: Auto-merge PRs when CI passes
+        notificationChannel:
+          type: string
+          description: Slack/Discord channel for notifications
+
+    RepoStats:
+      type: object
+      properties:
+        cycleCount:
+          type: integer
+        consecutiveCycles:
+          type: integer
+        lastCycleAt:
+          type: string
+          format: date-time
+        prsMerged:
+          type: integer
+        issuesClosed:
+          type: integer
+
+    RepoUpdateRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [active, paused]
+        settings:
+          $ref: '#/components/schemas/RepoSettings'
+
+    SelectRepoRequest:
+      type: object
+      required: [githubId]
+      properties:
+        githubId:
+          type: integer
+          description: GitHub repository ID
+        templateId:
+          type: string
+          description: Template to use for agents/ initialization
+        settings:
+          $ref: '#/components/schemas/RepoSettings'
+
+    SyncResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          properties:
+            syncId:
+              type: string
+              format: uuid
+            status:
+              type: string
+              enum: [pending, syncing]
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    # --------------------------------------------------------------------------
+    # Dispatch
+    # --------------------------------------------------------------------------
+    DispatchRequest:
+      type: object
+      required: [repoId]
+      properties:
+        repoId:
+          type: string
+          format: uuid
+        priority:
+          type: string
+          enum: [low, normal, high]
+          default: normal
+        forceRole:
+          type: string
+          description: Force execution for a specific role (overrides rotation)
+        dryRun:
+          type: boolean
+          default: false
+          description: Simulate dispatch without executing
+
+    DispatchResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          properties:
+            dispatchId:
+              type: string
+              format: uuid
+            status:
+              type: string
+              enum: [queued, running]
+            position:
+              type: integer
+              description: Position in queue (if queued)
+            estimatedStartTime:
+              type: string
+              format: date-time
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    DispatchStatusResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          properties:
+            dispatchId:
+              type: string
+              format: uuid
+            repoId:
+              type: string
+              format: uuid
+            status:
+              type: string
+              enum: [queued, running, success, failed, timeout, cancelled]
+            role:
+              type: string
+            cycleNumber:
+              type: integer
+            startedAt:
+              type: string
+              format: date-time
+            completedAt:
+              type: string
+              format: date-time
+            durationMs:
+              type: integer
+            action:
+              type: string
+              description: Brief description of action taken
+            reflection:
+              type: string
+              description: Self-reflection on the cycle
+            tokensUsed:
+              type: integer
+            cost:
+              type: number
+              format: float
+              description: Estimated cost in USD
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    ScheduleListResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Schedule'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    ScheduleResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          $ref: '#/components/schemas/Schedule'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        repoId:
+          type: string
+          format: uuid
+        cron:
+          type: string
+          description: Cron expression
+        timezone:
+          type: string
+          description: IANA timezone (e.g., "America/New_York")
+        enabled:
+          type: boolean
+        nextRunAt:
+          type: string
+          format: date-time
+        lastRunAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+
+    ScheduleRequest:
+      type: object
+      required: [repoId, cron]
+      properties:
+        repoId:
+          type: string
+          format: uuid
+        cron:
+          type: string
+          description: Cron expression (e.g., "*/15 * * * *")
+        timezone:
+          type: string
+          default: UTC
+        enabled:
+          type: boolean
+          default: true
+
+    ScheduleUpdateRequest:
+      type: object
+      properties:
+        cron:
+          type: string
+        timezone:
+          type: string
+        enabled:
+          type: boolean
+
+    # --------------------------------------------------------------------------
+    # Cycles
+    # --------------------------------------------------------------------------
+    CycleListResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CycleSummary'
+        meta:
+          allOf:
+            - $ref: '#/components/schemas/ResponseMeta'
+            - type: object
+              properties:
+                pagination:
+                  $ref: '#/components/schemas/Pagination'
+
+    CycleResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          $ref: '#/components/schemas/Cycle'
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    CycleSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        repoId:
+          type: string
+          format: uuid
+        cycleNumber:
+          type: integer
+        role:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, success, failed, timeout, cancelled]
+        action:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        durationMs:
+          type: integer
+
+    Cycle:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        repoId:
+          type: string
+          format: uuid
+        cycleNumber:
+          type: integer
+        role:
+          type: string
+        roleEmoji:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, success, failed, timeout, cancelled]
+        action:
+          type: string
+        reflection:
+          type: object
+          properties:
+            outcome:
+              type: string
+              enum: [success, partial, blocked]
+            whatWorked:
+              type: string
+            whatToImprove:
+              type: string
+            lesson:
+              type: string
+        artifacts:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum: [pr, issue, commit, comment]
+              url:
+                type: string
+                format: uri
+              title:
+                type: string
+        metrics:
+          type: object
+          properties:
+            tokensUsed:
+              type: integer
+            promptTokens:
+              type: integer
+            completionTokens:
+              type: integer
+            cost:
+              type: number
+              format: float
+            durationMs:
+              type: integer
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+
+    LogsResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          properties:
+            logs:
+              type: array
+              items:
+                $ref: '#/components/schemas/LogEntry'
+            hasMore:
+              type: boolean
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    LogEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        level:
+          type: string
+          enum: [debug, info, warn, error]
+        message:
+          type: string
+        context:
+          type: object
+          additionalProperties: true
+
+    # --------------------------------------------------------------------------
+    # Billing
+    # --------------------------------------------------------------------------
+    SubscriptionResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          properties:
+            tier:
+              type: string
+              enum: [free, starter, pro, team]
+            status:
+              type: string
+              enum: [active, trialing, past_due, cancelled]
+            limits:
+              type: object
+              properties:
+                cyclesPerMonth:
+                  type: integer
+                reposLimit:
+                  type: integer
+                rateLimit:
+                  type: integer
+                  description: Requests per hour
+            currentPeriod:
+              type: object
+              properties:
+                start:
+                  type: string
+                  format: date-time
+                end:
+                  type: string
+                  format: date-time
+            stripeCustomerId:
+              type: string
+            stripeSubscriptionId:
+              type: string
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    UsageResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          properties:
+            period:
+              type: object
+              properties:
+                start:
+                  type: string
+                  format: date-time
+                end:
+                  type: string
+                  format: date-time
+            cycles:
+              type: object
+              properties:
+                used:
+                  type: integer
+                limit:
+                  type: integer
+                percentUsed:
+                  type: number
+                  format: float
+            tokens:
+              type: object
+              properties:
+                used:
+                  type: integer
+                cost:
+                  type: number
+                  format: float
+            repos:
+              type: object
+              properties:
+                active:
+                  type: integer
+                limit:
+                  type: integer
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    CheckoutRequest:
+      type: object
+      required: [tier]
+      properties:
+        tier:
+          type: string
+          enum: [starter, pro, team]
+        successUrl:
+          type: string
+          format: uri
+        cancelUrl:
+          type: string
+          format: uri
+
+    CheckoutResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          properties:
+            checkoutUrl:
+              type: string
+              format: uri
+            sessionId:
+              type: string
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
+
+    PortalResponse:
+      type: object
+      required: [data, meta]
+      properties:
+        data:
+          type: object
+          properties:
+            portalUrl:
+              type: string
+              format: uri
+        meta:
+          $ref: '#/components/schemas/ResponseMeta'
