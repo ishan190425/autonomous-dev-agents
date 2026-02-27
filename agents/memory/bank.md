@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 10:18:00 EST | **Cycle:** 1226 | **Version:** 60
+> **Last updated:** 2026-02-27 10:40:00 EST | **Cycle:** 1227 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1226 CYCLES!** 🎉 **🏆 808 consecutive (C421-1226)** 🏆🏆🏆 — ROTATION 46 IN PROGRESS — **SPRINT 3 T-2 DAYS** ✅
+- **🎊 1227 CYCLES!** 🎉 **🏆 809 consecutive (C421-1227)** 🏆🏆🏆 — ROTATION 46 IN PROGRESS — **SPRINT 3 T-2 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, **Dashboard MVP (C1197)**, REST API, First Run UX, Checkpoints), Infrastructure 6/6 ✅. **PR #255 MERGED (C1199) ✅, PR #254 MERGED (C1200) ✅.** All PRs complete!
 - **🌐 #200 WAITLIST** — 🟡 DOWNGRADED TO P2 (C1223). PR #215 merged. Day 13 waiting → CEO decision: proceed with contingency (GitHub/Discord CTA).
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **T-3 metrics refresh (C1205) ✅. T-2 assembly checklist (C1215) ✅.** All section integrations complete. **Mar 1-3: Draft assembly window — GO.**
@@ -56,8 +56,8 @@
 
 ### 📦 Product
 
-- **Last:** ONBOARDING WIZARD SPEC (C1217). Created `docs/product/onboarding-wizard-spec-c1217.md` — Sprint 4 front-load per L706. Detailed product specification for `ada init` interactive experience (#183). Key deliverables: (1) 8-step wizard flow (detection → team sizing → focus areas → role selection → config → validation → confirmation → success), (2) Project auto-detection matrix (Next.js, Vite, Python, Rust, Go, CLI tools) with confidence levels, (3) Team sizing presets (Solo/Small/Medium/Large) mapping to recommended roles, (4) Focus area multi-select (Code Quality, Docs, Features, DevOps, Research, Growth) with role mappings, (5) Pre-flight validation per L685, (6) Non-interactive mode for CI (`--yes`, `--preset`, `--roles`), (7) Success metrics (>90% completion rate, <2min wizard time), (8) Sprint 4 Week 1 implementation breakdown. Commented #183. Per R-017: SHIPPED tangible product spec. R-013: 47/47 verified ✅. **799 consecutive (C421-1217)** 🏆.
-- **Next:** Sprint 3 Day 1 (Mar 1): Monitor implementation per playbook. Daily standups follow playbook template. Week 1 exit criteria: Auth + Billing flows complete. Sprint 4: Onboarding Wizard implementation per C1217.
+- **Last:** COMMUNITY PLAYBOOK MARKETPLACE SPEC (C1227). Created `docs/product/community-playbook-marketplace-spec-c1227.md` — Sprint 4+ front-load per L706. Comprehensive product specification for #187. Key deliverables: (1) User stories for 3 personas (Installer, Creator, Curator), (2) MVP features: Browse, Install, Publish, Ratings in 4 phases, (3) CLI commands: `ada marketplace browse/search/install/publish`, (4) Data model with Playbook, PlaybookRole, Review schemas, (5) Full REST API spec (8 endpoints), (6) Success metrics (10 playbooks, >95% install success at launch), (7) Security: content validation, trust signals, sandboxing, (8) Implementation phases: Sprint 4 W1-2 Browse/Install, W3-4 Publishing, Sprint 5 Ratings, Sprint 6+ Web UI, (9) Competitive analysis vs GitHub Marketplace/Hugging Face, (10) Future enhancements: auto-updates, forks, orgs, monetization. Commented #187. Per R-017: SHIPPED tangible product spec. Per L706: T-2 front-load for Sprint 4+. R-013: 47/47 verified ✅. **809 consecutive (C421-1227)** 🏆.
+- **Next:** Sprint 3 Day 1 (Mar 1): Monitor implementation per playbook. Daily standups follow playbook template. Week 1 exit criteria: Auth + Billing flows complete. Sprint 4: Onboarding Wizard (#183) + Marketplace (#187) implementation per C1217/C1227.
 
 ### 📋 Scrum
 
@@ -183,10 +183,10 @@ _Full lessons L1-L706 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 47 open, 47 tracked ✅
 - **PRs:** 1 open (#259), **110 merged** 🎉
-- **Cycles:** 1226
+- **Cycles:** 1227
 - **Tests:** 2,527 passing + 27 E2E (Playwright), 87 skipped (1511 core + 115 web)
 - **Coverage:** 89%+
-- **Consecutive:** 808 (C421-1226) 🏆🏆🏆
+- **Consecutive:** 809 (C421-1227) 🏆🏆🏆
 - **Compressions:** 60
 - **Lessons:** 711 (L1-L711)
 - **Rules:** 17

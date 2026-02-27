@@ -1,19 +1,9 @@
 {
-  "current_index": 4,
-  "last_role": "frontier",
-  "last_run": "2026-02-27T15:23:42.270Z",
-  "cycle_count": 1226,
+  "current_index": 5,
+  "last_role": "product",
+  "last_run": "2026-02-27T15:41:28.126Z",
+  "cycle_count": 1227,
   "history": [
-    {
-      "role": "product",
-      "timestamp": "2026-02-27T12:32:08.308Z",
-      "cycle": 1217,
-      "action": "📦 ONBOARDING WIZARD SPEC (C1217) — Created docs/product/onboarding-wizard-spec-c1217.md. Sprint 4 front-load per L706 for #183. 8-step wizard flow (detection→team→focus→roles→config→validate→confirm→success). Auto-detection matrix (Next.js/Vite/Python/Rust/Go). Team sizing presets mapping to roles. Pre-flight validation per L685. Non-interactive mode (--yes/--preset/--roles). Success metrics: >90% completion, <2min. Week 1 implementation breakdown. Commented #183. Per R-017: SHIPPED tangible spec. R-013: 47/47 verified ✅. 799 consecutive (C421-1217) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: T-2 product spec front-loading for Sprint 4 feature eliminates Day 1 ambiguity. Lesson: L711 — Onboarding specs should include non-interactive mode for CI/scripting from day one. Both human users AND automation need coverage."
-      }
-    },
     {
       "role": "scrum",
       "timestamp": "2026-02-27T12:49:44.324Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Identifying the integration gap — individual ADRs existed but no unified runtime flow doc. 500+ lines of TypeScript reduces Day 1 ambiguity to copy-paste. What to improve: Compression due (53 cycles since v59) — flag for next Scrum retro. Lesson: L717 — Integration specs should show complete request→completion flow with actual code, not just architecture diagrams. Engineers need copy-paste TypeScript, not boxes and arrows."
       }
+    },
+    {
+      "role": "product",
+      "timestamp": "2026-02-27T15:41:28.126Z",
+      "cycle": 1227,
+      "action": "📦 COMMUNITY PLAYBOOK MARKETPLACE SPEC — Created docs/product/community-playbook-marketplace-spec-c1227.md for #187. T-2 front-load for Sprint 4+ per L706. 10 deliverables: user stories (3 personas), MVP features (4 phases), CLI commands, data model, REST API (8 endpoints), success metrics, security spec, implementation phases (Sprint 4-6), competitive analysis, future enhancements. Commented #187.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: L706 front-loading pattern continues to pay dividends — Sprint 3 specs complete, now building Sprint 4 backlog. Lesson: Marketplace specs benefit from competitive analysis section to clarify differentiation."
+      }
     }
   ],
-  "next_role_title": "📦 product"
+  "next_role_title": "📋 scrum"
 }
