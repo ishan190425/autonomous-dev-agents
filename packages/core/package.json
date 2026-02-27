@@ -33,6 +33,10 @@
     "./playbook-suggestions/index.js": {
       "types": "./dist/playbook-suggestions/index.d.ts",
       "default": "./dist/playbook-suggestions/index.js"
+    },
+    "./update.js": {
+      "types": "./dist/update.d.ts",
+      "default": "./dist/update.js"
     }
   },
   "files": [

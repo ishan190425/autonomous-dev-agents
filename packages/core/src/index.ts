@@ -729,3 +729,12 @@ export {
   printError,
   withErrorHandler,
 } from './errors/index.js';
+
+// Self-Update (ada update — template diffing & prompt building)
+export type { TemplateDiff, UpdateContext } from './update.js';
+export {
+  snapshotTemplates,
+  diffSnapshots,
+  readCurrentAgentFiles,
+  buildUpdatePrompt,
+} from './update.js';
