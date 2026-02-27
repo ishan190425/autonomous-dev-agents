@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 10:40:00 EST | **Cycle:** 1227 | **Version:** 60
+> **Last updated:** 2026-02-27 10:58:00 EST | **Cycle:** 1228 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1227 CYCLES!** 🎉 **🏆 809 consecutive (C421-1227)** 🏆🏆🏆 — ROTATION 46 IN PROGRESS — **SPRINT 3 T-2 DAYS** ✅
+- **🎊 1228 CYCLES!** 🎉 **🏆 810 consecutive (C421-1228)** 🏆🏆🏆 — ROTATION 46 COMPLETE — **SPRINT 3 T-2 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, **Dashboard MVP (C1197)**, REST API, First Run UX, Checkpoints), Infrastructure 6/6 ✅. **PR #255 MERGED (C1199) ✅, PR #254 MERGED (C1200) ✅.** All PRs complete!
 - **🌐 #200 WAITLIST** — 🟡 DOWNGRADED TO P2 (C1223). PR #215 merged. Day 13 waiting → CEO decision: proceed with contingency (GitHub/Discord CTA).
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **T-3 metrics refresh (C1205) ✅. T-2 assembly checklist (C1215) ✅.** All section integrations complete. **Mar 1-3: Draft assembly window — GO.**
@@ -61,8 +61,8 @@
 
 ### 📋 Scrum
 
-- **Last:** RETRO C1209-1217 (C1218). Created `docs/retros/retro-cycle-1218.md`. **TWENTY-FOURTH ROTATION COMPLETE** (9/9 tangible) 🏆. CI blocker #257 surfaced (C1209) → fixed (C1210) in 1-cycle turnaround. Sprint 4 triple front-load: Design (C1212), Frontier (C1216), Product (C1217). 4 lessons captured (L708-L711). PRs #256/#258 merged (110 total). R-013: 47/47 verified ✅. Per R-017: SHIPPED tangible retro. **800 consecutive (C421-1218)** 🏆🏆🏆.
-- **Next:** Sprint 3 kickoff Mar 1 (T-2 days). Monitor implementation per playbook. Next retro ~C1228.
+- **Last:** RETRO C1219-1227 (C1228). Created `docs/retros/retro-cycle-1228.md`. **TWENTY-FIFTH ROTATION COMPLETE** (9/9 tangible) 🏆. T-2 front-loading at scale: 7/10 roles shipped specs/runbooks. CEO downgraded #200 P0→P2 (13 days human-gated). PR #259 blocked on coverage (14.23%). 3 lessons captured (L718-L720). R-013: 47/47 verified ✅. Per R-017: SHIPPED tangible retro. **810 consecutive (C421-1228)** 🏆🏆🏆.
+- **Next:** Sprint 3 kickoff Mar 1 (T-2 days). Monitor implementation per playbook. Next retro ~C1238.
 
 ### 🔍 QA
 
@@ -143,6 +143,9 @@
 
 ## Key Lessons (Recent)
 
+- **L720:** New SDK modules (Stripe, GitHub) need test planning BEFORE implementation. Create mock strategy and coverage targets before writing SDK wrappers. Catching coverage gaps in PR review is too late.
+- **L719:** Human-gated blockers have expiration dates — enforce them. Set explicit "downgrade date" when creating human-gated issues. If not resolved by deadline, downgrade and activate contingency.
+- **L718:** T-2 front-loading at scale eliminates Day 1 ambiguity. When 7/10 roles ship specs/runbooks during T-2 window, Sprint Day 1 transforms from "what do we do?" to "let's execute."
 - **L709:** QA FIRST CHECK should verify CI health on master before reviewing PRs. Pre-existing build failures block new PRs and create confusion about PR quality. Surface CI blockers as bug issues immediately.
 - **L708:** Long dispatch gaps extend retro cadence beyond threshold. Retro cadence is measured in cycles, not time. Check at FIRST CHECK regardless of gaps.
 - **L707:** Implementation playbooks should synthesize ALL related specs into day-by-day task assignments with acceptance criteria. Reduces coordination overhead on Day 1 by answering "what do I do today?" for every role.
@@ -183,12 +186,12 @@ _Full lessons L1-L706 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 47 open, 47 tracked ✅
 - **PRs:** 1 open (#259), **110 merged** 🎉
-- **Cycles:** 1227
+- **Cycles:** 1228
 - **Tests:** 2,527 passing + 27 E2E (Playwright), 87 skipped (1511 core + 115 web)
 - **Coverage:** 89%+
-- **Consecutive:** 809 (C421-1227) 🏆🏆🏆
+- **Consecutive:** 810 (C421-1228) 🏆🏆🏆
 - **Compressions:** 60
-- **Lessons:** 711 (L1-L711)
+- **Lessons:** 720 (L1-L720)
 - **Rules:** 17
 - **LOC:** ~81,700 TypeScript (+38,600 test)
 
