@@ -7,15 +7,15 @@ import { cn } from '@/lib/utils';
  * Variants: default (primary), secondary, outline, ghost, destructive
  */
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ada-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-n-cyan/50 focus-visible:ring-offset-2 focus-visible:ring-offset-n-bg disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: 'bg-ada-primary text-white hover:bg-ada-primary-hover',
-        secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700',
-        outline: 'border border-gray-300 bg-transparent hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-800',
-        ghost: 'hover:bg-gray-100 dark:hover:bg-gray-800',
-        destructive: 'bg-status-error text-white hover:bg-red-600',
+        default: 'bg-n-purple text-white hover:bg-n-purple-dim',
+        secondary: 'bg-white/[0.06] text-n-text-secondary hover:bg-white/[0.1] hover:text-n-text',
+        outline: 'border border-white/[0.12] bg-transparent text-n-text-secondary hover:bg-white/[0.06] hover:text-n-text',
+        ghost: 'text-n-text-secondary hover:bg-white/[0.06] hover:text-n-text',
+        destructive: 'bg-n-status-error text-white hover:bg-n-status-error/90',
       },
       size: {
         default: 'h-10 px-4 py-2',

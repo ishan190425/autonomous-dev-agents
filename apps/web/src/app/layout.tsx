@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-bg-primary text-text-primary`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-n-bg text-n-text antialiased`}
       >
         {children}
       </body>

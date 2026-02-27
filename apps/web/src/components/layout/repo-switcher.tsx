@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, Plus } from 'lucide-react';
 
 interface Repo {
   id: string;
@@ -47,64 +49,69 @@ export function RepoSwitcher({
   }
 
   return (
-    <div ref={ref} className="relative mb-4">
+    <div ref={ref} className="relative mb-3">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center gap-2 px-3 py-2 rounded-lg bg-bg-secondary hover:bg-bg-secondary/80 transition-colors text-left"
+        className="w-full flex items-center gap-2 px-3 py-2 rounded-lg glass glass-hover text-left"
       >
         {selected?.avatarUrl && (
           <img
             src={selected.avatarUrl}
             alt=""
-            className="w-5 h-5 rounded-full"
+            className="w-5 h-5 rounded-full ring-1 ring-white/[0.08]"
           />
         )}
-        <span className="flex-1 text-sm font-medium truncate">
+        <span className="flex-1 text-sm font-medium text-n-text truncate">
           {selected?.fullName ?? 'Select repo'}
         </span>
-        <svg
-          className={`w-4 h-4 text-text-muted transition-transform ${open ? 'rotate-180' : ''}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        {selected?.isRunning && (
+          <span className="w-2 h-2 rounded-full bg-n-cyan animate-glow-pulse shadow-glow-cyan" />
+        )}
+        <ChevronDown
+          className={`w-4 h-4 text-n-text-muted transition-transform ${open ? 'rotate-180' : ''}`}
+        />
       </button>
 
-      {open && (
-        <div className="absolute left-0 right-0 top-full mt-1 bg-bg-primary border rounded-lg shadow-lg z-50 overflow-hidden">
-          {repos.map((repo) => (
-            <button
-              key={repo.id}
-              onClick={() => selectRepo(repo.id)}
-              className={
-                'w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-bg-secondary transition-colors text-left ' +
-                (repo.id === selectedRepoId ? 'bg-bg-secondary' : '')
-              }
-            >
-              {repo.avatarUrl && (
-                <img src={repo.avatarUrl} alt="" className="w-5 h-5 rounded-full" />
-              )}
-              <span className="flex-1 truncate">{repo.fullName}</span>
-              {repo.isRunning && (
-                <span className="w-2 h-2 rounded-full bg-ada-primary animate-pulse" />
-              )}
-            </button>
-          ))}
-
-          <Link
-            href="/repos/new"
-            className="flex items-center gap-2 px-3 py-2 text-sm text-ada-primary hover:bg-bg-secondary transition-colors border-t"
-            onClick={() => setOpen(false)}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.12 }}
+            className="absolute left-0 right-0 top-full mt-1 glass border border-white/[0.12] shadow-lg z-50 overflow-hidden"
           >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-            Add Repository
-          </Link>
-        </div>
-      )}
+            {repos.map((repo) => (
+              <button
+                key={repo.id}
+                onClick={() => selectRepo(repo.id)}
+                className={`w-full flex items-center gap-2 px-3 py-2 text-sm transition-colors text-left ${
+                  repo.id === selectedRepoId
+                    ? 'bg-n-cyan/10 text-n-cyan'
+                    : 'text-n-text-secondary hover:bg-white/[0.06] hover:text-n-text'
+                }`}
+              >
+                {repo.avatarUrl && (
+                  <img src={repo.avatarUrl} alt="" className="w-5 h-5 rounded-full" />
+                )}
+                <span className="flex-1 truncate">{repo.fullName}</span>
+                {repo.isRunning && (
+                  <span className="w-2 h-2 rounded-full bg-n-cyan animate-glow-pulse" />
+                )}
+              </button>
+            ))}
+
+            <Link
+              href="/repos/new"
+              className="flex items-center gap-2 px-3 py-2 text-sm text-n-cyan hover:bg-white/[0.06] transition-colors border-t border-white/[0.08]"
+              onClick={() => setOpen(false)}
+            >
+              <Plus className="w-4 h-4" />
+              Add Repository
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

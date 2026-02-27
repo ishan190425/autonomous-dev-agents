@@ -4,12 +4,13 @@ import path from 'node:path';
 import Link from 'next/link';
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+  GlassCard,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardHeader,
+  GlassCardTitle,
+} from '@/components/ui/glass-card';
+import { FadeIn } from '@/components/ui/motion-wrapper';
 
 async function readFileSafe(filePath: string): Promise<string | null> {
   try {
@@ -87,71 +88,77 @@ async function findMemoryOccurrences(memoryId: string) {
 export default async function MemoryDetailPage({
   params,
 }: {
-  params: { memoryId: string };
+  params: Promise<{ memoryId: string }>;
 }) {
-  const memoryId = decodeURIComponent(params.memoryId);
+  const { memoryId: rawId } = await params;
+  const memoryId = decodeURIComponent(rawId);
   const occurrences = await findMemoryOccurrences(memoryId);
 
   const isRule = memoryId.startsWith('L');
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-text-muted mb-1">
-            Memory Detail
-          </p>
-          <h1 className="text-heading-1">
-            {memoryId}{' '}
-            {isRule ? <span className="text-body text-text-muted">Learned Rule</span> : null}
-          </h1>
-          <p className="text-body text-text-secondary">
-            Showing occurrences from the memory bank and archives where this ID is referenced.
-          </p>
+      <FadeIn>
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-n-text-muted mb-1">
+              Memory Detail
+            </p>
+            <h1 className="text-heading-1 text-n-text">
+              {memoryId}{' '}
+              {isRule ? <span className="text-body text-n-text-muted">Learned Rule</span> : null}
+            </h1>
+            <p className="text-body text-n-text-secondary">
+              Showing occurrences from the memory bank and archives where this ID is referenced.
+            </p>
+          </div>
+          <Link
+            href="/memory"
+            className="text-sm text-n-cyan hover:text-n-cyan/80 transition-colors"
+          >
+            ← Back to Memory Bank
+          </Link>
         </div>
-        <Link
-          href="/memory"
-          className="text-sm text-ada-primary hover:text-ada-primary-hover hover:underline"
-        >
-          ← Back to Memory Bank
-        </Link>
-      </div>
+      </FadeIn>
 
       {occurrences.length === 0 ? (
-        <Card>
-          <CardHeader>
-            <CardTitle>No references found</CardTitle>
-            <CardDescription>
-              This ID does not appear in the current memory bank or archives. It may be newly added
-              or pruned during compression.
-            </CardDescription>
-          </CardHeader>
-        </Card>
+        <FadeIn delay={0.1}>
+          <GlassCard>
+            <GlassCardHeader>
+              <GlassCardTitle>No references found</GlassCardTitle>
+              <GlassCardDescription>
+                This ID does not appear in the current memory bank or archives. It may be newly added
+                or pruned during compression.
+              </GlassCardDescription>
+            </GlassCardHeader>
+          </GlassCard>
+        </FadeIn>
       ) : (
         <div className="space-y-4">
-          {occurrences.map((occurrence) => (
-            <Card key={occurrence.file}>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-mono">{occurrence.file}</CardTitle>
-                <CardDescription>
-                  Snippets around lines that mention <code>{memoryId}</code>.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0 space-y-4">
-                {occurrence.snippets.map((snippet, index) => (
-                  <pre
-                    key={index}
-                    className="whitespace-pre-wrap rounded-md bg-bg-secondary/80 p-3 text-xs text-text-secondary"
-                  >
-                    {snippet}
-                  </pre>
-                ))}
-              </CardContent>
-            </Card>
+          {occurrences.map((occurrence, i) => (
+            <FadeIn key={occurrence.file} delay={0.1 + i * 0.05}>
+              <GlassCard>
+                <GlassCardHeader className="pb-2">
+                  <GlassCardTitle className="text-sm font-mono text-n-cyan">{occurrence.file}</GlassCardTitle>
+                  <GlassCardDescription>
+                    Snippets around lines that mention <code className="text-n-cyan">{memoryId}</code>.
+                  </GlassCardDescription>
+                </GlassCardHeader>
+                <GlassCardContent className="pt-0 space-y-4">
+                  {occurrence.snippets.map((snippet, index) => (
+                    <pre
+                      key={index}
+                      className="whitespace-pre-wrap rounded-lg bg-n-bg-elevated border-l-2 border-n-cyan/30 p-3 text-xs text-n-text-secondary"
+                    >
+                      {snippet}
+                    </pre>
+                  ))}
+                </GlassCardContent>
+              </GlassCard>
+            </FadeIn>
           ))}
         </div>
       )}
     </div>
   );
 }
-

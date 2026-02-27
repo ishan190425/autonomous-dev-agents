@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
+import { Loader2, Play } from 'lucide-react';
+import { NeonButton } from '@/components/ui/neon-button';
+import { motion } from 'framer-motion';
 
 export function RunCycleButton({ repoId }: { repoId: string }) {
   const [state, setState] = useState<'idle' | 'running' | 'done' | 'error'>('idle');
@@ -33,7 +36,6 @@ export function RunCycleButton({ repoId }: { repoId: string }) {
       const { dispatchId } = await res.json();
       setMessage('Cycle running...');
 
-      // Poll for status
       pollRef.current = setInterval(async () => {
         try {
           const statusRes = await fetch(
@@ -68,40 +70,37 @@ export function RunCycleButton({ repoId }: { repoId: string }) {
   }, [repoId, stopPolling]);
 
   return (
-    <div className="flex items-center gap-3">
-      <button
+    <motion.div
+      className="flex items-center gap-3"
+      whileTap={{ scale: 0.98 }}
+    >
+      <NeonButton
         onClick={startCycle}
         disabled={state === 'running'}
-        className={
-          'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ' +
-          (state === 'running'
-            ? 'bg-ada-primary/50 text-white cursor-not-allowed'
-            : 'bg-ada-primary text-white hover:bg-ada-primary/90')
-        }
+        variant={state === 'running' ? 'primary' : 'default'}
       >
-        {state === 'running' && (
-          <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-          </svg>
+        {state === 'running' ? (
+          <Loader2 className="w-4 h-4 animate-spin mr-2" />
+        ) : (
+          <Play className="w-4 h-4 mr-2" />
         )}
         {state === 'running' ? 'Running...' : 'Run Cycle'}
-      </button>
+      </NeonButton>
 
       {message && (
         <span
           className={
             'text-sm ' +
             (state === 'error'
-              ? 'text-red-500'
+              ? 'text-n-status-error'
               : state === 'done'
-                ? 'text-green-500'
-                : 'text-text-muted')
+                ? 'text-n-status-success'
+                : 'text-n-text-muted')
           }
         >
           {message}
         </span>
       )}
-    </div>
+    </motion.div>
   );
 }

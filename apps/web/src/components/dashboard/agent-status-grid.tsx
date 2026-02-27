@@ -1,4 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+'use client';
+
+import { GlassCard, GlassCardContent, GlassCardHeader, GlassCardTitle, GlassCardDescription } from '@/components/ui/glass-card';
+import { StaggerChildren, StaggerItem } from '@/components/ui/motion-wrapper';
+import { cn } from '@/lib/utils';
 
 interface Role {
   id: string;
@@ -26,6 +30,32 @@ interface DispatchEntry {
   createdAt: Date;
 }
 
+const ROLE_BORDER_COLORS: Record<string, string> = {
+  ceo: 'border-l-role-ceo',
+  growth: 'border-l-role-growth',
+  research: 'border-l-role-research',
+  frontier: 'border-l-role-frontier',
+  product: 'border-l-role-product',
+  scrum: 'border-l-role-scrum',
+  qa: 'border-l-role-qa',
+  engineering: 'border-l-role-engineering',
+  ops: 'border-l-role-ops',
+  design: 'border-l-role-design',
+};
+
+const ROLE_RING_COLORS: Record<string, string> = {
+  ceo: 'ring-role-ceo',
+  growth: 'ring-role-growth',
+  research: 'ring-role-research',
+  frontier: 'ring-role-frontier',
+  product: 'ring-role-product',
+  scrum: 'ring-role-scrum',
+  qa: 'ring-role-qa',
+  engineering: 'ring-role-engineering',
+  ops: 'ring-role-ops',
+  design: 'ring-role-design',
+};
+
 export function AgentStatusGrid({
   roster,
   rotationState,
@@ -37,7 +67,6 @@ export function AgentStatusGrid({
   dispatches: DispatchEntry[];
   isRunning: boolean;
 }) {
-  // Build map of latest dispatch per role
   const dispatchByRole = new Map<string, DispatchEntry>();
   for (const d of dispatches) {
     if (d.roleId && !dispatchByRole.has(d.roleId)) {
@@ -45,7 +74,6 @@ export function AgentStatusGrid({
     }
   }
 
-  // Build map of latest history entry per role (from rotation.json)
   const historyByRole = new Map<string, { action: string; timestamp: string }>();
   if (rotationState?.history) {
     for (const h of rotationState.history) {
@@ -55,12 +83,10 @@ export function AgentStatusGrid({
     }
   }
 
-  // Determine current/next role from rotation state
   const currentRoleId = roster && rotationState
     ? roster.rotation_order[rotationState.current_index] ?? null
     : null;
 
-  // Use roster roles if available, otherwise derive from dispatches
   const roles: {
     id: string;
     name: string;
@@ -77,8 +103,6 @@ export function AgentStatusGrid({
       const history = historyByRole.get(role.id);
       const isActive = isRunning && role.id === currentRoleId;
       const isNext = !isRunning && role.id === currentRoleId;
-
-      // Prefer dispatch action, fallback to history action
       const lastAction = dispatch?.action ?? history?.action ?? null;
 
       roles.push({
@@ -92,7 +116,6 @@ export function AgentStatusGrid({
       });
     }
   } else {
-    // Fallback: show roles from dispatches
     const seenRoles = new Set<string>();
     for (const d of dispatches) {
       if (d.roleId && !seenRoles.has(d.roleId)) {
@@ -111,62 +134,77 @@ export function AgentStatusGrid({
   }
 
   return (
-    <Card>
-      <CardHeader className="pb-3">
-        <CardTitle>Agent Team Status</CardTitle>
-        <CardDescription>
+    <GlassCard>
+      <GlassCardHeader className="pb-3">
+        <GlassCardTitle>Agent Team Status</GlassCardTitle>
+        <GlassCardDescription>
           Snapshot of each role in your autonomous team and its latest action.
-        </CardDescription>
-      </CardHeader>
+        </GlassCardDescription>
+      </GlassCardHeader>
 
-      <CardContent className="pt-0">
+      <GlassCardContent className="pt-0">
         {roles.length === 0 ? (
-          <p className="text-sm text-text-muted">No agent roles configured.</p>
+          <p className="text-sm text-n-text-muted">No agent roles configured.</p>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-3">
-            {roles.map((agent) => (
-              <div
-                key={agent.id}
-                className={`group relative overflow-hidden rounded-xl border px-3 py-3 transition-colors ${
-                  agent.isActive
-                    ? 'border-ada-primary bg-ada-primary-light/60 shadow-sm'
-                    : agent.isNext
-                      ? 'border-amber-400 bg-amber-50 dark:bg-amber-900/10'
-                      : agent.lastAction
-                        ? 'border-transparent bg-bg-secondary/80 hover:bg-bg-secondary'
-                        : 'border-dashed border-bg-tertiary bg-bg-secondary/40 opacity-70'
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-bg-primary shadow-sm text-lg">
-                    {agent.emoji}
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-xs font-medium truncate">{agent.name}</p>
-                    <p className="text-[10px] text-text-muted truncate">{agent.title}</p>
+          <StaggerChildren className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-3">
+            {roles.map((agent) => {
+              const borderColor = ROLE_BORDER_COLORS[agent.id] ?? 'border-l-white/20';
+              const ringColor = ROLE_RING_COLORS[agent.id] ?? 'ring-white/20';
+
+              return (
+                <StaggerItem key={agent.id}>
+                  <div
+                    className={cn(
+                      'group relative overflow-hidden rounded-xl border border-white/[0.06] border-l-2 px-3 py-3 transition-all',
+                      borderColor,
+                      agent.isActive
+                        ? 'bg-n-cyan/[0.06] shadow-glow-cyan'
+                        : agent.isNext
+                          ? 'bg-n-status-warning/[0.04]'
+                          : agent.lastAction
+                            ? 'bg-white/[0.03] hover:bg-white/[0.06]'
+                            : 'border-dashed bg-white/[0.01] opacity-60'
+                    )}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={cn(
+                        'inline-flex h-8 w-8 items-center justify-center rounded-full bg-n-bg-elevated ring-2 text-lg',
+                        ringColor,
+                        agent.isActive && 'shadow-glow-cyan animate-glow-pulse'
+                      )}>
+                        {agent.emoji}
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-xs font-medium text-n-text truncate">{agent.name}</p>
+                        <p className="text-[10px] text-n-text-muted truncate">{agent.title}</p>
+                      </div>
+                      {agent.isActive && (
+                        <span className="ml-auto relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-n-cyan opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-n-cyan" />
+                        </span>
+                      )}
+                      {agent.isNext && !agent.isActive && (
+                        <span className="ml-auto inline-flex h-2 w-2 rounded-full bg-n-status-warning shadow-[0_0_6px_#ffaa00]" />
+                      )}
+                    </div>
+                    <p
+                      className="text-[11px] text-n-text-muted line-clamp-2"
+                      title={agent.lastAction ?? agent.title}
+                    >
+                      {agent.isActive
+                        ? 'Running...'
+                        : agent.lastAction
+                          ? agent.lastAction
+                          : agent.title}
+                    </p>
                   </div>
-                  {agent.isActive && (
-                    <span className="ml-auto inline-flex h-2 w-2 rounded-full bg-ada-success animate-pulse" />
-                  )}
-                  {agent.isNext && !agent.isActive && (
-                    <span className="ml-auto inline-flex h-2 w-2 rounded-full bg-amber-400" />
-                  )}
-                </div>
-                <p
-                  className="text-[11px] text-text-muted line-clamp-2"
-                  title={agent.lastAction ?? agent.title}
-                >
-                  {agent.isActive
-                    ? 'Running...'
-                    : agent.lastAction
-                      ? agent.lastAction
-                      : agent.title}
-                </p>
-              </div>
-            ))}
-          </div>
+                </StaggerItem>
+              );
+            })}
+          </StaggerChildren>
         )}
-      </CardContent>
-    </Card>
+      </GlassCardContent>
+    </GlassCard>
   );
 }

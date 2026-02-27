@@ -3,7 +3,8 @@ import path from 'node:path';
 
 import Link from 'next/link';
 
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { GlassCard, GlassCardContent, GlassCardHeader, GlassCardTitle, GlassCardDescription } from '@/components/ui/glass-card';
+import { FadeIn } from '@/components/ui/motion-wrapper';
 
 interface HeatEntry {
   id: string;
@@ -15,7 +16,6 @@ interface HeatEntry {
 }
 
 async function loadHeat(): Promise<HeatEntry[]> {
-  // Next.js app dir cwd is apps/web — step up to repo root then into agents/memory
   const heatPath = path.join(process.cwd(), '..', '..', 'agents', 'memory', 'heat.jsonl');
   try {
     const content = await fs.readFile(heatPath, 'utf8');
@@ -24,7 +24,6 @@ async function loadHeat(): Promise<HeatEntry[]> {
       .filter(Boolean)
       .map((line) => JSON.parse(line) as HeatEntry);
   } catch {
-    // In environments without a local memory file, fall back to empty list
     return [];
   }
 }
@@ -65,129 +64,135 @@ export default async function MemoryPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-heading-1">Memory Bank</h1>
-        <p className="text-body text-text-secondary">
-          Shared team memory with heat scoring, sourced directly from agents/memory.
-        </p>
-      </div>
+      <FadeIn>
+        <div>
+          <h1 className="text-heading-1 text-n-text">Memory Bank</h1>
+          <p className="text-body text-n-text-secondary">
+            Shared team memory with heat scoring, sourced directly from agents/memory.
+          </p>
+        </div>
+      </FadeIn>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Last Updated</CardTitle>
-            <CardDescription>From memory bank header</CardDescription>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <p className="text-sm">{bankMeta.lastUpdated || 'Unknown'}</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Cycle</CardTitle>
-            <CardDescription>Bank cycle marker</CardDescription>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <p className="text-2xl font-semibold tabular-nums">
-              {bankMeta.cycle ? Number(bankMeta.cycle).toLocaleString() : '—'}
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm">Tracked Memories</CardTitle>
-            <CardDescription>Total entries in heat.jsonl</CardDescription>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <p className="text-2xl font-semibold tabular-nums">
-              {heatEntries.length.toLocaleString()}
-            </p>
-          </CardContent>
-        </Card>
-      </div>
+      <FadeIn delay={0.1}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <GlassCard>
+            <GlassCardHeader className="pb-2">
+              <GlassCardTitle className="text-sm">Last Updated</GlassCardTitle>
+              <GlassCardDescription>From memory bank header</GlassCardDescription>
+            </GlassCardHeader>
+            <GlassCardContent className="pt-0">
+              <p className="text-sm text-n-text">{bankMeta.lastUpdated || 'Unknown'}</p>
+            </GlassCardContent>
+          </GlassCard>
+          <GlassCard glow="purple">
+            <GlassCardHeader className="pb-2">
+              <GlassCardTitle className="text-sm">Cycle</GlassCardTitle>
+              <GlassCardDescription>Bank cycle marker</GlassCardDescription>
+            </GlassCardHeader>
+            <GlassCardContent className="pt-0">
+              <p className="text-2xl font-semibold tabular-nums text-n-purple">
+                {bankMeta.cycle ? Number(bankMeta.cycle).toLocaleString() : '—'}
+              </p>
+            </GlassCardContent>
+          </GlassCard>
+          <GlassCard>
+            <GlassCardHeader className="pb-2">
+              <GlassCardTitle className="text-sm">Tracked Memories</GlassCardTitle>
+              <GlassCardDescription>Total entries in heat.jsonl</GlassCardDescription>
+            </GlassCardHeader>
+            <GlassCardContent className="pt-0">
+              <p className="text-2xl font-semibold tabular-nums text-n-text">
+                {heatEntries.length.toLocaleString()}
+              </p>
+            </GlassCardContent>
+          </GlassCard>
+        </div>
+      </FadeIn>
 
-      <Card>
-        <CardHeader className="pb-3">
-          <CardTitle>Top Heat Memories</CardTitle>
-          <CardDescription>
-            Ranked by importance × reference count from <code>agents/memory/heat.jsonl</code>.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="pt-0">
-          {ranked.length === 0 ? (
-            <p className="text-sm text-text-muted py-6">
-              No memory heat data found. Make sure{' '}
-              <code className="text-xs bg-bg-secondary px-1 py-0.5 rounded">
-                agents/memory/heat.jsonl
-              </code>{' '}
-              exists and contains entries.
-            </p>
-          ) : (
-            <div className="overflow-x-auto rounded-lg border bg-bg-primary">
-              <table className="min-w-full text-sm">
-                <thead className="bg-bg-secondary/60 text-xs uppercase tracking-wide text-text-muted">
-                  <tr>
-                    <th className="px-3 py-2 text-left">ID</th>
-                    <th className="px-3 py-2 text-left">Class</th>
-                    <th className="px-3 py-2 text-left">Importance</th>
-                    <th className="px-3 py-2 text-left">Refs</th>
-                    <th className="px-3 py-2 text-left">Heat Score</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {ranked.map((entry) => {
-                    const heatScore = entry.baseImportance * (1 + entry.referenceCount / 10);
-                    const bucket =
-                      heatScore >= 1.2 ? 'high' : heatScore >= 0.9 ? 'medium' : 'low';
-                    const barWidth = Math.min(100, Math.round(heatScore * 80 + 20));
-                    return (
-                      <tr
-                        key={entry.id}
-                        className="border-t border-bg-secondary/80 hover:bg-bg-secondary/60"
-                      >
-                        <td className="px-3 py-2 font-mono text-xs">
-                          <Link
-                            href={`/memory/${encodeURIComponent(entry.id)}`}
-                            className="hover:underline text-ada-primary"
-                          >
-                            {entry.id}
-                          </Link>
-                        </td>
-                        <td className="px-3 py-2 text-xs capitalize">{entry.memoryClass}</td>
-                        <td className="px-3 py-2 tabular-nums text-xs">
-                          {entry.baseImportance.toFixed(2)}
-                        </td>
-                        <td className="px-3 py-2 tabular-nums text-xs">
-                          {entry.referenceCount.toLocaleString()}
-                        </td>
-                        <td className="px-3 py-2">
-                          <div className="flex items-center gap-2">
-                            <div className="relative h-2 w-32 rounded-full bg-bg-secondary overflow-hidden">
-                              <div
-                                className={`h-full ${
-                                  bucket === 'high'
-                                    ? 'bg-ada-primary'
-                                    : bucket === 'medium'
-                                      ? 'bg-role-product'
-                                      : 'bg-text-muted'
-                                }`}
-                                style={{ width: `${barWidth}%` }}
-                              />
+      <FadeIn delay={0.2}>
+        <GlassCard hover={false}>
+          <GlassCardHeader className="pb-3">
+            <GlassCardTitle>Top Heat Memories</GlassCardTitle>
+            <GlassCardDescription>
+              Ranked by importance x reference count from <code className="text-n-cyan">agents/memory/heat.jsonl</code>.
+            </GlassCardDescription>
+          </GlassCardHeader>
+          <GlassCardContent className="pt-0">
+            {ranked.length === 0 ? (
+              <p className="text-sm text-n-text-muted py-6">
+                No memory heat data found. Make sure{' '}
+                <code className="text-xs bg-n-bg-elevated px-1.5 py-0.5 rounded text-n-cyan">
+                  agents/memory/heat.jsonl
+                </code>{' '}
+                exists and contains entries.
+              </p>
+            ) : (
+              <div className="overflow-x-auto rounded-lg border border-white/[0.06] bg-n-bg-surface/50">
+                <table className="min-w-full text-sm">
+                  <thead className="bg-white/[0.03] text-xs uppercase tracking-wide text-n-text-muted">
+                    <tr>
+                      <th className="px-3 py-2.5 text-left">ID</th>
+                      <th className="px-3 py-2.5 text-left">Class</th>
+                      <th className="px-3 py-2.5 text-left">Importance</th>
+                      <th className="px-3 py-2.5 text-left">Refs</th>
+                      <th className="px-3 py-2.5 text-left">Heat Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {ranked.map((entry) => {
+                      const heatScore = entry.baseImportance * (1 + entry.referenceCount / 10);
+                      const bucket =
+                        heatScore >= 1.2 ? 'high' : heatScore >= 0.9 ? 'medium' : 'low';
+                      const barWidth = Math.min(100, Math.round(heatScore * 80 + 20));
+                      return (
+                        <tr
+                          key={entry.id}
+                          className="border-t border-white/[0.04] hover:bg-white/[0.04] transition-colors"
+                        >
+                          <td className="px-3 py-2.5 font-mono text-xs">
+                            <Link
+                              href={`/memory/${encodeURIComponent(entry.id)}`}
+                              className="hover:underline text-n-cyan"
+                            >
+                              {entry.id}
+                            </Link>
+                          </td>
+                          <td className="px-3 py-2.5 text-xs capitalize text-n-text-secondary">{entry.memoryClass}</td>
+                          <td className="px-3 py-2.5 tabular-nums text-xs text-n-text-secondary">
+                            {entry.baseImportance.toFixed(2)}
+                          </td>
+                          <td className="px-3 py-2.5 tabular-nums text-xs text-n-text-secondary">
+                            {entry.referenceCount.toLocaleString()}
+                          </td>
+                          <td className="px-3 py-2.5">
+                            <div className="flex items-center gap-2">
+                              <div className="relative h-2 w-32 rounded-full bg-n-bg-elevated overflow-hidden">
+                                <div
+                                  className={`h-full rounded-full ${
+                                    bucket === 'high'
+                                      ? 'bg-gradient-to-r from-n-cyan to-n-purple'
+                                      : bucket === 'medium'
+                                        ? 'bg-n-purple/60'
+                                        : 'bg-n-text-muted/40'
+                                  }`}
+                                  style={{ width: `${barWidth}%` }}
+                                />
+                              </div>
+                              <span className="text-[11px] tabular-nums text-n-text-muted">
+                                {heatScore.toFixed(2)}
+                              </span>
                             </div>
-                            <span className="text-[11px] tabular-nums text-text-muted">
-                              {heatScore.toFixed(2)}
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </GlassCardContent>
+        </GlassCard>
+      </FadeIn>
     </div>
   );
 }

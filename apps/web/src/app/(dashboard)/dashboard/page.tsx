@@ -8,6 +8,7 @@ import { RotationTimeline } from '@/components/dashboard/rotation-timeline';
 import { ActivityFeed } from '@/components/dashboard/activity-feed';
 import { AgentStatusGrid } from '@/components/dashboard/agent-status-grid';
 import { RunCycleButton } from '@/components/dashboard/run-cycle-button';
+import { FadeIn } from '@/components/ui/motion-wrapper';
 
 interface Dispatch {
   id: string;
@@ -58,7 +59,7 @@ export default async function DashboardPage() {
   const session = await auth();
   if (!session?.user?.id) redirect('/login');
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const selectedRepoId = cookieStore.get('ada.selected-repo')?.value;
 
   // Check if user has any repos
@@ -177,56 +178,69 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-8">
       {/* Page Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-text-muted mb-1">
-            Control Tower
-          </p>
-          <h1 className="text-heading-1 text-balance">Agent Dashboard</h1>
-          <p className="text-body text-text-secondary">
-            {repo ? repo.fullName : 'Select a repository to get started'}
-          </p>
-        </div>
-        {selectedRepoId && (
-          <div className="flex items-center gap-3">
-            {repo?.isRunning && (
-              <div className="flex items-center gap-2 rounded-full bg-bg-secondary px-3 py-1 text-xs text-text-muted">
-                <span className="w-2 h-2 rounded-full bg-ada-primary animate-pulse" />
-                Cycle in progress
-              </div>
-            )}
-            <RunCycleButton repoId={selectedRepoId} />
+      <FadeIn>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-n-text-muted mb-1">
+              Control Tower
+            </p>
+            <h1 className="text-heading-1 text-n-text text-balance">Agent Dashboard</h1>
+            <p className="text-body text-n-text-secondary">
+              {repo ? repo.fullName : 'Select a repository to get started'}
+            </p>
           </div>
-        )}
-      </div>
+          {selectedRepoId && (
+            <div className="flex items-center gap-3">
+              {repo?.isRunning && (
+                <div className="flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-n-cyan">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-n-cyan opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-n-cyan" />
+                  </span>
+                  Cycle in progress
+                </div>
+              )}
+              <RunCycleButton repoId={selectedRepoId} />
+            </div>
+          )}
+        </div>
+      </FadeIn>
 
       {/* Stats Row */}
-      <CycleStats
-        totalCycles={totalCycles}
-        completedCycles={completedCycles}
-        failedCycles={failedCycles}
-        isRunning={repo?.isRunning ?? false}
-        repoCycleCount={cycleCount}
-      />
+      <FadeIn delay={0.1}>
+        <CycleStats
+          totalCycles={totalCycles}
+          completedCycles={completedCycles}
+          failedCycles={failedCycles}
+          isRunning={repo?.isRunning ?? false}
+          repoCycleCount={cycleCount}
+        />
+      </FadeIn>
 
-      {/* Two Column Layout */}
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        <div className="xl:col-span-2 space-y-6">
-          <RotationTimeline
-            roster={roster}
-            rotationState={rotationState}
-            dispatches={effectiveDispatches}
-            isRunning={repo?.isRunning ?? false}
-          />
-          <AgentStatusGrid
-            roster={roster}
-            rotationState={rotationState}
-            dispatches={effectiveDispatches}
-            isRunning={repo?.isRunning ?? false}
-          />
+      {/* Bento Grid Layout */}
+      <div className="grid grid-cols-1 xl:grid-cols-5 gap-6">
+        <div className="xl:col-span-3 space-y-6">
+          <FadeIn delay={0.2}>
+            <RotationTimeline
+              roster={roster}
+              rotationState={rotationState}
+              dispatches={effectiveDispatches}
+              isRunning={repo?.isRunning ?? false}
+            />
+          </FadeIn>
+          <FadeIn delay={0.3}>
+            <AgentStatusGrid
+              roster={roster}
+              rotationState={rotationState}
+              dispatches={effectiveDispatches}
+              isRunning={repo?.isRunning ?? false}
+            />
+          </FadeIn>
         </div>
-        <div className="space-y-6">
-          <ActivityFeed dispatches={effectiveDispatches.slice(0, 20)} />
+        <div className="xl:col-span-2 space-y-6">
+          <FadeIn delay={0.25}>
+            <ActivityFeed dispatches={effectiveDispatches.slice(0, 20)} />
+          </FadeIn>
         </div>
       </div>
     </div>

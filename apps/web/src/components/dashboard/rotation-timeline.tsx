@@ -1,4 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+'use client';
+
+import { GlassCard, GlassCardContent, GlassCardHeader, GlassCardTitle, GlassCardDescription } from '@/components/ui/glass-card';
+import { StaggerChildren, StaggerItem } from '@/components/ui/motion-wrapper';
+import { cn } from '@/lib/utils';
 
 interface Role {
   id: string;
@@ -25,18 +29,30 @@ interface DispatchEntry {
   createdAt: Date;
 }
 
-// Fallback colors for roles
-const ROLE_COLORS: Record<string, string> = {
-  ceo: 'bg-role-ceo',
-  growth: 'bg-role-growth',
-  research: 'bg-role-research',
-  frontier: 'bg-role-frontier',
-  product: 'bg-role-product',
-  scrum: 'bg-role-scrum',
-  qa: 'bg-role-qa',
-  engineering: 'bg-role-engineering',
-  ops: 'bg-role-ops',
-  design: 'bg-role-design',
+const ROLE_RING_COLORS: Record<string, string> = {
+  ceo: 'ring-role-ceo',
+  growth: 'ring-role-growth',
+  research: 'ring-role-research',
+  frontier: 'ring-role-frontier',
+  product: 'ring-role-product',
+  scrum: 'ring-role-scrum',
+  qa: 'ring-role-qa',
+  engineering: 'ring-role-engineering',
+  ops: 'ring-role-ops',
+  design: 'ring-role-design',
+};
+
+const ROLE_TEXT_COLORS: Record<string, string> = {
+  ceo: 'text-role-ceo',
+  growth: 'text-role-growth',
+  research: 'text-role-research',
+  frontier: 'text-role-frontier',
+  product: 'text-role-product',
+  scrum: 'text-role-scrum',
+  qa: 'text-role-qa',
+  engineering: 'text-role-engineering',
+  ops: 'text-role-ops',
+  design: 'text-role-design',
 };
 
 export function RotationTimeline({
@@ -50,61 +66,72 @@ export function RotationTimeline({
   dispatches: DispatchEntry[];
   isRunning: boolean;
 }) {
-  // If we have the roster from GitHub, use the real rotation order
   if (roster && rotationState) {
     const roleMap = new Map(roster.roles.map((r) => [r.id, r]));
     const currentIndex = rotationState.current_index;
 
     return (
-      <Card>
-        <CardHeader className="pb-3">
-          <CardTitle>Rotation Timeline</CardTitle>
-          <CardDescription>
+      <GlassCard>
+        <GlassCardHeader className="pb-3">
+          <GlassCardTitle>Rotation Timeline</GlassCardTitle>
+          <GlassCardDescription>
             Live view of your multi-agent rotation across roles.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <div className="flex items-stretch gap-2 overflow-x-auto pb-3 scrollbar-thin">
-          {roster.rotation_order.map((roleId, index) => {
-            const role = roleMap.get(roleId);
-            const isCurrent = index === currentIndex;
-            const isPast = index < currentIndex;
-            const color = ROLE_COLORS[roleId] ?? 'bg-gray-500';
+          </GlassCardDescription>
+        </GlassCardHeader>
+        <GlassCardContent className="pt-0">
+          {/* Connecting line */}
+          <div className="relative">
+            <div className="absolute top-6 left-6 right-6 h-px bg-gradient-to-r from-n-cyan/30 via-n-purple/20 to-transparent z-0" />
+            <StaggerChildren className="flex items-stretch gap-2 overflow-x-auto pb-3 scrollbar-thin relative z-10">
+              {roster.rotation_order.map((roleId, index) => {
+                const role = roleMap.get(roleId);
+                const isCurrent = index === currentIndex;
+                const isPast = index < currentIndex;
+                const ringColor = ROLE_RING_COLORS[roleId] ?? 'ring-white/20';
 
-            return (
-              <div
-                key={roleId}
-                className={`flex flex-col items-center gap-2 rounded-2xl border bg-bg-secondary/60 px-3 py-3 min-w-[72px] ${
-                  isCurrent
-                    ? 'border-ada-primary bg-ada-primary-light/60 shadow-sm'
-                    : isPast
-                      ? 'opacity-60'
-                      : 'border-transparent'
-                }`}
-              >
-                <div
-                  className={`w-10 h-10 rounded-full ${color} flex items-center justify-center text-white text-lg shadow-sm`}
-                >
-                  {role?.emoji ?? '🤖'}
-                </div>
-                <span className="text-xs font-medium capitalize text-center">
-                  {role?.name ?? roleId}
-                </span>
-                {isCurrent && (
-                  <span className="text-[10px] text-ada-primary font-semibold tracking-wide uppercase">
-                    {isRunning ? 'Running' : 'Next'}
-                  </span>
-                )}
-              </div>
-            );
-          })}
+                return (
+                  <StaggerItem
+                    key={roleId}
+                    className={cn(
+                      'flex flex-col items-center gap-2 rounded-2xl border px-3 py-3 min-w-[72px] transition-all',
+                      isCurrent
+                        ? 'border-n-cyan/30 bg-n-cyan/[0.06]'
+                        : isPast
+                          ? 'border-transparent opacity-50'
+                          : 'border-transparent opacity-30'
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        'w-10 h-10 rounded-full bg-n-bg-elevated flex items-center justify-center text-lg ring-2',
+                        ringColor,
+                        isCurrent && isRunning && 'animate-glow-pulse shadow-glow-cyan'
+                      )}
+                    >
+                      {role?.emoji ?? '🤖'}
+                    </div>
+                    <span className="text-xs font-medium capitalize text-center text-n-text-secondary">
+                      {role?.name ?? roleId}
+                    </span>
+                    {isCurrent && (
+                      <span className={cn(
+                        'text-[10px] font-semibold tracking-wide uppercase',
+                        isRunning ? 'text-n-cyan' : 'text-n-status-warning'
+                      )}>
+                        {isRunning ? 'Running' : 'Next'}
+                      </span>
+                    )}
+                  </StaggerItem>
+                );
+              })}
+            </StaggerChildren>
           </div>
 
-          <p className="mt-2 text-xs text-text-muted">
+          <p className="mt-2 text-xs text-n-text-muted">
             Cycle {rotationState.cycle_count.toLocaleString()}
             {rotationState.last_role && (
               <>
-                {' • '}
+                {' · '}
                 Last:{' '}
                 {roleMap.get(rotationState.last_role)?.emoji ?? '🤖'}{' '}
                 <span className="capitalize">
@@ -113,15 +140,15 @@ export function RotationTimeline({
               </>
             )}
             {rotationState.last_run && (
-              <> • {new Date(rotationState.last_run).toLocaleString()}</>
+              <> · {new Date(rotationState.last_run).toLocaleString()}</>
             )}
           </p>
-        </CardContent>
-      </Card>
+        </GlassCardContent>
+      </GlassCard>
     );
   }
 
-  // Fallback: derive from dispatches if no GitHub data available
+  // Fallback
   const recentRoles: { roleId: string; status: string }[] = [];
   const seen = new Set<string>();
   for (const d of dispatches) {
@@ -132,50 +159,54 @@ export function RotationTimeline({
   }
 
   return (
-    <Card>
-      <CardHeader className="pb-3">
-        <CardTitle>Rotation Timeline</CardTitle>
-        <CardDescription>
-          We’ll visualize your agent rotation here once your repo is configured.
-        </CardDescription>
-      </CardHeader>
+    <GlassCard>
+      <GlassCardHeader className="pb-3">
+        <GlassCardTitle>Rotation Timeline</GlassCardTitle>
+        <GlassCardDescription>
+          We'll visualize your agent rotation here once your repo is configured.
+        </GlassCardDescription>
+      </GlassCardHeader>
 
-      <CardContent className="pt-0">
+      <GlassCardContent className="pt-0">
         {recentRoles.length === 0 ? (
-          <p className="text-sm text-text-muted">
+          <p className="text-sm text-n-text-muted">
             No agents data found. Make sure your repo has{' '}
-            <code className="text-xs bg-bg-secondary px-1 py-0.5 rounded">agents/roster.json</code> and{' '}
-            <code className="text-xs bg-bg-secondary px-1 py-0.5 rounded">agents/state/rotation.json</code>.
+            <code className="text-xs bg-n-bg-elevated px-1.5 py-0.5 rounded text-n-cyan">agents/roster.json</code> and{' '}
+            <code className="text-xs bg-n-bg-elevated px-1.5 py-0.5 rounded text-n-cyan">agents/state/rotation.json</code>.
           </p>
         ) : (
-        <div className="flex items-stretch gap-2 overflow-x-auto pb-2 scrollbar-thin">
-          {[...recentRoles].reverse().map((entry, index) => {
-            const color = ROLE_COLORS[entry.roleId] ?? 'bg-gray-500';
-            const isLatest = index === recentRoles.length - 1;
+          <StaggerChildren className="flex items-stretch gap-2 overflow-x-auto pb-2 scrollbar-thin">
+            {[...recentRoles].reverse().map((entry, index) => {
+              const ringColor = ROLE_RING_COLORS[entry.roleId] ?? 'ring-white/20';
+              const isLatest = index === recentRoles.length - 1;
 
-            return (
-              <div
-                key={`${entry.roleId}-${index}`}
-                className={`flex flex-col items-center gap-2 rounded-2xl border bg-bg-secondary/60 px-3 py-3 min-w-[72px] ${
-                  isLatest
-                    ? 'border-ada-primary bg-ada-primary-light/60 shadow-sm'
-                    : 'opacity-60 border-transparent'
-                }`}
-              >
-                <div
-                  className={`w-10 h-10 rounded-full ${color} flex items-center justify-center text-white text-lg shadow-sm`}
+              return (
+                <StaggerItem
+                  key={`${entry.roleId}-${index}`}
+                  className={cn(
+                    'flex flex-col items-center gap-2 rounded-2xl border px-3 py-3 min-w-[72px]',
+                    isLatest
+                      ? 'border-n-cyan/30 bg-n-cyan/[0.06]'
+                      : 'opacity-50 border-transparent'
+                  )}
                 >
-                  🤖
-                </div>
-                <span className="text-xs font-medium capitalize text-center">
-                  {entry.roleId}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      )}
-      </CardContent>
-    </Card>
+                  <div
+                    className={cn(
+                      'w-10 h-10 rounded-full bg-n-bg-elevated flex items-center justify-center text-lg ring-2',
+                      ringColor
+                    )}
+                  >
+                    🤖
+                  </div>
+                  <span className="text-xs font-medium capitalize text-center text-n-text-secondary">
+                    {entry.roleId}
+                  </span>
+                </StaggerItem>
+              );
+            })}
+          </StaggerChildren>
+        )}
+      </GlassCardContent>
+    </GlassCard>
   );
 }

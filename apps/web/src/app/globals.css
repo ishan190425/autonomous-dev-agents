@@ -2,41 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ADA Design System (C1112) Custom Properties */
+/* Neon Dark Theme — Always dark */
 :root {
-  /* Brand */
-  --ada-primary: #7c3aed;
-  --ada-primary-hover: #6d28d9;
-  --ada-primary-light: #ede9fe;
-  
-  /* Status */
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-  --color-info: #3b82f6;
-  
-  /* Backgrounds */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --bg-tertiary: #f3f4f6;
-  
-  /* Text */
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --text-muted: #9ca3af;
+  --n-bg: #0a0a0f;
+  --n-bg-surface: #0d0d12;
+  --n-bg-elevated: #12121a;
+  --n-cyan: #00f0ff;
+  --n-purple: #8b5cf6;
+  --n-pink: #ec4899;
+  --n-text: #ffffff;
+  --n-text-secondary: #a1a1aa;
+  --n-text-muted: #71717a;
 }
 
-.dark {
-  --bg-primary: #111827;
-  --bg-secondary: #1f2937;
-  --bg-tertiary: #374151;
-  
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --text-muted: #9ca3af;
-}
-
-/* Typography Scale (C1112) */
+/* Typography Scale */
 .text-display {
   @apply text-4xl font-bold tracking-tight;
 }
@@ -61,10 +40,57 @@
   @apply font-mono text-sm;
 }
 
-/* Custom scrollbar for dashboard */
+/* Glass Utilities */
+@layer components {
+  .glass {
+    @apply bg-white/[0.05] backdrop-blur-xl border border-white/[0.08] rounded-xl;
+  }
+
+  .glass-hover {
+    @apply hover:bg-white/[0.08] hover:border-white/[0.12] transition-all duration-200;
+  }
+
+  .neon-border-cyan {
+    @apply border-n-cyan/20 shadow-glow-cyan;
+  }
+
+  .neon-border-purple {
+    @apply border-n-purple/20 shadow-glow-purple;
+  }
+
+  .neon-border-pink {
+    @apply border-n-pink/20 shadow-glow-pink;
+  }
+}
+
+/* Skeleton Shimmer */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: #12121a;
+  border-radius: 0.5rem;
+}
+
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #00f0ff08,
+    #8b5cf610,
+    #00f0ff08,
+    transparent
+  );
+  animation: shimmer 2s linear infinite;
+}
+
+/* Scrollbar — Dark */
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: #374151 transparent;
+  scrollbar-color: #1e1e2e transparent;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
@@ -76,6 +102,16 @@
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: #374151;
+  background-color: #1e1e2e;
   border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: #2a2a3e;
+}
+
+/* Selection */
+::selection {
+  background: #00f0ff30;
+  color: #fff;
 }

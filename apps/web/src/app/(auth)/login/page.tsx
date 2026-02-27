@@ -2,22 +2,24 @@ import Link from 'next/link';
 
 import { loginWithGithub } from '@/lib/auth/actions';
 
-/**
- * Login Page — GitHub OAuth entry point
- */
 export default function LoginPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-ada-primary-light to-white dark:from-gray-900 dark:to-gray-800">
-      <div className="w-full max-w-md p-8">
-        <div className="bg-bg-primary rounded-xl shadow-lg p-8 space-y-6">
-          {/* Logo — data-testid per C1193 CEO directive for E2E tests */}
+    <main className="min-h-screen flex items-center justify-center bg-n-bg relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-n-cyan/[0.04] rounded-full blur-[120px]" />
+      <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-n-purple/[0.06] rounded-full blur-[100px]" />
+
+      <div className="w-full max-w-md p-8 relative z-10">
+        <div className="glass border border-white/[0.12] rounded-2xl p-8 space-y-6 shadow-glow-cyan">
+          {/* Logo */}
           <div className="text-center">
             <Link href="/" data-testid="ada-logo" className="inline-block hover:opacity-80 transition-opacity">
-              <span className="text-4xl block">🤖</span>
-              <span className="text-heading-1 mt-2 block">ADA</span>
+              <span className="text-3xl font-bold bg-gradient-to-r from-n-cyan to-n-purple bg-clip-text text-transparent block">
+                ADA
+              </span>
             </Link>
-            <h1 className="text-lg text-text-muted mt-2">Sign in to continue</h1>
-            <p className="text-body text-text-muted mt-1">
+            <h1 className="text-lg text-n-text-secondary mt-3">Sign in to continue</h1>
+            <p className="text-body text-n-text-muted mt-1">
               Manage your autonomous dev teams
             </p>
           </div>
@@ -26,7 +28,7 @@ export default function LoginPage() {
           <form action={loginWithGithub}>
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
+              className="w-full flex items-center justify-center gap-3 px-4 py-3 glass border border-white/[0.12] text-n-text rounded-lg font-medium hover:bg-white/[0.08] transition-colors"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -41,7 +43,7 @@ export default function LoginPage() {
 
           {/* Back Link */}
           <div className="text-center">
-            <Link href="/" className="text-sm text-ada-primary hover:underline">
+            <Link href="/" className="text-sm text-n-cyan hover:text-n-cyan/80 transition-colors">
               ← Back to home
             </Link>
           </div>

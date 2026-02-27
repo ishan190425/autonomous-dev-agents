@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { NeonButton } from '@/components/ui/neon-button';
 
 const INTERVAL_OPTIONS = [
   { label: '15 minutes', value: 15 },
@@ -66,34 +68,34 @@ export function RepoScheduleForm({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-sm font-medium">Auto-run cycles</h3>
-          <p className="text-xs text-text-muted">{repoName}</p>
+          <h3 className="text-sm font-medium text-n-text">Auto-run cycles</h3>
+          <p className="text-xs text-n-text-muted">{repoName}</p>
         </div>
-        <button
+        <motion.button
           onClick={() => setEnabled(!enabled)}
           className={
             'relative w-11 h-6 rounded-full transition-colors ' +
-            (enabled ? 'bg-ada-primary' : 'bg-gray-300 dark:bg-gray-600')
+            (enabled ? 'bg-n-cyan' : 'bg-white/[0.12]')
           }
+          whileTap={{ scale: 0.95 }}
         >
-          <span
-            className={
-              'absolute top-0.5 w-5 h-5 rounded-full bg-white transition-transform ' +
-              (enabled ? 'left-[22px]' : 'left-0.5')
-            }
+          <motion.span
+            animate={{ x: enabled ? 20 : 2 }}
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+            className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow-sm"
           />
-        </button>
+        </motion.button>
       </div>
 
       {enabled && (
         <div>
-          <label className="text-sm text-text-muted block mb-1">
+          <label className="text-sm text-n-text-muted block mb-1">
             Run every
           </label>
           <select
             value={interval}
             onChange={(e) => setInterval(Number(e.target.value))}
-            className="w-full px-3 py-2 rounded-lg bg-bg-secondary border text-sm"
+            className="w-full px-3 py-2 rounded-lg bg-n-bg-elevated border border-white/[0.08] text-sm text-n-text focus:border-n-cyan/30 focus:outline-none transition-colors"
           >
             {INTERVAL_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -105,26 +107,22 @@ export function RepoScheduleForm({
       )}
 
       {lastDispatchAt && (
-        <p className="text-xs text-text-muted">
+        <p className="text-xs text-n-text-muted">
           Last run: {new Date(lastDispatchAt).toLocaleString()}
         </p>
       )}
       {nextDispatchAt && enabled && (
-        <p className="text-xs text-text-muted">
+        <p className="text-xs text-n-text-muted">
           Next run: {new Date(nextDispatchAt).toLocaleString()}
         </p>
       )}
 
       <div className="flex items-center gap-3">
-        <button
-          onClick={save}
-          disabled={saving}
-          className="px-4 py-2 bg-ada-primary text-white text-sm rounded-lg hover:bg-ada-primary/90 disabled:opacity-50"
-        >
+        <NeonButton onClick={save} disabled={saving}>
           {saving ? 'Saving...' : 'Save Schedule'}
-        </button>
+        </NeonButton>
         {message && (
-          <span className="text-sm text-text-muted">{message}</span>
+          <span className="text-sm text-n-text-muted">{message}</span>
         )}
       </div>
     </div>

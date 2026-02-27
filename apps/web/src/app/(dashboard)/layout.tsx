@@ -2,8 +2,11 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { auth } from '@/lib/auth/auth';
 import { prisma } from '@/lib/prisma';
+import { SidebarProvider } from '@/lib/sidebar-context';
 import { Sidebar } from '@/components/layout/sidebar';
 import { Header } from '@/components/layout/header';
+import { CommandPalette } from '@/components/layout/command-palette';
+import { DashboardShell } from '@/components/layout/dashboard-shell';
 
 export default async function DashboardLayout({
   children,
@@ -35,7 +38,7 @@ export default async function DashboardLayout({
   });
 
   // Read selected repo from cookie, auto-select first if none
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   let selectedRepoId = cookieStore.get('ada.selected-repo')?.value ?? null;
 
   // Validate the selected repo is owned by user
@@ -50,24 +53,22 @@ export default async function DashboardLayout({
       path: '/',
       httpOnly: false,
       sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 365, // 1 year
+      maxAge: 60 * 60 * 24 * 365,
     });
   }
 
-  // Onboarding gate: redirect to /repos/new if no repos and not already there
-  // We check headers to get the current path since layout doesn't receive pathname directly
-  // Instead, we'll let the page render — the repos/new page is within this layout
   return (
-    <div className="min-h-screen bg-gradient-to-br from-bg-secondary via-bg-primary to-bg-secondary">
-      <Header />
-      <div className="flex">
-        <Sidebar repos={repos} selectedRepoId={selectedRepoId} />
-        <main className="flex-1 ml-0 lg:ml-64 pt-16 px-4 pb-10 lg:px-8 xl:px-12">
-          <div className="max-w-6xl mx-auto space-y-6">
+    <SidebarProvider>
+      <div className="min-h-screen bg-n-bg">
+        <Header session={session} />
+        <div className="flex">
+          <Sidebar repos={repos} selectedRepoId={selectedRepoId} />
+          <DashboardShell>
             {children}
-          </div>
-        </main>
+          </DashboardShell>
+        </div>
+        <CommandPalette />
       </div>
-    </div>
+    </SidebarProvider>
   );
 }
