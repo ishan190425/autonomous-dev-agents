@@ -293,8 +293,12 @@ test.describe('Billing — Accessibility', () => {
       const focusedElement = page.locator(':focus');
       const text = await focusedElement.textContent().catch(() => '');
       if (text?.toLowerCase().includes('upgrade') || text?.toLowerCase().includes('pro')) {
-        // Found the upgrade button
-        await expect(focusedElement).toHaveRole('link').or(focusedElement.toHaveRole('button'));
+        // Found the upgrade button - verify it's interactive (link or button)
+        await expect(focusedElement).toBeVisible();
+        const tagName = await focusedElement.evaluate(el => el.tagName.toLowerCase());
+        const role = await focusedElement.getAttribute('role');
+        const isInteractive = tagName === 'a' || tagName === 'button' || role === 'link' || role === 'button';
+        expect(isInteractive).toBe(true);
         break;
       }
     }

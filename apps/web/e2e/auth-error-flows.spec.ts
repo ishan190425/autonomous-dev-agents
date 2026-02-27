@@ -247,13 +247,16 @@ test.describe('Error Page Analytics', () => {
 
     // Also capture dataLayer pushes
     await page.addInitScript(() => {
-      (window as Window & { analyticsEvents: string[] }).analyticsEvents = [];
+      // Cast through unknown for TypeScript window extension
+      const win = window as unknown as Window & { analyticsEvents: string[] };
+      win.analyticsEvents = [];
       const originalPush = Array.prototype.push;
       // @ts-expect-error dataLayer access
       window.dataLayer = window.dataLayer || [];
       // @ts-expect-error dataLayer override
       window.dataLayer.push = function (...args: unknown[]) {
-        (window as Window & { analyticsEvents: string[] }).analyticsEvents.push(JSON.stringify(args));
+        const w = window as unknown as Window & { analyticsEvents: string[] };
+        w.analyticsEvents.push(JSON.stringify(args));
         return originalPush.apply(this, args);
       };
     });
