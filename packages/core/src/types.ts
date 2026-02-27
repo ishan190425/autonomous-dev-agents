@@ -122,6 +122,39 @@ export interface RotationHistoryEntry {
   readonly reflection?: Reflection;
 }
 
+/** Supported skip-until condition types */
+export type SkipConditionType =
+  | 'issue_closed'
+  | 'issue_comment'
+  | 'label_added'
+  | 'label_removed'
+  | 'pr_merged'
+  | 'pr_closed'
+  | 'date'
+  | 'manual';
+
+/** Configuration for conditional dispatch — skip cycles until a condition is met */
+export interface SkipUntilCondition {
+  /** Condition type */
+  readonly type: SkipConditionType;
+  /** Issue or PR number (for issue/PR-based conditions) */
+  readonly target?: number;
+  /** Label name (for label-based conditions) */
+  readonly label?: string;
+  /** Author filter (for issue_comment) */
+  readonly author?: string;
+  /** Date threshold (for date condition, ISO format) */
+  readonly after?: string;
+  /** Manual flag name (for manual condition) */
+  readonly flag?: string;
+  /** Human-readable reason for the skip */
+  readonly reason: string;
+  /** ISO timestamp when the condition was set */
+  readonly setAt: string;
+  /** Who set the condition */
+  readonly setBy?: string;
+}
+
 /** Current rotation state — tracks where we are in the cycle */
 export interface RotationState {
   /** Index into the roster's rotation_order array */
@@ -142,6 +175,8 @@ export interface RotationState {
   paused_at?: string;
   /** Reason for pausing (optional) */
   pause_reason?: string;
+  /** Conditional dispatch: skip cycles until condition is met (Issue #237) */
+  skipUntil?: SkipUntilCondition;
 }
 
 // ─── Memory Bank Types ───────────────────────────────────────────────────────

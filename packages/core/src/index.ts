@@ -24,6 +24,9 @@ export type {
   // Reflexion types (Issue #108 — Phase 1a)
   ReflectionOutcome,
   Reflection,
+  // Conditional dispatch types (Issue #237)
+  SkipConditionType,
+  SkipUntilCondition,
 } from './types.js';
 
 export { DEFAULT_CONFIG } from './types.js';

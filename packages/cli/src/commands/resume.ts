@@ -29,30 +29,41 @@ export const resumeCommand = new Command('resume')
         // Read current state
         const state = await readRotationState(statePath);
 
-        if (!state.paused) {
+        if (!state.paused && !state.skipUntil) {
           console.log('ℹ️  ADA is not paused — already running.');
           console.log(`   Last run: ${state.last_run || '(never)'}`);
           console.log(`   Cycle count: ${state.cycle_count}`);
           return;
         }
 
-        // Store pause info for display
+        // Store pause/skip info for display
         const pausedAt = state.paused_at;
         const pauseReason = state.pause_reason;
+        const skipCondition = state.skipUntil;
 
         // Clear paused state
         delete state.paused;
         delete state.paused_at;
         delete state.pause_reason;
 
+        // Clear skipUntil condition (Issue #237)
+        delete state.skipUntil;
+
         // Write updated state
         await writeRotationState(statePath, state);
 
         console.log('✅ ADA is now resumed.');
         console.log();
-        console.log('   Pause info (cleared):');
-        console.log(`   - Paused at: ${pausedAt || '(unknown)'}`);
-        console.log(`   - Reason: ${pauseReason || '(none)'}`);
+        if (pausedAt || pauseReason) {
+          console.log('   Pause info (cleared):');
+          console.log(`   - Paused at: ${pausedAt || '(unknown)'}`);
+          console.log(`   - Reason: ${pauseReason || '(none)'}`);
+        }
+        if (skipCondition) {
+          console.log('   Skip condition (cleared):');
+          console.log(`   - Type: ${skipCondition.type}${skipCondition.target ? ` #${skipCondition.target}` : ''}`);
+          console.log(`   - Reason: ${skipCondition.reason}`);
+        }
         console.log();
         console.log('   Dispatch cycles will now execute normally.');
 
