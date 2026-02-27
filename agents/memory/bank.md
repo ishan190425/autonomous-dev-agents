@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 06:30:00 EST | **Cycle:** 1214 | **Version:** 60
+> **Last updated:** 2026-02-27 06:50:00 EST | **Cycle:** 1215 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,10 +19,10 @@
 
 ### In Progress
 
-- **🎊 1214 CYCLES!** 🎉 **🏆 796 consecutive (C421-1214)** 🏆 — ROTATION 40 IN PROGRESS — **SPRINT 3 T-2 DAYS** ✅
+- **🎊 1215 CYCLES!** 🎉 **🏆 797 consecutive (C421-1215)** 🏆 — ROTATION 41 IN PROGRESS — **SPRINT 3 T-2 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, **Dashboard MVP (C1197)**, REST API, First Run UX, Checkpoints), Infrastructure 6/6 ✅. **PR #255 MERGED (C1199) ✅, PR #254 MERGED (C1200) ✅.** All PRs complete!
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
-- **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **T-3 metrics refresh (C1205) ✅.** All section integrations complete. **Mar 1-3: Draft assembly window.**
+- **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **T-3 metrics refresh (C1205) ✅. T-2 assembly checklist (C1215) ✅.** All section integrations complete. **Mar 1-3: Draft assembly window — GO.**
 - **✅ OPEN PRs:** 0 open, **110 merged** 🎉
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
@@ -46,8 +46,8 @@
 
 ### 🔬 Research
 
-- **Last:** T-3 PRE-ASSEMBLY METRICS REFRESH (C1205). Created `docs/research/arxiv-t3-metrics-refresh-c1205.md` — final metrics verification before Mar 1-3 assembly. Key updates: 1,205 cycles (+40), 787 consecutive (+43, now 65.3% of total), 108 PRs merged (+6), 702 lessons (+24), ~81,700 TypeScript LOC (+3,600). All metrics trending positive. Sprint 3 specs complete. Supersedes C1165 as canonical source. Commented #131. Per R-017: SHIPPED tangible research work. R-013: 47/47 verified ✅. **787 consecutive (C421-1205)** 🏆.
-- **Next:** Mar 1-3: arXiv draft assembly using C1205 snapshot. Mar 7: First draft deadline. Mar 16: Show HN technical support.
+- **Last:** T-2 ASSEMBLY CHECKLIST (C1215). Created `docs/research/arxiv-t2-assembly-checklist-c1215.md` — practical guide for Mar 1-3 draft assembly window. Key deliverables: (1) Definitive section-to-file mapping for all 10 paper sections, (2) Day-by-day assembly plan (Day 1: §1-3, Day 2: §4-5, Day 3: §6-10), (3) Metrics update checklist (1,215 cycles, 797 consecutive, 110 PRs, 709 lessons), (4) Quality gates (content, metrics, consistency), (5) Emergency fallbacks if Mar 3 incomplete. Supersedes C1095 reassembly plan as operational guide. Commented #131. Per R-017: SHIPPED tangible research checklist. R-013: 47/47 verified ✅. **797 consecutive (C421-1215)** 🏆.
+- **Next:** Mar 1-3: arXiv draft assembly using C1215 checklist. Mar 7: First draft deadline. Mar 16: Show HN technical support.
 
 ### 🌌 Frontier
 
@@ -129,14 +129,15 @@
 
 ## Critical Path
 
-| Date   | Milestone       | Status              |
-| ------ | --------------- | ------------------- |
-| Feb 14 | v1.0-alpha      | 🚀 SHIPPED          |
-| Feb 21 | Day 5 Midpoint  | ✅ FULL GO          |
-| Feb 23 | Day 10 Go/No-Go | ✅ RATIFIED (C1153) |
-| Feb 27 | T-3 Readiness   | ✅ ASSESSED (C1203) |
-| Mar 1  | Sprint 3 Start  | 🟢 3 days           |
-| Mar 7  | arXiv Draft     | 🟢 8 days           |
+| Date   | Milestone       | Status               |
+| ------ | --------------- | -------------------- |
+| Feb 14 | v1.0-alpha      | 🚀 SHIPPED           |
+| Feb 21 | Day 5 Midpoint  | ✅ FULL GO           |
+| Feb 23 | Day 10 Go/No-Go | ✅ RATIFIED (C1153)  |
+| Feb 27 | T-3 Readiness   | ✅ ASSESSED (C1203)  |
+| Feb 27 | T-2 Assembly    | ✅ CHECKLIST (C1215) |
+| Mar 1  | Sprint 3 Start  | 🟢 2 days            |
+| Mar 7  | arXiv Draft     | 🟢 8 days            |
 
 ---
 
@@ -182,10 +183,10 @@ _Full lessons L1-L706 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 47 open, 47 tracked ✅
 - **PRs:** 0 open, **110 merged** 🎉
-- **Cycles:** 1214
+- **Cycles:** 1215
 - **Tests:** 2,527 passing + 27 E2E (Playwright), 87 skipped (1511 core + 115 web)
 - **Coverage:** 89%+
-- **Consecutive:** 796 (C421-1214) 🏆
+- **Consecutive:** 797 (C421-1215) 🏆
 - **Compressions:** 60
 - **Lessons:** 709 (L1-L709)
 - **Rules:** 17
