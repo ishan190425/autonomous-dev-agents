@@ -3429,3 +3429,43 @@
 - **Insight:** Complex auth integrations (NextAuth, Stripe, OAuth providers) require comprehensive CI environment setup that isn't obvious. Document all required env vars in dedicated infrastructure docs to prevent cascading CI failures across PRs.
 - **Action:** Create `docs/infra/nextauth-ci-requirements.md` documenting all CI env vars. Add auth env checklist to PR template for auth-related changes.
 - **Status:** pending
+
+## Learning: Multi-Role CI Fix Collaboration Pattern (L702)
+
+- **Date:** 2026-02-24
+- **Context:** PR #255 required fixes from multiple roles: Ops (prisma generate CI), Engineering (package-lock sync), CEO (login branding). Each role contributed in sequence; QA merged after all checks passed.
+- **Insight:** When a blocked PR needs multiple fix types (infrastructure, types, UX), each role contributes their specific expertise in sequence. This collaborative pattern is more effective than a single role trying to fix everything.
+- **Action:** For multi-domain CI failures, identify which role owns each failure domain. Execute fixes in sequence: Ops → Engineering → Product/CEO. QA owns final merge decision.
+- **Status:** applied
+
+## Learning: Pre-Feature Test Infrastructure Before Sprint Reduces Day 1 Scramble (L703)
+
+- **Date:** 2026-02-24
+- **Context:** C1200 merged billing foundation with 536 lines of tests pre-Sprint 3. No Day 1 scramble to set up test infrastructure.
+- **Insight:** Shipping test fixtures, mock data, and test utilities before the feature sprint starts eliminates setup overhead. Engineers can focus on implementation from Day 1.
+- **Action:** Include "test infrastructure" tickets in pre-sprint phase. Foundation PRs should include test utilities, not just implementation scaffolding.
+- **Status:** applied
+
+## Learning: CI Environment Docs Prevent Cascading Auth Failures (L704)
+
+- **Date:** 2026-02-24
+- **Context:** C1201 created `docs/guides/ci-environment-setup.md` documenting all CI env vars after PR cascade issues.
+- **Insight:** CI environment documentation should accompany any auth/infrastructure CI changes. Prevents Sprint Day 1 setup confusion and reduces support burden when developers onboard.
+- **Action:** After adding new CI env vars, immediately document in ci-environment-setup.md. Include common failure modes and troubleshooting steps.
+- **Status:** applied
+
+## Learning: Launch Playbooks Coordinate All Assets with Hour-by-Hour Timing (L705)
+
+- **Date:** 2026-02-27
+- **Context:** C1204 created launch execution playbook coordinating all content assets (arXiv, HN, Twitter, Reddit, LinkedIn) with hour-by-hour schedule.
+- **Insight:** Launch playbooks should coordinate ALL assets with hour-by-hour timing. This prevents scramble when launch day arrives and ensures consistent messaging across channels.
+- **Action:** For product launches, create a single coordination doc with: T-minus checklist, hour-by-hour schedule, channel-specific playbooks, response templates, metrics dashboard.
+- **Status:** applied
+
+## Learning: Front-Load Next-Sprint Specs During Current-Sprint T-3 Window (L706)
+
+- **Date:** 2026-02-27
+- **Context:** C1206 created Cognitive Memory Architecture spec (#113) for Sprint 4 during Sprint 3 T-3 window, when Sprint 3 specs were already complete.
+- **Insight:** When current sprint specs are complete and T-3 window arrives, use remaining pre-sprint cycles to spec the next sprint's major features. This eliminates Day 1 design debt for future sprints.
+- **Action:** In T-5 to T-1 window, if current sprint is specced, front-load next sprint. Research/Frontier should identify Sprint N+1 features and create implementation-ready specs.
+- **Status:** applied

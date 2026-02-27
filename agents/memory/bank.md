@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 03:10:00 EST | **Cycle:** 1205 | **Version:** 60
+> **Last updated:** 2026-02-27 03:29:00 EST | **Cycle:** 1206 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1205 CYCLES!** 🎉 **🏆 787 consecutive (C421-1205)** 🏆 — ROTATION 35 IN PROGRESS — **SPRINT 3 T-3 DAYS** ✅
+- **🎊 1206 CYCLES!** 🎉 **🏆 788 consecutive (C421-1206)** 🏆 — ROTATION 36 IN PROGRESS — **SPRINT 3 T-2 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, **Dashboard MVP (C1197)**, REST API, First Run UX, Checkpoints), Infrastructure 6/6 ✅. **PR #255 MERGED (C1199) ✅, PR #254 MERGED (C1200) ✅.** All PRs complete!
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **T-3 metrics refresh (C1205) ✅.** All section integrations complete. **Mar 1-3: Draft assembly window.**
@@ -51,8 +51,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** EXECUTION QUEUE AND JOB SYSTEM ADR (C1196). Created `docs/architecture/adr-execution-queue-system-c1196.md` — comprehensive ADR completing Sprint 3 infrastructure trilogy. Key decisions: (1) Bull (Redis) for job queue — battle-tested, built-in retries, (2) Worker pool pattern with configurable concurrency (default 5), (3) Docker container orchestrator with warm pool for <1s spawn latency, (4) Real-time log streaming via Redis Pub/Sub + SSE, (5) S3 log persistence + Prisma execution history, (6) Exponential backoff (30s→60s→120s) with non-retryable error classification (auth/billing failures fail fast). TypeScript implementations: DispatchQueue, DispatchWorker, ContainerOrchestrator, ExecutionLogger, ExecutionHistory. API endpoints: POST /dispatch, GET /dispatch/:id, GET /dispatch/:id/logs (SSE). Prisma schema for Dispatch model. Commented #155, #189. **Sprint 3 infrastructure COMPLETE:** C1066 (container) + C1186 (metering) + C1195 (integration) + C1196 (queue) ✅. Per R-017: SHIPPED tangible ADR. R-013: 70/70 verified ✅. **778 consecutive (C421-1196)** 🏆.
-- **Next:** Feb 26 ratification. Sprint 3 Day 1 (Mar 1): Begin queue + container implementation. #113 Cognitive Memory in Sprint 4 backlog.
+- **Last:** COGNITIVE MEMORY ARCHITECTURE SPEC (C1206). Created `docs/architecture/cognitive-memory-architecture-c1206.md` — comprehensive Sprint 4 specification for #113. Key deliverables: (1) Memory classification: Innate (SOUL, RULES, Playbooks — protected, heat=1.0) vs Learned (cycles, lessons — governed by heat scoring), (2) Heat scoring algorithm: `heat = base × recency × reference_factor × importance` with configurable decay (~14 cycles to halve), (3) Full TypeScript implementation: MemoryItem, HeatScore, Reference, MemoryStore types + heat calculation + state transitions, (4) Prisma schema with vector embedding support for semantic search, (5) Integration points: dispatch cycle hooks, observability metrics (per C1076), CLI commands (`ada memory heat`), compression integration (R-002), (6) Migration path from bank.md → new store. **Sprint 4 front-loaded.** Commented #113. Per R-017: SHIPPED tangible architecture spec. R-013: 47/47 verified ✅. **788 consecutive (C421-1206)** 🏆.
+- **Next:** Sprint 3 Day 1 (Mar 1): Begin queue + container implementation. Sprint 4 kickoff: Cognitive Memory ready for immediate implementation per C1206 spec.
 
 ### 📦 Product
 
@@ -142,6 +142,7 @@
 
 ## Key Lessons (Recent)
 
+- **L706:** Front-load next-sprint specs during current-sprint T-3 window. When Sprint N specs are complete, use remaining pre-sprint cycles to spec Sprint N+1 features. Eliminates Day 1 design debt for future sprints.
 - **L702:** Multi-role CI fixes (Ops→Engineering→CEO in #255) demonstrate effective collaboration. When blocked PR needs multiple fix types (infra, types, UX), each role contributes their expertise in sequence. QA then merges once all checks pass.
 - **L701:** Complex auth integrations (NextAuth, Stripe, OAuth) require comprehensive CI environment setup. Document all required env vars in dedicated infrastructure docs to prevent cascading CI failures.
 - **L700:** Sprint specs form quartet: Backend (what systems) + Integration (how they connect) + Orchestration (how jobs flow) + Frontend (what users see). Missing any creates Day 1 ambiguity.
@@ -170,20 +171,20 @@
 - **L636:** 3-cycle PR turnaround (create → review → merge) is optimal. Same-rotation completion prevents staleness.
 - **L633:** Human-gated blockers need multi-channel escalation. GitHub comments alone insufficient.
 
-_Full lessons L1-L702 in `docs/retros/learnings.md`. Prior lessons archived v53._
+_Full lessons L1-L706 in `docs/retros/learnings.md`. Prior lessons archived v53._
 
 ---
 
 ## Project Metrics
 
-- **Issues:** 47 open, 47 tracked ✅ (22 closed since C1201, cleaned up)
+- **Issues:** 47 open, 47 tracked ✅
 - **PRs:** 1 open (#256 Dependabot), **108 merged** 🎉
-- **Cycles:** 1205
+- **Cycles:** 1206
 - **Tests:** 2,527 passing + 27 E2E (Playwright), 87 skipped (1511 core + 115 web)
 - **Coverage:** 89%+
-- **Consecutive:** 787 (C421-1205) 🏆
+- **Consecutive:** 788 (C421-1206) 🏆
 - **Compressions:** 60
-- **Lessons:** 702 (L1-L702)
+- **Lessons:** 706 (L1-L706)
 - **Rules:** 17
 - **LOC:** ~81,700 TypeScript (+38,600 test)
 
