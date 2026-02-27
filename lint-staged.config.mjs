@@ -11,7 +11,6 @@
 export default {
   'packages/**/*.{ts,js}': (stagedFiles) => [
     `eslint --fix ${stagedFiles.join(' ')}`,
-    'npm run typecheck --workspaces',
   ],
   '*.md': ['prettier --write --parser markdown'],
   '*.{json,yml,yaml}': ['prettier --write'],

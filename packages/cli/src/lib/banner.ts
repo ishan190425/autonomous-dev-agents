@@ -39,6 +39,22 @@ const FULL_BANNER_ART = `
 `;
 
 /**
+ * Quick-start tips panel shown after first-run banner
+ */
+const QUICK_START_PANEL = `
+  ┌─ Quick Start ──────────────────────────────────────────┐
+  │                                                        │
+  │  ada init             Set up your agent team            │
+  │  ada run              Execute one dispatch cycle        │
+  │  ada status           Check team & rotation state       │
+  │  ada dispatch start   Start a managed cycle             │
+  │                                                        │
+  │  Docs: https://github.com/ishan190425/autonomous-dev-agents │
+  │                                                        │
+  └────────────────────────────────────────────────────────┘
+`;
+
+/**
  * Compact banner for version checks and non-first-run
  */
 const COMPACT_BANNER_ART = `
@@ -205,6 +221,20 @@ export function showBanner(options: BannerOptions = {}): boolean {
         })
       : ROLE_INTRO_PANEL.replace(/┌|┐|└|┘|│|─/g, (match) => chalk.dim(match));
     console.log(rolePanel);
+  }
+
+  // Show quick-start tips on first run (not compact, not seen before)
+  if (!options.compact && !config.banner?.seenFullBanner && !options.showRolePanel) {
+    const quickStart = useNoColor
+      ? QUICK_START_PANEL.replace(/┌|┐|└|┘|│|─/g, (match) => {
+          const asciiMap: Record<string, string> = {
+            '┌': '+', '┐': '+', '└': '+', '┘': '+',
+            '│': '|', '─': '-'
+          };
+          return asciiMap[match] || match;
+        })
+      : QUICK_START_PANEL.replace(/┌|┐|└|┘|│|─/g, (match) => chalk.dim(match));
+    console.log(quickStart);
   }
 
   // Mark as seen (only for full banner on first display)
