@@ -1,70 +1,90 @@
-/**
- * Activity Feed Component — Recent cycle actions
- * Per C1112: Scrollable feed of recent agent activity
- */
-const recentActivity = [
-  {
-    cycle: 1119,
-    role: 'qa',
-    emoji: '🔍',
-    action: 'PRE-SPRINT 3 TEST READINESS AUDIT',
-    time: '2 hours ago',
-  },
-  {
-    cycle: 1118,
-    role: 'scrum',
-    emoji: '📋',
-    action: 'RETRO C1108-1117 — L637-L640 added',
-    time: '3 hours ago',
-  },
-  {
-    cycle: 1117,
-    role: 'product',
-    emoji: '📦',
-    action: 'SPRINT 4 FEATURE PRIORITIZATION',
-    time: '4 hours ago',
-  },
-  {
-    cycle: 1116,
-    role: 'frontier',
-    emoji: '🌌',
-    action: 'OBSERVABILITY ARCHITECTURE ADR',
-    time: '5 hours ago',
-  },
-  {
-    cycle: 1115,
-    role: 'research',
-    emoji: '🔬',
-    action: 'SECTION 6 INTEGRATION',
-    time: '6 hours ago',
-  },
-];
+import Link from 'next/link';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 
-export function ActivityFeed() {
+interface DispatchEntry {
+  id: string;
+  status: string;
+  triggeredBy: string;
+  roleId: string | null;
+  action: string | null;
+  error: string | null;
+  createdAt: Date;
+}
+
+function timeAgo(date: Date): string {
+  const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+  if (seconds < 60) return 'just now';
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
+}
+
+function statusEmoji(status: string): string {
+  switch (status) {
+    case 'COMPLETED': return '✅';
+    case 'RUNNING': return '⏳';
+    case 'FAILED': return '❌';
+    case 'PENDING': return '⏸️';
+    default: return '❓';
+  }
+}
+
+export function ActivityFeed({ dispatches }: { dispatches: DispatchEntry[] }) {
   return (
-    <div className="bg-bg-primary rounded-lg border p-6">
-      <h2 className="text-heading-3 mb-4">Recent Activity</h2>
-      
-      <div className="space-y-3 max-h-[400px] overflow-y-auto scrollbar-thin">
-        {recentActivity.map((activity) => (
-          <div
-            key={activity.cycle}
-            className="flex items-start gap-3 p-3 rounded-lg hover:bg-bg-secondary transition-colors"
-          >
-            <span className="text-xl">{activity.emoji}</span>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium truncate">{activity.action}</p>
-              <p className="text-xs text-text-muted">
-                C{activity.cycle} • {activity.role} • {activity.time}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+    <Card className="h-full">
+      <CardHeader className="pb-3">
+        <CardTitle>Recent Activity</CardTitle>
+        <CardDescription>
+          Latest cycles, errors, and dispatches from your agent team.
+        </CardDescription>
+      </CardHeader>
 
-      <button className="w-full mt-4 py-2 text-sm text-ada-primary hover:underline">
-        View all activity →
-      </button>
-    </div>
+      <CardContent className="pt-0">
+        {dispatches.length === 0 ? (
+          <p className="text-sm text-text-muted py-8 text-center">
+            No cycles run yet. Click &quot;Run Cycle&quot; to start.
+          </p>
+        ) : (
+          <div className="space-y-2 max-h-[420px] overflow-y-auto scrollbar-thin pr-1">
+            {dispatches.map((d) => (
+              <div
+                key={d.id}
+                className="flex items-start gap-3 rounded-lg px-2 py-2 hover:bg-bg-secondary/80 transition-colors"
+              >
+                <div className="mt-0.5">
+                  <span className="text-lg">{statusEmoji(d.status)}</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-medium truncate">
+                    {d.action || d.error || d.status}
+                  </p>
+                  <p className="text-[11px] text-text-muted">
+                    {d.roleId && (
+                      <span className="capitalize">
+                        {d.roleId}
+                        {' • '}
+                      </span>
+                    )}
+                    {d.triggeredBy} • {timeAgo(d.createdAt)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </CardContent>
+
+      <CardFooter className="pt-2">
+        <Link
+          href="/cycles"
+          className="w-full py-2 text-xs font-medium text-center text-ada-primary hover:text-ada-primary-hover hover:underline"
+        >
+          View all activity →
+        </Link>
+      </CardFooter>
+    </Card>
   );
 }

@@ -41,7 +41,8 @@ model User {
   subscription  Subscription?
   teams         TeamMember[]
   ownedTeams    Team[]        @relation("TeamOwner")
-  
+  repositories  Repository[]
+
   @@map("users")
 }
 
@@ -190,4 +191,79 @@ enum TeamRole {
   ADMIN
   MEMBER
   VIEWER
+}
+
+/// Repository connection status
+enum RepoStatus {
+  ACTIVE
+  PAUSED
+  DISCONNECTED
+  ERROR
+}
+
+/// Dispatch execution status
+enum DispatchStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+}
+
+// ============================================================================
+// Repository & Dispatch Tables
+// ============================================================================
+
+/// Connected GitHub repository
+model Repository {
+  id                      String       @id @default(cuid())
+  name                    String       // e.g. "my-repo"
+  fullName                String       // e.g. "owner/my-repo"
+  githubId                Int          @unique
+  installationId          Int
+  defaultBranch           String       @default("main")
+  avatarUrl               String?
+  status                  RepoStatus   @default(ACTIVE)
+
+  // Owner
+  ownerId                 String
+  owner                   User         @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  // Schedule
+  scheduleEnabled         Boolean      @default(false)
+  scheduleIntervalMinutes Int?
+  lastDispatchAt          DateTime?
+  nextDispatchAt          DateTime?
+
+  // Dispatch state
+  currentCycle            Int          @default(0)
+  isRunning               Boolean      @default(false)
+
+  createdAt               DateTime     @default(now())
+  updatedAt               DateTime     @updatedAt
+
+  // Relations
+  dispatches              Dispatch[]
+
+  @@map("repositories")
+}
+
+/// Dispatch audit trail — feeds Cycles page
+model Dispatch {
+  id            String         @id @default(cuid())
+  repositoryId  String
+  repository    Repository     @relation(fields: [repositoryId], references: [id], onDelete: Cascade)
+
+  status        DispatchStatus @default(PENDING)
+  triggeredBy   String         // "manual" | "schedule" | "api"
+
+  roleId        String?
+  action        String?        @db.Text
+  error         String?        @db.Text
+
+  startedAt     DateTime?
+  completedAt   DateTime?
+  createdAt     DateTime       @default(now())
+
+  @@index([repositoryId, createdAt])
+  @@map("dispatches")
 }

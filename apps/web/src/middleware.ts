@@ -1,19 +1,21 @@
-/**
- * NextAuth.js Middleware
- *
- * Protects routes that require authentication.
- * Redirects unauthenticated users to sign in page.
- *
- * @author ⚙️ Engineering (Cycle 1190)
- * @see Sprint 3 Day 3-4 — AUTH-4, AUTH-5
- */
-
-import { auth } from '@/lib/auth/auth';
+import { NextRequest, NextResponse } from 'next/server';
 import { AUTH_URLS } from '@/lib/auth/config';
 
-export default auth((req) => {
-  const isAuthenticated = !!req.auth;
+/**
+ * Edge middleware for route protection.
+ *
+ * With database sessions, NextAuth's auth() wrapper can't run in Edge
+ * (no Prisma/DB access). Instead, we check for the session cookie directly.
+ * Actual session validation happens server-side via auth() from auth.ts.
+ */
+export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
+
+  // Check for NextAuth session cookie (database strategy stores a session token)
+  const sessionCookie =
+    req.cookies.get('__Secure-authjs.session-token') ??
+    req.cookies.get('authjs.session-token');
+  const isAuthenticated = !!sessionCookie?.value;
 
   // Protected routes — require authentication
   const protectedPaths = [
@@ -21,19 +23,21 @@ export default auth((req) => {
     '/settings',
     '/cycles',
     '/memory',
+    '/repos',
     '/api/user',
     '/api/repos',
+    '/api/dispatch',
+    '/api/github/callback',
   ];
 
   const isProtected = protectedPaths.some(
     (path) => pathname.startsWith(path)
   );
 
-  // Redirect to sign in if accessing protected route while unauthenticated
   if (isProtected && !isAuthenticated) {
     const signInUrl = new URL(AUTH_URLS.signIn, req.nextUrl.origin);
     signInUrl.searchParams.set('callbackUrl', pathname);
-    return Response.redirect(signInUrl);
+    return NextResponse.redirect(signInUrl);
   }
 
   // Redirect to dashboard if already signed in and accessing auth pages
@@ -41,14 +45,12 @@ export default auth((req) => {
   const isAuthPage = authPages.some((path) => pathname.startsWith(path));
 
   if (isAuthPage && isAuthenticated) {
-    return Response.redirect(new URL(AUTH_URLS.afterSignIn, req.nextUrl.origin));
+    return NextResponse.redirect(new URL(AUTH_URLS.afterSignIn, req.nextUrl.origin));
   }
-});
 
-/**
- * Matcher configuration
- * Only run middleware on these paths (improves performance)
- */
+  return NextResponse.next();
+}
+
 export const config = {
   matcher: [
     // Protected routes
@@ -56,10 +58,14 @@ export const config = {
     '/settings/:path*',
     '/cycles/:path*',
     '/memory/:path*',
+    '/repos/:path*',
     '/api/user/:path*',
     '/api/repos/:path*',
+    '/api/dispatch/:path*',
+    '/api/github/callback',
     // Auth pages (for redirect when already signed in)
     '/auth/:path*',
     '/login',
+    // Note: /api/github/webhook is NOT in the matcher — it uses signature verification
   ],
 };

@@ -1,12 +1,15 @@
-'use client';
-
 import Link from 'next/link';
+
+import { auth } from '@/lib/auth/auth';
+import { logout } from '@/lib/auth/actions';
 
 /**
  * Header Component — Top navigation bar
  * Per C1112: Logo, search, user menu
  */
-export function Header() {
+export async function Header() {
+  const session = await auth();
+
   return (
     <header className="fixed top-0 left-0 right-0 h-14 bg-bg-primary border-b z-50">
       <div className="flex items-center justify-between h-full px-4">
@@ -34,11 +37,43 @@ export function Header() {
           </button>
 
           {/* User Menu */}
-          <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-bg-secondary transition-colors">
-            <span className="w-8 h-8 rounded-full bg-ada-primary flex items-center justify-center text-white text-sm font-medium">
-              U
-            </span>
-          </button>
+          {session?.user ? (
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg">
+                {session.user.image ? (
+                  <img
+                    src={session.user.image}
+                    alt={session.user.name ?? 'User'}
+                    className="w-8 h-8 rounded-full"
+                  />
+                ) : (
+                  <span className="w-8 h-8 rounded-full bg-ada-primary flex items-center justify-center text-white text-sm font-medium">
+                    {session.user.name?.[0]?.toUpperCase() ?? 'U'}
+                  </span>
+                )}
+                <span className="text-sm font-medium hidden sm:inline">
+                  {session.user.name}
+                </span>
+              </div>
+              <form action={logout}>
+                <button
+                  type="submit"
+                  className="px-3 py-1.5 text-sm rounded-lg hover:bg-bg-secondary transition-colors text-text-muted"
+                >
+                  Sign out
+                </button>
+              </form>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-bg-secondary transition-colors"
+            >
+              <span className="w-8 h-8 rounded-full bg-ada-primary flex items-center justify-center text-white text-sm font-medium">
+                U
+              </span>
+            </Link>
+          )}
         </div>
       </div>
     </header>
