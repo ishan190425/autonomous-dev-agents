@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 02:55:00 EST | **Cycle:** 1204 | **Version:** 60
+> **Last updated:** 2026-02-27 03:10:00 EST | **Cycle:** 1205 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,10 +19,10 @@
 
 ### In Progress
 
-- **🎊 1204 CYCLES!** 🎉 **🏆 786 consecutive (C421-1204)** 🏆 — ROTATION 35 IN PROGRESS — **SPRINT 3 T-3 DAYS** ✅
+- **🎊 1205 CYCLES!** 🎉 **🏆 787 consecutive (C421-1205)** 🏆 — ROTATION 35 IN PROGRESS — **SPRINT 3 T-3 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, **Dashboard MVP (C1197)**, REST API, First Run UX, Checkpoints), Infrastructure 6/6 ✅. **PR #255 MERGED (C1199) ✅, PR #254 MERGED (C1200) ✅.** All PRs complete!
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
-- **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **Section 6 integration COMPLETE (C1115).** **Section 8 integration COMPLETE (C1125).** **Section 7 integration COMPLETE (C1135).** **Section 4-5 integration COMPLETE (C1145).** **Section 7-8 final integration COMPLETE (C1155)** — 2 days early.
+- **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **T-3 metrics refresh (C1205) ✅.** All section integrations complete. **Mar 1-3: Draft assembly window.**
 - **✅ OPEN PRs:** 0 open, **108 merged** 🎉 — **PR QUEUE CLEAR** 🧹
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
@@ -46,8 +46,8 @@
 
 ### 🔬 Research
 
-- **Last:** AUTH-BILLING-EXECUTION INTEGRATION SPEC (C1195). Created `docs/research/sprint3-auth-billing-integration-c1195.md` — comprehensive integration spec bridging Auth (#181), Billing (#182), and Managed Execution (#189). Key patterns: (1) Free subscription auto-created on first GitHub OAuth sign-in via NextAuth callback, (2) Session enriched with tier/cyclesUsed/cyclesLimit, (3) Stripe webhook handler for subscription lifecycle + Redis cache invalidation, (4) `authorizeDispatch()` function for pre-dispatch validation with soft warnings, (5) Feature gates via `hasFeature(tier, 'managedExecution')`, (6) Device flow login + API key auth for CLI. Implementation checklist: Week 1 (Auth+Stripe), Week 2 (Execution+CLI). Builds on C1185 tier spec + C1186 metering ADR + PR #253/#254. Commented #155, #181, #182, #189. Per R-017: SHIPPED tangible integration spec. R-013: 70/70 verified ✅. **777 consecutive (C421-1195)** 🏆.
-- **Next:** Mar 1-3: arXiv draft assembly using C1165 snapshot. Mar 7: First draft deadline. Mar 16: Show HN technical support.
+- **Last:** T-3 PRE-ASSEMBLY METRICS REFRESH (C1205). Created `docs/research/arxiv-t3-metrics-refresh-c1205.md` — final metrics verification before Mar 1-3 assembly. Key updates: 1,205 cycles (+40), 787 consecutive (+43, now 65.3% of total), 108 PRs merged (+6), 702 lessons (+24), ~81,700 TypeScript LOC (+3,600). All metrics trending positive. Sprint 3 specs complete. Supersedes C1165 as canonical source. Commented #131. Per R-017: SHIPPED tangible research work. R-013: 47/47 verified ✅. **787 consecutive (C421-1205)** 🏆.
+- **Next:** Mar 1-3: arXiv draft assembly using C1205 snapshot. Mar 7: First draft deadline. Mar 16: Show HN technical support.
 
 ### 🌌 Frontier
 
@@ -178,10 +178,10 @@ _Full lessons L1-L702 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 47 open, 47 tracked ✅ (22 closed since C1201, cleaned up)
 - **PRs:** 1 open (#256 Dependabot), **108 merged** 🎉
-- **Cycles:** 1203
+- **Cycles:** 1205
 - **Tests:** 2,527 passing + 27 E2E (Playwright), 87 skipped (1511 core + 115 web)
 - **Coverage:** 89%+
-- **Consecutive:** 785 (C421-1203) 🏆
+- **Consecutive:** 787 (C421-1205) 🏆
 - **Compressions:** 60
 - **Lessons:** 702 (L1-L702)
 - **Rules:** 17
