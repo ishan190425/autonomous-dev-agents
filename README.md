@@ -96,6 +96,42 @@ Each cycle, the agent becomes one role. After acting, it rotates to the next. Ov
 - Role configuration UI
 - Metrics and analytics
 
+## Executor Backends
+
+ADA supports multiple AI executor backends. By default, ADA uses Clawdbot, but you can switch to Claude Code or OpenAI Codex for agent execution.
+
+### Supported Executors
+
+| Executor               | Command                  | Install                                    |
+| ---------------------- | ------------------------ | ------------------------------------------ |
+| **Clawdbot** (default) | `clawdbot agent --local` | Built-in                                   |
+| **Claude Code**        | `claude-code run`        | `npm install -g @anthropic-ai/claude-code` |
+| **Codex**              | `codex execute`          | `npm install -g @openai/codex-cli`         |
+
+### Configuration
+
+```bash
+# Per-cycle: use --executor flag
+ada dispatch start --executor claude-code
+ada dispatch start --executor codex
+
+# Persistent: set environment variable
+export ADA_EXECUTOR=claude-code
+ada dispatch start
+```
+
+Priority order: CLI flag `--executor` > `ADA_EXECUTOR` env var > `clawdbot` default.
+
+### Environment Variables
+
+| Variable       | Default    | Options                            | Description             |
+| -------------- | ---------- | ---------------------------------- | ----------------------- |
+| `ADA_EXECUTOR` | `clawdbot` | `clawdbot`, `claude-code`, `codex` | Select executor backend |
+
+All three executors follow ADA's abstract executor pattern — they are interchangeable at the framework level. Each executor builds a prompt from the dispatch context, executes via its CLI, and parses the response back into ADA's standard `ActionResult` format.
+
+---
+
 ## Cost Optimization
 
 ADA automatically selects the most cost-effective LLM model for each role, saving ~14% compared to using a single model for all operations.
