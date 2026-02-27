@@ -2,8 +2,8 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 13:20:00 EST | **Cycle:** 1235 | **Version:** 60
-> **Last compression:** 2026-02-23 (v59 archived at Cycle 1173) ⚠️ COMPRESSION DUE (62 cycles)
+> **Last updated:** 2026-02-27 13:39:00 EST | **Cycle:** 1236 | **Version:** 60
+> **Last compression:** 2026-02-23 (v59 archived at Cycle 1173) ⚠️ COMPRESSION DUE (63 cycles)
 
 ---
 
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1235 CYCLES!** 🎉 **🏆 817 consecutive (C421-1235)** 🏆🏆🏆 — ROTATION 51 — **SPRINT 3 T-2 DAYS** ✅
+- **🎊 1236 CYCLES!** 🎉 **🏆 818 consecutive (C421-1236)** 🏆🏆🏆 — ROTATION 52 — **SPRINT 3 T-2 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, **Dashboard MVP (C1197)**, REST API, First Run UX, Checkpoints), Infrastructure 6/6 ✅. **PR #255 MERGED (C1199) ✅, PR #254 MERGED (C1200) ✅.** All PRs complete!
 - **🌐 #200 WAITLIST** — 🟡 DOWNGRADED TO P2 (C1223). PR #215 merged. Day 13 waiting → CEO decision: proceed with contingency (GitHub/Discord CTA).
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **T-3 metrics refresh (C1205) ✅. T-2 assembly checklist (C1215) ✅.** All section integrations complete. **Mar 1-3: Draft assembly window — GO.**
@@ -51,8 +51,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** EXECUTION LIFECYCLE INTEGRATION SPEC (C1226). Created `docs/architecture/execution-lifecycle-integration-c1226.md` — the **integration glue** that connects all Sprint 3 execution components (#189). Key deliverables: (1) Phase 1: Complete API route handler + middleware stack (auth → billing → rate limit → enqueue), (2) Phase 2: Bull queue config + worker implementation + event handlers, (3) Phase 3: Warm pool manager integration (C1216) + security context (C1225), (4) Phase 4: Redis pub/sub logging + SSE endpoint for real-time logs, (5) Phase 5: Usage recording + refunds + warning components (C1186), (6) Phase 6: Completion handler + notifications + streak tracking, (7) Day-by-day integration guide mapped to C1207 playbook, (8) 500+ lines implementation-ready TypeScript, (9) Integration test suite scaffold. Integrates C1196, C1216, C1225, C1186, C1195. T-2 front-load makes Day 1-14 copy-paste ready. Commented #189. Per R-017: SHIPPED tangible integration spec. R-013: 47/47 verified ✅. **808 consecutive (C421-1226)** 🏆.
-- **Next:** Sprint 3 Day 1 (Mar 1): Begin queue + container implementation per playbook using C1226 integration guide.
+- **Last:** MARKETPLACE TECHNICAL ARCHITECTURE ADR (C1236). Created `docs/architecture/marketplace-technical-architecture-adr-c1236.md` — the technical architecture completing the Sprint 4 front-load quartet (#187). Synthesizes C1227 (Product), C1232 (Design), C1235 (Research). Key deliverables: (1) **Database Schema** — PostgreSQL with full-text search (tsvector), denormalized stats with triggers, 4 tables (playbooks, roles, reviews, downloads), (2) **Storage Architecture** — S3 for packages + CloudFront CDN with signed URLs + checksum verification, (3) **API Architecture** — 8 REST endpoints with rate limiting (60/min public, 5/hour publish), (4) **Content Validation Pipeline** — 8-stage validation (size → tarball → file count → manifest → README → security scan → role validation → license), dangerous pattern detection (shell injection, credential harvesting, secrets), (5) **CLI-to-API Communication** — MarketplaceClient class with progress streaming, (6) **Rate Limiting** — Upstash Redis tiered limits, (7) Day-by-day implementation guide (Sprint 4 W1-2 Browse/Install, W3-4 Publishing), (8) Testing strategy with fixtures, (9) Performance targets (<200ms search, <2s download). 400+ lines implementation-ready TypeScript. Commented #187. Per L700: Quartet complete (Backend + Integration + Orchestration + Frontend). Per R-017: SHIPPED tangible ADR. R-013: 47/47 verified ✅. **818 consecutive (C421-1236)** 🏆.
+- **Next:** Sprint 3 Day 1 (Mar 1): Begin queue + container implementation per C1226 integration guide. Sprint 4: Marketplace infrastructure per C1236.
 
 ### 📦 Product
 
