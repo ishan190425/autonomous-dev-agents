@@ -45,7 +45,7 @@ import {
   adaError,
   printError,
 } from '@ada-ai/core';
-import type { Role, Roster, RotationState, Reflection, ReflectionOutcome, CodeChangeResult } from '@ada-ai/core';
+import type { Role, Roster, RotationState, Reflection, ReflectionOutcome, CodeChangeResult, SkipUntilCondition } from '@ada-ai/core';
 
 // Heat Scoring (Issue #118 — Dispatch Integration)
 import {
@@ -640,6 +640,89 @@ async function executePRWorkflow(
   };
 }
 
+// ─── Skip Condition Evaluation (Issue #237) ──────────────────────────────────
+
+/** Exit code for skipped cycle (condition not met) */
+const EXIT_SKIPPED = 8;
+
+/**
+ * Evaluate a skipUntil condition using GitHub CLI.
+ * Returns true if the condition is met (dispatch should proceed).
+ */
+async function evaluateSkipCondition(
+  condition: SkipUntilCondition,
+  cwd: string
+): Promise<{ met: boolean; detail: string }> {
+  try {
+    switch (condition.type) {
+      case 'issue_closed': {
+        const { stdout } = await exec(`gh issue view ${condition.target} --json state --jq '.state'`, { cwd });
+        const met = stdout.trim() === 'CLOSED';
+        return { met, detail: met ? `Issue #${condition.target} is closed` : `Issue #${condition.target} is still open` };
+      }
+
+      case 'pr_merged': {
+        const { stdout } = await exec(`gh pr view ${condition.target} --json state --jq '.state'`, { cwd });
+        const met = stdout.trim() === 'MERGED';
+        return { met, detail: met ? `PR #${condition.target} is merged` : `PR #${condition.target} is not yet merged` };
+      }
+
+      case 'pr_closed': {
+        const { stdout } = await exec(`gh pr view ${condition.target} --json state --jq '.state'`, { cwd });
+        const state = stdout.trim();
+        const met = state === 'CLOSED' || state === 'MERGED';
+        return { met, detail: met ? `PR #${condition.target} is ${state.toLowerCase()}` : `PR #${condition.target} is still open` };
+      }
+
+      case 'issue_comment': {
+        let jqFilter = '.comments | length';
+        let ghCmd = `gh issue view ${condition.target} --json comments --jq '${jqFilter}'`;
+        if (condition.author) {
+          jqFilter = `.comments | map(select(.author.login == "${condition.author}")) | length`;
+          ghCmd = `gh issue view ${condition.target} --json comments --jq '${jqFilter}'`;
+        }
+        const { stdout } = await exec(ghCmd, { cwd });
+        const count = parseInt(stdout.trim(), 10);
+        const met = count > 0;
+        const authorDetail = condition.author ? ` from @${condition.author}` : '';
+        return { met, detail: met ? `Issue #${condition.target} has comments${authorDetail}` : `No comments${authorDetail} on #${condition.target}` };
+      }
+
+      case 'label_added': {
+        const { stdout } = await exec(`gh issue view ${condition.target} --json labels --jq '[.labels[].name] | join(",")'`, { cwd });
+        const labels = stdout.trim().split(',');
+        const met = labels.includes(condition.label ?? '');
+        return { met, detail: met ? `Label "${condition.label}" found on #${condition.target}` : `Label "${condition.label}" not on #${condition.target}` };
+      }
+
+      case 'label_removed': {
+        const { stdout } = await exec(`gh issue view ${condition.target} --json labels --jq '[.labels[].name] | join(",")'`, { cwd });
+        const labels = stdout.trim().split(',');
+        const met = !labels.includes(condition.label ?? '');
+        return { met, detail: met ? `Label "${condition.label}" removed from #${condition.target}` : `Label "${condition.label}" still on #${condition.target}` };
+      }
+
+      case 'date': {
+        const now = new Date();
+        const target = new Date(condition.after ?? '');
+        const met = now >= target;
+        return { met, detail: met ? `Date ${condition.after} has passed` : `Waiting until ${condition.after}` };
+      }
+
+      case 'manual': {
+        // Manual conditions are never auto-met — must be cleared with `ada dispatch resume`
+        return { met: false, detail: `Manual hold: ${condition.reason}` };
+      }
+
+      default:
+        return { met: false, detail: `Unknown condition type: ${condition.type}` };
+    }
+  } catch (error) {
+    // If we can't evaluate (e.g., gh CLI fails), don't skip — let dispatch proceed
+    return { met: true, detail: `Condition evaluation failed: ${(error as Error).message}. Proceeding.` };
+  }
+}
+
 // ─── Start Command ───────────────────────────────────────────────────────────
 
 /**
@@ -694,6 +777,44 @@ async function executeStart(options: DispatchStartOptions): Promise<void> {
       console.log(`  Or use ${chalk.red('--force')} to override (not recommended).\n`);
     }
     process.exit(EXIT_CODES.PAUSED);
+  }
+
+  // Check skipUntil condition (Issue #237 — Conditional Dispatch)
+  if (state.skipUntil && !options.force) {
+    const { met, detail } = await evaluateSkipCondition(state.skipUntil, cwd);
+
+    if (met) {
+      // Condition is met — clear skipUntil and proceed
+      delete state.skipUntil;
+      await writeRotationState(statePath, state);
+      if (!options.json && !options.quiet) {
+        console.log(chalk.green(`\n✅ Skip condition met: ${detail}`));
+        console.log(chalk.gray('   Resuming normal dispatch.\n'));
+      }
+    } else {
+      // Condition not met — skip this cycle
+      if (options.json) {
+        console.log(JSON.stringify({
+          status: 'skipped',
+          reason: state.skipUntil.reason,
+          condition: state.skipUntil.type,
+          target: state.skipUntil.target ?? null,
+          detail,
+          setAt: state.skipUntil.setAt,
+          hint: 'Use `ada dispatch start --force` to override, or `ada resume` to clear.',
+        }));
+      } else if (!options.quiet) {
+        console.log(chalk.yellow('\n⏭️  Cycle Skipped (Conditional Dispatch)\n'));
+        console.log(`  ${chalk.gray('Reason:')}    ${state.skipUntil.reason}`);
+        console.log(`  ${chalk.gray('Condition:')} ${state.skipUntil.type}${state.skipUntil.target ? ` #${state.skipUntil.target}` : ''}`);
+        console.log(`  ${chalk.gray('Status:')}    ${detail}`);
+        console.log(`  ${chalk.gray('Set at:')}    ${state.skipUntil.setAt}\n`);
+        console.log(`  Use ${chalk.cyan('ada resume')} to clear, or ${chalk.red('--force')} to override.\n`);
+      } else {
+        console.log(`Skipped: ${state.skipUntil.reason}`);
+      }
+      process.exit(EXIT_SKIPPED);
+    }
   }
 
   // Check for active lock
@@ -934,6 +1055,50 @@ async function executeComplete(options: DispatchCompleteOptions): Promise<void> 
         console.log();
       }
       process.exit(EXIT_DUPLICATE_ACTION);
+    }
+  }
+
+  // R-017: Tangible Output Mandate (Issue #239)
+  // Non-CEO roles cannot submit verification/checkpoint actions
+  if (currentRole.id !== 'ceo' && !options.force) {
+    const actionLower = options.action.toLowerCase();
+    const checkpointPatterns = [
+      'verification checkpoint',
+      'stability checkpoint',
+      'rotation checkpoint',
+      'go/no-go',
+      'go / no-go',
+      'stability report',
+      'status report',
+      'stability assessment',
+      'verification cycle',
+      'holding pattern',
+      'all systems nominal',
+      'confirms stability',
+      'confirm stability',
+      'maximum preparation',
+    ];
+    const isCheckpoint = checkpointPatterns.some((p) => actionLower.includes(p));
+
+    if (isCheckpoint) {
+      if (options.json) {
+        console.log(JSON.stringify({
+          error: 'checkpoint_rejected',
+          rule: 'R-017',
+          message: 'Non-CEO roles must produce tangible output. Verification checkpoints are CEO-only.',
+          role: currentRole.id,
+          hint: 'Pick a different task: close an issue, write code, create a PR, or improve docs. Use --force to override.',
+        }));
+      } else if (!options.quiet) {
+        console.log(chalk.yellow('\n⚠️  Checkpoint Rejected (R-017)\n'));
+        console.log(`  ${currentRole.emoji} ${currentRole.name} cannot submit verification/checkpoint actions.\n`);
+        console.log('  Per R-017, non-CEO roles MUST produce tangible output:\n');
+        console.log('    - Code PRs, bug fixes, feature implementations');
+        console.log('    - Test additions, docs, specs, designs');
+        console.log('    - Close an issue, create a PR, ship real work\n');
+        console.log(`  Use ${chalk.cyan('--force')} to override (not recommended).\n`);
+      }
+      process.exit(EXIT_CODES.MISSING_REQUIRED_FLAG);
     }
   }
 
@@ -1491,6 +1656,16 @@ async function executeStatus(options: DispatchStatusOptions): Promise<void> {
   }
   console.log('  └─────────────────────────────────────────────────┘');
 
+  // Skip condition (Issue #237)
+  if (state.skipUntil) {
+    console.log();
+    console.log(chalk.yellow('  ⏭️  Skip Condition Active'));
+    console.log(`    ${chalk.gray('Condition:')} ${state.skipUntil.type}${state.skipUntil.target ? ` #${state.skipUntil.target}` : ''}`);
+    console.log(`    ${chalk.gray('Reason:')}    ${state.skipUntil.reason}`);
+    console.log(`    ${chalk.gray('Set at:')}    ${state.skipUntil.setAt}`);
+    console.log(`    ${chalk.gray('Clear:')}     ${chalk.cyan('ada resume')}`);
+  }
+
   // Rotation order
   console.log();
   console.log(chalk.gray('  Rotation Order:'));
@@ -1653,6 +1828,77 @@ export const dispatchCommand = new Command('dispatch')
         } catch (err) {
           const error = err as Error;
           if (mergedOptions.json) {
+            console.log(JSON.stringify({ error: error.message }));
+          } else {
+            console.error(chalk.red(`\n❌ Error: ${error.message}`));
+          }
+          process.exit(1);
+        }
+      })
+  )
+  .addCommand(
+    new Command('skip')
+      .description('Set a skip condition — pause cycles until a condition is met (Issue #237)')
+      .requiredOption('--until <condition>', 'Condition: issue_closed:N, pr_merged:N, label_added:N:label, date:YYYY-MM-DD, manual')
+      .option('--reason <text>', 'Why this skip is needed')
+      .option('-d, --dir <path>', 'Project root directory', '.')
+      .option('-j, --json', 'Output as JSON')
+      .action(async function(this: Command, options: { until: string; reason?: string; dir: string; json?: boolean }) {
+        const globalOpts = this.optsWithGlobals();
+        const json = options.json || globalOpts.json;
+
+        try {
+          const cwd = process.cwd();
+          const agentsDir = path.resolve(cwd, options.dir, 'agents');
+          const statePath = path.join(agentsDir, 'state', 'rotation.json');
+          const state = await readRotationState(statePath);
+
+          // Parse condition string: type:target[:extra]
+          const parts = options.until.split(':');
+          const type = parts[0] as SkipUntilCondition['type'];
+          const target = parts[1] ? parseInt(parts[1], 10) : undefined;
+          const extra = parts[2] ?? undefined;
+
+          const validTypes = ['issue_closed', 'issue_comment', 'label_added', 'label_removed', 'pr_merged', 'pr_closed', 'date', 'manual'];
+          if (!validTypes.includes(type)) {
+            const msg = `Invalid condition type: ${type}. Valid: ${validTypes.join(', ')}`;
+            if (json) {
+              console.log(JSON.stringify({ error: msg }));
+            } else {
+              console.error(chalk.red(`❌ ${msg}`));
+            }
+            process.exit(1);
+          }
+
+          const condition: SkipUntilCondition = {
+            type,
+            ...(target && !isNaN(target) ? { target } : {}),
+            ...(type === 'label_added' || type === 'label_removed' ? { label: extra ?? parts[2] } : {}),
+            ...(type === 'issue_comment' && extra ? { author: extra } : {}),
+            ...(type === 'date' ? { after: parts.slice(1).join(':') } : {}),
+            ...(type === 'manual' ? { flag: parts[1] ?? 'hold' } : {}),
+            reason: options.reason ?? `Waiting for ${type}${target ? ` #${target}` : ''}`,
+            setAt: new Date().toISOString(),
+          };
+
+          state.skipUntil = condition;
+          await writeRotationState(statePath, state);
+
+          if (json) {
+            console.log(JSON.stringify({ status: 'skip_set', condition }));
+          } else {
+            console.log(chalk.green('\n✅ Skip condition set\n'));
+            console.log(`  ${chalk.gray('Type:')}      ${condition.type}`);
+            if (condition.target) console.log(`  ${chalk.gray('Target:')}    #${condition.target}`);
+            if (condition.label) console.log(`  ${chalk.gray('Label:')}     ${condition.label}`);
+            if (condition.after) console.log(`  ${chalk.gray('After:')}     ${condition.after}`);
+            console.log(`  ${chalk.gray('Reason:')}    ${condition.reason}\n`);
+            console.log('  Cycles will be skipped until this condition is met.');
+            console.log(`  Use ${chalk.cyan('ada resume')} or ${chalk.cyan('ada dispatch start --force')} to override.\n`);
+          }
+        } catch (err) {
+          const error = err as Error;
+          if (json) {
             console.log(JSON.stringify({ error: error.message }));
           } else {
             console.error(chalk.red(`\n❌ Error: ${error.message}`));
