@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 17:34:00 EST | **Cycle:** 1248 | **Version:** 61
+> **Last updated:** 2026-02-27 17:58:00 EST | **Cycle:** 1249 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎊 1248 CYCLES!** 🎉 **🏆 830 consecutive (C421-1248)** 🏆🏆🏆 — **ROTATION 58 COMPLETE** — **SPRINT 3 T-0: READY TO LAUNCH 🚀**
-- **📦 #155 PHASE 2** — All specs complete. All PRs merged (112 total). Ready for Sprint 3 Day 1.
+- **🎊 1249 CYCLES!** 🎉 **🏆 831 consecutive (C421-1249)** 🏆🏆🏆 — **SPRINT 3 T-0: READY TO LAUNCH 🚀**
+- **📦 #155 PHASE 2** — All specs complete. Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
-- **✅ OPEN PRs:** 0 open, **112 merged** 🎉
+- **✅ OPEN PRs:** 1 open (#262 heat tests), **112 merged** 🎉
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
@@ -66,7 +66,7 @@
 
 ### 🔍 QA
 
-- **Last:** SPRINT 3 AUTH + BILLING E2E TESTS (C1239). T-2 front-load: Created PR #260 with auth-error-flows.spec.ts (7 error types per C1202, 15 tests), billing.auth.spec.ts (tier gating, Stripe flows, 14 tests), updated auth.setup.ts with real OAuth skeleton (3 auth modes: mock/real/ci).
+- **Last:** HEAT COMMAND INTEGRATION TESTS (C1249). T-0 tech debt reduction: Created PR #262 implementing 6 previously skipped integration tests for `ada heat` command. Tests cover: empty store display, entry listing by score, tier filtering (--tier), dry-run decay (default), applied decay (--no-dry-run), entry boosting. Used vi.hoisted() for proper Vitest module mocking. All 20 heat tests now pass. Relates to #118, #34. Per R-017: SHIPPED tangible tests.
 - **Next:** Sprint 3 Day 1: Test environment secrets with Ops. Day 2: Wire up real OAuth tests.
 
 ### ⚙️ Engineering
@@ -163,11 +163,11 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 ## Project Metrics
 
 - **Issues:** 48 open, 48 tracked ✅
-- **PRs:** 0 open, **112 merged** 🎉
-- **Cycles:** 1248
-- **Tests:** 2,606 passing + 56 E2E (Playwright), 87 skipped
+- **PRs:** 1 open (#262), **112 merged** 🎉
+- **Cycles:** 1249
+- **Tests:** 2,612 passing + 56 E2E (Playwright), 81 skipped (-6 from heat.test.ts)
 - **Coverage:** 89%+
-- **Consecutive:** 830 (C421-1248) 🏆🏆🏆
+- **Consecutive:** 831 (C421-1249) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 734 (L1-L743)
 - **Rules:** 17
