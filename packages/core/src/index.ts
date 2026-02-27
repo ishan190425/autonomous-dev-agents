@@ -738,3 +738,52 @@ export {
   readCurrentAgentFiles,
   buildUpdatePrompt,
 } from './update.js';
+
+// Billing (Sprint 3 — SaaS Container #155)
+// Stripe integration, subscription management, usage metering.
+// Implements C1186 (Usage Metering Architecture), C1185 (SaaS Tier Spec).
+export type {
+  Tier,
+  BillingPeriod,
+  SubscriptionStatus,
+  TierConfig,
+  Subscription,
+  CycleUsageRecord,
+  PreDispatchResult,
+  RateLimitResult,
+  AcquireSlotResult,
+  RecordResult as BillingRecordResult,
+  BatchRecordResult,
+  SyncResult as BillingSyncResult,
+  FlushResult as BillingFlushResult,
+  CheckoutSession,
+  PortalSession,
+  StripeWebhookEvent,
+  WebhookPayload,
+  StripeClientConfig,
+  StripeClient,
+  CreateCheckoutOptions,
+  CreatePortalOptions,
+  UpdateSubscriptionOptions,
+} from './billing/index.js';
+export {
+  BillingError,
+  BillingErrorCode,
+  TIER_CONFIG,
+  DEFAULT_TIER,
+  TRIAL_DURATION_DAYS,
+  LIMIT_GRACE_PERCENTAGE,
+  CACHE_STALE_THRESHOLD_MS,
+  MAX_RECORD_RETRIES,
+  IDEMPOTENCY_KEY_TTL_SECONDS,
+  MAX_DISPATCH_DURATION_SECONDS,
+  STRIPE_WEBHOOK_TOLERANCE_SECONDS,
+  WARNING_THRESHOLDS,
+  TOKEN_RATES,
+  calculateCycleCost as calculateBillingCycleCost,
+  getUsageWarning,
+  tierAllows,
+  getUpgradeRecommendation,
+  createStripeClient,
+  createMockStripeClient,
+} from './billing/index.js';
