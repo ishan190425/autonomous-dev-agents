@@ -111,29 +111,148 @@ describe('heat command', () => {
 });
 
 describe('heat command integration', () => {
-  // These tests require mocking the store, which we'll add in Sprint 2 Week 1
+  // Use vi.hoisted to define mocks before module mocking runs
+  const { mockStore, mockStats, mockLoad, mockGetAllWithScores, mockGetByTier, mockDecay, mockGet, mockIncrement } = vi.hoisted(() => {
+    const mockStats = vi.fn();
+    const mockLoad = vi.fn();
+    const mockGetAllWithScores = vi.fn();
+    const mockGetByTier = vi.fn();
+    const mockDecay = vi.fn();
+    const mockGet = vi.fn();
+    const mockIncrement = vi.fn();
 
-  it.skip('should show empty state when no heat store exists', async () => {
-    // TODO: Implement with store mock
+    const mockStore = {
+      load: mockLoad,
+      stats: mockStats,
+      getAllWithScores: mockGetAllWithScores,
+      getByTier: mockGetByTier,
+      decay: mockDecay,
+      get: mockGet,
+      increment: mockIncrement,
+    };
+
+    return { mockStore, mockStats, mockLoad, mockGetAllWithScores, mockGetByTier, mockDecay, mockGet, mockIncrement };
   });
 
-  it.skip('should list entries sorted by score descending', async () => {
-    // TODO: Implement with store mock
+  // Mock createHeatStore to return our controlled mock store
+  vi.mock('@ada-ai/core/heat', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('@ada-ai/core/heat')>();
+    return {
+      ...actual,
+      createHeatStore: vi.fn(() => mockStore),
+    };
   });
 
-  it.skip('should filter by tier when --tier is provided', async () => {
-    // TODO: Implement with store mock
+  beforeEach(() => {
+    vi.clearAllMocks();
+    mockLoad.mockResolvedValue(0);
+    mockConsoleLog.mockClear();
   });
 
-  it.skip('should perform dry-run decay by default', async () => {
-    // TODO: Implement with store mock
+  it('should show empty state when no heat store exists', async () => {
+    mockStats.mockReturnValue({
+      total: 0,
+      byClass: { innate: 0, learned: 0, episodic: 0 },
+      byTier: { hot: 0, warm: 0, cold: 0 },
+      averageHeat: 0,
+      averageReferences: 0,
+    });
+
+    // Parse through parent command to inherit options
+    await heatCommand.parseAsync(['node', 'heat', '--dir', '/tmp/test'], { from: 'node' });
+
+    expect(mockLoad).toHaveBeenCalled();
+    expect(mockStats).toHaveBeenCalled();
+    expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('No entries'));
   });
 
-  it.skip('should apply decay when --no-dry-run is specified', async () => {
-    // TODO: Implement with store mock
+  it('should list entries sorted by score descending', async () => {
+    const mockEntries = [
+      { id: 'entry-1', memoryClass: 'learned', baseImportance: 0.8, referenceCount: 10, lastAccessedAt: Date.now(), createdAt: Date.now() - 1000, heatScore: 0.9, tier: 'hot' },
+      { id: 'entry-2', memoryClass: 'episodic', baseImportance: 0.5, referenceCount: 3, lastAccessedAt: Date.now() - 86400000, createdAt: Date.now() - 10000, heatScore: 0.5, tier: 'warm' },
+      { id: 'entry-3', memoryClass: 'innate', baseImportance: 0.3, referenceCount: 1, lastAccessedAt: Date.now() - 604800000, createdAt: Date.now() - 100000, heatScore: 0.2, tier: 'cold' },
+    ];
+    mockGetAllWithScores.mockReturnValue(mockEntries);
+
+    // Parse through parent command — subcommands inherit parent options
+    await heatCommand.parseAsync(['node', 'heat', '--dir', '/tmp/test', 'list'], { from: 'node' });
+
+    expect(mockLoad).toHaveBeenCalled();
+    expect(mockGetAllWithScores).toHaveBeenCalled();
+    // Should display entries (entry-1 first due to highest score)
+    expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('entry-1'));
   });
 
-  it.skip('should boost entry score and update tier if threshold crossed', async () => {
-    // TODO: Implement with store mock
+  it('should filter by tier when --tier is provided', async () => {
+    const hotEntries = [
+      { id: 'hot-entry', memoryClass: 'learned', baseImportance: 0.9, referenceCount: 20, lastAccessedAt: Date.now(), createdAt: Date.now() - 500, heatScore: 0.95, tier: 'hot' },
+    ];
+    mockGetByTier.mockReturnValue(hotEntries);
+
+    // Parse through parent command with subcommand options
+    await heatCommand.parseAsync(['node', 'heat', '--dir', '/tmp/test', 'list', '--tier', 'hot'], { from: 'node' });
+
+    expect(mockGetByTier).toHaveBeenCalledWith('hot');
+    expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('hot-entry'));
+  });
+
+  it('should perform dry-run decay by default', async () => {
+    mockDecay.mockResolvedValue({
+      processed: 5,
+      tierChanges: [
+        { id: 'entry-1', oldTier: 'hot', newTier: 'warm', oldScore: 0.8, newScore: 0.55 },
+      ],
+      archived: [],
+      timestamp: Date.now(),
+    });
+
+    // Parse through parent command — decay defaults to dry-run
+    await heatCommand.parseAsync(['node', 'heat', '--dir', '/tmp/test', 'decay'], { from: 'node' });
+
+    expect(mockDecay).toHaveBeenCalledWith(expect.objectContaining({ dryRun: true }));
+    expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('Would apply'));
+  });
+
+  it('should apply decay when --no-dry-run is specified', async () => {
+    mockDecay.mockResolvedValue({
+      processed: 5,
+      tierChanges: [
+        { id: 'entry-1', oldTier: 'warm', newTier: 'cold', oldScore: 0.55, newScore: 0.25 },
+      ],
+      archived: ['old-entry'],
+      timestamp: Date.now(),
+    });
+
+    // Parse through parent command with --no-dry-run flag
+    await heatCommand.parseAsync(['node', 'heat', '--dir', '/tmp/test', 'decay', '--no-dry-run'], { from: 'node' });
+
+    expect(mockDecay).toHaveBeenCalledWith(expect.objectContaining({ dryRun: false }));
+    expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('Applied changes'));
+  });
+
+  it('should boost entry score and update tier if threshold crossed', async () => {
+    const entry = {
+      id: 'boost-target',
+      memoryClass: 'learned' as const,
+      baseImportance: 0.6,
+      referenceCount: 3,
+      lastAccessedAt: Date.now() - 100000,
+      createdAt: Date.now() - 1000000,
+    };
+    const updatedEntry = { ...entry, referenceCount: 4, lastAccessedAt: Date.now() };
+
+    mockGet.mockReturnValue(entry);
+    mockIncrement.mockResolvedValue(updatedEntry);
+    mockGetAllWithScores.mockReturnValue([
+      { ...updatedEntry, heatScore: 0.75, tier: 'hot' },
+    ]);
+
+    // Parse through parent command with boost subcommand and target
+    await heatCommand.parseAsync(['node', 'heat', '--dir', '/tmp/test', 'boost', 'boost-target'], { from: 'node' });
+
+    expect(mockGet).toHaveBeenCalledWith('boost-target');
+    expect(mockIncrement).toHaveBeenCalledWith('boost-target', true);
+    expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('Boosted'));
+    expect(mockConsoleLog).toHaveBeenCalledWith(expect.stringContaining('References: 3 → 4'));
   });
 });
