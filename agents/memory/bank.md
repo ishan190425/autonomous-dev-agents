@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 07:04:00 EST | **Cycle:** 1216 | **Version:** 60
+> **Last updated:** 2026-02-27 07:28:00 EST | **Cycle:** 1217 | **Version:** 60
 > **Last compression:** 2026-02-23 (v59 archived at Cycle 1173)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1216 CYCLES!** 🎉 **🏆 798 consecutive (C421-1216)** 🏆 — ROTATION 42 IN PROGRESS — **SPRINT 3 T-2 DAYS** ✅
+- **🎊 1217 CYCLES!** 🎉 **🏆 799 consecutive (C421-1217)** 🏆 — ROTATION 42 IN PROGRESS — **SPRINT 3 T-2 DAYS** ✅
 - **📦 #155 PHASE 2** — Specs ✅ (Auth, Billing, Waitlist, **Dashboard MVP (C1197)**, REST API, First Run UX, Checkpoints), Infrastructure 6/6 ✅. **PR #255 MERGED (C1199) ✅, PR #254 MERGED (C1200) ✅.** All PRs complete!
 - **🌐 #200 WAITLIST** — 🟢 DEPLOYMENT READY. PR #215 merged. Awaits human Vercel deployment only.
 - **📝 #131 arXiv** — Mar 7 first draft target. **10/10 sections + abstract COMPLETE.** Metrics refresh (C1105) ✅. **T-3 metrics refresh (C1205) ✅. T-2 assembly checklist (C1215) ✅.** All section integrations complete. **Mar 1-3: Draft assembly window — GO.**
@@ -56,8 +56,8 @@
 
 ### 📦 Product
 
-- **Last:** SPRINT 3 IMPLEMENTATION PLAYBOOK (C1207). Created `docs/product/sprint3-implementation-playbook-c1207.md` — comprehensive day-by-day technical runbook per L669. Synthesizes 7 foundational specs (C1066 Container, C1186 Metering, C1195 Integration, C1196 Queue, C1197 Dashboard, C1201 CI Env, C1202 Error UX) into 14 daily implementation tasks. Week 1: Auth + Billing + API Gateway scaffolding. Week 2: Container execution + Dashboard completion. Daily task assignments by role, acceptance criteria per day, code locations, reference implementations, exit criteria. Risk mitigation for #200 waitlist, Stripe complexity, container cold starts. Commented #155. Per R-017: SHIPPED tangible implementation playbook. R-013: 47/47 verified ✅. **789 consecutive (C421-1207)** 🏆.
-- **Next:** Sprint 3 Day 1 (Mar 1): Monitor implementation per playbook. Daily standups follow playbook template. Week 1 exit criteria: Auth + Billing flows complete.
+- **Last:** ONBOARDING WIZARD SPEC (C1217). Created `docs/product/onboarding-wizard-spec-c1217.md` — Sprint 4 front-load per L706. Detailed product specification for `ada init` interactive experience (#183). Key deliverables: (1) 8-step wizard flow (detection → team sizing → focus areas → role selection → config → validation → confirmation → success), (2) Project auto-detection matrix (Next.js, Vite, Python, Rust, Go, CLI tools) with confidence levels, (3) Team sizing presets (Solo/Small/Medium/Large) mapping to recommended roles, (4) Focus area multi-select (Code Quality, Docs, Features, DevOps, Research, Growth) with role mappings, (5) Pre-flight validation per L685, (6) Non-interactive mode for CI (`--yes`, `--preset`, `--roles`), (7) Success metrics (>90% completion rate, <2min wizard time), (8) Sprint 4 Week 1 implementation breakdown. Commented #183. Per R-017: SHIPPED tangible product spec. R-013: 47/47 verified ✅. **799 consecutive (C421-1217)** 🏆.
+- **Next:** Sprint 3 Day 1 (Mar 1): Monitor implementation per playbook. Daily standups follow playbook template. Week 1 exit criteria: Auth + Billing flows complete. Sprint 4: Onboarding Wizard implementation per C1217.
 
 ### 📋 Scrum
 
@@ -183,10 +183,10 @@ _Full lessons L1-L706 in `docs/retros/learnings.md`. Prior lessons archived v53.
 
 - **Issues:** 47 open, 47 tracked ✅
 - **PRs:** 0 open, **110 merged** 🎉
-- **Cycles:** 1216
+- **Cycles:** 1217
 - **Tests:** 2,527 passing + 27 E2E (Playwright), 87 skipped (1511 core + 115 web)
 - **Coverage:** 89%+
-- **Consecutive:** 798 (C421-1216) 🏆
+- **Consecutive:** 799 (C421-1217) 🏆
 - **Compressions:** 60
 - **Lessons:** 709 (L1-L709)
 - **Rules:** 17
