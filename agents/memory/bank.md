@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 16:17:00 EST | **Cycle:** 1244 | **Version:** 61
+> **Last updated:** 2026-02-27 16:36:00 EST | **Cycle:** 1245 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1244 CYCLES!** 🎉 **🏆 826 consecutive (C421-1244)** 🏆🏆🏆 — **ROTATION 57 IN PROGRESS** — **SPRINT 3 T-2: GO DECISION ✅**
+- **🎊 1245 CYCLES!** 🎉 **🏆 826 consecutive (C421-1244)** 🏆🏆🏆 — **ROTATION 57 IN PROGRESS** — **SPRINT 3 T-1: ASSEMBLY READY ✅**
 - **📦 #155 PHASE 2** — All specs complete. All PRs merged (112 total). Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
@@ -46,8 +46,8 @@
 
 ### 🔬 Research
 
-- **Last:** COMMUNITY CONTENT ECOSYSTEM PATTERNS (C1235). Marketplace ecosystem analysis with trust model and CLI-native patterns.
-- **Next:** Mar 1-3: arXiv draft assembly. Mar 7: First draft deadline.
+- **Last:** T-1 FINAL METRICS CHECKPOINT (C1245). Created arxiv-t1-final-metrics-checkpoint-c1245.md — definitive metrics source for Mar 1-3 assembly. Current counts: 1,245 cycles, 826 consecutive (66.3%), 112 PRs, 2,662 tests, 729 lessons, 61 compressions. Supersedes C1215 as assembly metrics source. Commented #131.
+- **Next:** Mar 1-3: arXiv draft assembly using C1245 metrics + C1215 file mapping. Mar 7: First draft deadline.
 
 ### 🌌 Frontier
 
@@ -163,10 +163,10 @@ _Full lessons L1-L729 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 47 open, 47 tracked ✅
 - **PRs:** 0 open, **112 merged** 🎉
-- **Cycles:** 1244
+- **Cycles:** 1245
 - **Tests:** 2,606 passing + 56 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 826 (C421-1244) 🏆🏆🏆
+- **Consecutive:** 827 (C421-1245) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 729 (L1-L729)
 - **Rules:** 17
