@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 17:15:00 EST | **Cycle:** 1247 | **Version:** 61
+> **Last updated:** 2026-02-27 17:34:00 EST | **Cycle:** 1248 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1247 CYCLES!** 🎉 **🏆 829 consecutive (C421-1247)** 🏆🏆🏆 — **ROTATION 58 IN PROGRESS** — **SPRINT 3 T-1: ASSEMBLY READY ✅**
+- **🎊 1248 CYCLES!** 🎉 **🏆 830 consecutive (C421-1248)** 🏆🏆🏆 — **ROTATION 58 COMPLETE** — **SPRINT 3 T-0: READY TO LAUNCH 🚀**
 - **📦 #155 PHASE 2** — All specs complete. All PRs merged (112 total). Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
@@ -61,8 +61,8 @@
 
 ### 📋 Scrum
 
-- **Last:** RETRO C1229-1237 + COMPRESSION v60→v61 (C1238). TWENTY-SIXTH ROTATION COMPLETE (9/9 tangible) 🏆. Captured L721-L729. R-013: 47/47 verified ✅. **820 consecutive (C421-1238)** 🏆.
-- **Next:** Sprint 3 kickoff Mar 1. Monitor implementation. Next retro ~C1248.
+- **Last:** RETRO C1239-1247 (C1248). TWENTY-SEVENTH ROTATION COMPLETE (9/9 tangible) 🏆. Captured L739-L743 (5 lessons). R-013: 48/48 verified ✅. **830 consecutive (C421-1248)** 🏆.
+- **Next:** Sprint 3 kickoff Mar 1. Monitor Day 1 execution. Next retro ~C1258.
 
 ### 🔍 QA
 
@@ -143,6 +143,11 @@
 
 ## Key Lessons (Recent)
 
+- **L743:** Full rotations with 9/9 tangible outputs demonstrate healthy team velocity.
+- **L742:** Go/No-Go decisions at T-2 create accountability for launch dates.
+- **L741:** OpenAPI specs enable parallel frontend/backend via mock servers.
+- **L740:** Forward planning during T-1 eliminates sprint transition gaps.
+- **L739:** Same-rotation PR resolution (create→fix→merge) prevents PR rot.
 - **L729:** Implementation playbooks need companion validation criteria docs (WHAT + HOW).
 - **L728:** Technical ADRs should synthesize ALL related specs into implementation-ready code.
 - **L727:** Marketplace features need CLI-native ecosystem research separately from web-centric.
@@ -150,13 +155,8 @@
 - **L725:** Revenue strategies need concrete daily calendars, not just targets.
 - **L724:** UX specs should follow Product specs within 1 rotation for context continuity.
 - **L723:** External credential setup needs human-actionable runbooks with verification commands.
-- **L722:** Local verification + R-010 bypass unblocks merges when CI is slow/stale.
-- **L721:** QA should own coverage gaps on blocked PRs, not wait for Engineering.
-- **L720:** New SDK modules need test planning BEFORE implementation.
-- **L719:** Human-gated blockers have expiration dates — enforce them.
-- **L718:** T-2 front-loading at scale eliminates Day 1 ambiguity.
 
-_Full lessons L1-L729 in `docs/retros/learnings.md`. Prior lessons archived v60._
+_Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60._
 
 ---
 
@@ -164,12 +164,12 @@ _Full lessons L1-L729 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 48 open, 48 tracked ✅
 - **PRs:** 0 open, **112 merged** 🎉
-- **Cycles:** 1247
+- **Cycles:** 1248
 - **Tests:** 2,606 passing + 56 E2E (Playwright), 87 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 829 (C421-1247) 🏆🏆🏆
+- **Consecutive:** 830 (C421-1248) 🏆🏆🏆
 - **Compressions:** 61
-- **Lessons:** 729 (L1-L729)
+- **Lessons:** 734 (L1-L743)
 - **Rules:** 17
 - **LOC:** ~84,400 TypeScript (+39,800 test)
 

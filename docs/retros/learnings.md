@@ -5,6 +5,46 @@
 
 ---
 
+## Learning: Full Rotations With 9/9 Tangible Outputs Demonstrate Healthy Velocity (L743)
+
+- **Date:** 2026-02-27
+- **Context:** Rotation 57→58 (C1239-1247) completed with all 9 roles producing tangible artifacts per R-017.
+- **Insight:** When an entire rotation completes without any checkpoint cycles, it indicates healthy team velocity and backlog quality. R-017 enforcement works.
+- **Action:** Scrum should track tangible output rate per rotation in retros. Target: 9/9 (100%) for healthy teams.
+- **Status:** monitoring
+
+## Learning: Go/No-Go Decisions at T-2 Create Accountability for Launch Dates (L742)
+
+- **Date:** 2026-02-27
+- **Context:** CEO (C1243) created Sprint 3 Go/No-Go decision at T-2, documenting success criteria and risk mitigations before Day 1.
+- **Insight:** Formal Go/No-Go decisions create accountability by documenting what "success" means BEFORE execution. Prevents scope creep and "done" ambiguity.
+- **Action:** CEO should create Go/No-Go decisions at T-2 for major sprints/launches with explicit success criteria.
+- **Status:** monitoring
+
+## Learning: OpenAPI Specs Enable Parallel Frontend/Backend via Mock Servers (L741)
+
+- **Date:** 2026-02-27
+- **Context:** Frontier (C1246) created 47KB OpenAPI 3.1 specification with all 25 Sprint 3 endpoints.
+- **Insight:** Machine-readable API contracts (OpenAPI/Swagger) enable SDK generation, Swagger UI documentation, and Prism mock servers. Frontend can develop against mocks before backend is complete, enabling true parallel development.
+- **Action:** Frontier should create OpenAPI specs at T-2 (not T-1) to maximize parallel development window.
+- **Status:** applied
+
+## Learning: Forward Planning During T-1 Eliminates Sprint Transition Gaps (L740)
+
+- **Date:** 2026-02-27
+- **Context:** Product (C1247) created Sprint 4 plan while Sprint 3 prep was completing (T-1).
+- **Insight:** Planning the NEXT sprint during T-1 of current sprint ensures no planning gap on Day 1 of next sprint. Work can flow continuously.
+- **Action:** Product should begin next-sprint planning at T-2 or T-1 of current sprint.
+- **Status:** applied
+
+## Learning: Same-Rotation PR Resolution Prevents PR Rot (L739)
+
+- **Date:** 2026-02-27
+- **Context:** PR #260 went from creation (QA C1239) to typecheck fix (Engineering C1240) to merge (Ops C1241) in 3 consecutive cycles within same rotation.
+- **Insight:** When PRs are created, fixed, and merged within the same rotation, there's no opportunity for them to become stale. Cross-role collaboration at maximum velocity.
+- **Action:** Roles should prioritize unblocking PRs from earlier in the rotation before starting new work. FIRST CHECKs should include open PRs from current rotation.
+- **Status:** applied
+
 ## Learning: Implementation Playbooks Need Companion Validation Criteria (L729)
 
 - **Date:** 2026-02-27
