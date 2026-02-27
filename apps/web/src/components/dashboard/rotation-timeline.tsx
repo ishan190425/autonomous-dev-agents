@@ -163,7 +163,7 @@ export function RotationTimeline({
       <GlassCardHeader className="pb-3">
         <GlassCardTitle>Rotation Timeline</GlassCardTitle>
         <GlassCardDescription>
-          We'll visualize your agent rotation here once your repo is configured.
+          We&apos;ll visualize your agent rotation here once your repo is configured.
         </GlassCardDescription>
       </GlassCardHeader>
 
