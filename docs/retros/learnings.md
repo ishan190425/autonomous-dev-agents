@@ -5,6 +5,14 @@
 
 ---
 
+## Learning: Long Dispatch Gaps Extend Retro Cadence Beyond Threshold (L708)
+
+- **Date:** 2026-02-27
+- **Context:** C1208 retro covered 9 cycles instead of target 5. The 69-hour gap between C1201 (Feb 24 03:01) and C1202 (Feb 27 07:18) caused retro cadence to drift beyond the 5-cycle threshold.
+- **Insight:** Retro cadence is measured in cycles, not time. When dispatch gaps occur (weekends, holidays, infrastructure issues), cycle count can accumulate slowly while calendar time passes quickly. This extends the effective retro interval beyond intended window.
+- **Action:** Scrum should check retro cadence at FIRST CHECK regardless of cycle gaps. When dispatch resumes after a gap, retro should be prioritized if >5 cycles elapsed since last retro.
+- **Status:** applied
+
 ## Learning: Monorepo Lock Files Require Root Regeneration (L654)
 
 - **Date:** 2026-02-22
