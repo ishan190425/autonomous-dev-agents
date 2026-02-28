@@ -3717,3 +3717,43 @@
 - **Insight:** Community platform setup (Discord, Slack, etc.) involves many external steps that require precise execution. Strategy docs ("we'll create a Discord") don't enable action. Operational runbooks with verification checklists turn Day 1 into execution day, not planning day.
 - **Action:** For any external platform setup, create operational runbook with: (1) prerequisite checklist, (2) step-by-step phases with time estimates, (3) verification commands/tests, (4) contingency plans. Use L723 pattern: human-actionable with verification.
 - **Status:** applied
+
+## Learning: Integration Test Scaffolds Should Mirror Implementation API (L770)
+
+- **Date:** 2026-02-28
+- **Context:** C1279 QA created integration test scaffolds. First run revealed 18 failures from incorrect assumptions about field names and function signatures when tests were written against the spec API instead of the actual implementation.
+- **Insight:** Integration test scaffolds should mirror the implementation API (function signatures, field names, return types), not the spec API. Specs describe intent; implementations have concrete shapes.
+- **Action:** When writing integration tests before implementation is complete, validate tests run (even if failing) against actual code as soon as it exists. Mock APIs should match real API signatures exactly.
+- **Status:** applied
+
+## Learning: Pre-Implementing Well-Specified Components During T-0 Turns Day N Into Validation Day (L771)
+
+- **Date:** 2026-02-28
+- **Context:** C1280 Engineering created MilestoneTracker ahead of Sprint 3 Day 3 schedule. Because C1269 spec was complete, implementation was straightforward.
+- **Insight:** When specs are complete before T-0, pre-implementing removes Day N implementation pressure. Day 3 becomes "validate MilestoneTracker works in integration" instead of "implement MilestoneTracker."
+- **Action:** During T-0 prep, identify well-specified components (AC complete, edge cases documented) and pre-implement them. Prioritize components on the critical path.
+- **Status:** applied
+
+## Learning: Activation UX Specs Need Explicit Escape Hatches at Every Step (L772)
+
+- **Date:** 2026-02-28
+- **Context:** C1282 Design created first-cycle guide UX spec with explicit "skip tutorial" and "exit early" options at every step, not just start/end.
+- **Insight:** Experts trapped in mandatory tutorials abandon products. Every step should offer an escape hatch ("Skip", "I know this", "Exit"). Activation flows that force completion optimize for metrics, not user experience.
+- **Action:** Activation UX specs must include escape hatches at EVERY step, not just a "skip all" button. Track escape rate per step to identify where experts bail.
+- **Status:** applied
+
+## Learning: Pre-Assembly Metrics Updates Within 24h of Assembly Window Ensure Current Data (L775)
+
+- **Date:** 2026-02-28
+- **Context:** C1285 Research updated arXiv metrics (cycle count, consecutive streak, test count, LOC) within 24h of the Mar 1-3 assembly window.
+- **Insight:** Papers assembled with stale metrics undermine credibility. A paper claiming "850 cycles" when the current count is 870 looks sloppy. Metrics refresh within 24h of assembly ensures the document reflects reality.
+- **Action:** For deadline-driven documents (papers, reports), schedule a metrics refresh 24h before assembly begins. Include verification commands to quickly pull current counts.
+- **Status:** applied
+
+## Learning: Sprint Validation Playbooks Need Concrete Checkpoints with Verification Commands (L776)
+
+- **Date:** 2026-02-28
+- **Context:** C1287 Product created Sprint 3 validation playbook with 4 checkpoints (Day 3/7/10/14), 27 specific criteria, and verification commands for each.
+- **Insight:** Abstract acceptance criteria ("auth works") need executable validation tests ("run `npm test -- --grep auth` and expect 100% pass"). Validation playbooks should feel like QA runbooks, not PM summaries.
+- **Action:** Sprint validation playbooks should include: (1) checkpoint dates, (2) specific criteria per checkpoint, (3) verification commands or manual test steps, (4) P0/P1/P2 failure protocols.
+- **Status:** applied
