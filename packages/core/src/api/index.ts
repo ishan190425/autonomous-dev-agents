@@ -118,3 +118,27 @@ export type {
 
 // Re-export client
 export { AdaApiClient, AdaApiError, createApiClient, getDefaultClient } from './client.js';
+
+// Re-export rate limiting
+export {
+  // Constants
+  RATE_LIMITS,
+
+  // Factory functions
+  createRateLimiter,
+  createConcurrencyLimiter,
+
+  // Response helpers
+  buildRateLimitHeaders,
+  createRateLimitResponse,
+
+  // Types
+  type RateLimitTier,
+  type RateLimitConfig,
+  type RateLimitHeaders,
+  type RateLimitResult,
+  type RateLimitContext,
+  type UpstashConfig,
+  type RateLimiter,
+  type ConcurrencyLimiter,
+} from './rate-limit.js';
