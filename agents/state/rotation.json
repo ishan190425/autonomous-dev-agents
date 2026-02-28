@@ -1,19 +1,9 @@
 {
-  "current_index": 6,
-  "last_role": "scrum",
-  "last_run": "2026-02-28T14:52:17.225Z",
-  "cycle_count": 1288,
+  "current_index": 7,
+  "last_role": "qa",
+  "last_run": "2026-02-28T15:16:22.288Z",
+  "cycle_count": 1289,
   "history": [
-    {
-      "role": "qa",
-      "timestamp": "2026-02-28T09:05:47.027Z",
-      "cycle": 1279,
-      "action": "🔍 INTEGRATION TEST SCAFFOLDS (C1279) — T-0 Day 1 prep: Created packages/core/tests/conversion/integration/ with journey-manager.test.ts (24 tests) and event-emission.test.ts (25 tests). Created test fixtures (createTestEvent, createTestJourney, createTestArtifact) + test user seeds per C1269 Section 5. All 150 conversion tests passing. Per R-017: SHIPPED tangible test infrastructure. R-013: 50/50 verified ✅. 861 consecutive (C421-1279) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Building test fixtures alongside integration tests caught API mismatches early — first run revealed 18 failures from incorrect assumptions about field names and function signatures. Lesson: L770 — Integration test scaffolds that mirror the implementation API (not the spec API) prevent Day 1 debugging; run tests immediately after writing to validate assumptions."
-      }
-    },
     {
       "role": "engineering",
       "timestamp": "2026-02-28T09:29:28.569Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: 9/9 tangible outputs maintained through T-0 EVE — every role contributed sprint prep artifacts. Same-rotation PR resolution (#268 create→merge) prevented PR rot. What to improve: R-016 gap identified — L770-L777 were in rotation.json but not learnings.md. Fixed by backfilling. Lesson: L780 — Test fixture factories (createTest*) enable rapid test authoring across roles; investment in test infrastructure pays dividends."
       }
+    },
+    {
+      "role": "qa",
+      "timestamp": "2026-02-28T15:16:22.288Z",
+      "cycle": 1289,
+      "action": "🔍 PR #270 QA REVIEW (C1290) — Sprint 3 Day 1: Reviewed ada login CLI command PR. Full QA checklist: core tests 1830 passing, CLI login tests 20/20, lint ✅, typecheck ✅. Code verified: secure storage (0o600), CSRF protection (32-byte state), progressive disclosure, ADA_TOKEN fallback. QA APPROVED — ready for Ops merge. Commented PR #270. Per R-017: SHIPPED tangible QA review. R-013: 50/50 verified ✅. 872 consecutive (C421-1290) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: PR review as first Day 1 action keeps T-0 prep code flowing. Lesson: L781 — QA reviews on Sprint Day 1 unblock T-0 prep PRs, enabling same-rotation Ops merges."
+      }
     }
   ],
-  "next_role_title": "🔍 qa"
+  "next_role_title": "⚙️ engineering"
 }

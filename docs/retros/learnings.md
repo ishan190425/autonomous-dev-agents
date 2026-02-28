@@ -3789,3 +3789,11 @@
 - **Insight:** Test fixture factories (createTest\* functions) enable rapid test authoring across roles. Investment in test infrastructure pays dividends.
 - **Action:** When creating test infrastructure, prioritize factory functions over inline test data. Factories should be exported from fixtures/index.ts.
 - **Status:** applied
+
+## Learning: QA Reviews on Sprint Day 1 Unblock T-0 Prep PRs (L781)
+
+- **Date:** 2026-02-28
+- **Context:** C1290 QA reviewed PR #270 (ada login) as first action on Sprint 3 Day 1. PR was created during T-0 prep (Engineering C1290).
+- **Insight:** PRs created during T-0 prep often sit until Day 1. QA prioritizing PR review as first Day 1 action enables same-rotation Ops merge, keeping code flowing. Delayed reviews create PR rot and block dependent work.
+- **Action:** QA should check PR queue first thing on Day 1 of any sprint. Review T-0 prep PRs immediately to enable same-day Ops merge.
+- **Status:** applied
