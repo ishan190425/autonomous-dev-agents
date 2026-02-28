@@ -116,9 +116,9 @@ describe('API Handler Factory', () => {
 
       await handler(request, { params: {} });
 
-      expect(capturedContext.userId).toBe('user_123');
-      expect(capturedContext.tier).toBe('pro');
-      expect(capturedContext.authMethod).toBe('api_key');
+      expect(capturedContext!.userId).toBe('user_123');
+      expect(capturedContext!.tier).toBe('pro');
+      expect(capturedContext!.authMethod).toBe('api_key');
     });
 
     it('should return 401 when auth required but not provided', async () => {
@@ -256,8 +256,8 @@ describe('API Handler Factory', () => {
       const response = await handler(request, { params: {} });
 
       expect(response.status).toBe(200);
-      expect(capturedBody.name).toBe('Test');
-      expect(capturedBody.email).toBe('test@example.com');
+      expect(capturedBody!.name).toBe('Test');
+      expect(capturedBody!.email).toBe('test@example.com');
     });
 
     it('should return 400 for invalid body', async () => {
@@ -328,8 +328,8 @@ describe('API Handler Factory', () => {
       const request = new NextRequest('http://localhost/api/v1/test?page=3&pageSize=50');
       await handler(request, { params: {} });
 
-      expect(capturedPagination.page).toBe(3);
-      expect(capturedPagination.pageSize).toBe(50);
+      expect(capturedPagination!.page).toBe(3);
+      expect(capturedPagination!.pageSize).toBe(50);
     });
 
     it('should use defaults when pagination params not provided', async () => {
@@ -343,8 +343,8 @@ describe('API Handler Factory', () => {
       const request = new NextRequest('http://localhost/api/v1/test');
       await handler(request, { params: {} });
 
-      expect(capturedPagination.page).toBe(1);
-      expect(capturedPagination.pageSize).toBe(20);
+      expect(capturedPagination!.page).toBe(1);
+      expect(capturedPagination!.pageSize).toBe(20);
     });
 
     it('should cap pageSize at 100', async () => {
@@ -358,7 +358,7 @@ describe('API Handler Factory', () => {
       const request = new NextRequest('http://localhost/api/v1/test?pageSize=500');
       await handler(request, { params: {} });
 
-      expect(capturedPagination.pageSize).toBe(100);
+      expect(capturedPagination!.pageSize).toBe(100);
     });
   });
 
@@ -466,7 +466,7 @@ describe('API Handler Factory', () => {
       });
 
       const request = new NextRequest('http://localhost/api');
-      await handler(request, { params: {} });
+      await handler(request, { params: {} } as unknown as HandlerContext);
 
       expect(calls).toEqual([
         'middleware1:before',
