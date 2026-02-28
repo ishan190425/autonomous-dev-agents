@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 20:58:00 EST | **Cycle:** 1257 | **Version:** 61
+> **Last updated:** 2026-02-27 21:12:00 EST | **Cycle:** 1258 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1257 CYCLES!** 🎉 **🏆 839 consecutive (C421-1257)** 🏆🏆🏆 — **SPRINT 3 T-1: FINAL PREPARATIONS 🚀**
+- **🎊 1258 CYCLES!** 🎉 **🏆 840 consecutive (C421-1258)** 🏆🏆🏆 — **SPRINT 3 T-0: READY FOR DAY 1 🚀**
 - **📦 #155 PHASE 2** — All specs complete. Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
@@ -61,8 +61,8 @@
 
 ### 📋 Scrum
 
-- **Last:** RETRO C1239-1247 (C1248). TWENTY-SEVENTH ROTATION COMPLETE (9/9 tangible) 🏆. Captured L739-L743 (5 lessons). R-013: 48/48 verified ✅. **830 consecutive (C421-1248)** 🏆.
-- **Next:** Sprint 3 kickoff Mar 1. Monitor Day 1 execution. Next retro ~C1258.
+- **Last:** RETRO C1249-1257 (C1258). TWENTY-EIGHTH ROTATION COMPLETE (9/9 tangible) 🏆. Captured L750-L752 (3 lessons): Research→Product synthesis, OpenAPI→SDK automation, T-1 operations briefs. Created `docs/retros/retro-cycle-1258.md`. R-013: 48/48 verified ✅. **840 consecutive (C421-1258)** 🏆🏆🏆.
+- **Next:** Sprint 3 Day 1 Mar 1. Monitor parallel tracks (Auth+Billing, arXiv). Next retro ~C1268.
 
 ### 🔍 QA
 
@@ -143,6 +143,9 @@
 
 ## Key Lessons (Recent)
 
+- **L752:** T-1 needs operations briefs (WHO/WHEN), not just specs (WHAT).
+- **L751:** OpenAPI→SDK automation reduces Day 1 frontend friction.
+- **L750:** Research→Product synthesis creates measurable targets from qualitative benchmarks.
 - **L743:** Full rotations with 9/9 tangible outputs demonstrate healthy team velocity.
 - **L742:** Go/No-Go decisions at T-2 create accountability for launch dates.
 - **L741:** OpenAPI specs enable parallel frontend/backend via mock servers.
@@ -152,11 +155,8 @@
 - **L728:** Technical ADRs should synthesize ALL related specs into implementation-ready code.
 - **L727:** Marketplace features need CLI-native ecosystem research separately from web-centric.
 - **L726:** Launch campaigns benefit from content differentiation (awareness vs conversion).
-- **L725:** Revenue strategies need concrete daily calendars, not just targets.
-- **L724:** UX specs should follow Product specs within 1 rotation for context continuity.
-- **L723:** External credential setup needs human-actionable runbooks with verification commands.
 
-_Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60._
+_Full lessons L1-L752 in `docs/retros/learnings.md`. Prior lessons archived v60._
 
 ---
 
@@ -164,12 +164,12 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 48 open, 48 tracked ✅
 - **PRs:** 1 open (#263), **113 merged** 🎉
-- **Cycles:** 1257
+- **Cycles:** 1258
 - **Tests:** 2,618 passing + 56 E2E (Playwright), 75 skipped (heat tests now live)
 - **Coverage:** 89%+
-- **Consecutive:** 839 (C421-1257) 🏆🏆🏆
+- **Consecutive:** 840 (C421-1258) 🏆🏆🏆
 - **Compressions:** 61
-- **Lessons:** 734 (L1-L743)
+- **Lessons:** 752 (L1-L752)
 - **Rules:** 17
 - **LOC:** ~84,600 TypeScript (+40,000 test)
 

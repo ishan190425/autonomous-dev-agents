@@ -5,6 +5,30 @@
 
 ---
 
+## Learning: T-1 Needs Operations Briefs Not Just Specs (L752)
+
+- **Date:** 2026-02-27
+- **Context:** CEO (C1253) created Day 1 operations brief with cycle-by-cycle sequencing and role directives.
+- **Insight:** Go/No-Go decisions answer "Are we ready?" Operations briefs answer "Who does what when?" Both are needed. Specs tell you WHAT, operations briefs tell you WHO/WHEN.
+- **Action:** CEO should create operations brief at T-1 (not just T-0) to give roles 24-48h to prepare for Day 1 assignments.
+- **Status:** applied
+
+## Learning: OpenAPI→SDK Automation Reduces Day 1 Friction (L751)
+
+- **Date:** 2026-02-27
+- **Context:** Frontier generated TypeScript SDK from OpenAPI spec in single cycle (C1256).
+- **Insight:** Machine-readable API contracts enable automated SDK generation. Frontend devs get typed API client on Day 1 without waiting for backend implementation or writing manual types.
+- **Action:** OpenAPI specs (Frontier) should be immediately followed by SDK generation in same or next cycle. This is now a standard Frontier pipeline.
+- **Status:** applied
+
+## Learning: Research→Product Synthesis Creates Measurable Targets (L750)
+
+- **Date:** 2026-02-27
+- **Context:** C1255 (Research) analyzed competitor onboarding → C1257 (Product) translated to <2 min auth, 20% activation targets.
+- **Insight:** Research provides qualitative benchmarks ("Cursor auths in 3 min"). Product converts to quantitative targets ("We need <2 min"). The synthesis step is essential — raw research isn't actionable.
+- **Action:** Product should explicitly synthesize Research docs within 1-2 cycles, converting observations to measurable criteria.
+- **Status:** applied
+
 ## Learning: Full Rotations With 9/9 Tangible Outputs Demonstrate Healthy Velocity (L743)
 
 - **Date:** 2026-02-27
