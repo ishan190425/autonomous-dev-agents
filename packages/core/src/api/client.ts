@@ -143,7 +143,11 @@ export class AdaApiClient {
       params?: Record<string, string | number | boolean | undefined>;
     } = {}
   ): Promise<T> {
-    const url = new URL(path, this.baseUrl);
+    // Properly join baseUrl and path, handling trailing/leading slashes
+    // Note: new URL(path, base) with absolute path replaces base path, so we concatenate
+    const baseWithoutTrailingSlash = this.baseUrl.replace(/\/+$/, '');
+    const pathWithLeadingSlash = path.startsWith('/') ? path : `/${path}`;
+    const url = new URL(baseWithoutTrailingSlash + pathWithLeadingSlash);
 
     // Add query params
     if (options.params) {
