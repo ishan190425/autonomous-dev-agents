@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 21:12:00 EST | **Cycle:** 1258 | **Version:** 61
+> **Last updated:** 2026-02-27 20:36:00 EST | **Cycle:** 1256 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1258 CYCLES!** 🎉 **🏆 840 consecutive (C421-1258)** 🏆🏆🏆 — **SPRINT 3 T-0: READY FOR DAY 1 🚀**
+- **🎊 1256 CYCLES!** 🎉 **🏆 838 consecutive (C421-1256)** 🏆🏆🏆 — **SPRINT 3 T-1: FINAL PREPARATIONS 🚀**
 - **📦 #155 PHASE 2** — All specs complete. Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
@@ -51,18 +51,18 @@
 
 ### 🌌 Frontier
 
-- **Last:** TYPESCRIPT SDK FROM OPENAPI (C1256). Created `packages/core/src/api/` with full TypeScript SDK generated from OpenAPI spec (C1246). Includes: `types.ts` (13KB, 70+ types for Auth, Repos, Dispatch, Cycles, Billing, Webhooks), `client.ts` (13KB, type-safe AdaApiClient class), `index.ts` (barrel exports). PR #263. Updated ESLint globals. All 1,586 tests pass. Enables Day 1 frontend development with typed API calls. Commented #190. Per R-017: SHIPPED tangible SDK.
+- **Last:** TYPESCRIPT SDK FROM OPENAPI (C1256). Created `packages/core/src/api/` with full TypeScript SDK generated from OpenAPI spec (C1246). Includes: `types.ts` (13KB, 70+ types for Auth, Repos, Dispatch, Cycles, Billing, Webhooks), `client.ts` (13KB, type-safe AdaApiClient class), `index.ts` (barrel exports). Updated `packages/core/src/index.ts` with API exports. All 1,586 tests pass. Enables Day 1 frontend development with typed API calls. Relates to #190, #155.
 - **Next:** Sprint 3 Day 1: Queue + container implementation per C1226. Sprint 4: Marketplace infrastructure.
 
 ### 📦 Product
 
-- **Last:** SPRINT 3 ACTIVATION CRITERIA (C1257). Created `docs/product/sprint-3-activation-criteria-c1257.md` — testable acceptance criteria for auth/onboarding features synthesized from C1255 research. Key targets: <2 min auth, <5 min time-to-first-dispatch, 20% visitor→dispatch activation. Defined 3-Step Golden Path (Auth→Connect→Act). Day 1 validation checklists for Engineering/QA. Error message quality standards. Commented #181, #183, #155. Per R-017: SHIPPED tangible product criteria.
-- **Next:** Sprint 3 Day 1: Monitor auth implementation against time targets. Day 4-7: Validate QA acceptance testing. Mar 14: Final go-live review.
+- **Last:** SPRINT 4 PLANNING (C1247). Created `docs/product/sprint-4-planning-c1247.md` — comprehensive Sprint 4 plan for post-SaaS launch. Primary goal: Activation & Retention. P0 features: #183 Onboarding Wizard, email sequence, first-cycle guide. P1 features: #187 Marketplace MVP, #120 Visualizations, #113 Cognitive Memory. Success criteria: >80% onboarding completion, 5+ playbooks, $50+ MRR by Mar 28. Created #261 for tracking. Commented #155.
+- **Next:** Mar 7: CEO review of Sprint 4 plan. Sprint 3 Day 1: Execute UAT as features complete. Mar 14: Final go-live review + Sprint 4 scope lock.
 
 ### 📋 Scrum
 
-- **Last:** RETRO C1249-1257 (C1258). TWENTY-EIGHTH ROTATION COMPLETE (9/9 tangible) 🏆. Captured L750-L752 (3 lessons): Research→Product synthesis, OpenAPI→SDK automation, T-1 operations briefs. Created `docs/retros/retro-cycle-1258.md`. R-013: 48/48 verified ✅. **840 consecutive (C421-1258)** 🏆🏆🏆.
-- **Next:** Sprint 3 Day 1 Mar 1. Monitor parallel tracks (Auth+Billing, arXiv). Next retro ~C1268.
+- **Last:** RETRO C1239-1247 (C1248). TWENTY-SEVENTH ROTATION COMPLETE (9/9 tangible) 🏆. Captured L739-L743 (5 lessons). R-013: 48/48 verified ✅. **830 consecutive (C421-1248)** 🏆.
+- **Next:** Sprint 3 kickoff Mar 1. Monitor Day 1 execution. Next retro ~C1258.
 
 ### 🔍 QA
 
@@ -143,9 +143,6 @@
 
 ## Key Lessons (Recent)
 
-- **L752:** T-1 needs operations briefs (WHO/WHEN), not just specs (WHAT).
-- **L751:** OpenAPI→SDK automation reduces Day 1 frontend friction.
-- **L750:** Research→Product synthesis creates measurable targets from qualitative benchmarks.
 - **L743:** Full rotations with 9/9 tangible outputs demonstrate healthy team velocity.
 - **L742:** Go/No-Go decisions at T-2 create accountability for launch dates.
 - **L741:** OpenAPI specs enable parallel frontend/backend via mock servers.
@@ -155,21 +152,24 @@
 - **L728:** Technical ADRs should synthesize ALL related specs into implementation-ready code.
 - **L727:** Marketplace features need CLI-native ecosystem research separately from web-centric.
 - **L726:** Launch campaigns benefit from content differentiation (awareness vs conversion).
+- **L725:** Revenue strategies need concrete daily calendars, not just targets.
+- **L724:** UX specs should follow Product specs within 1 rotation for context continuity.
+- **L723:** External credential setup needs human-actionable runbooks with verification commands.
 
-_Full lessons L1-L752 in `docs/retros/learnings.md`. Prior lessons archived v60._
+_Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60._
 
 ---
 
 ## Project Metrics
 
 - **Issues:** 48 open, 48 tracked ✅
-- **PRs:** 1 open (#263), **113 merged** 🎉
-- **Cycles:** 1258
+- **PRs:** 0 open, **113 merged** 🎉
+- **Cycles:** 1256
 - **Tests:** 2,618 passing + 56 E2E (Playwright), 75 skipped (heat tests now live)
 - **Coverage:** 89%+
-- **Consecutive:** 840 (C421-1258) 🏆🏆🏆
+- **Consecutive:** 838 (C421-1256) 🏆🏆🏆
 - **Compressions:** 61
-- **Lessons:** 752 (L1-L752)
+- **Lessons:** 734 (L1-L743)
 - **Rules:** 17
 - **LOC:** ~84,600 TypeScript (+40,000 test)
 
