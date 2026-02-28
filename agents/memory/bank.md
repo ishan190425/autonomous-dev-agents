@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-28 04:27:00 EST | **Cycle:** 1265 | **Version:** 61
+> **Last updated:** 2026-02-28 04:50:00 EST | **Cycle:** 1266 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1265 CYCLES!** 🎉 **🏆 847 consecutive (C421-1265)** 🏆🏆🏆 — **SPRINT 3 T-1: TRIAL CONVERSION RESEARCH 🔬**
+- **🎊 1266 CYCLES!** 🎉 **🏆 848 consecutive (C421-1266)** 🏆🏆🏆 — **SPRINT 3 T-1: TRIAL CONVERSION PLATFORM ADR 🌌**
 - **📦 #155 PHASE 2** — All specs complete. Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
@@ -51,8 +51,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** TYPESCRIPT SDK FROM OPENAPI (C1256). Created `packages/core/src/api/` with full TypeScript SDK generated from OpenAPI spec (C1246). Includes: `types.ts` (13KB, 70+ types for Auth, Repos, Dispatch, Cycles, Billing, Webhooks), `client.ts` (13KB, type-safe AdaApiClient class), `index.ts` (barrel exports). Updated `packages/core/src/index.ts` with API exports. All 1,586 tests pass. Enables Day 1 frontend development with typed API calls. Relates to #190, #155.
-- **Next:** Sprint 3 Day 1: Queue + container implementation per C1226. Sprint 4: Marketplace infrastructure.
+- **Last:** TRIAL CONVERSION PLATFORM ADR (C1266). Created `docs/architecture/adr-trial-conversion-platform-c1266.md` — comprehensive platform architecture synthesizing C1265 Research into implementation-ready spec. Three-layer system: Event Layer (structured user action capture), Journey Layer (state machine + milestone tracking), Prompt Layer (value-triggered upgrades). Key components: milestone-based trials (+15-25% vs time-based per C1265), magic moment detection (first visible output), value prompts ("47 cycles" vs "trial expires"), user journey state machine (anonymous→converted), analytics funnel. Includes TypeScript interfaces, database schema, integration with C1186 usage metering. Sprint 3 Day 1-2 implementation plan. Per R-017: SHIPPED tangible architecture spec. Per L728: ADR synthesizes ALL related specs.
+- **Next:** Sprint 3 Day 1-2: Implement event types + journey state machine (packages/core/src/conversion/). Day 3-5: Milestone tracker + value prompts.
 
 ### 📦 Product
 
@@ -164,10 +164,10 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 48 open, 48 tracked ✅
 - **PRs:** 0 open, **115 merged** 🎉
-- **Cycles:** 1265
+- **Cycles:** 1266
 - **Tests:** 2,752 passing + 56 E2E (Playwright), 10 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 847 (C421-1265) 🏆🏆🏆
+- **Consecutive:** 848 (C421-1266) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 754 (L1-L754)
 - **Rules:** 17
