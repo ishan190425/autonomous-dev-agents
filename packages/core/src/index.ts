@@ -872,3 +872,49 @@ export {
   createApiClient,
   getDefaultClient,
 } from './api/index.js';
+
+// Conversion Platform (Sprint 3 — Trial Conversion #155, ADR C1266)
+// Event-driven user journey tracking, milestone-based trials, magic moment detection.
+// Implements Trial Conversion Platform Architecture for 50% trial→paid conversion.
+export type {
+  // Event Layer
+  ConversionEventType,
+  ConversionEvent,
+  ConversionEventInput,
+  Artifact,
+  EventEmitter as ConversionEventEmitter,
+  // Journey Layer
+  UserJourneyState,
+  JourneyMilestones,
+  JourneyStats,
+  UserJourney,
+  TransitionRule,
+  MilestoneCheckResult,
+  JourneyManager,
+  // Magic Moment Detection
+  DispatchContext as ConversionDispatchContext,
+  MagicMomentDetector,
+} from './conversion/index.js';
+export {
+  // Event Layer
+  generateEventId,
+  createEvent,
+  createEventBatch,
+  isOnboardingEvent,
+  isValueEvent,
+  isEngagementEvent,
+  isConversionEvent,
+  // Journey Layer
+  STATE_TRANSITIONS,
+  InvalidStateTransitionError,
+  createJourney,
+  findTransition,
+  applyEvent,
+  calculateStreak,
+  // Magic Moment Detection
+  ARTIFACT_PATTERNS,
+  ACTION_PATTERNS,
+  DefaultMagicMomentDetector,
+  createMagicMomentDetector,
+  detectMagicMoment,
+} from './conversion/index.js';
