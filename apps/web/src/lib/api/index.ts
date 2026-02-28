@@ -192,9 +192,9 @@ export {
   // Context
   buildApiContext,
 
-  // Rate limiting
-  checkRateLimit,
-  checkConcurrencyLimit,
+  // Rate limiting (legacy - use rate-limiter module)
+  checkRateLimit as checkRateLimitLegacy,
+  checkConcurrencyLimit as checkConcurrencyLimitLegacy,
 
   // URL parsing
   extractWorkspaceId,
@@ -208,3 +208,56 @@ export {
   CORS_HEADERS,
   addCorsHeaders,
 } from './middleware';
+
+// =============================================================================
+// RATE LIMITER (C1296)
+// =============================================================================
+
+export {
+  // Types
+  type RateLimitInput,
+  type RateLimitResult,
+  type ConcurrencyResult,
+
+  // Config
+  RATE_LIMIT_CONFIGS,
+
+  // Rate limiting
+  checkRateLimit,
+  getRateLimitHeaders,
+
+  // Concurrent execution
+  acquireExecutionSlot,
+  releaseExecutionSlot,
+
+  // Utilities
+  getClientIp,
+
+  // Testing
+  _resetRateLimitStore,
+} from './rate-limiter';
+
+// =============================================================================
+// HANDLER FACTORY (C1296)
+// =============================================================================
+
+export {
+  // Types
+  type HandlerOptions,
+  type HandlerContext,
+  type HandlerFunction,
+
+  // Primary factory
+  createApiHandler,
+
+  // Convenience factories
+  createPublicHandler,
+  createAuthenticatedHandler,
+  createDispatchHandler,
+  createOptionsHandler,
+
+  // Middleware composition
+  composeMiddleware,
+  withLogging,
+  withSlotCleanup,
+} from './handler';
