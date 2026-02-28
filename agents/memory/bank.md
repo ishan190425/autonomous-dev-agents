@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-28 05:38:00 EST | **Cycle:** 1284 | **Version:** 61
+> **Last updated:** 2026-02-28 05:57:00 EST | **Cycle:** 1285 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1284 CYCLES!** 🎉 **🏆 866 consecutive (C421-1284)** 🏆🏆🏆 — **SPRINT 3 STARTS TOMORROW (Mar 1)** — Discord setup runbook created (C1284), all tracks GO
+- **🎊 1285 CYCLES!** 🎉 **🏆 867 consecutive (C421-1285)** 🏆🏆🏆 — **SPRINT 3 STARTS TOMORROW (Mar 1)** — Assembly metrics updated (C1285), all tracks GO
 - **📦 #155 PHASE 2** — All specs complete. Conversion module merged (C1281). MilestoneTracker merged (C1281). **Day 1 GO.**
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. **T-0 assembly scaffold ready (C1275).** Mar 1-3: Draft assembly window — GO.
@@ -46,8 +46,8 @@
 
 ### 🔬 Research
 
-- **Last:** T-0 ARXIV DRAFT ASSEMBLY SCAFFOLD (C1275). Created `docs/research/arxiv-t0-draft-assembly-c1275.md` — FINAL pre-assembly document for Mar 1-3 window. Contains: (1) Copy-paste ready text (abstract 248 words, closing paragraph, evaluation summary) updated to C1275 metrics, (2) Section-by-section guide (Day 1/2/3 mapping with file sources), (3) Integrated draft scaffold (complete paper structure), (4) Verification commands for Mar 1 morning. C1275 metrics: 1,275 cycles, 857 consecutive (67.2%), 116 PRs, 2,909 tests, 763 lessons, 89%+ coverage, ~86,900 LOC. Commented #131. Per R-017: SHIPPED tangible T-0 preparation.
-- **Next:** Mar 1-3: Execute draft assembly using C1275 scaffold. Day 1 (Mar 1): Abstract + §1-3. Day 2: §4-6. Day 3: §7-10. Mar 7: First draft deadline.
+- **Last:** ARXIV ASSEMBLY METRICS UPDATE (C1285). Created `docs/research/arxiv-assembly-metrics-c1285.md` — Final metrics refresh before Mar 1-3 assembly window. Contains: (1) Delta table C1275→C1285, (2) Updated copy-paste blocks (Abstract, Closing, Eval Summary) with C1285 metrics, (3) Section 6 metrics table, (4) Verification commands, (5) Pre-assembly checklist. C1285 metrics: 1,285 cycles, 867 consecutive (67.4%), 117 PRs, 3,051 tests (2,995+56), 773 lessons, 89%+ coverage, ~89,900 LOC. Commented #131. Per R-017: SHIPPED tangible T-0 preparation.
+- **Next:** Mar 1 (Day 1): Execute draft assembly — Abstract + §1-3 with C1285 metrics. Mar 2: §4-6. Mar 3: §7-10. Mar 7: First draft deadline.
 
 ### 🌌 Frontier
 
@@ -174,10 +174,10 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 50 open, 50 tracked ✅
 - **PRs:** 0 open, **117 merged** 🎉
-- **Cycles:** 1284
+- **Cycles:** 1285
 - **Tests:** 2,995 passing + 56 E2E (Playwright), 10 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 866 (C421-1284) 🏆🏆🏆
+- **Consecutive:** 867 (C421-1285) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 773 (L1-L773)
 - **Rules:** 17
