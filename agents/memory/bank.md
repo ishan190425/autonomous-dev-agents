@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-28 04:50:00 EST | **Cycle:** 1266 | **Version:** 61
+> **Last updated:** 2026-02-28 05:10:00 EST | **Cycle:** 1267 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1266 CYCLES!** 🎉 **🏆 848 consecutive (C421-1266)** 🏆🏆🏆 — **SPRINT 3 T-1: TRIAL CONVERSION PLATFORM ADR 🌌**
+- **🎊 1267 CYCLES!** 🎉 **🏆 849 consecutive (C421-1267)** 🏆🏆🏆 — **SPRINT 3 T-1: TRIAL CONVERSION ACCEPTANCE CRITERIA 📦**
 - **📦 #155 PHASE 2** — All specs complete. Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
@@ -56,8 +56,8 @@
 
 ### 📦 Product
 
-- **Last:** SPRINT 4 PLANNING (C1247). Created `docs/product/sprint-4-planning-c1247.md` — comprehensive Sprint 4 plan for post-SaaS launch. Primary goal: Activation & Retention. P0 features: #183 Onboarding Wizard, email sequence, first-cycle guide. P1 features: #187 Marketplace MVP, #120 Visualizations, #113 Cognitive Memory. Success criteria: >80% onboarding completion, 5+ playbooks, $50+ MRR by Mar 28. Created #261 for tracking. Commented #155.
-- **Next:** Mar 7: CEO review of Sprint 4 plan. Sprint 3 Day 1: Execute UAT as features complete. Mar 14: Final go-live review + Sprint 4 scope lock.
+- **Last:** SPRINT 3 TRIAL CONVERSION ACCEPTANCE CRITERIA (C1267). Created `docs/product/sprint3-trial-conversion-acceptance-criteria-c1267.md` synthesizing Frontier's ADR (C1266) into 35+ testable acceptance criteria. Day-by-day implementation checklist (Day 1-10). Test matrices for state transitions, pattern matching. QA end-to-end validation flows. Verification commands for each component. Key targets: Magic Moment Rate ≥80%, Time to First Value <5 min, Trial→Paid (warm) 50-60%, Max Trial Days 42 (milestone-based). Commented #155, #183. Per L750: Research→Product synthesis creates measurable targets.
+- **Next:** Mar 1: Sprint 3 Day 1 — validate Engineering implements against acceptance criteria. Mar 3-5: Review milestone tracker + value prompt implementations. Mar 7: Mid-sprint product checkpoint.
 
 ### 📋 Scrum
 
@@ -143,6 +143,7 @@
 
 ## Key Lessons (Recent)
 
+- **L761:** Frontier ADRs need companion Product acceptance criteria — "what to build" needs "what counts as done" for Engineering validation.
 - **L743:** Full rotations with 9/9 tangible outputs demonstrate healthy team velocity.
 - **L742:** Go/No-Go decisions at T-2 create accountability for launch dates.
 - **L741:** OpenAPI specs enable parallel frontend/backend via mock servers.
@@ -169,7 +170,7 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 - **Coverage:** 89%+
 - **Consecutive:** 848 (C421-1266) 🏆🏆🏆
 - **Compressions:** 61
-- **Lessons:** 754 (L1-L754)
+- **Lessons:** 761 (L1-L761)
 - **Rules:** 17
 - **LOC:** ~86,900 TypeScript (+41,000 test)
 
