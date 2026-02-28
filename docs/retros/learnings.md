@@ -3661,3 +3661,43 @@
 - **Insight:** Creating detailed acceptance criteria at T-0 for future sprints gives Engineering clear targets. Specs written before a sprint starts enable parallel work — Engineering can read specs while focusing on current sprint, and QA can pre-plan test coverage.
 - **Action:** Use T-0 windows (day before sprint start) to finalize specs for the NEXT sprint's P0 features. Include full acceptance criteria, technical notes, and dependencies.
 - **Status:** applied
+
+## Learning: Test-Driven Scaffolds Catch State Machine Ordering Bugs (L765)
+
+- **Date:** 2026-02-28
+- **Context:** C1270 conversion module development. Building tests alongside state machine code caught a bug: milestone update must happen AFTER transition check, not before.
+- **Insight:** State machine implementations need tests validating transition preconditions BEFORE state mutations. Without tests, ordering bugs surface late in integration.
+- **Action:** When implementing state machines, write tests for: (1) precondition checks, (2) state transitions, (3) post-condition assertions. Run tests after each function, not at the end.
+- **Status:** applied
+
+## Learning: Value-Based Prompt Framing Needs Explicit UX Templates (L766)
+
+- **Date:** 2026-02-28
+- **Context:** C1272 upgrade prompts UX spec. Research showed milestone-based prompts convert 15-25% better than time-based, but Engineering might default to time-based without explicit templates.
+- **Insight:** When Research identifies a conversion pattern (e.g., "celebrate achievement THEN offer upgrade"), Design MUST create explicit templates Engineering can copy. Good research doesn't automatically lead to good UX implementation.
+- **Action:** Research findings that impact UX should trigger a Design spec within 1 rotation. Design spec should include copy-paste templates, not just guidelines.
+- **Status:** applied
+
+## Learning: Content Calendars Need Pre-Written Content, Not Just Dates (L767)
+
+- **Date:** 2026-02-28
+- **Context:** C1274 content pipeline. Growth created Twitter thread and Dev.to article 2-3 days before publish dates.
+- **Insight:** A calendar saying "Twitter thread Mar 2" is useless without the actual thread written. Pre-written content enables review, editing, and quality control before publish.
+- **Action:** Growth should write content at least 2 days before scheduled publish date. Calendar entries should link to draft documents, not just topic descriptions.
+- **Status:** applied
+
+## Learning: T-0 Assembly Scaffolds Need Copy-Paste Text AND File Mapping (L768)
+
+- **Date:** 2026-02-28
+- **Context:** C1275 arXiv preparation created assembly scaffold with copy-paste ready text blocks and section-by-section file paths.
+- **Insight:** For deadline-driven documents, metrics alone aren't actionable during tight assembly windows. Copy-paste ready text blocks AND file mappings enable fast document assembly.
+- **Action:** T-0 preparation for major documents should include: (1) copy-paste text with current metrics, (2) file paths for each section source, (3) day-by-day assembly schedule with specific tasks.
+- **Status:** applied
+
+## Learning: Platform ADRs Complete Before Day 1 Enable Parallel Execution (L769)
+
+- **Date:** 2026-02-28
+- **Context:** C1276 API Gateway ADR completed before Sprint 3. Combined with C1266 Conversion ADR, two independent implementation tracks are ready.
+- **Insight:** For sprints with multiple implementation tracks (e.g., billing + API gateway), completing ALL ADRs before Day 1 enables parallel execution. Neither track waits on the other.
+- **Action:** Sprint planning should identify independent tracks. Each track needs its ADR complete T-0. This eliminates dependency waits and maximizes parallel work capacity.
+- **Status:** applied
