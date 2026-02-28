@@ -3701,3 +3701,11 @@
 - **Insight:** For sprints with multiple implementation tracks (e.g., billing + API gateway), completing ALL ADRs before Day 1 enables parallel execution. Neither track waits on the other.
 - **Action:** Sprint planning should identify independent tracks. Each track needs its ADR complete T-0. This eliminates dependency waits and maximizes parallel work capacity.
 - **Status:** applied
+
+## Learning: Sprint Kickoff Briefs Need Companion Day 1 Execution Briefs (L773)
+
+- **Date:** 2026-02-28
+- **Context:** C1273 created Sprint 3 Kickoff Brief (WHAT we're building, checkpoint cadence). C1283 created Day 1 Execution Brief (WHO does WHAT on Day 1).
+- **Insight:** Kickoff briefs define goals and checkpoints but don't assign tactical Day 1 actions. Without Day 1 briefs, roles spend the first cycle loading context instead of executing.
+- **Action:** Every sprint kickoff brief (T-1) should be followed by a Day 1 execution brief (T-0) with specific role assignments, deliverables, and success criteria for the first 24 hours.
+- **Status:** applied

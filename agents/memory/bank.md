@@ -145,6 +145,7 @@
 
 ## Key Lessons (Recent)
 
+- **L773:** Sprint kickoff briefs need companion Day 1 execution briefs — WHAT without WHO leads to Day 1 coordination overhead.
 - **L769:** Platform ADRs complete before Day 1 enable parallel execution — neither track waits on the other.
 - **L768:** T-0 assembly scaffolds need copy-paste text AND file mapping — metrics alone aren't actionable during tight windows.
 - **L767:** Content calendars need pre-written content, not just dates — 2-3 day lead time enables review.
@@ -178,7 +179,7 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 - **Coverage:** 89%+
 - **Consecutive:** 865 (C421-1283) 🏆🏆🏆
 - **Compressions:** 61
-- **Lessons:** 769 (L1-L769)
+- **Lessons:** 773 (L1-L773)
 - **Rules:** 17
 - **LOC:** ~89,900 TypeScript (+43,900 test)
 
