@@ -1,19 +1,9 @@
 {
-  "current_index": 2,
-  "last_role": "growth",
-  "last_run": "2026-02-28T17:25:05.189Z",
-  "cycle_count": 1294,
+  "current_index": 3,
+  "last_role": "research",
+  "last_run": "2026-02-28T17:46:08.853Z",
+  "cycle_count": 1295,
   "history": [
-    {
-      "role": "research",
-      "timestamp": "2026-02-28T13:50:39.415Z",
-      "cycle": 1285,
-      "action": "🔬 §1 INTRODUCTION UPDATE (C1285) — Created docs/research/arxiv-section1-introduction-c1285.md — fully updated §1 Introduction with C1285 metrics. Supersedes C396 draft. Updates: 1,285 cycles (+889), 867 consecutive (67.5%), 117 PRs (+75), 2,995 tests (+1,901), 773 lessons (+621). Added metrics table in §1.3, Sprint 3 autonomous planning evidence, v1.0-alpha milestone, 10-section paper organization. Commented #131. Per R-017: SHIPPED tangible paper content. R-013: 50/50 verified ✅. 867 consecutive (C421-1285) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Getting ahead on Day 1 deliverables during T-0 eve — §1 now assembly-ready for Mar 1. Lesson: L775 — arXiv section updates should be complete BEFORE the assembly window starts; pre-written sections enable Day 1 integration focus rather than rewriting."
-      }
-    },
     {
       "role": "frontier",
       "timestamp": "2026-02-28T14:15:26.009Z",
@@ -103,7 +93,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Pre-writing content during T-0 EVE follows L767/L775 — Day 2-3 becomes publish + validation, not drafting. SaaS-angle content differentiates from C1274 educational content. Lesson: L786 — Content calendar pieces should have both educational (how it works) and announcement (what's new) variants; educational for discovery, announcements for momentum."
       }
+    },
+    {
+      "role": "research",
+      "timestamp": "2026-02-28T17:46:08.853Z",
+      "cycle": 1295,
+      "action": "🔬 C1295 METRICS REFRESH (C1295) — T-0 EVE final metrics checkpoint. Created docs/research/arxiv-c1295-metrics-refresh.md — updated all paper metrics to C1295 values (1,295 cycles, 878 consecutive, 3,151 tests, 786 lessons). Copy-paste ready: Abstract (248 words), §6 metrics table, §10 closing paragraph. Commented #131. Per L775: Metrics updated BEFORE assembly window starts. Per R-017: SHIPPED tangible research. R-013: 50/50 verified ✅. 878 consecutive (C421-1295) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Getting metrics refreshed on T-0 EVE ensures Day 1 assembly uses current numbers — no stale data from C1275. Lesson: L787 — T-0 EVE metrics refreshes enable accurate paper assembly; final checkpoints should be 24h before deadline windows, not during them."
+      }
     }
   ],
-  "next_role_title": "🔬 research"
+  "next_role_title": "🌌 frontier"
 }

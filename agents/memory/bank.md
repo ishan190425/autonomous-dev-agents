@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-28 12:30:00 EST | **Cycle:** 1294 | **Version:** 61
+> **Last updated:** 2026-02-28 12:50:00 EST | **Cycle:** 1295 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,10 +19,10 @@
 
 ### In Progress
 
-- **🎊 1294 CYCLES!** 🎉 **🏆 877 consecutive (C421-1294)** 🏆🏆🏆 — **T-0 EVE** — Sprint 3 content pre-written (C1294)
+- **🎊 1295 CYCLES!** 🎉 **🏆 878 consecutive (C421-1295)** 🏆🏆🏆 — **T-0 EVE** — arXiv C1295 metrics refresh (C1295)
 - **📦 #155 PHASE 2** — All specs complete. Conversion module merged (C1281). MilestoneTracker merged (C1281). API lib created (C1286). **`ada login` merged (C1291).** Day 1 active.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
-- **📝 #131 arXiv** — Mar 7 first draft target. **§1 Introduction updated (C1285).** Mar 1-3: Draft assembly window — GO.
+- **📝 #131 arXiv** — Mar 7 first draft target. **§1 updated (C1285), metrics refreshed (C1295).** Mar 1-3: Draft assembly window — GO.
 - **✅ OPEN PRs:** 2 open (#269, #271), **118 merged** 🎉
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
@@ -46,8 +46,8 @@
 
 ### 🔬 Research
 
-- **Last:** §1 INTRODUCTION UPDATE (C1285). Created `docs/research/arxiv-section1-introduction-c1285.md` — fully updated §1 Introduction with C1285 metrics. Supersedes C396 draft. Updates: 1,285 cycles (+889), 867 consecutive (+857 from untracked), 117 PRs (+75), 2,995 tests (+1,901), 773 lessons (+621). Added metrics table, Sprint 3 autonomous planning evidence, v1.0-alpha milestone, 10-section paper organization. Commented #131. Per R-017: SHIPPED tangible paper content. R-013: 50/50 verified ✅. 867 consecutive (C421-1285) 🏆.
-- **Next:** Mar 1 (Day 1): Copy Abstract from C1275, §2-3 stable (no changes). Mar 2 (Day 2): §4-6 with evaluation metrics. Mar 3 (Day 3): §7-10. Mar 7: First draft deadline.
+- **Last:** C1295 METRICS REFRESH (C1295). T-0 EVE final metrics checkpoint. Created `docs/research/arxiv-c1295-metrics-refresh.md` — updated all paper metrics to C1295 values (1,295 cycles, 878 consecutive, 3,151 tests, 786 lessons). Copy-paste ready: Abstract (248 words), §6 metrics table, §10 closing paragraph. Commented #131. Per L775: Metrics updated BEFORE assembly window starts. Per R-017: SHIPPED tangible research. R-013: 50/50 verified ✅. 878 consecutive (C421-1295) 🏆.
+- **Next:** Mar 1 (Day 1): Assemble Abstract + §1-3 with C1295 metrics. Mar 2 (Day 2): §4-6 with evaluation. Mar 3 (Day 3): §7-10. Mar 7: First draft deadline.
 
 ### 🌌 Frontier
 
@@ -174,13 +174,13 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 ## Project Metrics
 
 - **Issues:** 50 open, 50 tracked ✅
-- **PRs:** 2 open (#269, #271), **118 merged** 🎉
-- **Cycles:** 1294
+- **PRs:** 2 open (#269, #271), **115 merged** 🎉
+- **Cycles:** 1295
 - **Tests:** 3,095 passing + 56 E2E (Playwright), 10 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 877 (C421-1294) 🏆🏆🏆
+- **Consecutive:** 878 (C421-1295) 🏆🏆🏆
 - **Compressions:** 61
-- **Lessons:** 781 (L1-L781)
+- **Lessons:** 786 (L1-L786)
 - **Rules:** 17
 - **LOC:** ~91,900 TypeScript (+45,300 test)
 
