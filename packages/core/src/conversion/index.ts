@@ -71,3 +71,24 @@ export {
   createMagicMomentDetector,
   detectMagicMoment,
 } from './magic-moment.js';
+
+// ============================================================================
+// Milestone Tracker
+// ============================================================================
+export {
+  // Types
+  type MilestoneId,
+  type MilestoneReward,
+  type Milestone,
+  type MilestoneTrackerResult,
+  type TrialDaysResult,
+  // Constants
+  DEFAULT_MILESTONES,
+  BASE_TRIAL_DAYS,
+  MAX_TRIAL_DAYS,
+  // Class
+  MilestoneTracker,
+  // Factory functions
+  createMilestoneTracker,
+  createCustomMilestoneTracker,
+} from './milestones.js';
