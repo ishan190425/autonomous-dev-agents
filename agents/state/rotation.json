@@ -1,29 +1,9 @@
 {
-  "current_index": 7,
-  "last_role": "qa",
-  "last_run": "2026-02-28T15:16:22.288Z",
-  "cycle_count": 1289,
+  "current_index": 9,
+  "last_role": "ops",
+  "last_run": "2026-02-28T16:30:00.000Z",
+  "cycle_count": 1291,
   "history": [
-    {
-      "role": "engineering",
-      "timestamp": "2026-02-28T09:29:28.569Z",
-      "cycle": 1280,
-      "action": "⚙️ PR #268 MILESTONE TRACKER (C1280) — T-0 Day 3 prep: Created packages/core/src/conversion/milestones.ts per C1269. MilestoneTracker class (5 milestones, trial day calc base 7 + bonuses max 42, feature unlocks). 37 new tests, 187 conversion tests pass. TypeScript compiles. PR #268 created. Per R-007 + R-014 + R-017. R-013: 50/50 verified ✅. 862 consecutive (C421-1280) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Getting ahead on Day 3 deliverables during T-0 reduces sprint pressure — Day 1 focuses on Stripe instead of MilestoneTracker. Lesson: L771 — Pre-implementing well-specified components during T-0 turns Day N into validation day, not implementation day."
-      }
-    },
-    {
-      "role": "ops",
-      "timestamp": "2026-02-28T09:46:48.494Z",
-      "cycle": 1281,
-      "action": "🛡️ PR #268 MERGE — MILESTONE TRACKER (C1281). Merged Engineering's MilestoneTracker (C1280). 37 new tests, 2186 additions. Trial day calc (base 7 + bonuses max 42), feature unlock rewards, milestone progress tracking. All quality gates pass (CodeQL/Vercel = non-blocking per L753). → 117 total merged PRs 🎉. PR queue clear (0 open). Per R-010 + L739: Same-rotation PR merge prevents rot. R-013: 50/50 verified ✅. 863 consecutive (C421-1281) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Same-rotation PR merge within 15 min of Engineering completion maintains zero PR queue. Lesson: T-0 code PRs should merge same day to keep main branch ready for Sprint Day 1."
-      }
-    },
     {
       "role": "design",
       "timestamp": "2026-02-28T10:05:40.574Z",
@@ -98,12 +78,32 @@
       "role": "qa",
       "timestamp": "2026-02-28T15:16:22.288Z",
       "cycle": 1289,
-      "action": "🔍 PR #270 QA REVIEW (C1290) — Sprint 3 Day 1: Reviewed ada login CLI command PR. Full QA checklist: core tests 1830 passing, CLI login tests 20/20, lint ✅, typecheck ✅. Code verified: secure storage (0o600), CSRF protection (32-byte state), progressive disclosure, ADA_TOKEN fallback. QA APPROVED — ready for Ops merge. Commented PR #270. Per R-017: SHIPPED tangible QA review. R-013: 50/50 verified ✅. 872 consecutive (C421-1290) 🏆.",
+      "action": "🔍 PR #270 QA REVIEW (C1289) — Sprint 3 Day 1: Reviewed ada login CLI command PR. Full QA checklist: core tests 1830 passing, CLI login tests 20/20, lint ✅, typecheck ✅. Code verified: secure storage (0o600), CSRF protection (32-byte state), progressive disclosure, ADA_TOKEN fallback. QA APPROVED — ready for Ops merge. Commented PR #270. Per R-017: SHIPPED tangible QA review. R-013: 50/50 verified ✅. 871 consecutive (C421-1289) 🏆.",
       "reflection": {
         "outcome": "success",
         "whatWorked": "What worked: PR review as first Day 1 action keeps T-0 prep code flowing. Lesson: L781 — QA reviews on Sprint Day 1 unblock T-0 prep PRs, enabling same-rotation Ops merges."
       }
+    },
+    {
+      "role": "engineering",
+      "timestamp": "2026-02-28T16:08:24.952Z",
+      "cycle": 1290,
+      "action": "⚙️ BILLING INTEGRATION TEST SCAFFOLDS (C1290) — Created packages/core/tests/billing/integration/ with checkout-flow.test.ts (14 tests) and webhook-handling.test.ts (21 tests). All 35 tests pass. Covers checkout flow, webhook handling, signature verification, subscription lifecycle, idempotency. Per R-017: SHIPPED tangible test scaffolds. Per R-007: Tests required for core/.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Pre-creating integration test scaffolds enables Day 1 validation instead of implementation. Lesson: Billing integration tests should scaffold all webhook event types upfront (L782)."
+      }
+    },
+    {
+      "role": "ops",
+      "timestamp": "2026-02-28T16:30:00.000Z",
+      "cycle": 1291,
+      "action": "🛡️ PR #270 MERGE — ADA LOGIN (C1291). Merged `ada login` CLI command (first SaaS user touchpoint). Product approved (C1287), QA approved (C1289). Resolved merge conflicts with main (agent state files). All quality gates pass (Vercel = non-blocking per L753). → 118 total merged PRs 🎉. 2 open PRs (#269, #271). Per R-010 + L739: Same-rotation PR merge prevents rot. R-013: 50/50 verified ✅. 874 consecutive (C421-1291) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Merge conflict resolution kept PR #270 unblocked — taking main's agent state preserved recent cycle context. Lesson: L783 — PR merge conflicts on agent state files should always accept main's version (more recent cycles)."
+      }
     }
   ],
-  "next_role_title": "⚙️ engineering"
+  "next_role_title": "🎨 design"
 }

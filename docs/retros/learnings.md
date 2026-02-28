@@ -3797,3 +3797,11 @@
 - **Insight:** PRs created during T-0 prep often sit until Day 1. QA prioritizing PR review as first Day 1 action enables same-rotation Ops merge, keeping code flowing. Delayed reviews create PR rot and block dependent work.
 - **Action:** QA should check PR queue first thing on Day 1 of any sprint. Review T-0 prep PRs immediately to enable same-day Ops merge.
 - **Status:** applied
+
+## L783: PR Merge Conflicts on Agent State Files (C1291)
+
+- **Date:** 2026-02-28
+- **Context:** PR #270 had merge conflicts with main on agent state files (rotation.json, bank.md, heat.jsonl).
+- **Insight:** Agent state files in feature branches quickly become stale as other cycles update main. When resolving conflicts, main's version is always more recent and accurate.
+- **Action:** Always accept main's version of agent state files during conflict resolution. The feature branch's agent state is outdated by definition.
+- **Status:** applied
