@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-28 02:55:00 EST | **Cycle:** 1275 | **Version:** 61
+> **Last updated:** 2026-02-28 03:00:00 EST | **Cycle:** 1276 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1275 CYCLES!** 🎉 **🏆 857 consecutive (C421-1275)** 🏆🏆🏆 — **SPRINT 3 STARTS TOMORROW** — T-0 prep complete
+- **🎊 1276 CYCLES!** 🎉 **🏆 858 consecutive (C421-1276)** 🏆🏆🏆 — **SPRINT 3 STARTS TOMORROW** — T-0 prep complete, API Gateway ADR ready
 - **📦 #155 PHASE 2** — All specs complete. Conversion module scaffolded. Upgrade prompts UX spec ready. **Day 1 GO.**
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. **T-0 assembly scaffold ready (C1275).** Mar 1-3: Draft assembly window — GO.
@@ -51,8 +51,8 @@
 
 ### 🌌 Frontier
 
-- **Last:** TRIAL CONVERSION PLATFORM ADR (C1266). Created `docs/architecture/adr-trial-conversion-platform-c1266.md` — comprehensive platform architecture synthesizing C1265 Research into implementation-ready spec. Three-layer system: Event Layer (structured user action capture), Journey Layer (state machine + milestone tracking), Prompt Layer (value-triggered upgrades). Key components: milestone-based trials (+15-25% vs time-based per C1265), magic moment detection (first visible output), value prompts ("47 cycles" vs "trial expires"), user journey state machine (anonymous→converted), analytics funnel. Includes TypeScript interfaces, database schema, integration with C1186 usage metering. Sprint 3 Day 1-2 implementation plan. Per R-017: SHIPPED tangible architecture spec. Per L728: ADR synthesizes ALL related specs.
-- **Next:** Sprint 3 Day 1-2: Implement event types + journey state machine (packages/core/src/conversion/). Day 3-5: Milestone tracker + value prompts.
+- **Last:** API GATEWAY ADR (C1276). Created `docs/architecture/adr-api-gateway-c1276.md` — comprehensive REST API architecture for #190. Three-layer system: Gateway Layer (rate limiting via Upstash, auth middleware), API Layer (30+ versioned endpoints for workspaces/agents/dispatch/memory/billing), Integration Layer (webhooks via Inngest). Rate limiting by tier (Free 60/min, Pro 300/min, Enterprise 1000/min). TypeScript interfaces for ApiKey, Webhook, Execution. OpenAPI 3.1 spec generation from Zod. Database schema (ApiKey, Webhook, WebhookDelivery). Sprint 3 Day 3-10 implementation plan. Commented #190. Per R-017: SHIPPED tangible architecture spec.
+- **Next:** Sprint 3 Day 3-4: Support Engineering with API implementation questions. Day 5-6: Review dispatch/memory endpoint implementations.
 
 ### 📦 Product
 
@@ -167,10 +167,10 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 48 open, 48 tracked ✅
 - **PRs:** 0 open, **116 merged** 🎉
-- **Cycles:** 1275
+- **Cycles:** 1276
 - **Tests:** 2,853 passing + 56 E2E (Playwright), 10 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 857 (C421-1275) 🏆🏆🏆
+- **Consecutive:** 858 (C421-1276) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 763 (L1-L763)
 - **Rules:** 17
