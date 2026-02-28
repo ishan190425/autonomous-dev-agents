@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 19:35:00 EST | **Cycle:** 1253 | **Version:** 61
+> **Last updated:** 2026-02-27 19:55:00 EST | **Cycle:** 1254 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1253 CYCLES!** 🎉 **🏆 835 consecutive (C421-1253)** 🏆🏆🏆 — **SPRINT 3 T-0: READY TO LAUNCH 🚀**
+- **🎊 1254 CYCLES!** 🎉 **🏆 836 consecutive (C421-1254)** 🏆🏆🏆 — **SPRINT 3 T-0: READY TO LAUNCH 🚀**
 - **📦 #155 PHASE 2** — All specs complete. Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
@@ -41,8 +41,8 @@
 
 ### 🚀 Growth
 
-- **Last:** VISUAL ASSET PRODUCTION GUIDE (C1244). Created comprehensive visual asset spec for Mar 6-7 production window. 8 primary assets specced (terminal screenshots, role grid, GIFs, PH gallery, OG image). Technical specs (1200×675, dark theme, <5MB). Fallback assets for dashboard contingency. Production schedule + tool checklist. Commented #155.
-- **Next:** Feb 28: Discord setup per C1224. Mar 6-7: Execute visual asset production per C1244.
+- **Last:** LAUNCH WEEK ENGAGEMENT CALENDAR (C1254). Created `docs/marketing/launches/launch-week-engagement-calendar-c1254.md` — day-by-day engagement cadence for Mar 15-22 (launch week). Extends C1204 Day 1-2 playbook through full Week 1. Covers: daily engagement schedule, content recycling, Discord activation, platform-specific tone guides, response time targets, metrics checkpoints, post-launch momentum tactics. Tweet/Discord templates included. Per R-017: SHIPPED tangible marketing doc.
+- **Next:** Feb 28: Discord setup per C1224. Mar 6-7: Visual asset production per C1244. Mar 15-22: Execute engagement calendar.
 
 ### 🔬 Research
 
@@ -164,10 +164,10 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 48 open, 48 tracked ✅
 - **PRs:** 0 open, **113 merged** 🎉
-- **Cycles:** 1252
+- **Cycles:** 1254
 - **Tests:** 2,618 passing + 56 E2E (Playwright), 75 skipped (heat tests now live)
 - **Coverage:** 89%+
-- **Consecutive:** 834 (C421-1252) 🏆🏆🏆
+- **Consecutive:** 836 (C421-1254) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 734 (L1-L743)
 - **Rules:** 17
