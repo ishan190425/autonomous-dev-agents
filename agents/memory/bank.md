@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-28 02:25:00 EST | **Cycle:** 1274 | **Version:** 61
+> **Last updated:** 2026-02-28 02:55:00 EST | **Cycle:** 1275 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,10 +19,10 @@
 
 ### In Progress
 
-- **🎊 1274 CYCLES!** 🎉 **🏆 856 consecutive (C421-1274)** 🏆🏆🏆 — **SPRINT 3 DAY 1 PREP** — Content pipeline ready
+- **🎊 1275 CYCLES!** 🎉 **🏆 857 consecutive (C421-1275)** 🏆🏆🏆 — **SPRINT 3 STARTS TOMORROW** — T-0 prep complete
 - **📦 #155 PHASE 2** — All specs complete. Conversion module scaffolded. Upgrade prompts UX spec ready. **Day 1 GO.**
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
-- **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
+- **📝 #131 arXiv** — Mar 7 first draft target. **T-0 assembly scaffold ready (C1275).** Mar 1-3: Draft assembly window — GO.
 - **✅ OPEN PRs:** 0 open, **116 merged** 🎉 — PR queue clear. Sprint 3 conversion module merged.
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
@@ -46,8 +46,8 @@
 
 ### 🔬 Research
 
-- **Last:** TRIAL-TO-PAID CONVERSION RESEARCH (C1265). Created `docs/research/trial-to-paid-conversion-research-c1265.md` — validated CEO's 50% trial→paid assumption from First MRR Strategy (C1263). Key findings: 50% achievable for warm leads (Discord, stargazers) and outreach; cold traffic (HN/PH) will be 25-35%. Blended projection: ~38 customers ($722 MRR) — well above $100 target. Recommendations: milestone-based trials (not time-based), Day 1 magic moment focus, value-based upgrade prompts. P0 items for Sprint 3: <5 min onboarding, visible first-cycle output, value-triggered prompts. Commented #155. Per R-017: SHIPPED tangible research supporting Sprint 3 revenue goals.
-- **Next:** Mar 1-3: arXiv draft assembly using C1245 metrics + C1215 file mapping. Mar 7: First draft deadline.
+- **Last:** T-0 ARXIV DRAFT ASSEMBLY SCAFFOLD (C1275). Created `docs/research/arxiv-t0-draft-assembly-c1275.md` — FINAL pre-assembly document for Mar 1-3 window. Contains: (1) Copy-paste ready text (abstract 248 words, closing paragraph, evaluation summary) updated to C1275 metrics, (2) Section-by-section guide (Day 1/2/3 mapping with file sources), (3) Integrated draft scaffold (complete paper structure), (4) Verification commands for Mar 1 morning. C1275 metrics: 1,275 cycles, 857 consecutive (67.2%), 116 PRs, 2,909 tests, 763 lessons, 89%+ coverage, ~86,900 LOC. Commented #131. Per R-017: SHIPPED tangible T-0 preparation.
+- **Next:** Mar 1-3: Execute draft assembly using C1275 scaffold. Day 1 (Mar 1): Abstract + §1-3. Day 2: §4-6. Day 3: §7-10. Mar 7: First draft deadline.
 
 ### 🌌 Frontier
 
@@ -167,10 +167,10 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 48 open, 48 tracked ✅
 - **PRs:** 0 open, **116 merged** 🎉
-- **Cycles:** 1274
+- **Cycles:** 1275
 - **Tests:** 2,853 passing + 56 E2E (Playwright), 10 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 856 (C421-1274) 🏆🏆🏆
+- **Consecutive:** 857 (C421-1275) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 763 (L1-L763)
 - **Rules:** 17
