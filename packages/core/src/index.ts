@@ -787,3 +787,88 @@ export {
   createStripeClient,
   createMockStripeClient,
 } from './billing/index.js';
+
+// SaaS Platform API (Sprint 3 — API Gateway #190)
+// Type-safe client and types for the ADA REST API.
+// Generated from OpenAPI 3.1 Specification (C1246).
+// Note: Import from '@ada-ai/core/api' for full type exports without conflicts.
+export type {
+  // Common
+  ResponseMeta,
+  Pagination,
+  ProblemDetails,
+  // Auth
+  User,
+  SessionResponse,
+  ApiKey,
+  ApiKeyScope,
+  CreateApiKeyRequest,
+  CreateApiKeyResponse,
+  ApiKeyListResponse,
+  // Repos
+  RepoStatus,
+  RepoExecutor,
+  Repo,
+  RepoSettings,
+  RepoStats,
+  RepoListResponse,
+  RepoResponse,
+  AvailableRepo,
+  AvailableReposResponse,
+  SelectRepoRequest,
+  RepoUpdateRequest,
+  SyncResponse,
+  // Dispatch (API types)
+  DispatchStatus,
+  DispatchPriority,
+  DispatchRequest,
+  DispatchResponse,
+  DispatchStatusResponse,
+  Schedule,
+  ScheduleListResponse,
+  ScheduleResponse,
+  ScheduleRequest,
+  ScheduleUpdateRequest,
+  // Cycles (API types) — use Api prefix to avoid conflicts with observability types
+  CycleStatus,
+  ArtifactType,
+  CycleSummary as ApiCycleSummary,
+  Cycle as ApiCycle,
+  CycleReflection as ApiCycleReflection,
+  CycleArtifact,
+  CycleMetrics as ApiCycleMetrics,
+  CycleListResponse,
+  CycleResponse,
+  LogEntry as ApiLogEntry,
+  LogsResponse,
+  // Billing (API types)
+  SubscriptionTier,
+  SubscriptionLimits,
+  Usage,
+  UsageResponse,
+  CheckoutRequest,
+  CheckoutResponse,
+  PortalResponse,
+  // Webhooks
+  WebhookEvent,
+  Webhook,
+  WebhookListResponse,
+  WebhookResponse,
+  WebhookRequest,
+  WebhookDelivery,
+  WebhookDeliveriesResponse,
+  DispatchEventData,
+  CycleEventData,
+  SubscriptionEventData,
+  // Client options
+  ApiClientOptions,
+  ListOptions as ApiListOptions,
+  CycleListOptions,
+  LogOptions as ApiLogOptions,
+} from './api/index.js';
+export {
+  AdaApiClient,
+  AdaApiError,
+  createApiClient,
+  getDefaultClient,
+} from './api/index.js';

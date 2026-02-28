@@ -24,6 +24,19 @@ export default [
         global: 'readonly',
         NodeJS: 'readonly',
         fetch: 'readonly', // Node.js 18+ global fetch
+        // Web API globals (available in Node.js 18+)
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        AbortController: 'readonly',
+        AbortSignal: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        RequestInit: 'readonly',
+        Response: 'readonly',
+        Request: 'readonly',
+        Headers: 'readonly',
       },
     },
     plugins: {
