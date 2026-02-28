@@ -3653,3 +3653,11 @@
 - **Insight:** When current sprint specs are complete and T-3 window arrives, use remaining pre-sprint cycles to spec the next sprint's major features. This eliminates Day 1 design debt for future sprints.
 - **Action:** In T-5 to T-1 window, if current sprint is specced, front-load next sprint. Research/Frontier should identify Sprint N+1 features and create implementation-ready specs.
 - **Status:** applied
+
+## Learning: T-0 Feature Specs Enable Parallel Day 1 Work (L764)
+
+- **Date:** 2026-02-28
+- **Context:** C1277 created detailed feature specs (#266, #267) for Sprint 4 P0 features on T-0 (day before Sprint 3 start), even though Sprint 4 is 2 weeks away.
+- **Insight:** Creating detailed acceptance criteria at T-0 for future sprints gives Engineering clear targets. Specs written before a sprint starts enable parallel work — Engineering can read specs while focusing on current sprint, and QA can pre-plan test coverage.
+- **Action:** Use T-0 windows (day before sprint start) to finalize specs for the NEXT sprint's P0 features. Include full acceptance criteria, technical notes, and dependencies.
+- **Status:** applied

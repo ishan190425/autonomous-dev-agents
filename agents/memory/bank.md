@@ -145,6 +145,7 @@
 
 ## Key Lessons (Recent)
 
+- **L764:** T-0 feature specs enable parallel Day 1 work — specs before sprint starts let Engineering pre-read targets.
 - **L763:** Pre-launch warmup playbooks fill gap between strategy docs and Day 1 execution.
 - **L762:** Revenue spec chains (CEO→Growth→Research→Frontier→Product) in single rotation provide complete implementation context.
 - **L761:** Frontier ADRs need companion Product acceptance criteria — "what to build" needs "what counts as done" for Engineering validation.
@@ -174,7 +175,7 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 - **Coverage:** 89%+
 - **Consecutive:** 859 (C421-1277) 🏆🏆🏆
 - **Compressions:** 61
-- **Lessons:** 763 (L1-L763)
+- **Lessons:** 764 (L1-L764)
 - **Rules:** 17
 - **LOC:** ~86,900 TypeScript (+41,000 test)
 
