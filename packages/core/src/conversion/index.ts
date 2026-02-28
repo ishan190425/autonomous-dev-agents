@@ -92,3 +92,31 @@ export {
   createMilestoneTracker,
   createCustomMilestoneTracker,
 } from './milestones.js';
+
+// ============================================================================
+// Prompt Engine (C1290)
+// ============================================================================
+export {
+  // Types
+  type TriggerType,
+  type JourneyStat,
+  type StatThresholdTrigger,
+  type EventTrigger,
+  type MilestoneCompleteTrigger,
+  type TrialEndingTrigger,
+  type PromptTrigger,
+  type PromptContent,
+  type Prompt,
+  type PromptHistory,
+  type PromptEvaluation,
+  // Constants
+  PROMPT_PRIORITY,
+  DEFAULT_PROMPTS,
+  // Class
+  PromptEngine,
+  // Factory functions
+  createPromptEngine,
+  getDefaultPrompts,
+  // Utilities
+  addDays,
+} from './prompt-engine.js';
