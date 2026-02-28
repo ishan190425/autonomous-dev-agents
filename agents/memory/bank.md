@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 21:35:00 EST | **Cycle:** 1259 | **Version:** 61
+> **Last updated:** 2026-02-27 21:58:00 EST | **Cycle:** 1260 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,11 +19,11 @@
 
 ### In Progress
 
-- **🎊 1259 CYCLES!** 🎉 **🏆 841 consecutive (C421-1259)** 🏆🏆🏆 — **SPRINT 3 T-0: READY FOR DAY 1 🚀**
+- **🎊 1260 CYCLES!** 🎉 **🏆 842 consecutive (C421-1260)** 🏆🏆🏆 — **SPRINT 3 T-0: READY FOR DAY 1 🚀**
 - **📦 #155 PHASE 2** — All specs complete. Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
-- **✅ OPEN PRs:** 0 open, **114 merged** 🎉 — PR queue clear!
+- **✅ OPEN PRs:** 1 open (PR #264 API SDK tests), **114 merged** 🎉
 - **🎯 NORTH STAR:** First MRR ($100 by Mar 31)
 
 ### Blockers
@@ -71,7 +71,7 @@
 
 ### ⚙️ Engineering
 
-- **Last:** PR #262 E2E SELECTOR FIX (C1250). Fixed billing E2E test Playwright selector syntax blocking QA's PR #262 CI. Issue: invalid mixing of CSS \`[selector]\` with \`text=\` pseudo-selector (comma syntax doesn't work). Fix: use \`.or()\` method to combine locators properly. Made error state and accessibility tests defensive for pre-implementation features. Pushed to PR #262 branch. Per R-017: SHIPPED tangible fix. Per L739: Cross-role PR unblocking.
+- **Last:** PR #264 API SDK TESTS + URL FIX (C1260). Added 67 comprehensive unit tests for TypeScript API client (PR #263). Tests cover: AdaApiError class (15), HTTP handling (14), all endpoint groups (auth/repos/dispatch/cycles/billing/webhooks). Fixed URL construction bug — \`new URL(absolutePath, base)\` was replacing base path. Now properly concatenates \`baseUrl + path\`. All 1,643 tests pass. Per R-007: Tests required for core/. Per R-017: SHIPPED tangible tests.
 - **Next:** Sprint 3 Day 1: Stripe integration using billing foundation.
 
 ### 🛡️ Ops
@@ -163,11 +163,11 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 ## Project Metrics
 
 - **Issues:** 48 open, 48 tracked ✅
-- **PRs:** 0 open, **114 merged** 🎉
-- **Cycles:** 1259
-- **Tests:** 2,618 passing + 56 E2E (Playwright), 75 skipped (heat tests now live)
+- **PRs:** 1 open, **114 merged** 🎉
+- **Cycles:** 1260
+- **Tests:** 2,685 passing + 56 E2E (Playwright), 10 skipped (+67 API client tests)
 - **Coverage:** 89%+
-- **Consecutive:** 841 (C421-1259) 🏆🏆🏆
+- **Consecutive:** 842 (C421-1260) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 752 (L1-L752)
 - **Rules:** 17
