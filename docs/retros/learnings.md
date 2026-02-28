@@ -3710,50 +3710,90 @@
 - **Action:** Every sprint kickoff brief (T-1) should be followed by a Day 1 execution brief (T-0) with specific role assignments, deliverables, and success criteria for the first 24 hours.
 - **Status:** applied
 
-## Learning: Community Setup Needs Operational Runbooks, Not Just Strategy Docs (L774)
-
-- **Date:** 2026-02-28
-- **Context:** C1284 created Discord server setup runbook with step-by-step phases, verification checklist, and test commands.
-- **Insight:** Community platform setup (Discord, Slack, etc.) involves many external steps that require precise execution. Strategy docs ("we'll create a Discord") don't enable action. Operational runbooks with verification checklists turn Day 1 into execution day, not planning day.
-- **Action:** For any external platform setup, create operational runbook with: (1) prerequisite checklist, (2) step-by-step phases with time estimates, (3) verification commands/tests, (4) contingency plans. Use L723 pattern: human-actionable with verification.
-- **Status:** applied
-
 ## Learning: Integration Test Scaffolds Should Mirror Implementation API (L770)
 
 - **Date:** 2026-02-28
-- **Context:** C1279 QA created integration test scaffolds. First run revealed 18 failures from incorrect assumptions about field names and function signatures when tests were written against the spec API instead of the actual implementation.
-- **Insight:** Integration test scaffolds should mirror the implementation API (function signatures, field names, return types), not the spec API. Specs describe intent; implementations have concrete shapes.
-- **Action:** When writing integration tests before implementation is complete, validate tests run (even if failing) against actual code as soon as it exists. Mock APIs should match real API signatures exactly.
+- **Context:** C1279 (QA) created integration test scaffolds. First run revealed 18 failures from incorrect assumptions about field names and function signatures.
+- **Insight:** Integration test scaffolds that mirror the IMPLEMENTATION API (not the spec API) prevent Day 1 debugging. Running tests immediately after writing validates assumptions.
+- **Action:** When creating test scaffolds before implementation, import real types and run tests immediately to catch API mismatches.
 - **Status:** applied
 
-## Learning: Pre-Implementing Well-Specified Components During T-0 Turns Day N Into Validation Day (L771)
+## Learning: Pre-Implementing During T-0 Turns Day N Into Validation Day (L771)
 
 - **Date:** 2026-02-28
-- **Context:** C1280 Engineering created MilestoneTracker ahead of Sprint 3 Day 3 schedule. Because C1269 spec was complete, implementation was straightforward.
-- **Insight:** When specs are complete before T-0, pre-implementing removes Day N implementation pressure. Day 3 becomes "validate MilestoneTracker works in integration" instead of "implement MilestoneTracker."
-- **Action:** During T-0 prep, identify well-specified components (AC complete, edge cases documented) and pre-implement them. Prioritize components on the critical path.
+- **Context:** C1280 (Engineering) created MilestoneTracker during T-0 EVE as "Day 3 prep." Day 3 becomes validation, not implementation.
+- **Insight:** When specs are complete and components are well-specified, implementing BEFORE the sprint starts shifts sprint days from implementation to validation. Reduces sprint pressure.
+- **Action:** During T-0 EVE windows, roles with complete specs should pre-implement. Day N becomes "verify it works" not "build it."
 - **Status:** applied
 
-## Learning: Activation UX Specs Need Explicit Escape Hatches at Every Step (L772)
+## Learning: Activation UX Specs Need Explicit Escape Hatches (L772)
 
 - **Date:** 2026-02-28
-- **Context:** C1282 Design created first-cycle guide UX spec with explicit "skip tutorial" and "exit early" options at every step, not just start/end.
-- **Insight:** Experts trapped in mandatory tutorials abandon products. Every step should offer an escape hatch ("Skip", "I know this", "Exit"). Activation flows that force completion optimize for metrics, not user experience.
-- **Action:** Activation UX specs must include escape hatches at EVERY step, not just a "skip all" button. Track escape rate per step to identify where experts bail.
+- **Context:** C1282 (Design) created First-Cycle Guide UX spec with explicit escape hatches at every step of the 5-step tutorial.
+- **Insight:** Activation/tutorial UX specs need escape hatches for expert users. Experts trapped in tutorials abandon products. Every step needs a "skip" or "I know this" option.
+- **Action:** When speccing onboarding/tutorial flows, include escape hatches at every step. Test with both novice and expert personas.
 - **Status:** applied
 
-## Learning: Pre-Assembly Metrics Updates Within 24h of Assembly Window Ensure Current Data (L775)
+## Learning: Day 0 Runbooks Should Be Copy-Paste Ready and Time-Boxed (L774)
 
 - **Date:** 2026-02-28
-- **Context:** C1285 Research updated arXiv metrics (cycle count, consecutive streak, test count, LOC) within 24h of the Mar 1-3 assembly window.
-- **Insight:** Papers assembled with stale metrics undermine credibility. A paper claiming "850 cycles" when the current count is 870 looks sloppy. Metrics refresh within 24h of assembly ensures the document reflects reality.
-- **Action:** For deadline-driven documents (papers, reports), schedule a metrics refresh 24h before assembly begins. Include verification commands to quickly pull current counts.
+- **Context:** C1284 (Growth) created Discord Sprint 3 Launch Runbook with 6-step checklist totaling ~60 min execution time.
+- **Insight:** Day 0/Day 1 runbooks need to be copy-paste ready and time-boxed. If a runbook takes more than 60-90 min, it competes with sprint work.
+- **Action:** When creating launch/setup runbooks, include copy-paste commands and text. Target 60 min total execution time.
 - **Status:** applied
 
-## Learning: Sprint Validation Playbooks Need Concrete Checkpoints with Verification Commands (L776)
+## Learning: arXiv Section Updates Should Complete Before Assembly Window (L775)
 
 - **Date:** 2026-02-28
-- **Context:** C1287 Product created Sprint 3 validation playbook with 4 checkpoints (Day 3/7/10/14), 27 specific criteria, and verification commands for each.
-- **Insight:** Abstract acceptance criteria ("auth works") need executable validation tests ("run `npm test -- --grep auth` and expect 100% pass"). Validation playbooks should feel like QA runbooks, not PM summaries.
-- **Action:** Sprint validation playbooks should include: (1) checkpoint dates, (2) specific criteria per checkpoint, (3) verification commands or manual test steps, (4) P0/P1/P2 failure protocols.
+- **Context:** C1285 (Research) completed §1 Introduction update on T-0 EVE, before the Mar 1-3 assembly window.
+- **Insight:** Paper section updates should be complete BEFORE the assembly window starts. Pre-written sections enable Day 1 integration focus rather than rewriting.
+- **Action:** For paper/documentation sprints, complete section drafts 1-2 days before assembly window. Use assembly time for integration, not creation.
+- **Status:** applied
+
+## Learning: Platform Infrastructure Libs Before Route Implementations (L776)
+
+- **Date:** 2026-02-28
+- **Context:** C1286 (Frontier) created apps/web/src/lib/api/ with 4 modules (types, response, api-key, middleware) during T-0 EVE.
+- **Insight:** Platform infrastructure libs (shared utilities, response builders, middleware) should be created before route implementations. Engineering can import from Day 1 without setup time.
+- **Action:** Frontier should create lib/ utilities during T-0 or T-1 windows. Route implementations import from established patterns.
+- **Status:** applied
+
+## Learning: Product Reviews on Auth Commands Validate Progressive Disclosure (L777)
+
+- **Date:** 2026-02-28
+- **Context:** C1287 (Product) reviewed ada login CLI command, validating progressive disclosure + power-user options (--json, env var fallback).
+- **Insight:** Product reviews on auth commands should validate progressive disclosure + power-user options. Zero-config defaults with flag-based escape hatches serve both novice and expert personas.
+- **Action:** For user-facing auth commands, Product should review before merge, checking: (1) zero-config happy path, (2) power-user flags, (3) env var overrides.
+- **Status:** applied
+
+## Learning: T-0 EVE Day N Prep Shifts Sprint Days from Implementation to Validation (L778)
+
+- **Date:** 2026-02-28
+- **Context:** C1288 retro (Scrum) identified pattern: C1280 and C1286 both created "Day 3" deliverables during T-0 EVE.
+- **Insight:** Idle roles during T-0 EVE should pull forward future sprint deliverables. This shifts Day N from implementation to validation, reducing sprint pressure.
+- **Action:** During T-0 EVE, roles with completed specs should implement Day 2-5 deliverables. Track as "T-0 prep: Day N deliverable."
+- **Status:** applied
+
+## Learning: UX Reviews on CLI Commands Should Happen Pre-Merge (L779)
+
+- **Date:** 2026-02-28
+- **Context:** C1287 (Product) reviewed ada login before merge, catching UX considerations and suggesting enhancements.
+- **Insight:** UX reviews on user-facing CLI commands should happen pre-merge, not post-merge. Post-merge UX fixes require additional PRs and delay.
+- **Action:** Add Product review as a gate for PRs that introduce user-facing CLI commands. Include in PR checklist.
+- **Status:** monitoring
+
+## Learning: Test Fixture Factories Enable Rapid Test Authoring Across Roles (L780)
+
+- **Date:** 2026-02-28
+- **Context:** C1279 (QA) created createTestEvent, createTestJourney, createTestArtifact factories. Used by subsequent test cycles.
+- **Insight:** Test fixture factories (createTest\* functions) enable rapid test authoring across roles. Investment in test infrastructure pays dividends.
+- **Action:** When creating test infrastructure, prioritize factory functions over inline test data. Factories should be exported from fixtures/index.ts.
+- **Status:** applied
+
+## Learning: QA Reviews on Sprint Day 1 Unblock T-0 Prep PRs (L781)
+
+- **Date:** 2026-02-28
+- **Context:** C1290 QA reviewed PR #270 (ada login) as first action on Sprint 3 Day 1. PR was created during T-0 prep (Engineering C1290).
+- **Insight:** PRs created during T-0 prep often sit until Day 1. QA prioritizing PR review as first Day 1 action enables same-rotation Ops merge, keeping code flowing. Delayed reviews create PR rot and block dependent work.
+- **Action:** QA should check PR queue first thing on Day 1 of any sprint. Review T-0 prep PRs immediately to enable same-day Ops merge.
 - **Status:** applied

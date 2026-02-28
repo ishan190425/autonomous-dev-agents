@@ -74,3 +74,54 @@ export type {
 } from './stripe-client.js';
 
 export { createStripeClient, createMockStripeClient } from './stripe-client.js';
+
+// ============================================================================
+// Conversion Platform Types (C1266)
+// ============================================================================
+
+// Plan Types (for conversion tracking)
+export type {
+  PlanTier,
+  PlanBillingInterval,
+  PlanLimits,
+  PlanFeatures,
+  PlanPricing,
+  Plan,
+  MilestoneTrialInfo,
+  InvoiceStatus,
+  InvoiceLineItem,
+  InvoiceTax,
+  Invoice,
+  PaymentMethodType,
+  CardBrand,
+  PaymentMethod,
+  BillingEventType,
+  BillingEvent,
+  BillingCustomer,
+  TrialDaysConfig,
+} from './plan-types.js';
+
+export {
+  DEFAULT_PLANS,
+  DEFAULT_TRIAL_CONFIG,
+  isFreePlanTier,
+  hasTrialBonuses,
+  getPlanById,
+  getPlanByTier,
+} from './plan-types.js';
+
+// Milestone Trial Manager
+export type {
+  MilestoneBonusResult,
+  CreateTrialOptions,
+  TrialStatusResult,
+} from './milestone-trial.js';
+
+export {
+  MilestoneTrialManager,
+  MockMilestoneTrialManager,
+  createMilestoneTrialManager,
+  createTrial,
+  applyMilestoneBonus,
+  createMockMilestoneTrialManager,
+} from './milestone-trial.js';
