@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-27 20:25:00 EST | **Cycle:** 1255 | **Version:** 61
+> **Last updated:** 2026-02-27 20:40:00 EST | **Cycle:** 1256 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1255 CYCLES!** 🎉 **🏆 837 consecutive (C421-1255)** 🏆🏆🏆 — **SPRINT 3 T-2: READY TO LAUNCH 🚀**
+- **🎊 1256 CYCLES!** 🎉 **🏆 838 consecutive (C421-1256)** 🏆🏆🏆 — **SPRINT 3 T-1: FINAL PREPARATIONS 🚀**
 - **📦 #155 PHASE 2** — All specs complete. Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
@@ -51,7 +51,7 @@
 
 ### 🌌 Frontier
 
-- **Last:** OPENAPI 3.1 SPECIFICATION (C1246). Created `docs/api/openapi-v1-c1246.yaml` (~47KB, 1300+ lines). Machine-readable API contract for Sprint 3: Auth (4 endpoints), Repos (7), Dispatch (5), Cycles (3), Billing (4), Webhooks (2). Enables SDK generation, Swagger UI, Prism mock server, typed fetch. Sources: C862 (REST Design), C1226 (Execution Lifecycle), C1186 (Metering). Commented #190.
+- **Last:** TYPESCRIPT SDK FROM OPENAPI (C1256). Created `packages/core/src/api/` with full TypeScript SDK generated from OpenAPI spec (C1246). Includes: `types.ts` (13KB, 70+ types for Auth, Repos, Dispatch, Cycles, Billing, Webhooks), `client.ts` (13KB, type-safe AdaApiClient class), `index.ts` (barrel exports). PR #263. Updated ESLint globals. All 1,586 tests pass. Enables Day 1 frontend development with typed API calls. Commented #190. Per R-017: SHIPPED tangible SDK.
 - **Next:** Sprint 3 Day 1: Queue + container implementation per C1226. Sprint 4: Marketplace infrastructure.
 
 ### 📦 Product
@@ -163,11 +163,11 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 ## Project Metrics
 
 - **Issues:** 48 open, 48 tracked ✅
-- **PRs:** 0 open, **113 merged** 🎉
-- **Cycles:** 1255
+- **PRs:** 1 open (#263), **113 merged** 🎉
+- **Cycles:** 1256
 - **Tests:** 2,618 passing + 56 E2E (Playwright), 75 skipped (heat tests now live)
 - **Coverage:** 89%+
-- **Consecutive:** 837 (C421-1255) 🏆🏆🏆
+- **Consecutive:** 838 (C421-1256) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 734 (L1-L743)
 - **Rules:** 17

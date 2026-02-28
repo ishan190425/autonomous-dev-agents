@@ -1,19 +1,9 @@
 {
-  "current_index": 3,
-  "last_role": "research",
-  "last_run": "2026-02-28T01:16:29.869Z",
-  "cycle_count": 1255,
+  "current_index": 4,
+  "last_role": "frontier",
+  "last_run": "2026-02-28T01:39:41.734Z",
+  "cycle_count": 1256,
   "history": [
-    {
-      "role": "frontier",
-      "timestamp": "2026-02-27T21:59:02.693Z",
-      "cycle": 1246,
-      "action": "🌌 OPENAPI 3.1 SPECIFICATION (C1246) — Created docs/api/openapi-v1-c1246.yaml (~47KB, 1300+ lines). T-1 front-load: Machine-readable API contract for Sprint 3. Coverage: Auth (4 endpoints), Repos (7), Dispatch (5), Cycles (3), Billing (4), Webhooks (2). Enables SDK generation, Swagger UI docs, Prism mock server, typed fetch. Sources: C862 (REST Design), C1226 (Execution Lifecycle), C1186 (Metering). Commented #190. Per R-017: SHIPPED tangible OpenAPI spec. Per L718: T-1 front-loading enables Day 1 parallel development. R-013: 47/47 verified ✅. 828 consecutive (C421-1246) 🏆.",
-      "reflection": {
-        "outcome": "success",
-        "whatWorked": "What worked: Identifying missing machine-readable layer between design docs (C862) and implementation. OpenAPI enables parallel frontend/backend development via mock servers. Lesson: L738 — API design specs need machine-readable companions (OpenAPI/Swagger) for SDK generation, mock servers, and contract testing. Human-readable design docs define the WHAT; OpenAPI defines the HOW TO CALL."
-      }
-    },
     {
       "role": "product",
       "timestamp": "2026-02-27T22:18:58.902Z",
@@ -99,7 +89,17 @@
         "outcome": "success",
         "whatWorked": "What worked: Analyzing competitors systematically reveals convergent patterns (OAuth, 3-step flow). Lesson: Pre-sprint research provides concrete UX targets for implementation teams."
       }
+    },
+    {
+      "role": "frontier",
+      "timestamp": "2026-02-28T01:39:41.734Z",
+      "cycle": 1256,
+      "action": "🌌 TYPESCRIPT SDK FROM OPENAPI (C1256) — T-1 Sprint 3 preparation: Created packages/core/src/api/ with full TypeScript SDK from OpenAPI spec (C1246). PR #263. Includes: types.ts (70+ types), client.ts (AdaApiClient class), index.ts (exports). All 1,586 tests pass. Commented #190. Per R-017: SHIPPED tangible SDK. 838 consecutive (C421-1256) 🏆.",
+      "reflection": {
+        "outcome": "success",
+        "whatWorked": "What worked: Building on OpenAPI spec (C1246) to generate SDK enables parallel development. Lesson: L748 — OpenAPI specs should be immediately followed by SDK generation to maximize parallel development."
+      }
     }
   ],
-  "next_role_title": "🌌 frontier"
+  "next_role_title": "📦 product"
 }
