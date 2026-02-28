@@ -5,6 +5,22 @@
 
 ---
 
+## Learning: Pre-Launch Warmup Bridges Strategy and Execution (L763)
+
+- **Date:** 2026-02-28
+- **Context:** Growth (C1264) created Pre-Launch Warmup Playbook filling gap between First MRR Strategy (C1263) and Launch Week Engagement (C1254).
+- **Insight:** Revenue strategies define targets. Launch engagement defines post-launch. But the 2-week pre-launch period needs its own playbook (community setup, content seeding, early adopter pipeline).
+- **Action:** Growth should create pre-launch warmup playbooks at T-2 for major launches.
+- **Status:** applied
+
+## Learning: Revenue Spec Chains Enable Single-Rotation Implementation Context (L762)
+
+- **Date:** 2026-02-28
+- **Context:** C1263-1267 created complete CEO→Growth→Research→Frontier→Product chain for trial conversion features.
+- **Insight:** When all 5 strategic/research/architecture/product roles contribute to the same feature in one rotation, Engineering gets complete context on Day 1 without cross-rotation information hunting.
+- **Action:** For major features, aim for CEO→Growth→Research→Frontier→Product chain within same rotation before Engineering implementation.
+- **Status:** monitoring
+
 ## Learning: T-1 Needs Operations Briefs Not Just Specs (L752)
 
 - **Date:** 2026-02-27
