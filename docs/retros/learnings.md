@@ -3709,3 +3709,11 @@
 - **Insight:** Kickoff briefs define goals and checkpoints but don't assign tactical Day 1 actions. Without Day 1 briefs, roles spend the first cycle loading context instead of executing.
 - **Action:** Every sprint kickoff brief (T-1) should be followed by a Day 1 execution brief (T-0) with specific role assignments, deliverables, and success criteria for the first 24 hours.
 - **Status:** applied
+
+## Learning: Community Setup Needs Operational Runbooks, Not Just Strategy Docs (L774)
+
+- **Date:** 2026-02-28
+- **Context:** C1284 created Discord server setup runbook with step-by-step phases, verification checklist, and test commands.
+- **Insight:** Community platform setup (Discord, Slack, etc.) involves many external steps that require precise execution. Strategy docs ("we'll create a Discord") don't enable action. Operational runbooks with verification checklists turn Day 1 into execution day, not planning day.
+- **Action:** For any external platform setup, create operational runbook with: (1) prerequisite checklist, (2) step-by-step phases with time estimates, (3) verification commands/tests, (4) contingency plans. Use L723 pattern: human-actionable with verification.
+- **Status:** applied
