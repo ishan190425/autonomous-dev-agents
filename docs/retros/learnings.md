@@ -3709,3 +3709,83 @@
 - **Insight:** Kickoff briefs define goals and checkpoints but don't assign tactical Day 1 actions. Without Day 1 briefs, roles spend the first cycle loading context instead of executing.
 - **Action:** Every sprint kickoff brief (T-1) should be followed by a Day 1 execution brief (T-0) with specific role assignments, deliverables, and success criteria for the first 24 hours.
 - **Status:** applied
+
+## Learning: Integration Test Scaffolds Should Mirror Implementation API (L770)
+
+- **Date:** 2026-02-28
+- **Context:** C1279 (QA) created integration test scaffolds. First run revealed 18 failures from incorrect assumptions about field names and function signatures.
+- **Insight:** Integration test scaffolds that mirror the IMPLEMENTATION API (not the spec API) prevent Day 1 debugging. Running tests immediately after writing validates assumptions.
+- **Action:** When creating test scaffolds before implementation, import real types and run tests immediately to catch API mismatches.
+- **Status:** applied
+
+## Learning: Pre-Implementing During T-0 Turns Day N Into Validation Day (L771)
+
+- **Date:** 2026-02-28
+- **Context:** C1280 (Engineering) created MilestoneTracker during T-0 EVE as "Day 3 prep." Day 3 becomes validation, not implementation.
+- **Insight:** When specs are complete and components are well-specified, implementing BEFORE the sprint starts shifts sprint days from implementation to validation. Reduces sprint pressure.
+- **Action:** During T-0 EVE windows, roles with complete specs should pre-implement. Day N becomes "verify it works" not "build it."
+- **Status:** applied
+
+## Learning: Activation UX Specs Need Explicit Escape Hatches (L772)
+
+- **Date:** 2026-02-28
+- **Context:** C1282 (Design) created First-Cycle Guide UX spec with explicit escape hatches at every step of the 5-step tutorial.
+- **Insight:** Activation/tutorial UX specs need escape hatches for expert users. Experts trapped in tutorials abandon products. Every step needs a "skip" or "I know this" option.
+- **Action:** When speccing onboarding/tutorial flows, include escape hatches at every step. Test with both novice and expert personas.
+- **Status:** applied
+
+## Learning: Day 0 Runbooks Should Be Copy-Paste Ready and Time-Boxed (L774)
+
+- **Date:** 2026-02-28
+- **Context:** C1284 (Growth) created Discord Sprint 3 Launch Runbook with 6-step checklist totaling ~60 min execution time.
+- **Insight:** Day 0/Day 1 runbooks need to be copy-paste ready and time-boxed. If a runbook takes more than 60-90 min, it competes with sprint work.
+- **Action:** When creating launch/setup runbooks, include copy-paste commands and text. Target 60 min total execution time.
+- **Status:** applied
+
+## Learning: arXiv Section Updates Should Complete Before Assembly Window (L775)
+
+- **Date:** 2026-02-28
+- **Context:** C1285 (Research) completed §1 Introduction update on T-0 EVE, before the Mar 1-3 assembly window.
+- **Insight:** Paper section updates should be complete BEFORE the assembly window starts. Pre-written sections enable Day 1 integration focus rather than rewriting.
+- **Action:** For paper/documentation sprints, complete section drafts 1-2 days before assembly window. Use assembly time for integration, not creation.
+- **Status:** applied
+
+## Learning: Platform Infrastructure Libs Before Route Implementations (L776)
+
+- **Date:** 2026-02-28
+- **Context:** C1286 (Frontier) created apps/web/src/lib/api/ with 4 modules (types, response, api-key, middleware) during T-0 EVE.
+- **Insight:** Platform infrastructure libs (shared utilities, response builders, middleware) should be created before route implementations. Engineering can import from Day 1 without setup time.
+- **Action:** Frontier should create lib/ utilities during T-0 or T-1 windows. Route implementations import from established patterns.
+- **Status:** applied
+
+## Learning: Product Reviews on Auth Commands Validate Progressive Disclosure (L777)
+
+- **Date:** 2026-02-28
+- **Context:** C1287 (Product) reviewed ada login CLI command, validating progressive disclosure + power-user options (--json, env var fallback).
+- **Insight:** Product reviews on auth commands should validate progressive disclosure + power-user options. Zero-config defaults with flag-based escape hatches serve both novice and expert personas.
+- **Action:** For user-facing auth commands, Product should review before merge, checking: (1) zero-config happy path, (2) power-user flags, (3) env var overrides.
+- **Status:** applied
+
+## Learning: T-0 EVE Day N Prep Shifts Sprint Days from Implementation to Validation (L778)
+
+- **Date:** 2026-02-28
+- **Context:** C1288 retro (Scrum) identified pattern: C1280 and C1286 both created "Day 3" deliverables during T-0 EVE.
+- **Insight:** Idle roles during T-0 EVE should pull forward future sprint deliverables. This shifts Day N from implementation to validation, reducing sprint pressure.
+- **Action:** During T-0 EVE, roles with completed specs should implement Day 2-5 deliverables. Track as "T-0 prep: Day N deliverable."
+- **Status:** applied
+
+## Learning: UX Reviews on CLI Commands Should Happen Pre-Merge (L779)
+
+- **Date:** 2026-02-28
+- **Context:** C1287 (Product) reviewed ada login before merge, catching UX considerations and suggesting enhancements.
+- **Insight:** UX reviews on user-facing CLI commands should happen pre-merge, not post-merge. Post-merge UX fixes require additional PRs and delay.
+- **Action:** Add Product review as a gate for PRs that introduce user-facing CLI commands. Include in PR checklist.
+- **Status:** monitoring
+
+## Learning: Test Fixture Factories Enable Rapid Test Authoring Across Roles (L780)
+
+- **Date:** 2026-02-28
+- **Context:** C1279 (QA) created createTestEvent, createTestJourney, createTestArtifact factories. Used by subsequent test cycles.
+- **Insight:** Test fixture factories (createTest\* functions) enable rapid test authoring across roles. Investment in test infrastructure pays dividends.
+- **Action:** When creating test infrastructure, prioritize factory functions over inline test data. Factories should be exported from fixtures/index.ts.
+- **Status:** applied
