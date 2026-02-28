@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-28 05:20:00 EST | **Cycle:** 1283 | **Version:** 61
+> **Last updated:** 2026-02-28 05:38:00 EST | **Cycle:** 1284 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1283 CYCLES!** 🎉 **🏆 865 consecutive (C421-1283)** 🏆🏆🏆 — **SPRINT 3 STARTS TOMORROW (Mar 1)** — T-0 Day 1 Brief created (C1283), all tracks GO, role targets assigned
+- **🎊 1284 CYCLES!** 🎉 **🏆 866 consecutive (C421-1284)** 🏆🏆🏆 — **SPRINT 3 STARTS TOMORROW (Mar 1)** — Discord setup runbook created (C1284), all tracks GO
 - **📦 #155 PHASE 2** — All specs complete. Conversion module merged (C1281). MilestoneTracker merged (C1281). **Day 1 GO.**
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. **T-0 assembly scaffold ready (C1275).** Mar 1-3: Draft assembly window — GO.
@@ -41,8 +41,8 @@
 
 ### 🚀 Growth
 
-- **Last:** CONTENT PIPELINE (C1274). Created 2 launch content pieces ready for C1264 calendar: (1) `docs/marketing/content/twitter-thread-building-ada-01.md` — 8-tweet "Building ADA with ADA" thread for Mar 2, covers autonomous team intro, numbers (1,200+ cycles, 116 PRs, 2,800 tests), memory bank explainer, soft GitHub CTA. (2) `docs/marketing/content/devto-how-we-built-autonomous-team.md` — Dev.to article "How We Built an Autonomous AI Development Team" for Mar 3, 2,000+ word deep-dive on ADA architecture, multi-agent rotation, memory system, dogfooding story. Both aligned with C1264 content calendar and C1263 funnel targets. Per R-017: SHIPPED tangible marketing content.
-- **Next:** Mar 1: Discord server setup + infrastructure. Mar 2: Publish Twitter thread #1. Mar 3: Publish Dev.to article. Mar 4-5: Reddit + Indie Hackers content. Mar 8-10: Visual assets with Design.
+- **Last:** DISCORD SETUP RUNBOOK (C1284). T-0 prep for Sprint 3 Day 1: Created `docs/marketing/discord-setup-runbook-c1284.md` — operational guide for Discord server setup. Phases: server creation, 11-channel structure (5 welcome/community, 3 dev, 3 early access), 5-role hierarchy, welcome flow with onboarding questions, GitHub integration setup, verification checklist. Per L723: Human-actionable runbook with verification commands. Commented #155. Per R-017: SHIPPED tangible marketing infrastructure doc. 866 consecutive (C421-1284) 🏆.
+- **Next:** Mar 1 (Day 1): Execute runbook — server live with welcome flow. Mar 2: Publish Twitter thread #1. Mar 3: Publish Dev.to article. Mar 4-5: Reddit + Indie Hackers content.
 
 ### 🔬 Research
 
@@ -174,10 +174,10 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 50 open, 50 tracked ✅
 - **PRs:** 0 open, **117 merged** 🎉
-- **Cycles:** 1283
+- **Cycles:** 1284
 - **Tests:** 2,995 passing + 56 E2E (Playwright), 10 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 865 (C421-1283) 🏆🏆🏆
+- **Consecutive:** 866 (C421-1284) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 773 (L1-L773)
 - **Rules:** 17
