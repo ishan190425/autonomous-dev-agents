@@ -237,12 +237,12 @@ describe('API Handler Factory', () => {
         email: z.string().email(),
       });
 
-      let capturedBody: any;
+      let capturedBody: { name: string; email: string } | undefined;
 
       const handler = createApiHandler(
         { validateBody: schema },
         async (_, context) => {
-          capturedBody = context.body;
+          capturedBody = context.body as { name: string; email: string };
           return NextResponse.json({ ok: true });
         }
       );
@@ -318,7 +318,7 @@ describe('API Handler Factory', () => {
 
   describe('Pagination', () => {
     it('should parse pagination params from query string', async () => {
-      let capturedPagination: any;
+      let capturedPagination: { page: number; pageSize: number } | undefined;
 
       const handler = createApiHandler({}, async (_, context) => {
         capturedPagination = context.pagination;
@@ -333,7 +333,7 @@ describe('API Handler Factory', () => {
     });
 
     it('should use defaults when pagination params not provided', async () => {
-      let capturedPagination: any;
+      let capturedPagination: { page: number; pageSize: number } | undefined;
 
       const handler = createApiHandler({}, async (_, context) => {
         capturedPagination = context.pagination;
@@ -348,7 +348,7 @@ describe('API Handler Factory', () => {
     });
 
     it('should cap pageSize at 100', async () => {
-      let capturedPagination: any;
+      let capturedPagination: { page: number; pageSize: number } | undefined;
 
       const handler = createApiHandler({}, async (_, context) => {
         capturedPagination = context.pagination;
@@ -438,7 +438,7 @@ describe('API Handler Factory', () => {
 
       const middleware1 = async (
         _req: NextRequest,
-        _ctx: any,
+        _ctx: HandlerContext,
         next: () => Promise<Response>
       ) => {
         calls.push('middleware1:before');
@@ -449,7 +449,7 @@ describe('API Handler Factory', () => {
 
       const middleware2 = async (
         _req: NextRequest,
-        _ctx: any,
+        _ctx: HandlerContext,
         next: () => Promise<Response>
       ) => {
         calls.push('middleware2:before');
@@ -466,7 +466,7 @@ describe('API Handler Factory', () => {
       });
 
       const request = new NextRequest('http://localhost/api');
-      await handler(request, {} as any);
+      await handler(request, { params: {} });
 
       expect(calls).toEqual([
         'middleware1:before',
