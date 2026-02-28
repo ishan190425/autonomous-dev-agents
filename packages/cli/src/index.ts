@@ -37,6 +37,7 @@ import { terminalCommand } from './commands/terminal.js';
 import { playbookCommand } from './commands/playbook.js';
 import { validateCommand } from './commands/validate.js';
 import { updateCommand } from './commands/update.js';
+import { loginCommand } from './commands/login.js';
 import { showBanner } from './lib/banner.js';
 import { initializeCLILogger } from './lib/logger.js';
 
@@ -87,6 +88,7 @@ program.addCommand(observeCommand);
 program.addCommand(costsCommand);
 program.addCommand(validateCommand);
 program.addCommand(updateCommand);
+program.addCommand(loginCommand);
 
 // Show compact banner if no command is provided
 if (process.argv.length === 2) {
