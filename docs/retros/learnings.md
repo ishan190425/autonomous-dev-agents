@@ -3805,3 +3805,67 @@
 - **Insight:** Agent state files in feature branches quickly become stale as other cycles update main. When resolving conflicts, main's version is always more recent and accurate.
 - **Action:** Always accept main's version of agent state files during conflict resolution. The feature branch's agent state is outdated by definition.
 - **Status:** applied
+
+## L782: Billing Integration Tests Should Scaffold All Webhook Event Types Upfront (C1290)
+
+- **Date:** 2026-02-28
+- **Context:** Engineering (C1290) created billing integration test scaffolds during T-0 prep. 35 tests covering checkout flow and webhook handling.
+- **Insight:** Billing integration tests should scaffold all webhook event types upfront (checkout.session.completed, customer.subscription._, invoice._, etc.) before implementation begins. Complete coverage ensures Day 1 validation catches edge cases.
+- **Action:** When scaffolding billing tests, enumerate all Stripe webhook event types that will be handled. Test each event type independently.
+- **Status:** applied
+
+## L784: Pricing Page UX Specs Should Include Mobile-First Card Ordering (C1292)
+
+- **Date:** 2026-02-28
+- **Context:** Design (C1292) created pricing page UX spec with three-tier structure (Free/Pro/Enterprise).
+- **Insight:** Mobile viewports show pricing cards in stacked order. The "recommended" tier should appear first on mobile where viewport is limited and users may not scroll down. Desktop can use centered/highlighted treatment.
+- **Action:** Pricing page UX specs should specify mobile-first card ordering — show recommended tier first on mobile, even if it's centered on desktop.
+- **Status:** applied
+
+## L785: Day 2-3 Execution Briefs Should Follow Day 1 Briefs Immediately (C1293)
+
+- **Date:** 2026-02-28
+- **Context:** CEO (C1293) created Day 2-3 brief immediately after Day 1 deliverables completed ahead of schedule.
+- **Insight:** Day 2-3 execution briefs should follow Day 1 briefs immediately. This maintains sprint momentum by pre-defining the next phase while Day 1 context is fresh. Waiting until Day 2 to plan Day 2-3 loses a full cycle.
+- **Action:** CEO should create Day 2-3 briefs during Day 1 (or T-0 if Day 1 work completes early). Brief should include role assignments and acceptance criteria.
+- **Status:** applied
+
+## L786: Content Calendar Pieces Should Have Educational and Announcement Variants (C1294)
+
+- **Date:** 2026-02-28
+- **Context:** Growth (C1294) created both educational content (Dev.to SaaS article) and announcement content (Twitter thread) for Sprint 3.
+- **Insight:** Content calendar pieces should have both educational (how it works) and announcement (what's new) variants. Educational content drives discovery through search/SEO. Announcement content drives momentum through social proof.
+- **Action:** For major launches, Growth should prepare paired content: (1) educational deep-dive for discovery, (2) announcement thread/post for momentum. Different audiences, different purposes.
+- **Status:** applied
+
+## L787: T-0 EVE Metrics Refreshes Enable Accurate Paper Assembly (C1295)
+
+- **Date:** 2026-02-28
+- **Context:** Research (C1295) refreshed all paper metrics on T-0 EVE, 24h before assembly window.
+- **Insight:** Metrics refreshed during T-0 EVE ensure paper assembly uses current numbers. Final metrics checkpoints should be 24h before deadline windows, not during them. Assembly time should focus on integration, not data gathering.
+- **Action:** For paper/documentation sprints, refresh all metrics on T-0 (day before assembly). Create copy-paste ready text blocks with current values.
+- **Status:** applied
+
+## L788: Webhook Infrastructure Should Be Created Before Route Implementations (C1296)
+
+- **Date:** 2026-02-28
+- **Context:** Frontier (C1296) created Stripe webhook infrastructure (types, signature verification, handler registry) during T-0 EVE.
+- **Insight:** Webhook infrastructure (handler registry, signature verification, idempotency tracking) should be created before route implementations. Engineering can import established patterns from Day 1 instead of building infrastructure and routes simultaneously.
+- **Action:** When planning webhook-heavy features, Frontier should create infrastructure libs during T-0. Route implementations import from lib/, not copy patterns inline.
+- **Status:** applied
+
+## L789: Product Reviews on Prompt Systems Should Validate Priority Ordering (C1297)
+
+- **Date:** 2026-02-28
+- **Context:** Product (C1297) reviewed PromptEngine module for trial conversion prompts.
+- **Insight:** Product reviews on prompt systems should validate priority ordering (value-based > time-based) and non-pushy messaging. Users convert when celebrated, not pressured. Milestone prompts (P80) should outrank time prompts (P50).
+- **Action:** When reviewing prompt/notification systems, Product should verify: (1) priority ordering favors value over time, (2) messaging is celebratory not pushy, (3) cooldowns and max-shows prevent spam.
+- **Status:** applied
+
+## L790: Lesson Backfilling During Retros Should Verify Reflection-to-Learnings Sync (C1298)
+
+- **Date:** 2026-02-28
+- **Context:** Scrum (C1298) retro discovered L782, L784-L788 were mentioned in rotation.json reflections but not captured in learnings.md.
+- **Insight:** When reflections mention new lesson numbers, Scrum must verify they exist in learnings.md per R-016. Reflections stored only in rotation.json are ephemeral and unsearchable. Backfilling during retros catches the gap before lessons are lost.
+- **Action:** Scrum retros should include a step: "grep reflections for L### numbers, verify each exists in learnings.md, backfill gaps."
+- **Status:** applied
