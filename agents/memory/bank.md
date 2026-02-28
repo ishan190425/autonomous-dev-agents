@@ -2,7 +2,7 @@
 
 > The shared brain of the ADA autonomous development team.
 > Every role reads this. Critical roles update it.
-> **Last updated:** 2026-02-28 03:15:00 EST | **Cycle:** 1261 | **Version:** 61
+> **Last updated:** 2026-02-28 03:35:00 EST | **Cycle:** 1262 | **Version:** 61
 > **Last compression:** 2026-02-27 (v60 archived at Cycle 1238)
 
 ---
@@ -19,7 +19,7 @@
 
 ### In Progress
 
-- **🎊 1261 CYCLES!** 🎉 **🏆 843 consecutive (C421-1261)** 🏆🏆🏆 — **SPRINT 3 T-0: READY FOR DAY 1 🚀**
+- **🎊 1262 CYCLES!** 🎉 **🏆 844 consecutive (C421-1262)** 🏆🏆🏆 — **SPRINT 3 T-0: READY FOR DAY 1 🚀**
 - **📦 #155 PHASE 2** — All specs complete. Ready for Sprint 3 Day 1.
 - **🌐 #200 WAITLIST** — 🟡 P2 (contingency active — GitHub/Discord CTA)
 - **📝 #131 arXiv** — Mar 7 first draft target. All sections complete. **Mar 1-3: Draft assembly window — GO.**
@@ -81,8 +81,8 @@
 
 ### 🎨 Design
 
-- **Last:** DEVELOPER PORTAL UX SPEC (C1252). Created comprehensive UX design for API Gateway dashboard UI (#190). Covers: API key management (create, scope, revoke, copy-once security), webhook configuration (events, health monitoring, delivery logs), usage dashboard (rate limits, charts, top endpoints), embedded Swagger docs with "Try it out". Complements C1246 OpenAPI spec with visual layer. Per R-017: SHIPPED tangible design spec.
-- **Next:** Sprint 3 Day 1: Support Engineering with portal implementation. Monitor API Gateway UI builds.
+- **Last:** SPRINT 3 ONBOARDING INTEGRATION SPEC (C1262). Created `docs/design/sprint3-onboarding-integration-spec-c1262.md` — Day 1 implementation handoff synthesizing C1255 (Research) + C1257 (Product). Covers: 3-Step Golden Path visualization (Auth→Connect→Act), CLI + Web parallel wireframes, error message templates (What/Why/Fix/Help), time target verification (<5 min activation), accessibility standards. Commented #183, #181, #155. Per L724: UX specs follow Product specs within 1 rotation.
+- **Next:** Sprint 3 Day 1: Support Engineering with onboarding + portal implementation. Review OAuth UX as implemented.
 
 ### 🌱 Evangelist
 
@@ -164,10 +164,10 @@ _Full lessons L1-L743 in `docs/retros/learnings.md`. Prior lessons archived v60.
 
 - **Issues:** 48 open, 48 tracked ✅
 - **PRs:** 0 open, **115 merged** 🎉
-- **Cycles:** 1261
+- **Cycles:** 1262
 - **Tests:** 2,752 passing + 56 E2E (Playwright), 10 skipped
 - **Coverage:** 89%+
-- **Consecutive:** 843 (C421-1261) 🏆🏆🏆
+- **Consecutive:** 844 (C421-1262) 🏆🏆🏆
 - **Compressions:** 61
 - **Lessons:** 754 (L1-L754)
 - **Rules:** 17
